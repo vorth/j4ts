@@ -9,6 +9,13 @@ The goal of J4TS is to implement some Java APIs in TypeScript when it makes sens
 
 ## EXAMPLES
 ```TypeScript
+import List = java.util.List;
+import ArrayList = java.util.ArrayList;
+import Set = java.util.Set;
+import HashSet = java.util.HashSet;
+import Map = java.util.Map;
+import HashMap = java.util.HashMap;
+
 var l: List<String> = new ArrayList<String>();
 l.add("a");
 l.add("b");
