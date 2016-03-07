@@ -3,9 +3,9 @@ Java APIs in TypeScript
 
 The goal of J4TS is to implement some Java APIs in TypeScript when it makes sense. It intends to be usefull for the following cases:
 
-- A programmer used to the Java APIs can be more efficient using J4TS than having to learn basic JavaScript APIs.
+- Programmers used to the Java APIs can be more efficient using J4TS than when having to learn basic JavaScript APIs.
 - It can ease code sharing between Java and TypeScript/JavaScript (and also hopefully, ease the understanding and relationships between the Java fans and TypeScript/JavaScript ones).
-- Typically, J4TS can be used as a runtime for transpilers, so that you can use the Java APIs in your transpiled Java programs. So far, J4TS main target is the JSweet transpiler, but it is not limited to it.
+- Typically, J4TS can be used as a runtime for transpilers, so that you can use the Java APIs in your transpiled Java programs. So far, J4TS main target is the [JSweet transpiler](https://github.com/cincheo/jsweet), but it is not limited to it.
 
 ## DISCLAIMER
 
@@ -17,7 +17,7 @@ J4TS is meant to serve the public interest and be as open as possible. So anyone
 
 ## HOW TO BUILD
 
-Currently J4TS is in a very early stage of development and will be improved soon.
+Currently J4TS is in a very early stage of development and there is no well-documented build process.
 
 ## LICENSE
 
