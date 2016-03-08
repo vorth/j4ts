@@ -53,7 +53,7 @@ You can use the current JavaScript bundle (runtime): ``js/j4ts.js``. From TypeSc
 
 From JSweet, add the candy dependency in your ``pom.xml``.
 
-```
+```xml
 <dependency>
 	<groupId>org.jsweet.candies</groupId>
 	<artifactId>j4ts</artifactId>
