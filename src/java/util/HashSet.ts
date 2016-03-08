@@ -1,3 +1,6 @@
+
+/// <reference path="../../j4ts/util.ts" />
+
 namespace java.util {
 
     import equals = j4ts.util.equals;

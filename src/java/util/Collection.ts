@@ -1,3 +1,4 @@
+
 namespace java.util {
     
     export interface Collection<E> extends Iterable<E> {

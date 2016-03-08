@@ -1,3 +1,7 @@
+
+/// <reference path="../../j4ts/util.ts" />
+/// <reference path="Map.ts" />
+
 namespace java.util {
 
     import Entry = java.util.Map.Entry;

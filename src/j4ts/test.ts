@@ -3,6 +3,8 @@
 /// <reference path="../java/util/ArrayList.ts" />
 /// <reference path="../java/util/Set.ts" />
 /// <reference path="../java/util/HashSet.ts" />
+/// <reference path="../java/util/Map.ts" />
+/// <reference path="../java/util/HashMap.ts" />
 
 namespace j4ts.test {
 
