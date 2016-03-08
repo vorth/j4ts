@@ -49,7 +49,18 @@ J4TS is meant to serve the public interest and be as open as possible. So anyone
 
 ## How to build
 
-Currently J4TS is in a very early stage of development and there is no well-documented build process.
+Use Gulp to generate the JavaScript bundle in the ``js`` directory (required: Gulp and required modules).
+
+```
+> gulp clean bundle
+```
+
+To build and install the JSweet candy in your local Maven repository (required: Maven).
+
+```
+> cd packaging/jsweet-candy
+> mvn clean install
+```
 
 ## License
 

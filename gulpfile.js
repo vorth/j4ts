@@ -8,7 +8,7 @@ var jsweetOutputDir = 'packaging/jsweet-candy';
 var jsweetWebjarsOutputDir = jsweetOutputDir+'/src/main/resources/META_INF/webjars';
 var jsweetSrcOutputDir = jsweetOutputDir+'/src/main/resources/src';
 
-gulp.task('default', function() {
+gulp.task('bundle', function() {
 	gulp.src([ 'src/**/*.ts' ]).pipe(typescript({
 		target : 'ES5',
 		declaration : true,
@@ -21,14 +21,9 @@ gulp.task('clean', function(cb) {
 	del([ 'js', jsweetWebjarsOutputDir, jsweetSrcOutputDir ], cb);
 });
 
-gulp.task('deploy-jsweet-candy', ['default'], function(cb) {
+gulp.task('prepare-jsweet-candy', ['default'], function(cb) {
 	gulp.src(['js/**/*.js'])
 	  .pipe(gulp.dest(jsweetWebjarsOutputDir+'/'+artifactName+'/'+artifactVersion));
 	gulp.src(['js/**/*.d.ts'])
 	  .pipe(gulp.dest(jsweetSrcOutputDir+'/typings'));
-	exec('cd '+jsweetOutputDir+';mvn clean install', function(err, stdout, stderr) {
-		console.log(stdout);
-		console.log(stderr);
-		cb(err);
-	});
 });
