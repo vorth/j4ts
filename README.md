@@ -47,6 +47,22 @@ J4TS is not made for implementing Java semantics in JavaScript. It will be close
 
 J4TS is meant to serve the public interest and be as open as possible. So anyone is more than welcome to contribute as long as it does not deviate J4TS from its initial goals stated above. 
 
+## How to use
+
+You can use the current JavaScript bundle (runtime): ``js/j4ts.js``. From TypeScript, you can compile with ``js/j4ts.d.ts``.
+
+From JSweet, add the candy dependency in your ``pom.xml``.
+
+```
+<dependency>
+	<groupId>org.jsweet.candies</groupId>
+	<artifactId>j4ts</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<scope>test</scope>
+	<optional>true</optional>
+</dependency>
+```
+
 ## How to build
 
 Use Gulp to generate the JavaScript bundle in the ``js`` directory (required: Gulp and required modules).
