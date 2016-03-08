@@ -49,7 +49,9 @@ J4TS is meant to serve the public interest and be as open as possible. So anyone
 
 ## How to use
 
-You can use the current JavaScript bundle (runtime): ``js/j4ts.js``. From TypeScript, you can compile with ``js/j4ts.d.ts``.
+You can use the current JavaScript bundle (runtime): ``js/j4ts.js``. 
+
+From TypeScript, you can compile with ``js/j4ts.d.ts``.
 
 From JSweet, add the candy dependency in your ``pom.xml``.
 
@@ -72,6 +74,7 @@ Use Gulp to generate the JavaScript bundle in the ``js`` directory (required: Gu
 To build and install the JSweet candy in your local Maven repository (required: Maven).
 
 ```
+> gulp prepare-jsweet-candy
 > cd packaging/jsweet-candy
 > mvn clean install
 ```
