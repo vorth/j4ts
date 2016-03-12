@@ -21,7 +21,7 @@ gulp.task('clean', function(cb) {
 	del([ 'js', jsweetWebjarsOutputDir, jsweetSrcOutputDir ], cb);
 });
 
-gulp.task('prepare-jsweet-candy', ['default'], function(cb) {
+gulp.task('prepare-jsweet-candy', ['bundle'], function(cb) {
 	gulp.src(['js/**/*.js'])
 	  .pipe(gulp.dest(jsweetWebjarsOutputDir+'/'+artifactName+'/'+artifactVersion));
 	gulp.src(['js/**/*.d.ts'])
