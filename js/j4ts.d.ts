@@ -4,6 +4,7 @@ declare namespace java.util {
         lastIndexOf(o: Object): number;
         get(index: number): E;
         set(index: number, element: E): E;
+        subList(fromIndex: number, toIndex: number): List<E>;
     }
 }
 declare namespace j4ts.util {
@@ -37,6 +38,7 @@ declare namespace java.util {
         size(): number;
         isEmpty(): boolean;
         toString(): string;
+        subList(fromIndex: number, toIndex: number): List<T>;
     }
 }
 declare namespace java.util {
