@@ -161,6 +161,11 @@ var java;
             ArrayList.prototype.toString = function () {
                 return arrays.toString(this.elements);
             };
+            ArrayList.prototype.subList = function (fromIndex, toIndex) {
+                var result = new ArrayList();
+                result.elements = this.elements.slice(fromIndex, toIndex);
+                return result;
+            };
             return ArrayList;
         }());
         util.ArrayList = ArrayList;
@@ -398,6 +403,7 @@ var j4ts;
             l.add("b");
             l.add("c");
             assertEquals(l.toString(), "[a, b, c]");
+            assertEquals(l.subList(1, 3).toString(), "[b, c]");
             l.remove("b");
             assertEquals(l.toString(), "[a, c]");
             assertEquals(l.size(), 2);

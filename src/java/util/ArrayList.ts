@@ -109,6 +109,12 @@ namespace java.util {
             return arrays.toString(this.elements);
         }
 
+        subList(fromIndex:number, toIndex:number): List<T> {
+            var result: ArrayList<T> = new ArrayList<T>();
+            result.elements = this.elements.slice(fromIndex, toIndex);
+            return result;
+        }
+
     }
 
 }

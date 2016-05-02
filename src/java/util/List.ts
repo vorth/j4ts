@@ -9,7 +9,7 @@ namespace java.util {
         get(index: number): E;
         //remove(index: number): E;
         set(index: number, element: E): E;
-        //subList(fromIndex: number, toIndex: number): List<E>;
+        subList(fromIndex: number, toIndex: number): List<E>;
         
         //spliterator(): Spliterator<E>;
     }

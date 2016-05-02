@@ -46,6 +46,7 @@ namespace j4ts.test {
         l.add("b");
         l.add("c");
         assertEquals(l.toString(), "[a, b, c]");
+        assertEquals(l.subList(1, 3).toString(), "[b, c]");
         l.remove("b");
         assertEquals(l.toString(), "[a, c]");
         assertEquals(l.size(), 2);
