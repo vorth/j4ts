@@ -115,6 +115,9 @@ namespace java.util {
             return result;
         }
 
+        sort(c:Comparator<T>): void {
+            this.elements.sort(c.compare);
+        }
     }
 
 }

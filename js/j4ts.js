@@ -166,6 +166,9 @@ var java;
                 result.elements = this.elements.slice(fromIndex, toIndex);
                 return result;
             };
+            ArrayList.prototype.sort = function (c) {
+                this.elements.sort(c.compare);
+            };
             return ArrayList;
         }());
         util.ArrayList = ArrayList;
