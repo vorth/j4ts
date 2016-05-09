@@ -122,15 +122,20 @@ var java;
                 return (this.indexOf(item) >= 0);
             };
             ArrayList.prototype.remove = function (item) {
-                var index;
                 if (typeof item === 'number') {
-                    index = item;
+                    var valueToReturn = this.elements[item];
+                    this.elements.splice(item, 1);
+                    return valueToReturn;
                 }
                 else {
-                    index = this.elements.indexOf(item);
-                }
-                if (index > -1) {
-                    this.elements.splice(index, 1);
+                    var index = this.elements.indexOf(item);
+                    if (index > -1) {
+                        this.elements.splice(index, 1);
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
                 }
             };
             ArrayList.prototype.clear = function () {
@@ -407,7 +412,10 @@ var j4ts;
             l.add("c");
             assertEquals(l.toString(), "[a, b, c]");
             assertEquals(l.subList(1, 3).toString(), "[b, c]");
-            l.remove("b");
+            assertEquals(l.remove("b"), true);
+            assertEquals(l.remove("d"), false);
+            assertEquals(l.remove(1), "c");
+            l.add("c");
             assertEquals(l.toString(), "[a, c]");
             assertEquals(l.size(), 2);
             assertEquals(l.get(1), "c");

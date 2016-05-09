@@ -64,14 +64,18 @@ namespace java.util {
         }
 
         remove(item: any): any {
-            var index;
             if (typeof item === 'number') {
-                index = item;
+                var valueToReturn = this.elements[item];
+                this.elements.splice(item, 1);
+                return valueToReturn;
             } else {
-                index = this.elements.indexOf(item);
-            }
-            if (index > -1) {
-                this.elements.splice(index, 1);
+                var index = this.elements.indexOf(item);
+                if (index > -1) {
+                    this.elements.splice(index, 1);
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
 
