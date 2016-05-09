@@ -39,6 +39,7 @@ declare namespace java.util {
         isEmpty(): boolean;
         toString(): string;
         subList(fromIndex: number, toIndex: number): List<T>;
+        sort(c: Comparator<T>): void;
     }
 }
 declare namespace java.util {
@@ -124,6 +125,11 @@ declare namespace java.util {
         add(main: any, extra?: any): any;
         remove(o: any): any;
         clear(): void;
+    }
+}
+declare namespace java.util {
+    interface Comparator<T> {
+        compare(o1: T, o2: T): number;
     }
 }
 declare namespace java.util {
