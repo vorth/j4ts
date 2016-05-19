@@ -1,13 +1,13 @@
 # J4TS
-Java APIs for TypeScript
+Java APIs for TypeScript/JSweet
 
-The goal of J4TS is to implement some Java APIs in TypeScript when it makes sense. It intends to be usefull for the following cases:
+The goal of J4TS is to implement some Java APIs for JavaScript/TypeScript/JSweet when it makes sense. It is based on a fork of the GWT's JRE emulation library and is written in Java, and transpiled to TypeScript/JavaScript with the JSweet transpiler. It intends to be useful for the following cases:
 
 - Programmers used to the Java APIs can be more efficient using J4TS than when having to learn basic JavaScript APIs.
 - It can ease code sharing between Java and TypeScript/JavaScript (and also hopefully, ease the understanding and relationships between the Java fans and TypeScript/JavaScript ones).
-- Typically, J4TS can be used as a runtime for transpilers, so that you can use the Java APIs in your transpiled Java programs. So far, J4TS main target is the [JSweet transpiler](http://www.jsweet.org), but it is not limited to it. In a way, J4TS can be seen as an alternative to GWT's JRE emulation library, but for TypeScript.
+- Typically, J4TS can be used as a runtime for transpilers, so that you can use the Java APIs in your transpiled Java programs. So far, J4TS main target is the [JSweet transpiler](http://www.jsweet.org), but it is not limited to it.
 
-J4TS currently covers a very small subset of the Java APIs, and is intended to be completed on-the-fly as more use cases are needed. So feel free to contribute.
+J4TS currently covers most of the core Java API supported by GWT (``java.lang``, ``java.util``, some ``java.io``). It does not support java.math yet because the GWT implementation requires a deep Java emulation, which is not consistent with the JSweet approach (so ``java.math`` should be implemented as a wrapper for [bignumber.js](https://github.com/MikeMcl/bignumber.js/) for instance). J4TS is intended to be completed on-the-fly as more use cases are needed. So feel free to contribute.
 
 ## Examples
 ```TypeScript
@@ -43,7 +43,7 @@ assertEquals("bb", s.get("b"));
 
 ## Disclaimer
 
-J4TS is not made for implementing Java semantics in JavaScript. It will be close and mimic Java behavior, but it will never be completely Java. J4TS is full of heuristics and approximations, trying to get the best of it at a reasonable cost. So, programmers using J4TS should not expect to use it for porting complex Java applications (although it may help). On the other hand, J4TS should be fine to share and port small portions of code between Java and TypeScript. Typically, when using J4TS, some business logic may be shared more easily between a Java server and a TypeScript/JavaScript client.
+J4TS is not made for fully implementing Java semantics in JavaScript. It is close to and mimic Java behavior, but it will never be completely Java, espcially because primitive types in Java are different (chars and numbers especially).
 
 ## Contributions
 
@@ -51,9 +51,9 @@ J4TS is meant to serve the public interest and be as open as possible. So anyone
 
 ## How to use
 
-You can use the current JavaScript bundle (runtime): ``js/j4ts.js``. 
+You can use the current JavaScript bundle (runtime): ``target/js/bundle.js``. 
 
-From TypeScript, you can compile with ``js/j4ts.d.ts``.
+From TypeScript, you can compile with ``js/bundle.d.ts``.
 
 From JSweet, add the candy dependency in your ``pom.xml``.
 
@@ -61,19 +61,25 @@ From JSweet, add the candy dependency in your ``pom.xml``.
 <dependency>
 	<groupId>org.jsweet.candies</groupId>
 	<artifactId>j4ts</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0</version>
 </dependency>
 ```
 
 ## How to build
 
-Use Gulp to generate the JavaScript bundle in the ``js`` directory (required: Gulp and required modules).
+Use Gulp to clean temporary files (required: Gulp and required modules).
 
 ```
-> gulp clean bundle
+> gulp clean
 ```
 
-To build and install the JSweet candy in your local Maven repository (required: Maven).
+Use Maven to generate the JavaScript bundle in the ``target/js`` directory (required: JSweet)
+
+```
+> mvn clean generate-sources
+```
+
+To build and install the JSweet candy in your local Maven repository.
 
 ```
 > gulp prepare-jsweet-candy
