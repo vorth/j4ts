@@ -55,7 +55,7 @@ J4TS is meant to serve the public interest and be as open as possible. So anyone
 
 You can use the current JavaScript bundle (runtime): ``target/js/bundle.js``. 
 
-From TypeScript, you can compile with ``js/bundle.d.ts``.
+From TypeScript, you can compile with ``target/js/bundle.d.ts``.
 
 From JSweet, add the candy dependency in your ``pom.xml``.
 
