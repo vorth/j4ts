@@ -7,7 +7,9 @@ The goal of J4TS is to implement some Java APIs for TypeScript / JavaScript / JS
 - It can ease code sharing between Java and TypeScript/JavaScript (and also hopefully, ease the understanding and relationships between the Java fans and TypeScript/JavaScript ones).
 - Typically, J4TS can be used as a runtime for transpilers, so that you can use the Java APIs in your transpiled Java programs. So far, J4TS main target is the [JSweet transpiler](http://www.jsweet.org), but it is not limited to it.
 
-J4TS currently covers most of the core Java API supported by GWT (``java.lang``, ``java.util``, some ``java.io``). It does not support java.math yet because the GWT implementation requires a deep Java emulation, which is not consistent with the JSweet approach (so ``java.math`` should be implemented as a wrapper for [bignumber.js](https://github.com/MikeMcl/bignumber.js/) for instance). J4TS is intended to be completed on-the-fly as more use cases are needed. So feel free to contribute.
+J4TS currently covers most of the core Java API supported by GWT (``java.lang``, ``java.util``, some ``java.io``). It does not support ``java.math`` yet because the GWT implementation requires a deep Java emulation, which is not consistent with the JSweet approach (so ``java.math`` should be implemented as a wrapper for [bignumber.js](https://github.com/MikeMcl/bignumber.js/) for instance). 
+
+J4TS is intended to be completed on-the-fly as more use cases are needed. So feel free to contribute.
 
 ## Examples
 ```TypeScript
@@ -43,7 +45,7 @@ assertEquals("bb", s.get("b"));
 
 ## Disclaimer
 
-J4TS is not a Java emulator and is not made for fully implementing Java semantics in JavaScript. It is close to and mimics Java behavior, but it will never be completely Java. For instance, primitive types in Java and JavaScript are quite different (chars and numbers especially) and we don't want to emulate that difference.
+J4TS is not a Java emulator and is not made for fully implementing the Java semantics in JavaScript. It is close to and mimics Java behavior, but it will never be completely Java. For instance, primitive types in Java and JavaScript are quite different (chars and numbers especially) and we don't want to emulate that difference.
 
 ## Contributions
 
