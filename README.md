@@ -43,7 +43,7 @@ assertEquals("bb", s.get("b"));
 
 ## Disclaimer
 
-J4TS is not made for fully implementing Java semantics in JavaScript. It is close to and mimic Java behavior, but it will never be completely Java, espcially because primitive types in Java are different (chars and numbers especially).
+J4TS is not a Java emulator and is not made for fully implementing Java semantics in JavaScript. It is close to and mimics Java behavior, but it will never be completely Java. For instance, primitive types in Java and JavaScript are quite different (chars and numbers especially) and we don't want to emulate that difference.
 
 ## Contributions
 
