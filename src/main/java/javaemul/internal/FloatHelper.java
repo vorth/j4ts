@@ -15,10 +15,13 @@
  */
 package javaemul.internal;
 
+import jsweet.lang.Erased;
+
 /**
  * Wraps a primitive <code>float</code> as an object.
  */
 public final class FloatHelper extends NumberHelper implements Comparable<FloatHelper> {
+	@Erased
 	private static final long serialVersionUID = 1L;
 	public static final float MAX_VALUE = 3.4028235e+38f;
 	public static final float MIN_VALUE = 1.4e-45f;

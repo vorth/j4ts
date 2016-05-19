@@ -15,11 +15,14 @@
  */
 package javaemul.internal;
 
+import jsweet.lang.Erased;
+
 /**
  * Wraps a primitive <code>long</code> as an object.
  */
 public final class LongHelper extends NumberHelper implements Comparable<LongHelper> {
 
+	@Erased
 	private static final long serialVersionUID = 1L;
 
 	/**

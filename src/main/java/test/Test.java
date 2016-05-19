@@ -4,8 +4,6 @@ import static jsweet.dom.Globals.console;
 import static jsweet.dom.Globals.document;
 
 import java.io.ByteArrayInputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -53,7 +51,7 @@ public class Test {
 		} catch (Exception e) {
 			HTMLElement result = document.getElementById("result");
 			if (result != null) {
-				result.innerHTML = "Failure: "+e.getMessage();
+				result.innerHTML = "Failure: " + e.getMessage();
 			}
 		}
 	}
@@ -151,35 +149,36 @@ public class Test {
 	// java.math is not available yet and should be implemented as a wrapper to
 	// bignumber.js
 
-	static BigInteger fatFactorial(int b) {
-		if (BigInteger.ONE.equals(BigInteger.valueOf(b))) {
-			return BigInteger.ONE;
-		} else {
-			return BigInteger.valueOf(b).multiply(fatFactorial(b - 1));
-		}
-	}
-
-	public static void testMath() {
-		console.info("testing math");
-		BigInteger b3 = new BigInteger("10");
-		b3.toString();
-		BigInteger b1 = new BigInteger("987654321987654321000000000");
-		BigInteger b2 = new BigInteger("987654321987654321000000000");
-		// BigInteger product = b1.multiply(b2);
-		BigInteger division = b1.divide(b2);
-		assertEquals("1", division.toString());
-		assertEquals("30414093201713378043612608166064768844377641568960512000000000000", fatFactorial(50).toString());
-		assertTrue(new BigDecimal("0").compareTo(BigDecimal.ZERO) == 0);
-		assertTrue(new BigDecimal("0.00").compareTo(BigDecimal.ZERO) == 0);
-		assertTrue(new BigDecimal("0").equals(BigDecimal.ZERO));
-		assertFalse(new BigDecimal("0.00").equals(BigDecimal.ZERO));
-		BigDecimal a = new BigDecimal("2.5");
-		assertTrue(a.toString().equals("2.5"));
-		BigDecimal b = new BigDecimal("1.5");
-		assertEquals("2", a.setScale(0, BigDecimal.ROUND_HALF_EVEN).toString());
-		assertEquals("2", b.setScale(0, BigDecimal.ROUND_HALF_EVEN).toString());
-		assertEquals("4", a.add(b).toString());
-		console.info("end testing math");
-	}
+	// static BigInteger fatFactorial(int b) {
+	// if (BigInteger.ONE.equals(BigInteger.valueOf(b))) {
+	// return BigInteger.ONE;
+	// } else {
+	// return BigInteger.valueOf(b).multiply(fatFactorial(b - 1));
+	// }
+	// }
+	//
+	// public static void testMath() {
+	// console.info("testing math");
+	// BigInteger b3 = new BigInteger("10");
+	// b3.toString();
+	// BigInteger b1 = new BigInteger("987654321987654321000000000");
+	// BigInteger b2 = new BigInteger("987654321987654321000000000");
+	// // BigInteger product = b1.multiply(b2);
+	// BigInteger division = b1.divide(b2);
+	// assertEquals("1", division.toString());
+	// assertEquals("30414093201713378043612608166064768844377641568960512000000000000",
+	// fatFactorial(50).toString());
+	// assertTrue(new BigDecimal("0").compareTo(BigDecimal.ZERO) == 0);
+	// assertTrue(new BigDecimal("0.00").compareTo(BigDecimal.ZERO) == 0);
+	// assertTrue(new BigDecimal("0").equals(BigDecimal.ZERO));
+	// assertFalse(new BigDecimal("0.00").equals(BigDecimal.ZERO));
+	// BigDecimal a = new BigDecimal("2.5");
+	// assertTrue(a.toString().equals("2.5"));
+	// BigDecimal b = new BigDecimal("1.5");
+	// assertEquals("2", a.setScale(0, BigDecimal.ROUND_HALF_EVEN).toString());
+	// assertEquals("2", b.setScale(0, BigDecimal.ROUND_HALF_EVEN).toString());
+	// assertEquals("4", a.add(b).toString());
+	// console.info("end testing math");
+	// }
 
 }

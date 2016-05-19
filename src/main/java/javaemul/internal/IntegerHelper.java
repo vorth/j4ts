@@ -15,11 +15,14 @@
  */
 package javaemul.internal;
 
+import jsweet.lang.Erased;
+
 /**
  * Wraps a primitive <code>int</code> as an object.
  */
 public final class IntegerHelper extends NumberHelper implements Comparable<IntegerHelper> {
 
+	@Erased
 	private static final long serialVersionUID = 1L;
 	public static final int MAX_VALUE = 0x7fffffff;
 	public static final int MIN_VALUE = 0x80000000;

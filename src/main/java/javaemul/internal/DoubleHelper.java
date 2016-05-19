@@ -18,11 +18,13 @@ package javaemul.internal;
 import static javaemul.internal.InternalPreconditions.checkNotNull;
 
 import javaemul.internal.JsUtils;
+import jsweet.lang.Erased;
 
 /**
  * Wraps a primitive <code>double</code> as an object.
  */
 public final class DoubleHelper extends NumberHelper implements Comparable<DoubleHelper> {
+	@Erased
 	private static final long serialVersionUID = 1L;
 	public static final double MAX_VALUE = 1.7976931348623157e+308;
 	public static final double MIN_VALUE = 4.9e-324;

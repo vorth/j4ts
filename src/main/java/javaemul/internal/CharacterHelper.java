@@ -21,6 +21,7 @@ import static jsweet.util.Globals.string;
 
 import java.io.Serializable;
 
+import jsweet.lang.Erased;
 import jsweet.lang.RegExp;
 
 /**
@@ -68,6 +69,7 @@ import jsweet.lang.RegExp;
  */
 public final class CharacterHelper implements Comparable<CharacterHelper>, Serializable {
 
+	@Erased
 	private static final long serialVersionUID = 1L;
 
 	/**

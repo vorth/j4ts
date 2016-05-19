@@ -26,6 +26,7 @@ import jsweet.lang.Erased;
  */
 public final class BooleanHelper implements Comparable<BooleanHelper>, Serializable {
 
+	@Erased
 	private static final long serialVersionUID = 1L;
 	public static final Boolean FALSE = false;
 	public static final Boolean TRUE = true;

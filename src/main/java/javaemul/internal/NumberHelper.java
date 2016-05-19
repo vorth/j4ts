@@ -19,6 +19,7 @@ import static jsweet.lang.Globals.parseFloat;
 
 import java.io.Serializable;
 
+import jsweet.lang.Erased;
 import jsweet.lang.Globals;
 import jsweet.lang.RegExp;
 
@@ -27,6 +28,7 @@ import jsweet.lang.RegExp;
  */
 public abstract class NumberHelper implements Serializable {
 
+	@Erased
 	private static final long serialVersionUID = 1L;
 
 	/**

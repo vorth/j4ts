@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>j4ts</groupId>
   <artifactId>j4ts</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
   
 	<licenses>
 		<license>
@@ -56,7 +56,7 @@
 					<verbose>true</verbose>
 					<!-- <sourceMap>true</sourceMap> -->
 					<bundle>true</bundle>
-					<!-- <declaration>true</declaration> -->
+					<declaration>true</declaration>
 					<outDir>target/js</outDir>
 					<targetVersion>ES3</targetVersion>
 				</configuration>

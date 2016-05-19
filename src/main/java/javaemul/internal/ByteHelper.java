@@ -15,11 +15,14 @@
  */
 package javaemul.internal;
 
+import jsweet.lang.Erased;
+
 /**
  * Wraps native <code>byte</code> as an object.
  */
 public final class ByteHelper extends NumberHelper implements Comparable<ByteHelper> {
 
+	@Erased
 	private static final long serialVersionUID = 1L;
 	public static final byte MIN_VALUE = (byte) 0x80;
 	public static final byte MAX_VALUE = (byte) 0x7F;

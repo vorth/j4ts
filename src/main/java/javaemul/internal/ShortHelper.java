@@ -15,11 +15,14 @@
  */
 package javaemul.internal;
 
+import jsweet.lang.Erased;
+
 /**
  * Wraps a primitive <code>short</code> as an object.
  */
 public final class ShortHelper extends NumberHelper implements Comparable<ShortHelper> {
 
+	@Erased
 	private static final long serialVersionUID = 1L;
 
 	public static final short MIN_VALUE = (short) 0x8000;
