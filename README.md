@@ -1,7 +1,7 @@
 # J4TS
-Java APIs for TypeScript/JSweet
+Java APIs for TypeScript / JavaScript / JSweet
 
-The goal of J4TS is to implement some Java APIs for JavaScript/TypeScript/JSweet when it makes sense. It is based on a fork of the GWT's JRE emulation library and is written in Java, and transpiled to TypeScript/JavaScript with the JSweet transpiler. It intends to be useful for the following cases:
+The goal of J4TS is to implement some Java APIs for TypeScript / JavaScript / JSweet when it makes sense. It is based on a fork of the GWT's JRE emulation library and is written in Java, and transpiled to TypeScript/JavaScript with the JSweet transpiler. It intends to be useful for the following cases:
 
 - Programmers used to the Java APIs can be more efficient using J4TS than when having to learn basic JavaScript APIs.
 - It can ease code sharing between Java and TypeScript/JavaScript (and also hopefully, ease the understanding and relationships between the Java fans and TypeScript/JavaScript ones).
