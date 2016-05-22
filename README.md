@@ -47,7 +47,7 @@ assertEquals("bb", s.get("b"));
 
 You can use the current JavaScript bundle (runtime): [target/js/bundle.js](https://github.com/cincheo/j4ts/blob/master/target/js/bundle.js). 
 
-From TypeScript, you can compile with: [target/js/bundle.d.ts](https://github.com/cincheo/j4ts/blob/master/target/ts/bundle.ts). TypeScript definition files: [target/js/bundle.d.ts](https://github.com/cincheo/j4ts/blob/master/target/js/bundle.d.ts)
+From TypeScript, you can compile with: [target/js/bundle.d.ts](https://github.com/cincheo/j4ts/blob/master/target/ts/bundle.ts). TypeScript definition file: [target/js/bundle.d.ts](https://github.com/cincheo/j4ts/blob/master/target/js/bundle.d.ts).
 
 From JSweet, add the candy dependency in your ``pom.xml``.
 
@@ -69,7 +69,7 @@ Use Gulp to clean temporary files (required: Gulp and required modules).
 > gulp clean
 ```
 
-Use Maven to generate the JavaScript bundle in the ``target/js`` directory (required: JSweet)
+Use Maven to generate the TypeScript and JavaScript bundles in the ``target`` directory (required: [JSweet](http://www.jsweet.org)).
 
 ```
 > mvn clean generate-sources
