@@ -43,14 +43,6 @@ s.put("c", "cc");
 assertEquals("bb", s.get("b"));
 ```
 
-## Disclaimer
-
-J4TS is not a Java emulator and is not made for fully implementing the Java semantics in JavaScript. It is close to and mimics Java behavior, but it will never be completely Java. For instance, primitive types in Java and JavaScript are quite different (chars and numbers especially) and we don't want to emulate that difference.
-
-## Contributions
-
-J4TS is meant to serve the public interest and be as open as possible. So anyone is more than welcome to contribute as long as it does not deviate J4TS from its initial goals stated above. When you meet a class or a method that is not supported, please feel free to contribute under the terms of the license.
-
 ## How to use
 
 You can use the current JavaScript bundle (runtime): [target/js/bundle.js](https://github.com/cincheo/j4ts/blob/master/target/js/bundle.js). 
@@ -90,6 +82,14 @@ To build and install the JSweet candy in your local Maven repository.
 > cd packaging/jsweet-candy
 > mvn clean install
 ```
+
+## Disclaimer
+
+J4TS is not a Java emulator and is not made for fully implementing the Java semantics in JavaScript. It is close to and mimics Java behavior, but it will never be completely Java. For instance, primitive types in Java and JavaScript are quite different (chars and numbers especially) and we don't want to emulate that difference.
+
+## Contributions
+
+J4TS is meant to serve the public interest and be as open as possible. So anyone is more than welcome to contribute as long as it does not deviate J4TS from its initial goals stated above. When you meet a class or a method that is not supported, please feel free to contribute under the terms of the license.
 
 ## License
 
