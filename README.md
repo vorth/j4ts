@@ -53,9 +53,9 @@ J4TS is meant to serve the public interest and be as open as possible. So anyone
 
 ## How to use
 
-You can use the current JavaScript bundle (runtime): ``target/js/bundle.js``. 
+You can use the current JavaScript bundle (runtime): [target/js/bundle.js](https://github.com/cincheo/j4ts/blob/master/target/js/bundle.js). 
 
-From TypeScript, you can compile with ``target/js/bundle.d.ts``.
+From TypeScript, you can compile with: [target/js/bundle.d.ts](https://github.com/cincheo/j4ts/blob/master/target/ts/bundle.ts). TypeScript definition files: [target/js/bundle.d.ts](https://github.com/cincheo/j4ts/blob/master/target/js/bundle.d.ts)
 
 From JSweet, add the candy dependency in your ``pom.xml``.
 
@@ -66,6 +66,8 @@ From JSweet, add the candy dependency in your ``pom.xml``.
 	<version>0.1.0</version>
 </dependency>
 ```
+
+A simple and still incomplete test suite is available [there](https://github.com/cincheo/j4ts/blob/master/src/main/java/test/Test.java). Make sure that the tests pass by opening [index.html](https://github.com/cincheo/j4ts/blob/master/index.html).
 
 ## How to build
 
