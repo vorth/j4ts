@@ -1,11 +1,11 @@
 # J4TS
 Java APIs for TypeScript / JavaScript / JSweet
 
-The goal of J4TS is to implement some Java APIs for TypeScript / JavaScript / JSweet when it makes sense. It is based on a fork of the GWT's JRE emulation library and is written in Java, and transpiled to TypeScript/JavaScript with the JSweet transpiler. It intends to be useful for the following cases:
+J4TS is based on a fork of the GWT's JRE emulation library and is written in Java, and transpiled to TypeScript/JavaScript with the [JSweet transpiler](https://github.com/cincheo/jsweet/). It intends to be useful for the following cases:
 
 - Programmers used to the Java APIs can be more efficient using J4TS than when having to learn basic JavaScript APIs.
 - It can ease code sharing between Java and TypeScript/JavaScript (and also hopefully, ease the understanding and relationships between the Java fans and TypeScript/JavaScript ones).
-- Typically, J4TS can be used as a runtime for transpilers, so that you can use the Java APIs in your transpiled Java programs. So far, J4TS main target is the [JSweet transpiler](http://www.jsweet.org), but it is not limited to it.
+- Typically, J4TS can be used as a runtime for transpilers, so that you can use the Java APIs in your transpiled Java programs. So far, J4TS main target is the [JSweet transpiler](https://github.com/cincheo/jsweet/), but it is not limited to it.
 
 J4TS currently covers most of the core Java API supported by GWT (``java.lang``, ``java.util``, some ``java.io``). It does not support ``java.math`` yet because the GWT implementation requires a deep Java emulation, which is not consistent with the JSweet approach (so ``java.math`` should be implemented as a wrapper for [bignumber.js](https://github.com/MikeMcl/bignumber.js/) for instance). 
 
@@ -45,7 +45,7 @@ assertEquals("bb", s.get("b"));
 
 ## How to use
 
-You can use the current JavaScript bundle (runtime): [target/js/bundle.js](https://github.com/cincheo/j4ts/blob/master/target/js/bundle.js). 
+You can use the current JavaScript bundle (JSweet-generated runtime): [target/js/bundle.js](https://github.com/cincheo/j4ts/blob/master/target/js/bundle.js). 
 
 From TypeScript, you can compile with: [target/js/bundle.d.ts](https://github.com/cincheo/j4ts/blob/master/target/ts/bundle.ts). TypeScript definition file: [target/js/bundle.d.ts](https://github.com/cincheo/j4ts/blob/master/target/js/bundle.d.ts).
 
