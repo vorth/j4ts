@@ -18,6 +18,8 @@ package java.util;
 import static jsweet.dom.Globals.window;
 import static jsweet.util.Globals.$get;
 import static jsweet.util.Globals.$new;
+import static javaemul.internal.globals.Globals.Map;
+import jsweet.lang.Ambient;
 
 /**
  * A factory to create JavaScript Map instances.
@@ -26,9 +28,9 @@ class InternalJsMapFactory {
 
 	private static final Object jsMapCtor = getJsMapConstructor();
 
-	private static jsweet.lang.Object getJsMapConstructor() {
-		return $get(window, "Map");
-	}
+	private static jsweet.lang.Object getJsMapConstructor() { 
+		return Map; 
+	};
 
 	/*-{
 	// Firefox 24 & 25 throws StopIteration to signal the end of iteration.
