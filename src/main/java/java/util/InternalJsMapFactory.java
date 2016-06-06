@@ -21,6 +21,8 @@ import static jsweet.util.Globals.$new;
 import static javaemul.internal.globals.Globals.Map;
 import jsweet.lang.Ambient;
 
+// TODO: remove this file!!
+
 /**
  * A factory to create JavaScript Map instances.
  */

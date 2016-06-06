@@ -23,6 +23,7 @@ import java.io.Serializable;
 
 import jsweet.lang.Erased;
 import jsweet.lang.RegExp;
+import jsweet.lang.RegExpMatchArray;
 
 /**
  * Wraps a native <code>char</code> as an object.
@@ -204,7 +205,8 @@ public final class CharacterHelper implements Comparable<CharacterHelper>, Seria
 	 * TODO: correct Unicode handling.
 	 */
 	public static boolean isDigit(char c) {
-		return string(String.valueOf(c)).match(digitRegex()).length > 0;
+		RegExpMatchArray result = string(String.valueOf(c)).match(digitRegex());
+		return result != null && result.length > 0;
 	}
 
 	private static RegExp digitRegex() {
