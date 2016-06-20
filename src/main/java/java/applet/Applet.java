@@ -39,11 +39,17 @@ public class Applet {
 				canvas.setAttribute("height", div.getAttribute("data-height"));
 				div.style.width = div.getAttribute("data-width");
 				div.style.height = div.getAttribute("data-height");
-				div.appendChild(canvas);
+				if (div.firstChild != null) {
+					div.insertBefore(canvas, div.firstChild);
+				} else {
+					div.appendChild(canvas);
+				}
 				canvas.style.position = "absolute";
 				canvas.style.left = "0px";
 				canvas.style.right = "0px";
-				canvas.style.zIndex = "-2";
+				canvas.style.width = div.style.width;
+				canvas.style.height = div.style.height;
+				canvas.style.zIndex = "-1";
 				String[] names = div.getAttribute("data-applet").split(".");
 				Object constructor = window;
 				for (String name : names) {
@@ -85,7 +91,11 @@ public class Applet {
 
 	public void setLayout(Layout layout) {
 		this.layout = layout;
-		container.appendChild(layout.getHTMLElement());
+		if (container.firstChild != null) {
+			container.insertBefore(layout.getHTMLElement(), container.firstChild);
+		} else {
+			container.appendChild(layout.getHTMLElement());
+		}
 	}
 
 	public void add(HTMLComponent component) {

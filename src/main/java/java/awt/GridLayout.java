@@ -15,9 +15,9 @@ public class GridLayout implements Layout {
 	int currentPosition = 0;
 	int cols, rows;
 
-	public GridLayout(int cols, int rows) {
-		this.cols = cols;
+	public GridLayout(int rows, int cols) {
 		this.rows = rows;
+		this.cols = cols;
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class GridLayout implements Layout {
 		int pos = 0;
 		for (int j = 0; j < rows; j++) {
 			HTMLTableRowElement row = (HTMLTableRowElement) table.childNodes.$get(j);
-			for (int i = 0; i < rows; i++) {
+			for (int i = 0; i < cols; i++) {
 				HTMLTableColElement col = (HTMLTableColElement) row.childNodes.$get(i);
 				if (pos++ == currentPosition) {
 					col.appendChild(component.getHTMLElement());
@@ -61,16 +61,15 @@ public class GridLayout implements Layout {
 		table.style.position = "absolute";
 		table.style.left = "0px";
 		table.style.right = "0px";
-		// layout layer is on the top, but less than the default "view" layer
-		table.style.zIndex = "-1";
+		table.style.zIndex = "0";
 
 		for (int j = 0; j < rows; j++) {
 			HTMLTableRowElement row = document.createElement(StringTypes.tr);
 			table.appendChild(row);
-			for (int i = 0; i < rows; i++) {
+			for (int i = 0; i < cols; i++) {
 				HTMLTableDataCellElement col = document.createElement(StringTypes.td);
 				row.appendChild(col);
-				col.style.width = "" + ((int) 100 / rows) + "%";
+				col.style.width = "" + ((int) 100 / cols) + "%";
 			}
 		}
 	}

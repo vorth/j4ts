@@ -17,6 +17,7 @@ public class Button extends Component implements HTMLComponent {
 	ActionListener actionListener;
 	String actionCommand;
 	String label;
+	Color background;
 
 	public Button(String label) {
 		this.label = label;
@@ -37,6 +38,9 @@ public class Button extends Component implements HTMLComponent {
 		button = document.createElement(StringTypes.button);
 		button.innerHTML = label;
 		button.id = "cmp" + Applet.CURRENT_ID++;
+		if(background!=null) {
+			button.style.backgroundColor = background.toHTML();
+		}
 		initActionListener();
 	}
 
@@ -63,6 +67,10 @@ public class Button extends Component implements HTMLComponent {
 		if (button != null) {
 			initActionListener();
 		}
+	}
+
+	public final void setBackground(Color background) {
+		this.background = background;
 	}
 
 }
