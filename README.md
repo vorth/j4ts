@@ -61,7 +61,7 @@ From JSweet, add the candy dependency in your ``pom.xml``.
 
 A simple and still incomplete test suite is available [there](https://github.com/cincheo/j4ts/blob/master/src/main/java/test/Test.java). Make sure that the tests pass by opening [index.html](https://github.com/cincheo/j4ts/blob/master/index.html).
 
-## How to build
+## How to package
 
 Use Gulp to clean temporary files (required: Gulp and required modules).
 
@@ -69,18 +69,10 @@ Use Gulp to clean temporary files (required: Gulp and required modules).
 > gulp clean
 ```
 
-Use Maven to generate the TypeScript and JavaScript bundles in the ``target`` directory (required: [JSweet](http://www.jsweet.org)).
+Use the ``package.sh`` script to compile and package/install the candy (required: [JSweet](http://www.jsweet.org)). The following command installs the candy in your local Maven repository.
 
 ```
-> mvn clean generate-sources
-```
-
-To build and install the JSweet candy in your local Maven repository.
-
-```
-> gulp prepare-jsweet-candy
-> cd packaging/jsweet-candy
-> mvn clean install
+> package.sh install
 ```
 
 ## Disclaimer
