@@ -17,16 +17,13 @@
 package javaemul.internal;
 
 import static javaemul.internal.InternalPreconditions.checkStringBounds;
-import static jsweet.util.Globals.union;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.Comparator;
 
-import def.sprintf.sprintf.Globals;
-import jsweet.util.union.Union;
-import jsweet.util.union.Union3;
+import def.sprintf_js.Globals;
 
 /**
  * Intrinsic string class.
