@@ -1,141 +1,384 @@
-declare namespace java.util.logging {
+declare namespace javaemul.internal {
     /**
-     * An emulation of the java.util.logging.Level class. See
-     * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/Level.html">
-     * The Java API doc for details</a>
+     * Provides an interface for simple JavaScript idioms that can not be expressed in Java.
      */
-    class Level implements java.io.Serializable {
-        static ALL: Level;
-        static ALL_$LI$(): Level;
-        static CONFIG: Level;
-        static CONFIG_$LI$(): Level;
-        static FINE: Level;
-        static FINE_$LI$(): Level;
-        static FINER: Level;
-        static FINER_$LI$(): Level;
-        static FINEST: Level;
-        static FINEST_$LI$(): Level;
-        static INFO: Level;
-        static INFO_$LI$(): Level;
-        static OFF: Level;
-        static OFF_$LI$(): Level;
-        static SEVERE: Level;
-        static SEVERE_$LI$(): Level;
-        static WARNING: Level;
-        static WARNING_$LI$(): Level;
-        static parse(name: string): Level;
-        constructor();
-        getName(): string;
-        intValue(): number;
+    class JsUtils {
+        static getInfinity(): number;
+        static isUndefined(value: any): boolean;
+        static unsafeCastToString(string: any): string;
+        static setPropertySafe(map: any, key: string, value: any): void;
+        static getIntProperty(map: any, key: string): number;
+        static setIntProperty(map: any, key: string, value: number): void;
+        static typeOf(o: any): string;
+    }
+}
+declare namespace java.util {
+    class Comparators {
+        /**
+         * Compares two Objects according to their <i>natural ordering</i>.
+         *
+         * @see java.lang.Comparable
+         */
+        private static NATURAL;
+        static NATURAL_$LI$(): java.util.Comparator<any>;
+        /**
+         * Returns the natural Comparator.
+         * <p>
+         * Example:
+         *
+         * <pre>Comparator&lt;String&gt; compareString = Comparators.natural()</pre>
+         *
+         * @return the natural Comparator
+         */
+        static natural<T>(): java.util.Comparator<T>;
+    }
+    namespace Comparators {
+        class NaturalComparator implements java.util.Comparator<any> {
+            compare(o1: any, o2: any): number;
+            constructor();
+        }
+    }
+}
+declare namespace javaemul.internal {
+    /**
+     * Wraps a native <code>char</code> as an object.
+     *
+     * TODO(jat): many of the classification methods implemented here are not
+     * correct in that they only handle ASCII characters, and many other methods are
+     * not currently implemented. I think the proper approach is to introduce * a
+     * deferred binding parameter which substitutes an implementation using a
+     * fully-correct Unicode character database, at the expense of additional data
+     * being downloaded. That way developers that need the functionality can get it
+     * without those who don't need it paying for it.
+     *
+     * <pre>
+     * The following methods are still not implemented -- most would require Unicode
+     * character db to be useful:
+     * - digit / is* / to*(int codePoint)
+     * - isDefined(char)
+     * - isIdentifierIgnorable(char)
+     * - isJavaIdentifierPart(char)
+     * - isJavaIdentifierStart(char)
+     * - isJavaLetter(char) -- deprecated, so probably not
+     * - isJavaLetterOrDigit(char) -- deprecated, so probably not
+     * - isISOControl(char)
+     * - isMirrored(char)
+     * - isSpaceChar(char)
+     * - isTitleCase(char)
+     * - isUnicodeIdentifierPart(char)
+     * - isUnicodeIdentifierStart(char)
+     * - getDirectionality(*)
+     * - getNumericValue(*)
+     * - getType(*)
+     * - reverseBytes(char) -- any use for this at all in the browser?
+     * - toTitleCase(*)
+     * - all the category constants for classification
+     *
+     * The following do not properly handle characters outside of ASCII:
+     * - digit(char c, int radix)
+     * - isDigit(char c)
+     * - isLetter(char c)
+     * - isLetterOrDigit(char c)
+     * - isLowerCase(char c)
+     * - isUpperCase(char c)
+     * </pre>
+     */
+    class CharacterHelper implements java.lang.Comparable<CharacterHelper>, java.io.Serializable {
+        static TYPE: typeof String;
+        static TYPE_$LI$(): typeof String;
+        static MIN_RADIX: number;
+        static MAX_RADIX: number;
+        static MIN_VALUE: string;
+        static MAX_VALUE: string;
+        static MIN_SURROGATE: string;
+        static MAX_SURROGATE: string;
+        static MIN_LOW_SURROGATE: string;
+        static MAX_LOW_SURROGATE: string;
+        static MIN_HIGH_SURROGATE: string;
+        static MAX_HIGH_SURROGATE: string;
+        static MIN_SUPPLEMENTARY_CODE_POINT: number;
+        static MIN_CODE_POINT: number;
+        static MAX_CODE_POINT: number;
+        static SIZE: number;
+        static charCount(codePoint: number): number;
+        static codePointAt$char_A$int(a: string[], index: number): number;
+        static codePointAt(a?: any, index?: any, limit?: any): any;
+        static codePointAt$java_lang_CharSequence$int(seq: string, index: number): number;
+        static codePointBefore$char_A$int(a: string[], index: number): number;
+        static codePointBefore(a?: any, index?: any, start?: any): any;
+        static codePointBefore$java_lang_CharSequence$int(cs: string, index: number): number;
+        static codePointCount(a?: any, offset?: any, count?: any): any;
+        static codePointCount$java_lang_CharSequence$int$int(seq: string, beginIndex: number, endIndex: number): number;
+        static compare(x: string, y: string): number;
+        static digit(c: string, radix: number): number;
+        static getNumericValue(ch: string): number;
+        static forDigit(digit?: any, radix?: any): any;
+        /**
+         * @skip
+         *
+         * public for shared implementation with Arrays.hashCode
+         */
+        static hashCode(c: string): number;
+        static isDigit(c: string): boolean;
+        static digitRegex(): RegExp;
+        static isHighSurrogate(ch: string): boolean;
+        static isLetter(c: string): boolean;
+        static leterRegex(): RegExp;
+        static isLetterOrDigit(c: string): boolean;
+        static leterOrDigitRegex(): RegExp;
+        static isLowerCase(c: string): boolean;
+        static isLowSurrogate(ch: string): boolean;
+        /**
+         * Deprecated - see isWhitespace(char).
+         */
+        static isSpace(c: string): boolean;
+        static isWhitespace(ch?: any): any;
+        static isWhitespace$int(codePoint: number): boolean;
+        static whitespaceRegex(): RegExp;
+        static isSupplementaryCodePoint(codePoint: number): boolean;
+        static isSurrogatePair(highSurrogate: string, lowSurrogate: string): boolean;
+        static isUpperCase(c: string): boolean;
+        static isValidCodePoint(codePoint: number): boolean;
+        static offsetByCodePoints(a?: any, start?: any, count?: any, index?: any, codePointOffset?: any): any;
+        static offsetByCodePoints$java_lang_CharSequence$int$int(seq: string, index: number, codePointOffset: number): number;
+        static toChars$int(codePoint: number): string[];
+        static toChars(codePoint?: any, dst?: any, dstIndex?: any): any;
+        static toCodePoint(highSurrogate: string, lowSurrogate: string): number;
+        static toLowerCase(c: string): string;
+        static toString(x: string): string;
+        static toUpperCase(c: string): string;
+        static valueOf(c: string): CharacterHelper;
+        static codePointAt$java_lang_CharSequence$int$int(cs: string, index: number, limit: number): number;
+        static codePointBefore$java_lang_CharSequence$int$int(cs: string, index: number, start: number): number;
+        /**
+         * Shared implementation with {@link LongHelper#toString}.
+         *
+         * @skip
+         */
+        static forDigit$int(digit: number): string;
+        /**
+         * Computes the high surrogate character of the UTF16 representation of a
+         * non-BMP code point. See {@link getLowSurrogate}.
+         *
+         * @param codePoint
+         * requested codePoint, required to be >=
+         * MIN_SUPPLEMENTARY_CODE_POINT
+         * @return high surrogate character
+         */
+        static getHighSurrogate(codePoint: number): string;
+        /**
+         * Computes the low surrogate character of the UTF16 representation of a
+         * non-BMP code point. See {@link getHighSurrogate}.
+         *
+         * @param codePoint
+         * requested codePoint, required to be >=
+         * MIN_SUPPLEMENTARY_CODE_POINT
+         * @return low surrogate character
+         */
+        static getLowSurrogate(codePoint: number): string;
+        private value;
+        constructor(value: string);
+        charValue(): string;
+        compareTo(c?: any): any;
+        equals(o: any): boolean;
+        hashCode(): number;
         toString(): string;
     }
-    namespace Level {
-        class LevelAll extends java.util.logging.Level {
-            getName(): string;
-            intValue(): number;
-            constructor();
-        }
-        class LevelConfig extends java.util.logging.Level {
-            getName(): string;
-            intValue(): number;
-            constructor();
-        }
-        class LevelFine extends java.util.logging.Level {
-            getName(): string;
-            intValue(): number;
-            constructor();
-        }
-        class LevelFiner extends java.util.logging.Level {
-            getName(): string;
-            intValue(): number;
-            constructor();
-        }
-        class LevelFinest extends java.util.logging.Level {
-            getName(): string;
-            intValue(): number;
-            constructor();
-        }
-        class LevelInfo extends java.util.logging.Level {
-            getName(): string;
-            intValue(): number;
-            constructor();
-        }
-        class LevelOff extends java.util.logging.Level {
-            getName(): string;
-            intValue(): number;
-            constructor();
-        }
-        class LevelSevere extends java.util.logging.Level {
-            getName(): string;
-            intValue(): number;
-            constructor();
-        }
-        class LevelWarning extends java.util.logging.Level {
-            getName(): string;
-            intValue(): number;
-            constructor();
+    namespace CharacterHelper {
+        /**
+         * Use nested class to avoid clinit on outer.
+         */
+        class BoxedValues {
+            static boxedValues: javaemul.internal.CharacterHelper[];
+            static boxedValues_$LI$(): javaemul.internal.CharacterHelper[];
         }
     }
 }
-declare namespace java.util {
-    /**
-     * See <a
-     * href="http://docs.oracle.com/javase/7/docs/api/java/util/Objects.html">the
-     * official Java API doc</a> for details.
-     */
-    class Objects {
-        constructor();
-        static compare<T>(a: T, b: T, c: java.util.Comparator<any>): number;
-        static deepEquals(a: any, b: any): boolean;
-        static equals(a: any, b: any): boolean;
-        static hashCode(o: any): number;
-        static hash(...values: any[]): number;
-        static isNull(obj: any): boolean;
-        static nonNull(obj: any): boolean;
-        static requireNonNull$java_lang_Object<T>(obj: T): T;
-        static requireNonNull<T>(obj?: any, message?: any): any;
-        static requireNonNull$java_lang_Object$java_util_function_Supplier<T>(obj: T, messageSupplier: () => string): T;
-        static toString$java_lang_Object(o: any): string;
-        static toString(o?: any, nullDefault?: any): any;
+declare namespace java.awt {
+    class GridLayout implements java.awt.Layout {
+        table: HTMLTableElement;
+        currentPosition: number;
+        cols: number;
+        rows: number;
+        constructor(rows: number, cols: number);
+        add(component: java.awt.HTMLComponent): void;
+        getHTMLElement(): HTMLElement;
+        bind(id: string): void;
+        init(): void;
     }
 }
-declare namespace javaemul.internal.annotations {
+declare namespace java.lang.annotation {
     /**
-     * A simple of a GwtIncompatible annotation for internal emulation use.
+     * Base interface for all annotation types <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/Annotation.html">[Sun
+     * docs]</a>.
      */
-    interface GwtIncompatible {
-        value(): string;
-    }
-}
-declare namespace java.util {
-    /**
-     * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/OptionalInt.html">
-     * the official Java API doc</a> for details.
-     */
-    class OptionalInt {
-        static empty(): OptionalInt;
-        static of(value: number): OptionalInt;
-        private static EMPTY;
-        static EMPTY_$LI$(): OptionalInt;
-        private ref;
-        private present;
-        constructor(value?: any);
-        isPresent(): boolean;
-        getAsInt(): number;
-        ifPresent(consumer: (number) => void): void;
-        orElse(other: number): number;
-        orElseGet(other: () => number): number;
-        orElseThrow<X extends Error>(exceptionSupplier: () => X): number;
+    interface Annotation {
+        annotationType(): any;
         equals(obj: any): boolean;
         hashCode(): number;
         toString(): string;
     }
 }
-declare namespace java.lang {
+declare namespace javaemul.internal.annotations {
     /**
-     * Used to declare interfaces which must have a single abstract method.
+     * An annotation to mark a given method as not inlineable.
+     * <p>
+     * Internal SDK use only, might change or disappear at any time.
      */
-    interface FunctionalInterface {
+    interface ForceInline {
+    }
+}
+declare namespace java.util {
+    /**
+     * A very simple emulation of Locale for shared-code patterns like
+     * {@code String.toUpperCase(Locale.US)}.
+     * <p>
+     * Note: Any changes to this class should put into account the assumption that
+     * was made in rest of the JRE emulation.
+     */
+    class Locale {
+        static ROOT: Locale;
+        static ROOT_$LI$(): Locale;
+        static ENGLISH: Locale;
+        static ENGLISH_$LI$(): Locale;
+        static US: Locale;
+        static US_$LI$(): Locale;
+        private static defaultLocale;
+        static defaultLocale_$LI$(): Locale;
+        /**
+         * Returns an instance that represents the browser's default locale (not
+         * necessarily the one defined by 'gwt.locale').
+         */
+        static getDefault(): Locale;
+        constructor();
+    }
+    namespace Locale {
+        class RootLocale extends java.util.Locale {
+            toString(): string;
+        }
+        class EnglishLocale extends java.util.Locale {
+            toString(): string;
+        }
+        class USLocale extends java.util.Locale {
+            toString(): string;
+        }
+        class DefaultLocale extends java.util.Locale {
+            toString(): string;
+        }
+    }
+}
+declare namespace javaemul.internal {
+    /**
+     * A utility to provide array stamping. Provided as a separate class to simplify
+     * super-source.
+     */
+    class ArrayStamper {
+        static stampJavaTypeInfo<T>(array: any, referenceType: T[]): T[];
+    }
+}
+declare namespace java.io {
+    /**
+     * A writable sink for bytes.
+     *
+     * <p>Most clients will use output streams that write data to the file system
+     * ({@link FileOutputStream}), the network ({@link java.net.Socket#getOutputStream()}/{@link
+     * java.net.HttpURLConnection#getOutputStream()}), or to an in-memory byte array
+     * ({@link ByteArrayOutputStream}).
+     *
+     * <p>Use {@link OutputStreamWriter} to adapt a byte stream like this one into a
+     * character stream.
+     *
+     * <p>Most clients should wrap their output stream with {@link
+     * BufferedOutputStream}. Callers that do only bulk writes may omit buffering.
+     *
+     * <h3>Subclassing OutputStream</h3>
+     * Subclasses that decorate another output stream should consider subclassing
+     * {@link FilterOutputStream}, which delegates all calls to the target output
+     * stream.
+     *
+     * <p>All output stream subclasses should override <strong>both</strong> {@link
+     * #write(int)} and {@link #write(byte[],int,int) write(byte[],int,int)}. The
+     * three argument overload is necessary for bulk access to the data. This is
+     * much more efficient than byte-by-byte access.
+     *
+     * @see InputStream
+     *
+     * <p>The implementation provided by this class behaves as described in the Java
+     * API documentation except for {@link write(int)} which throws an exception of
+     * type {@link java.lang.UnsupportedOperationException} instead of being
+     * abstract.
+     */
+    abstract class OutputStream implements java.io.Closeable, java.io.Flushable {
+        /**
+         * Default constructor.
+         */
+        constructor();
+        /**
+         * Closes this stream. Implementations of this method should free any
+         * resources used by the stream. This implementation does nothing.
+         *
+         * @throws IOException
+         * if an error occurs while closing this stream.
+         */
+        close(): void;
+        /**
+         * Flushes this stream. Implementations of this method should ensure that
+         * any buffered data is written out. This implementation does nothing.
+         *
+         * @throws IOException
+         * if an error occurs while flushing this stream.
+         */
+        flush(): void;
+        /**
+         * Equivalent to {@code write(buffer, 0, buffer.length)}.
+         */
+        write$byte_A(buffer: number[]): void;
+        /**
+         * Writes {@code count} bytes from the byte array {@code buffer} starting at
+         * position {@code offset} to this stream.
+         *
+         * @param buffer
+         * the buffer to be written.
+         * @param offset
+         * the start position in {@code buffer} from where to get bytes.
+         * @param count
+         * the number of bytes from {@code buffer} to write to this
+         * stream.
+         * @throws IOException
+         * if an error occurs while writing to this stream.
+         * @throws IndexOutOfBoundsException
+         * if {@code offset < 0} or {@code count < 0}, or if
+         * {@code offset + count} is bigger than the length of
+         * {@code buffer}.
+         */
+        write(buffer?: any, offset?: any, count?: any): any;
+        /**
+         * Writes a single byte to this stream. Only the least significant byte of
+         * the integer {@code oneByte} is written to the stream.
+         *
+         * @param oneByte
+         * the byte to be written.
+         * @throws IOException
+         * if an error occurs while writing to this stream.
+         */
+        write$int(oneByte: number): void;
+    }
+}
+/**
+ * Declares equals and hashCode on JavaScript objects, for compilation.
+ */
+interface Object {
+    equals(object: Object): boolean;
+    hashCode(): number;
+}
+declare namespace java.lang.annotation {
+    /**
+     * Annotation which indicates an annotation type is automatically inherited <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/Inherited.html">[Sun
+     * docs]</a>.
+     */
+    interface Inherited {
     }
 }
 declare namespace java.util {
@@ -299,116 +542,1009 @@ declare namespace java.util {
         setSeed(seedhi?: any, seedlo?: any): any;
     }
 }
-declare namespace java.lang {
+declare namespace javaemul.internal {
     /**
-     * Claims to the compiler that the annotation target does nothing potentially unsafe
-     * to its varargs argument.
+     * Abstract base class for numeric wrapper classes.
      */
-    interface SafeVarargs {
+    abstract class NumberHelper implements java.io.Serializable {
+        /**
+         * Stores a regular expression object to verify the format of float values.
+         */
+        private static floatRegex;
+        /**
+         * @skip
+         *
+         * This function will determine the radix that the string is expressed
+         * in based on the parsing rules defined in the Javadocs for
+         * Integer.decode() and invoke __parseAndValidateInt.
+         */
+        static __decodeAndValidateInt(s: string, lowerBound: number, upperBound: number): number;
+        static __decodeNumberString(s: string): NumberHelper.__Decode;
+        /**
+         * @skip
+         *
+         * This function contains common logic for parsing a String as a
+         * floating- point number and validating the range.
+         */
+        static __parseAndValidateDouble(s: string): number;
+        /**
+         * @skip
+         *
+         * This function contains common logic for parsing a String in a given
+         * radix and validating the result.
+         */
+        static __parseAndValidateInt(s: string, radix: number, lowerBound: number, upperBound: number): number;
+        /**
+         * @skip
+         *
+         * This function contains common logic for parsing a String in a given
+         * radix and validating the result.
+         */
+        static __parseAndValidateLong(s: string, radix: number): number;
+        /**
+         * @skip
+         *
+         * @param str
+         * @return {@code true} if the string matches the float format,
+         * {@code false} otherwise
+         */
+        static __isValidDouble(str: string): boolean;
+        static createFloatRegex(): RegExp;
+        byteValue(): number;
+        abstract doubleValue(): number;
+        abstract floatValue(): number;
+        abstract intValue(): number;
+        abstract longValue(): number;
+        shortValue(): number;
+        constructor();
+    }
+    namespace NumberHelper {
+        class __Decode {
+            payload: string;
+            radix: number;
+            constructor(radix: number, payload: string);
+        }
+        /**
+         * Use nested class to avoid clinit on outer.
+         */
+        class __ParseLong {
+            static __static_initialized: boolean;
+            static __static_initialize(): void;
+            /**
+             * The number of digits (excluding minus sign and leading zeros) to
+             * process at a time. The largest value expressible in maxDigits digits
+             * as well as the factor radix^maxDigits must be strictly less than
+             * 2^31.
+             */
+            static maxDigitsForRadix: number[];
+            static maxDigitsForRadix_$LI$(): number[];
+            /**
+             * A table of values radix*maxDigitsForRadix[radix].
+             */
+            static maxDigitsRadixPower: number[];
+            static maxDigitsRadixPower_$LI$(): number[];
+            /**
+             * The largest number of digits (excluding minus sign and leading zeros)
+             * that can fit into a long for a given radix between 2 and 36,
+             * inclusive.
+             */
+            static maxLengthForRadix: number[];
+            static maxLengthForRadix_$LI$(): number[];
+            /**
+             * A table of floor(MAX_VALUE / maxDigitsRadixPower).
+             */
+            static maxValueForRadix: number[];
+            static maxValueForRadix_$LI$(): number[];
+            static __static_initializer_0(): void;
+        }
+    }
+}
+declare namespace javaemul.internal {
+    /**
+     * A helper class for long comparison.
+     */
+    class LongCompareHolder {
+        static getLongComparator(): any;
+    }
+}
+declare namespace java.io {
+    /**
+     * A specialized {@link OutputStream} for class for writing content to an
+     * (internal) byte array. As bytes are written to this stream, the byte array
+     * may be expanded to hold more bytes. When the writing is considered to be
+     * finished, a copy of the byte array can be requested from the class.
+     *
+     * @see ByteArrayInputStream
+     */
+    class ByteArrayOutputStream extends java.io.OutputStream {
+        /**
+         * The byte array containing the bytes written.
+         */
+        buf: number[];
+        /**
+         * The number of bytes written.
+         */
+        count: number;
+        /**
+         * Constructs a new {@code ByteArrayOutputStream} with a default size of
+         * {@code size} bytes. If more than {@code size} bytes are written to this
+         * instance, the underlying byte array will expand.
+         *
+         * @param size
+         * initial size for the underlying byte array, must be
+         * non-negative.
+         * @throws IllegalArgumentException
+         * if {@code size} < 0.
+         */
+        constructor(size?: any);
+        /**
+         * Closes this stream. This releases system resources used for this stream.
+         *
+         * @throws IOException
+         * if an error occurs while attempting to close this stream.
+         */
+        close(): void;
+        private expand(i);
+        /**
+         * Resets this stream to the beginning of the underlying byte array. All
+         * subsequent writes will overwrite any bytes previously stored in this
+         * stream.
+         */
+        reset(): void;
+        /**
+         * Returns the total number of bytes written to this stream so far.
+         *
+         * @return the number of bytes written to this stream.
+         */
+        size(): number;
+        /**
+         * Returns the contents of this ByteArrayOutputStream as a byte array. Any
+         * changes made to the receiver after returning will not be reflected in the
+         * byte array returned to the caller.
+         *
+         * @return this stream's current contents as a byte array.
+         */
+        toByteArray(): number[];
+        /**
+         * Returns the contents of this ByteArrayOutputStream as a string. Any
+         * changes made to the receiver after returning will not be reflected in the
+         * string returned to the caller.
+         *
+         * @return this stream's current contents as a string.
+         */
+        toString$(): string;
+        /**
+         * Returns the contents of this ByteArrayOutputStream as a string. Each byte
+         * {@code b} in this stream is converted to a character {@code c} using the
+         * following function:
+         * {@code c == (char)(((hibyte & 0xff) << 8) | (b & 0xff))}. This method is
+         * deprecated and either {@link #toString()} or {@link #toString(String)}
+         * should be used.
+         *
+         * @param hibyte
+         * the high byte of each resulting Unicode character.
+         * @return this stream's current contents as a string with the high byte set
+         * to {@code hibyte}.
+         * @deprecated Use {@link #toString()} instead.
+         */
+        toString$int(hibyte: number): string;
+        /**
+         * Returns the contents of this ByteArrayOutputStream as a string converted
+         * according to the encoding declared in {@code charsetName}.
+         *
+         * @param charsetName
+         * a string representing the encoding to use when translating
+         * this stream to a string.
+         * @return this stream's current contents as an encoded string.
+         * @throws UnsupportedEncodingException
+         * if the provided encoding is not supported.
+         */
+        toString(charsetName?: any): any;
+        /**
+         * Writes {@code count} bytes from the byte array {@code buffer} starting at
+         * offset {@code index} to this stream.
+         *
+         * @param buffer
+         * the buffer to be written.
+         * @param offset
+         * the initial position in {@code buffer} to retrieve bytes.
+         * @param len
+         * the number of bytes of {@code buffer} to write.
+         * @throws NullPointerException
+         * if {@code buffer} is {@code null}.
+         * @throws IndexOutOfBoundsException
+         * if {@code offset < 0} or {@code len < 0}, or if
+         * {@code offset + len} is greater than the length of
+         * {@code buffer}.
+         */
+        write(buffer?: any, offset?: any, len?: any): any;
+        /**
+         * Writes the specified byte {@code oneByte} to the OutputStream. Only the
+         * low order byte of {@code oneByte} is written.
+         *
+         * @param oneByte
+         * the byte to be written.
+         */
+        write$int(oneByte: number): void;
+        /**
+         * Takes the contents of this stream and writes it to the output stream
+         * {@code out}.
+         *
+         * @param out
+         * an OutputStream on which to write the contents of this stream.
+         * @throws IOException
+         * if an error occurs while writing to {@code out}.
+         */
+        writeTo(out: java.io.OutputStream): void;
+    }
+}
+declare namespace java.lang.annotation {
+    /**
+     * Indicates the annotation parser determined the annotation was malformed when
+     * reading from the class file <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/AnnotationFormatError.html">[Sun
+     * docs]</a>.
+     */
+    class AnnotationFormatError extends Error {
+        constructor();
+    }
+}
+declare namespace javaemul.internal.annotations {
+    /**
+     * An annotation to mark a given method as side-effect free.
+     * <p>
+     * Internal SDK use only, might change or disappear at any time.
+     */
+    interface HasNoSideEffects {
     }
 }
 declare namespace java.util {
     /**
-     * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/OptionalDouble.html">
-     * the official Java API doc</a> for details.
-     */
-    class OptionalDouble {
-        static empty(): OptionalDouble;
-        static of(value: number): OptionalDouble;
-        private static EMPTY;
-        static EMPTY_$LI$(): OptionalDouble;
-        private ref;
-        private present;
-        constructor(value?: any);
-        isPresent(): boolean;
-        getAsDouble(): number;
-        ifPresent(consumer: (number) => void): void;
-        orElse(other: number): number;
-        orElseGet(other: () => number): number;
-        orElseThrow<X extends Error>(exceptionSupplier: () => X): number;
-        equals(obj: any): boolean;
-        hashCode(): number;
-        toString(): string;
-    }
-}
-declare namespace java.util {
-    /**
-     * General-purpose interface for storing collections of objects. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html">[Sun
+     * An interface used a basis for implementing custom ordering. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html">[Sun
      * docs]</a>
      *
-     * @param <E> element type
+     * @param <T> the type to be compared.
      */
-    interface Collection<E> extends java.lang.Iterable<E> {
-        add(index?: any, element?: any): any;
-        addAll(index?: any, c?: any): any;
-        clear(): any;
-        contains(o: any): boolean;
-        containsAll(c: Collection<any>): boolean;
+    interface Comparator<T> {
+        compare(o1?: any, o2?: any): any;
+        equals(other: any): boolean;
+    }
+}
+declare namespace java.security {
+    /**
+     * Message Digest Service Provider Interface - <a
+     * href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/MessageDigestSpi.html">[Sun's
+     * docs]</a>.
+     */
+    abstract class MessageDigestSpi {
+        engineDigest$(): number[];
+        engineDigest(buf?: any, offset?: any, len?: any): any;
+        engineGetDigestLength(): number;
+        abstract engineReset(): any;
+        engineUpdate$byte(input: number): void;
+        engineUpdate(input?: any, offset?: any, len?: any): any;
+    }
+}
+declare namespace java.util {
+    /**
+     * Available as a superclass of event objects.
+     */
+    class EventObject {
+        source: any;
+        constructor(source: any);
+        getSource(): any;
+    }
+}
+declare namespace javaemul.internal {
+    /**
+     * Wraps native <code>boolean</code> as an object.
+     */
+    class BooleanHelper implements java.lang.Comparable<BooleanHelper>, java.io.Serializable {
+        static FALSE: boolean;
+        static TRUE: boolean;
+        static TYPE: typeof Boolean;
+        static TYPE_$LI$(): typeof Boolean;
+        static compare(x: boolean, y: boolean): number;
+        static hashCode(value: boolean): number;
+        static logicalAnd(a: boolean, b: boolean): boolean;
+        static logicalOr(a: boolean, b: boolean): boolean;
+        static logicalXor(a: boolean, b: boolean): boolean;
+        static parseBoolean(s: string): boolean;
+        static toString(x: boolean): string;
+        static valueOf$boolean(b: boolean): boolean;
+        static valueOf(s?: any): any;
+        booleanValue(): boolean;
+        private static unsafeCast(value);
+        compareTo(b?: any): any;
         equals(o: any): boolean;
         hashCode(): number;
-        isEmpty(): boolean;
-        iterator(): java.util.Iterator<E>;
-        remove(index?: any): any;
-        removeAll(c: Collection<any>): boolean;
-        retainAll(c: Collection<any>): boolean;
-        size(): number;
-        toArray<T>(a?: any): any;
+        toString(): string;
+        constructor();
     }
 }
 declare namespace java.util {
     /**
-     * An interface to generate a series of elements, one at a time. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Enumeration.html">[Sun
-     * docs]</a>
-     *
-     * @param <E> the type being enumerated.
+     * Implementation of the observable class.
      */
-    interface Enumeration<E> {
-        hasMoreElements(): boolean;
-        nextElement(): E;
+    class Observable {
+        private changed;
+        private obs;
+        /**
+         * Construct an Observable with zero Observers.
+         */
+        constructor();
+        /**
+         * Adds an observer to the set of observers for this object, provided that
+         * it is not the same as some observer already in the set. The order in
+         * which notifications will be delivered to multiple observers is not
+         * specified. See the class comment.
+         *
+         * @param o
+         * an observer to be added.
+         * @throws NullPointerException
+         * if the parameter o is null.
+         */
+        addObserver(o: java.util.Observer): void;
+        /**
+         * Deletes an observer from the set of observers of this object. Passing
+         * <CODE>null</CODE> to this method will have no effect.
+         *
+         * @param o
+         * the observer to be deleted.
+         */
+        deleteObserver(o: java.util.Observer): void;
+        /**
+         * If this object has changed, as indicated by the <code>hasChanged</code>
+         * method, then notify all of its observers and then call the
+         * <code>clearChanged</code> method to indicate that this object has no
+         * longer changed.
+         * <p>
+         * Each observer has its <code>update</code> method called with two
+         * arguments: this observable object and the <code>arg</code> argument.
+         *
+         * @param arg
+         * any object.
+         * @see java.util.Observable#clearChanged()
+         * @see java.util.Observable#hasChanged()
+         * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+         */
+        notifyObservers(arg?: any): void;
+        /**
+         * Clears the observer list so that this object no longer has any observers.
+         */
+        deleteObservers(): void;
+        /**
+         * Marks this <tt>Observable</tt> object as having been changed; the
+         * <tt>hasChanged</tt> method will now return <tt>true</tt>.
+         */
+        setChanged(): void;
+        /**
+         * Indicates that this object has no longer changed, or that it has already
+         * notified all of its observers of its most recent change, so that the
+         * <tt>hasChanged</tt> method will now return <tt>false</tt>. This method is
+         * called automatically by the <code>notifyObservers</code> methods.
+         *
+         * @see java.util.Observable#notifyObservers()
+         * @see java.util.Observable#notifyObservers(java.lang.Object)
+         */
+        clearChanged(): void;
+        /**
+         * Tests if this object has changed.
+         *
+         * @return <code>true</code> if and only if the <code>setChanged</code>
+         * method has been called more recently than the
+         * <code>clearChanged</code> method on this object;
+         * <code>false</code> otherwise.
+         * @see java.util.Observable#clearChanged()
+         * @see java.util.Observable#setChanged()
+         */
+        hasChanged(): boolean;
+        /**
+         * Returns the number of observers of this <tt>Observable</tt> object.
+         *
+         * @return the number of observers of this object.
+         */
+        countObservers(): number;
+    }
+}
+declare namespace javaemul.internal {
+    /**
+     * Private implementation class for GWT. This API should not be
+     * considered public or stable.
+     */
+    class Coercions {
+        /**
+         * Coerce js int to 32 bits.
+         * Trick related to JS and lack of integer rollover.
+         * {@see com.google.gwt.lang.Cast#narrow_int}
+         */
+        static ensureInt(value: number): number;
+        constructor();
+    }
+}
+declare namespace javaemul.internal {
+    /**
+     * Contains logics for calculating hash codes in JavaScript.
+     */
+    class HashCodes {
+        private static sNextHashId;
+        private static HASH_CODE_PROPERTY;
+        static hashCodeForString(s: string): number;
+        static getIdentityHashCode(o: any): number;
+        static getObjectIdentityHashCode(o: any): number;
+        /**
+         * Called from JSNI. Do not change this implementation without updating:
+         * <ul>
+         * <li>{@link com.google.gwt.user.client.rpc.impl.SerializerBase}</li>
+         * </ul>
+         */
+        private static getNextHashId();
+    }
+}
+declare namespace java.lang {
+    /**
+     * Indicates that a method definition is intended to override a declaration from
+     * a superclass. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Override.html">[Sun
+     * docs]</a>
+     */
+    interface Override {
+    }
+}
+declare namespace java.io {
+    /**
+     * Provides a series of utilities to be reused between IO classes.
+     *
+     * TODO(chehayeb): move these checks to InternalPreconditions.
+     */
+    class IOUtils {
+        /**
+         * Validates the offset and the byte count for the given array of bytes.
+         *
+         * @param buffer Array of bytes to be checked.
+         * @param byteOffset Starting offset in the array.
+         * @param byteCount Total number of bytes to be accessed.
+         * @throws NullPointerException if the given reference to the buffer is null.
+         * @throws IndexOutOfBoundsException if {@code byteOffset} is negative, {@code byteCount} is
+         * negative or their sum exceeds the buffer length.
+         */
+        static checkOffsetAndCount(buffer?: any, byteOffset?: any, byteCount?: any): any;
+        /**
+         * Validates the offset and the byte count for the given array of characters.
+         *
+         * @param buffer Array of characters to be checked.
+         * @param charOffset Starting offset in the array.
+         * @param charCount Total number of characters to be accessed.
+         * @throws NullPointerException if the given reference to the buffer is null.
+         * @throws IndexOutOfBoundsException if {@code charOffset} is negative, {@code charCount} is
+         * negative or their sum exceeds the buffer length.
+         */
+        static checkOffsetAndCount$char_A$int$int(buffer: string[], charOffset: number, charCount: number): void;
+        /**
+         * Validates the offset and the byte count for the given array length.
+         *
+         * @param length Length of the array to be checked.
+         * @param offset Starting offset in the array.
+         * @param count Total number of elements to be accessed.
+         * @throws IndexOutOfBoundsException if {@code offset} is negative, {@code count} is negative or
+         * their sum exceeds the given {@code length}.
+         */
+        private static checkOffsetAndCount$int$int$int(length, offset, count);
+        constructor();
+    }
+}
+declare namespace java.lang {
+    /**
+     * Allows an instance of a class implementing this interface to be used in the
+     * foreach statement.
+     * See <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html">
+     * the official Java API doc</a> for details.
+     *
+     * @param <T> type of returned iterator
+     */
+    interface Iterable<T> {
+        iterator(): java.util.Iterator<T>;
+        forEach(action: (p1: any) => void): any;
     }
 }
 declare namespace java.awt {
-    class Color {
-        r: number;
-        g: number;
-        b: number;
-        constructor(r: number, g: number, b: number);
-        toHTML(): string;
+    interface HTMLComponent {
+        getHTMLElement(): HTMLElement;
+        bind(id: string): any;
+        init(): any;
     }
 }
-declare namespace java.lang.reflect {
+declare namespace java.awt {
+    interface Layout extends java.awt.HTMLComponent {
+        add(component: java.awt.HTMLComponent): any;
+    }
+}
+declare namespace javaemul.internal {
     /**
-     * This interface makes {@link java.lang.reflect.Type} available to GWT clients.
-     *
-     * @see java.lang.reflect.Type
+     * Wraps a primitive <code>short</code> as an object.
      */
-    interface Type {
+    class ShortHelper extends javaemul.internal.NumberHelper implements java.lang.Comparable<ShortHelper> {
+        static MIN_VALUE: number;
+        static MIN_VALUE_$LI$(): number;
+        static MAX_VALUE: number;
+        static MAX_VALUE_$LI$(): number;
+        static SIZE: number;
+        static TYPE: typeof Number;
+        static TYPE_$LI$(): typeof Number;
+        static compare(x: number, y: number): number;
+        static decode(s: string): ShortHelper;
+        /**
+         * @skip Here for shared implementation with Arrays.hashCode
+         */
+        static hashCode(s: number): number;
+        static parseShort(s: string, radix?: number): number;
+        static reverseBytes(s: number): number;
+        static toString(b: number): string;
+        static valueOf$short(s: number): ShortHelper;
+        static valueOf$java_lang_String(s: string): ShortHelper;
+        static valueOf(s?: any, radix?: any): any;
+        private value;
+        constructor(s?: any);
+        byteValue(): number;
+        compareTo(b?: any): any;
+        doubleValue(): number;
+        equals(o: any): boolean;
+        floatValue(): number;
+        hashCode(): number;
+        intValue(): number;
+        longValue(): number;
+        shortValue(): number;
+        toString(): string;
+    }
+    namespace ShortHelper {
+        /**
+         * Use nested class to avoid clinit on outer.
+         */
+        class BoxedValues {
+            static boxedValues: javaemul.internal.ShortHelper[];
+            static boxedValues_$LI$(): javaemul.internal.ShortHelper[];
+        }
+    }
+}
+declare namespace java.lang {
+    /**
+     * An interface used a basis for implementing custom ordering. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Comparable.html">[Sun
+     * docs]</a>
+     *
+     * @param <T> the type to compare to.
+     */
+    interface Comparable<T> {
+        compareTo(c?: any): any;
+    }
+}
+declare namespace java.awt {
+    abstract class Graphics {
+        abstract drawString(s: string, x: number, y: number): any;
+    }
+}
+declare namespace java.awt {
+    class WebGraphics2D extends java.awt.Graphics {
+        private canvas;
+        private context;
+        constructor(canvas: HTMLCanvasElement);
+        drawString(s: string, x: number, y: number): void;
+        getCanvas(): HTMLCanvasElement;
+        getContext(): CanvasRenderingContext2D;
+    }
+}
+declare namespace java.applet {
+    class Applet {
+        static __static_initialized: boolean;
+        static __static_initialize(): void;
+        static CURRENT_ID: number;
+        static __static_initializer_0(): void;
+        container: HTMLElement;
+        backgroundColor: java.awt.Color;
+        layout: java.awt.Layout;
+        constructor();
+        init(): void;
+        paint(g: java.awt.Graphics): void;
+        setBackground(c: java.awt.Color): void;
+        setLayout(layout: java.awt.Layout): void;
+        add(component: java.awt.HTMLComponent): void;
+    }
+}
+declare namespace java.io {
+    /**
+     * Wraps an existing {@link OutputStream} and performs some transformation on
+     * the output data while it is being written. Transformations can be anything
+     * from a simple byte-wise filtering output data to an on-the-fly compression or
+     * decompression of the underlying stream. Output streams that wrap another
+     * output stream and provide some additional functionality on top of it usually
+     * inherit from this class.
+     *
+     * @see FilterOutputStream
+     */
+    class FilterOutputStream extends java.io.OutputStream {
+        /**
+         * The target output stream for this filter stream.
+         */
+        out: java.io.OutputStream;
+        /**
+         * Constructs a new {@code FilterOutputStream} with {@code out} as its
+         * target stream.
+         *
+         * @param out
+         * the target stream that this stream writes to.
+         */
+        constructor(out: java.io.OutputStream);
+        /**
+         * Closes this stream. This implementation closes the target stream.
+         *
+         * @throws IOException
+         * if an error occurs attempting to close this stream.
+         */
+        close(): void;
+        /**
+         * Ensures that all pending data is sent out to the target stream. This
+         * implementation flushes the target stream.
+         *
+         * @throws IOException
+         * if an error occurs attempting to flush this stream.
+         */
+        flush(): void;
+        /**
+         * Writes {@code count} bytes from the byte array {@code buffer} starting at
+         * {@code offset} to the target stream.
+         *
+         * @param buffer
+         * the buffer to write.
+         * @param offset
+         * the index of the first byte in {@code buffer} to write.
+         * @param length
+         * the number of bytes in {@code buffer} to write.
+         * @throws IndexOutOfBoundsException
+         * if {@code offset < 0} or {@code count < 0}, or if
+         * {@code offset + count} is bigger than the length of
+         * {@code buffer}.
+         * @throws IOException
+         * if an I/O error occurs while writing to this stream.
+         */
+        write(buffer?: any, offset?: any, length?: any): any;
+        /**
+         * Writes one byte to the target stream. Only the low order byte of the
+         * integer {@code oneByte} is written.
+         *
+         * @param oneByte
+         * the byte to be written.
+         * @throws IOException
+         * if an I/O error occurs while writing to this stream.
+         */
+        write$int(oneByte: number): void;
+    }
+}
+declare namespace java.io {
+    /**
+     * @skip
+     */
+    class PrintStream extends java.io.FilterOutputStream {
+        constructor(out: java.io.OutputStream);
+        print$boolean(x: boolean): void;
+        print$char(x: string): void;
+        print(x?: any): any;
+        print$double(x: number): void;
+        print$float(x: number): void;
+        print$int(x: number): void;
+        print$long(x: number): void;
+        print$java_lang_Object(x: any): void;
+        print$java_lang_String(s: string): void;
+        println$(): void;
+        println$boolean(x: boolean): void;
+        println$char(x: string): void;
+        println(x?: any): any;
+        println$double(x: number): void;
+        println$float(x: number): void;
+        println$int(x: number): void;
+        println$long(x: number): void;
+        println$java_lang_Object(x: any): void;
+        println$java_lang_String(s: string): void;
+    }
+}
+declare namespace javaemul.internal {
+    /**
+     * Wraps a primitive <code>long</code> as an object.
+     */
+    class LongHelper extends javaemul.internal.NumberHelper implements java.lang.Comparable<LongHelper> {
+        static MAX_VALUE: number;
+        static MIN_VALUE: number;
+        static SIZE: number;
+        static bitCount(i: number): number;
+        static compare(x: number, y: number): number;
+        static decode(s: string): LongHelper;
+        /**
+         * @skip Here for shared implementation with Arrays.hashCode
+         */
+        static hashCode(l: number): number;
+        static highestOneBit(i: number): number;
+        static lowestOneBit(i: number): number;
+        static numberOfLeadingZeros(i: number): number;
+        static numberOfTrailingZeros(i: number): number;
+        static parseLong(s: string, radix?: number): number;
+        static reverse(i: number): number;
+        static reverseBytes(i: number): number;
+        static rotateLeft(i: number, distance: number): number;
+        static rotateRight(i: number, distance: number): number;
+        static signum(i: number): number;
+        static toBinaryString(value: number): string;
+        static toHexString(value: number): string;
+        static toOctalString(value: number): string;
+        static toString$long(value: number): string;
+        static toString(value?: any, intRadix?: any): any;
+        static valueOf$long(i: number): LongHelper;
+        static valueOf$java_lang_String(s: string): LongHelper;
+        static valueOf(s?: any, radix?: any): any;
+        static toPowerOfTwoUnsignedString(value: number, shift: number): string;
+        private value;
+        constructor(s?: any);
+        byteValue(): number;
+        compareTo(b?: any): any;
+        doubleValue(): number;
+        equals(o: any): boolean;
+        floatValue(): number;
+        hashCode(): number;
+        intValue(): number;
+        longValue(): number;
+        shortValue(): number;
+        toString(): string;
+    }
+    namespace LongHelper {
+        /**
+         * Use nested class to avoid clinit on outer.
+         */
+        class BoxedValues {
+            static boxedValues: javaemul.internal.LongHelper[];
+            static boxedValues_$LI$(): javaemul.internal.LongHelper[];
+        }
+    }
+}
+declare namespace java.io {
+    /**
+     * Defines an interface for classes that can (or need to) be flushed, typically
+     * before some output processing is considered to be finished and the object
+     * gets closed.
+     */
+    interface Flushable {
+        /**
+         * Flushes the object by writing out any buffered data to the underlying
+         * output.
+         *
+         * @throws IOException
+         * if there are any issues writing the data.
+         */
+        flush(): any;
+    }
+}
+declare namespace java.lang {
+    /**
+     * General-purpose low-level utility methods. GWT only supports a limited subset
+     * of these methods due to browser limitations. Only the documented methods are
+     * available.
+     */
+    class System {
+        /**
+         * Does nothing in web mode. To get output in web mode, subclass PrintStream
+         * and call {@link #setErr(PrintStream)}.
+         */
+        static err: java.io.PrintStream;
+        static err_$LI$(): java.io.PrintStream;
+        /**
+         * Does nothing in web mode. To get output in web mode, subclass
+         * {@link PrintStream} and call {@link #setOut(PrintStream)}.
+         */
+        static out: java.io.PrintStream;
+        static out_$LI$(): java.io.PrintStream;
+        static arraycopy(src: any, srcOfs: number, dest: any, destOfs: number, len: number): void;
+        static currentTimeMillis(): number;
+        /**
+         * Has no effect; just here for source compatibility.
+         *
+         * @skip
+         */
+        static gc(): void;
+        /**
+         * The compiler replaces getProperty by the actual value of the property.
+         */
+        static getProperty$java_lang_String(key: string): string;
+        /**
+         * The compiler replaces getProperty by the actual value of the property.
+         */
+        static getProperty(key?: any, def?: any): any;
+        static identityHashCode(o: any): number;
+        static setErr(err: java.io.PrintStream): void;
+        static setOut(out: java.io.PrintStream): void;
+        private static arrayTypeMatch(srcComp, destComp);
+    }
+}
+declare namespace java.util.logging {
+    /**
+     * An emulation of the java.util.logging.Logger class. See
+     * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/Logger.html">
+     * The Java API doc for details</a>
+     */
+    class Logger {
+        static __static_initialized: boolean;
+        static __static_initialize(): void;
+        static GLOBAL_LOGGER_NAME: string;
+        private static LOGGING_ENABLED;
+        static LOGGING_ENABLED_$LI$(): string;
+        private static LOGGING_WARNING;
+        static LOGGING_WARNING_$LI$(): boolean;
+        private static LOGGING_SEVERE;
+        static LOGGING_SEVERE_$LI$(): boolean;
+        private static LOGGING_FALSE;
+        static LOGGING_FALSE_$LI$(): boolean;
+        static __static_initializer_0(): void;
+        static getGlobal(): Logger;
+        static getLogger(name: string): Logger;
+        static assertLoggingValues(): void;
+        private handlers;
+        private level;
+        private name;
+        private parent;
+        private useParentHandlers;
+        constructor(name: string, resourceName: string);
+        addHandler(handler: java.util.logging.Handler): void;
+        config(msg: string): void;
+        fine(msg: string): void;
+        finer(msg: string): void;
+        finest(msg: string): void;
+        info(msg: string): void;
+        warning(msg: string): void;
+        severe(msg: string): void;
+        getHandlers(): java.util.logging.Handler[];
+        getLevel(): java.util.logging.Level;
+        getName(): string;
+        getParent(): Logger;
+        getUseParentHandlers(): boolean;
+        isLoggable(messageLevel: java.util.logging.Level): boolean;
+        log$java_util_logging_Level$java_lang_String(level: java.util.logging.Level, msg: string): void;
+        log(level?: any, msg?: any, thrown?: any): any;
+        log$java_util_logging_LogRecord(record: java.util.logging.LogRecord): void;
+        removeHandler(handler: java.util.logging.Handler): void;
+        setLevel(newLevel: java.util.logging.Level): void;
+        setParent(newParent: Logger): void;
+        setUseParentHandlers(newUseParentHandlers: boolean): void;
+        private getEffectiveLevel();
+        actuallyLog(level?: any, msg?: any, thrown?: any): any;
+        private actuallyLog$java_util_logging_LogRecord(record);
+    }
+}
+declare namespace java.lang {
+    /**
+     * A base class to share implementation between {@link StringBuffer} and {@link StringBuilder}.
+     * <p>
+     * Most methods will give expected performance results. Exception is {@link #setCharAt(int, char)},
+     * which is O(n), and thus should not be used many times on the same <code>StringBuffer</code>.
+     */
+    abstract class AbstractStringBuilder {
+        string: string;
+        constructor(string: string);
+        length(): number;
+        setLength(newLength: number): void;
+        capacity(): number;
+        ensureCapacity(ignoredCapacity: number): void;
+        trimToSize(): void;
+        charAt(index: number): string;
+        getChars(srcStart: number, srcEnd: number, dst: string[], dstStart: number): void;
+        /**
+         * Warning! This method is <b>much</b> slower than the JRE implementation. If you need to do
+         * character level manipulation, you are strongly advised to use a char[] directly.
+         */
+        setCharAt(index: number, x: string): void;
+        subSequence(start: number, end: number): string;
+        substring$int(begin: number): string;
+        substring(begin?: any, end?: any): any;
+        indexOf$java_lang_String(x: string): number;
+        indexOf(x?: any, start?: any): any;
+        lastIndexOf$java_lang_String(s: string): number;
+        lastIndexOf(s?: any, start?: any): any;
+        toString(): string;
+        append0(x: string, start: number, end: number): void;
+        appendCodePoint0(x: number): void;
+        replace0(start: number, end: number, toInsert: string): void;
+        reverse0(): void;
+        private static swap(buffer, f, s);
     }
 }
 declare namespace java.util {
     /**
-     * Represents a set of unique objects. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html">[Sun docs]</a>
+     * A collection designed for holding elements prior to processing. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Queue.html">[Sun
+     * docs]</a>
      *
      * @param <E> element type.
      */
-    interface Set<E> extends java.util.Collection<E> {
-        add(index?: any, element?: any): any;
-        addAll(c: java.util.Collection<any>): boolean;
-        clear(): any;
-        contains(o: any): boolean;
-        containsAll(c: java.util.Collection<any>): boolean;
-        equals(o: any): boolean;
-        hashCode(): number;
-        isEmpty(): boolean;
-        iterator(): java.util.Iterator<E>;
+    interface Queue<E> extends java.util.Collection<E> {
+        element(): E;
+        offer(o: E): boolean;
+        peek(): E;
+        poll(): E;
         remove(index?: any): any;
-        removeAll(c: java.util.Collection<any>): boolean;
-        retainAll(c: java.util.Collection<any>): boolean;
-        size(): number;
-        toArray<T>(a?: any): any;
+    }
+}
+declare namespace javaemul.internal.annotations {
+    /**
+     * An annotation to mark a given method as being specialized. If the specified
+     * parameters and return context match of a JMethodCall, then the call
+     * is retargeted at the specialized version.
+     */
+    interface SpecializeMethod {
+        /**
+         * List of parameter types, matched via assignability.
+         */
+        params(): any[];
+        /**
+         * List of return types to match, or null if you don't care.
+         */
+        returns(): any;
+        /**
+         * The name of the method to target. It must have a signature matching to the {@link #params()}.
+         */
+        target(): string;
+    }
+    namespace SpecializeMethod {
+        /**
+         * Represents a type that matches any type, even void.
+         */
+        interface ANY {
+        }
+    }
+}
+declare namespace java.io {
+    /**
+     * An {@code AutoCloseable} whose close method may throw an {@link IOException}.
+     */
+    interface Closeable extends java.lang.AutoCloseable {
+        /**
+         * Closes the object and release any system resources it holds.
+         *
+         * <p>Although only the first call has any effect, it is safe to call close
+         * multiple times on the same object. This is more lenient than the
+         * overridden {@code AutoCloseable.close()}, which may be called at most
+         * once.
+         */
+        close(): any;
+    }
+}
+declare namespace java.lang.annotation {
+    /**
+     * Annotation which indicates annotations should be documented by javadoc/etc <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/Documented.html">[Sun
+     * docs]</a>.
+     */
+    interface Documented {
+    }
+}
+declare namespace java.util {
+    class InternalJsMap<V> {
+        get$int(key: number): V;
+        get(key?: any): any;
+        set$int$java_lang_Object(key: number, value: V): void;
+        set(key?: any, value?: any): any;
+        delete$int(key: number): void;
+        delete(key?: any): any;
+        entries(): InternalJsMap.Iterator<V>;
+    }
+    namespace InternalJsMap {
+        class Iterator<V> {
+            next(): InternalJsMap.IteratorEntry<V>;
+        }
+        class IteratorEntry<V> {
+            value: any[];
+            done: boolean;
+            constructor();
+        }
+        class JsHelper {
+            static delete$java_util_InternalJsMap$int(obj: java.util.InternalJsMap<any>, key: number): void;
+            static delete(obj?: any, key?: any): any;
+        }
     }
 }
 declare namespace java.io {
@@ -583,238 +1719,104 @@ declare namespace java.io {
         skip(byteCount: number): number;
     }
 }
-declare namespace java.security {
-    /**
-     * Message Digest Service Provider Interface - <a
-     * href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/MessageDigestSpi.html">[Sun's
-     * docs]</a>.
-     */
-    abstract class MessageDigestSpi {
-        engineDigest$(): number[];
-        engineDigest(buf?: any, offset?: any, len?: any): any;
-        engineGetDigestLength(): number;
-        abstract engineReset(): any;
-        engineUpdate$byte(input: number): void;
-        engineUpdate(input?: any, offset?: any, len?: any): any;
-    }
-}
-declare namespace java.util {
-    /**
-     * A collection designed for holding elements prior to processing. <a
-     * href="http://docs.oracle.com/javase/6/docs/api/java/util/Deque.html">Deque</a>
-     *
-     * @param <E> element type.
-     */
-    interface Deque<E> extends java.util.Queue<E> {
-        addFirst(e: E): any;
-        addLast(e: E): any;
-        descendingIterator(): java.util.Iterator<E>;
-        getFirst(): E;
-        getLast(): E;
-        offerFirst(e: E): boolean;
-        offerLast(e: E): boolean;
-        peekFirst(): E;
-        peekLast(): E;
-        pollFirst(): E;
-        pollLast(): E;
-        pop(): E;
-        push(e: E): any;
-        removeFirst(): E;
-        removeFirstOccurrence(o: any): boolean;
-        removeLast(): E;
-        removeLastOccurrence(o: any): boolean;
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * Private implementation class for GWT. This API should not be
-     * considered public or stable.
-     */
-    class Coercions {
-        /**
-         * Coerce js int to 32 bits.
-         * Trick related to JS and lack of integer rollover.
-         * {@see com.google.gwt.lang.Cast#narrow_int}
-         */
-        static ensureInt(value: number): number;
-        constructor();
-    }
-}
-declare namespace java.util {
-    /**
-     * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/OptionalLong.html">
-     * the official Java API doc</a> for details.
-     */
-    class OptionalLong {
-        static empty(): OptionalLong;
-        static of(value: number): OptionalLong;
-        private static EMPTY;
-        static EMPTY_$LI$(): OptionalLong;
-        private ref;
-        private present;
-        constructor(value?: any);
-        isPresent(): boolean;
-        getAsLong(): number;
-        ifPresent(consumer: (number) => void): void;
-        orElse(other: number): number;
-        orElseGet(other: () => number): number;
-        orElseThrow<X extends Error>(exceptionSupplier: () => X): number;
-        equals(obj: any): boolean;
-        hashCode(): number;
-        toString(): string;
-    }
-}
-declare namespace java.util {
-    class Comparators {
-        /**
-         * Compares two Objects according to their <i>natural ordering</i>.
-         *
-         * @see java.lang.Comparable
-         */
-        private static NATURAL;
-        static NATURAL_$LI$(): java.util.Comparator<any>;
-        /**
-         * Returns the natural Comparator.
-         * <p>
-         * Example:
-         *
-         * <pre>Comparator&lt;String&gt; compareString = Comparators.natural()</pre>
-         *
-         * @return the natural Comparator
-         */
-        static natural<T>(): java.util.Comparator<T>;
-    }
-    namespace Comparators {
-        class NaturalComparator implements java.util.Comparator<any> {
-            compare(o1: any, o2: any): number;
-            constructor();
-        }
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * Contains logics for calculating hash codes in JavaScript.
-     */
-    class HashCodes {
-        private static sNextHashId;
-        private static HASH_CODE_PROPERTY;
-        static hashCodeForString(s: string): number;
-        static getIdentityHashCode(o: any): number;
-        static getObjectIdentityHashCode(o: any): number;
-        /**
-         * Called from JSNI. Do not change this implementation without updating:
-         * <ul>
-         * <li>{@link com.google.gwt.user.client.rpc.impl.SerializerBase}</li>
-         * </ul>
-         */
-        private static getNextHashId();
-    }
-}
-declare namespace java.lang {
-    /**
-     * See <a
-     * href="http://java.sun.com/javase/6/docs/api/java/lang/Appendable.html">the
-     * official Java API doc</a> for details.
-     */
-    interface Appendable {
-        append(x?: any, start?: any, len?: any): any;
-    }
-}
 declare namespace java.io {
     /**
-     * A writable sink for bytes.
+     * A specialized {@link InputStream } for reading the contents of a byte array.
      *
-     * <p>Most clients will use output streams that write data to the file system
-     * ({@link FileOutputStream}), the network ({@link java.net.Socket#getOutputStream()}/{@link
-     * java.net.HttpURLConnection#getOutputStream()}), or to an in-memory byte array
-     * ({@link ByteArrayOutputStream}).
-     *
-     * <p>Use {@link OutputStreamWriter} to adapt a byte stream like this one into a
-     * character stream.
-     *
-     * <p>Most clients should wrap their output stream with {@link
-     * BufferedOutputStream}. Callers that do only bulk writes may omit buffering.
-     *
-     * <h3>Subclassing OutputStream</h3>
-     * Subclasses that decorate another output stream should consider subclassing
-     * {@link FilterOutputStream}, which delegates all calls to the target output
-     * stream.
-     *
-     * <p>All output stream subclasses should override <strong>both</strong> {@link
-     * #write(int)} and {@link #write(byte[],int,int) write(byte[],int,int)}. The
-     * three argument overload is necessary for bulk access to the data. This is
-     * much more efficient than byte-by-byte access.
-     *
-     * @see InputStream
-     *
-     * <p>The implementation provided by this class behaves as described in the Java
-     * API documentation except for {@link write(int)} which throws an exception of
-     * type {@link java.lang.UnsupportedOperationException} instead of being
-     * abstract.
+     * @see ByteArrayOutputStream
      */
-    abstract class OutputStream implements java.io.Closeable, java.io.Flushable {
+    class ByteArrayInputStream extends java.io.InputStream {
         /**
-         * Default constructor.
+         * The {@code byte} array containing the bytes to stream over.
          */
-        constructor();
+        buf: number[];
         /**
-         * Closes this stream. Implementations of this method should free any
-         * resources used by the stream. This implementation does nothing.
+         * The current position within the byte array.
+         */
+        pos: number;
+        /**
+         * The current mark position. Initially set to 0 or the <code>offset</code>
+         * parameter within the constructor.
+         */
+        _mark: number;
+        /**
+         * The total number of bytes initially available in the byte array
+         * {@code buf}.
+         */
+        count: number;
+        /**
+         * Constructs a new {@code ByteArrayInputStream} on the byte array
+         * {@code buf} with the initial position set to {@code offset} and the
+         * number of bytes available set to {@code offset} + {@code length}.
+         *
+         * @param buf
+         * the byte array to stream over.
+         * @param offset
+         * the initial position in {@code buf} to start streaming from.
+         * @param length
+         * the number of bytes available for streaming.
+         */
+        constructor(buf: number[], offset?: number, length?: number);
+        /**
+         * Returns the number of remaining bytes.
+         *
+         * @return {@code count - pos}
+         */
+        available(): number;
+        /**
+         * Closes this stream and frees resources associated with this stream.
          *
          * @throws IOException
-         * if an error occurs while closing this stream.
+         * if an I/O error occurs while closing this stream.
          */
         close(): void;
         /**
-         * Flushes this stream. Implementations of this method should ensure that
-         * any buffered data is written out. This implementation does nothing.
+         * Sets a mark position in this ByteArrayInputStream. The parameter
+         * {@code readlimit} is ignored. Sending {@code reset()} will reposition the
+         * stream back to the marked position.
          *
-         * @throws IOException
-         * if an error occurs while flushing this stream.
+         * @param readlimit
+         * ignored.
+         * @see #markSupported()
+         * @see #reset()
          */
-        flush(): void;
+        mark(readlimit: number): void;
         /**
-         * Equivalent to {@code write(buffer, 0, buffer.length)}.
-         */
-        write$byte_A(buffer: number[]): void;
-        /**
-         * Writes {@code count} bytes from the byte array {@code buffer} starting at
-         * position {@code offset} to this stream.
+         * Indicates whether this stream supports the {@code mark()} and
+         * {@code reset()} methods. Returns {@code true} since this class supports
+         * these methods.
          *
-         * @param buffer
-         * the buffer to be written.
-         * @param offset
-         * the start position in {@code buffer} from where to get bytes.
-         * @param count
-         * the number of bytes from {@code buffer} to write to this
-         * stream.
-         * @throws IOException
-         * if an error occurs while writing to this stream.
-         * @throws IndexOutOfBoundsException
-         * if {@code offset < 0} or {@code count < 0}, or if
-         * {@code offset + count} is bigger than the length of
-         * {@code buffer}.
+         * @return always {@code true}.
+         * @see #mark(int)
+         * @see #reset()
          */
-        write(buffer?: any, offset?: any, count?: any): any;
+        markSupported(): boolean;
         /**
-         * Writes a single byte to this stream. Only the least significant byte of
-         * the integer {@code oneByte} is written to the stream.
+         * Reads a single byte from the source byte array and returns it as an
+         * integer in the range from 0 to 255. Returns -1 if the end of the source
+         * array has been reached.
          *
-         * @param oneByte
-         * the byte to be written.
-         * @throws IOException
-         * if an error occurs while writing to this stream.
+         * @return the byte read or -1 if the end of this stream has been reached.
          */
-        write$int(oneByte: number): void;
-    }
-}
-declare namespace javaemul.internal.annotations {
-    /**
-     * An annotation to mark a given method as not inlineable.
-     * <p>
-     * Internal SDK use only, might change or disappear at any time.
-     */
-    interface ForceInline {
+        read$(): number;
+        read(buffer?: any, byteOffset?: any, byteCount?: any): any;
+        /**
+         * Resets this stream to the last marked location. This implementation
+         * resets the position to either the marked position, the start position
+         * supplied in the constructor or 0 if neither has been provided.
+         *
+         * @see #mark(int)
+         */
+        reset(): void;
+        /**
+         * Skips {@code byteCount} bytes in this InputStream. Subsequent calls to
+         * {@code read} will not return these bytes unless {@code reset} is used.
+         * This implementation skips {@code byteCount} number of bytes in the target
+         * stream. It does nothing and returns 0 if {@code byteCount} is negative.
+         *
+         * @return the number of bytes actually skipped.
+         */
+        skip(byteCount: number): number;
     }
 }
 declare namespace java.io {
@@ -918,130 +1920,709 @@ declare namespace java.io {
         skip(byteCount: number): number;
     }
 }
+declare namespace java.lang.reflect {
+    /**
+     * This interface makes {@link java.lang.reflect.Type} available to GWT clients.
+     *
+     * @see java.lang.reflect.Type
+     */
+    interface Type {
+    }
+}
+declare namespace java.util {
+    /**
+     * A tag interface that other "listener" interfaces can extend to indicate their
+     * adherence to the observer pattern.
+     */
+    interface EventListener {
+    }
+}
 declare namespace java.lang {
     /**
-     * Indicates that a method definition is intended to override a declaration from
-     * a superclass. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Override.html">[Sun
+     * A program element annotated &#64;Deprecated is one that programmers are
+     * discouraged from using, typically because it is dangerous, or because a
+     * better alternative exists. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Deprecated.html">[Sun
      * docs]</a>
      */
-    interface Override {
-    }
-}
-declare namespace java.awt {
-    abstract class Graphics {
-        abstract drawString(s: string, x: number, y: number): any;
+    interface Deprecated {
     }
 }
 declare namespace java.util {
     /**
-     * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/StringJoiner.html">
+     * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/OptionalLong.html">
      * the official Java API doc</a> for details.
      */
-    class StringJoiner {
-        private delimiter;
-        private prefix;
-        private suffix;
-        private builder;
-        private emptyValue;
-        constructor(delimiter: string, prefix?: string, suffix?: string);
-        add(newElement: string): StringJoiner;
-        length(): number;
-        merge(other: StringJoiner): StringJoiner;
-        setEmptyValue(emptyValue: string): StringJoiner;
+    class OptionalLong {
+        static empty(): OptionalLong;
+        static of(value: number): OptionalLong;
+        private static EMPTY;
+        static EMPTY_$LI$(): OptionalLong;
+        private ref;
+        private present;
+        constructor(value?: any);
+        isPresent(): boolean;
+        getAsLong(): number;
+        ifPresent(consumer: (number) => void): void;
+        orElse(other: number): number;
+        orElseGet(other: () => number): number;
+        orElseThrow<X extends Error>(exceptionSupplier: () => X): number;
+        equals(obj: any): boolean;
+        hashCode(): number;
         toString(): string;
-        private initBuilderOrAddDelimiter();
     }
 }
-declare namespace javaemul.internal.annotations {
+declare namespace javaemul.internal {
     /**
-     * An annotation to mark a given method as side-effect free.
-     * <p>
-     * Internal SDK use only, might change or disappear at any time.
+     * Hashcode caching for strings.
      */
-    interface HasNoSideEffects {
+    class StringHashCache {
+        /**
+         * The "old" cache; it will be dumped when front is full.
+         */
+        private static back;
+        static back_$LI$(): any;
+        /**
+         * Tracks the number of entries in front.
+         */
+        private static count;
+        /**
+         * The "new" cache; it will become back when it becomes full.
+         */
+        private static front;
+        static front_$LI$(): any;
+        /**
+         * Pulled this number out of thin air.
+         */
+        private static MAX_CACHE;
+        static getHashCode(str: string): number;
+        private static compute(str);
+        private static increment();
+        private static getProperty(map, key);
+        private static createNativeObject();
+        private static unsafeCastToInt(o);
+    }
+}
+declare namespace java.lang.annotation {
+    /**
+     * Annotation which indicates how long annotations should be retained <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/Retention.html">[Sun
+     * doc]</a>.
+     */
+    interface Retention {
+        value(): java.lang.annotation.RetentionPolicy;
+    }
+}
+declare namespace java.lang {
+    /**
+     * Included for hosted mode source compatibility. Partially implemented
+     *
+     * @skip
+     */
+    class StackTraceElement implements java.io.Serializable {
+        private className;
+        private fileName;
+        private lineNumber;
+        private methodName;
+        constructor(className?: any, methodName?: any, fileName?: any, lineNumber?: any);
+        getClassName(): string;
+        getFileName(): string;
+        getLineNumber(): number;
+        getMethodName(): string;
+        equals(other: any): boolean;
+        hashCode(): number;
+        toString(): string;
     }
 }
 declare namespace java.awt {
-    class GridLayout implements java.awt.Layout {
-        table: HTMLTableElement;
-        currentPosition: number;
-        cols: number;
-        rows: number;
-        constructor(rows: number, cols: number);
-        add(component: java.awt.HTMLComponent): void;
-        getHTMLElement(): HTMLElement;
-        bind(id: string): void;
+    class Component {
+    }
+}
+declare namespace java.awt {
+    class TextField extends java.awt.Component implements java.awt.HTMLComponent {
+        input: HTMLInputElement;
+        actionListener: java.awt.event.ActionListener;
+        constructor(cols: number);
         init(): void;
+        private initActionListener();
+        bind(id: string): void;
+        getHTMLElement(): HTMLElement;
+        addActionListener(actionListener: java.awt.event.ActionListener): void;
+        setText(text: string): void;
+        getText(): string;
     }
 }
 declare namespace java.util {
     /**
-     * A factory to create JavaScript Map instances.
+     * Indicates that a data structure supports constant-time random access to its
+     * contained objects.
      */
-    class InternalJsMapFactory {
-        private static jsMapCtor;
-        static jsMapCtor_$LI$(): any;
-        private static getJsMapConstructor();
-        static newJsMap<V>(): java.util.InternalJsMap<V>;
-        constructor();
+    interface RandomAccess {
     }
 }
 declare namespace java.util {
     /**
-     * A {@code SortedSet} with more flexible queries.
+     * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html">
+     * the official Java API doc</a> for details.
+     *
+     * @param <T> type of the wrapped reference
+     */
+    class Optional<T> {
+        static empty<T>(): Optional<T>;
+        static of<T>(value: T): Optional<T>;
+        static ofNullable<T>(value: T): Optional<T>;
+        private static EMPTY;
+        static EMPTY_$LI$(): Optional<any>;
+        private ref;
+        constructor(ref?: any);
+        isPresent(): boolean;
+        get(): T;
+        ifPresent(consumer: (p1: any) => void): void;
+        filter(predicate: (p1: any) => boolean): Optional<T>;
+        map<U>(mapper: (p1: any) => any): Optional<U>;
+        flatMap<U>(mapper: (p1: any) => Optional<U>): Optional<U>;
+        orElse(other: T): T;
+        orElseGet(other: () => any): T;
+        orElseThrow<X extends Error>(exceptionSupplier: () => any): T;
+        equals(obj: any): boolean;
+        hashCode(): number;
+        toString(): string;
+    }
+}
+declare namespace java.lang {
+    /**
+     * Encapsulates an action for later execution. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Runnable.html">[Sun
+     * docs]</a>
+     *
+     * <p>
+     * This interface is provided only for JRE compatibility. GWT does not support
+     * multithreading.
+     * </p>
+     */
+    interface Runnable {
+        run(): any;
+    }
+}
+declare namespace java.util {
+    /**
+     * A collection designed for holding elements prior to processing. <a
+     * href="http://docs.oracle.com/javase/6/docs/api/java/util/Deque.html">Deque</a>
      *
      * @param <E> element type.
      */
-    interface NavigableSet<E> extends java.util.SortedSet<E> {
-        ceiling(e: E): E;
+    interface Deque<E> extends java.util.Queue<E> {
+        addFirst(e: E): any;
+        addLast(e: E): any;
         descendingIterator(): java.util.Iterator<E>;
-        descendingSet(): NavigableSet<E>;
-        floor(e: E): E;
-        headSet(toElement?: any, inclusive?: any): any;
-        higher(e: E): E;
-        lower(e: E): E;
+        getFirst(): E;
+        getLast(): E;
+        offerFirst(e: E): boolean;
+        offerLast(e: E): boolean;
+        peekFirst(): E;
+        peekLast(): E;
         pollFirst(): E;
         pollLast(): E;
-        subSet(fromElement?: any, fromInclusive?: any, toElement?: any, toInclusive?: any): any;
-        tailSet(fromElement?: any, inclusive?: any): any;
+        pop(): E;
+        push(e: E): any;
+        removeFirst(): E;
+        removeFirstOccurrence(o: any): boolean;
+        removeLast(): E;
+        removeLastOccurrence(o: any): boolean;
     }
 }
 declare namespace java.lang {
     /**
-     * A base class to share implementation between {@link StringBuffer} and {@link StringBuilder}.
-     * <p>
-     * Most methods will give expected performance results. Exception is {@link #setCharAt(int, char)},
-     * which is O(n), and thus should not be used many times on the same <code>StringBuffer</code>.
+     * The first-class representation of an enumeration.
+     *
+     * @param <E>
      */
-    abstract class AbstractStringBuilder {
-        string: string;
-        constructor(string: string);
-        length(): number;
-        setLength(newLength: number): void;
-        capacity(): number;
-        ensureCapacity(ignoredCapacity: number): void;
-        trimToSize(): void;
-        charAt(index: number): string;
-        getChars(srcStart: number, srcEnd: number, dst: string[], dstStart: number): void;
-        /**
-         * Warning! This method is <b>much</b> slower than the JRE implementation. If you need to do
-         * character level manipulation, you are strongly advised to use a char[] directly.
-         */
-        setCharAt(index: number, x: string): void;
-        subSequence(start: number, end: number): string;
-        substring$int(begin: number): string;
-        substring(begin?: any, end?: any): any;
-        indexOf$java_lang_String(x: string): number;
-        indexOf(x?: any, start?: any): any;
-        lastIndexOf$java_lang_String(s: string): number;
-        lastIndexOf(s?: any, start?: any): any;
+    abstract class Enum<E extends java.lang.Enum<E>> implements java.lang.Comparable<E>, java.io.Serializable {
+        static valueOf<T extends java.lang.Enum<T>>(enumType?: any, name?: any): any;
+        static createValueOfMap<T extends java.lang.Enum<T>>(enumConstants: T[]): Object;
+        static valueOf$jsweet_lang_Object$java_lang_String<T extends java.lang.Enum<T>>(map: Object, name: string): T;
+        private static get0<T>(map, name);
+        private static invokeValueOf<T>(enumValueOfFunc, name);
+        private static put0<T>(map, name, value);
+        private __name;
+        private __ordinal;
+        constructor(name: string, ordinal: number);
+        compareTo(other?: any): any;
+        getDeclaringClass(): any;
+        name(): string;
+        ordinal(): number;
         toString(): string;
-        append0(x: string, start: number, end: number): void;
-        appendCodePoint0(x: number): void;
-        replace0(start: number, end: number, toInsert: string): void;
-        reverse0(): void;
-        private static swap(buffer, f, s);
+    }
+}
+declare namespace java.lang {
+    /**
+     * See <a
+     * href="http://java.sun.com/javase/6/docs/api/java/lang/Appendable.html">the
+     * official Java API doc</a> for details.
+     */
+    interface Appendable {
+        append(x?: any, start?: any, len?: any): any;
+    }
+}
+declare namespace java.lang.annotation {
+    /**
+     * Enumerates types of declared elements in a Java program <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/ElementType.html">[Sun
+     * docs]</a>.
+     */
+    enum ElementType {
+        ANNOTATION_TYPE = 0,
+        CONSTRUCTOR = 1,
+        FIELD = 2,
+        LOCAL_VARIABLE = 3,
+        METHOD = 4,
+        PACKAGE = 5,
+        PARAMETER = 6,
+        TYPE = 7,
+    }
+}
+declare namespace java.awt.event {
+    class ActionEvent {
+        private source;
+        private actionCommand;
+        constructor(source: any, actionCommand: string);
+        getSource(): any;
+        getActionCommand(): string;
+    }
+}
+declare namespace java.lang {
+    /**
+     * A fast way to create strings using multiple appends.
+     *
+     * This class is an exact clone of {@link StringBuffer} except for the name. Any
+     * change made to one should be mirrored in the other.
+     */
+    class StringBuilder extends java.lang.AbstractStringBuilder implements java.lang.CharSequence, java.lang.Appendable {
+        constructor(s?: any);
+        append$boolean(x: boolean): java.lang.StringBuilder;
+        append$char(x: string): java.lang.StringBuilder;
+        append$char_A(x: string[]): java.lang.StringBuilder;
+        append(x?: any, start?: any, len?: any): any;
+        append$java_lang_CharSequence(x: string): java.lang.StringBuilder;
+        append$java_lang_CharSequence$int$int(x: string, start: number, end: number): java.lang.StringBuilder;
+        append$double(x: number): java.lang.StringBuilder;
+        append$float(x: number): java.lang.StringBuilder;
+        append$int(x: number): java.lang.StringBuilder;
+        append$long(x: number): java.lang.StringBuilder;
+        append$java_lang_Object(x: any): java.lang.StringBuilder;
+        append$java_lang_String(x: string): java.lang.StringBuilder;
+        append$java_lang_StringBuffer(x: java.lang.StringBuffer): java.lang.StringBuilder;
+        appendCodePoint(x: number): java.lang.StringBuilder;
+        delete(start: number, end: number): java.lang.StringBuilder;
+        deleteCharAt(start: number): java.lang.StringBuilder;
+        insert$int$boolean(index: number, x: boolean): java.lang.StringBuilder;
+        insert$int$char(index: number, x: string): java.lang.StringBuilder;
+        insert$int$char_A(index: number, x: string[]): java.lang.StringBuilder;
+        insert(index?: any, x?: any, offset?: any, len?: any): any;
+        insert$int$java_lang_CharSequence(index: number, chars: string): java.lang.StringBuilder;
+        insert$int$java_lang_CharSequence$int$int(index: number, chars: string, start: number, end: number): java.lang.StringBuilder;
+        insert$int$double(index: number, x: number): java.lang.StringBuilder;
+        insert$int$float(index: number, x: number): java.lang.StringBuilder;
+        insert$int$int(index: number, x: number): java.lang.StringBuilder;
+        insert$int$long(index: number, x: number): java.lang.StringBuilder;
+        insert$int$java_lang_Object(index: number, x: any): java.lang.StringBuilder;
+        insert$int$java_lang_String(index: number, x: string): java.lang.StringBuilder;
+        replace(start: number, end: number, toInsert: string): java.lang.StringBuilder;
+        reverse(): java.lang.StringBuilder;
+    }
+}
+declare namespace java.util {
+    /**
+     * A simple wrapper around JavaScriptObject to provide {@link java.util.Map}-like semantics for any
+     * key type.
+     * <p>
+     * Implementation notes:
+     * <p>
+     * A key's hashCode is the index in backingMap which should contain that key. Since several keys may
+     * have the same hash, each value in hashCodeMap is actually an array containing all entries whose
+     * keys share the same hash.
+     */
+    class InternalHashCodeMap<K, V> implements java.lang.Iterable<Map.Entry<K, V>> {
+        forEach(action: (p1: any) => void): void;
+        private backingMap;
+        private host;
+        private __size;
+        constructor(host: java.util.AbstractHashMap<K, V>);
+        put(key: K, value: V): V;
+        remove(key: any): V;
+        getEntry(key: any): java.util.Map.Entry<K, V>;
+        private findEntryInChain(key, chain);
+        size(): number;
+        iterator(): java.util.Iterator<Map.Entry<K, V>>;
+        private getChainOrEmpty(hashCode);
+        private newEntryChain();
+        private unsafeCastToArray(arr);
+        /**
+         * Returns hash code of the key as calculated by {@link AbstractHashMap#getHashCode(Object)} but
+         * also handles null keys as well.
+         */
+        private hash(key);
+    }
+    namespace InternalHashCodeMap {
+        class InternalHashCodeMap$0 implements java.util.Iterator<java.util.Map.Entry<any, any>> {
+            __parent: any;
+            forEachRemaining(consumer: (p1: any) => void): void;
+            chains: java.util.InternalJsMap.Iterator<any>;
+            itemIndex: number;
+            chain: Map.Entry<any, any>[];
+            lastEntry: Map.Entry<any, any>;
+            hasNext(): boolean;
+            next(): Map.Entry<any, any>;
+            remove(): void;
+            constructor(__parent: any);
+        }
+    }
+}
+declare var Map: Object;
+declare namespace java.lang {
+    /**
+     * Claims to the compiler that the annotation target does nothing potentially unsafe
+     * to its varargs argument.
+     */
+    interface SafeVarargs {
+    }
+}
+declare namespace java.util.logging {
+    /**
+     * An emulation of the java.util.logging.LogManager class. See
+     * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/LogManger.html">
+     * The Java API doc for details</a>
+     */
+    class LogManager {
+        private static singleton;
+        static getLogManager(): LogManager;
+        private loggerMap;
+        constructor();
+        addLogger(logger: java.util.logging.Logger): boolean;
+        getLogger(name: string): java.util.logging.Logger;
+        getLoggerNames(): java.util.Enumeration<string>;
+        /**
+         * Helper function to add a logger when we have already determined that it
+         * does not exist.  When we add a logger, we recursively add all of it's
+         * ancestors. Since loggers do not get removed, logger creation is cheap,
+         * and there are not usually too many loggers in an ancestry chain,
+         * this is a simple way to ensure that the parent/child relationships are
+         * always correctly set up.
+         */
+        private addLoggerAndEnsureParents(logger);
+        private addLoggerImpl(logger);
+        /**
+         * Helper function to create a logger if it does not exist since the public
+         * APIs for getLogger and addLogger make it difficult to use those functions
+         * for this.
+         */
+        ensureLogger(name: string): java.util.logging.Logger;
+    }
+}
+declare namespace java.util {
+    /**
+     * See <a
+     * href="http://docs.oracle.com/javase/7/docs/api/java/util/Objects.html">the
+     * official Java API doc</a> for details.
+     */
+    class Objects {
+        constructor();
+        static compare<T>(a: T, b: T, c: java.util.Comparator<any>): number;
+        static deepEquals(a: any, b: any): boolean;
+        static equals(a: any, b: any): boolean;
+        static hashCode(o: any): number;
+        static hash(...values: any[]): number;
+        static isNull(obj: any): boolean;
+        static nonNull(obj: any): boolean;
+        static requireNonNull$java_lang_Object<T>(obj: T): T;
+        static requireNonNull<T>(obj?: any, message?: any): any;
+        static requireNonNull$java_lang_Object$java_util_function_Supplier<T>(obj: T, messageSupplier: () => string): T;
+        static toString$java_lang_Object(o: any): string;
+        static toString(o?: any, nullDefault?: any): any;
+    }
+}
+declare namespace java.util {
+    /**
+     * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/PrimitiveIterator.html">
+     * the official Java API doc</a> for details.
+     *
+     * @param <T> element type
+     * @param <C> consumer type
+     */
+    interface PrimitiveIterator<T, C> extends java.util.Iterator<T> {
+    }
+    namespace PrimitiveIterator {
+        /**
+         * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/PrimitiveIterator.OfDouble.html">
+         * the official Java API doc</a> for details.
+         */
+        interface OfDouble extends java.util.PrimitiveIterator<number, (number) => void> {
+            nextDouble(): number;
+            next(): number;
+            forEachRemaining(consumer?: any): any;
+        }
+        /**
+         * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/PrimitiveIterator.OfInt.html">
+         * the official Java API doc</a> for details.
+         */
+        interface OfInt extends java.util.PrimitiveIterator<number, (number) => void> {
+            nextInt(): number;
+            next(): number;
+            forEachRemaining(consumer?: any): any;
+        }
+        /**
+         * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/PrimitiveIterator.OfLong.html">
+         * the official Java API doc</a> for details.
+         */
+        interface OfLong extends java.util.PrimitiveIterator<number, (number) => void> {
+            nextLong(): number;
+            next(): number;
+            forEachRemaining(consumer?: any): any;
+        }
+    }
+}
+declare namespace java.util.logging {
+    /**
+     * An emulation of the java.util.logging.Handler class. See
+     * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/Handler.html">
+     * The Java API doc for details</a>
+     */
+    abstract class Handler {
+        private formatter;
+        private level;
+        abstract close(): any;
+        abstract flush(): any;
+        getFormatter(): java.util.logging.Formatter;
+        getLevel(): java.util.logging.Level;
+        isLoggable(record: java.util.logging.LogRecord): boolean;
+        abstract publish(record: java.util.logging.LogRecord): any;
+        setFormatter(newFormatter: java.util.logging.Formatter): void;
+        setLevel(newLevel: java.util.logging.Level): void;
+        constructor();
+    }
+}
+declare namespace java.util.logging {
+    /**
+     * A simple console logger used in super dev mode.
+     */
+    class SimpleConsoleLogHandler extends java.util.logging.Handler {
+        publish(record: java.util.logging.LogRecord): void;
+        private toConsoleLogLevel(level);
+        close(): void;
+        flush(): void;
+    }
+}
+declare namespace java.util {
+    /**
+     * Represents a set of unique objects. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Set.html">[Sun docs]</a>
+     *
+     * @param <E> element type.
+     */
+    interface Set<E> extends java.util.Collection<E> {
+        add(index?: any, element?: any): any;
+        addAll(c: java.util.Collection<any>): boolean;
+        clear(): any;
+        contains(o: any): boolean;
+        containsAll(c: java.util.Collection<any>): boolean;
+        equals(o: any): boolean;
+        hashCode(): number;
+        isEmpty(): boolean;
+        iterator(): java.util.Iterator<E>;
+        remove(index?: any): any;
+        removeAll(c: java.util.Collection<any>): boolean;
+        retainAll(c: java.util.Collection<any>): boolean;
+        size(): number;
+        toArray<T>(a?: any): any;
+    }
+}
+declare namespace javaemul.internal {
+    class JreHelper {
+        static LOG10E: number;
+        static LOG10E_$LI$(): number;
+    }
+}
+declare namespace javaemul.internal {
+    /**
+     * Wraps a primitive <code>int</code> as an object.
+     */
+    class IntegerHelper extends javaemul.internal.NumberHelper implements java.lang.Comparable<IntegerHelper> {
+        static MAX_VALUE: number;
+        static MIN_VALUE: number;
+        static SIZE: number;
+        static bitCount(x: number): number;
+        static compare(x: number, y: number): number;
+        static decode(s: string): IntegerHelper;
+        /**
+         * @skip
+         *
+         * Here for shared implementation with Arrays.hashCode
+         */
+        static hashCode(i: number): number;
+        static highestOneBit(i: number): number;
+        static lowestOneBit(i: number): number;
+        static numberOfLeadingZeros(i: number): number;
+        static numberOfTrailingZeros(i: number): number;
+        static parseInt(s: string, radix?: number): number;
+        static reverse(i: number): number;
+        static reverseBytes(i: number): number;
+        static rotateLeft(i: number, distance: number): number;
+        static rotateRight(i: number, distance: number): number;
+        static signum(i: number): number;
+        static toBinaryString(value: number): string;
+        static toHexString(value: number): string;
+        static toOctalString(value: number): string;
+        static toString$int(value: number): string;
+        static toString(value?: any, radix?: any): any;
+        static valueOf$int(i: number): IntegerHelper;
+        static valueOf$java_lang_String(s: string): IntegerHelper;
+        static valueOf(s?: any, radix?: any): any;
+        static toRadixString(value: number, radix: number): string;
+        static toUnsignedRadixString(value: number, radix: number): string;
+        private value;
+        constructor(s?: any);
+        byteValue(): number;
+        compareTo(b?: any): any;
+        doubleValue(): number;
+        equals(o: any): boolean;
+        floatValue(): number;
+        hashCode(): number;
+        intValue(): number;
+        longValue(): number;
+        shortValue(): number;
+        toString(): string;
+    }
+    namespace IntegerHelper {
+        /**
+         * Use nested class to avoid clinit on outer.
+         */
+        class BoxedValues {
+            static boxedValues: javaemul.internal.IntegerHelper[];
+            static boxedValues_$LI$(): javaemul.internal.IntegerHelper[];
+        }
+        /**
+         * Use nested class to avoid clinit on outer.
+         */
+        class ReverseNibbles {
+            /**
+             * A fast-lookup of the reversed bits of all the nibbles 0-15. Used to
+             * implement {@link #reverse(int)}.
+             */
+            static reverseNibbles: number[];
+            static reverseNibbles_$LI$(): number[];
+        }
+    }
+}
+declare namespace javaemul.internal {
+    /**
+     * Wraps a primitive <code>float</code> as an object.
+     */
+    class FloatHelper extends javaemul.internal.NumberHelper implements java.lang.Comparable<FloatHelper> {
+        static MAX_VALUE: number;
+        static MIN_VALUE: number;
+        static MAX_EXPONENT: number;
+        static MIN_EXPONENT: number;
+        static MIN_NORMAL: number;
+        static NaN: number;
+        static NaN_$LI$(): number;
+        static NEGATIVE_INFINITY: number;
+        static NEGATIVE_INFINITY_$LI$(): number;
+        static POSITIVE_INFINITY: number;
+        static POSITIVE_INFINITY_$LI$(): number;
+        static SIZE: number;
+        private static POWER_31_INT;
+        static compare(x: number, y: number): number;
+        static floatToIntBits(value: number): number;
+        /**
+         * @skip Here for shared implementation with Arrays.hashCode.
+         * @param f
+         * @return hash value of float (currently just truncated to int)
+         */
+        static hashCode(f: number): number;
+        static intBitsToFloat(bits: number): number;
+        static isInfinite(x: number): boolean;
+        static isNaN(x: number): boolean;
+        static parseFloat(s: string): number;
+        static toString(b: number): string;
+        static valueOf$float(f: number): FloatHelper;
+        static valueOf(s?: any): any;
+        private value;
+        constructor(s?: any);
+        byteValue(): number;
+        compareTo(b?: any): any;
+        doubleValue(): number;
+        equals(o: any): boolean;
+        floatValue(): number;
+        /**
+         * Performance caution: using Float objects as map keys is not recommended.
+         * Using floating point values as keys is generally a bad idea due to
+         * difficulty determining exact equality. In addition, there is no efficient
+         * JavaScript equivalent of <code>floatToIntBits</code>. As a result, this
+         * method computes a hash code by truncating the whole number portion of the
+         * float, which may lead to poor performance for certain value sets if
+         * Floats are used as keys in a {@link java.util.HashMap}.
+         */
+        hashCode(): number;
+        intValue(): number;
+        isInfinite(): boolean;
+        isNaN(): boolean;
+        longValue(): number;
+        shortValue(): number;
+        toString(): string;
+    }
+}
+declare namespace java.awt {
+    class Color {
+        r: number;
+        g: number;
+        b: number;
+        constructor(r: number, g: number, b: number);
+        toHTML(): string;
+    }
+}
+declare namespace java.lang {
+    /**
+     * Abstracts the notion of a sequence of characters.
+     */
+    interface CharSequence {
+        charAt(index: number): string;
+        length(): number;
+        subSequence(start: number, end: number): string;
+        toString(): string;
+    }
+}
+declare namespace javaemul.internal {
+    /**
+     * Provides utilities to perform operations on Arrays.
+     */
+    class ArrayHelper {
+        static ARRAY_PROCESS_BATCH_SIZE: number;
+        static clone<T>(array: T[], fromIndex: number, toIndex: number): T[];
+        /**
+         * Unlike clone, this method returns a copy of the array that is not type
+         * marked. This is only safe for temp arrays as returned array will not do
+         * any type checks.
+         */
+        static unsafeClone(array: any, fromIndex: number, toIndex: number): any[];
+        static createFrom<T>(array: T[], length: number): T[];
+        private static createNativeArray(length);
+        static getLength(array: any): number;
+        static setLength(array: any, length: number): void;
+        static removeFrom(array: any, index: number, deleteCount: number): void;
+        static insertTo$java_lang_Object$int$java_lang_Object(array: any, index: number, value: any): void;
+        static insertTo(array?: any, index?: any, values?: any): any;
+        static copy(src: any, srcOfs: number, dest: any, destOfs: number, len: number, overwrite?: boolean): void;
+    }
+}
+declare namespace java.lang {
+    /**
+     * For JRE compatibility.
+     */
+    class Void {
+        /**
+         * Not instantiable.
+         */
+        constructor();
     }
 }
 declare namespace java.lang {
@@ -1085,47 +2666,59 @@ declare namespace java.lang {
         reverse(): java.lang.StringBuffer;
     }
 }
-declare namespace java.awt {
-    class Component {
-    }
-}
-declare namespace java.awt {
-    class Button extends java.awt.Component implements java.awt.HTMLComponent {
-        button: HTMLButtonElement;
-        actionListener: java.awt.event.ActionListener;
-        actionCommand: string;
-        label: string;
-        background: java.awt.Color;
-        constructor(label: string);
-        bind(id: string): void;
-        init(): void;
-        private initActionListener();
-        getHTMLElement(): HTMLElement;
-        addActionListener(actionListener: java.awt.event.ActionListener): void;
-        setBackground(background: java.awt.Color): void;
-    }
-}
-declare namespace javaemul.internal {
+declare namespace java.util.logging {
     /**
-     * Provides utilities to perform operations on Arrays.
+     * An emulation of the java.util.logging.LogRecord class. See
+     * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/LogRecord.html">
+     * The Java API doc for details</a>
      */
-    class ArrayHelper {
-        static ARRAY_PROCESS_BATCH_SIZE: number;
-        static clone<T>(array: T[], fromIndex: number, toIndex: number): T[];
-        /**
-         * Unlike clone, this method returns a copy of the array that is not type
-         * marked. This is only safe for temp arrays as returned array will not do
-         * any type checks.
-         */
-        static unsafeClone(array: any, fromIndex: number, toIndex: number): any[];
-        static createFrom<T>(array: T[], length: number): T[];
-        private static createNativeArray(length);
-        static getLength(array: any): number;
-        static setLength(array: any, length: number): void;
-        static removeFrom(array: any, index: number, deleteCount: number): void;
-        static insertTo$java_lang_Object$int$java_lang_Object(array: any, index: number, value: any): void;
-        static insertTo(array?: any, index?: any, values?: any): any;
-        static copy(src: any, srcOfs: number, dest: any, destOfs: number, len: number, overwrite?: boolean): void;
+    class LogRecord implements java.io.Serializable {
+        private level;
+        private loggerName;
+        private msg;
+        private thrown;
+        private millis;
+        constructor(level?: any, msg?: any);
+        getLevel(): java.util.logging.Level;
+        getLoggerName(): string;
+        getMessage(): string;
+        getMillis(): number;
+        getThrown(): Error;
+        setLevel(newLevel: java.util.logging.Level): void;
+        setLoggerName(newName: string): void;
+        setMessage(newMessage: string): void;
+        setMillis(newMillis: number): void;
+        setThrown(newThrown: Error): void;
+    }
+}
+declare namespace java.util {
+    /**
+     * Represents a sequence of objects. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html">[Sun docs]</a>
+     *
+     * @param <E> element type
+     */
+    interface List<E> extends java.util.Collection<E> {
+        add(index?: any, element?: any): any;
+        addAll(index?: any, c?: any): any;
+        clear(): any;
+        contains(o: any): boolean;
+        containsAll(c: java.util.Collection<any>): boolean;
+        equals(o: any): boolean;
+        get(index: number): E;
+        hashCode(): number;
+        indexOf(elem?: any, index?: any): any;
+        isEmpty(): boolean;
+        iterator(): java.util.Iterator<E>;
+        lastIndexOf(o?: any, index?: any): any;
+        listIterator(from?: any): any;
+        remove(index?: any): any;
+        removeAll(c: java.util.Collection<any>): boolean;
+        retainAll(c: java.util.Collection<any>): boolean;
+        set(index: number, element: E): E;
+        size(): number;
+        subList(fromIndex: number, toIndex: number): List<E>;
+        toArray<T>(array?: any): any;
     }
 }
 declare namespace java.util {
@@ -1156,322 +2749,285 @@ declare namespace java.util {
         tailMap(fromKey?: any, inclusive?: any): any;
     }
 }
-declare namespace javaemul.internal {
-    /**
-     * Hashcode caching for strings.
-     */
-    class StringHashCache {
-        /**
-         * The "old" cache; it will be dumped when front is full.
-         */
-        private static back;
-        static back_$LI$(): any;
-        /**
-         * Tracks the number of entries in front.
-         */
-        private static count;
-        /**
-         * The "new" cache; it will become back when it becomes full.
-         */
-        private static front;
-        static front_$LI$(): any;
-        /**
-         * Pulled this number out of thin air.
-         */
-        private static MAX_CACHE;
-        static getHashCode(str: string): number;
-        private static compute(str);
-        private static increment();
-        private static getProperty(map, key);
-        private static createNativeObject();
-        private static unsafeCastToInt(o);
-    }
-}
-declare namespace java.util {
-    class InternalJsMap<V> {
-        get$int(key: number): V;
-        get(key?: any): any;
-        set$int$java_lang_Object(key: number, value: V): void;
-        set(key?: any, value?: any): any;
-        delete$int(key: number): void;
-        delete(key?: any): any;
-        entries(): InternalJsMap.Iterator<V>;
-    }
-    namespace InternalJsMap {
-        class Iterator<V> {
-            next(): InternalJsMap.IteratorEntry<V>;
-        }
-        class IteratorEntry<V> {
-            value: any[];
-            done: boolean;
-            constructor();
-        }
-        class JsHelper {
-            static delete$java_util_InternalJsMap$int(obj: java.util.InternalJsMap<any>, key: number): void;
-            static delete(obj?: any, key?: any): any;
-        }
-    }
-}
-declare namespace java.lang {
-    /**
-     * Generally unsupported. This class is provided so that the GWT compiler can
-     * choke down class literal references.
-     * <p>
-     * NOTE: The code in this class is very sensitive and should keep its
-     * dependencies upon other classes to a minimum.
-     *
-     * @param <T>
-     * the type of the object
-     */
-    class Class<T> implements java.lang.reflect.Type {
-        private static constructors;
-        static constructors_$LI$(): Array<Function>;
-        private static classes;
-        static classes_$LI$(): Array<any>;
-        static getConstructorForClass(clazz: any): Function;
-        static getClassForConstructor(constructor: Function): any;
-        static mapConstructorToClass(constructor: Function, clazz: any): void;
-        private static PRIMITIVE;
-        private static INTERFACE;
-        private static ARRAY;
-        private static ENUM;
-        /**
-         * Create a Class object for an array.
-         * <p>
-         *
-         * Arrays are not registered in the prototype table and get the class
-         * literal explicitly at construction.
-         * <p>
-         */
-        private static getClassLiteralForArray<T>(leafClass, dimensions);
-        private createClassLiteralForArray(dimensions);
-        /**
-         * Create a Class object for a class.
-         *
-         * @skip
-         */
-        static createForClass<T>(packageName: string, compoundClassName: string, typeId: string, superclass: any): any;
-        /**
-         * Create a Class object for an enum.
-         *
-         * @skip
-         */
-        static createForEnum<T>(packageName: string, compoundClassName: string, typeId: string, superclass: any, enumConstantsFunc: Function, enumValueOfFunc: Function): any;
-        /**
-         * Create a Class object for an interface.
-         *
-         * @skip
-         */
-        static createForInterface<T>(packageName: string, compoundClassName: string): any;
-        /**
-         * Create a Class object for a primitive.
-         *
-         * @skip
-         */
-        static createForPrimitive(className: string, primitiveTypeId: string): any;
-        /**
-         * Used by {@link WebModePayloadSink} to create uninitialized instances.
-         */
-        static getPrototypeForClass(clazz: any): any;
-        /**
-         * Creates the class object for a type and initiliazes its fields.
-         */
-        private static createClassObject<T>(packageName, compoundClassName, typeId);
-        /**
-         * Initiliazes {@code clazz} names from metadata.
-         * <p>
-         * Written in JSNI to minimize dependencies (on String.+).
-         */
-        private static initializeNames(clazz);
-        /**
-         * Sets the class object for primitives.
-         * <p>
-         * Written in JSNI to minimize dependencies (on (String)+).
-         */
-        static synthesizePrimitiveNamesFromTypeId(clazz: any, primitiveTypeId: Object): void;
-        enumValueOfFunc: Function;
-        modifiers: number;
-        private componentType;
-        private enumConstantsFunc;
-        private enumSuperclass;
-        private superclass;
-        private simpleName;
-        private typeName;
-        private canonicalName;
-        private packageName;
-        private compoundName;
-        private typeId;
-        private arrayLiterals;
-        private sequentialId;
-        private static nextSequentialId;
-        /**
-         * Not publicly instantiable.
-         *
-         * @skip
-         */
-        constructor();
-        desiredAssertionStatus(): boolean;
-        private ensureNamesAreInitialized();
-        getCanonicalName(): string;
-        getComponentType(): any;
-        getEnumConstants(): T[];
-        getName(): string;
-        getSimpleName(): string;
-        getSuperclass(): any;
-        isArray(): boolean;
-        isEnum(): boolean;
-        isInterface(): boolean;
-        isPrimitive(): boolean;
-        toString(): string;
-        /**
-         * Used by Enum to allow getSuperclass() to be pruned.
-         */
-        getEnumSuperclass(): any;
-    }
-}
-declare namespace java.lang {
-    /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Exception.html">the
-     * official Java API doc</a> for details.
-     */
-    class Exception extends Error {
-        constructor(message?: any, cause?: any, enableSuppression?: any, writableStackTrace?: any);
-    }
-}
-declare namespace java.lang {
-    /**
-     * See <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/NoSuchMethodException.html">the
-     * official Java API doc</a> for details.
-     *
-     * This exception is never thrown by GWT or GWT's libraries, as GWT does not support reflection. It
-     * is provided in GWT only for compatibility with user code that explicitly throws or catches it for
-     * non-reflection purposes.
-     */
-    class NoSuchMethodException extends Error {
-        constructor(message?: any);
-    }
-}
-declare namespace java.lang {
-    /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/RuntimeException.html">the
-     * official Java API doc</a> for details.
-     */
-    class RuntimeException extends Error {
-        constructor(message?: any, cause?: any, enableSuppression?: any, writableStackTrace?: any);
-    }
-}
 declare namespace java.util {
     /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/NoSuchElementException.html">the
-     * official Java API doc</a> for details.
-     */
-    class NoSuchElementException extends Error {
-        constructor(s?: any);
-    }
-}
-declare namespace java.lang {
-    /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/IndexOutOfBoundsException.html">the
-     * official Java API doc</a> for details.
-     */
-    class IndexOutOfBoundsException extends Error {
-        constructor(message?: any);
-    }
-}
-declare namespace java.util {
-    /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/EmptyStackException.html">the
-     * official Java API doc</a> for details.
-     */
-    class EmptyStackException extends Error {
-        constructor();
-    }
-}
-declare namespace java.lang.annotation {
-    /**
-     * Indicates an attempt to access an element of an annotation that was added
-     * since it was compiled or serialized <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/IncompleteAnnotationException.html">[Sun
-     * docs]</a>.
-     */
-    class IncompleteAnnotationException extends Error {
-        __annotationType: any;
-        __elementName: string;
-        constructor(annotationType: any, elementName: string);
-        annotationType(): any;
-        elementName(): string;
-    }
-}
-declare namespace java.lang {
-    /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/StringIndexOfBoundsException.html">the
-     * official Java API doc</a> for details.
-     */
-    class StringIndexOutOfBoundsException extends java.lang.IndexOutOfBoundsException {
-        constructor(message?: any);
-    }
-}
-declare namespace java.lang {
-    /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/NegativeArraySizeException.html">the
-     * official Java API doc</a> for details.
-     */
-    class NegativeArraySizeException extends Error {
-        constructor(message?: any);
-    }
-}
-declare namespace java.lang {
-    /**
-     * NOTE: in GWT this is only thrown for division by zero on longs and
-     * BigInteger/BigDecimal.
-     * <p>
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ArithmeticException.html">the
-     * official Java API doc</a> for details.
-     */
-    class ArithmeticException extends Error {
-        constructor(explanation?: any);
-    }
-}
-declare namespace java.lang {
-    /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ArrayStoreException.html">the
-     * official Java API doc</a> for details.
-     */
-    class ArrayStoreException extends Error {
-        constructor(message?: any);
-    }
-}
-declare namespace java.lang {
-    /**
-     * An interface used a basis for implementing custom ordering. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Comparable.html">[Sun
+     * A set known to be in ascending order. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/SortedSet.html">[Sun
      * docs]</a>
      *
-     * @param <T> the type to compare to.
+     * @param <E> element type.
      */
-    interface Comparable<T> {
-        compareTo(that?: any): any;
+    interface SortedSet<E> extends java.util.Set<E> {
+        comparator(): java.util.Comparator<any>;
+        first(): E;
+        headSet(toElement?: any, inclusive?: any): any;
+        last(): E;
+        subSet(fromElement?: any, fromInclusive?: any, toElement?: any, toInclusive?: any): any;
+        tailSet(fromElement?: any, inclusive?: any): any;
     }
 }
 declare namespace javaemul.internal {
     /**
-     * Simple Helper class to return Date.now.
+     * A utility class that provides utility functions to do precondition checks inside GWT-SDK.
      */
-    class DateUtil {
+    class InternalPreconditions {
+        private static CHECKED_MODE;
+        static CHECKED_MODE_$LI$(): boolean;
+        private static TYPE_CHECK;
+        static TYPE_CHECK_$LI$(): boolean;
+        private static API_CHECK;
+        static API_CHECK_$LI$(): boolean;
+        private static BOUND_CHECK;
+        static BOUND_CHECK_$LI$(): boolean;
+        static checkType(expression: boolean): void;
+        static checkCriticalType(expression: boolean): void;
         /**
-         * Returns the numeric value corresponding to the current time -
-         * the number of milliseconds elapsed since 1 January 1970 00:00:00 UTC.
+         * Ensures the truth of an expression that verifies array type.
          */
-        static now(): number;
+        static checkArrayType$boolean(expression: boolean): void;
+        static checkCriticalArrayType$boolean(expression: boolean): void;
+        /**
+         * Ensures the truth of an expression that verifies array type.
+         */
+        static checkArrayType(expression?: any, errorMessage?: any): any;
+        static checkCriticalArrayType(expression?: any, errorMessage?: any): any;
+        /**
+         * Ensures the truth of an expression involving existence of an element.
+         */
+        static checkElement$boolean(expression: boolean): void;
+        /**
+         * Ensures the truth of an expression involving existence of an element.
+         * <p>
+         * For cases where failing fast is pretty important and not failing early could cause bugs that
+         * are much harder to debug.
+         */
+        static checkCriticalElement$boolean(expression: boolean): void;
+        /**
+         * Ensures the truth of an expression involving existence of an element.
+         */
+        static checkElement(expression?: any, errorMessage?: any): any;
+        /**
+         * Ensures the truth of an expression involving existence of an element.
+         * <p>
+         * For cases where failing fast is pretty important and not failing early could cause bugs that
+         * are much harder to debug.
+         */
+        static checkCriticalElement(expression?: any, errorMessage?: any): any;
+        /**
+         * Ensures the truth of an expression involving one or more parameters to the calling method.
+         */
+        static checkArgument$boolean(expression: boolean): void;
+        /**
+         * Ensures the truth of an expression involving one or more parameters to the calling method.
+         * <p>
+         * For cases where failing fast is pretty important and not failing early could cause bugs that
+         * are much harder to debug.
+         */
+        static checkCriticalArgument$boolean(expression: boolean): void;
+        /**
+         * Ensures the truth of an expression involving one or more parameters to the calling method.
+         */
+        static checkArgument$boolean$java_lang_Object(expression: boolean, errorMessage: any): void;
+        /**
+         * Ensures the truth of an expression involving one or more parameters to the calling method.
+         * <p>
+         * For cases where failing fast is pretty important and not failing early could cause bugs that
+         * are much harder to debug.
+         */
+        static checkCriticalArgument$boolean$java_lang_Object(expression: boolean, errorMessage: any): void;
+        /**
+         * Ensures the truth of an expression involving one or more parameters to the calling method.
+         */
+        static checkArgument(expression?: any, errorMessageTemplate?: any, ...errorMessageArgs: any[]): any;
+        /**
+         * Ensures the truth of an expression involving one or more parameters to the calling method.
+         * <p>
+         * For cases where failing fast is pretty important and not failing early could cause bugs that
+         * are much harder to debug.
+         */
+        static checkCriticalArgument(expression?: any, errorMessageTemplate?: any, ...errorMessageArgs: any[]): any;
+        /**
+         * Ensures the truth of an expression involving the state of the calling instance, but not
+         * involving any parameters to the calling method.
+         *
+         * @param expression a boolean expression
+         * @throws IllegalStateException if {@code expression} is false
+         */
+        static checkState$boolean(expression: boolean): void;
+        /**
+         * Ensures the truth of an expression involving the state of the calling instance, but not
+         * involving any parameters to the calling method.
+         * <p>
+         * For cases where failing fast is pretty important and not failing early could cause bugs that
+         * are much harder to debug.
+         */
+        static checkCritcalState(expression: boolean): void;
+        /**
+         * Ensures the truth of an expression involving the state of the calling instance, but not
+         * involving any parameters to the calling method.
+         */
+        static checkState(expression?: any, errorMessage?: any): any;
+        /**
+         * Ensures the truth of an expression involving the state of the calling instance, but not
+         * involving any parameters to the calling method.
+         */
+        static checkCriticalState(expression: boolean, errorMessage: any): void;
+        /**
+         * Ensures that an object reference passed as a parameter to the calling method is not null.
+         */
+        static checkNotNull$java_lang_Object<T>(reference: T): T;
+        static checkCriticalNotNull$java_lang_Object<T>(reference: T): T;
+        /**
+         * Ensures that an object reference passed as a parameter to the calling method is not null.
+         */
+        static checkNotNull(reference?: any, errorMessage?: any): any;
+        static checkCriticalNotNull(reference?: any, errorMessage?: any): any;
+        /**
+         * Ensures that {@code size} specifies a valid array size (i.e. non-negative).
+         */
+        static checkArraySize(size: number): void;
+        static checkCriticalArraySize(size: number): void;
+        /**
+         * Ensures that {@code index} specifies a valid <i>element</i> in an array, list or string of size
+         * {@code size}. An element index may range from zero, inclusive, to {@code size}, exclusive.
+         */
+        static checkElementIndex(index: number, size: number): void;
+        static checkCriticalElementIndex(index: number, size: number): void;
+        /**
+         * Ensures that {@code index} specifies a valid <i>position</i> in an array, list or string of
+         * size {@code size}. A position index may range from zero to {@code size}, inclusive.
+         */
+        static checkPositionIndex(index: number, size: number): void;
+        static checkCriticalPositionIndex(index: number, size: number): void;
+        /**
+         * Ensures that {@code start} and {@code end} specify a valid <i>positions</i> in an array, list
+         * or string of size {@code size}, and are in order. A position index may range from zero to
+         * {@code size}, inclusive.
+         */
+        static checkPositionIndexes(start: number, end: number, size: number): void;
+        /**
+         * Ensures that {@code start} and {@code end} specify a valid <i>positions</i> in an array, list
+         * or string of size {@code size}, and are in order. A position index may range from zero to
+         * {@code size}, inclusive.
+         */
+        static checkCriticalPositionIndexes(start: number, end: number, size: number): void;
+        /**
+         * Checks that bounds are correct.
+         *
+         * @throw StringIndexOutOfBoundsException if the range is not legal
+         */
+        static checkStringBounds(start: number, end: number, size: number): void;
+        /**
+         * Substitutes each {@code %s} in {@code template} with an argument. These are matched by
+         * position: the first {@code %s} gets {@code args[0]}, etc.  If there are more arguments than
+         * placeholders, the unmatched arguments will be appended to the end of the formatted message in
+         * square braces.
+         */
+        private static format(template, ...args);
+        constructor();
+    }
+}
+declare namespace java.lang {
+    /**
+     * Indicates that the named compiler warnings should be suppressed in the
+     * annotated element (and in all program elements contained in the annotated
+     * element). <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/SuppressWarnings.html">[Sun
+     * docs]</a>
+     */
+    interface SuppressWarnings {
+        value(): string[];
+    }
+}
+declare namespace java.util {
+    /**
+     * Basic {@link Map.Entry} implementation that implements hashCode, equals, and
+     * toString.
+     */
+    abstract class AbstractMapEntry<K, V> implements java.util.Map.Entry<K, V> {
+        abstract getKey(): any;
+        abstract getValue(): any;
+        abstract setValue(value: any): any;
+        equals(other: any): boolean;
+        /**
+         * Calculate the hash code using Sun's specified algorithm.
+         */
+        hashCode(): number;
+        toString(): string;
+        constructor();
+    }
+}
+declare namespace java.util {
+    /**
+     * A simple wrapper around JavaScript Map for key type is string.
+     */
+    class InternalStringMap<K, V> implements java.lang.Iterable<Map.Entry<K, V>> {
+        forEach(action: (p1: any) => void): void;
+        private backingMap;
+        private host;
+        private size;
+        /**
+         * A mod count to track 'value' replacements in map to ensure that the
+         * 'value' that we have in the iterator entry is guaranteed to be still
+         * correct. This is to optimize for the common scenario where the values are
+         * not modified during iterations where the entries are never stale.
+         */
+        private valueMod;
+        constructor(host: java.util.AbstractHashMap<K, V>);
+        contains(key: string): boolean;
+        get(key: string): V;
+        put(key: string, value: V): V;
+        remove(key: string): V;
+        getSize(): number;
+        iterator(): java.util.Iterator<Map.Entry<K, V>>;
+        private newMapEntry(entry, lastValueMod);
+        private static toNullIfUndefined<T>(value);
+    }
+    namespace InternalStringMap {
+        class InternalStringMap$0 implements java.util.Iterator<java.util.Map.Entry<any, any>> {
+            __parent: any;
+            forEachRemaining(consumer: (p1: any) => void): void;
+            entries: java.util.InternalJsMap.Iterator<any>;
+            current: java.util.InternalJsMap.IteratorEntry<any>;
+            last: java.util.InternalJsMap.IteratorEntry<any>;
+            hasNext(): boolean;
+            next(): Map.Entry<any, any>;
+            remove(): void;
+            constructor(__parent: any);
+        }
+        class InternalStringMap$1 extends java.util.AbstractMapEntry<any, any> {
+            private entry;
+            private lastValueMod;
+            __parent: any;
+            getKey(): any;
+            getValue(): any;
+            setValue(object: any): any;
+            constructor(__parent: any, entry: any, lastValueMod: any);
+        }
+    }
+}
+declare namespace java.util {
+    /**
+     * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/OptionalDouble.html">
+     * the official Java API doc</a> for details.
+     */
+    class OptionalDouble {
+        static empty(): OptionalDouble;
+        static of(value: number): OptionalDouble;
+        private static EMPTY;
+        static EMPTY_$LI$(): OptionalDouble;
+        private ref;
+        private present;
+        constructor(value?: any);
+        isPresent(): boolean;
+        getAsDouble(): number;
+        ifPresent(consumer: (number) => void): void;
+        orElse(other: number): number;
+        orElseGet(other: () => number): number;
+        orElseThrow<X extends Error>(exceptionSupplier: () => X): number;
+        equals(obj: any): boolean;
+        hashCode(): number;
+        toString(): string;
     }
 }
 declare namespace java.nio.charset {
@@ -1494,53 +3050,6 @@ declare namespace java.nio.charset {
         class AvailableCharsets {
             static CHARSETS: java.util.SortedMap<string, java.nio.charset.Charset>;
         }
-    }
-}
-declare namespace java.util {
-    /**
-     * Abstract interface for maps.
-     *
-     * @param <K> key type.
-     * @param <V> value type.
-     */
-    interface Map<K, V> {
-        clear(): any;
-        containsKey(key: any): boolean;
-        containsValue(value: any): boolean;
-        entrySet(): java.util.Set<Map.Entry<K, V>>;
-        equals(o: any): boolean;
-        get(key: any): V;
-        hashCode(): number;
-        isEmpty(): boolean;
-        keySet(): java.util.Set<K>;
-        put(key?: any, value?: any): any;
-        putAll(t: Map<any, any>): any;
-        remove(key: any): V;
-        size(): number;
-        values(): java.util.Collection<V>;
-    }
-    namespace Map {
-        /**
-         * Represents an individual map entry.
-         */
-        interface Entry<K, V> {
-            equals(o: any): boolean;
-            getKey(): K;
-            getValue(): V;
-            hashCode(): number;
-            setValue(value: V): V;
-        }
-    }
-}
-declare namespace java.lang {
-    /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/NullPointerException.html">the
-     * official Java API doc</a> for details.
-     */
-    class NullPointerException extends Error {
-        constructor(message?: any);
-        createError(msg: string): any;
     }
 }
 declare namespace javaemul.internal {
@@ -1593,952 +3102,16 @@ declare namespace java.nio.charset {
         constructor();
     }
 }
-declare namespace java.awt {
-    interface HTMLComponent {
-        getHTMLElement(): HTMLElement;
-        bind(id: string): any;
-        init(): any;
-    }
-}
-declare namespace java.lang {
-    /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/IllegalArgumentException.html">the
-     * official Java API doc</a> for details.
-     */
-    class IllegalArgumentException extends Error {
-        constructor(message?: any, cause?: any);
-    }
-}
-declare namespace java.nio.charset {
-    /**
-     * GWT emulation of {@link IllegalCharsetNameException}.
-     */
-    class IllegalCharsetNameException extends java.lang.IllegalArgumentException {
-        private charsetName;
-        constructor(charsetName: string);
-        getCharsetName(): string;
-    }
-}
-declare namespace java.lang {
-    /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/NumberFormatException.html">the
-     * official Java API doc</a> for details.
-     */
-    class NumberFormatException extends java.lang.IllegalArgumentException {
-        static forInputString(s: string): java.lang.NumberFormatException;
-        static forNullInputString(): java.lang.NumberFormatException;
-        static forRadix(radix: number): java.lang.NumberFormatException;
-        constructor(message?: any);
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * A helper class for long comparison.
-     */
-    class LongCompareHolder {
-        static getLongComparator(): any;
-    }
-}
-declare namespace java.lang {
-    /**
-     * Allows an instance of a class implementing this interface to be used in the
-     * foreach statement.
-     * See <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html">
-     * the official Java API doc</a> for details.
-     *
-     * @param <T> type of returned iterator
-     */
-    interface Iterable<T> {
-        iterator(): java.util.Iterator<T>;
-        forEach(action: (p1: any) => void): any;
-    }
-}
 declare namespace java.util {
     /**
-     * Indicates that a data structure supports constant-time random access to its
-     * contained objects.
+     * A factory to create JavaScript Map instances.
      */
-    interface RandomAccess {
-    }
-}
-declare namespace java.util {
-    /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/MissingResourceException.html">the
-     * official Java API doc</a> for details.
-     */
-    class MissingResourceException extends Error {
-        private className;
-        private key;
-        constructor(s: string, className: string, key: string);
-        getClassName(): string;
-        getKey(): string;
-    }
-}
-declare namespace java.text {
-    /**
-     * Emulation of {@code java.text.ParseException}.
-     */
-    class ParseException extends Error {
-        private errorOffset;
-        constructor(s: string, errorOffset: number);
-        getErrorOffset(): number;
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * Wraps native <code>boolean</code> as an object.
-     */
-    class BooleanHelper implements java.lang.Comparable<BooleanHelper>, java.io.Serializable {
-        static FALSE: boolean;
-        static TRUE: boolean;
-        static TYPE: typeof Boolean;
-        static TYPE_$LI$(): typeof Boolean;
-        static compare(x: boolean, y: boolean): number;
-        static hashCode(value: boolean): number;
-        static logicalAnd(a: boolean, b: boolean): boolean;
-        static logicalOr(a: boolean, b: boolean): boolean;
-        static logicalXor(a: boolean, b: boolean): boolean;
-        static parseBoolean(s: string): boolean;
-        static toString(x: boolean): string;
-        static valueOf$boolean(b: boolean): boolean;
-        static valueOf(s?: any): any;
-        booleanValue(): boolean;
-        private static unsafeCast(value);
-        compareTo(b?: any): any;
-        equals(o: any): boolean;
-        hashCode(): number;
-        toString(): string;
+    class InternalJsMapFactory {
+        private static jsMapCtor;
+        static jsMapCtor_$LI$(): any;
+        private static getJsMapConstructor();
+        static newJsMap<V>(): java.util.InternalJsMap<V>;
         constructor();
-    }
-}
-declare namespace java.util {
-    /**
-     * An interface used a basis for implementing custom ordering. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Comparator.html">[Sun
-     * docs]</a>
-     *
-     * @param <T> the type to be compared.
-     */
-    interface Comparator<T> {
-        compare(o1?: any, o2?: any): any;
-        equals(other: any): boolean;
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * Intrinsic string class.
-     */
-    class StringHelper {
-        static CASE_INSENSITIVE_ORDER: java.util.Comparator<string>;
-        static CASE_INSENSITIVE_ORDER_$LI$(): java.util.Comparator<string>;
-        static copyValueOf$char_A(v: string[]): string;
-        static copyValueOf(v?: any, offset?: any, count?: any): any;
-        static valueOf$boolean(x: boolean): string;
-        static valueOf$char(x: string): string;
-        static valueOf(x?: any, offset?: any, count?: any): any;
-        private static fromCharCode(array);
-        static valueOf$char_A(x: string[]): string;
-        static valueOf$double(x: number): string;
-        static valueOf$float(x: number): string;
-        static valueOf$int(x: number): string;
-        static valueOf$long(x: number): string;
-        static valueOf$java_lang_Object(x: any): string;
-        /**
-         * This method converts Java-escaped dollar signs "\$" into
-         * JavaScript-escaped dollar signs "$$", and removes all other lone
-         * backslashes, which serve as escapes in Java but are passed through
-         * literally in JavaScript.
-         *
-         * @skip
-         */
-        private static translateReplaceString(replaceStr);
-        private static compareTo(thisStr, otherStr);
-        private static getCharset(charsetName);
-        static fromCodePoint(codePoint: number): string;
-        static format(formatString: string, ...args: any[]): string;
-        constructor();
-    }
-    namespace StringHelper {
-        class StringHelper$0 implements java.util.Comparator<string> {
-            compare(a: string, b: string): number;
-            constructor();
-        }
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * A utility to provide array stamping. Provided as a separate class to simplify
-     * super-source.
-     */
-    class ArrayStamper {
-        static stampJavaTypeInfo<T>(array: any, referenceType: T[]): T[];
-    }
-}
-declare namespace java.lang.annotation {
-    /**
-     * Base interface for all annotation types <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/Annotation.html">[Sun
-     * docs]</a>.
-     */
-    interface Annotation {
-        annotationType(): any;
-        equals(obj: any): boolean;
-        hashCode(): number;
-        toString(): string;
-    }
-}
-declare namespace java.io {
-    /**
-     * A specialized {@link InputStream } for reading the contents of a byte array.
-     *
-     * @see ByteArrayOutputStream
-     */
-    class ByteArrayInputStream extends java.io.InputStream {
-        /**
-         * The {@code byte} array containing the bytes to stream over.
-         */
-        buf: number[];
-        /**
-         * The current position within the byte array.
-         */
-        pos: number;
-        /**
-         * The current mark position. Initially set to 0 or the <code>offset</code>
-         * parameter within the constructor.
-         */
-        _mark: number;
-        /**
-         * The total number of bytes initially available in the byte array
-         * {@code buf}.
-         */
-        count: number;
-        /**
-         * Constructs a new {@code ByteArrayInputStream} on the byte array
-         * {@code buf} with the initial position set to {@code offset} and the
-         * number of bytes available set to {@code offset} + {@code length}.
-         *
-         * @param buf
-         * the byte array to stream over.
-         * @param offset
-         * the initial position in {@code buf} to start streaming from.
-         * @param length
-         * the number of bytes available for streaming.
-         */
-        constructor(buf: number[], offset?: number, length?: number);
-        /**
-         * Returns the number of remaining bytes.
-         *
-         * @return {@code count - pos}
-         */
-        available(): number;
-        /**
-         * Closes this stream and frees resources associated with this stream.
-         *
-         * @throws IOException
-         * if an I/O error occurs while closing this stream.
-         */
-        close(): void;
-        /**
-         * Sets a mark position in this ByteArrayInputStream. The parameter
-         * {@code readlimit} is ignored. Sending {@code reset()} will reposition the
-         * stream back to the marked position.
-         *
-         * @param readlimit
-         * ignored.
-         * @see #markSupported()
-         * @see #reset()
-         */
-        mark(readlimit: number): void;
-        /**
-         * Indicates whether this stream supports the {@code mark()} and
-         * {@code reset()} methods. Returns {@code true} since this class supports
-         * these methods.
-         *
-         * @return always {@code true}.
-         * @see #mark(int)
-         * @see #reset()
-         */
-        markSupported(): boolean;
-        /**
-         * Reads a single byte from the source byte array and returns it as an
-         * integer in the range from 0 to 255. Returns -1 if the end of the source
-         * array has been reached.
-         *
-         * @return the byte read or -1 if the end of this stream has been reached.
-         */
-        read$(): number;
-        read(buffer?: any, byteOffset?: any, byteCount?: any): any;
-        /**
-         * Resets this stream to the last marked location. This implementation
-         * resets the position to either the marked position, the start position
-         * supplied in the constructor or 0 if neither has been provided.
-         *
-         * @see #mark(int)
-         */
-        reset(): void;
-        /**
-         * Skips {@code byteCount} bytes in this InputStream. Subsequent calls to
-         * {@code read} will not return these bytes unless {@code reset} is used.
-         * This implementation skips {@code byteCount} number of bytes in the target
-         * stream. It does nothing and returns 0 if {@code byteCount} is negative.
-         *
-         * @return the number of bytes actually skipped.
-         */
-        skip(byteCount: number): number;
-    }
-}
-declare namespace java.util {
-    /**
-     * A simple wrapper around JavaScriptObject to provide {@link java.util.Map}-like semantics for any
-     * key type.
-     * <p>
-     * Implementation notes:
-     * <p>
-     * A key's hashCode is the index in backingMap which should contain that key. Since several keys may
-     * have the same hash, each value in hashCodeMap is actually an array containing all entries whose
-     * keys share the same hash.
-     */
-    class InternalHashCodeMap<K, V> implements java.lang.Iterable<Map.Entry<K, V>> {
-        forEach(action: (p1: any) => void): void;
-        private backingMap;
-        private host;
-        private __size;
-        constructor(host: java.util.AbstractHashMap<K, V>);
-        put(key: K, value: V): V;
-        remove(key: any): V;
-        getEntry(key: any): java.util.Map.Entry<K, V>;
-        private findEntryInChain(key, chain);
-        size(): number;
-        iterator(): java.util.Iterator<Map.Entry<K, V>>;
-        private getChainOrEmpty(hashCode);
-        private newEntryChain();
-        private unsafeCastToArray(arr);
-        /**
-         * Returns hash code of the key as calculated by {@link AbstractHashMap#getHashCode(Object)} but
-         * also handles null keys as well.
-         */
-        private hash(key);
-    }
-    namespace InternalHashCodeMap {
-        class InternalHashCodeMap$0 implements java.util.Iterator<java.util.Map.Entry<any, any>> {
-            __parent: any;
-            forEachRemaining(consumer: (p1: any) => void): void;
-            chains: java.util.InternalJsMap.Iterator<any>;
-            itemIndex: number;
-            chain: Map.Entry<any, any>[];
-            lastEntry: Map.Entry<any, any>;
-            hasNext(): boolean;
-            next(): Map.Entry<any, any>;
-            remove(): void;
-            constructor(__parent: any);
-        }
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * Provides an interface for simple JavaScript idioms that can not be expressed in Java.
-     */
-    class JsUtils {
-        static getInfinity(): number;
-        static isUndefined(value: any): boolean;
-        static unsafeCastToString(string: any): string;
-        static setPropertySafe(map: any, key: string, value: any): void;
-        static getIntProperty(map: any, key: string): number;
-        static setIntProperty(map: any, key: string, value: number): void;
-        static typeOf(o: any): string;
-    }
-}
-declare namespace java.awt {
-    class TextField extends java.awt.Component implements java.awt.HTMLComponent {
-        input: HTMLInputElement;
-        actionListener: java.awt.event.ActionListener;
-        constructor(cols: number);
-        init(): void;
-        private initActionListener();
-        bind(id: string): void;
-        getHTMLElement(): HTMLElement;
-        addActionListener(actionListener: java.awt.event.ActionListener): void;
-        setText(text: string): void;
-        getText(): string;
-    }
-}
-declare namespace java.io {
-    /**
-     * See <a
-     * href="http://java.sun.com/javase/6/docs/api/java/io/IOException.html">the
-     * official Java API doc</a> for details.
-     */
-    class IOException extends Error {
-        constructor(message?: any, throwable?: any);
-    }
-}
-declare namespace java.util {
-    /**
-     * Thrown when the subject of an observer cannot support additional observers.
-     *
-     */
-    class TooManyListenersException extends Error {
-        constructor(message?: any);
-    }
-}
-declare namespace java.util {
-    /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/ConcurrentModificationException.html">the
-     * official Java API doc</a> for details.
-     */
-    class ConcurrentModificationException extends Error {
-        constructor(message?: any);
-    }
-}
-declare namespace java.awt {
-    class WebGraphics2D extends java.awt.Graphics {
-        private canvas;
-        private context;
-        constructor(canvas: HTMLCanvasElement);
-        drawString(s: string, x: number, y: number): void;
-        getCanvas(): HTMLCanvasElement;
-        getContext(): CanvasRenderingContext2D;
-    }
-}
-declare namespace java.applet {
-    class Applet {
-        static __static_initialized: boolean;
-        static __static_initialize(): void;
-        static CURRENT_ID: number;
-        static __static_initializer_0(): void;
-        container: HTMLElement;
-        backgroundColor: java.awt.Color;
-        layout: java.awt.Layout;
-        constructor();
-        init(): void;
-        paint(g: java.awt.Graphics): void;
-        setBackground(c: java.awt.Color): void;
-        setLayout(layout: java.awt.Layout): void;
-        add(component: java.awt.HTMLComponent): void;
-    }
-}
-declare namespace java.util {
-    /**
-     * Basic {@link Map.Entry} implementation that implements hashCode, equals, and
-     * toString.
-     */
-    abstract class AbstractMapEntry<K, V> implements java.util.Map.Entry<K, V> {
-        abstract getKey(): any;
-        abstract getValue(): any;
-        abstract setValue(value: any): any;
-        equals(other: any): boolean;
-        /**
-         * Calculate the hash code using Sun's specified algorithm.
-         */
-        hashCode(): number;
-        toString(): string;
-        constructor();
-    }
-}
-declare namespace javaemul.internal.annotations {
-    /**
-     * An annotation to mark a given method as not inlineable.
-     * <p>
-     * Internal SDK use only, might change or disappear at any time.
-     */
-    interface DoNotInline {
-    }
-}
-declare namespace java.lang {
-    /**
-     * For JRE compatibility.
-     */
-    class Void {
-        /**
-         * Not instantiable.
-         */
-        constructor();
-    }
-}
-declare namespace java.util.logging {
-    /**
-     * An emulation of the java.util.logging.Handler class. See
-     * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/Handler.html">
-     * The Java API doc for details</a>
-     */
-    abstract class Handler {
-        private formatter;
-        private level;
-        abstract close(): any;
-        abstract flush(): any;
-        getFormatter(): java.util.logging.Formatter;
-        getLevel(): java.util.logging.Level;
-        isLoggable(record: java.util.logging.LogRecord): boolean;
-        abstract publish(record: java.util.logging.LogRecord): any;
-        setFormatter(newFormatter: java.util.logging.Formatter): void;
-        setLevel(newLevel: java.util.logging.Level): void;
-        constructor();
-    }
-}
-declare namespace java.util.logging {
-    /**
-     * A simple console logger used in super dev mode.
-     */
-    class SimpleConsoleLogHandler extends java.util.logging.Handler {
-        publish(record: java.util.logging.LogRecord): void;
-        private toConsoleLogLevel(level);
-        close(): void;
-        flush(): void;
-    }
-}
-declare namespace javaemul.internal.annotations {
-    /**
-     * An annotation to mark a given method as being specialized. If the specified
-     * parameters and return context match of a JMethodCall, then the call
-     * is retargeted at the specialized version.
-     */
-    interface SpecializeMethod {
-        /**
-         * List of parameter types, matched via assignability.
-         */
-        params(): any[];
-        /**
-         * List of return types to match, or null if you don't care.
-         */
-        returns(): any;
-        /**
-         * The name of the method to target. It must have a signature matching to the {@link #params()}.
-         */
-        target(): string;
-    }
-    namespace SpecializeMethod {
-        /**
-         * Represents a type that matches any type, even void.
-         */
-        interface ANY {
-        }
-    }
-}
-declare namespace java.util {
-    /**
-     * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/PrimitiveIterator.html">
-     * the official Java API doc</a> for details.
-     *
-     * @param <T> element type
-     * @param <C> consumer type
-     */
-    interface PrimitiveIterator<T, C> extends java.util.Iterator<T> {
-    }
-    namespace PrimitiveIterator {
-        /**
-         * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/PrimitiveIterator.OfDouble.html">
-         * the official Java API doc</a> for details.
-         */
-        interface OfDouble extends java.util.PrimitiveIterator<number, (number) => void> {
-            nextDouble(): number;
-            next(): number;
-            forEachRemaining(consumer?: any): any;
-        }
-        /**
-         * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/PrimitiveIterator.OfInt.html">
-         * the official Java API doc</a> for details.
-         */
-        interface OfInt extends java.util.PrimitiveIterator<number, (number) => void> {
-            nextInt(): number;
-            next(): number;
-            forEachRemaining(consumer?: any): any;
-        }
-        /**
-         * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/PrimitiveIterator.OfLong.html">
-         * the official Java API doc</a> for details.
-         */
-        interface OfLong extends java.util.PrimitiveIterator<number, (number) => void> {
-            nextLong(): number;
-            next(): number;
-            forEachRemaining(consumer?: any): any;
-        }
-    }
-}
-declare namespace java.lang {
-    /**
-     * Indicates that the named compiler warnings should be suppressed in the
-     * annotated element (and in all program elements contained in the annotated
-     * element). <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/SuppressWarnings.html">[Sun
-     * docs]</a>
-     */
-    interface SuppressWarnings {
-        value(): string[];
-    }
-}
-declare namespace java.lang {
-    /**
-     * A fast way to create strings using multiple appends.
-     *
-     * This class is an exact clone of {@link StringBuffer} except for the name. Any
-     * change made to one should be mirrored in the other.
-     */
-    class StringBuilder extends java.lang.AbstractStringBuilder implements java.lang.CharSequence, java.lang.Appendable {
-        constructor(s?: any);
-        append$boolean(x: boolean): java.lang.StringBuilder;
-        append$char(x: string): java.lang.StringBuilder;
-        append$char_A(x: string[]): java.lang.StringBuilder;
-        append(x?: any, start?: any, len?: any): any;
-        append$java_lang_CharSequence(x: string): java.lang.StringBuilder;
-        append$java_lang_CharSequence$int$int(x: string, start: number, end: number): java.lang.StringBuilder;
-        append$double(x: number): java.lang.StringBuilder;
-        append$float(x: number): java.lang.StringBuilder;
-        append$int(x: number): java.lang.StringBuilder;
-        append$long(x: number): java.lang.StringBuilder;
-        append$java_lang_Object(x: any): java.lang.StringBuilder;
-        append$java_lang_String(x: string): java.lang.StringBuilder;
-        append$java_lang_StringBuffer(x: java.lang.StringBuffer): java.lang.StringBuilder;
-        appendCodePoint(x: number): java.lang.StringBuilder;
-        delete(start: number, end: number): java.lang.StringBuilder;
-        deleteCharAt(start: number): java.lang.StringBuilder;
-        insert$int$boolean(index: number, x: boolean): java.lang.StringBuilder;
-        insert$int$char(index: number, x: string): java.lang.StringBuilder;
-        insert$int$char_A(index: number, x: string[]): java.lang.StringBuilder;
-        insert(index?: any, x?: any, offset?: any, len?: any): any;
-        insert$int$java_lang_CharSequence(index: number, chars: string): java.lang.StringBuilder;
-        insert$int$java_lang_CharSequence$int$int(index: number, chars: string, start: number, end: number): java.lang.StringBuilder;
-        insert$int$double(index: number, x: number): java.lang.StringBuilder;
-        insert$int$float(index: number, x: number): java.lang.StringBuilder;
-        insert$int$int(index: number, x: number): java.lang.StringBuilder;
-        insert$int$long(index: number, x: number): java.lang.StringBuilder;
-        insert$int$java_lang_Object(index: number, x: any): java.lang.StringBuilder;
-        insert$int$java_lang_String(index: number, x: string): java.lang.StringBuilder;
-        replace(start: number, end: number, toInsert: string): java.lang.StringBuilder;
-        reverse(): java.lang.StringBuilder;
-    }
-}
-declare namespace java.lang {
-    /**
-     * The first-class representation of an enumeration.
-     *
-     * @param <E>
-     */
-    abstract class Enum<E extends java.lang.Enum<E>> implements java.lang.Comparable<E>, java.io.Serializable {
-        static valueOf<T extends java.lang.Enum<T>>(enumType?: any, name?: any): any;
-        static createValueOfMap<T extends java.lang.Enum<T>>(enumConstants: T[]): Object;
-        static valueOf$jsweet_lang_Object$java_lang_String<T extends java.lang.Enum<T>>(map: Object, name: string): T;
-        private static get0<T>(map, name);
-        private static invokeValueOf<T>(enumValueOfFunc, name);
-        private static put0<T>(map, name, value);
-        private __name;
-        private __ordinal;
-        constructor(name: string, ordinal: number);
-        compareTo(other?: any): any;
-        getDeclaringClass(): any;
-        name(): string;
-        ordinal(): number;
-        toString(): string;
-    }
-}
-declare namespace java.lang {
-    /**
-     * Indicates that an objet was in an invalid state during an attempted
-     * operation.
-     */
-    class IllegalStateException extends Error {
-        constructor(message?: any, cause?: any);
-    }
-}
-declare namespace java.util {
-    /**
-     * A very simple emulation of Locale for shared-code patterns like
-     * {@code String.toUpperCase(Locale.US)}.
-     * <p>
-     * Note: Any changes to this class should put into account the assumption that
-     * was made in rest of the JRE emulation.
-     */
-    class Locale {
-        static ROOT: Locale;
-        static ROOT_$LI$(): Locale;
-        static ENGLISH: Locale;
-        static ENGLISH_$LI$(): Locale;
-        static US: Locale;
-        static US_$LI$(): Locale;
-        private static defaultLocale;
-        static defaultLocale_$LI$(): Locale;
-        /**
-         * Returns an instance that represents the browser's default locale (not
-         * necessarily the one defined by 'gwt.locale').
-         */
-        static getDefault(): Locale;
-        constructor();
-    }
-    namespace Locale {
-        class RootLocale extends java.util.Locale {
-            toString(): string;
-        }
-        class EnglishLocale extends java.util.Locale {
-            toString(): string;
-        }
-        class USLocale extends java.util.Locale {
-            toString(): string;
-        }
-        class DefaultLocale extends java.util.Locale {
-            toString(): string;
-        }
-    }
-}
-declare namespace test {
-    class Test {
-        static assertEquals(o1: any, o2: any): void;
-        static assertTrue(b: boolean): void;
-        static assertFalse(b: boolean): void;
-        static test(): void;
-        static testList(): void;
-        static testSet(): void;
-        static testMap(): void;
-        static testString(): void;
-        static testIO(): void;
-    }
-}
-declare namespace java.io {
-    /**
-     * A specialized {@link OutputStream} for class for writing content to an
-     * (internal) byte array. As bytes are written to this stream, the byte array
-     * may be expanded to hold more bytes. When the writing is considered to be
-     * finished, a copy of the byte array can be requested from the class.
-     *
-     * @see ByteArrayInputStream
-     */
-    class ByteArrayOutputStream extends java.io.OutputStream {
-        /**
-         * The byte array containing the bytes written.
-         */
-        buf: number[];
-        /**
-         * The number of bytes written.
-         */
-        count: number;
-        /**
-         * Constructs a new {@code ByteArrayOutputStream} with a default size of
-         * {@code size} bytes. If more than {@code size} bytes are written to this
-         * instance, the underlying byte array will expand.
-         *
-         * @param size
-         * initial size for the underlying byte array, must be
-         * non-negative.
-         * @throws IllegalArgumentException
-         * if {@code size} < 0.
-         */
-        constructor(size?: any);
-        /**
-         * Closes this stream. This releases system resources used for this stream.
-         *
-         * @throws IOException
-         * if an error occurs while attempting to close this stream.
-         */
-        close(): void;
-        private expand(i);
-        /**
-         * Resets this stream to the beginning of the underlying byte array. All
-         * subsequent writes will overwrite any bytes previously stored in this
-         * stream.
-         */
-        reset(): void;
-        /**
-         * Returns the total number of bytes written to this stream so far.
-         *
-         * @return the number of bytes written to this stream.
-         */
-        size(): number;
-        /**
-         * Returns the contents of this ByteArrayOutputStream as a byte array. Any
-         * changes made to the receiver after returning will not be reflected in the
-         * byte array returned to the caller.
-         *
-         * @return this stream's current contents as a byte array.
-         */
-        toByteArray(): number[];
-        /**
-         * Returns the contents of this ByteArrayOutputStream as a string. Any
-         * changes made to the receiver after returning will not be reflected in the
-         * string returned to the caller.
-         *
-         * @return this stream's current contents as a string.
-         */
-        toString$(): string;
-        /**
-         * Returns the contents of this ByteArrayOutputStream as a string. Each byte
-         * {@code b} in this stream is converted to a character {@code c} using the
-         * following function:
-         * {@code c == (char)(((hibyte & 0xff) << 8) | (b & 0xff))}. This method is
-         * deprecated and either {@link #toString()} or {@link #toString(String)}
-         * should be used.
-         *
-         * @param hibyte
-         * the high byte of each resulting Unicode character.
-         * @return this stream's current contents as a string with the high byte set
-         * to {@code hibyte}.
-         * @deprecated Use {@link #toString()} instead.
-         */
-        toString$int(hibyte: number): string;
-        /**
-         * Returns the contents of this ByteArrayOutputStream as a string converted
-         * according to the encoding declared in {@code charsetName}.
-         *
-         * @param charsetName
-         * a string representing the encoding to use when translating
-         * this stream to a string.
-         * @return this stream's current contents as an encoded string.
-         * @throws UnsupportedEncodingException
-         * if the provided encoding is not supported.
-         */
-        toString(charsetName?: any): any;
-        /**
-         * Writes {@code count} bytes from the byte array {@code buffer} starting at
-         * offset {@code index} to this stream.
-         *
-         * @param buffer
-         * the buffer to be written.
-         * @param offset
-         * the initial position in {@code buffer} to retrieve bytes.
-         * @param len
-         * the number of bytes of {@code buffer} to write.
-         * @throws NullPointerException
-         * if {@code buffer} is {@code null}.
-         * @throws IndexOutOfBoundsException
-         * if {@code offset < 0} or {@code len < 0}, or if
-         * {@code offset + len} is greater than the length of
-         * {@code buffer}.
-         */
-        write(buffer?: any, offset?: any, len?: any): any;
-        /**
-         * Writes the specified byte {@code oneByte} to the OutputStream. Only the
-         * low order byte of {@code oneByte} is written.
-         *
-         * @param oneByte
-         * the byte to be written.
-         */
-        write$int(oneByte: number): void;
-        /**
-         * Takes the contents of this stream and writes it to the output stream
-         * {@code out}.
-         *
-         * @param out
-         * an OutputStream on which to write the contents of this stream.
-         * @throws IOException
-         * if an error occurs while writing to {@code out}.
-         */
-        writeTo(out: java.io.OutputStream): void;
-    }
-}
-declare namespace java.lang {
-    /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/UnsupportedOperationException.html">the
-     * official Java API doc</a> for details.
-     */
-    class UnsupportedOperationException extends Error {
-        constructor(message?: any, cause?: any);
-    }
-}
-declare namespace java.io {
-    /**
-     * Defines an interface for classes that can (or need to) be flushed, typically
-     * before some output processing is considered to be finished and the object
-     * gets closed.
-     */
-    interface Flushable {
-        /**
-         * Flushes the object by writing out any buffered data to the underlying
-         * output.
-         *
-         * @throws IOException
-         * if there are any issues writing the data.
-         */
-        flush(): any;
-    }
-}
-declare namespace java.lang.annotation {
-    /**
-     * Annotation which indicates how long annotations should be retained <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/Retention.html">[Sun
-     * doc]</a>.
-     */
-    interface Retention {
-        value(): java.lang.annotation.RetentionPolicy;
-    }
-}
-declare namespace java.lang.annotation {
-    /**
-     * Annotation which indicates the kinds of program element to which an
-     * annotation type is applicable <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/Target.html">[Sun
-     * docs]</a>.
-     */
-    interface Target {
-        value(): java.lang.annotation.ElementType[];
-    }
-}
-declare namespace java.util {
-    /**
-     * A set known to be in ascending order. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/SortedSet.html">[Sun
-     * docs]</a>
-     *
-     * @param <E> element type.
-     */
-    interface SortedSet<E> extends java.util.Set<E> {
-        comparator(): java.util.Comparator<any>;
-        first(): E;
-        headSet(toElement?: any, inclusive?: any): any;
-        last(): E;
-        subSet(fromElement?: any, fromInclusive?: any, toElement?: any, toInclusive?: any): any;
-        tailSet(fromElement?: any, inclusive?: any): any;
-    }
-}
-declare namespace java.util {
-    /**
-     * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html">
-     * the official Java API doc</a> for details.
-     *
-     * @param <T> type of the wrapped reference
-     */
-    class Optional<T> {
-        static empty<T>(): Optional<T>;
-        static of<T>(value: T): Optional<T>;
-        static ofNullable<T>(value: T): Optional<T>;
-        private static EMPTY;
-        static EMPTY_$LI$(): Optional<any>;
-        private ref;
-        constructor(ref?: any);
-        isPresent(): boolean;
-        get(): T;
-        ifPresent(consumer: (p1: any) => void): void;
-        filter(predicate: (p1: any) => boolean): Optional<T>;
-        map<U>(mapper: (p1: any) => any): Optional<U>;
-        flatMap<U>(mapper: (p1: any) => Optional<U>): Optional<U>;
-        orElse(other: T): T;
-        orElseGet(other: () => any): T;
-        orElseThrow<X extends Error>(exceptionSupplier: () => any): T;
-        equals(obj: any): boolean;
-        hashCode(): number;
-        toString(): string;
-    }
-}
-declare namespace java.lang.annotation {
-    /**
-     * Indicates the annotation parser determined the annotation was malformed when
-     * reading from the class file <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/AnnotationFormatError.html">[Sun
-     * docs]</a>.
-     */
-    class AnnotationFormatError extends Error {
-        constructor();
-    }
-}
-declare namespace java.util {
-    /**
-     * Available as a superclass of event objects.
-     */
-    class EventObject {
-        source: any;
-        constructor(source: any);
-        getSource(): any;
     }
 }
 declare namespace java.util {
@@ -2555,880 +3128,595 @@ declare namespace java.util {
         remove(): any;
     }
 }
-declare namespace java.util {
+declare namespace javaemul.internal {
     /**
-     * Skeletal implementation of the Collection interface. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/AbstractCollection.html">[Sun
-     * docs]</a>
-     *
-     * @param <E> the element type.
+     * Simple Helper class to return Date.now.
      */
-    abstract class AbstractCollection<E> implements java.util.Collection<E> {
-        forEach(action: (p1: any) => void): void;
-        constructor();
-        add(index?: any, element?: any): any;
-        add$java_lang_Object(o: E): boolean;
-        addAll(index?: any, c?: any): any;
-        addAll$java_util_Collection(c: java.util.Collection<any>): boolean;
-        clear(): void;
-        contains(o: any): boolean;
-        containsAll(c: java.util.Collection<any>): boolean;
-        isEmpty(): boolean;
-        abstract iterator(): java.util.Iterator<E>;
-        remove(index?: any): any;
-        remove$java_lang_Object(o: any): boolean;
-        removeAll(c: java.util.Collection<any>): boolean;
-        retainAll(c: java.util.Collection<any>): boolean;
-        abstract size(): number;
-        toArray$(): any[];
-        toArray<T>(a?: any): any;
-        toString(): string;
-        private advanceToFind(o, remove);
+    class DateUtil {
+        /**
+         * Returns the numeric value corresponding to the current time -
+         * the number of milliseconds elapsed since 1 January 1970 00:00:00 UTC.
+         */
+        static now(): number;
+    }
+}
+declare namespace java.lang {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Exception.html">the
+     * official Java API doc</a> for details.
+     */
+    class Exception extends Error {
+        constructor(message?: any, cause?: any, enableSuppression?: any, writableStackTrace?: any);
     }
 }
 declare namespace java.util {
     /**
-     * Skeletal implementation of the Set interface. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/AbstractSet.html">[Sun
-     * docs]</a>
+     * Thrown when the subject of an observer cannot support additional observers.
      *
-     * @param <E> the element type.
      */
-    abstract class AbstractSet<E> extends java.util.AbstractCollection<E> implements java.util.Set<E> {
-        forEach(action: (p1: any) => void): void;
-        abstract iterator(): any;
-        abstract size(): any;
-        equals(o: any): boolean;
+    class TooManyListenersException extends Error {
+        constructor(message?: any);
+    }
+}
+declare namespace java.text {
+    /**
+     * Emulation of {@code java.text.ParseException}.
+     */
+    class ParseException extends Error {
+        private errorOffset;
+        constructor(s: string, errorOffset: number);
+        getErrorOffset(): number;
+    }
+}
+declare namespace java.lang {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CloneNotSupportedException.html">
+     * the official Java API doc</a> for details.
+     */
+    class CloneNotSupportedException extends Error {
+        constructor(msg?: any);
+    }
+}
+declare namespace java.io {
+    /**
+     * See <a
+     * href="http://java.sun.com/javase/6/docs/api/java/io/IOException.html">the
+     * official Java API doc</a> for details.
+     */
+    class IOException extends Error {
+        constructor(message?: any, throwable?: any);
+    }
+}
+declare namespace java.io {
+    /**
+     * A character encoding is not supported - <a
+     * href="http://java.sun.com/javase/6/docs/api/java/io/UnsupportedEncodingException.html">[Sun's
+     * docs]</a>.
+     */
+    class UnsupportedEncodingException extends java.io.IOException {
+        constructor(msg?: any);
+    }
+}
+declare namespace java.security {
+    /**
+     * A generic security exception type - <a
+     * href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/GeneralSecurityException.html">[Sun's
+     * docs]</a>.
+     */
+    class GeneralSecurityException extends Error {
+        constructor(msg?: any);
+    }
+}
+declare namespace java.lang {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/RuntimeException.html">the
+     * official Java API doc</a> for details.
+     */
+    class RuntimeException extends Error {
+        constructor(message?: any, cause?: any, enableSuppression?: any, writableStackTrace?: any);
+    }
+}
+declare namespace java.lang {
+    /**
+     * Indicates failure to cast one type into another.
+     */
+    class ClassCastException extends Error {
+        constructor(message?: any);
+    }
+}
+declare namespace java.io {
+    /**
+     * See <a
+     * href="https://docs.oracle.com/javase/8/docs/api/java/io/UncheckedIOException.html">the
+     * official Java API doc</a> for details.
+     */
+    class UncheckedIOException extends Error {
+        constructor(message?: any, cause?: any);
+        getCause(): java.io.IOException;
+    }
+}
+declare namespace java.util {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/EmptyStackException.html">the
+     * official Java API doc</a> for details.
+     */
+    class EmptyStackException extends Error {
+        constructor();
+    }
+}
+declare namespace java.lang {
+    /**
+     * NOTE: in GWT this is only thrown for division by zero on longs and
+     * BigInteger/BigDecimal.
+     * <p>
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ArithmeticException.html">the
+     * official Java API doc</a> for details.
+     */
+    class ArithmeticException extends Error {
+        constructor(explanation?: any);
+    }
+}
+declare namespace java.lang {
+    /**
+     * Indicates that an objet was in an invalid state during an attempted
+     * operation.
+     */
+    class IllegalStateException extends Error {
+        constructor(message?: any, cause?: any);
+    }
+}
+declare namespace java.lang {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ArrayStoreException.html">the
+     * official Java API doc</a> for details.
+     */
+    class ArrayStoreException extends Error {
+        constructor(message?: any);
+    }
+}
+declare namespace java.util {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/MissingResourceException.html">the
+     * official Java API doc</a> for details.
+     */
+    class MissingResourceException extends Error {
+        private className;
+        private key;
+        constructor(s: string, className: string, key: string);
+        getClassName(): string;
+        getKey(): string;
+    }
+}
+declare namespace java.lang.annotation {
+    /**
+     * Indicates an attempt to access an element of an annotation that has changed
+     * since it was compiled or serialized <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/AnnotationTypeMismatchException.html">[Sun
+     * docs]</a>.
+     */
+    class AnnotationTypeMismatchException extends Error {
+        constructor();
+    }
+}
+declare namespace java.lang {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/IllegalArgumentException.html">the
+     * official Java API doc</a> for details.
+     */
+    class IllegalArgumentException extends Error {
+        constructor(message?: any, cause?: any);
+    }
+}
+declare namespace java.nio.charset {
+    /**
+     * GWT emulation of {@link UnsupportedCharsetException}.
+     */
+    class UnsupportedCharsetException extends java.lang.IllegalArgumentException {
+        private charsetName;
+        constructor(charsetName: string);
+        getCharsetName(): string;
+    }
+}
+declare namespace java.nio.charset {
+    /**
+     * GWT emulation of {@link IllegalCharsetNameException}.
+     */
+    class IllegalCharsetNameException extends java.lang.IllegalArgumentException {
+        private charsetName;
+        constructor(charsetName: string);
+        getCharsetName(): string;
+    }
+}
+declare namespace java.lang.annotation {
+    /**
+     * Indicates an attempt to access an element of an annotation that was added
+     * since it was compiled or serialized <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/IncompleteAnnotationException.html">[Sun
+     * docs]</a>.
+     */
+    class IncompleteAnnotationException extends Error {
+        __annotationType: any;
+        __elementName: string;
+        constructor(annotationType: any, elementName: string);
+        annotationType(): any;
+        elementName(): string;
+    }
+}
+declare namespace java.lang {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/NullPointerException.html">the
+     * official Java API doc</a> for details.
+     */
+    class NullPointerException extends Error {
+        constructor(message?: any);
+        createError(msg: string): any;
+    }
+}
+declare namespace java.lang {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/NegativeArraySizeException.html">the
+     * official Java API doc</a> for details.
+     */
+    class NegativeArraySizeException extends Error {
+        constructor(message?: any);
+    }
+}
+declare namespace java.util {
+    /**
+     * Represents a date and time.
+     */
+    class Date implements java.lang.Cloneable, java.lang.Comparable<Date>, java.io.Serializable {
+        static parse(s: string): number;
+        static UTC(year: number, month: number, date: number, hrs: number, min: number, sec: number): number;
+        /**
+         * Ensure a number is displayed with two digits.
+         *
+         * @return a two-character base 10 representation of the number
+         */
+        static padTwo(number: number): string;
+        /**
+         * JavaScript Date instance.
+         */
+        private jsdate;
+        static jsdateClass(): Object;
+        constructor(year?: any, month?: any, date?: any, hrs?: any, min?: any, sec?: any);
+        after(ts?: any): any;
+        after$java_util_Date(when: Date): boolean;
+        before(ts?: any): any;
+        before$java_util_Date(when: Date): boolean;
+        clone(): any;
+        compareTo(other?: any): any;
+        equals(ts?: any): any;
+        equals$java_lang_Object(obj: any): boolean;
+        getDate(): number;
+        getDay(): number;
+        getHours(): number;
+        getMinutes(): number;
+        getMonth(): number;
+        getSeconds(): number;
+        getTime(): number;
+        getTimezoneOffset(): number;
+        getYear(): number;
         hashCode(): number;
-        removeAll(c: java.util.Collection<any>): boolean;
-        constructor();
-    }
-}
-declare namespace java.util {
-    /**
-     * Implements a set using a TreeMap. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/TreeSet.html">[Sun
-     * docs]</a>
-     *
-     * @param <E> element type.
-     */
-    class TreeSet<E> extends java.util.AbstractSet<E> implements java.util.NavigableSet<E>, java.io.Serializable {
-        forEach(action: (p1: any) => void): void;
-        /**
-         * TreeSet is stored as a TreeMap of the requested type to a constant Boolean.
-         */
-        private map;
-        constructor(c?: any);
-        add(o: E): boolean;
-        ceiling(e: E): E;
-        clear(): void;
-        comparator(): java.util.Comparator<any>;
-        contains(o: any): boolean;
-        descendingIterator(): java.util.Iterator<E>;
-        descendingSet(): java.util.NavigableSet<E>;
-        first(): E;
-        floor(e: E): E;
-        headSet$java_lang_Object(toElement: E): java.util.SortedSet<E>;
-        headSet(toElement?: any, inclusive?: any): any;
-        higher(e: E): E;
-        iterator(): java.util.Iterator<E>;
-        last(): E;
-        lower(e: E): E;
-        pollFirst(): E;
-        pollLast(): E;
-        remove(o: any): boolean;
-        size(): number;
-        subSet(fromElement?: any, fromInclusive?: any, toElement?: any, toInclusive?: any): any;
-        subSet$java_lang_Object$java_lang_Object(fromElement: E, toElement: E): java.util.SortedSet<E>;
-        tailSet$java_lang_Object(fromElement: E): java.util.SortedSet<E>;
-        tailSet(fromElement?: any, inclusive?: any): any;
-    }
-}
-declare namespace java.util {
-    /**
-     * Implements a set in terms of a hash table. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/HashSet.html">[Sun
-     * docs]</a>
-     *
-     * @param <E> element type.
-     */
-    class HashSet<E> extends java.util.AbstractSet<E> implements java.util.Set<E>, java.lang.Cloneable, java.io.Serializable {
-        forEach(action: (p1: any) => void): void;
-        private map;
-        /**
-         * Ensures that RPC will consider type parameter E to be exposed. It will be
-         * pruned by dead code elimination.
-         */
-        private exposeElement;
-        constructor(initialCapacity?: any, loadFactor?: any);
-        add(o: E): boolean;
-        clear(): void;
-        clone(): any;
-        contains(o: any): boolean;
-        isEmpty(): boolean;
-        iterator(): java.util.Iterator<E>;
-        remove(o: any): boolean;
-        size(): number;
+        setDate(date: number): void;
+        setHours(hours: number): void;
+        setMinutes(minutes: number): void;
+        setMonth(month: number): void;
+        setSeconds(seconds: number): void;
+        setTime(time: number): void;
+        setYear(year: number): void;
+        toGMTString(): string;
+        toLocaleString(): string;
         toString(): string;
+        private static ONE_HOUR_IN_MILLISECONDS;
+        static ONE_HOUR_IN_MILLISECONDS_$LI$(): number;
+        /**
+         * Detects if the requested time falls into a non-existent time range due to
+         * local time advancing into daylight savings time or is ambiguous due to
+         * going out of daylight savings. If so, adjust accordingly.
+         */
+        fixDaylightSavings(requestedHours: number): void;
+    }
+    namespace Date {
+        /**
+         * Encapsulates static data to avoid Date itself having a static
+         * initializer.
+         */
+        class StringData {
+            static DAYS: string[];
+            static DAYS_$LI$(): string[];
+            static MONTHS: string[];
+            static MONTHS_$LI$(): string[];
+        }
+    }
+}
+declare namespace java.sql {
+    /**
+     * An implementation of java.sql.Time. Derived from
+     * http://java.sun.com/j2se/1.5.0/docs/api/java/sql/Time.html
+     */
+    class Time extends java.util.Date {
+        static valueOf(s: string): Time;
+        constructor(hour?: any, minute?: any, second?: any);
+        getDate(): number;
+        getDay(): number;
+        getMonth(): number;
+        getYear(): number;
+        setDate(i: number): void;
+        setMonth(i: number): void;
+        setYear(i: number): void;
+    }
+}
+declare namespace java.sql {
+    /**
+     * An implementation of java.sql.Timestame. Derived from
+     * http://java.sun.com/j2se/1.5.0/docs/api/java/sql/Timestamp.html. This is
+     * basically just regular Date decorated with a nanoseconds field.
+     */
+    class Timestamp extends java.util.Date {
+        static valueOf(s: string): Timestamp;
+        private static padNine(value);
+        /**
+         * Stores the nanosecond resolution of the timestamp; must be kept in sync
+         * with the sub-second part of Date.millis.
+         */
+        private nanos;
+        constructor(year?: any, month?: any, date?: any, hour?: any, minute?: any, second?: any, nano?: any);
+        after(ts?: any): any;
+        before(ts?: any): any;
+        compareTo$java_util_Date(o: java.util.Date): number;
+        compareTo(o?: any): any;
+        equals$java_lang_Object(ts: any): boolean;
+        equals(ts?: any): any;
+        getNanos(): number;
+        getTime(): number;
+        hashCode(): number;
+        setNanos(n: number): void;
+        setTime(time: number): void;
+    }
+}
+declare namespace java.lang {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/UnsupportedOperationException.html">the
+     * official Java API doc</a> for details.
+     */
+    class UnsupportedOperationException extends Error {
+        constructor(message?: any, cause?: any);
+    }
+}
+declare namespace java.util.logging {
+    /**
+     * An emulation of the java.util.logging.Formatter class. See
+     * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/Formatter.html">
+     * The Java API doc for details</a>
+     */
+    abstract class Formatter {
+        abstract format(record: java.util.logging.LogRecord): string;
+        formatMessage(record: java.util.logging.LogRecord): string;
     }
 }
 declare namespace java.util {
     /**
-     * Hash table and linked-list implementation of the Set interface with
-     * predictable iteration order. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/LinkedHashSet.html">[Sun
-     * docs]</a>
+     * Abstract interface for maps.
      *
-     * @param <E> element type.
+     * @param <K> key type.
+     * @param <V> value type.
      */
-    class LinkedHashSet<E> extends java.util.HashSet<E> implements java.util.Set<E>, java.lang.Cloneable {
-        forEach(action: (p1: any) => void): void;
-        constructor(ignored?: any, alsoIgnored?: any);
-        clone(): any;
-    }
-}
-declare namespace java.util {
-    /**
-     * Skeletal implementation of the Map interface.
-     * <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/AbstractMap.html">
-     * [Sun docs]</a>
-     *
-     * @param <K>
-     * the key type.
-     * @param <V>
-     * the value type.
-     */
-    abstract class AbstractMap<K, V> implements java.util.Map<K, V> {
-        constructor();
-        clear(): void;
+    interface Map<K, V> {
+        clear(): any;
         containsKey(key: any): boolean;
         containsValue(value: any): boolean;
-        containsEntry(entry: Map.Entry<any, any>): boolean;
-        abstract entrySet(): java.util.Set<Map.Entry<K, V>>;
-        equals(obj: any): boolean;
+        entrySet(): java.util.Set<Map.Entry<K, V>>;
+        equals(o: any): boolean;
         get(key: any): V;
         hashCode(): number;
         isEmpty(): boolean;
         keySet(): java.util.Set<K>;
         put(key?: any, value?: any): any;
-        put$java_lang_Object$java_lang_Object(key: K, value: V): V;
-        putAll(map: java.util.Map<any, any>): void;
+        putAll(t: Map<any, any>): any;
         remove(key: any): V;
         size(): number;
-        toString$(): string;
-        toString(entry?: any): any;
-        toString$java_lang_Object(o: any): string;
         values(): java.util.Collection<V>;
-        static getEntryKeyOrNull<K, V>(entry: Map.Entry<K, V>): K;
-        static getEntryValueOrNull<K, V>(entry: Map.Entry<K, V>): V;
-        implFindEntry(key: any, remove: boolean): Map.Entry<K, V>;
     }
-    namespace AbstractMap {
+    namespace Map {
         /**
-         * Basic {@link Map.Entry} implementation used by {@link SimpleEntry} and
-         * {@link SimpleImmutableEntry}.
+         * Represents an individual map entry.
          */
-        abstract class AbstractEntry<K, V> implements Map.Entry<K, V> {
-            key: K;
-            value: V;
-            constructor(key: K, value: V);
+        interface Entry<K, V> {
+            equals(o: any): boolean;
             getKey(): K;
             getValue(): V;
-            setValue(value: V): V;
-            equals(other: any): boolean;
-            /**
-             * Calculate the hash code using Sun's specified algorithm.
-             */
             hashCode(): number;
-            toString(): string;
-        }
-        /**
-         * A mutable {@link Map.Entry} shared by several {@link Map}
-         * implementations.
-         */
-        class SimpleEntry<K, V> extends AbstractMap.AbstractEntry<K, V> {
-            constructor(key?: any, value?: any);
-        }
-        /**
-         * An immutable {@link Map.Entry} shared by several {@link Map}
-         * implementations.
-         */
-        class SimpleImmutableEntry<K, V> extends AbstractMap.AbstractEntry<K, V> {
-            constructor(key?: any, value?: any);
             setValue(value: V): V;
         }
-        class AbstractMap$0 extends java.util.AbstractSet<any> {
-            __parent: any;
-            clear(): void;
-            contains(key: any): boolean;
-            iterator(): java.util.Iterator<any>;
-            remove(key: any): boolean;
-            size(): number;
-            constructor(__parent: any);
-        }
-        namespace AbstractMap$0 {
-            class AbstractMap$0$0 implements java.util.Iterator<any> {
-                private outerIter;
-                __parent: any;
-                forEachRemaining(consumer: (p1: any) => void): void;
-                hasNext(): boolean;
-                next(): any;
-                remove(): void;
-                constructor(__parent: any, outerIter: any);
-            }
-        }
-        class AbstractMap$1 extends java.util.AbstractCollection<any> {
-            __parent: any;
-            clear(): void;
-            contains(value: any): boolean;
-            iterator(): java.util.Iterator<any>;
-            size(): number;
-            constructor(__parent: any);
-        }
-        namespace AbstractMap$1 {
-            class AbstractMap$1$0 implements java.util.Iterator<any> {
-                private outerIter;
-                __parent: any;
-                forEachRemaining(consumer: (p1: any) => void): void;
-                hasNext(): boolean;
-                next(): any;
-                remove(): void;
-                constructor(__parent: any, outerIter: any);
-            }
-        }
     }
 }
-declare namespace java.util {
+declare namespace java.beans {
     /**
-     * Skeletal implementation of a NavigableMap.
+     * General-purpose beans control methods. GWT only supports a limited subset of these methods. Only
+     * the documented methods are available.
      */
-    abstract class AbstractNavigableMap<K, V> extends java.util.AbstractMap<K, V> implements java.util.NavigableMap<K, V> {
-        abstract comparator(): any;
-        static copyOf<K, V>(entry: Map.Entry<K, V>): Map.Entry<K, V>;
-        static getKeyOrNSE<K, V>(entry: Map.Entry<K, V>): K;
-        ceilingEntry(key: K): Map.Entry<K, V>;
-        ceilingKey(key: K): K;
-        containsKey(k: any): boolean;
-        descendingKeySet(): java.util.NavigableSet<K>;
-        descendingMap(): java.util.NavigableMap<K, V>;
-        entrySet(): java.util.Set<Map.Entry<K, V>>;
-        firstEntry(): Map.Entry<K, V>;
-        firstKey(): K;
-        floorEntry(key: K): Map.Entry<K, V>;
-        floorKey(key: K): K;
-        get(k: any): V;
-        headMap(toKey?: any, inclusive?: any): any;
-        headMap$java_lang_Object(toKey: K): java.util.SortedMap<K, V>;
-        higherEntry(key: K): Map.Entry<K, V>;
-        higherKey(key: K): K;
-        keySet(): java.util.Set<K>;
-        lastEntry(): Map.Entry<K, V>;
-        lastKey(): K;
-        lowerEntry(key: K): Map.Entry<K, V>;
-        lowerKey(key: K): K;
-        navigableKeySet(): java.util.NavigableSet<K>;
-        pollFirstEntry(): Map.Entry<K, V>;
-        pollLastEntry(): Map.Entry<K, V>;
-        subMap(fromKey?: any, fromInclusive?: any, toKey?: any, toInclusive?: any): any;
-        subMap$java_lang_Object$java_lang_Object(fromKey: K, toKey: K): java.util.SortedMap<K, V>;
-        tailMap(fromKey?: any, inclusive?: any): any;
-        tailMap$java_lang_Object(fromKey: K): java.util.SortedMap<K, V>;
-        containsEntry(entry: Map.Entry<any, any>): boolean;
+    class Beans {
         /**
-         * Returns an iterator over the entries in this map in descending order.
+         * @return <code>true</code> if we are running in the design time mode.
          */
-        abstract descendingEntryIterator(): java.util.Iterator<Map.Entry<K, V>>;
-        /**
-         * Returns an iterator over the entries in this map in ascending order.
-         */
-        abstract entryIterator(): java.util.Iterator<Map.Entry<K, V>>;
-        /**
-         * Returns the entry corresponding to the specified key. If no such entry exists returns
-         * {@code null}.
-         */
-        abstract getEntry(key: K): Map.Entry<K, V>;
-        /**
-         * Returns the first entry or {@code null} if map is empty.
-         */
-        abstract getFirstEntry(): Map.Entry<K, V>;
-        /**
-         * Returns the last entry or {@code null} if map is empty.
-         */
-        abstract getLastEntry(): Map.Entry<K, V>;
-        /**
-         * Gets the entry corresponding to the specified key or the entry for the least key greater than
-         * the specified key. If no such entry exists returns {@code null}.
-         */
-        abstract getCeilingEntry(key: K): Map.Entry<K, V>;
-        /**
-         * Gets the entry corresponding to the specified key or the entry for the greatest key less than
-         * the specified key. If no such entry exists returns {@code null}.
-         */
-        abstract getFloorEntry(key: K): Map.Entry<K, V>;
-        /**
-         * Gets the entry for the least key greater than the specified key. If no such entry exists
-         * returns {@code null}.
-         */
-        abstract getHigherEntry(key: K): Map.Entry<K, V>;
-        /**
-         * Returns the entry for the greatest key less than the specified key. If no such entry exists
-         * returns {@code null}.
-         */
-        abstract getLowerEntry(key: K): Map.Entry<K, V>;
-        /**
-         * Remove an entry from the tree, returning whether it was found.
-         */
-        abstract removeEntry(entry: Map.Entry<K, V>): boolean;
-        pollEntry(entry: Map.Entry<K, V>): Map.Entry<K, V>;
-        constructor();
+        static isDesignTime(): boolean;
     }
-    namespace AbstractNavigableMap {
-        class DescendingMap extends java.util.AbstractNavigableMap<any, any> {
-            __parent: any;
-            clear(): void;
-            comparator(): java.util.Comparator<any>;
-            descendingMap(): java.util.NavigableMap<any, any>;
-            headMap(toKey?: any, inclusive?: any): any;
-            put(key: any, value: any): any;
-            remove(key: any): any;
-            size(): number;
-            subMap(fromKey?: any, fromInclusive?: any, toKey?: any, toInclusive?: any): any;
-            tailMap(fromKey?: any, inclusive?: any): any;
-            ascendingMap(): java.util.AbstractNavigableMap<any, any>;
-            descendingEntryIterator(): java.util.Iterator<Map.Entry<any, any>>;
-            entryIterator(): java.util.Iterator<Map.Entry<any, any>>;
-            getEntry(key: any): Map.Entry<any, any>;
-            getFirstEntry(): Map.Entry<any, any>;
-            getLastEntry(): Map.Entry<any, any>;
-            getCeilingEntry(key: any): Map.Entry<any, any>;
-            getFloorEntry(key: any): Map.Entry<any, any>;
-            getHigherEntry(key: any): Map.Entry<any, any>;
-            getLowerEntry(key: any): Map.Entry<any, any>;
-            removeEntry(entry: Map.Entry<any, any>): boolean;
-            constructor(__parent: any);
-        }
-        class EntrySet extends java.util.AbstractSet<Map.Entry<any, any>> {
-            __parent: any;
-            contains(o: any): boolean;
-            iterator(): java.util.Iterator<Map.Entry<any, any>>;
-            remove(o: any): boolean;
-            size(): number;
-            constructor(__parent: any);
-        }
-        class NavigableKeySet<K, V> extends java.util.AbstractSet<K> implements java.util.NavigableSet<K> {
-            forEach(action: (p1: any) => void): void;
-            map: java.util.NavigableMap<K, V>;
-            constructor(map: java.util.NavigableMap<K, V>);
-            ceiling(k: K): K;
-            clear(): void;
-            comparator(): java.util.Comparator<any>;
-            contains(o: any): boolean;
-            descendingIterator(): java.util.Iterator<K>;
-            descendingSet(): java.util.NavigableSet<K>;
-            first(): K;
-            floor(k: K): K;
-            headSet$java_lang_Object(toElement: K): java.util.SortedSet<K>;
-            headSet(toElement?: any, inclusive?: any): any;
-            higher(k: K): K;
-            iterator(): java.util.Iterator<K>;
-            last(): K;
-            lower(k: K): K;
-            pollFirst(): K;
-            pollLast(): K;
-            remove(o: any): boolean;
-            size(): number;
-            subSet(fromElement?: any, fromInclusive?: any, toElement?: any, toInclusive?: any): any;
-            subSet$java_lang_Object$java_lang_Object(fromElement: K, toElement: K): java.util.SortedSet<K>;
-            tailSet$java_lang_Object(fromElement: K): java.util.SortedSet<K>;
-            tailSet(fromElement?: any, inclusive?: any): any;
-        }
-        namespace NavigableKeySet {
-            class NavigableKeySet$0 implements java.util.Iterator<any> {
-                private entryIterator;
-                __parent: any;
-                forEachRemaining(consumer: (p1: any) => void): void;
-                hasNext(): boolean;
-                next(): any;
-                remove(): void;
-                constructor(__parent: any, entryIterator: any);
-            }
-        }
+}
+declare namespace java.lang {
+    /**
+     * Represents an error caused by an assertion failure.
+     */
+    class AssertionError extends Error {
+        constructor(message?: any, cause?: any);
     }
 }
 declare namespace java.util {
     /**
-     * A {@link java.util.Set} of {@link Enum}s. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/EnumSet.html">[Sun
+     * A helper to detect concurrent modifications to collections. This is implemented as a helper
+     * utility so that we could remove the checks easily by a flag.
+     */
+    class ConcurrentModificationDetector {
+        private static API_CHECK;
+        static API_CHECK_$LI$(): boolean;
+        private static MOD_COUNT_PROPERTY;
+        static structureChanged(map: any): void;
+        static recordLastKnownStructure(host: any, iterator: java.util.Iterator<any>): void;
+        static checkStructuralChange(host: any, iterator: java.util.Iterator<any>): void;
+    }
+}
+declare namespace javaemul.internal {
+    /**
+     * Wraps a primitive <code>double</code> as an object.
+     */
+    class DoubleHelper extends javaemul.internal.NumberHelper implements java.lang.Comparable<DoubleHelper> {
+        static MAX_VALUE: number;
+        static MIN_VALUE: number;
+        static MIN_NORMAL: number;
+        static MAX_EXPONENT: number;
+        static MIN_EXPONENT: number;
+        static NaN: number;
+        static NaN_$LI$(): number;
+        static NEGATIVE_INFINITY: number;
+        static NEGATIVE_INFINITY_$LI$(): number;
+        static POSITIVE_INFINITY: number;
+        static POSITIVE_INFINITY_$LI$(): number;
+        static SIZE: number;
+        static POWER_512: number;
+        static POWER_MINUS_512: number;
+        static POWER_256: number;
+        static POWER_MINUS_256: number;
+        static POWER_128: number;
+        static POWER_MINUS_128: number;
+        static POWER_64: number;
+        static POWER_MINUS_64: number;
+        static POWER_52: number;
+        static POWER_MINUS_52: number;
+        static POWER_32: number;
+        static POWER_MINUS_32: number;
+        static POWER_31: number;
+        static POWER_20: number;
+        static POWER_MINUS_20: number;
+        static POWER_16: number;
+        static POWER_MINUS_16: number;
+        static POWER_8: number;
+        static POWER_MINUS_8: number;
+        static POWER_4: number;
+        static POWER_MINUS_4: number;
+        static POWER_2: number;
+        static POWER_MINUS_2: number;
+        static POWER_1: number;
+        static POWER_MINUS_1: number;
+        static POWER_MINUS_1022: number;
+        static compare(x: number, y: number): number;
+        static doubleToLongBits(value: number): number;
+        /**
+         * @skip Here for shared implementation with Arrays.hashCode
+         */
+        static hashCode(d: number): number;
+        static isInfinite(x: number): boolean;
+        static isNaN(x: number): boolean;
+        static longBitsToDouble(bits: number): number;
+        static parseDouble(s: string): number;
+        static toString(b: number): string;
+        static valueOf$double(d: number): DoubleHelper;
+        static valueOf(s?: any): any;
+        constructor(s?: any);
+        byteValue(): number;
+        compareTo(b?: any): any;
+        doubleValue(): number;
+        static unsafeCast(instance: any): number;
+        equals(o: any): boolean;
+        floatValue(): number;
+        /**
+         * Performance caution: using Double objects as map keys is not recommended.
+         * Using double values as keys is generally a bad idea due to difficulty
+         * determining exact equality. In addition, there is no efficient JavaScript
+         * equivalent of <code>doubleToIntBits</code>. As a result, this method
+         * computes a hash code by truncating the whole number portion of the
+         * double, which may lead to poor performance for certain value sets if
+         * Doubles are used as keys in a {@link java.util.HashMap}.
+         */
+        hashCode(): number;
+        intValue(): number;
+        isInfinite(): boolean;
+        isNaN(): boolean;
+        longValue(): number;
+        shortValue(): number;
+        toString(): string;
+    }
+    namespace DoubleHelper {
+        class PowersTable {
+            static powers: number[];
+            static powers_$LI$(): number[];
+            static invPowers: number[];
+            static invPowers_$LI$(): number[];
+        }
+    }
+}
+declare namespace java.sql {
+    /**
+     * An implementation of java.sql.Date. Derived from
+     * http://java.sun.com/j2se/1.5.0/docs/api/java/sql/Date.html
+     */
+    class Date extends java.util.Date {
+        static valueOf(s: string): Date;
+        constructor(year?: any, month?: any, day?: any);
+        getHours(): number;
+        getMinutes(): number;
+        getSeconds(): number;
+        setHours(i: number): void;
+        setMinutes(i: number): void;
+        setSeconds(i: number): void;
+    }
+}
+declare namespace java.util {
+    /**
+     * An interface to generate a series of elements, one at a time. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Enumeration.html">[Sun
      * docs]</a>
      *
-     * @param <E> enumeration type
+     * @param <E> the type being enumerated.
      */
-    abstract class EnumSet<E extends java.lang.Enum<E>> extends java.util.AbstractSet<E> {
-        static allOf<E extends java.lang.Enum<E>>(elementType: any): EnumSet<E>;
-        static complementOf<E extends java.lang.Enum<E>>(other: EnumSet<E>): EnumSet<E>;
-        static copyOf$java_util_Collection<E extends java.lang.Enum<E>>(c: java.util.Collection<E>): EnumSet<E>;
-        static copyOf<E extends java.lang.Enum<E>>(s?: any): any;
-        static noneOf<E extends java.lang.Enum<E>>(elementType: any): EnumSet<E>;
-        static of$java_lang_Enum<E extends java.lang.Enum<E>>(first: E): EnumSet<E>;
-        static of<E extends java.lang.Enum<E>>(first?: any, ...rest: any[]): any;
-        static range<E extends java.lang.Enum<E>>(from: E, to: E): EnumSet<E>;
-        /**
-         * Single implementation only.
-         */
-        constructor();
-        abstract clone(): EnumSet<E>;
-        abstract capacity(): number;
-    }
-    namespace EnumSet {
-        /**
-         * Implemented via sparse array since the set size is finite. Iteration takes
-         * linear time with respect to the set of the enum rather than the number of
-         * items in the set.
-         *
-         * Note: Implemented as a subclass instead of a concrete final EnumSet class.
-         * This is because declaring an EnumSet.add(E) causes hosted mode to bind to
-         * the tighter method rather than the bridge method; but the tighter method
-         * isn't available in the real JRE.
-         */
-        class EnumSetImpl<E extends java.lang.Enum<E>> extends java.util.EnumSet<E> {
-            /**
-             * All enums; reference to the class's copy; must not be modified.
-             */
-            all: E[];
-            /**
-             * Live enums in the set.
-             */
-            set: E[];
-            /**
-             * Count of enums in the set.
-             */
-            __size: number;
-            /**
-             * Constructs a set taking ownership of the specified set. The size must
-             * accurately reflect the number of non-null items in set.
-             */
-            constructor(all: E[], set: E[], size: number);
-            add(e?: any): any;
-            clone(): java.util.EnumSet<E>;
-            contains(o: any): boolean;
-            containsEnum(e: java.lang.Enum<any>): boolean;
-            iterator(): java.util.Iterator<E>;
-            remove(o: any): boolean;
-            removeEnum(e: java.lang.Enum<any>): boolean;
-            size(): number;
-            capacity(): number;
-        }
-        namespace EnumSetImpl {
-            class IteratorImpl implements java.util.Iterator<any> {
-                __parent: any;
-                forEachRemaining(consumer: (p1: any) => void): void;
-                i: number;
-                last: number;
-                constructor(__parent: any);
-                hasNext(): boolean;
-                next(): any;
-                remove(): void;
-                findNext(): void;
-            }
-        }
+    interface Enumeration<E> {
+        hasMoreElements(): boolean;
+        nextElement(): E;
     }
 }
 declare namespace java.util {
     /**
-     * A {@link java.util.Map} of {@link Enum}s. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/EnumMap.html">[Sun
-     * docs]</a>
-     *
-     * @param <K> key type
-     * @param <V> value type
+     * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/StringJoiner.html">
+     * the official Java API doc</a> for details.
      */
-    class EnumMap<K extends java.lang.Enum<K>, V> extends java.util.AbstractMap<K, V> {
-        private __keySet;
-        private __values;
-        constructor(type?: any);
-        clear(): void;
-        clone(): EnumMap<K, V>;
-        containsKey(key: any): boolean;
-        containsValue(value: any): boolean;
-        entrySet(): java.util.Set<java.util.Map.Entry<K, V>>;
-        get(k: any): V;
-        put(key?: any, value?: any): any;
-        remove(key: any): V;
-        size(): number;
-        /**
-         * Returns <code>key</code> as <code>K</code>. Only runtime checks that
-         * key is an Enum, not that it's the particular Enum K. Should only be called
-         * when you are sure <code>key</code> is of type <code>K</code>.
-         */
-        asKey(key: any): K;
-        asOrdinal(key: any): number;
-        init(type?: any): any;
-        init$java_util_EnumMap(m: EnumMap<K, any>): void;
-        set(ordinal: number, value: V): V;
-    }
-    namespace EnumMap {
-        class EntrySet extends java.util.AbstractSet<Map.Entry<any, any>> {
-            __parent: any;
-            clear(): void;
-            contains(o: any): boolean;
-            iterator(): java.util.Iterator<Map.Entry<any, any>>;
-            remove(entry: any): boolean;
-            size(): number;
-            constructor(__parent: any);
-        }
-        class EntrySetIterator implements java.util.Iterator<Map.Entry<any, any>> {
-            __parent: any;
-            forEachRemaining(consumer: (p1: any) => void): void;
-            it: java.util.Iterator<any>;
-            key: any;
-            hasNext(): boolean;
-            next(): Map.Entry<any, any>;
-            remove(): void;
-            constructor(__parent: any);
-        }
-        class MapEntry extends java.util.AbstractMapEntry<any, any> {
-            __parent: any;
-            key: any;
-            constructor(__parent: any, key: any);
-            getKey(): any;
-            getValue(): any;
-            setValue(value: any): any;
-        }
+    class StringJoiner {
+        private delimiter;
+        private prefix;
+        private suffix;
+        private builder;
+        private emptyValue;
+        constructor(delimiter: string, prefix?: string, suffix?: string);
+        add(newElement: string): StringJoiner;
+        length(): number;
+        merge(other: StringJoiner): StringJoiner;
+        setEmptyValue(emptyValue: string): StringJoiner;
+        toString(): string;
+        private initBuilderOrAddDelimiter();
     }
 }
-declare namespace java.util {
-    /**
-     * Implements a TreeMap using a red-black tree. This guarantees O(log n)
-     * performance on lookups, inserts, and deletes while maintaining linear
-     * in-order traversal time. Null keys and values are fully supported if the
-     * comparator supports them (the default comparator does not).
-     *
-     * @param <K> key type
-     * @param <V> value type
-     */
-    class TreeMap<K, V> extends java.util.AbstractNavigableMap<K, V> implements java.io.Serializable {
-        static SubMapType_All: TreeMap.SubMapType;
-        static SubMapType_All_$LI$(): TreeMap.SubMapType;
-        static SubMapType_Head: TreeMap.SubMapType;
-        static SubMapType_Head_$LI$(): TreeMap.SubMapType;
-        static SubMapType_Range: TreeMap.SubMapType;
-        static SubMapType_Range_$LI$(): TreeMap.SubMapType;
-        static SubMapType_Tail: TreeMap.SubMapType;
-        static SubMapType_Tail_$LI$(): TreeMap.SubMapType;
-        private static LEFT;
-        private static RIGHT;
-        static otherChild(child: number): number;
-        private cmp;
-        private exposeKeyType;
-        private exposeValueType;
-        private root;
-        private __size;
-        constructor(c?: any);
-        clear(): void;
-        comparator(): java.util.Comparator<any>;
-        entrySet(): java.util.Set<Map.Entry<K, V>>;
-        headMap(toKey?: any, inclusive?: any): any;
-        put(key?: any, value?: any): any;
-        put$java_lang_Object$java_lang_Object(key: K, value: V): V;
-        remove(k: any): V;
-        size(): number;
-        subMap(fromKey?: any, fromInclusive?: any, toKey?: any, toInclusive?: any): any;
-        tailMap(fromKey?: any, inclusive?: any): any;
-        /**
-         * Returns the first node which compares greater than the given key.
-         *
-         * @param key the key to search for
-         * @return the next node, or null if there is none
-         */
-        getNodeAfter(key: K, inclusive: boolean): TreeMap.Node<K, V>;
-        /**
-         * Returns the last node which is strictly less than the given key.
-         *
-         * @param key the key to search for
-         * @return the previous node, or null if there is none
-         */
-        getNodeBefore(key: K, inclusive: boolean): TreeMap.Node<K, V>;
-        /**
-         * Used for testing. Validate that the tree meets all red-black correctness
-         * requirements. These include:
-         *
-         * <pre>
-         * - root is black
-         * - no children of a red node may be red
-         * - the black height of every path through the three to a leaf is exactly the same
-         * </pre>
-         *
-         * @throws RuntimeException if any correctness errors are detected.
-         */
-        assertCorrectness$(): void;
-        descendingEntryIterator(): java.util.Iterator<Map.Entry<K, V>>;
-        entryIterator(): java.util.Iterator<Map.Entry<K, V>>;
-        /**
-         * Internal helper function for public {@link #assertCorrectness()}.
-         *
-         * @param tree the subtree to validate.
-         * @param isRed true if the parent of this node is red.
-         * @return the black height of this subtree.
-         * @throws RuntimeException if this RB-tree is not valid.
-         */
-        assertCorrectness(tree?: any, isRed?: any): any;
-        /**
-         * Finds an entry given a key and returns the node.
-         *
-         * @param key the search key
-         * @return the node matching the key or null
-         */
-        getEntry(key: K): Map.Entry<K, V>;
-        /**
-         * Returns the left-most node of the tree, or null if empty.
-         */
-        getFirstEntry(): Map.Entry<K, V>;
-        /**
-         * Returns the right-most node of the tree, or null if empty.
-         */
-        getLastEntry(): Map.Entry<K, V>;
-        getCeilingEntry(key: K): Map.Entry<K, V>;
-        getFloorEntry(key: K): Map.Entry<K, V>;
-        getHigherEntry(key: K): Map.Entry<K, V>;
-        getLowerEntry(key: K): Map.Entry<K, V>;
-        removeEntry(entry: Map.Entry<K, V>): boolean;
-        inOrderAdd(list: java.util.List<Map.Entry<K, V>>, type: TreeMap.SubMapType, current: TreeMap.Node<K, V>, fromKey: K, fromInclusive: boolean, toKey: K, toInclusive: boolean): void;
-        inRange(type: TreeMap.SubMapType, key: K, fromKey: K, fromInclusive: boolean, toKey: K, toInclusive: boolean): boolean;
-        /**
-         * Insert a node into a subtree, collecting state about the insertion.
-         *
-         * If the same key already exists, the value of the node is overwritten with
-         * the value from the new node instead.
-         *
-         * @param tree subtree to insert into
-         * @param newNode new node to insert
-         * @param state result of the insertion: state.found true if the key already
-         * existed in the tree state.value the old value if the key existed
-         * @return the new subtree root
-         */
-        insert(tree: TreeMap.Node<K, V>, newNode: TreeMap.Node<K, V>, state: TreeMap.State<V>): TreeMap.Node<K, V>;
-        /**
-         * Returns true if <code>node</code> is red. Note that null pointers are
-         * considered black.
-         */
-        isRed(node: TreeMap.Node<K, V>): boolean;
-        /**
-         * Returns true if <code>a</code> is greater than or equal to <code>b</code>.
-         */
-        larger(a: K, b: K, orEqual: boolean): boolean;
-        /**
-         * Returns true if <code>a</code> is less than or equal to <code>b</code>.
-         */
-        smaller(a: K, b: K, orEqual: boolean): boolean;
-        /**
-         * Remove a key from the tree, returning whether it was found and its value.
-         *
-         * @param key key to remove
-         * @param state return state, not null
-         * @return true if the value was found
-         */
-        removeWithState(key: K, state: TreeMap.State<V>): boolean;
-        /**
-         * replace 'node' with 'newNode' in the tree rooted at 'head'. Could have
-         * avoided this traversal if each node maintained a parent pointer.
-         */
-        replaceNode(head: TreeMap.Node<K, V>, node: TreeMap.Node<K, V>, newNode: TreeMap.Node<K, V>): void;
-        /**
-         * Perform a double rotation, first rotating the child which will become the
-         * root in the opposite direction, then rotating the root in the specified
-         * direction.
-         *
-         * <pre>
-         * A                                               F
-         * B   C    becomes (with rotateDirection=0)       A   C
-         * D E F G                                         B E   G
-         * D
-         * </pre>
-         *
-         * @param tree root of the subtree to rotate
-         * @param rotateDirection the direction to rotate: 0=left, 1=right
-         * @return the new root of the rotated subtree
-         */
-        rotateDouble(tree: TreeMap.Node<K, V>, rotateDirection: number): TreeMap.Node<K, V>;
-        /**
-         * Perform a single rotation, pushing the root of the subtree to the specified
-         * direction.
-         *
-         * <pre>
-         * A                                              B
-         * B   C     becomes (with rotateDirection=1)     D   A
-         * D E                                              E   C
-         * </pre>
-         *
-         * @param tree the root of the subtree to rotate
-         * @param rotateDirection the direction to rotate: 0=left rotation, 1=right
-         * @return the new root of the rotated subtree
-         */
-        rotateSingle(tree: TreeMap.Node<K, V>, rotateDirection: number): TreeMap.Node<K, V>;
-    }
-    namespace TreeMap {
-        /**
-         * Iterator for <code>descendingMap().entrySet()</code>.
-         */
-        class DescendingEntryIterator implements java.util.Iterator<Map.Entry<any, any>> {
-            __parent: any;
-            forEachRemaining(consumer: (p1: any) => void): void;
-            iter: java.util.ListIterator<Map.Entry<any, any>>;
-            last: Map.Entry<any, any>;
-            /**
-             * Create an iterator which may return only a restricted range.
-             *
-             * @param fromKey the first key to return in the iterator.
-             * @param toKey the upper bound of keys to return.
-             */
-            constructor(__parent: any, type?: TreeMap.SubMapType, fromKey?: any, fromInclusive?: boolean, toKey?: any, toInclusive?: boolean);
-            hasNext(): boolean;
-            next(): Map.Entry<any, any>;
-            remove(): void;
-        }
-        /**
-         * Iterator for <code>EntrySet</code>.
-         */
-        class EntryIterator implements java.util.Iterator<Map.Entry<any, any>> {
-            __parent: any;
-            forEachRemaining(consumer: (p1: any) => void): void;
-            iter: java.util.ListIterator<Map.Entry<any, any>>;
-            last: Map.Entry<any, any>;
-            /**
-             * Create an iterator which may return only a restricted range.
-             *
-             * @param fromKey the first key to return in the iterator.
-             * @param toKey the upper bound of keys to return.
-             */
-            constructor(__parent: any, type?: TreeMap.SubMapType, fromKey?: any, fromInclusive?: boolean, toKey?: any, toInclusive?: boolean);
-            hasNext(): boolean;
-            next(): Map.Entry<any, any>;
-            remove(): void;
-        }
-        class EntrySet extends java.util.AbstractNavigableMap.EntrySet {
-            __parent: any;
-            clear(): void;
-            constructor(__parent: any);
-        }
-        /**
-         * Tree node.
-         *
-         * @param <K> key type
-         * @param <V> value type
-         */
-        class Node<K, V> extends AbstractMap.SimpleEntry<K, V> {
-            child: TreeMap.Node<K, V>[];
-            isRed: boolean;
-            /**
-             * Create a node of the specified color.
-             *
-             * @param key
-             * @param value
-             * @param isRed true if this should be a red node, false for black
-             */
-            constructor(key: K, value: V, isRed?: boolean);
-        }
-        /**
-         * A state object which is passed down the tree for both insert and remove.
-         * All uses make use of the done flag to indicate when no further rebalancing
-         * of the tree is required. Remove methods use the found flag to indicate when
-         * the desired key has been found. value is used both to return the value of a
-         * removed node as well as to pass in a value which must match (used for
-         * entrySet().remove(entry)), and the matchValue flag is used to request this
-         * behavior.
-         *
-         * @param <V> value type
-         */
-        class State<V> {
-            done: boolean;
-            found: boolean;
-            matchValue: boolean;
-            value: V;
-            toString(): string;
-            constructor();
-        }
-        class SubMap extends java.util.AbstractNavigableMap<any, any> {
-            __parent: any;
-            fromInclusive: boolean;
-            fromKey: any;
-            toInclusive: boolean;
-            toKey: any;
-            type: TreeMap.SubMapType;
-            constructor(__parent: any, type: TreeMap.SubMapType, fromKey: any, fromInclusive: boolean, toKey: any, toInclusive: boolean);
-            comparator(): java.util.Comparator<any>;
-            entrySet(): java.util.Set<Map.Entry<any, any>>;
-            headMap(toKey?: any, toInclusive?: any): any;
-            isEmpty(): boolean;
-            put(key?: any, value?: any): any;
-            put$java_lang_Object$java_lang_Object(key: any, value: any): any;
-            remove(k: any): any;
-            size(): number;
-            subMap(newFromKey?: any, newFromInclusive?: any, newToKey?: any, newToInclusive?: any): any;
-            tailMap(fromKey?: any, fromInclusive?: any): any;
-            descendingEntryIterator(): java.util.Iterator<Map.Entry<any, any>>;
-            entryIterator(): java.util.Iterator<Map.Entry<any, any>>;
-            getEntry(key: any): Map.Entry<any, any>;
-            getFirstEntry(): Map.Entry<any, any>;
-            getLastEntry(): Map.Entry<any, any>;
-            getCeilingEntry(key: any): Map.Entry<any, any>;
-            getFloorEntry(key: any): Map.Entry<any, any>;
-            getHigherEntry(key: any): Map.Entry<any, any>;
-            getLowerEntry(key: any): Map.Entry<any, any>;
-            removeEntry(entry: Map.Entry<any, any>): boolean;
-            guardInRange(entry: Map.Entry<any, any>): Map.Entry<any, any>;
-            inRange(key: any): boolean;
-        }
-        namespace SubMap {
-            class SubMap$0 extends TreeMap.SubMap.EntrySet {
-                __parent: any;
-                isEmpty(): boolean;
-                constructor(__parent: any);
-            }
-        }
-        class SubMapType {
-            /**
-             * Returns true if this submap type uses a from-key.
-             */
-            fromKeyValid(): boolean;
-            /**
-             * Returns true if this submap type uses a to-key.
-             */
-            toKeyValid(): boolean;
-        }
-        class SubMapTypeHead extends TreeMap.SubMapType {
-            toKeyValid(): boolean;
-        }
-        class SubMapTypeRange extends TreeMap.SubMapType {
-            fromKeyValid(): boolean;
-            toKeyValid(): boolean;
-        }
-        class SubMapTypeTail extends TreeMap.SubMapType {
-            fromKeyValid(): boolean;
-        }
-    }
-}
-declare namespace java.util {
-    /**
-     * Skeletal implementation of the Queue interface. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/AbstractQueue.html">[Sun
-     * docs]</a>
-     *
-     * @param <E> element type.
-     */
-    abstract class AbstractQueue<E> extends java.util.AbstractCollection<E> implements java.util.Queue<E> {
-        forEach(action: (p1: any) => void): void;
-        abstract iterator(): any;
-        abstract size(): any;
-        constructor();
-        add(e?: any): any;
-        add$java_lang_Object(o: E): boolean;
-        addAll(c: java.util.Collection<any>): boolean;
-        clear(): void;
-        element(): E;
-        abstract offer(o: E): boolean;
-        abstract peek(): E;
-        abstract poll(): E;
-        remove$(): E;
+declare namespace java.awt.event {
+    interface ActionListener {
+        actionPerformed(ae: java.awt.event.ActionEvent): any;
     }
 }
 declare namespace java.security {
@@ -3501,511 +3789,59 @@ declare namespace java.security {
         }
     }
 }
-declare namespace java.util.logging {
-    /**
-     * An emulation of the java.util.logging.LogRecord class. See
-     * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/LogRecord.html">
-     * The Java API doc for details</a>
-     */
-    class LogRecord implements java.io.Serializable {
-        private level;
-        private loggerName;
-        private msg;
-        private thrown;
-        private millis;
-        constructor(level?: any, msg?: any);
-        getLevel(): java.util.logging.Level;
-        getLoggerName(): string;
-        getMessage(): string;
-        getMillis(): number;
-        getThrown(): Error;
-        setLevel(newLevel: java.util.logging.Level): void;
-        setLoggerName(newName: string): void;
-        setMessage(newMessage: string): void;
-        setMillis(newMillis: number): void;
-        setThrown(newThrown: Error): void;
-    }
-}
-declare namespace javaemul.internal {
-    class JreHelper {
-        static LOG10E: number;
-        static LOG10E_$LI$(): number;
-    }
-}
-declare var Map: Object;
 declare namespace java.util {
     /**
-     * A simple wrapper around JavaScript Map for key type is string.
-     */
-    class InternalStringMap<K, V> implements java.lang.Iterable<Map.Entry<K, V>> {
-        forEach(action: (p1: any) => void): void;
-        private backingMap;
-        private host;
-        private size;
-        /**
-         * A mod count to track 'value' replacements in map to ensure that the
-         * 'value' that we have in the iterator entry is guaranteed to be still
-         * correct. This is to optimize for the common scenario where the values are
-         * not modified during iterations where the entries are never stale.
-         */
-        private valueMod;
-        constructor(host: java.util.AbstractHashMap<K, V>);
-        contains(key: string): boolean;
-        get(key: string): V;
-        put(key: string, value: V): V;
-        remove(key: string): V;
-        getSize(): number;
-        iterator(): java.util.Iterator<Map.Entry<K, V>>;
-        private newMapEntry(entry, lastValueMod);
-        private static toNullIfUndefined<T>(value);
-    }
-    namespace InternalStringMap {
-        class InternalStringMap$0 implements java.util.Iterator<java.util.Map.Entry<any, any>> {
-            __parent: any;
-            forEachRemaining(consumer: (p1: any) => void): void;
-            entries: java.util.InternalJsMap.Iterator<any>;
-            current: java.util.InternalJsMap.IteratorEntry<any>;
-            last: java.util.InternalJsMap.IteratorEntry<any>;
-            hasNext(): boolean;
-            next(): Map.Entry<any, any>;
-            remove(): void;
-            constructor(__parent: any);
-        }
-        class InternalStringMap$1 extends java.util.AbstractMapEntry<any, any> {
-            private entry;
-            private lastValueMod;
-            __parent: any;
-            getKey(): any;
-            getValue(): any;
-            setValue(object: any): any;
-            constructor(__parent: any, entry: any, lastValueMod: any);
-        }
-    }
-}
-declare namespace java.util {
-    /**
-     * A collection designed for holding elements prior to processing. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Queue.html">[Sun
-     * docs]</a>
-     *
-     * @param <E> element type.
-     */
-    interface Queue<E> extends java.util.Collection<E> {
-        element(): E;
-        offer(o: E): boolean;
-        peek(): E;
-        poll(): E;
-        remove(index?: any): any;
-    }
-}
-declare namespace java.lang {
-    /**
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CloneNotSupportedException.html">
+     * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/OptionalInt.html">
      * the official Java API doc</a> for details.
      */
-    class CloneNotSupportedException extends Error {
-        constructor(msg?: any);
-    }
-}
-declare namespace java.util.logging {
-    /**
-     * An emulation of the java.util.logging.LogManager class. See
-     * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/LogManger.html">
-     * The Java API doc for details</a>
-     */
-    class LogManager {
-        private static singleton;
-        static getLogManager(): LogManager;
-        private loggerMap;
-        constructor();
-        addLogger(logger: java.util.logging.Logger): boolean;
-        getLogger(name: string): java.util.logging.Logger;
-        getLoggerNames(): java.util.Enumeration<string>;
-        /**
-         * Helper function to add a logger when we have already determined that it
-         * does not exist.  When we add a logger, we recursively add all of it's
-         * ancestors. Since loggers do not get removed, logger creation is cheap,
-         * and there are not usually too many loggers in an ancestry chain,
-         * this is a simple way to ensure that the parent/child relationships are
-         * always correctly set up.
-         */
-        private addLoggerAndEnsureParents(logger);
-        private addLoggerImpl(logger);
-        /**
-         * Helper function to create a logger if it does not exist since the public
-         * APIs for getLogger and addLogger make it difficult to use those functions
-         * for this.
-         */
-        ensureLogger(name: string): java.util.logging.Logger;
-    }
-}
-declare namespace java.io {
-    /**
-     * Provides a series of utilities to be reused between IO classes.
-     *
-     * TODO(chehayeb): move these checks to InternalPreconditions.
-     */
-    class IOUtils {
-        /**
-         * Validates the offset and the byte count for the given array of bytes.
-         *
-         * @param buffer Array of bytes to be checked.
-         * @param byteOffset Starting offset in the array.
-         * @param byteCount Total number of bytes to be accessed.
-         * @throws NullPointerException if the given reference to the buffer is null.
-         * @throws IndexOutOfBoundsException if {@code byteOffset} is negative, {@code byteCount} is
-         * negative or their sum exceeds the buffer length.
-         */
-        static checkOffsetAndCount(buffer?: any, byteOffset?: any, byteCount?: any): any;
-        /**
-         * Validates the offset and the byte count for the given array of characters.
-         *
-         * @param buffer Array of characters to be checked.
-         * @param charOffset Starting offset in the array.
-         * @param charCount Total number of characters to be accessed.
-         * @throws NullPointerException if the given reference to the buffer is null.
-         * @throws IndexOutOfBoundsException if {@code charOffset} is negative, {@code charCount} is
-         * negative or their sum exceeds the buffer length.
-         */
-        static checkOffsetAndCount$char_A$int$int(buffer: string[], charOffset: number, charCount: number): void;
-        /**
-         * Validates the offset and the byte count for the given array length.
-         *
-         * @param length Length of the array to be checked.
-         * @param offset Starting offset in the array.
-         * @param count Total number of elements to be accessed.
-         * @throws IndexOutOfBoundsException if {@code offset} is negative, {@code count} is negative or
-         * their sum exceeds the given {@code length}.
-         */
-        private static checkOffsetAndCount$int$int$int(length, offset, count);
-        constructor();
-    }
-}
-declare namespace java.security {
-    /**
-     * A generic security exception type - <a
-     * href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/GeneralSecurityException.html">[Sun's
-     * docs]</a>.
-     */
-    class GeneralSecurityException extends Error {
-        constructor(msg?: any);
-    }
-}
-declare namespace java.security {
-    /**
-     * A generic security exception type - <a
-     * href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/DigestException.html">[Sun's
-     * docs]</a>.
-     */
-    class DigestException extends java.security.GeneralSecurityException {
-        constructor(msg?: any);
-    }
-}
-declare namespace java.security {
-    /**
-     * A generic security exception type - <a
-     * href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/NoSuchAlgorithmException.html">[Sun's
-     * docs]</a>.
-     */
-    class NoSuchAlgorithmException extends java.security.GeneralSecurityException {
-        constructor(msg?: any);
-    }
-}
-declare namespace java.io {
-    /**
-     * Provided for interoperability; RPC treats this interface synonymously with
-     * {@link com.google.gwt.user.client.rpc.IsSerializable IsSerializable}.
-     * The Java serialization protocol is explicitly not supported.
-     */
-    interface Serializable {
+    class OptionalInt {
+        static empty(): OptionalInt;
+        static of(value: number): OptionalInt;
+        private static EMPTY;
+        static EMPTY_$LI$(): OptionalInt;
+        private ref;
+        private present;
+        constructor(value?: any);
+        isPresent(): boolean;
+        getAsInt(): number;
+        ifPresent(consumer: (number) => void): void;
+        orElse(other: number): number;
+        orElseGet(other: () => number): number;
+        orElseThrow<X extends Error>(exceptionSupplier: () => X): number;
+        equals(obj: any): boolean;
+        hashCode(): number;
+        toString(): string;
     }
 }
 declare namespace java.util {
     /**
-     * Represents a date and time.
-     */
-    class Date implements java.lang.Cloneable, java.lang.Comparable<Date>, java.io.Serializable {
-        static parse(s: string): number;
-        static UTC(year: number, month: number, date: number, hrs: number, min: number, sec: number): number;
-        /**
-         * Ensure a number is displayed with two digits.
-         *
-         * @return a two-character base 10 representation of the number
-         */
-        static padTwo(number: number): string;
-        /**
-         * JavaScript Date instance.
-         */
-        private jsdate;
-        static jsdateClass(): Object;
-        constructor(year?: any, month?: any, date?: any, hrs?: any, min?: any, sec?: any);
-        after(ts?: any): any;
-        after$java_util_Date(when: Date): boolean;
-        before(ts?: any): any;
-        before$java_util_Date(when: Date): boolean;
-        clone(): any;
-        compareTo(other?: any): any;
-        equals(ts?: any): any;
-        equals$java_lang_Object(obj: any): boolean;
-        getDate(): number;
-        getDay(): number;
-        getHours(): number;
-        getMinutes(): number;
-        getMonth(): number;
-        getSeconds(): number;
-        getTime(): number;
-        getTimezoneOffset(): number;
-        getYear(): number;
-        hashCode(): number;
-        setDate(date: number): void;
-        setHours(hours: number): void;
-        setMinutes(minutes: number): void;
-        setMonth(month: number): void;
-        setSeconds(seconds: number): void;
-        setTime(time: number): void;
-        setYear(year: number): void;
-        toGMTString(): string;
-        toLocaleString(): string;
-        toString(): string;
-        private static ONE_HOUR_IN_MILLISECONDS;
-        static ONE_HOUR_IN_MILLISECONDS_$LI$(): number;
-        /**
-         * Detects if the requested time falls into a non-existent time range due to
-         * local time advancing into daylight savings time or is ambiguous due to
-         * going out of daylight savings. If so, adjust accordingly.
-         */
-        fixDaylightSavings(requestedHours: number): void;
-    }
-    namespace Date {
-        /**
-         * Encapsulates static data to avoid Date itself having a static
-         * initializer.
-         */
-        class StringData {
-            static DAYS: string[];
-            static DAYS_$LI$(): string[];
-            static MONTHS: string[];
-            static MONTHS_$LI$(): string[];
-        }
-    }
-}
-declare namespace java.lang {
-    /**
-     * Indicates failure to cast one type into another.
-     */
-    class ClassCastException extends Error {
-        constructor(message?: any);
-    }
-}
-declare namespace java.sql {
-    /**
-     * An implementation of java.sql.Time. Derived from
-     * http://java.sun.com/j2se/1.5.0/docs/api/java/sql/Time.html
-     */
-    class Time extends java.util.Date {
-        static valueOf(s: string): Time;
-        constructor(hour?: any, minute?: any, second?: any);
-        getDate(): number;
-        getDay(): number;
-        getMonth(): number;
-        getYear(): number;
-        setDate(i: number): void;
-        setMonth(i: number): void;
-        setYear(i: number): void;
-    }
-}
-declare namespace java.lang {
-    /**
-     * Indicates that a class implements <code>clone()</code>.
-     */
-    interface Cloneable {
-    }
-}
-declare namespace java.awt.event {
-    class ActionEvent {
-        private source;
-        private actionCommand;
-        constructor(source: any, actionCommand: string);
-        getSource(): any;
-        getActionCommand(): string;
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * Wraps a native <code>char</code> as an object.
-     *
-     * TODO(jat): many of the classification methods implemented here are not
-     * correct in that they only handle ASCII characters, and many other methods are
-     * not currently implemented. I think the proper approach is to introduce * a
-     * deferred binding parameter which substitutes an implementation using a
-     * fully-correct Unicode character database, at the expense of additional data
-     * being downloaded. That way developers that need the functionality can get it
-     * without those who don't need it paying for it.
-     *
-     * <pre>
-     * The following methods are still not implemented -- most would require Unicode
-     * character db to be useful:
-     * - digit / is* / to*(int codePoint)
-     * - isDefined(char)
-     * - isIdentifierIgnorable(char)
-     * - isJavaIdentifierPart(char)
-     * - isJavaIdentifierStart(char)
-     * - isJavaLetter(char) -- deprecated, so probably not
-     * - isJavaLetterOrDigit(char) -- deprecated, so probably not
-     * - isISOControl(char)
-     * - isMirrored(char)
-     * - isSpaceChar(char)
-     * - isTitleCase(char)
-     * - isUnicodeIdentifierPart(char)
-     * - isUnicodeIdentifierStart(char)
-     * - getDirectionality(*)
-     * - getNumericValue(*)
-     * - getType(*)
-     * - reverseBytes(char) -- any use for this at all in the browser?
-     * - toTitleCase(*)
-     * - all the category constants for classification
-     *
-     * The following do not properly handle characters outside of ASCII:
-     * - digit(char c, int radix)
-     * - isDigit(char c)
-     * - isLetter(char c)
-     * - isLetterOrDigit(char c)
-     * - isLowerCase(char c)
-     * - isUpperCase(char c)
-     * </pre>
-     */
-    class CharacterHelper implements java.lang.Comparable<CharacterHelper>, java.io.Serializable {
-        static TYPE: typeof String;
-        static TYPE_$LI$(): typeof String;
-        static MIN_RADIX: number;
-        static MAX_RADIX: number;
-        static MIN_VALUE: string;
-        static MAX_VALUE: string;
-        static MIN_SURROGATE: string;
-        static MAX_SURROGATE: string;
-        static MIN_LOW_SURROGATE: string;
-        static MAX_LOW_SURROGATE: string;
-        static MIN_HIGH_SURROGATE: string;
-        static MAX_HIGH_SURROGATE: string;
-        static MIN_SUPPLEMENTARY_CODE_POINT: number;
-        static MIN_CODE_POINT: number;
-        static MAX_CODE_POINT: number;
-        static SIZE: number;
-        static charCount(codePoint: number): number;
-        static codePointAt$char_A$int(a: string[], index: number): number;
-        static codePointAt(a?: any, index?: any, limit?: any): any;
-        static codePointAt$java_lang_CharSequence$int(seq: string, index: number): number;
-        static codePointBefore$char_A$int(a: string[], index: number): number;
-        static codePointBefore(a?: any, index?: any, start?: any): any;
-        static codePointBefore$java_lang_CharSequence$int(cs: string, index: number): number;
-        static codePointCount(a?: any, offset?: any, count?: any): any;
-        static codePointCount$java_lang_CharSequence$int$int(seq: string, beginIndex: number, endIndex: number): number;
-        static compare(x: string, y: string): number;
-        static digit(c: string, radix: number): number;
-        static getNumericValue(ch: string): number;
-        static forDigit(digit?: any, radix?: any): any;
-        /**
-         * @skip
-         *
-         * public for shared implementation with Arrays.hashCode
-         */
-        static hashCode(c: string): number;
-        static isDigit(c: string): boolean;
-        static digitRegex(): RegExp;
-        static isHighSurrogate(ch: string): boolean;
-        static isLetter(c: string): boolean;
-        static leterRegex(): RegExp;
-        static isLetterOrDigit(c: string): boolean;
-        static leterOrDigitRegex(): RegExp;
-        static isLowerCase(c: string): boolean;
-        static isLowSurrogate(ch: string): boolean;
-        /**
-         * Deprecated - see isWhitespace(char).
-         */
-        static isSpace(c: string): boolean;
-        static isWhitespace(ch?: any): any;
-        static isWhitespace$int(codePoint: number): boolean;
-        static whitespaceRegex(): RegExp;
-        static isSupplementaryCodePoint(codePoint: number): boolean;
-        static isSurrogatePair(highSurrogate: string, lowSurrogate: string): boolean;
-        static isUpperCase(c: string): boolean;
-        static isValidCodePoint(codePoint: number): boolean;
-        static offsetByCodePoints(a?: any, start?: any, count?: any, index?: any, codePointOffset?: any): any;
-        static offsetByCodePoints$java_lang_CharSequence$int$int(seq: string, index: number, codePointOffset: number): number;
-        static toChars$int(codePoint: number): string[];
-        static toChars(codePoint?: any, dst?: any, dstIndex?: any): any;
-        static toCodePoint(highSurrogate: string, lowSurrogate: string): number;
-        static toLowerCase(c: string): string;
-        static toString(x: string): string;
-        static toUpperCase(c: string): string;
-        static valueOf(c: string): CharacterHelper;
-        static codePointAt$java_lang_CharSequence$int$int(cs: string, index: number, limit: number): number;
-        static codePointBefore$java_lang_CharSequence$int$int(cs: string, index: number, start: number): number;
-        /**
-         * Shared implementation with {@link LongHelper#toString}.
-         *
-         * @skip
-         */
-        static forDigit$int(digit: number): string;
-        /**
-         * Computes the high surrogate character of the UTF16 representation of a
-         * non-BMP code point. See {@link getLowSurrogate}.
-         *
-         * @param codePoint
-         * requested codePoint, required to be >=
-         * MIN_SUPPLEMENTARY_CODE_POINT
-         * @return high surrogate character
-         */
-        static getHighSurrogate(codePoint: number): string;
-        /**
-         * Computes the low surrogate character of the UTF16 representation of a
-         * non-BMP code point. See {@link getHighSurrogate}.
-         *
-         * @param codePoint
-         * requested codePoint, required to be >=
-         * MIN_SUPPLEMENTARY_CODE_POINT
-         * @return low surrogate character
-         */
-        static getLowSurrogate(codePoint: number): string;
-        private value;
-        constructor(value: string);
-        charValue(): string;
-        compareTo(c?: any): any;
-        equals(o: any): boolean;
-        hashCode(): number;
-        toString(): string;
-    }
-    namespace CharacterHelper {
-        /**
-         * Use nested class to avoid clinit on outer.
-         */
-        class BoxedValues {
-            static boxedValues: javaemul.internal.CharacterHelper[];
-            static boxedValues_$LI$(): javaemul.internal.CharacterHelper[];
-        }
-    }
-}
-declare namespace java.util {
-    /**
-     * Uses Java 1.5 ListIterator for documentation. The methods hasNext, next, and
-     * remove are repeated to allow the specialized ListIterator documentation to be
-     * associated with them. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/ListIterator.html">[Sun
+     * Skeletal implementation of the Collection interface. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/AbstractCollection.html">[Sun
      * docs]</a>
      *
-     * @param <E> element type.
+     * @param <E> the element type.
      */
-    interface ListIterator<E> extends java.util.Iterator<E> {
-        add(o: E): any;
-        hasNext(): boolean;
-        hasPrevious(): boolean;
-        next(): E;
-        nextIndex(): number;
-        previous(): E;
-        previousIndex(): number;
-        remove(): any;
-        set(o: E): any;
+    abstract class AbstractCollection<E> implements java.util.Collection<E> {
+        forEach(action: (p1: any) => void): void;
+        constructor();
+        add(index?: any, element?: any): any;
+        add$java_lang_Object(o: E): boolean;
+        addAll(index?: any, c?: any): any;
+        addAll$java_util_Collection(c: java.util.Collection<any>): boolean;
+        clear(): void;
+        contains(o: any): boolean;
+        containsAll(c: java.util.Collection<any>): boolean;
+        isEmpty(): boolean;
+        abstract iterator(): java.util.Iterator<E>;
+        remove(index?: any): any;
+        remove$java_lang_Object(o: any): boolean;
+        removeAll(c: java.util.Collection<any>): boolean;
+        retainAll(c: java.util.Collection<any>): boolean;
+        abstract size(): number;
+        toArray$(): any[];
+        toArray<T>(a?: any): any;
+        toString(): string;
+        private advanceToFind(o, remove);
     }
 }
 declare namespace java.util {
@@ -4028,7 +3864,7 @@ declare namespace java.util {
         equals(o: any): boolean;
         abstract get(index: number): E;
         hashCode(): number;
-        indexOf(o?: any, index?: any): any;
+        indexOf(elem?: any, index?: any): any;
         indexOf$java_lang_Object(toFind: any): number;
         iterator(): java.util.Iterator<E>;
         lastIndexOf(o?: any, index?: any): any;
@@ -4075,581 +3911,6 @@ declare namespace java.util {
             remove(index?: any): any;
             set(index: number, element: E): E;
             size(): number;
-        }
-    }
-}
-declare namespace java.util {
-    /**
-     * Resizeable array implementation of the List interface. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/ArrayList.html">[Sun
-     * docs]</a>
-     *
-     * <p>
-     * This implementation differs from JDK 1.5 <code>ArrayList</code> in terms of
-     * capacity management. There is no speed advantage to pre-allocating array
-     * sizes in JavaScript, so this implementation does not include any of the
-     * capacity and "growth increment" concepts in the standard ArrayList class.
-     * Although <code>ArrayList(int)</code> accepts a value for the initial
-     * capacity of the array, this constructor simply delegates to
-     * <code>ArrayList()</code>. It is only present for compatibility with JDK
-     * 1.5's API.
-     * </p>
-     *
-     * @param <E> the element type.
-     */
-    class ArrayList<E> extends java.util.AbstractList<E> implements java.util.List<E>, java.lang.Cloneable, java.util.RandomAccess, java.io.Serializable {
-        forEach(action: (p1: any) => void): void;
-        /**
-         * This field holds a JavaScript array.
-         */
-        private array;
-        /**
-         * Ensures that RPC will consider type parameter E to be exposed. It will be
-         * pruned by dead code elimination.
-         */
-        private exposeElement;
-        constructor(c?: any);
-        add$java_lang_Object(o: E): boolean;
-        add(index?: any, o?: any): any;
-        addAll$java_util_Collection(c: java.util.Collection<any>): boolean;
-        addAll(index?: any, c?: any): any;
-        clear(): void;
-        clone(): any;
-        contains(o: any): boolean;
-        ensureCapacity(ignored: number): void;
-        get(index: number): E;
-        indexOf$java_lang_Object(o: any): number;
-        iterator(): java.util.Iterator<E>;
-        isEmpty(): boolean;
-        lastIndexOf$java_lang_Object(o: any): number;
-        remove(index?: any): any;
-        remove$java_lang_Object(o: any): boolean;
-        set(index: number, o: E): E;
-        size(): number;
-        toArray$(): any[];
-        toArray<T>(out?: any): any;
-        trimToSize(): void;
-        removeRange(fromIndex: number, endIndex: number): void;
-        /**
-         * Used by Vector.
-         */
-        indexOf(o?: any, index?: any): any;
-        /**
-         * Used by Vector.
-         */
-        lastIndexOf(o?: any, index?: any): any;
-        setSize(newSize: number): void;
-    }
-    namespace ArrayList {
-        class ArrayList$0 implements java.util.Iterator<any> {
-            __parent: any;
-            forEachRemaining(consumer: (p1: any) => void): void;
-            i: number;
-            last: number;
-            hasNext(): boolean;
-            next(): any;
-            remove(): void;
-            constructor(__parent: any);
-        }
-    }
-}
-declare namespace java.util {
-    /**
-     * Utility methods that operate on collections. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collections.html">[Sun
-     * docs]</a>
-     */
-    class Collections {
-        static EMPTY_LIST: java.util.List<any>;
-        static EMPTY_LIST_$LI$(): java.util.List<any>;
-        static EMPTY_MAP: java.util.Map<any, any>;
-        static EMPTY_MAP_$LI$(): java.util.Map<any, any>;
-        static EMPTY_SET: java.util.Set<any>;
-        static EMPTY_SET_$LI$(): java.util.Set<any>;
-        static addAll<T>(c: java.util.Collection<any>, ...a: T[]): boolean;
-        static asLifoQueue<T>(deque: java.util.Deque<T>): java.util.Queue<T>;
-        /**
-         * Perform a binary search on a sorted List, using a user-specified comparison
-         * function.
-         *
-         * <p>
-         * Note: The GWT implementation differs from the JDK implementation in that it
-         * does not do an iterator-based binary search for Lists that do not implement
-         * RandomAccess.
-         * </p>
-         *
-         * @param sortedList List to search
-         * @param key value to search for
-         * @param comparator comparision function, <code>null</code> indicates
-         * <i>natural ordering</i> should be used.
-         * @return the index of an element with a matching value, or a negative number
-         * which is the index of the next larger value (or just past the end
-         * of the array if the searched value is larger than all elements in
-         * the array) minus 1 (to ensure error returns are negative)
-         * @throws ClassCastException if <code>key</code> and
-         * <code>sortedList</code>'s elements cannot be compared by
-         * <code>comparator</code>.
-         */
-        static binarySearch<T>(sortedList: java.util.List<any>, key: T, comparator?: java.util.Comparator<any>): number;
-        static copy<T>(dest: java.util.List<any>, src: java.util.List<any>): void;
-        static disjoint(c1: java.util.Collection<any>, c2: java.util.Collection<any>): boolean;
-        static emptyIterator<T>(): java.util.Iterator<T>;
-        static emptyList<T>(): java.util.List<T>;
-        static emptyListIterator<T>(): java.util.ListIterator<T>;
-        static emptyMap<K, V>(): java.util.Map<K, V>;
-        static emptySet<T>(): java.util.Set<T>;
-        static enumeration<T>(c: java.util.Collection<T>): java.util.Enumeration<T>;
-        static fill<T>(list: java.util.List<any>, obj: T): void;
-        static frequency(c: java.util.Collection<any>, o: any): number;
-        static list<T>(e: java.util.Enumeration<T>): java.util.ArrayList<T>;
-        static max<T>(coll: java.util.Collection<any>, comp?: java.util.Comparator<any>): T;
-        static min<T>(coll: java.util.Collection<any>, comp?: java.util.Comparator<any>): T;
-        static newSetFromMap<E>(map: java.util.Map<E, boolean>): java.util.Set<E>;
-        static nCopies<T>(n: number, o: T): java.util.List<T>;
-        static replaceAll<T>(list: java.util.List<T>, oldVal: T, newVal: T): boolean;
-        static reverse<T>(l: java.util.List<T>): void;
-        static reverseOrder$<T>(): java.util.Comparator<T>;
-        static reverseOrder<T>(cmp?: any): any;
-        /**
-         * Rotates the elements in {@code list} by the distance {@code dist}
-         * <p>
-         * e.g. for a given list with elements [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], calling rotate(list, 3) or
-         * rotate(list, -7) would modify the list to look like this: [8, 9, 0, 1, 2, 3, 4, 5, 6, 7]
-         *
-         * @param lst the list whose elements are to be rotated.
-         * @param dist is the distance the list is rotated. This can be any valid integer. Negative values
-         * rotate the list backwards.
-         */
-        static rotate(lst: java.util.List<any>, dist: number): void;
-        static shuffle<T>(list: java.util.List<T>, rnd?: java.util.Random): void;
-        static singleton<T>(o: T): java.util.Set<T>;
-        static singletonList<T>(o: T): java.util.List<T>;
-        static singletonMap<K, V>(key: K, value: V): java.util.Map<K, V>;
-        static sort<T>(target: java.util.List<T>, c?: java.util.Comparator<any>): void;
-        static swap(list: java.util.List<any>, i: number, j: number): void;
-        static unmodifiableCollection<T>(coll: java.util.Collection<any>): java.util.Collection<T>;
-        static unmodifiableList<T>(list: java.util.List<any>): java.util.List<T>;
-        static unmodifiableMap<K, V>(map: java.util.Map<any, any>): java.util.Map<K, V>;
-        static unmodifiableSet<T>(set: java.util.Set<any>): java.util.Set<T>;
-        static unmodifiableSortedMap<K, V>(map: java.util.SortedMap<K, any>): java.util.SortedMap<K, V>;
-        static unmodifiableSortedSet<T>(set: java.util.SortedSet<any>): java.util.SortedSet<T>;
-        /**
-         * Computes hash code without preserving elements order (e.g. HashSet).
-         */
-        static hashCode$java_lang_Iterable<T>(collection: java.lang.Iterable<T>): number;
-        /**
-         * Computes hash code preserving collection order (e.g. ArrayList).
-         */
-        static hashCode<T>(list?: any): any;
-        /**
-         * Replace contents of a list from an array.
-         *
-         * @param <T> element type
-         * @param target list to replace contents from an array
-         * @param x an Object array which can contain only T instances
-         */
-        static replaceContents<T>(target: java.util.List<T>, x: any[]): void;
-        static swapImpl<T>(list?: any, i?: any, j?: any): any;
-        static swapImpl$java_lang_Object_A$int$int(a: any[], i: number, j: number): void;
-    }
-    namespace Collections {
-        class LifoQueue<E> extends java.util.AbstractQueue<E> implements java.io.Serializable {
-            deque: java.util.Deque<E>;
-            constructor(deque: java.util.Deque<E>);
-            iterator(): java.util.Iterator<E>;
-            offer(e: E): boolean;
-            peek(): E;
-            poll(): E;
-            size(): number;
-        }
-        class EmptyList extends java.util.AbstractList<any> implements java.util.RandomAccess, java.io.Serializable {
-            contains(object: any): boolean;
-            get(location: number): any;
-            iterator(): java.util.Iterator<any>;
-            listIterator$(): java.util.ListIterator<any>;
-            size(): number;
-            constructor();
-        }
-        class EmptyListIterator implements java.util.ListIterator<any> {
-            forEachRemaining(consumer: (p1: any) => void): void;
-            static INSTANCE: Collections.EmptyListIterator;
-            static INSTANCE_$LI$(): Collections.EmptyListIterator;
-            add(o: any): void;
-            hasNext(): boolean;
-            hasPrevious(): boolean;
-            next(): any;
-            nextIndex(): number;
-            previous(): any;
-            previousIndex(): number;
-            remove(): void;
-            set(o: any): void;
-            constructor();
-        }
-        class EmptySet extends java.util.AbstractSet<any> implements java.io.Serializable {
-            contains(object: any): boolean;
-            iterator(): java.util.Iterator<any>;
-            size(): number;
-            constructor();
-        }
-        class EmptyMap extends java.util.AbstractMap<any, any> implements java.io.Serializable {
-            containsKey(key: any): boolean;
-            containsValue(value: any): boolean;
-            entrySet(): java.util.Set<any>;
-            get(key: any): any;
-            keySet(): java.util.Set<any>;
-            size(): number;
-            values(): java.util.Collection<any>;
-            constructor();
-        }
-        class ReverseComparator implements java.util.Comparator<java.lang.Comparable<any>> {
-            static INSTANCE: Collections.ReverseComparator;
-            static INSTANCE_$LI$(): Collections.ReverseComparator;
-            compare(o1?: any, o2?: any): any;
-            constructor();
-        }
-        class SetFromMap<E> extends java.util.AbstractSet<E> implements java.io.Serializable {
-            backingMap: java.util.Map<E, boolean>;
-            __keySet: java.util.Set<E>;
-            constructor(map: java.util.Map<E, boolean>);
-            add(index?: any, element?: any): any;
-            add$java_lang_Object(e: E): boolean;
-            clear(): void;
-            contains(o: any): boolean;
-            equals(o: any): boolean;
-            hashCode(): number;
-            iterator(): java.util.Iterator<E>;
-            remove(index?: any): any;
-            remove$java_lang_Object(o: any): boolean;
-            size(): number;
-            toString(): string;
-            /**
-             * Lazy initialize keySet to avoid NPE after deserialization.
-             */
-            keySet(): java.util.Set<E>;
-        }
-        class SingletonList<E> extends java.util.AbstractList<E> implements java.io.Serializable {
-            element: E;
-            constructor(element: E);
-            contains(item: any): boolean;
-            get(index: number): E;
-            size(): number;
-        }
-        class UnmodifiableCollection<T> implements java.util.Collection<T> {
-            forEach(action: (p1: any) => void): void;
-            coll: java.util.Collection<any>;
-            constructor(coll: java.util.Collection<any>);
-            add(index?: any, element?: any): any;
-            add$java_lang_Object(o: T): boolean;
-            addAll(index?: any, c?: any): any;
-            addAll$java_util_Collection(c: java.util.Collection<any>): boolean;
-            clear(): void;
-            contains(o: any): boolean;
-            containsAll(c: java.util.Collection<any>): boolean;
-            isEmpty(): boolean;
-            iterator(): java.util.Iterator<T>;
-            remove(index?: any): any;
-            remove$java_lang_Object(o: any): boolean;
-            removeAll(c: java.util.Collection<any>): boolean;
-            retainAll(c: java.util.Collection<any>): boolean;
-            size(): number;
-            toArray$(): any[];
-            toArray<E>(a?: any): any;
-            toString(): string;
-        }
-        class UnmodifiableList<T> extends Collections.UnmodifiableCollection<T> implements java.util.List<T> {
-            forEach(action: (p1: any) => void): void;
-            list: java.util.List<any>;
-            constructor(list: java.util.List<any>);
-            add(index?: any, element?: any): any;
-            addAll(index?: any, c?: any): any;
-            equals(o: any): boolean;
-            get(index: number): T;
-            hashCode(): number;
-            indexOf(o?: any, index?: any): any;
-            indexOf$java_lang_Object(o: any): number;
-            isEmpty(): boolean;
-            lastIndexOf(o?: any, index?: any): any;
-            lastIndexOf$java_lang_Object(o: any): number;
-            listIterator$(): java.util.ListIterator<T>;
-            listIterator(from?: any): any;
-            remove(index?: any): any;
-            set(index: number, element: T): T;
-            subList(fromIndex: number, toIndex: number): java.util.List<T>;
-        }
-        class UnmodifiableRandomAccessList<T> extends Collections.UnmodifiableList<T> implements java.util.RandomAccess {
-            constructor(list: java.util.List<any>);
-        }
-        class UnmodifiableSet<T> extends Collections.UnmodifiableCollection<T> implements java.util.Set<T> {
-            forEach(action: (p1: any) => void): void;
-            constructor(set: java.util.Set<any>);
-            equals(o: any): boolean;
-            hashCode(): number;
-        }
-        class UnmodifiableMap<K, V> implements java.util.Map<K, V> {
-            __entrySet: Collections.UnmodifiableSet<java.util.Map.Entry<K, V>>;
-            __keySet: Collections.UnmodifiableSet<K>;
-            map: java.util.Map<any, any>;
-            __values: Collections.UnmodifiableCollection<V>;
-            constructor(map: java.util.Map<any, any>);
-            clear(): void;
-            containsKey(key: any): boolean;
-            containsValue(val: any): boolean;
-            entrySet(): java.util.Set<java.util.Map.Entry<K, V>>;
-            equals(o: any): boolean;
-            get(key: any): V;
-            hashCode(): number;
-            isEmpty(): boolean;
-            keySet(): java.util.Set<K>;
-            put(key?: any, value?: any): any;
-            put$java_lang_Object$java_lang_Object(key: K, value: V): V;
-            putAll(t: java.util.Map<any, any>): void;
-            remove(key: any): V;
-            size(): number;
-            toString(): string;
-            values(): java.util.Collection<V>;
-        }
-        namespace UnmodifiableMap {
-            class UnmodifiableEntrySet<K, V> extends Collections.UnmodifiableSet<java.util.Map.Entry<K, V>> {
-                constructor(s: java.util.Set<any>);
-                contains(o: any): boolean;
-                containsAll(o: java.util.Collection<any>): boolean;
-                iterator(): java.util.Iterator<java.util.Map.Entry<K, V>>;
-                toArray$(): any[];
-                toArray<T>(a?: any): any;
-                /**
-                 * Wrap an array of Map.Entries as UnmodifiableEntries.
-                 *
-                 * @param array array to wrap
-                 * @param size number of entries to wrap
-                 */
-                wrap(array: any[], size: number): void;
-            }
-            namespace UnmodifiableEntrySet {
-                class UnmodifiableEntry<K, V> implements java.util.Map.Entry<K, V> {
-                    entry: java.util.Map.Entry<any, any>;
-                    constructor(entry: java.util.Map.Entry<any, any>);
-                    equals(o: any): boolean;
-                    getKey(): K;
-                    getValue(): V;
-                    hashCode(): number;
-                    setValue(value: V): V;
-                    toString(): string;
-                }
-                class UnmodifiableEntrySet$0 implements java.util.Iterator<java.util.Map.Entry<any, any>> {
-                    private it;
-                    __parent: any;
-                    forEachRemaining(consumer: (p1: any) => void): void;
-                    hasNext(): boolean;
-                    next(): java.util.Map.Entry<any, any>;
-                    remove(): void;
-                    constructor(__parent: any, it: any);
-                }
-            }
-        }
-        class UnmodifiableSortedMap<K, V> extends Collections.UnmodifiableMap<K, V> implements java.util.SortedMap<K, V> {
-            sortedMap: java.util.SortedMap<K, any>;
-            constructor(sortedMap: java.util.SortedMap<K, any>);
-            comparator(): java.util.Comparator<any>;
-            equals(o: any): boolean;
-            firstKey(): K;
-            hashCode(): number;
-            headMap(toKey?: any, inclusive?: any): any;
-            headMap$java_lang_Object(toKey: K): java.util.SortedMap<K, V>;
-            lastKey(): K;
-            subMap(fromKey?: any, fromInclusive?: any, toKey?: any, toInclusive?: any): any;
-            subMap$java_lang_Object$java_lang_Object(fromKey: K, toKey: K): java.util.SortedMap<K, V>;
-            tailMap(fromKey?: any, inclusive?: any): any;
-            tailMap$java_lang_Object(fromKey: K): java.util.SortedMap<K, V>;
-        }
-        class UnmodifiableSortedSet<E> extends Collections.UnmodifiableSet<E> implements java.util.SortedSet<E> {
-            forEach(action: (p1: any) => void): void;
-            sortedSet: java.util.SortedSet<E>;
-            constructor(sortedSet: java.util.SortedSet<any>);
-            comparator(): java.util.Comparator<any>;
-            equals(o: any): boolean;
-            first(): E;
-            hashCode(): number;
-            headSet(toElement?: any, inclusive?: any): any;
-            headSet$java_lang_Object(toElement: E): java.util.SortedSet<E>;
-            last(): E;
-            subSet(fromElement?: any, fromInclusive?: any, toElement?: any, toInclusive?: any): any;
-            subSet$java_lang_Object$java_lang_Object(fromElement: E, toElement: E): java.util.SortedSet<E>;
-            tailSet(fromElement?: any, inclusive?: any): any;
-            tailSet$java_lang_Object(fromElement: E): java.util.SortedSet<E>;
-        }
-        class UnmodifiableCollectionIterator<T> implements java.util.Iterator<T> {
-            forEachRemaining(consumer: (p1: any) => void): void;
-            it: java.util.Iterator<any>;
-            constructor(it: java.util.Iterator<any>);
-            hasNext(): boolean;
-            next(): T;
-            remove(): void;
-        }
-        class UnmodifiableListIterator<T> extends Collections.UnmodifiableCollectionIterator<T> implements java.util.ListIterator<T> {
-            forEachRemaining(consumer: (p1: any) => void): void;
-            lit: java.util.ListIterator<any>;
-            constructor(lit: java.util.ListIterator<any>);
-            add(o: T): void;
-            hasPrevious(): boolean;
-            nextIndex(): number;
-            previous(): T;
-            previousIndex(): number;
-            set(o: T): void;
-        }
-        class RandomHolder {
-            static rnd: java.util.Random;
-            static rnd_$LI$(): java.util.Random;
-        }
-        class Collections$0<T> implements java.util.Enumeration<T> {
-            private it;
-            hasMoreElements(): boolean;
-            nextElement(): T;
-            constructor(it: any);
-        }
-        class Collections$1<T> implements java.util.Comparator<T> {
-            private cmp;
-            compare(t1: T, t2: T): number;
-            constructor(cmp: any);
-        }
-    }
-}
-declare namespace java.util {
-    /**
-     * Skeletal implementation of the List interface. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/AbstractSequentialList.html">[Sun
-     * docs]</a>
-     *
-     * @param <E> element type.
-     */
-    abstract class AbstractSequentialList<E> extends java.util.AbstractList<E> {
-        constructor();
-        add(index?: any, element?: any): any;
-        addAll(index?: any, c?: any): any;
-        get(index: number): E;
-        iterator(): java.util.Iterator<E>;
-        listIterator(index?: any): any;
-        remove(index?: any): any;
-        set(index: number, element: E): E;
-        abstract size(): number;
-    }
-}
-declare namespace java.util {
-    /**
-     * Linked list implementation.
-     * <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/LinkedList.html">
-     * [Sun docs]</a>
-     *
-     * @param <E>
-     * element type.
-     */
-    class LinkedList<E> extends java.util.AbstractSequentialList<E> implements java.lang.Cloneable, java.util.List<E>, java.util.Deque<E>, java.io.Serializable {
-        forEach(action: (p1: any) => void): void;
-        /**
-         * Ensures that RPC will consider type parameter E to be exposed. It will be
-         * pruned by dead code elimination.
-         */
-        private exposeElement;
-        /**
-         * Header node - header.next is the first element of the list.
-         */
-        private header;
-        /**
-         * Tail node - tail.prev is the last element of the list.
-         */
-        private tail;
-        /**
-         * Number of nodes currently present in the list.
-         */
-        private __size;
-        constructor(c?: any);
-        add$java_lang_Object(o: E): boolean;
-        addFirst(o: E): void;
-        addLast(o: E): void;
-        clear(): void;
-        reset(): void;
-        clone(): any;
-        descendingIterator(): java.util.Iterator<E>;
-        element(): E;
-        getFirst(): E;
-        getLast(): E;
-        listIterator(index?: any): any;
-        offer(o: E): boolean;
-        offerFirst(e: E): boolean;
-        offerLast(e: E): boolean;
-        peek(): E;
-        peekFirst(): E;
-        peekLast(): E;
-        poll(): E;
-        pollFirst(): E;
-        pollLast(): E;
-        pop(): E;
-        push(e: E): void;
-        remove$(): E;
-        removeFirst(): E;
-        removeFirstOccurrence(o: any): boolean;
-        removeLast(): E;
-        removeLastOccurrence(o: any): boolean;
-        size(): number;
-        addNode(o: E, prev: LinkedList.Node<E>, next: LinkedList.Node<E>): void;
-        removeNode(node: LinkedList.Node<E>): E;
-    }
-    namespace LinkedList {
-        class DescendingIteratorImpl implements java.util.Iterator<any> {
-            __parent: any;
-            forEachRemaining(consumer: (p1: any) => void): void;
-            itr: java.util.ListIterator<any>;
-            hasNext(): boolean;
-            next(): any;
-            remove(): void;
-            constructor(__parent: any);
-        }
-        /**
-         * Implementation of ListIterator for linked lists.
-         */
-        class ListIteratorImpl2 implements java.util.ListIterator<any> {
-            __parent: any;
-            forEachRemaining(consumer: (p1: any) => void): void;
-            /**
-             * The index to the current position.
-             */
-            currentIndex: number;
-            /**
-             * Current node, to be returned from next.
-             */
-            currentNode: LinkedList.Node<any>;
-            /**
-             * The last node returned from next/previous, or null if deleted or
-             * never called.
-             */
-            lastNode: LinkedList.Node<any>;
-            /**
-             * @param index
-             * from the beginning of the list (0 = first node)
-             * @param startNode
-             * the initial current node
-             */
-            constructor(__parent: any, index: number, startNode: LinkedList.Node<any>);
-            add(o: any): void;
-            hasNext(): boolean;
-            hasPrevious(): boolean;
-            next(): any;
-            nextIndex(): number;
-            previous(): any;
-            previousIndex(): number;
-            remove(): void;
-            set(o: any): void;
-        }
-        /**
-         * Internal class representing a doubly-linked list node.
-         *
-         * @param <E>
-         * element type
-         */
-        class Node<E> {
-            next: LinkedList.Node<E>;
-            prev: LinkedList.Node<E>;
-            value: E;
-            constructor();
         }
     }
 }
@@ -5012,1035 +4273,979 @@ declare namespace java.util {
 }
 declare namespace java.util {
     /**
-     * Maintains a last-in, first-out collection of objects. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Stack.html">[Sun
+     * Skeletal implementation of the Queue interface. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/AbstractQueue.html">[Sun
      * docs]</a>
      *
      * @param <E> element type.
      */
-    class Stack<E> extends java.util.Vector<E> {
-        clone(): any;
-        empty(): boolean;
-        peek(): E;
-        pop(): E;
-        push(o: E): E;
-        search(o: any): number;
+    abstract class AbstractQueue<E> extends java.util.AbstractCollection<E> implements java.util.Queue<E> {
+        forEach(action: (p1: any) => void): void;
+        abstract iterator(): any;
+        abstract size(): any;
         constructor();
-    }
-}
-declare namespace java.lang.annotation {
-    /**
-     * Indicates an attempt to access an element of an annotation that has changed
-     * since it was compiled or serialized <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/AnnotationTypeMismatchException.html">[Sun
-     * docs]</a>.
-     */
-    class AnnotationTypeMismatchException extends Error {
-        constructor();
-    }
-}
-declare namespace java.nio.charset {
-    /**
-     * GWT emulation of {@link UnsupportedCharsetException}.
-     */
-    class UnsupportedCharsetException extends java.lang.IllegalArgumentException {
-        private charsetName;
-        constructor(charsetName: string);
-        getCharsetName(): string;
-    }
-}
-declare namespace java.io {
-    /**
-     * An {@code AutoCloseable} whose close method may throw an {@link IOException}.
-     */
-    interface Closeable extends java.lang.AutoCloseable {
-        /**
-         * Closes the object and release any system resources it holds.
-         *
-         * <p>Although only the first call has any effect, it is safe to call close
-         * multiple times on the same object. This is more lenient than the
-         * overridden {@code AutoCloseable.close()}, which may be called at most
-         * once.
-         */
-        close(): any;
-    }
-}
-/**
- * Declares equals and hashCode on JavaScript objects, for compilation.
- */
-interface Object {
-    equals(object: Object): boolean;
-    hashCode(): number;
-}
-declare namespace java.awt.event {
-    interface ActionListener {
-        actionPerformed(ae: java.awt.event.ActionEvent): any;
-    }
-}
-declare namespace java.io {
-    /**
-     * A character encoding is not supported - <a
-     * href="http://java.sun.com/javase/6/docs/api/java/io/UnsupportedEncodingException.html">[Sun's
-     * docs]</a>.
-     */
-    class UnsupportedEncodingException extends java.io.IOException {
-        constructor(msg?: any);
-    }
-}
-declare namespace java.util.logging {
-    /**
-     * An emulation of the java.util.logging.Formatter class. See
-     * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/Formatter.html">
-     * The Java API doc for details</a>
-     */
-    abstract class Formatter {
-        abstract format(record: java.util.logging.LogRecord): string;
-        formatMessage(record: java.util.logging.LogRecord): string;
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * Abstract base class for numeric wrapper classes.
-     */
-    abstract class NumberHelper implements java.io.Serializable {
-        /**
-         * Stores a regular expression object to verify the format of float values.
-         */
-        private static floatRegex;
-        /**
-         * @skip
-         *
-         * This function will determine the radix that the string is expressed
-         * in based on the parsing rules defined in the Javadocs for
-         * Integer.decode() and invoke __parseAndValidateInt.
-         */
-        static __decodeAndValidateInt(s: string, lowerBound: number, upperBound: number): number;
-        static __decodeNumberString(s: string): NumberHelper.__Decode;
-        /**
-         * @skip
-         *
-         * This function contains common logic for parsing a String as a
-         * floating- point number and validating the range.
-         */
-        static __parseAndValidateDouble(s: string): number;
-        /**
-         * @skip
-         *
-         * This function contains common logic for parsing a String in a given
-         * radix and validating the result.
-         */
-        static __parseAndValidateInt(s: string, radix: number, lowerBound: number, upperBound: number): number;
-        /**
-         * @skip
-         *
-         * This function contains common logic for parsing a String in a given
-         * radix and validating the result.
-         */
-        static __parseAndValidateLong(s: string, radix: number): number;
-        /**
-         * @skip
-         *
-         * @param str
-         * @return {@code true} if the string matches the float format,
-         * {@code false} otherwise
-         */
-        static __isValidDouble(str: string): boolean;
-        static createFloatRegex(): RegExp;
-        byteValue(): number;
-        abstract doubleValue(): number;
-        abstract floatValue(): number;
-        abstract intValue(): number;
-        abstract longValue(): number;
-        shortValue(): number;
-        constructor();
-    }
-    namespace NumberHelper {
-        class __Decode {
-            payload: string;
-            radix: number;
-            constructor(radix: number, payload: string);
-        }
-        /**
-         * Use nested class to avoid clinit on outer.
-         */
-        class __ParseLong {
-            static __static_initialized: boolean;
-            static __static_initialize(): void;
-            /**
-             * The number of digits (excluding minus sign and leading zeros) to
-             * process at a time. The largest value expressible in maxDigits digits
-             * as well as the factor radix^maxDigits must be strictly less than
-             * 2^31.
-             */
-            static maxDigitsForRadix: number[];
-            static maxDigitsForRadix_$LI$(): number[];
-            /**
-             * A table of values radix*maxDigitsForRadix[radix].
-             */
-            static maxDigitsRadixPower: number[];
-            static maxDigitsRadixPower_$LI$(): number[];
-            /**
-             * The largest number of digits (excluding minus sign and leading zeros)
-             * that can fit into a long for a given radix between 2 and 36,
-             * inclusive.
-             */
-            static maxLengthForRadix: number[];
-            static maxLengthForRadix_$LI$(): number[];
-            /**
-             * A table of floor(MAX_VALUE / maxDigitsRadixPower).
-             */
-            static maxValueForRadix: number[];
-            static maxValueForRadix_$LI$(): number[];
-            static __static_initializer_0(): void;
-        }
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * Wraps native <code>byte</code> as an object.
-     */
-    class ByteHelper extends javaemul.internal.NumberHelper implements java.lang.Comparable<ByteHelper> {
-        static MIN_VALUE: number;
-        static MIN_VALUE_$LI$(): number;
-        static MAX_VALUE: number;
-        static MAX_VALUE_$LI$(): number;
-        static SIZE: number;
-        static TYPE: typeof Number;
-        static TYPE_$LI$(): typeof Number;
-        static compare(x: number, y: number): number;
-        static decode(s: string): ByteHelper;
-        /**
-         * @skip
-         *
-         * Here for shared implementation with Arrays.hashCode
-         */
-        static hashCode(b: number): number;
-        static parseByte(s: string, radix?: number): number;
-        static toString(b: number): string;
-        static valueOf$byte(b: number): ByteHelper;
-        static valueOf$java_lang_String(s: string): ByteHelper;
-        static valueOf(s?: any, radix?: any): any;
-        private value;
-        constructor(s?: any);
-        byteValue(): number;
-        compareTo(b?: any): any;
-        doubleValue(): number;
-        equals(o: any): boolean;
-        floatValue(): number;
-        hashCode(): number;
-        intValue(): number;
-        longValue(): number;
-        shortValue(): number;
-        toString(): string;
-    }
-    namespace ByteHelper {
-        /**
-         * Use nested class to avoid clinit on outer.
-         */
-        class BoxedValues {
-            static boxedValues: javaemul.internal.ByteHelper[];
-            static boxedValues_$LI$(): javaemul.internal.ByteHelper[];
-        }
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * Wraps a primitive <code>long</code> as an object.
-     */
-    class LongHelper extends javaemul.internal.NumberHelper implements java.lang.Comparable<LongHelper> {
-        static MAX_VALUE: number;
-        static MIN_VALUE: number;
-        static SIZE: number;
-        static bitCount(i: number): number;
-        static compare(x: number, y: number): number;
-        static decode(s: string): LongHelper;
-        /**
-         * @skip Here for shared implementation with Arrays.hashCode
-         */
-        static hashCode(l: number): number;
-        static highestOneBit(i: number): number;
-        static lowestOneBit(i: number): number;
-        static numberOfLeadingZeros(i: number): number;
-        static numberOfTrailingZeros(i: number): number;
-        static parseLong(s: string, radix?: number): number;
-        static reverse(i: number): number;
-        static reverseBytes(i: number): number;
-        static rotateLeft(i: number, distance: number): number;
-        static rotateRight(i: number, distance: number): number;
-        static signum(i: number): number;
-        static toBinaryString(value: number): string;
-        static toHexString(value: number): string;
-        static toOctalString(value: number): string;
-        static toString$long(value: number): string;
-        static toString(value?: any, intRadix?: any): any;
-        static valueOf$long(i: number): LongHelper;
-        static valueOf$java_lang_String(s: string): LongHelper;
-        static valueOf(s?: any, radix?: any): any;
-        static toPowerOfTwoUnsignedString(value: number, shift: number): string;
-        private value;
-        constructor(s?: any);
-        byteValue(): number;
-        compareTo(b?: any): any;
-        doubleValue(): number;
-        equals(o: any): boolean;
-        floatValue(): number;
-        hashCode(): number;
-        intValue(): number;
-        longValue(): number;
-        shortValue(): number;
-        toString(): string;
-    }
-    namespace LongHelper {
-        /**
-         * Use nested class to avoid clinit on outer.
-         */
-        class BoxedValues {
-            static boxedValues: javaemul.internal.LongHelper[];
-            static boxedValues_$LI$(): javaemul.internal.LongHelper[];
-        }
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * Wraps a primitive <code>short</code> as an object.
-     */
-    class ShortHelper extends javaemul.internal.NumberHelper implements java.lang.Comparable<ShortHelper> {
-        static MIN_VALUE: number;
-        static MIN_VALUE_$LI$(): number;
-        static MAX_VALUE: number;
-        static MAX_VALUE_$LI$(): number;
-        static SIZE: number;
-        static TYPE: typeof Number;
-        static TYPE_$LI$(): typeof Number;
-        static compare(x: number, y: number): number;
-        static decode(s: string): ShortHelper;
-        /**
-         * @skip Here for shared implementation with Arrays.hashCode
-         */
-        static hashCode(s: number): number;
-        static parseShort(s: string, radix?: number): number;
-        static reverseBytes(s: number): number;
-        static toString(b: number): string;
-        static valueOf$short(s: number): ShortHelper;
-        static valueOf$java_lang_String(s: string): ShortHelper;
-        static valueOf(s?: any, radix?: any): any;
-        private value;
-        constructor(s?: any);
-        byteValue(): number;
-        compareTo(b?: any): any;
-        doubleValue(): number;
-        equals(o: any): boolean;
-        floatValue(): number;
-        hashCode(): number;
-        intValue(): number;
-        longValue(): number;
-        shortValue(): number;
-        toString(): string;
-    }
-    namespace ShortHelper {
-        /**
-         * Use nested class to avoid clinit on outer.
-         */
-        class BoxedValues {
-            static boxedValues: javaemul.internal.ShortHelper[];
-            static boxedValues_$LI$(): javaemul.internal.ShortHelper[];
-        }
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * Wraps a primitive <code>int</code> as an object.
-     */
-    class IntegerHelper extends javaemul.internal.NumberHelper implements java.lang.Comparable<IntegerHelper> {
-        static MAX_VALUE: number;
-        static MIN_VALUE: number;
-        static SIZE: number;
-        static bitCount(x: number): number;
-        static compare(x: number, y: number): number;
-        static decode(s: string): IntegerHelper;
-        /**
-         * @skip
-         *
-         * Here for shared implementation with Arrays.hashCode
-         */
-        static hashCode(i: number): number;
-        static highestOneBit(i: number): number;
-        static lowestOneBit(i: number): number;
-        static numberOfLeadingZeros(i: number): number;
-        static numberOfTrailingZeros(i: number): number;
-        static parseInt(s: string, radix?: number): number;
-        static reverse(i: number): number;
-        static reverseBytes(i: number): number;
-        static rotateLeft(i: number, distance: number): number;
-        static rotateRight(i: number, distance: number): number;
-        static signum(i: number): number;
-        static toBinaryString(value: number): string;
-        static toHexString(value: number): string;
-        static toOctalString(value: number): string;
-        static toString$int(value: number): string;
-        static toString(value?: any, radix?: any): any;
-        static valueOf$int(i: number): IntegerHelper;
-        static valueOf$java_lang_String(s: string): IntegerHelper;
-        static valueOf(s?: any, radix?: any): any;
-        static toRadixString(value: number, radix: number): string;
-        static toUnsignedRadixString(value: number, radix: number): string;
-        private value;
-        constructor(s?: any);
-        byteValue(): number;
-        compareTo(b?: any): any;
-        doubleValue(): number;
-        equals(o: any): boolean;
-        floatValue(): number;
-        hashCode(): number;
-        intValue(): number;
-        longValue(): number;
-        shortValue(): number;
-        toString(): string;
-    }
-    namespace IntegerHelper {
-        /**
-         * Use nested class to avoid clinit on outer.
-         */
-        class BoxedValues {
-            static boxedValues: javaemul.internal.IntegerHelper[];
-            static boxedValues_$LI$(): javaemul.internal.IntegerHelper[];
-        }
-        /**
-         * Use nested class to avoid clinit on outer.
-         */
-        class ReverseNibbles {
-            /**
-             * A fast-lookup of the reversed bits of all the nibbles 0-15. Used to
-             * implement {@link #reverse(int)}.
-             */
-            static reverseNibbles: number[];
-            static reverseNibbles_$LI$(): number[];
-        }
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * Wraps a primitive <code>double</code> as an object.
-     */
-    class DoubleHelper extends javaemul.internal.NumberHelper implements java.lang.Comparable<DoubleHelper> {
-        static MAX_VALUE: number;
-        static MIN_VALUE: number;
-        static MIN_NORMAL: number;
-        static MAX_EXPONENT: number;
-        static MIN_EXPONENT: number;
-        static NaN: number;
-        static NaN_$LI$(): number;
-        static NEGATIVE_INFINITY: number;
-        static NEGATIVE_INFINITY_$LI$(): number;
-        static POSITIVE_INFINITY: number;
-        static POSITIVE_INFINITY_$LI$(): number;
-        static SIZE: number;
-        static POWER_512: number;
-        static POWER_MINUS_512: number;
-        static POWER_256: number;
-        static POWER_MINUS_256: number;
-        static POWER_128: number;
-        static POWER_MINUS_128: number;
-        static POWER_64: number;
-        static POWER_MINUS_64: number;
-        static POWER_52: number;
-        static POWER_MINUS_52: number;
-        static POWER_32: number;
-        static POWER_MINUS_32: number;
-        static POWER_31: number;
-        static POWER_20: number;
-        static POWER_MINUS_20: number;
-        static POWER_16: number;
-        static POWER_MINUS_16: number;
-        static POWER_8: number;
-        static POWER_MINUS_8: number;
-        static POWER_4: number;
-        static POWER_MINUS_4: number;
-        static POWER_2: number;
-        static POWER_MINUS_2: number;
-        static POWER_1: number;
-        static POWER_MINUS_1: number;
-        static POWER_MINUS_1022: number;
-        static compare(x: number, y: number): number;
-        static doubleToLongBits(value: number): number;
-        /**
-         * @skip Here for shared implementation with Arrays.hashCode
-         */
-        static hashCode(d: number): number;
-        static isInfinite(x: number): boolean;
-        static isNaN(x: number): boolean;
-        static longBitsToDouble(bits: number): number;
-        static parseDouble(s: string): number;
-        static toString(b: number): string;
-        static valueOf$double(d: number): DoubleHelper;
-        static valueOf(s?: any): any;
-        constructor(s?: any);
-        byteValue(): number;
-        compareTo(b?: any): any;
-        doubleValue(): number;
-        static unsafeCast(instance: any): number;
-        equals(o: any): boolean;
-        floatValue(): number;
-        /**
-         * Performance caution: using Double objects as map keys is not recommended.
-         * Using double values as keys is generally a bad idea due to difficulty
-         * determining exact equality. In addition, there is no efficient JavaScript
-         * equivalent of <code>doubleToIntBits</code>. As a result, this method
-         * computes a hash code by truncating the whole number portion of the
-         * double, which may lead to poor performance for certain value sets if
-         * Doubles are used as keys in a {@link java.util.HashMap}.
-         */
-        hashCode(): number;
-        intValue(): number;
-        isInfinite(): boolean;
-        isNaN(): boolean;
-        longValue(): number;
-        shortValue(): number;
-        toString(): string;
-    }
-    namespace DoubleHelper {
-        class PowersTable {
-            static powers: number[];
-            static powers_$LI$(): number[];
-            static invPowers: number[];
-            static invPowers_$LI$(): number[];
-        }
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * Wraps a primitive <code>float</code> as an object.
-     */
-    class FloatHelper extends javaemul.internal.NumberHelper implements java.lang.Comparable<FloatHelper> {
-        static MAX_VALUE: number;
-        static MIN_VALUE: number;
-        static MAX_EXPONENT: number;
-        static MIN_EXPONENT: number;
-        static MIN_NORMAL: number;
-        static NaN: number;
-        static NaN_$LI$(): number;
-        static NEGATIVE_INFINITY: number;
-        static NEGATIVE_INFINITY_$LI$(): number;
-        static POSITIVE_INFINITY: number;
-        static POSITIVE_INFINITY_$LI$(): number;
-        static SIZE: number;
-        private static POWER_31_INT;
-        static compare(x: number, y: number): number;
-        static floatToIntBits(value: number): number;
-        /**
-         * @skip Here for shared implementation with Arrays.hashCode.
-         * @param f
-         * @return hash value of float (currently just truncated to int)
-         */
-        static hashCode(f: number): number;
-        static intBitsToFloat(bits: number): number;
-        static isInfinite(x: number): boolean;
-        static isNaN(x: number): boolean;
-        static parseFloat(s: string): number;
-        static toString(b: number): string;
-        static valueOf$float(f: number): FloatHelper;
-        static valueOf(s?: any): any;
-        private value;
-        constructor(s?: any);
-        byteValue(): number;
-        compareTo(b?: any): any;
-        doubleValue(): number;
-        equals(o: any): boolean;
-        floatValue(): number;
-        /**
-         * Performance caution: using Float objects as map keys is not recommended.
-         * Using floating point values as keys is generally a bad idea due to
-         * difficulty determining exact equality. In addition, there is no efficient
-         * JavaScript equivalent of <code>floatToIntBits</code>. As a result, this
-         * method computes a hash code by truncating the whole number portion of the
-         * float, which may lead to poor performance for certain value sets if
-         * Floats are used as keys in a {@link java.util.HashMap}.
-         */
-        hashCode(): number;
-        intValue(): number;
-        isInfinite(): boolean;
-        isNaN(): boolean;
-        longValue(): number;
-        shortValue(): number;
-        toString(): string;
-    }
-}
-declare namespace java.lang.annotation {
-    /**
-     * Enumerates annotation retention policies <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/RetentionPolicy.html">[Sun
-     * docs]</a>.
-     */
-    enum RetentionPolicy {
-        CLASS = 0,
-        RUNTIME = 1,
-        SOURCE = 2,
-    }
-}
-declare namespace java.lang.annotation {
-    /**
-     * Annotation which indicates an annotation type is automatically inherited <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/Inherited.html">[Sun
-     * docs]</a>.
-     */
-    interface Inherited {
-    }
-}
-declare namespace java.lang {
-    /**
-     * A program element annotated &#64;Deprecated is one that programmers are
-     * discouraged from using, typically because it is dangerous, or because a
-     * better alternative exists. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Deprecated.html">[Sun
-     * docs]</a>
-     */
-    interface Deprecated {
-    }
-}
-declare namespace java.awt {
-    interface Layout extends java.awt.HTMLComponent {
-        add(component: java.awt.HTMLComponent): any;
-    }
-}
-declare namespace java.lang {
-    /**
-     * Encapsulates an action for later execution. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Runnable.html">[Sun
-     * docs]</a>
-     *
-     * <p>
-     * This interface is provided only for JRE compatibility. GWT does not support
-     * multithreading.
-     * </p>
-     */
-    interface Runnable {
-        run(): any;
-    }
-}
-declare namespace java.util {
-    /**
-     * A map with ordering. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/SortedMap.html">[Sun
-     * docs]</a>
-     *
-     * @param <K> key type.
-     * @param <V> value type.
-     */
-    interface SortedMap<K, V> extends java.util.Map<K, V> {
-        comparator(): java.util.Comparator<any>;
-        firstKey(): K;
-        headMap(toKey?: any, inclusive?: any): any;
-        lastKey(): K;
-        subMap(fromKey?: any, fromInclusive?: any, toKey?: any, toInclusive?: any): any;
-        tailMap(fromKey?: any, inclusive?: any): any;
-    }
-}
-declare namespace java.io {
-    /**
-     * Wraps an existing {@link OutputStream} and performs some transformation on
-     * the output data while it is being written. Transformations can be anything
-     * from a simple byte-wise filtering output data to an on-the-fly compression or
-     * decompression of the underlying stream. Output streams that wrap another
-     * output stream and provide some additional functionality on top of it usually
-     * inherit from this class.
-     *
-     * @see FilterOutputStream
-     */
-    class FilterOutputStream extends java.io.OutputStream {
-        /**
-         * The target output stream for this filter stream.
-         */
-        out: java.io.OutputStream;
-        /**
-         * Constructs a new {@code FilterOutputStream} with {@code out} as its
-         * target stream.
-         *
-         * @param out
-         * the target stream that this stream writes to.
-         */
-        constructor(out: java.io.OutputStream);
-        /**
-         * Closes this stream. This implementation closes the target stream.
-         *
-         * @throws IOException
-         * if an error occurs attempting to close this stream.
-         */
-        close(): void;
-        /**
-         * Ensures that all pending data is sent out to the target stream. This
-         * implementation flushes the target stream.
-         *
-         * @throws IOException
-         * if an error occurs attempting to flush this stream.
-         */
-        flush(): void;
-        /**
-         * Writes {@code count} bytes from the byte array {@code buffer} starting at
-         * {@code offset} to the target stream.
-         *
-         * @param buffer
-         * the buffer to write.
-         * @param offset
-         * the index of the first byte in {@code buffer} to write.
-         * @param length
-         * the number of bytes in {@code buffer} to write.
-         * @throws IndexOutOfBoundsException
-         * if {@code offset < 0} or {@code count < 0}, or if
-         * {@code offset + count} is bigger than the length of
-         * {@code buffer}.
-         * @throws IOException
-         * if an I/O error occurs while writing to this stream.
-         */
-        write(buffer?: any, offset?: any, length?: any): any;
-        /**
-         * Writes one byte to the target stream. Only the low order byte of the
-         * integer {@code oneByte} is written.
-         *
-         * @param oneByte
-         * the byte to be written.
-         * @throws IOException
-         * if an I/O error occurs while writing to this stream.
-         */
-        write$int(oneByte: number): void;
-    }
-}
-declare namespace java.io {
-    /**
-     * @skip
-     */
-    class PrintStream extends java.io.FilterOutputStream {
-        constructor(out: java.io.OutputStream);
-        print$boolean(x: boolean): void;
-        print$char(x: string): void;
-        print(x?: any): any;
-        print$double(x: number): void;
-        print$float(x: number): void;
-        print$int(x: number): void;
-        print$long(x: number): void;
-        print$java_lang_Object(x: any): void;
-        print$java_lang_String(s: string): void;
-        println$(): void;
-        println$boolean(x: boolean): void;
-        println$char(x: string): void;
-        println(x?: any): any;
-        println$double(x: number): void;
-        println$float(x: number): void;
-        println$int(x: number): void;
-        println$long(x: number): void;
-        println$java_lang_Object(x: any): void;
-        println$java_lang_String(s: string): void;
-    }
-}
-declare namespace java.lang {
-    /**
-     * General-purpose low-level utility methods. GWT only supports a limited subset
-     * of these methods due to browser limitations. Only the documented methods are
-     * available.
-     */
-    class System {
-        /**
-         * Does nothing in web mode. To get output in web mode, subclass PrintStream
-         * and call {@link #setErr(PrintStream)}.
-         */
-        static err: java.io.PrintStream;
-        static err_$LI$(): java.io.PrintStream;
-        /**
-         * Does nothing in web mode. To get output in web mode, subclass
-         * {@link PrintStream} and call {@link #setOut(PrintStream)}.
-         */
-        static out: java.io.PrintStream;
-        static out_$LI$(): java.io.PrintStream;
-        static arraycopy(src: any, srcOfs: number, dest: any, destOfs: number, len: number): void;
-        static currentTimeMillis(): number;
-        /**
-         * Has no effect; just here for source compatibility.
-         *
-         * @skip
-         */
-        static gc(): void;
-        /**
-         * The compiler replaces getProperty by the actual value of the property.
-         */
-        static getProperty$java_lang_String(key: string): string;
-        /**
-         * The compiler replaces getProperty by the actual value of the property.
-         */
-        static getProperty(key?: any, def?: any): any;
-        static identityHashCode(o: any): number;
-        static setErr(err: java.io.PrintStream): void;
-        static setOut(out: java.io.PrintStream): void;
-        private static arrayTypeMatch(srcComp, destComp);
-    }
-}
-declare namespace java.util {
-    /**
-     * A helper to detect concurrent modifications to collections. This is implemented as a helper
-     * utility so that we could remove the checks easily by a flag.
-     */
-    class ConcurrentModificationDetector {
-        private static API_CHECK;
-        static API_CHECK_$LI$(): boolean;
-        private static MOD_COUNT_PROPERTY;
-        static structureChanged(map: any): void;
-        static recordLastKnownStructure(host: any, iterator: java.util.Iterator<any>): void;
-        static checkStructuralChange(host: any, iterator: java.util.Iterator<any>): void;
-    }
-}
-declare namespace javaemul.internal {
-    /**
-     * A utility class that provides utility functions to do precondition checks inside GWT-SDK.
-     */
-    class InternalPreconditions {
-        private static CHECKED_MODE;
-        static CHECKED_MODE_$LI$(): boolean;
-        private static TYPE_CHECK;
-        static TYPE_CHECK_$LI$(): boolean;
-        private static API_CHECK;
-        static API_CHECK_$LI$(): boolean;
-        private static BOUND_CHECK;
-        static BOUND_CHECK_$LI$(): boolean;
-        static checkType(expression: boolean): void;
-        static checkCriticalType(expression: boolean): void;
-        /**
-         * Ensures the truth of an expression that verifies array type.
-         */
-        static checkArrayType$boolean(expression: boolean): void;
-        static checkCriticalArrayType$boolean(expression: boolean): void;
-        /**
-         * Ensures the truth of an expression that verifies array type.
-         */
-        static checkArrayType(expression?: any, errorMessage?: any): any;
-        static checkCriticalArrayType(expression?: any, errorMessage?: any): any;
-        /**
-         * Ensures the truth of an expression involving existence of an element.
-         */
-        static checkElement$boolean(expression: boolean): void;
-        /**
-         * Ensures the truth of an expression involving existence of an element.
-         * <p>
-         * For cases where failing fast is pretty important and not failing early could cause bugs that
-         * are much harder to debug.
-         */
-        static checkCriticalElement$boolean(expression: boolean): void;
-        /**
-         * Ensures the truth of an expression involving existence of an element.
-         */
-        static checkElement(expression?: any, errorMessage?: any): any;
-        /**
-         * Ensures the truth of an expression involving existence of an element.
-         * <p>
-         * For cases where failing fast is pretty important and not failing early could cause bugs that
-         * are much harder to debug.
-         */
-        static checkCriticalElement(expression?: any, errorMessage?: any): any;
-        /**
-         * Ensures the truth of an expression involving one or more parameters to the calling method.
-         */
-        static checkArgument$boolean(expression: boolean): void;
-        /**
-         * Ensures the truth of an expression involving one or more parameters to the calling method.
-         * <p>
-         * For cases where failing fast is pretty important and not failing early could cause bugs that
-         * are much harder to debug.
-         */
-        static checkCriticalArgument$boolean(expression: boolean): void;
-        /**
-         * Ensures the truth of an expression involving one or more parameters to the calling method.
-         */
-        static checkArgument$boolean$java_lang_Object(expression: boolean, errorMessage: any): void;
-        /**
-         * Ensures the truth of an expression involving one or more parameters to the calling method.
-         * <p>
-         * For cases where failing fast is pretty important and not failing early could cause bugs that
-         * are much harder to debug.
-         */
-        static checkCriticalArgument$boolean$java_lang_Object(expression: boolean, errorMessage: any): void;
-        /**
-         * Ensures the truth of an expression involving one or more parameters to the calling method.
-         */
-        static checkArgument(expression?: any, errorMessageTemplate?: any, ...errorMessageArgs: any[]): any;
-        /**
-         * Ensures the truth of an expression involving one or more parameters to the calling method.
-         * <p>
-         * For cases where failing fast is pretty important and not failing early could cause bugs that
-         * are much harder to debug.
-         */
-        static checkCriticalArgument(expression?: any, errorMessageTemplate?: any, ...errorMessageArgs: any[]): any;
-        /**
-         * Ensures the truth of an expression involving the state of the calling instance, but not
-         * involving any parameters to the calling method.
-         *
-         * @param expression a boolean expression
-         * @throws IllegalStateException if {@code expression} is false
-         */
-        static checkState$boolean(expression: boolean): void;
-        /**
-         * Ensures the truth of an expression involving the state of the calling instance, but not
-         * involving any parameters to the calling method.
-         * <p>
-         * For cases where failing fast is pretty important and not failing early could cause bugs that
-         * are much harder to debug.
-         */
-        static checkCritcalState(expression: boolean): void;
-        /**
-         * Ensures the truth of an expression involving the state of the calling instance, but not
-         * involving any parameters to the calling method.
-         */
-        static checkState(expression?: any, errorMessage?: any): any;
-        /**
-         * Ensures the truth of an expression involving the state of the calling instance, but not
-         * involving any parameters to the calling method.
-         */
-        static checkCriticalState(expression: boolean, errorMessage: any): void;
-        /**
-         * Ensures that an object reference passed as a parameter to the calling method is not null.
-         */
-        static checkNotNull$java_lang_Object<T>(reference: T): T;
-        static checkCriticalNotNull$java_lang_Object<T>(reference: T): T;
-        /**
-         * Ensures that an object reference passed as a parameter to the calling method is not null.
-         */
-        static checkNotNull(reference?: any, errorMessage?: any): any;
-        static checkCriticalNotNull(reference?: any, errorMessage?: any): any;
-        /**
-         * Ensures that {@code size} specifies a valid array size (i.e. non-negative).
-         */
-        static checkArraySize(size: number): void;
-        static checkCriticalArraySize(size: number): void;
-        /**
-         * Ensures that {@code index} specifies a valid <i>element</i> in an array, list or string of size
-         * {@code size}. An element index may range from zero, inclusive, to {@code size}, exclusive.
-         */
-        static checkElementIndex(index: number, size: number): void;
-        static checkCriticalElementIndex(index: number, size: number): void;
-        /**
-         * Ensures that {@code index} specifies a valid <i>position</i> in an array, list or string of
-         * size {@code size}. A position index may range from zero to {@code size}, inclusive.
-         */
-        static checkPositionIndex(index: number, size: number): void;
-        static checkCriticalPositionIndex(index: number, size: number): void;
-        /**
-         * Ensures that {@code start} and {@code end} specify a valid <i>positions</i> in an array, list
-         * or string of size {@code size}, and are in order. A position index may range from zero to
-         * {@code size}, inclusive.
-         */
-        static checkPositionIndexes(start: number, end: number, size: number): void;
-        /**
-         * Ensures that {@code start} and {@code end} specify a valid <i>positions</i> in an array, list
-         * or string of size {@code size}, and are in order. A position index may range from zero to
-         * {@code size}, inclusive.
-         */
-        static checkCriticalPositionIndexes(start: number, end: number, size: number): void;
-        /**
-         * Checks that bounds are correct.
-         *
-         * @throw StringIndexOutOfBoundsException if the range is not legal
-         */
-        static checkStringBounds(start: number, end: number, size: number): void;
-        /**
-         * Substitutes each {@code %s} in {@code template} with an argument. These are matched by
-         * position: the first {@code %s} gets {@code args[0]}, etc.  If there are more arguments than
-         * placeholders, the unmatched arguments will be appended to the end of the formatted message in
-         * square braces.
-         */
-        private static format(template, ...args);
-        constructor();
-    }
-}
-declare namespace java.lang {
-    /**
-     * See <a
-     * href="http://docs.oracle.com/javase/7/docs/api/java/lang/AutoCloseable.html">the
-     * official Java API doc</a> for details.
-     */
-    interface AutoCloseable {
-        /**
-         * Closes this resource.
-         */
-        close(): any;
-    }
-}
-declare namespace javaemul.internal.annotations {
-    /**
-     * An annotation to mark another annotation as a compiler hint.
-     */
-    interface CompilerHint {
-    }
-}
-declare namespace java.util {
-    /**
-     * An unbounded priority queue based on a priority heap. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/PriorityQueue.html">[Sun
-     * docs]</a>
-     *
-     * @param <E> element type.
-     */
-    class PriorityQueue<E> extends java.util.AbstractQueue<E> {
-        private static getLeftChild(node);
-        private static getParent(node);
-        private static getRightChild(node);
-        private static isLeaf(node, size);
-        private cmp;
-        /**
-         * A heap held in an array. heap[0] is the root of the heap (the smallest
-         * element), the subtrees of node i are 2*i+1 (left) and 2*i+2 (right). Node i
-         * is a leaf node if 2*i>=n. Node i's parent, if i>0, is floor((i-1)/2).
-         */
-        private heap;
-        constructor(initialCapacity?: any, cmp?: any);
+        add(index?: any, element?: any): any;
+        add$java_lang_Object(o: E): boolean;
         addAll(index?: any, c?: any): any;
         addAll$java_util_Collection(c: java.util.Collection<any>): boolean;
         clear(): void;
-        comparator(): java.util.Comparator<any>;
-        contains(o: any): boolean;
-        containsAll(c: java.util.Collection<any>): boolean;
-        isEmpty(): boolean;
+        element(): E;
+        abstract offer(o: E): boolean;
+        abstract peek(): E;
+        abstract poll(): E;
+        remove(index?: any): any;
+        remove$(): E;
+    }
+}
+declare namespace java.util {
+    /**
+     * Skeletal implementation of the List interface. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/AbstractSequentialList.html">[Sun
+     * docs]</a>
+     *
+     * @param <E> element type.
+     */
+    abstract class AbstractSequentialList<E> extends java.util.AbstractList<E> {
+        constructor();
+        add(index?: any, element?: any): any;
+        addAll(index?: any, c?: any): any;
+        get(index: number): E;
         iterator(): java.util.Iterator<E>;
-        offer(e: E): boolean;
+        listIterator(index?: any): any;
+        remove(index?: any): any;
+        set(index: number, element: E): E;
+        abstract size(): number;
+    }
+}
+declare namespace java.util {
+    /**
+     * Linked list implementation.
+     * <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/LinkedList.html">
+     * [Sun docs]</a>
+     *
+     * @param <E>
+     * element type.
+     */
+    class LinkedList<E> extends java.util.AbstractSequentialList<E> implements java.lang.Cloneable, java.util.List<E>, java.util.Deque<E>, java.io.Serializable {
+        forEach(action: (p1: any) => void): void;
+        /**
+         * Ensures that RPC will consider type parameter E to be exposed. It will be
+         * pruned by dead code elimination.
+         */
+        private exposeElement;
+        /**
+         * Header node - header.next is the first element of the list.
+         */
+        private header;
+        /**
+         * Tail node - tail.prev is the last element of the list.
+         */
+        private tail;
+        /**
+         * Number of nodes currently present in the list.
+         */
+        private __size;
+        constructor(c?: any);
+        add$java_lang_Object(o: E): boolean;
+        addFirst(o: E): void;
+        addLast(o: E): void;
+        clear(): void;
+        reset(): void;
+        clone(): any;
+        descendingIterator(): java.util.Iterator<E>;
+        element(): E;
+        getFirst(): E;
+        getLast(): E;
+        listIterator(index?: any): any;
+        offer(o: E): boolean;
+        offerFirst(e: E): boolean;
+        offerLast(e: E): boolean;
         peek(): E;
+        peekFirst(): E;
+        peekLast(): E;
         poll(): E;
+        pollFirst(): E;
+        pollLast(): E;
+        pop(): E;
+        push(e: E): void;
+        remove$(): E;
+        removeFirst(): E;
+        removeFirstOccurrence(o: any): boolean;
+        removeLast(): E;
+        removeLastOccurrence(o: any): boolean;
+        size(): number;
+        addNode(o: E, prev: LinkedList.Node<E>, next: LinkedList.Node<E>): void;
+        removeNode(node: LinkedList.Node<E>): E;
+    }
+    namespace LinkedList {
+        class DescendingIteratorImpl implements java.util.Iterator<any> {
+            __parent: any;
+            forEachRemaining(consumer: (p1: any) => void): void;
+            itr: java.util.ListIterator<any>;
+            hasNext(): boolean;
+            next(): any;
+            remove(): void;
+            constructor(__parent: any);
+        }
+        /**
+         * Implementation of ListIterator for linked lists.
+         */
+        class ListIteratorImpl2 implements java.util.ListIterator<any> {
+            __parent: any;
+            forEachRemaining(consumer: (p1: any) => void): void;
+            /**
+             * The index to the current position.
+             */
+            currentIndex: number;
+            /**
+             * Current node, to be returned from next.
+             */
+            currentNode: LinkedList.Node<any>;
+            /**
+             * The last node returned from next/previous, or null if deleted or
+             * never called.
+             */
+            lastNode: LinkedList.Node<any>;
+            /**
+             * @param index
+             * from the beginning of the list (0 = first node)
+             * @param startNode
+             * the initial current node
+             */
+            constructor(__parent: any, index: number, startNode: LinkedList.Node<any>);
+            add(o: any): void;
+            hasNext(): boolean;
+            hasPrevious(): boolean;
+            next(): any;
+            nextIndex(): number;
+            previous(): any;
+            previousIndex(): number;
+            remove(): void;
+            set(o: any): void;
+        }
+        /**
+         * Internal class representing a doubly-linked list node.
+         *
+         * @param <E>
+         * element type
+         */
+        class Node<E> {
+            next: LinkedList.Node<E>;
+            prev: LinkedList.Node<E>;
+            value: E;
+            constructor();
+        }
+    }
+}
+declare namespace java.util {
+    /**
+     * Resizeable array implementation of the List interface. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/ArrayList.html">[Sun
+     * docs]</a>
+     *
+     * <p>
+     * This implementation differs from JDK 1.5 <code>ArrayList</code> in terms of
+     * capacity management. There is no speed advantage to pre-allocating array
+     * sizes in JavaScript, so this implementation does not include any of the
+     * capacity and "growth increment" concepts in the standard ArrayList class.
+     * Although <code>ArrayList(int)</code> accepts a value for the initial
+     * capacity of the array, this constructor simply delegates to
+     * <code>ArrayList()</code>. It is only present for compatibility with JDK
+     * 1.5's API.
+     * </p>
+     *
+     * @param <E> the element type.
+     */
+    class ArrayList<E> extends java.util.AbstractList<E> implements java.util.List<E>, java.lang.Cloneable, java.util.RandomAccess, java.io.Serializable {
+        forEach(action: (p1: any) => void): void;
+        /**
+         * This field holds a JavaScript array.
+         */
+        private array;
+        /**
+         * Ensures that RPC will consider type parameter E to be exposed. It will be
+         * pruned by dead code elimination.
+         */
+        private exposeElement;
+        constructor(c?: any);
+        add$java_lang_Object(o: E): boolean;
+        add(index?: any, o?: any): any;
+        addAll$java_util_Collection(c: java.util.Collection<any>): boolean;
+        addAll(index?: any, c?: any): any;
+        clear(): void;
+        clone(): any;
+        contains(o: any): boolean;
+        ensureCapacity(ignored: number): void;
+        get(index: number): E;
+        indexOf$java_lang_Object(o: any): number;
+        iterator(): java.util.Iterator<E>;
+        isEmpty(): boolean;
+        lastIndexOf$java_lang_Object(o: any): number;
         remove(index?: any): any;
         remove$java_lang_Object(o: any): boolean;
-        removeAll(c: java.util.Collection<any>): boolean;
-        retainAll(c: java.util.Collection<any>): boolean;
+        set(index: number, o: E): E;
         size(): number;
         toArray$(): any[];
-        toArray<T>(a?: any): any;
+        toArray<T>(out?: any): any;
+        trimToSize(): void;
+        removeRange(fromIndex: number, endIndex: number): void;
+        /**
+         * Used by Vector.
+         */
+        indexOf(o?: any, index?: any): any;
+        /**
+         * Used by Vector.
+         */
+        lastIndexOf(o?: any, index?: any): any;
+        setSize(newSize: number): void;
+    }
+    namespace ArrayList {
+        class ArrayList$0 implements java.util.Iterator<any> {
+            __parent: any;
+            forEachRemaining(consumer: (p1: any) => void): void;
+            i: number;
+            last: number;
+            hasNext(): boolean;
+            next(): any;
+            remove(): void;
+            constructor(__parent: any);
+        }
+    }
+}
+declare namespace java.util {
+    /**
+     * Skeletal implementation of the Set interface. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/AbstractSet.html">[Sun
+     * docs]</a>
+     *
+     * @param <E> the element type.
+     */
+    abstract class AbstractSet<E> extends java.util.AbstractCollection<E> implements java.util.Set<E> {
+        forEach(action: (p1: any) => void): void;
+        abstract iterator(): any;
+        abstract size(): any;
+        equals(o: any): boolean;
+        hashCode(): number;
+        removeAll(c: java.util.Collection<any>): boolean;
+        constructor();
+    }
+}
+declare namespace java.util {
+    /**
+     * Implements a set in terms of a hash table. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/HashSet.html">[Sun
+     * docs]</a>
+     *
+     * @param <E> element type.
+     */
+    class HashSet<E> extends java.util.AbstractSet<E> implements java.util.Set<E>, java.lang.Cloneable, java.io.Serializable {
+        forEach(action: (p1: any) => void): void;
+        private map;
+        /**
+         * Ensures that RPC will consider type parameter E to be exposed. It will be
+         * pruned by dead code elimination.
+         */
+        private exposeElement;
+        constructor(initialCapacity?: any, loadFactor?: any);
+        add(index?: any, element?: any): any;
+        add$java_lang_Object(o: E): boolean;
+        clear(): void;
+        clone(): any;
+        contains(o: any): boolean;
+        isEmpty(): boolean;
+        iterator(): java.util.Iterator<E>;
+        remove(index?: any): any;
+        remove$java_lang_Object(o: any): boolean;
+        size(): number;
         toString(): string;
-        /**
-         * Make the subtree rooted at <code>node</code> a valid heap. O(n) time
-         *
-         * @param node
-         */
-        makeHeap(node: number): void;
-        /**
-         * Merge two subheaps into a single heap. O(log n) time
-         *
-         * PRECONDITION: both children of <code>node</code> are heaps
-         *
-         * @param node the parent of the two subtrees to merge
-         */
-        mergeHeaps(node: number): void;
-        private getSmallestChild(node, heapSize);
-        private isLeaf(node);
-        private removeAtIndex(index);
     }
 }
-declare namespace java.lang {
+declare namespace java.util {
     /**
-     * Represents an error caused by an assertion failure.
+     * Skeletal implementation of the Map interface.
+     * <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/AbstractMap.html">
+     * [Sun docs]</a>
+     *
+     * @param <K>
+     * the key type.
+     * @param <V>
+     * the value type.
      */
-    class AssertionError extends Error {
-        constructor(message?: any, cause?: any);
+    abstract class AbstractMap<K, V> implements java.util.Map<K, V> {
+        constructor();
+        clear(): void;
+        containsKey(key: any): boolean;
+        containsValue(value: any): boolean;
+        containsEntry(entry: Map.Entry<any, any>): boolean;
+        abstract entrySet(): java.util.Set<Map.Entry<K, V>>;
+        equals(obj: any): boolean;
+        get(key: any): V;
+        hashCode(): number;
+        isEmpty(): boolean;
+        keySet(): java.util.Set<K>;
+        put(key?: any, value?: any): any;
+        put$java_lang_Object$java_lang_Object(key: K, value: V): V;
+        putAll(map: java.util.Map<any, any>): void;
+        remove(key: any): V;
+        size(): number;
+        toString$(): string;
+        toString(entry?: any): any;
+        toString$java_lang_Object(o: any): string;
+        values(): java.util.Collection<V>;
+        static getEntryKeyOrNull<K, V>(entry: Map.Entry<K, V>): K;
+        static getEntryValueOrNull<K, V>(entry: Map.Entry<K, V>): V;
+        implFindEntry(key: any, remove: boolean): Map.Entry<K, V>;
+    }
+    namespace AbstractMap {
+        /**
+         * Basic {@link Map.Entry} implementation used by {@link SimpleEntry} and
+         * {@link SimpleImmutableEntry}.
+         */
+        abstract class AbstractEntry<K, V> implements Map.Entry<K, V> {
+            key: K;
+            value: V;
+            constructor(key: K, value: V);
+            getKey(): K;
+            getValue(): V;
+            setValue(value: V): V;
+            equals(other: any): boolean;
+            /**
+             * Calculate the hash code using Sun's specified algorithm.
+             */
+            hashCode(): number;
+            toString(): string;
+        }
+        /**
+         * A mutable {@link Map.Entry} shared by several {@link Map}
+         * implementations.
+         */
+        class SimpleEntry<K, V> extends AbstractMap.AbstractEntry<K, V> {
+            constructor(key?: any, value?: any);
+        }
+        /**
+         * An immutable {@link Map.Entry} shared by several {@link Map}
+         * implementations.
+         */
+        class SimpleImmutableEntry<K, V> extends AbstractMap.AbstractEntry<K, V> {
+            constructor(key?: any, value?: any);
+            setValue(value: V): V;
+        }
+        class AbstractMap$0 extends java.util.AbstractSet<any> {
+            __parent: any;
+            clear(): void;
+            contains(key: any): boolean;
+            iterator(): java.util.Iterator<any>;
+            remove(key: any): boolean;
+            size(): number;
+            constructor(__parent: any);
+        }
+        namespace AbstractMap$0 {
+            class AbstractMap$0$0 implements java.util.Iterator<any> {
+                private outerIter;
+                __parent: any;
+                forEachRemaining(consumer: (p1: any) => void): void;
+                hasNext(): boolean;
+                next(): any;
+                remove(): void;
+                constructor(__parent: any, outerIter: any);
+            }
+        }
+        class AbstractMap$1 extends java.util.AbstractCollection<any> {
+            __parent: any;
+            clear(): void;
+            contains(value: any): boolean;
+            iterator(): java.util.Iterator<any>;
+            size(): number;
+            constructor(__parent: any);
+        }
+        namespace AbstractMap$1 {
+            class AbstractMap$1$0 implements java.util.Iterator<any> {
+                private outerIter;
+                __parent: any;
+                forEachRemaining(consumer: (p1: any) => void): void;
+                hasNext(): boolean;
+                next(): any;
+                remove(): void;
+                constructor(__parent: any, outerIter: any);
+            }
+        }
     }
 }
-declare namespace java.lang.annotation {
+declare namespace java.util {
     /**
-     * Annotation which indicates annotations should be documented by javadoc/etc <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/Documented.html">[Sun
-     * docs]</a>.
+     * A {@link java.util.Map} of {@link Enum}s. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/EnumMap.html">[Sun
+     * docs]</a>
+     *
+     * @param <K> key type
+     * @param <V> value type
      */
-    interface Documented {
+    class EnumMap<K extends java.lang.Enum<K>, V> extends java.util.AbstractMap<K, V> {
+        private __keySet;
+        private __values;
+        constructor(type?: any);
+        clear(): void;
+        clone(): EnumMap<K, V>;
+        containsKey(key: any): boolean;
+        containsValue(value: any): boolean;
+        entrySet(): java.util.Set<java.util.Map.Entry<K, V>>;
+        get(k: any): V;
+        put(key?: any, value?: any): any;
+        remove(key: any): V;
+        size(): number;
+        /**
+         * Returns <code>key</code> as <code>K</code>. Only runtime checks that
+         * key is an Enum, not that it's the particular Enum K. Should only be called
+         * when you are sure <code>key</code> is of type <code>K</code>.
+         */
+        asKey(key: any): K;
+        asOrdinal(key: any): number;
+        init(type?: any): any;
+        init$java_util_EnumMap(m: EnumMap<K, any>): void;
+        set(ordinal: number, value: V): V;
+    }
+    namespace EnumMap {
+        class EntrySet extends java.util.AbstractSet<Map.Entry<any, any>> {
+            __parent: any;
+            clear(): void;
+            contains(o: any): boolean;
+            iterator(): java.util.Iterator<Map.Entry<any, any>>;
+            remove(index?: any): any;
+            remove$java_lang_Object(entry: any): boolean;
+            size(): number;
+            constructor(__parent: any);
+        }
+        class EntrySetIterator implements java.util.Iterator<Map.Entry<any, any>> {
+            __parent: any;
+            forEachRemaining(consumer: (p1: any) => void): void;
+            it: java.util.Iterator<any>;
+            key: any;
+            hasNext(): boolean;
+            next(): Map.Entry<any, any>;
+            remove(): void;
+            constructor(__parent: any);
+        }
+        class MapEntry extends java.util.AbstractMapEntry<any, any> {
+            __parent: any;
+            key: any;
+            constructor(__parent: any, key: any);
+            getKey(): any;
+            getValue(): any;
+            setValue(value: any): any;
+        }
+    }
+}
+declare namespace java.util {
+    /**
+     * Implements a set using a TreeMap. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/TreeSet.html">[Sun
+     * docs]</a>
+     *
+     * @param <E> element type.
+     */
+    class TreeSet<E> extends java.util.AbstractSet<E> implements java.util.NavigableSet<E>, java.io.Serializable {
+        forEach(action: (p1: any) => void): void;
+        /**
+         * TreeSet is stored as a TreeMap of the requested type to a constant Boolean.
+         */
+        private map;
+        constructor(c?: any);
+        add(index?: any, element?: any): any;
+        add$java_lang_Object(o: E): boolean;
+        ceiling(e: E): E;
+        clear(): void;
+        comparator(): java.util.Comparator<any>;
+        contains(o: any): boolean;
+        descendingIterator(): java.util.Iterator<E>;
+        descendingSet(): java.util.NavigableSet<E>;
+        first(): E;
+        floor(e: E): E;
+        headSet$java_lang_Object(toElement: E): java.util.SortedSet<E>;
+        headSet(toElement?: any, inclusive?: any): any;
+        higher(e: E): E;
+        iterator(): java.util.Iterator<E>;
+        last(): E;
+        lower(e: E): E;
+        pollFirst(): E;
+        pollLast(): E;
+        remove(index?: any): any;
+        remove$java_lang_Object(o: any): boolean;
+        size(): number;
+        subSet(fromElement?: any, fromInclusive?: any, toElement?: any, toInclusive?: any): any;
+        subSet$java_lang_Object$java_lang_Object(fromElement: E, toElement: E): java.util.SortedSet<E>;
+        tailSet$java_lang_Object(fromElement: E): java.util.SortedSet<E>;
+        tailSet(fromElement?: any, inclusive?: any): any;
+    }
+}
+declare namespace java.util {
+    /**
+     * Skeletal implementation of a NavigableMap.
+     */
+    abstract class AbstractNavigableMap<K, V> extends java.util.AbstractMap<K, V> implements java.util.NavigableMap<K, V> {
+        abstract comparator(): any;
+        static copyOf<K, V>(entry: Map.Entry<K, V>): Map.Entry<K, V>;
+        static getKeyOrNSE<K, V>(entry: Map.Entry<K, V>): K;
+        ceilingEntry(key: K): Map.Entry<K, V>;
+        ceilingKey(key: K): K;
+        containsKey(k: any): boolean;
+        descendingKeySet(): java.util.NavigableSet<K>;
+        descendingMap(): java.util.NavigableMap<K, V>;
+        entrySet(): java.util.Set<Map.Entry<K, V>>;
+        firstEntry(): Map.Entry<K, V>;
+        firstKey(): K;
+        floorEntry(key: K): Map.Entry<K, V>;
+        floorKey(key: K): K;
+        get(k: any): V;
+        headMap(toKey?: any, inclusive?: any): any;
+        headMap$java_lang_Object(toKey: K): java.util.SortedMap<K, V>;
+        higherEntry(key: K): Map.Entry<K, V>;
+        higherKey(key: K): K;
+        keySet(): java.util.Set<K>;
+        lastEntry(): Map.Entry<K, V>;
+        lastKey(): K;
+        lowerEntry(key: K): Map.Entry<K, V>;
+        lowerKey(key: K): K;
+        navigableKeySet(): java.util.NavigableSet<K>;
+        pollFirstEntry(): Map.Entry<K, V>;
+        pollLastEntry(): Map.Entry<K, V>;
+        subMap(fromKey?: any, fromInclusive?: any, toKey?: any, toInclusive?: any): any;
+        subMap$java_lang_Object$java_lang_Object(fromKey: K, toKey: K): java.util.SortedMap<K, V>;
+        tailMap(fromKey?: any, inclusive?: any): any;
+        tailMap$java_lang_Object(fromKey: K): java.util.SortedMap<K, V>;
+        containsEntry(entry: Map.Entry<any, any>): boolean;
+        /**
+         * Returns an iterator over the entries in this map in descending order.
+         */
+        abstract descendingEntryIterator(): java.util.Iterator<Map.Entry<K, V>>;
+        /**
+         * Returns an iterator over the entries in this map in ascending order.
+         */
+        abstract entryIterator(): java.util.Iterator<Map.Entry<K, V>>;
+        /**
+         * Returns the entry corresponding to the specified key. If no such entry exists returns
+         * {@code null}.
+         */
+        abstract getEntry(key: K): Map.Entry<K, V>;
+        /**
+         * Returns the first entry or {@code null} if map is empty.
+         */
+        abstract getFirstEntry(): Map.Entry<K, V>;
+        /**
+         * Returns the last entry or {@code null} if map is empty.
+         */
+        abstract getLastEntry(): Map.Entry<K, V>;
+        /**
+         * Gets the entry corresponding to the specified key or the entry for the least key greater than
+         * the specified key. If no such entry exists returns {@code null}.
+         */
+        abstract getCeilingEntry(key: K): Map.Entry<K, V>;
+        /**
+         * Gets the entry corresponding to the specified key or the entry for the greatest key less than
+         * the specified key. If no such entry exists returns {@code null}.
+         */
+        abstract getFloorEntry(key: K): Map.Entry<K, V>;
+        /**
+         * Gets the entry for the least key greater than the specified key. If no such entry exists
+         * returns {@code null}.
+         */
+        abstract getHigherEntry(key: K): Map.Entry<K, V>;
+        /**
+         * Returns the entry for the greatest key less than the specified key. If no such entry exists
+         * returns {@code null}.
+         */
+        abstract getLowerEntry(key: K): Map.Entry<K, V>;
+        /**
+         * Remove an entry from the tree, returning whether it was found.
+         */
+        abstract removeEntry(entry: Map.Entry<K, V>): boolean;
+        pollEntry(entry: Map.Entry<K, V>): Map.Entry<K, V>;
+        constructor();
+    }
+    namespace AbstractNavigableMap {
+        class DescendingMap extends java.util.AbstractNavigableMap<any, any> {
+            __parent: any;
+            clear(): void;
+            comparator(): java.util.Comparator<any>;
+            descendingMap(): java.util.NavigableMap<any, any>;
+            headMap(toKey?: any, inclusive?: any): any;
+            put(key?: any, value?: any): any;
+            put$java_lang_Object$java_lang_Object(key: any, value: any): any;
+            remove(key: any): any;
+            size(): number;
+            subMap(fromKey?: any, fromInclusive?: any, toKey?: any, toInclusive?: any): any;
+            tailMap(fromKey?: any, inclusive?: any): any;
+            ascendingMap(): java.util.AbstractNavigableMap<any, any>;
+            descendingEntryIterator(): java.util.Iterator<Map.Entry<any, any>>;
+            entryIterator(): java.util.Iterator<Map.Entry<any, any>>;
+            getEntry(key: any): Map.Entry<any, any>;
+            getFirstEntry(): Map.Entry<any, any>;
+            getLastEntry(): Map.Entry<any, any>;
+            getCeilingEntry(key: any): Map.Entry<any, any>;
+            getFloorEntry(key: any): Map.Entry<any, any>;
+            getHigherEntry(key: any): Map.Entry<any, any>;
+            getLowerEntry(key: any): Map.Entry<any, any>;
+            removeEntry(entry: Map.Entry<any, any>): boolean;
+            constructor(__parent: any);
+        }
+        class EntrySet extends java.util.AbstractSet<Map.Entry<any, any>> {
+            __parent: any;
+            contains(o: any): boolean;
+            iterator(): java.util.Iterator<Map.Entry<any, any>>;
+            remove(index?: any): any;
+            remove$java_lang_Object(o: any): boolean;
+            size(): number;
+            constructor(__parent: any);
+        }
+        class NavigableKeySet<K, V> extends java.util.AbstractSet<K> implements java.util.NavigableSet<K> {
+            forEach(action: (p1: any) => void): void;
+            map: java.util.NavigableMap<K, V>;
+            constructor(map: java.util.NavigableMap<K, V>);
+            ceiling(k: K): K;
+            clear(): void;
+            comparator(): java.util.Comparator<any>;
+            contains(o: any): boolean;
+            descendingIterator(): java.util.Iterator<K>;
+            descendingSet(): java.util.NavigableSet<K>;
+            first(): K;
+            floor(k: K): K;
+            headSet$java_lang_Object(toElement: K): java.util.SortedSet<K>;
+            headSet(toElement?: any, inclusive?: any): any;
+            higher(k: K): K;
+            iterator(): java.util.Iterator<K>;
+            last(): K;
+            lower(k: K): K;
+            pollFirst(): K;
+            pollLast(): K;
+            remove(index?: any): any;
+            remove$java_lang_Object(o: any): boolean;
+            size(): number;
+            subSet(fromElement?: any, fromInclusive?: any, toElement?: any, toInclusive?: any): any;
+            subSet$java_lang_Object$java_lang_Object(fromElement: K, toElement: K): java.util.SortedSet<K>;
+            tailSet$java_lang_Object(fromElement: K): java.util.SortedSet<K>;
+            tailSet(fromElement?: any, inclusive?: any): any;
+        }
+        namespace NavigableKeySet {
+            class NavigableKeySet$0 implements java.util.Iterator<any> {
+                private entryIterator;
+                __parent: any;
+                forEachRemaining(consumer: (p1: any) => void): void;
+                hasNext(): boolean;
+                next(): any;
+                remove(): void;
+                constructor(__parent: any, entryIterator: any);
+            }
+        }
+    }
+}
+declare namespace java.util {
+    /**
+     * Implements a TreeMap using a red-black tree. This guarantees O(log n)
+     * performance on lookups, inserts, and deletes while maintaining linear
+     * in-order traversal time. Null keys and values are fully supported if the
+     * comparator supports them (the default comparator does not).
+     *
+     * @param <K> key type
+     * @param <V> value type
+     */
+    class TreeMap<K, V> extends java.util.AbstractNavigableMap<K, V> implements java.io.Serializable {
+        static SubMapType_All: TreeMap.SubMapType;
+        static SubMapType_All_$LI$(): TreeMap.SubMapType;
+        static SubMapType_Head: TreeMap.SubMapType;
+        static SubMapType_Head_$LI$(): TreeMap.SubMapType;
+        static SubMapType_Range: TreeMap.SubMapType;
+        static SubMapType_Range_$LI$(): TreeMap.SubMapType;
+        static SubMapType_Tail: TreeMap.SubMapType;
+        static SubMapType_Tail_$LI$(): TreeMap.SubMapType;
+        private static LEFT;
+        private static RIGHT;
+        static otherChild(child: number): number;
+        private cmp;
+        private exposeKeyType;
+        private exposeValueType;
+        private root;
+        private __size;
+        constructor(c?: any);
+        clear(): void;
+        comparator(): java.util.Comparator<any>;
+        entrySet(): java.util.Set<Map.Entry<K, V>>;
+        headMap(toKey?: any, inclusive?: any): any;
+        put(key?: any, value?: any): any;
+        put$java_lang_Object$java_lang_Object(key: K, value: V): V;
+        remove(k: any): V;
+        size(): number;
+        subMap(fromKey?: any, fromInclusive?: any, toKey?: any, toInclusive?: any): any;
+        tailMap(fromKey?: any, inclusive?: any): any;
+        /**
+         * Returns the first node which compares greater than the given key.
+         *
+         * @param key the key to search for
+         * @return the next node, or null if there is none
+         */
+        getNodeAfter(key: K, inclusive: boolean): TreeMap.Node<K, V>;
+        /**
+         * Returns the last node which is strictly less than the given key.
+         *
+         * @param key the key to search for
+         * @return the previous node, or null if there is none
+         */
+        getNodeBefore(key: K, inclusive: boolean): TreeMap.Node<K, V>;
+        /**
+         * Used for testing. Validate that the tree meets all red-black correctness
+         * requirements. These include:
+         *
+         * <pre>
+         * - root is black
+         * - no children of a red node may be red
+         * - the black height of every path through the three to a leaf is exactly the same
+         * </pre>
+         *
+         * @throws RuntimeException if any correctness errors are detected.
+         */
+        assertCorrectness$(): void;
+        descendingEntryIterator(): java.util.Iterator<Map.Entry<K, V>>;
+        entryIterator(): java.util.Iterator<Map.Entry<K, V>>;
+        /**
+         * Internal helper function for public {@link #assertCorrectness()}.
+         *
+         * @param tree the subtree to validate.
+         * @param isRed true if the parent of this node is red.
+         * @return the black height of this subtree.
+         * @throws RuntimeException if this RB-tree is not valid.
+         */
+        assertCorrectness(tree?: any, isRed?: any): any;
+        /**
+         * Finds an entry given a key and returns the node.
+         *
+         * @param key the search key
+         * @return the node matching the key or null
+         */
+        getEntry(key: K): Map.Entry<K, V>;
+        /**
+         * Returns the left-most node of the tree, or null if empty.
+         */
+        getFirstEntry(): Map.Entry<K, V>;
+        /**
+         * Returns the right-most node of the tree, or null if empty.
+         */
+        getLastEntry(): Map.Entry<K, V>;
+        getCeilingEntry(key: K): Map.Entry<K, V>;
+        getFloorEntry(key: K): Map.Entry<K, V>;
+        getHigherEntry(key: K): Map.Entry<K, V>;
+        getLowerEntry(key: K): Map.Entry<K, V>;
+        removeEntry(entry: Map.Entry<K, V>): boolean;
+        inOrderAdd(list: java.util.List<Map.Entry<K, V>>, type: TreeMap.SubMapType, current: TreeMap.Node<K, V>, fromKey: K, fromInclusive: boolean, toKey: K, toInclusive: boolean): void;
+        inRange(type: TreeMap.SubMapType, key: K, fromKey: K, fromInclusive: boolean, toKey: K, toInclusive: boolean): boolean;
+        /**
+         * Insert a node into a subtree, collecting state about the insertion.
+         *
+         * If the same key already exists, the value of the node is overwritten with
+         * the value from the new node instead.
+         *
+         * @param tree subtree to insert into
+         * @param newNode new node to insert
+         * @param state result of the insertion: state.found true if the key already
+         * existed in the tree state.value the old value if the key existed
+         * @return the new subtree root
+         */
+        insert(tree: TreeMap.Node<K, V>, newNode: TreeMap.Node<K, V>, state: TreeMap.State<V>): TreeMap.Node<K, V>;
+        /**
+         * Returns true if <code>node</code> is red. Note that null pointers are
+         * considered black.
+         */
+        isRed(node: TreeMap.Node<K, V>): boolean;
+        /**
+         * Returns true if <code>a</code> is greater than or equal to <code>b</code>.
+         */
+        larger(a: K, b: K, orEqual: boolean): boolean;
+        /**
+         * Returns true if <code>a</code> is less than or equal to <code>b</code>.
+         */
+        smaller(a: K, b: K, orEqual: boolean): boolean;
+        /**
+         * Remove a key from the tree, returning whether it was found and its value.
+         *
+         * @param key key to remove
+         * @param state return state, not null
+         * @return true if the value was found
+         */
+        removeWithState(key: K, state: TreeMap.State<V>): boolean;
+        /**
+         * replace 'node' with 'newNode' in the tree rooted at 'head'. Could have
+         * avoided this traversal if each node maintained a parent pointer.
+         */
+        replaceNode(head: TreeMap.Node<K, V>, node: TreeMap.Node<K, V>, newNode: TreeMap.Node<K, V>): void;
+        /**
+         * Perform a double rotation, first rotating the child which will become the
+         * root in the opposite direction, then rotating the root in the specified
+         * direction.
+         *
+         * <pre>
+         * A                                               F
+         * B   C    becomes (with rotateDirection=0)       A   C
+         * D E F G                                         B E   G
+         * D
+         * </pre>
+         *
+         * @param tree root of the subtree to rotate
+         * @param rotateDirection the direction to rotate: 0=left, 1=right
+         * @return the new root of the rotated subtree
+         */
+        rotateDouble(tree: TreeMap.Node<K, V>, rotateDirection: number): TreeMap.Node<K, V>;
+        /**
+         * Perform a single rotation, pushing the root of the subtree to the specified
+         * direction.
+         *
+         * <pre>
+         * A                                              B
+         * B   C     becomes (with rotateDirection=1)     D   A
+         * D E                                              E   C
+         * </pre>
+         *
+         * @param tree the root of the subtree to rotate
+         * @param rotateDirection the direction to rotate: 0=left rotation, 1=right
+         * @return the new root of the rotated subtree
+         */
+        rotateSingle(tree: TreeMap.Node<K, V>, rotateDirection: number): TreeMap.Node<K, V>;
+    }
+    namespace TreeMap {
+        /**
+         * Iterator for <code>descendingMap().entrySet()</code>.
+         */
+        class DescendingEntryIterator implements java.util.Iterator<Map.Entry<any, any>> {
+            __parent: any;
+            forEachRemaining(consumer: (p1: any) => void): void;
+            iter: java.util.ListIterator<Map.Entry<any, any>>;
+            last: Map.Entry<any, any>;
+            /**
+             * Create an iterator which may return only a restricted range.
+             *
+             * @param fromKey the first key to return in the iterator.
+             * @param toKey the upper bound of keys to return.
+             */
+            constructor(__parent: any, type?: TreeMap.SubMapType, fromKey?: any, fromInclusive?: boolean, toKey?: any, toInclusive?: boolean);
+            hasNext(): boolean;
+            next(): Map.Entry<any, any>;
+            remove(): void;
+        }
+        /**
+         * Iterator for <code>EntrySet</code>.
+         */
+        class EntryIterator implements java.util.Iterator<Map.Entry<any, any>> {
+            __parent: any;
+            forEachRemaining(consumer: (p1: any) => void): void;
+            iter: java.util.ListIterator<Map.Entry<any, any>>;
+            last: Map.Entry<any, any>;
+            /**
+             * Create an iterator which may return only a restricted range.
+             *
+             * @param fromKey the first key to return in the iterator.
+             * @param toKey the upper bound of keys to return.
+             */
+            constructor(__parent: any, type?: TreeMap.SubMapType, fromKey?: any, fromInclusive?: boolean, toKey?: any, toInclusive?: boolean);
+            hasNext(): boolean;
+            next(): Map.Entry<any, any>;
+            remove(): void;
+        }
+        class EntrySet extends java.util.AbstractNavigableMap.EntrySet {
+            __parent: any;
+            clear(): void;
+            constructor(__parent: any);
+        }
+        /**
+         * Tree node.
+         *
+         * @param <K> key type
+         * @param <V> value type
+         */
+        class Node<K, V> extends AbstractMap.SimpleEntry<K, V> {
+            child: TreeMap.Node<K, V>[];
+            isRed: boolean;
+            /**
+             * Create a node of the specified color.
+             *
+             * @param key
+             * @param value
+             * @param isRed true if this should be a red node, false for black
+             */
+            constructor(key: K, value: V, isRed?: boolean);
+        }
+        /**
+         * A state object which is passed down the tree for both insert and remove.
+         * All uses make use of the done flag to indicate when no further rebalancing
+         * of the tree is required. Remove methods use the found flag to indicate when
+         * the desired key has been found. value is used both to return the value of a
+         * removed node as well as to pass in a value which must match (used for
+         * entrySet().remove(entry)), and the matchValue flag is used to request this
+         * behavior.
+         *
+         * @param <V> value type
+         */
+        class State<V> {
+            done: boolean;
+            found: boolean;
+            matchValue: boolean;
+            value: V;
+            toString(): string;
+            constructor();
+        }
+        class SubMap extends java.util.AbstractNavigableMap<any, any> {
+            __parent: any;
+            fromInclusive: boolean;
+            fromKey: any;
+            toInclusive: boolean;
+            toKey: any;
+            type: TreeMap.SubMapType;
+            constructor(__parent: any, type: TreeMap.SubMapType, fromKey: any, fromInclusive: boolean, toKey: any, toInclusive: boolean);
+            comparator(): java.util.Comparator<any>;
+            entrySet(): java.util.Set<Map.Entry<any, any>>;
+            headMap(toKey?: any, toInclusive?: any): any;
+            isEmpty(): boolean;
+            put(key?: any, value?: any): any;
+            put$java_lang_Object$java_lang_Object(key: any, value: any): any;
+            remove(k: any): any;
+            size(): number;
+            subMap(newFromKey?: any, newFromInclusive?: any, newToKey?: any, newToInclusive?: any): any;
+            tailMap(fromKey?: any, fromInclusive?: any): any;
+            descendingEntryIterator(): java.util.Iterator<Map.Entry<any, any>>;
+            entryIterator(): java.util.Iterator<Map.Entry<any, any>>;
+            getEntry(key: any): Map.Entry<any, any>;
+            getFirstEntry(): Map.Entry<any, any>;
+            getLastEntry(): Map.Entry<any, any>;
+            getCeilingEntry(key: any): Map.Entry<any, any>;
+            getFloorEntry(key: any): Map.Entry<any, any>;
+            getHigherEntry(key: any): Map.Entry<any, any>;
+            getLowerEntry(key: any): Map.Entry<any, any>;
+            removeEntry(entry: Map.Entry<any, any>): boolean;
+            guardInRange(entry: Map.Entry<any, any>): Map.Entry<any, any>;
+            inRange(key: any): boolean;
+        }
+        namespace SubMap {
+            class SubMap$0 extends TreeMap.SubMap.EntrySet {
+                __parent: any;
+                isEmpty(): boolean;
+                constructor(__parent: any);
+            }
+        }
+        class SubMapType {
+            /**
+             * Returns true if this submap type uses a from-key.
+             */
+            fromKeyValid(): boolean;
+            /**
+             * Returns true if this submap type uses a to-key.
+             */
+            toKeyValid(): boolean;
+        }
+        class SubMapTypeHead extends TreeMap.SubMapType {
+            toKeyValid(): boolean;
+        }
+        class SubMapTypeRange extends TreeMap.SubMapType {
+            fromKeyValid(): boolean;
+            toKeyValid(): boolean;
+        }
+        class SubMapTypeTail extends TreeMap.SubMapType {
+            fromKeyValid(): boolean;
+        }
     }
 }
 declare namespace java.util {
@@ -6162,6 +5367,366 @@ declare namespace java.util {
 }
 declare namespace java.util {
     /**
+     * Utility methods that operate on collections. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collections.html">[Sun
+     * docs]</a>
+     */
+    class Collections {
+        static EMPTY_LIST: java.util.List<any>;
+        static EMPTY_LIST_$LI$(): java.util.List<any>;
+        static EMPTY_MAP: java.util.Map<any, any>;
+        static EMPTY_MAP_$LI$(): java.util.Map<any, any>;
+        static EMPTY_SET: java.util.Set<any>;
+        static EMPTY_SET_$LI$(): java.util.Set<any>;
+        static addAll<T>(c: java.util.Collection<any>, ...a: T[]): boolean;
+        static asLifoQueue<T>(deque: java.util.Deque<T>): java.util.Queue<T>;
+        /**
+         * Perform a binary search on a sorted List, using a user-specified comparison
+         * function.
+         *
+         * <p>
+         * Note: The GWT implementation differs from the JDK implementation in that it
+         * does not do an iterator-based binary search for Lists that do not implement
+         * RandomAccess.
+         * </p>
+         *
+         * @param sortedList List to search
+         * @param key value to search for
+         * @param comparator comparision function, <code>null</code> indicates
+         * <i>natural ordering</i> should be used.
+         * @return the index of an element with a matching value, or a negative number
+         * which is the index of the next larger value (or just past the end
+         * of the array if the searched value is larger than all elements in
+         * the array) minus 1 (to ensure error returns are negative)
+         * @throws ClassCastException if <code>key</code> and
+         * <code>sortedList</code>'s elements cannot be compared by
+         * <code>comparator</code>.
+         */
+        static binarySearch<T>(sortedList: java.util.List<any>, key: T, comparator?: java.util.Comparator<any>): number;
+        static copy<T>(dest: java.util.List<any>, src: java.util.List<any>): void;
+        static disjoint(c1: java.util.Collection<any>, c2: java.util.Collection<any>): boolean;
+        static emptyIterator<T>(): java.util.Iterator<T>;
+        static emptyList<T>(): java.util.List<T>;
+        static emptyListIterator<T>(): java.util.ListIterator<T>;
+        static emptyMap<K, V>(): java.util.Map<K, V>;
+        static emptySet<T>(): java.util.Set<T>;
+        static enumeration<T>(c: java.util.Collection<T>): java.util.Enumeration<T>;
+        static fill<T>(list: java.util.List<any>, obj: T): void;
+        static frequency(c: java.util.Collection<any>, o: any): number;
+        static list<T>(e: java.util.Enumeration<T>): java.util.ArrayList<T>;
+        static max<T>(coll: java.util.Collection<any>, comp?: java.util.Comparator<any>): T;
+        static min<T>(coll: java.util.Collection<any>, comp?: java.util.Comparator<any>): T;
+        static newSetFromMap<E>(map: java.util.Map<E, boolean>): java.util.Set<E>;
+        static nCopies<T>(n: number, o: T): java.util.List<T>;
+        static replaceAll<T>(list: java.util.List<T>, oldVal: T, newVal: T): boolean;
+        static reverse<T>(l: java.util.List<T>): void;
+        static reverseOrder$<T>(): java.util.Comparator<T>;
+        static reverseOrder<T>(cmp?: any): any;
+        /**
+         * Rotates the elements in {@code list} by the distance {@code dist}
+         * <p>
+         * e.g. for a given list with elements [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], calling rotate(list, 3) or
+         * rotate(list, -7) would modify the list to look like this: [8, 9, 0, 1, 2, 3, 4, 5, 6, 7]
+         *
+         * @param lst the list whose elements are to be rotated.
+         * @param dist is the distance the list is rotated. This can be any valid integer. Negative values
+         * rotate the list backwards.
+         */
+        static rotate(lst: java.util.List<any>, dist: number): void;
+        static shuffle<T>(list: java.util.List<T>, rnd?: java.util.Random): void;
+        static singleton<T>(o: T): java.util.Set<T>;
+        static singletonList<T>(o: T): java.util.List<T>;
+        static singletonMap<K, V>(key: K, value: V): java.util.Map<K, V>;
+        static sort<T>(target: java.util.List<T>, c?: java.util.Comparator<any>): void;
+        static swap(list: java.util.List<any>, i: number, j: number): void;
+        static unmodifiableCollection<T>(coll: java.util.Collection<any>): java.util.Collection<T>;
+        static unmodifiableList<T>(list: java.util.List<any>): java.util.List<T>;
+        static unmodifiableMap<K, V>(map: java.util.Map<any, any>): java.util.Map<K, V>;
+        static unmodifiableSet<T>(set: java.util.Set<any>): java.util.Set<T>;
+        static unmodifiableSortedMap<K, V>(map: java.util.SortedMap<K, any>): java.util.SortedMap<K, V>;
+        static unmodifiableSortedSet<T>(set: java.util.SortedSet<any>): java.util.SortedSet<T>;
+        /**
+         * Computes hash code without preserving elements order (e.g. HashSet).
+         */
+        static hashCode$java_lang_Iterable<T>(collection: java.lang.Iterable<T>): number;
+        /**
+         * Computes hash code preserving collection order (e.g. ArrayList).
+         */
+        static hashCode<T>(list?: any): any;
+        /**
+         * Replace contents of a list from an array.
+         *
+         * @param <T> element type
+         * @param target list to replace contents from an array
+         * @param x an Object array which can contain only T instances
+         */
+        static replaceContents<T>(target: java.util.List<T>, x: any[]): void;
+        static swapImpl<T>(list?: any, i?: any, j?: any): any;
+        static swapImpl$java_lang_Object_A$int$int(a: any[], i: number, j: number): void;
+    }
+    namespace Collections {
+        class LifoQueue<E> extends java.util.AbstractQueue<E> implements java.io.Serializable {
+            deque: java.util.Deque<E>;
+            constructor(deque: java.util.Deque<E>);
+            iterator(): java.util.Iterator<E>;
+            offer(e: E): boolean;
+            peek(): E;
+            poll(): E;
+            size(): number;
+        }
+        class EmptyList extends java.util.AbstractList<any> implements java.util.RandomAccess, java.io.Serializable {
+            contains(object: any): boolean;
+            get(location: number): any;
+            iterator(): java.util.Iterator<any>;
+            listIterator$(): java.util.ListIterator<any>;
+            size(): number;
+            constructor();
+        }
+        class EmptyListIterator implements java.util.ListIterator<any> {
+            forEachRemaining(consumer: (p1: any) => void): void;
+            static INSTANCE: Collections.EmptyListIterator;
+            static INSTANCE_$LI$(): Collections.EmptyListIterator;
+            add(o: any): void;
+            hasNext(): boolean;
+            hasPrevious(): boolean;
+            next(): any;
+            nextIndex(): number;
+            previous(): any;
+            previousIndex(): number;
+            remove(): void;
+            set(o: any): void;
+            constructor();
+        }
+        class EmptySet extends java.util.AbstractSet<any> implements java.io.Serializable {
+            contains(object: any): boolean;
+            iterator(): java.util.Iterator<any>;
+            size(): number;
+            constructor();
+        }
+        class EmptyMap extends java.util.AbstractMap<any, any> implements java.io.Serializable {
+            containsKey(key: any): boolean;
+            containsValue(value: any): boolean;
+            entrySet(): java.util.Set<any>;
+            get(key: any): any;
+            keySet(): java.util.Set<any>;
+            size(): number;
+            values(): java.util.Collection<any>;
+            constructor();
+        }
+        class ReverseComparator implements java.util.Comparator<java.lang.Comparable<any>> {
+            static INSTANCE: Collections.ReverseComparator;
+            static INSTANCE_$LI$(): Collections.ReverseComparator;
+            compare(o1?: any, o2?: any): any;
+            constructor();
+        }
+        class SetFromMap<E> extends java.util.AbstractSet<E> implements java.io.Serializable {
+            backingMap: java.util.Map<E, boolean>;
+            __keySet: java.util.Set<E>;
+            constructor(map: java.util.Map<E, boolean>);
+            add(index?: any, element?: any): any;
+            add$java_lang_Object(e: E): boolean;
+            clear(): void;
+            contains(o: any): boolean;
+            equals(o: any): boolean;
+            hashCode(): number;
+            iterator(): java.util.Iterator<E>;
+            remove(index?: any): any;
+            remove$java_lang_Object(o: any): boolean;
+            size(): number;
+            toString(): string;
+            /**
+             * Lazy initialize keySet to avoid NPE after deserialization.
+             */
+            keySet(): java.util.Set<E>;
+        }
+        class SingletonList<E> extends java.util.AbstractList<E> implements java.io.Serializable {
+            element: E;
+            constructor(element: E);
+            contains(item: any): boolean;
+            get(index: number): E;
+            size(): number;
+        }
+        class UnmodifiableCollection<T> implements java.util.Collection<T> {
+            forEach(action: (p1: any) => void): void;
+            coll: java.util.Collection<any>;
+            constructor(coll: java.util.Collection<any>);
+            add(index?: any, element?: any): any;
+            add$java_lang_Object(o: T): boolean;
+            addAll(index?: any, c?: any): any;
+            addAll$java_util_Collection(c: java.util.Collection<any>): boolean;
+            clear(): void;
+            contains(o: any): boolean;
+            containsAll(c: java.util.Collection<any>): boolean;
+            isEmpty(): boolean;
+            iterator(): java.util.Iterator<T>;
+            remove(index?: any): any;
+            remove$java_lang_Object(o: any): boolean;
+            removeAll(c: java.util.Collection<any>): boolean;
+            retainAll(c: java.util.Collection<any>): boolean;
+            size(): number;
+            toArray$(): any[];
+            toArray<E>(a?: any): any;
+            toString(): string;
+        }
+        class UnmodifiableList<T> extends Collections.UnmodifiableCollection<T> implements java.util.List<T> {
+            forEach(action: (p1: any) => void): void;
+            list: java.util.List<any>;
+            constructor(list: java.util.List<any>);
+            add(index?: any, element?: any): any;
+            addAll(index?: any, c?: any): any;
+            equals(o: any): boolean;
+            get(index: number): T;
+            hashCode(): number;
+            indexOf(elem?: any, index?: any): any;
+            indexOf$java_lang_Object(o: any): number;
+            isEmpty(): boolean;
+            lastIndexOf(o?: any, index?: any): any;
+            lastIndexOf$java_lang_Object(o: any): number;
+            listIterator$(): java.util.ListIterator<T>;
+            listIterator(from?: any): any;
+            remove(index?: any): any;
+            set(index: number, element: T): T;
+            subList(fromIndex: number, toIndex: number): java.util.List<T>;
+        }
+        class UnmodifiableRandomAccessList<T> extends Collections.UnmodifiableList<T> implements java.util.RandomAccess {
+            constructor(list: java.util.List<any>);
+        }
+        class UnmodifiableSet<T> extends Collections.UnmodifiableCollection<T> implements java.util.Set<T> {
+            forEach(action: (p1: any) => void): void;
+            constructor(set: java.util.Set<any>);
+            equals(o: any): boolean;
+            hashCode(): number;
+        }
+        class UnmodifiableMap<K, V> implements java.util.Map<K, V> {
+            __entrySet: Collections.UnmodifiableSet<java.util.Map.Entry<K, V>>;
+            __keySet: Collections.UnmodifiableSet<K>;
+            map: java.util.Map<any, any>;
+            __values: Collections.UnmodifiableCollection<V>;
+            constructor(map: java.util.Map<any, any>);
+            clear(): void;
+            containsKey(key: any): boolean;
+            containsValue(val: any): boolean;
+            entrySet(): java.util.Set<java.util.Map.Entry<K, V>>;
+            equals(o: any): boolean;
+            get(key: any): V;
+            hashCode(): number;
+            isEmpty(): boolean;
+            keySet(): java.util.Set<K>;
+            put(key?: any, value?: any): any;
+            put$java_lang_Object$java_lang_Object(key: K, value: V): V;
+            putAll(t: java.util.Map<any, any>): void;
+            remove(key: any): V;
+            size(): number;
+            toString(): string;
+            values(): java.util.Collection<V>;
+        }
+        namespace UnmodifiableMap {
+            class UnmodifiableEntrySet<K, V> extends Collections.UnmodifiableSet<java.util.Map.Entry<K, V>> {
+                constructor(s: java.util.Set<any>);
+                contains(o: any): boolean;
+                containsAll(o: java.util.Collection<any>): boolean;
+                iterator(): java.util.Iterator<java.util.Map.Entry<K, V>>;
+                toArray$(): any[];
+                toArray<T>(a?: any): any;
+                /**
+                 * Wrap an array of Map.Entries as UnmodifiableEntries.
+                 *
+                 * @param array array to wrap
+                 * @param size number of entries to wrap
+                 */
+                wrap(array: any[], size: number): void;
+            }
+            namespace UnmodifiableEntrySet {
+                class UnmodifiableEntry<K, V> implements java.util.Map.Entry<K, V> {
+                    entry: java.util.Map.Entry<any, any>;
+                    constructor(entry: java.util.Map.Entry<any, any>);
+                    equals(o: any): boolean;
+                    getKey(): K;
+                    getValue(): V;
+                    hashCode(): number;
+                    setValue(value: V): V;
+                    toString(): string;
+                }
+                class UnmodifiableEntrySet$0 implements java.util.Iterator<java.util.Map.Entry<any, any>> {
+                    private it;
+                    __parent: any;
+                    forEachRemaining(consumer: (p1: any) => void): void;
+                    hasNext(): boolean;
+                    next(): java.util.Map.Entry<any, any>;
+                    remove(): void;
+                    constructor(__parent: any, it: any);
+                }
+            }
+        }
+        class UnmodifiableSortedMap<K, V> extends Collections.UnmodifiableMap<K, V> implements java.util.SortedMap<K, V> {
+            sortedMap: java.util.SortedMap<K, any>;
+            constructor(sortedMap: java.util.SortedMap<K, any>);
+            comparator(): java.util.Comparator<any>;
+            equals(o: any): boolean;
+            firstKey(): K;
+            hashCode(): number;
+            headMap(toKey?: any, inclusive?: any): any;
+            headMap$java_lang_Object(toKey: K): java.util.SortedMap<K, V>;
+            lastKey(): K;
+            subMap(fromKey?: any, fromInclusive?: any, toKey?: any, toInclusive?: any): any;
+            subMap$java_lang_Object$java_lang_Object(fromKey: K, toKey: K): java.util.SortedMap<K, V>;
+            tailMap(fromKey?: any, inclusive?: any): any;
+            tailMap$java_lang_Object(fromKey: K): java.util.SortedMap<K, V>;
+        }
+        class UnmodifiableSortedSet<E> extends Collections.UnmodifiableSet<E> implements java.util.SortedSet<E> {
+            forEach(action: (p1: any) => void): void;
+            sortedSet: java.util.SortedSet<E>;
+            constructor(sortedSet: java.util.SortedSet<any>);
+            comparator(): java.util.Comparator<any>;
+            equals(o: any): boolean;
+            first(): E;
+            hashCode(): number;
+            headSet(toElement?: any, inclusive?: any): any;
+            headSet$java_lang_Object(toElement: E): java.util.SortedSet<E>;
+            last(): E;
+            subSet(fromElement?: any, fromInclusive?: any, toElement?: any, toInclusive?: any): any;
+            subSet$java_lang_Object$java_lang_Object(fromElement: E, toElement: E): java.util.SortedSet<E>;
+            tailSet(fromElement?: any, inclusive?: any): any;
+            tailSet$java_lang_Object(fromElement: E): java.util.SortedSet<E>;
+        }
+        class UnmodifiableCollectionIterator<T> implements java.util.Iterator<T> {
+            forEachRemaining(consumer: (p1: any) => void): void;
+            it: java.util.Iterator<any>;
+            constructor(it: java.util.Iterator<any>);
+            hasNext(): boolean;
+            next(): T;
+            remove(): void;
+        }
+        class UnmodifiableListIterator<T> extends Collections.UnmodifiableCollectionIterator<T> implements java.util.ListIterator<T> {
+            forEachRemaining(consumer: (p1: any) => void): void;
+            lit: java.util.ListIterator<any>;
+            constructor(lit: java.util.ListIterator<any>);
+            add(o: T): void;
+            hasPrevious(): boolean;
+            nextIndex(): number;
+            previous(): T;
+            previousIndex(): number;
+            set(o: T): void;
+        }
+        class RandomHolder {
+            static rnd: java.util.Random;
+            static rnd_$LI$(): java.util.Random;
+        }
+        class Collections$0<T> implements java.util.Enumeration<T> {
+            private it;
+            hasMoreElements(): boolean;
+            nextElement(): T;
+            constructor(it: any);
+        }
+        class Collections$1<T> implements java.util.Comparator<T> {
+            private cmp;
+            compare(t1: T, t2: T): number;
+            constructor(cmp: any);
+        }
+    }
+}
+declare namespace java.util {
+    /**
      * Implementation of Map interface based on a hash table. <a
      * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/HashMap.html">[Sun
      * docs]</a>
@@ -6270,211 +5835,141 @@ declare namespace java.util {
 }
 declare namespace java.util {
     /**
-     * Represents a sequence of objects. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/List.html">[Sun docs]</a>
+     * A {@link java.util.Set} of {@link Enum}s. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/EnumSet.html">[Sun
+     * docs]</a>
      *
-     * @param <E> element type
+     * @param <E> enumeration type
      */
-    interface List<E> extends java.util.Collection<E> {
-        add(index?: any, element?: any): any;
-        addAll(index?: any, c?: any): any;
-        clear(): any;
-        contains(o: any): boolean;
-        containsAll(c: java.util.Collection<any>): boolean;
-        equals(o: any): boolean;
-        get(index: number): E;
-        hashCode(): number;
-        indexOf(o?: any, index?: any): any;
-        isEmpty(): boolean;
-        iterator(): java.util.Iterator<E>;
-        lastIndexOf(o?: any, index?: any): any;
-        listIterator(from?: any): any;
-        remove(index?: any): any;
-        removeAll(c: java.util.Collection<any>): boolean;
-        retainAll(c: java.util.Collection<any>): boolean;
-        set(index: number, element: E): E;
-        size(): number;
-        subList(fromIndex: number, toIndex: number): List<E>;
-        toArray<T>(array?: any): any;
+    abstract class EnumSet<E extends java.lang.Enum<E>> extends java.util.AbstractSet<E> {
+        static allOf<E extends java.lang.Enum<E>>(elementType: any): EnumSet<E>;
+        static complementOf<E extends java.lang.Enum<E>>(other: EnumSet<E>): EnumSet<E>;
+        static copyOf$java_util_Collection<E extends java.lang.Enum<E>>(c: java.util.Collection<E>): EnumSet<E>;
+        static copyOf<E extends java.lang.Enum<E>>(s?: any): any;
+        static noneOf<E extends java.lang.Enum<E>>(elementType: any): EnumSet<E>;
+        static of$java_lang_Enum<E extends java.lang.Enum<E>>(first: E): EnumSet<E>;
+        static of<E extends java.lang.Enum<E>>(first?: any, ...rest: any[]): any;
+        static range<E extends java.lang.Enum<E>>(from: E, to: E): EnumSet<E>;
+        /**
+         * Single implementation only.
+         */
+        constructor();
+        abstract clone(): EnumSet<E>;
+        abstract capacity(): number;
     }
-}
-declare namespace java.lang {
-    /**
-     * Abstracts the notion of a sequence of characters.
-     */
-    interface CharSequence {
-        charAt(index: number): string;
-        length(): number;
-        subSequence(start: number, end: number): string;
-        toString(): string;
-    }
-}
-declare namespace java.io {
-    /**
-     * See <a
-     * href="https://docs.oracle.com/javase/8/docs/api/java/io/UncheckedIOException.html">the
-     * official Java API doc</a> for details.
-     */
-    class UncheckedIOException extends Error {
-        constructor(message?: any, cause?: any);
-        getCause(): java.io.IOException;
+    namespace EnumSet {
+        /**
+         * Implemented via sparse array since the set size is finite. Iteration takes
+         * linear time with respect to the set of the enum rather than the number of
+         * items in the set.
+         *
+         * Note: Implemented as a subclass instead of a concrete final EnumSet class.
+         * This is because declaring an EnumSet.add(E) causes hosted mode to bind to
+         * the tighter method rather than the bridge method; but the tighter method
+         * isn't available in the real JRE.
+         */
+        class EnumSetImpl<E extends java.lang.Enum<E>> extends java.util.EnumSet<E> {
+            /**
+             * All enums; reference to the class's copy; must not be modified.
+             */
+            all: E[];
+            /**
+             * Live enums in the set.
+             */
+            set: E[];
+            /**
+             * Count of enums in the set.
+             */
+            __size: number;
+            /**
+             * Constructs a set taking ownership of the specified set. The size must
+             * accurately reflect the number of non-null items in set.
+             */
+            constructor(all: E[], set: E[], size: number);
+            add(index?: any, element?: any): any;
+            add$java_lang_Enum(e: E): boolean;
+            clone(): java.util.EnumSet<E>;
+            contains(o: any): boolean;
+            containsEnum(e: java.lang.Enum<any>): boolean;
+            iterator(): java.util.Iterator<E>;
+            remove(index?: any): any;
+            remove$java_lang_Object(o: any): boolean;
+            removeEnum(e: java.lang.Enum<any>): boolean;
+            size(): number;
+            capacity(): number;
+        }
+        namespace EnumSetImpl {
+            class IteratorImpl implements java.util.Iterator<any> {
+                __parent: any;
+                forEachRemaining(consumer: (p1: any) => void): void;
+                i: number;
+                last: number;
+                constructor(__parent: any);
+                hasNext(): boolean;
+                next(): any;
+                remove(): void;
+                findNext(): void;
+            }
+        }
     }
 }
 declare namespace java.util {
     /**
-     * A tag interface that other "listener" interfaces can extend to indicate their
-     * adherence to the observer pattern.
-     */
-    interface EventListener {
-    }
-}
-declare namespace java.sql {
-    /**
-     * An implementation of java.sql.Date. Derived from
-     * http://java.sun.com/j2se/1.5.0/docs/api/java/sql/Date.html
-     */
-    class Date extends java.util.Date {
-        static valueOf(s: string): Date;
-        constructor(year?: any, month?: any, day?: any);
-        getHours(): number;
-        getMinutes(): number;
-        getSeconds(): number;
-        setHours(i: number): void;
-        setMinutes(i: number): void;
-        setSeconds(i: number): void;
-    }
-}
-declare namespace java.util.logging {
-    /**
-     * An emulation of the java.util.logging.Logger class. See
-     * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/Logger.html">
-     * The Java API doc for details</a>
-     */
-    class Logger {
-        static __static_initialized: boolean;
-        static __static_initialize(): void;
-        static GLOBAL_LOGGER_NAME: string;
-        private static LOGGING_ENABLED;
-        static LOGGING_ENABLED_$LI$(): string;
-        private static LOGGING_WARNING;
-        static LOGGING_WARNING_$LI$(): boolean;
-        private static LOGGING_SEVERE;
-        static LOGGING_SEVERE_$LI$(): boolean;
-        private static LOGGING_FALSE;
-        static LOGGING_FALSE_$LI$(): boolean;
-        static __static_initializer_0(): void;
-        static getGlobal(): Logger;
-        static getLogger(name: string): Logger;
-        static assertLoggingValues(): void;
-        private handlers;
-        private level;
-        private name;
-        private parent;
-        private useParentHandlers;
-        constructor(name: string, resourceName: string);
-        addHandler(handler: java.util.logging.Handler): void;
-        config(msg: string): void;
-        fine(msg: string): void;
-        finer(msg: string): void;
-        finest(msg: string): void;
-        info(msg: string): void;
-        warning(msg: string): void;
-        severe(msg: string): void;
-        getHandlers(): java.util.logging.Handler[];
-        getLevel(): java.util.logging.Level;
-        getName(): string;
-        getParent(): Logger;
-        getUseParentHandlers(): boolean;
-        isLoggable(messageLevel: java.util.logging.Level): boolean;
-        log$java_util_logging_Level$java_lang_String(level: java.util.logging.Level, msg: string): void;
-        log(level?: any, msg?: any, thrown?: any): any;
-        log$java_util_logging_LogRecord(record: java.util.logging.LogRecord): void;
-        removeHandler(handler: java.util.logging.Handler): void;
-        setLevel(newLevel: java.util.logging.Level): void;
-        setParent(newParent: Logger): void;
-        setUseParentHandlers(newUseParentHandlers: boolean): void;
-        private getEffectiveLevel();
-        actuallyLog(level?: any, msg?: any, thrown?: any): any;
-        private actuallyLog$java_util_logging_LogRecord(record);
-    }
-}
-declare namespace java.lang.annotation {
-    /**
-     * Enumerates types of declared elements in a Java program <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/ElementType.html">[Sun
-     * docs]</a>.
-     */
-    enum ElementType {
-        ANNOTATION_TYPE = 0,
-        CONSTRUCTOR = 1,
-        FIELD = 2,
-        LOCAL_VARIABLE = 3,
-        METHOD = 4,
-        PACKAGE = 5,
-        PARAMETER = 6,
-        TYPE = 7,
-    }
-}
-declare namespace java.lang {
-    /**
-     * Included for hosted mode source compatibility. Partially implemented
+     * An unbounded priority queue based on a priority heap. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/PriorityQueue.html">[Sun
+     * docs]</a>
      *
-     * @skip
+     * @param <E> element type.
      */
-    class StackTraceElement implements java.io.Serializable {
-        private className;
-        private fileName;
-        private lineNumber;
-        private methodName;
-        constructor(className?: any, methodName?: any, fileName?: any, lineNumber?: any);
-        getClassName(): string;
-        getFileName(): string;
-        getLineNumber(): number;
-        getMethodName(): string;
-        equals(other: any): boolean;
-        hashCode(): number;
-        toString(): string;
-    }
-}
-declare namespace java.lang {
-    /**
-     * NOTE: in GWT this will never be thrown for normal array accesses, only for
-     * explicit throws.
-     *
-     * See <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ArrayIndexOutOfBoundsException.html">the
-     * official Java API doc</a> for details.
-     */
-    class ArrayIndexOutOfBoundsException extends java.lang.IndexOutOfBoundsException {
-        constructor(msg?: any);
-    }
-}
-declare namespace java.sql {
-    /**
-     * An implementation of java.sql.Timestame. Derived from
-     * http://java.sun.com/j2se/1.5.0/docs/api/java/sql/Timestamp.html. This is
-     * basically just regular Date decorated with a nanoseconds field.
-     */
-    class Timestamp extends java.util.Date {
-        static valueOf(s: string): Timestamp;
-        private static padNine(value);
+    class PriorityQueue<E> extends java.util.AbstractQueue<E> {
+        private static getLeftChild(node);
+        private static getParent(node);
+        private static getRightChild(node);
+        private static isLeaf(node, size);
+        private cmp;
         /**
-         * Stores the nanosecond resolution of the timestamp; must be kept in sync
-         * with the sub-second part of Date.millis.
+         * A heap held in an array. heap[0] is the root of the heap (the smallest
+         * element), the subtrees of node i are 2*i+1 (left) and 2*i+2 (right). Node i
+         * is a leaf node if 2*i>=n. Node i's parent, if i>0, is floor((i-1)/2).
          */
-        private nanos;
-        constructor(year?: any, month?: any, date?: any, hour?: any, minute?: any, second?: any, nano?: any);
-        after(ts?: any): any;
-        before(ts?: any): any;
-        compareTo$java_util_Date(o: java.util.Date): number;
-        compareTo(o?: any): any;
-        equals$java_lang_Object(ts: any): boolean;
-        equals(ts?: any): any;
-        getNanos(): number;
-        getTime(): number;
-        hashCode(): number;
-        setNanos(n: number): void;
-        setTime(time: number): void;
+        private heap;
+        constructor(initialCapacity?: any, cmp?: any);
+        addAll(index?: any, c?: any): any;
+        addAll$java_util_Collection(c: java.util.Collection<any>): boolean;
+        clear(): void;
+        comparator(): java.util.Comparator<any>;
+        contains(o: any): boolean;
+        containsAll(c: java.util.Collection<any>): boolean;
+        isEmpty(): boolean;
+        iterator(): java.util.Iterator<E>;
+        offer(e: E): boolean;
+        peek(): E;
+        poll(): E;
+        remove(index?: any): any;
+        remove$java_lang_Object(o: any): boolean;
+        removeAll(c: java.util.Collection<any>): boolean;
+        retainAll(c: java.util.Collection<any>): boolean;
+        size(): number;
+        toArray$(): any[];
+        toArray<T>(a?: any): any;
+        toString(): string;
+        /**
+         * Make the subtree rooted at <code>node</code> a valid heap. O(n) time
+         *
+         * @param node
+         */
+        makeHeap(node: number): void;
+        /**
+         * Merge two subheaps into a single heap. O(log n) time
+         *
+         * PRECONDITION: both children of <code>node</code> are heaps
+         *
+         * @param node the parent of the two subtrees to merge
+         */
+        mergeHeaps(node: number): void;
+        private getSmallestChild(node, heapSize);
+        private isLeaf(node);
+        private removeAtIndex(index);
     }
 }
 declare namespace java.util {
@@ -6505,15 +6000,635 @@ declare namespace java.util {
         getHashCode(key: any): number;
     }
 }
-declare namespace java.beans {
+declare namespace java.util {
     /**
-     * General-purpose beans control methods. GWT only supports a limited subset of these methods. Only
-     * the documented methods are available.
+     * Maintains a last-in, first-out collection of objects. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Stack.html">[Sun
+     * docs]</a>
+     *
+     * @param <E> element type.
      */
-    class Beans {
+    class Stack<E> extends java.util.Vector<E> {
+        clone(): any;
+        empty(): boolean;
+        peek(): E;
+        pop(): E;
+        push(o: E): E;
+        search(o: any): number;
+        constructor();
+    }
+}
+declare namespace java.util {
+    /**
+     * Hash table and linked-list implementation of the Set interface with
+     * predictable iteration order. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/LinkedHashSet.html">[Sun
+     * docs]</a>
+     *
+     * @param <E> element type.
+     */
+    class LinkedHashSet<E> extends java.util.HashSet<E> implements java.util.Set<E>, java.lang.Cloneable {
+        forEach(action: (p1: any) => void): void;
+        constructor(ignored?: any, alsoIgnored?: any);
+        clone(): any;
+    }
+}
+declare namespace java.awt {
+    class Button extends java.awt.Component implements java.awt.HTMLComponent {
+        button: HTMLButtonElement;
+        actionListener: java.awt.event.ActionListener;
+        actionCommand: string;
+        label: string;
+        background: java.awt.Color;
+        constructor(label: string);
+        bind(id: string): void;
+        init(): void;
+        private initActionListener();
+        getHTMLElement(): HTMLElement;
+        addActionListener(actionListener: java.awt.event.ActionListener): void;
+        setBackground(background: java.awt.Color): void;
+    }
+}
+declare namespace javaemul.internal {
+    /**
+     * Intrinsic string class.
+     */
+    class StringHelper {
+        static CASE_INSENSITIVE_ORDER: java.util.Comparator<string>;
+        static CASE_INSENSITIVE_ORDER_$LI$(): java.util.Comparator<string>;
+        static copyValueOf$char_A(v: string[]): string;
+        static copyValueOf(v?: any, offset?: any, count?: any): any;
+        static valueOf$boolean(x: boolean): string;
+        static valueOf$char(x: string): string;
+        static valueOf(x?: any, offset?: any, count?: any): any;
+        private static fromCharCode(array);
+        static valueOf$char_A(x: string[]): string;
+        static valueOf$double(x: number): string;
+        static valueOf$float(x: number): string;
+        static valueOf$int(x: number): string;
+        static valueOf$long(x: number): string;
+        static valueOf$java_lang_Object(x: any): string;
         /**
-         * @return <code>true</code> if we are running in the design time mode.
+         * This method converts Java-escaped dollar signs "\$" into
+         * JavaScript-escaped dollar signs "$$", and removes all other lone
+         * backslashes, which serve as escapes in Java but are passed through
+         * literally in JavaScript.
+         *
+         * @skip
          */
-        static isDesignTime(): boolean;
+        private static translateReplaceString(replaceStr);
+        private static compareTo(thisStr, otherStr);
+        private static getCharset(charsetName);
+        static fromCodePoint(codePoint: number): string;
+        static format(formatString: string, ...args: any[]): string;
+        constructor();
+    }
+    namespace StringHelper {
+        class StringHelper$0 implements java.util.Comparator<string> {
+            compare(a: string, b: string): number;
+            constructor();
+        }
+    }
+}
+declare namespace java.lang {
+    /**
+     * See <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/NoSuchMethodException.html">the
+     * official Java API doc</a> for details.
+     *
+     * This exception is never thrown by GWT or GWT's libraries, as GWT does not support reflection. It
+     * is provided in GWT only for compatibility with user code that explicitly throws or catches it for
+     * non-reflection purposes.
+     */
+    class NoSuchMethodException extends Error {
+        constructor(message?: any);
+    }
+}
+declare namespace java.util {
+    /**
+     * General-purpose interface for storing collections of objects. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html">[Sun
+     * docs]</a>
+     *
+     * @param <E> element type
+     */
+    interface Collection<E> extends java.lang.Iterable<E> {
+        add(index?: any, element?: any): any;
+        addAll(index?: any, c?: any): any;
+        clear(): any;
+        contains(o: any): boolean;
+        containsAll(c: Collection<any>): boolean;
+        equals(o: any): boolean;
+        hashCode(): number;
+        isEmpty(): boolean;
+        iterator(): java.util.Iterator<E>;
+        remove(index?: any): any;
+        removeAll(c: Collection<any>): boolean;
+        retainAll(c: Collection<any>): boolean;
+        size(): number;
+        toArray<T>(a?: any): any;
+    }
+}
+declare namespace java.lang {
+    /**
+     * See <a
+     * href="http://docs.oracle.com/javase/7/docs/api/java/lang/AutoCloseable.html">the
+     * official Java API doc</a> for details.
+     */
+    interface AutoCloseable {
+        /**
+         * Closes this resource.
+         */
+        close(): any;
+    }
+}
+declare namespace java.io {
+    /**
+     * Provided for interoperability; RPC treats this interface synonymously with
+     * {@link com.google.gwt.user.client.rpc.IsSerializable IsSerializable}.
+     * The Java serialization protocol is explicitly not supported.
+     */
+    interface Serializable {
+    }
+}
+declare namespace javaemul.internal.annotations {
+    /**
+     * An annotation to mark another annotation as a compiler hint.
+     */
+    interface CompilerHint {
+    }
+}
+declare namespace java.util {
+    /**
+     * A {@code SortedSet} with more flexible queries.
+     *
+     * @param <E> element type.
+     */
+    interface NavigableSet<E> extends java.util.SortedSet<E> {
+        ceiling(e: E): E;
+        descendingIterator(): java.util.Iterator<E>;
+        descendingSet(): NavigableSet<E>;
+        floor(e: E): E;
+        headSet(toElement?: any, inclusive?: any): any;
+        higher(e: E): E;
+        lower(e: E): E;
+        pollFirst(): E;
+        pollLast(): E;
+        subSet(fromElement?: any, fromInclusive?: any, toElement?: any, toInclusive?: any): any;
+        tailSet(fromElement?: any, inclusive?: any): any;
+    }
+}
+declare namespace java.util {
+    /**
+     * Uses Java 1.5 ListIterator for documentation. The methods hasNext, next, and
+     * remove are repeated to allow the specialized ListIterator documentation to be
+     * associated with them. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/ListIterator.html">[Sun
+     * docs]</a>
+     *
+     * @param <E> element type.
+     */
+    interface ListIterator<E> extends java.util.Iterator<E> {
+        add(o: E): any;
+        hasNext(): boolean;
+        hasPrevious(): boolean;
+        next(): E;
+        nextIndex(): number;
+        previous(): E;
+        previousIndex(): number;
+        remove(): any;
+        set(o: E): any;
+    }
+}
+declare namespace java.security {
+    /**
+     * A generic security exception type - <a
+     * href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/NoSuchAlgorithmException.html">[Sun's
+     * docs]</a>.
+     */
+    class NoSuchAlgorithmException extends java.security.GeneralSecurityException {
+        constructor(msg?: any);
+    }
+}
+declare namespace java.lang.annotation {
+    /**
+     * Annotation which indicates the kinds of program element to which an
+     * annotation type is applicable <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/Target.html">[Sun
+     * docs]</a>.
+     */
+    interface Target {
+        value(): java.lang.annotation.ElementType[];
+    }
+}
+declare namespace java.util {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/ConcurrentModificationException.html">the
+     * official Java API doc</a> for details.
+     */
+    class ConcurrentModificationException extends Error {
+        constructor(message?: any);
+    }
+}
+declare namespace java.util {
+    /**
+     * Implementation of the observer interface
+     */
+    interface Observer {
+        /**
+         * This method is called whenever the observed object is changed. An
+         * application calls an <tt>Observable</tt> object's
+         * <code>notifyObservers</code> method to have all the object's
+         * observers notified of the change.
+         *
+         * @param   o     the observable object.
+         * @param   arg   an argument passed to the <code>notifyObservers</code>
+         * method.
+         */
+        update(o: java.util.Observable, arg: any): any;
+    }
+}
+declare namespace java.lang {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/IndexOutOfBoundsException.html">the
+     * official Java API doc</a> for details.
+     */
+    class IndexOutOfBoundsException extends Error {
+        constructor(message?: any);
+    }
+}
+declare namespace java.lang {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/StringIndexOfBoundsException.html">the
+     * official Java API doc</a> for details.
+     */
+    class StringIndexOutOfBoundsException extends java.lang.IndexOutOfBoundsException {
+        constructor(message?: any);
+    }
+}
+declare namespace java.lang {
+    /**
+     * NOTE: in GWT this will never be thrown for normal array accesses, only for
+     * explicit throws.
+     *
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ArrayIndexOutOfBoundsException.html">the
+     * official Java API doc</a> for details.
+     */
+    class ArrayIndexOutOfBoundsException extends java.lang.IndexOutOfBoundsException {
+        constructor(msg?: any);
+    }
+}
+declare namespace test {
+    class Test {
+        static assertEquals(o1: any, o2: any): void;
+        static assertTrue(b: boolean): void;
+        static assertFalse(b: boolean): void;
+        static test(): void;
+        static testList(): void;
+        static testSet(): void;
+        static testMap(): void;
+        static testString(): void;
+        static testIO(): void;
+    }
+}
+declare namespace java.util {
+    /**
+     * A map with ordering. <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/SortedMap.html">[Sun
+     * docs]</a>
+     *
+     * @param <K> key type.
+     * @param <V> value type.
+     */
+    interface SortedMap<K, V> extends java.util.Map<K, V> {
+        comparator(): java.util.Comparator<any>;
+        firstKey(): K;
+        headMap(toKey?: any, inclusive?: any): any;
+        lastKey(): K;
+        subMap(fromKey?: any, fromInclusive?: any, toKey?: any, toInclusive?: any): any;
+        tailMap(fromKey?: any, inclusive?: any): any;
+    }
+}
+declare namespace java.security {
+    /**
+     * A generic security exception type - <a
+     * href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/DigestException.html">[Sun's
+     * docs]</a>.
+     */
+    class DigestException extends java.security.GeneralSecurityException {
+        constructor(msg?: any);
+    }
+}
+declare namespace java.lang {
+    /**
+     * Used to declare interfaces which must have a single abstract method.
+     */
+    interface FunctionalInterface {
+    }
+}
+declare namespace javaemul.internal {
+    /**
+     * Wraps native <code>byte</code> as an object.
+     */
+    class ByteHelper extends javaemul.internal.NumberHelper implements java.lang.Comparable<ByteHelper> {
+        static MIN_VALUE: number;
+        static MIN_VALUE_$LI$(): number;
+        static MAX_VALUE: number;
+        static MAX_VALUE_$LI$(): number;
+        static SIZE: number;
+        static TYPE: typeof Number;
+        static TYPE_$LI$(): typeof Number;
+        static compare(x: number, y: number): number;
+        static decode(s: string): ByteHelper;
+        /**
+         * @skip
+         *
+         * Here for shared implementation with Arrays.hashCode
+         */
+        static hashCode(b: number): number;
+        static parseByte(s: string, radix?: number): number;
+        static toString(b: number): string;
+        static valueOf$byte(b: number): ByteHelper;
+        static valueOf$java_lang_String(s: string): ByteHelper;
+        static valueOf(s?: any, radix?: any): any;
+        private value;
+        constructor(s?: any);
+        byteValue(): number;
+        compareTo(b?: any): any;
+        doubleValue(): number;
+        equals(o: any): boolean;
+        floatValue(): number;
+        hashCode(): number;
+        intValue(): number;
+        longValue(): number;
+        shortValue(): number;
+        toString(): string;
+    }
+    namespace ByteHelper {
+        /**
+         * Use nested class to avoid clinit on outer.
+         */
+        class BoxedValues {
+            static boxedValues: javaemul.internal.ByteHelper[];
+            static boxedValues_$LI$(): javaemul.internal.ByteHelper[];
+        }
+    }
+}
+declare namespace javaemul.internal.annotations {
+    /**
+     * An annotation to mark a given method as not inlineable.
+     * <p>
+     * Internal SDK use only, might change or disappear at any time.
+     */
+    interface DoNotInline {
+    }
+}
+declare namespace java.util {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/NoSuchElementException.html">the
+     * official Java API doc</a> for details.
+     */
+    class NoSuchElementException extends Error {
+        constructor(s?: any);
+    }
+}
+declare namespace javaemul.internal.annotations {
+    /**
+     * A simple of a GwtIncompatible annotation for internal emulation use.
+     */
+    interface GwtIncompatible {
+        value(): string;
+    }
+}
+declare namespace java.lang.annotation {
+    /**
+     * Enumerates annotation retention policies <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/RetentionPolicy.html">[Sun
+     * docs]</a>.
+     */
+    enum RetentionPolicy {
+        CLASS = 0,
+        RUNTIME = 1,
+        SOURCE = 2,
+    }
+}
+declare namespace java.lang {
+    /**
+     * Indicates that a class implements <code>clone()</code>.
+     */
+    interface Cloneable {
+    }
+}
+declare namespace java.util.logging {
+    /**
+     * An emulation of the java.util.logging.Level class. See
+     * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/Level.html">
+     * The Java API doc for details</a>
+     */
+    class Level implements java.io.Serializable {
+        static ALL: Level;
+        static ALL_$LI$(): Level;
+        static CONFIG: Level;
+        static CONFIG_$LI$(): Level;
+        static FINE: Level;
+        static FINE_$LI$(): Level;
+        static FINER: Level;
+        static FINER_$LI$(): Level;
+        static FINEST: Level;
+        static FINEST_$LI$(): Level;
+        static INFO: Level;
+        static INFO_$LI$(): Level;
+        static OFF: Level;
+        static OFF_$LI$(): Level;
+        static SEVERE: Level;
+        static SEVERE_$LI$(): Level;
+        static WARNING: Level;
+        static WARNING_$LI$(): Level;
+        static parse(name: string): Level;
+        constructor();
+        getName(): string;
+        intValue(): number;
+        toString(): string;
+    }
+    namespace Level {
+        class LevelAll extends java.util.logging.Level {
+            getName(): string;
+            intValue(): number;
+            constructor();
+        }
+        class LevelConfig extends java.util.logging.Level {
+            getName(): string;
+            intValue(): number;
+            constructor();
+        }
+        class LevelFine extends java.util.logging.Level {
+            getName(): string;
+            intValue(): number;
+            constructor();
+        }
+        class LevelFiner extends java.util.logging.Level {
+            getName(): string;
+            intValue(): number;
+            constructor();
+        }
+        class LevelFinest extends java.util.logging.Level {
+            getName(): string;
+            intValue(): number;
+            constructor();
+        }
+        class LevelInfo extends java.util.logging.Level {
+            getName(): string;
+            intValue(): number;
+            constructor();
+        }
+        class LevelOff extends java.util.logging.Level {
+            getName(): string;
+            intValue(): number;
+            constructor();
+        }
+        class LevelSevere extends java.util.logging.Level {
+            getName(): string;
+            intValue(): number;
+            constructor();
+        }
+        class LevelWarning extends java.util.logging.Level {
+            getName(): string;
+            intValue(): number;
+            constructor();
+        }
+    }
+}
+declare namespace java.lang {
+    /**
+     * See <a
+     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/NumberFormatException.html">the
+     * official Java API doc</a> for details.
+     */
+    class NumberFormatException extends java.lang.IllegalArgumentException {
+        static forInputString(s: string): java.lang.NumberFormatException;
+        static forNullInputString(): java.lang.NumberFormatException;
+        static forRadix(radix: number): java.lang.NumberFormatException;
+        constructor(message?: any);
+    }
+}
+declare namespace java.lang {
+    /**
+     * Generally unsupported. This class is provided so that the GWT compiler can
+     * choke down class literal references.
+     * <p>
+     * NOTE: The code in this class is very sensitive and should keep its
+     * dependencies upon other classes to a minimum.
+     *
+     * @param <T>
+     * the type of the object
+     */
+    class Class<T> implements java.lang.reflect.Type {
+        private static constructors;
+        static constructors_$LI$(): Array<Function>;
+        private static classes;
+        static classes_$LI$(): Array<any>;
+        static getConstructorForClass(clazz: any): Function;
+        static getClassForConstructor(constructor: Function): any;
+        static mapConstructorToClass(constructor: Function, clazz: any): void;
+        private static PRIMITIVE;
+        private static INTERFACE;
+        private static ARRAY;
+        private static ENUM;
+        /**
+         * Create a Class object for an array.
+         * <p>
+         *
+         * Arrays are not registered in the prototype table and get the class
+         * literal explicitly at construction.
+         * <p>
+         */
+        private static getClassLiteralForArray<T>(leafClass, dimensions);
+        private createClassLiteralForArray(dimensions);
+        /**
+         * Create a Class object for a class.
+         *
+         * @skip
+         */
+        static createForClass<T>(packageName: string, compoundClassName: string, typeId: string, superclass: any): any;
+        /**
+         * Create a Class object for an enum.
+         *
+         * @skip
+         */
+        static createForEnum<T>(packageName: string, compoundClassName: string, typeId: string, superclass: any, enumConstantsFunc: Function, enumValueOfFunc: Function): any;
+        /**
+         * Create a Class object for an interface.
+         *
+         * @skip
+         */
+        static createForInterface<T>(packageName: string, compoundClassName: string): any;
+        /**
+         * Create a Class object for a primitive.
+         *
+         * @skip
+         */
+        static createForPrimitive(className: string, primitiveTypeId: string): any;
+        /**
+         * Used by {@link WebModePayloadSink} to create uninitialized instances.
+         */
+        static getPrototypeForClass(clazz: any): any;
+        /**
+         * Creates the class object for a type and initiliazes its fields.
+         */
+        private static createClassObject<T>(packageName, compoundClassName, typeId);
+        /**
+         * Initiliazes {@code clazz} names from metadata.
+         * <p>
+         * Written in JSNI to minimize dependencies (on String.+).
+         */
+        private static initializeNames(clazz);
+        /**
+         * Sets the class object for primitives.
+         * <p>
+         * Written in JSNI to minimize dependencies (on (String)+).
+         */
+        static synthesizePrimitiveNamesFromTypeId(clazz: any, primitiveTypeId: Object): void;
+        enumValueOfFunc: Function;
+        modifiers: number;
+        private componentType;
+        private enumConstantsFunc;
+        private enumSuperclass;
+        private superclass;
+        private simpleName;
+        private typeName;
+        private canonicalName;
+        private packageName;
+        private compoundName;
+        private typeId;
+        private arrayLiterals;
+        private sequentialId;
+        private static nextSequentialId;
+        /**
+         * Not publicly instantiable.
+         *
+         * @skip
+         */
+        constructor();
+        desiredAssertionStatus(): boolean;
+        private ensureNamesAreInitialized();
+        getCanonicalName(): string;
+        getComponentType(): any;
+        getEnumConstants(): T[];
+        getName(): string;
+        getSimpleName(): string;
+        getSuperclass(): any;
+        isArray(): boolean;
+        isEnum(): boolean;
+        isInterface(): boolean;
+        isPrimitive(): boolean;
+        toString(): string;
+        /**
+         * Used by Enum to allow getSuperclass() to be pruned.
+         */
+        getEnumSuperclass(): any;
     }
 }
