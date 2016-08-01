@@ -31,111 +31,137 @@ import javaemul.internal.HashCodes;
  */
 public final class System {
 
-  /**
-   * Does nothing in web mode. To get output in web mode, subclass PrintStream
-   * and call {@link #setErr(PrintStream)}.
-   */
-  public static PrintStream err = new PrintStream(null);
+	/**
+	 * Does nothing in web mode. To get output in web mode, subclass PrintStream
+	 * and call {@link #setErr(PrintStream)}.
+	 */
+	public static PrintStream err = new PrintStream(null);
 
-  /**
-   * Does nothing in web mode. To get output in web mode, subclass
-   * {@link PrintStream} and call {@link #setOut(PrintStream)}.
-   */
-  public static PrintStream out = new PrintStream(null);
+	/**
+	 * Does nothing in web mode. To get output in web mode, subclass
+	 * {@link PrintStream} and call {@link #setOut(PrintStream)}.
+	 */
+	public static PrintStream out = new PrintStream(null);
 
-  public static void arraycopy(Object src, int srcOfs, Object dest, int destOfs, int len) {
-    checkNotNull(src, "src");
-    checkNotNull(dest, "dest");
+	public static void arraycopy(Object src, int srcOfs, Object dest, int destOfs, int len) {
+		checkNotNull(src, "src");
+		checkNotNull(dest, "dest");
 
-    Class<?> srcType = src.getClass();
-    Class<?> destType = dest.getClass();
-    checkArrayType(srcType.isArray(), "srcType is not an array");
-    checkArrayType(destType.isArray(), "destType is not an array");
+		Class<?> srcType = src.getClass();
+		Class<?> destType = dest.getClass();
+		checkArrayType(srcType.isArray(), "srcType is not an array");
+		checkArrayType(destType.isArray(), "destType is not an array");
 
-    Class<?> srcComp = srcType.getComponentType();
-    Class<?> destComp = destType.getComponentType();
-    checkArrayType(arrayTypeMatch(srcComp, destComp), "Array types don't match");
+		Class<?> srcComp = srcType.getComponentType();
+		Class<?> destComp = destType.getComponentType();
+		checkArrayType(arrayTypeMatch(srcComp, destComp), "Array types don't match");
 
-    int srclen = ArrayHelper.getLength(src);
-    int destlen = ArrayHelper.getLength(dest);
-    if (srcOfs < 0 || destOfs < 0 || len < 0 || srcOfs + len > srclen || destOfs + len > destlen) {
-      throw new IndexOutOfBoundsException();
-    }
-    /*
-     * If the arrays are not references or if they are exactly the same type, we
-     * can copy them in native code for speed. Otherwise, we have to copy them
-     * in Java so we get appropriate errors.
-     */
-    if ((!srcComp.isPrimitive() || srcComp.isArray())
-        && !srcType.equals(destType)) {
-      // copy in Java to make sure we get ArrayStoreExceptions if the values
-      // aren't compatible
-      Object[] srcArray = (Object[]) src;
-      Object[] destArray = (Object[]) dest;
-      if (src == dest && srcOfs < destOfs) {
-        // TODO(jat): how does backward copies handle failures in the middle?
-        // copy backwards to avoid destructive copies
-        srcOfs += len;
-        for (int destEnd = destOfs + len; destEnd-- > destOfs;) {
-          destArray[destEnd] = srcArray[--srcOfs];
-        }
-      } else {
-        for (int destEnd = destOfs + len; destOfs < destEnd;) {
-          destArray[destOfs++] = srcArray[srcOfs++];
-        }
-      }
-    } else if (len > 0) {
-      ArrayHelper.copy(src, srcOfs, dest, destOfs, len);
-    }
-  }
+		int srclen = ArrayHelper.getLength(src);
+		int destlen = ArrayHelper.getLength(dest);
+		if (srcOfs < 0 || destOfs < 0 || len < 0 || srcOfs + len > srclen || destOfs + len > destlen) {
+			throw new IndexOutOfBoundsException();
+		}
+		/*
+		 * If the arrays are not references or if they are exactly the same
+		 * type, we can copy them in native code for speed. Otherwise, we have
+		 * to copy them in Java so we get appropriate errors.
+		 */
+		if ((!srcComp.isPrimitive() || srcComp.isArray()) && !srcType.equals(destType)) {
+			// copy in Java to make sure we get ArrayStoreExceptions if the
+			// values
+			// aren't compatible
+			Object[] srcArray = (Object[]) src;
+			Object[] destArray = (Object[]) dest;
+			if (src == dest && srcOfs < destOfs) {
+				// TODO(jat): how does backward copies handle failures in the
+				// middle?
+				// copy backwards to avoid destructive copies
+				srcOfs += len;
+				for (int destEnd = destOfs + len; destEnd-- > destOfs;) {
+					destArray[destEnd] = srcArray[--srcOfs];
+				}
+			} else {
+				for (int destEnd = destOfs + len; destOfs < destEnd;) {
+					destArray[destOfs++] = srcArray[srcOfs++];
+				}
+			}
+		} else if (len > 0) {
+			ArrayHelper.copy(src, srcOfs, dest, destOfs, len);
+		}
+	}
 
-  public static long currentTimeMillis() {
-    return (long) DateUtil.now();
-  }
+	public static long currentTimeMillis() {
+		return (long) DateUtil.now();
+	}
 
-  /**
-   * Has no effect; just here for source compatibility.
-   *
-   * @skip
-   */
-  public static void gc() {
-  }
+	/**
+	 * Has no effect; just here for source compatibility.
+	 *
+	 * @skip
+	 */
+	public static void gc() {
+	}
 
-  /**
-   * The compiler replaces getProperty by the actual value of the property.
-   */
-  public static String getProperty(String key) {
-	  // TODO
-    return null;
-//	  throw new AssertionError("System.getProperty should have been replaced by the compiler.");
-  }
+	/**
+	 * The compiler replaces getProperty by the actual value of the property.
+	 */
+	public static String getProperty(String key) {
+		// TODO
+		switch (key) {
+		case "user.dir":
+			return "";
+		case "user.home":
+			return "";
+		case "user.name":
+			return "jsweet";
+		case "file.separator":
+			return "/";
+		case "java.home":
+			return null;
+		case "java.vendor":
+			return "JSweet";
+		case "java.vendor.url":
+			return "http://www.jsweet.org";
+		case "java.version":
+			return "jsweet";
+		case "os.arch":
+			return "generic";
+		case "os.name":
+			return "generic";
+		case "os.version":
+			return "unknown";
+		case "java.io.tmpdir":
+			return "";
+		default:
+			return null;
+		}
+	}
 
-  /**
-   * The compiler replaces getProperty by the actual value of the property.
-   */
-  public static String getProperty(String key, String def) {
-	  // TODO
-	  return def;
-    //throw new AssertionError("System.getProperty should have been replaced by the compiler.");
-  }
+	/**
+	 * The compiler replaces getProperty by the actual value of the property.
+	 */
+	public static String getProperty(String key, String def) {
+		String prop = getProperty(key);
+		return prop == null ? def : prop;
+	}
 
-  public static int identityHashCode(Object o) {
-    return HashCodes.getIdentityHashCode(o);
-  }
+	public static int identityHashCode(Object o) {
+		return HashCodes.getIdentityHashCode(o);
+	}
 
-  public static void setErr(PrintStream err) {
-    System.err = err;
-  }
+	public static void setErr(PrintStream err) {
+		System.err = err;
+	}
 
-  public static void setOut(PrintStream out) {
-    System.out = out;
-  }
+	public static void setOut(PrintStream out) {
+		System.out = out;
+	}
 
-  private static boolean arrayTypeMatch(Class<?> srcComp, Class<?> destComp) {
-    if (srcComp.isPrimitive()) {
-      return srcComp.equals(destComp);
-    } else {
-      return !destComp.isPrimitive();
-    }
-  }
+	private static boolean arrayTypeMatch(Class<?> srcComp, Class<?> destComp) {
+		if (srcComp.isPrimitive()) {
+			return srcComp.equals(destComp);
+		} else {
+			return !destComp.isPrimitive();
+		}
+	}
 }

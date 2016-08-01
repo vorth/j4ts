@@ -29,7 +29,9 @@ public class Applet {
 		window.onload = e -> {
 			console.info("applet onload hook");
 			NodeListOf<Element> divList = document.getElementsByClassName("applet");
-
+			if (divList.length == 0) {
+				return null;
+			}
 			HTMLDivElement div = (HTMLDivElement) divList.$get(0);
 			if (div.getAttribute("data-applet") != null) {
 				console.info("installing applet: " + div.getAttribute("data-applet"));
