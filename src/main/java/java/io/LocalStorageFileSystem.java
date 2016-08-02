@@ -9,6 +9,8 @@ import jsweet.lang.JSON;
 
 public class LocalStorageFileSystem extends FileSystem {
 
+	private final String PREFIX = "LSFS://";
+
 	File[] roots;
 
 	@Interface
@@ -151,8 +153,17 @@ public class LocalStorageFileSystem extends FileSystem {
 		return getEntry(f.getAbsolutePath()).length;
 	}
 
+	public void clear() {
+		for (int i = 0; i < localStorage.length; i++) {
+			String key = localStorage.key(i);
+			if (key.startsWith(PREFIX)) {
+				localStorage.removeItem(key);
+			}
+		}
+	}
+
 	private String getKey(String pathname) {
-		return "LSFS://" + pathname;
+		return PREFIX + pathname;
 	}
 
 	@Override
