@@ -4,7 +4,9 @@
 	<groupId>j4ts</groupId>
 	<artifactId>j4ts</artifactId>
 	<version>0.2.0-SNAPSHOT</version>
-
+	<properties>
+		<jsweet.transpiler.version>1.1.1</jsweet.transpiler.version>
+	</properties>
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
@@ -39,6 +41,12 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -58,7 +66,8 @@
 					<!-- <sourceMap>true</sourceMap> -->
 					<bundle>true</bundle>
 					<declaration>true</declaration>
-					<outDir>target/js</outDir>
+					<outDir>src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}</outDir>
+					<dtsOut>src/main/resources/src/typings/${project.artifactId}/${project.version}</dtsOut>
 					<targetVersion>ES3</targetVersion>
 				</configuration>
 				<executions>
