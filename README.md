@@ -45,9 +45,9 @@ assertEquals("bb", s.get("b"));
 
 ## How to use
 
-You can use the current JavaScript bundle (JSweet-generated runtime): [target/js/bundle.js](https://github.com/cincheo/j4ts/blob/master/target/js/bundle.js). 
+You can use the current JavaScript bundle (JSweet-generated runtime): ``src/main/resources/META-INF/resources/webjars/j4ts/VERSION/bundle.js``. 
 
-From TypeScript, you can compile with: [target/js/bundle.d.ts](https://github.com/cincheo/j4ts/blob/master/target/ts/bundle.ts). TypeScript definition file: [target/js/bundle.d.ts](https://github.com/cincheo/j4ts/blob/master/target/js/bundle.d.ts).
+From TypeScript, you can compile with: ``src/main/resources/src/typings/j4ts/VERSION/bundle.d.ts``.
 
 From JSweet, add the candy dependency in your ``pom.xml``.
 
@@ -55,24 +55,18 @@ From JSweet, add the candy dependency in your ``pom.xml``.
 <dependency>
 	<groupId>org.jsweet.candies</groupId>
 	<artifactId>j4ts</artifactId>
-	<version>0.1.0</version>
+	<version>VERSION</version>
 </dependency>
 ```
 
 A simple and still incomplete test suite is available [there](https://github.com/cincheo/j4ts/blob/master/src/main/java/test/Test.java). Make sure that the tests pass by opening [index.html](https://github.com/cincheo/j4ts/blob/master/index.html).
 
-## How to package
+## How to modify/package
 
-Use Gulp to clean temporary files (required: Gulp and required modules).
-
-```
-> gulp clean
-```
-
-Use the ``package.sh`` script to compile and package/install the candy (required: [JSweet](http://www.jsweet.org)). The following command installs the candy in your local Maven repository.
+You can compile, package and install the J4TS candy in your local Maven repository by running Maven in the project's directory:
 
 ```
-> package.sh install
+> mvn install
 ```
 
 ## Disclaimer
