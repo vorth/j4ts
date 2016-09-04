@@ -19,8 +19,6 @@
 
 package java.io;
 
-import jsweet.lang.Name;
-
 /**
  * A specialized {@link InputStream } for reading the contents of a byte array.
  *
@@ -41,7 +39,6 @@ public class ByteArrayInputStream extends InputStream {
 	 * The current mark position. Initially set to 0 or the <code>offset</code>
 	 * parameter within the constructor.
 	 */
-	@Name("mark")
 	protected int _mark;
 
 	/**
