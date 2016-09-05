@@ -45,9 +45,9 @@ assertEquals("bb", s.get("b"));
 
 ## How to use
 
-You can use the current JavaScript bundle (JSweet-generated runtime): ``src/main/resources/META-INF/resources/webjars/j4ts/VERSION/bundle.js``. 
+You can use the current JavaScript bundle (JSweet-generated runtime): ``dist/j4ts.js``. 
 
-From TypeScript, you can compile with: ``src/main/resources/src/typings/j4ts/VERSION/bundle.d.ts``.
+From TypeScript, you can compile with: ``dist/j4ts.d.ts``.
 
 From JSweet, add the candy dependency in your ``pom.xml``.
 
