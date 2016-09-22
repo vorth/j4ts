@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jsweet.candies</groupId>
 	<artifactId>j4ts</artifactId>
-	<version>0.2.0-SNAPSHOT</version>
+	<version>0.3.0-SNAPSHOT</version>
 	<properties>
 		<jsweet.transpiler.version>1.1.1</jsweet.transpiler.version>
 	</properties>
@@ -91,10 +91,10 @@
 								<echo message="copying generated bundles to dist..." />
 								<copy
 									file="src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}/bundle.js"
-									tofile="dist/j4ts.js" verbose="true" />
+									tofile="dist/${project.artifactId}.js" verbose="true" />
 								<copy
 									file="src/main/resources/src/typings/${project.artifactId}/${project.version}/bundle.d.ts"
-									tofile="dist/j4ts.d.ts" verbose="true" />
+									tofile="dist/${project.artifactId}.d.ts" verbose="true" />
 							</target>
 						</configuration>
 						<goals>
@@ -157,6 +157,11 @@
 			<groupId>org.jsweet.candies</groupId>
 			<artifactId>sprintf-js</artifactId>
 			<version>0.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jsweet.candies</groupId>
+			<artifactId>jquery</artifactId>
+			<version>1.10.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 

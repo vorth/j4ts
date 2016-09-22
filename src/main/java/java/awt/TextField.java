@@ -1,69 +1,65 @@
 package java.awt;
 
 import static jsweet.dom.Globals.document;
+import static jsweet.util.Globals.any;
 
 import java.applet.Applet;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import jsweet.dom.HTMLElement;
 import jsweet.dom.HTMLInputElement;
 import jsweet.util.StringTypes;
 
-public class TextField extends Component implements HTMLComponent {
+public class TextField extends Component {
 
-	HTMLInputElement input;
 	ActionListener actionListener;
 
 	public TextField(int cols) {
 	}
 
 	@Override
-	public void init() {
-		if (input != null) {
+	public HTMLInputElement getHTMLElement() {
+		return any(htmlElement);
+	}
+	
+	@Override
+	public void createHTML() {
+		if (htmlElement != null) {
 			return;
 		}
-		input = document.createElement(StringTypes.input);
-		input.setAttribute("type", "text");
-		input.id = "cmp" + Applet.CURRENT_ID++;
+		htmlElement = document.createElement(StringTypes.input);
+		htmlElement.setAttribute("type", "text");
+	}
+
+	@Override
+	public void initHTML() {
+		super.initHTML();
+		htmlElement.id = "cmp" + Applet.CURRENT_ID++;
 		initActionListener();
 	}
 
 	private void initActionListener() {
 		if (actionListener != null) {
-			input.onclick = e -> {
-				this.actionListener.actionPerformed(new ActionEvent(this, null));
+			htmlElement.onclick = e -> {
+				this.actionListener.actionPerformed(new ActionEvent(this, 0, null));
 				return e;
 			};
 		}
 	}
 
-	@Override
-	public void bind(String id) {
-		input = (HTMLInputElement) document.getElementById(id);
-	}
-
-	@Override
-	public HTMLElement getHTMLElement() {
-		if (input == null) {
-			init();
-		}
-		return input;
-	}
-
 	public void addActionListener(ActionListener actionListener) {
 		this.actionListener = actionListener;
-		if (input != null) {
+		if (htmlElement != null) {
 			initActionListener();
 		}
 	}
 
 	public void setText(String text) {
-		input.value = text;
+		getHTMLElement().value = text;
 	}
 
 	public String getText() {
-		return input.value;
+		return getHTMLElement().value;
 	}
 
 }

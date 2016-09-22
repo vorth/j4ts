@@ -1,28 +1,1526 @@
 declare namespace java.awt {
-    class Color {
-        r: number;
-        g: number;
-        b: number;
-        constructor(r: number, g: number, b: number);
+    abstract class AbstractHTMLComponent implements java.awt.HTMLComponent {
+        abstract createHTML(): any;
+        htmlElement: HTMLElement;
+        bindHTML(htmlElement: HTMLElement): void;
+        getHTMLElement(): HTMLElement;
+        initHTML(): void;
+        constructor();
+    }
+}
+declare namespace java.awt {
+    interface Adjustable {
+        getOrientation(): number;
+        setMinimum(min: number): any;
+        getMinimum(): number;
+        setMaximum(max: number): any;
+        getMaximum(): number;
+        setUnitIncrement(u: number): any;
+        getUnitIncrement(): number;
+        setBlockIncrement(b: number): any;
+        getBlockIncrement(): number;
+        setVisibleAmount(v: number): any;
+        getVisibleAmount(): number;
+        setValue(v: number): any;
+        getValue(): number;
+        addAdjustmentListener(l: java.awt.event.AdjustmentListener): any;
+        removeAdjustmentListener(l: java.awt.event.AdjustmentListener): any;
+    }
+    namespace Adjustable {
+        var HORIZONTAL: number;
+        var VERTICAL: number;
+        var NO_ORIENTATION: number;
+    }
+}
+declare namespace java.awt {
+    class CheckboxGroup implements java.io.Serializable {
+        selectedCheckbox: java.awt.Checkbox;
+        static serialVersionUID: number;
+        constructor();
+        getSelectedCheckbox(): java.awt.Checkbox;
+        getCurrent(): java.awt.Checkbox;
+        setSelectedCheckbox(box: java.awt.Checkbox): void;
+        setCurrent(box: java.awt.Checkbox): void;
+        toString(): string;
+    }
+}
+declare namespace java.awt {
+    class Color implements java.awt.Paint, java.io.Serializable {
+        /**
+         * The color white. In the default sRGB space.
+         */
+        static white: Color;
+        static white_$LI$(): Color;
+        /**
+         * The color white. In the default sRGB space.
+         *
+         * @since 1.4
+         */
+        static WHITE: Color;
+        static WHITE_$LI$(): Color;
+        /**
+         * The color light gray. In the default sRGB space.
+         */
+        static lightGray: Color;
+        static lightGray_$LI$(): Color;
+        /**
+         * The color light gray. In the default sRGB space.
+         *
+         * @since 1.4
+         */
+        static LIGHT_GRAY: Color;
+        static LIGHT_GRAY_$LI$(): Color;
+        /**
+         * The color gray. In the default sRGB space.
+         */
+        static gray: Color;
+        static gray_$LI$(): Color;
+        /**
+         * The color gray. In the default sRGB space.
+         *
+         * @since 1.4
+         */
+        static GRAY: Color;
+        static GRAY_$LI$(): Color;
+        /**
+         * The color dark gray. In the default sRGB space.
+         */
+        static darkGray: Color;
+        static darkGray_$LI$(): Color;
+        /**
+         * The color dark gray. In the default sRGB space.
+         *
+         * @since 1.4
+         */
+        static DARK_GRAY: Color;
+        static DARK_GRAY_$LI$(): Color;
+        /**
+         * The color black. In the default sRGB space.
+         */
+        static black: Color;
+        static black_$LI$(): Color;
+        /**
+         * The color black. In the default sRGB space.
+         *
+         * @since 1.4
+         */
+        static BLACK: Color;
+        static BLACK_$LI$(): Color;
+        /**
+         * The color red. In the default sRGB space.
+         */
+        static red: Color;
+        static red_$LI$(): Color;
+        /**
+         * The color red. In the default sRGB space.
+         *
+         * @since 1.4
+         */
+        static RED: Color;
+        static RED_$LI$(): Color;
+        /**
+         * The color pink. In the default sRGB space.
+         */
+        static pink: Color;
+        static pink_$LI$(): Color;
+        /**
+         * The color pink. In the default sRGB space.
+         *
+         * @since 1.4
+         */
+        static PINK: Color;
+        static PINK_$LI$(): Color;
+        /**
+         * The color orange. In the default sRGB space.
+         */
+        static orange: Color;
+        static orange_$LI$(): Color;
+        /**
+         * The color orange. In the default sRGB space.
+         *
+         * @since 1.4
+         */
+        static ORANGE: Color;
+        static ORANGE_$LI$(): Color;
+        /**
+         * The color yellow. In the default sRGB space.
+         */
+        static yellow: Color;
+        static yellow_$LI$(): Color;
+        /**
+         * The color yellow. In the default sRGB space.
+         *
+         * @since 1.4
+         */
+        static YELLOW: Color;
+        static YELLOW_$LI$(): Color;
+        /**
+         * The color green. In the default sRGB space.
+         */
+        static green: Color;
+        static green_$LI$(): Color;
+        /**
+         * The color green. In the default sRGB space.
+         *
+         * @since 1.4
+         */
+        static GREEN: Color;
+        static GREEN_$LI$(): Color;
+        /**
+         * The color magenta. In the default sRGB space.
+         */
+        static magenta: Color;
+        static magenta_$LI$(): Color;
+        /**
+         * The color magenta. In the default sRGB space.
+         *
+         * @since 1.4
+         */
+        static MAGENTA: Color;
+        static MAGENTA_$LI$(): Color;
+        /**
+         * The color cyan. In the default sRGB space.
+         */
+        static cyan: Color;
+        static cyan_$LI$(): Color;
+        /**
+         * The color cyan. In the default sRGB space.
+         *
+         * @since 1.4
+         */
+        static CYAN: Color;
+        static CYAN_$LI$(): Color;
+        /**
+         * The color blue. In the default sRGB space.
+         */
+        static blue: Color;
+        static blue_$LI$(): Color;
+        /**
+         * The color blue. In the default sRGB space.
+         *
+         * @since 1.4
+         */
+        static BLUE: Color;
+        static BLUE_$LI$(): Color;
+        /**
+         * The color value.
+         *
+         * @serial
+         * @see #getRGB
+         */
+        value: number;
+        /**
+         * The color value in the default sRGB <code>ColorSpace</code> as
+         * <code>float</code> components (no alpha). If <code>null</code> after
+         * object construction, this must be an sRGB color constructed with 8-bit
+         * precision, so compute from the <code>int</code> color value.
+         *
+         * @serial
+         * @see #getRGBColorComponents
+         * @see #getRGBComponents
+         */
+        private frgbvalue;
+        /**
+         * The color value in the native <code>ColorSpace</code> as
+         * <code>float</code> components (no alpha). If <code>null</code> after
+         * object construction, this must be an sRGB color constructed with 8-bit
+         * precision, so compute from the <code>int</code> color value.
+         *
+         * @serial
+         * @see #getRGBColorComponents
+         * @see #getRGBComponents
+         */
+        private fvalue;
+        /**
+         * The alpha value as a <code>float</code> component. If
+         * <code>frgbvalue</code> is <code>null</code>, this is not valid data, so
+         * compute from the <code>int</code> color value.
+         *
+         * @serial
+         * @see #getRGBComponents
+         * @see #getComponents
+         */
+        private falpha;
+        static serialVersionUID: number;
+        /**
+         * Checks the color integer components supplied for validity. Throws an
+         * {@link IllegalArgumentException} if the value is out of range.
+         *
+         * @param r
+         * the Red component
+         * @param g
+         * the Green component
+         * @param b
+         * the Blue component
+         */
+        static testColorValueRange(r?: any, g?: any, b?: any, a?: any): any;
+        /**
+         * Checks the color <code>float</code> components supplied for validity.
+         * Throws an <code>IllegalArgumentException</code> if the value is out of
+         * range.
+         *
+         * @param r
+         * the Red component
+         * @param g
+         * the Green component
+         * @param b
+         * the Blue component
+         */
+        private static testColorValueRange$float$float$float$float(r, g, b, a);
+        /**
+         * Creates an sRGB color with the specified red, green, blue, and alpha
+         * values in the range (0 - 255).
+         *
+         * @throws IllegalArgumentException
+         * if <code>r</code>, <code>g</code>, <code>b</code> or
+         * <code>a</code> are outside of the range 0 to 255, inclusive
+         * @param r
+         * the red component
+         * @param g
+         * the green component
+         * @param b
+         * the blue component
+         * @param a
+         * the alpha component
+         * @see #getRed
+         * @see #getGreen
+         * @see #getBlue
+         * @see #getAlpha
+         * @see #getRGB
+         */
+        constructor(r?: any, g?: any, b?: any, a?: any);
+        /**
+         * Returns the red component in the range 0-255 in the default sRGB space.
+         *
+         * @return the red component.
+         * @see #getRGB
+         */
+        getRed(): number;
+        /**
+         * Returns the green component in the range 0-255 in the default sRGB space.
+         *
+         * @return the green component.
+         * @see #getRGB
+         */
+        getGreen(): number;
+        /**
+         * Returns the blue component in the range 0-255 in the default sRGB space.
+         *
+         * @return the blue component.
+         * @see #getRGB
+         */
+        getBlue(): number;
+        /**
+         * Returns the alpha component in the range 0-255.
+         *
+         * @return the alpha component.
+         * @see #getRGB
+         */
+        getAlpha(): number;
+        /**
+         * Returns the RGB value representing the color in the default sRGB
+         * {@link ColorModel}. (Bits 24-31 are alpha, 16-23 are red, 8-15 are green,
+         * 0-7 are blue).
+         *
+         * @return the RGB value of the color in the default sRGB
+         * <code>ColorModel</code>.
+         * @see java.awt.image.ColorModel#getRGBdefault
+         * @see #getRed
+         * @see #getGreen
+         * @see #getBlue
+         * @since JDK1.0
+         */
+        getRGB(): number;
+        static FACTOR: number;
+        /**
+         * Creates a new <code>Color</code> that is a brighter version of this
+         * <code>Color</code>.
+         * <p>
+         * This method applies an arbitrary scale factor to each of the three RGB
+         * components of this <code>Color</code> to create a brighter version of
+         * this <code>Color</code>. The {@code alpha} value is preserved. Although
+         * <code>brighter</code> and <code>darker</code> are inverse operations, the
+         * results of a series of invocations of these two methods might be
+         * inconsistent because of rounding errors.
+         *
+         * @return a new <code>Color</code> object that is a brighter version of
+         * this <code>Color</code> with the same {@code alpha} value.
+         * @see java.awt.Color#darker
+         * @since JDK1.0
+         */
+        brighter(): Color;
+        /**
+         * Creates a new <code>Color</code> that is a darker version of this
+         * <code>Color</code>.
+         * <p>
+         * This method applies an arbitrary scale factor to each of the three RGB
+         * components of this <code>Color</code> to create a darker version of this
+         * <code>Color</code>. The {@code alpha} value is preserved. Although
+         * <code>brighter</code> and <code>darker</code> are inverse operations, the
+         * results of a series of invocations of these two methods might be
+         * inconsistent because of rounding errors.
+         *
+         * @return a new <code>Color</code> object that is a darker version of this
+         * <code>Color</code> with the same {@code alpha} value.
+         * @see java.awt.Color#brighter
+         * @since JDK1.0
+         */
+        darker(): Color;
+        /**
+         * Computes the hash code for this <code>Color</code>.
+         *
+         * @return a hash code value for this object.
+         * @since JDK1.0
+         */
+        hashCode(): number;
+        /**
+         * Determines whether another object is equal to this <code>Color</code>.
+         * <p>
+         * The result is <code>true</code> if and only if the argument is not
+         * <code>null</code> and is a <code>Color</code> object that has the same
+         * red, green, blue, and alpha values as this object.
+         *
+         * @param obj
+         * the object to test for equality with this <code>Color</code>
+         * @return <code>true</code> if the objects are the same; <code>false</code>
+         * otherwise.
+         * @since JDK1.0
+         */
+        equals(obj: any): boolean;
+        /**
+         * Returns a string representation of this <code>Color</code>. This method
+         * is intended to be used only for debugging purposes. The content and
+         * format of the returned string might vary between implementations. The
+         * returned string might be empty but cannot be <code>null</code>.
+         *
+         * @return a string representation of this <code>Color</code>.
+         */
+        toString(): string;
+        /**
+         * Converts a <code>String</code> to an integer and returns the specified
+         * opaque <code>Color</code>. This method handles string formats that are
+         * used to represent octal and hexadecimal numbers.
+         *
+         * @param nm
+         * a <code>String</code> that represents an opaque color as a
+         * 24-bit integer
+         * @return the new <code>Color</code> object.
+         * @see java.lang.Integer#decode
+         * @exception NumberFormatException
+         * if the specified string cannot be interpreted as a
+         * decimal, octal, or hexadecimal integer.
+         * @since JDK1.1
+         */
+        static decode(nm: string): Color;
+        /**
+         * Finds a color in the system properties.
+         * <p>
+         * The argument is treated as the name of a system property to be obtained.
+         * The string value of this property is then interpreted as an integer which
+         * is then converted to a <code>Color</code> object.
+         * <p>
+         * If the specified property is not found or could not be parsed as an
+         * integer then <code>null</code> is returned.
+         *
+         * @param nm
+         * the name of the color property
+         * @return the <code>Color</code> converted from the system property.
+         * @see java.lang.System#getProperty(java.lang.String)
+         * @see java.lang.Integer#getInteger(java.lang.String)
+         * @see java.awt.Color#Color(int)
+         * @since JDK1.0
+         */
+        static getColor$java_lang_String(nm: string): Color;
+        /**
+         * Finds a color in the system properties.
+         * <p>
+         * The first argument is treated as the name of a system property to be
+         * obtained. The string value of this property is then interpreted as an
+         * integer which is then converted to a <code>Color</code> object.
+         * <p>
+         * If the specified property is not found or cannot be parsed as an integer
+         * then the <code>Color</code> specified by the second argument is returned
+         * instead.
+         *
+         * @param nm
+         * the name of the color property
+         * @param v
+         * the default <code>Color</code>
+         * @return the <code>Color</code> converted from the system property, or the
+         * specified <code>Color</code>.
+         * @see java.lang.System#getProperty(java.lang.String)
+         * @see java.lang.Integer#getInteger(java.lang.String)
+         * @see java.awt.Color#Color(int)
+         * @since JDK1.0
+         */
+        static getColor(nm?: any, v?: any): any;
+        /**
+         * Finds a color in the system properties.
+         * <p>
+         * The first argument is treated as the name of a system property to be
+         * obtained. The string value of this property is then interpreted as an
+         * integer which is then converted to a <code>Color</code> object.
+         * <p>
+         * If the specified property is not found or could not be parsed as an
+         * integer then the integer value <code>v</code> is used instead, and is
+         * converted to a <code>Color</code> object.
+         *
+         * @param nm
+         * the name of the color property
+         * @param v
+         * the default color value, as an integer
+         * @return the <code>Color</code> converted from the system property or the
+         * <code>Color</code> converted from the specified integer.
+         * @see java.lang.System#getProperty(java.lang.String)
+         * @see java.lang.Integer#getInteger(java.lang.String)
+         * @see java.awt.Color#Color(int)
+         * @since JDK1.0
+         */
+        static getColor$java_lang_String$int(nm: string, v: number): Color;
+        /**
+         * Converts the components of a color, as specified by the HSB model, to an
+         * equivalent set of values for the default RGB model.
+         * <p>
+         * The <code>saturation</code> and <code>brightness</code> components should
+         * be floating-point values between zero and one (numbers in the range
+         * 0.0-1.0). The <code>hue</code> component can be any floating-point
+         * number. The floor of this number is subtracted from it to create a
+         * fraction between 0 and 1. This fractional number is then multiplied by
+         * 360 to produce the hue angle in the HSB color model.
+         * <p>
+         * The integer that is returned by <code>HSBtoRGB</code> encodes the value
+         * of a color in bits 0-23 of an integer value that is the same format used
+         * by the method {@link #getRGB() getRGB}. This integer can be supplied as
+         * an argument to the <code>Color</code> constructor that takes a single
+         * integer argument.
+         *
+         * @param hue
+         * the hue component of the color
+         * @param saturation
+         * the saturation of the color
+         * @param brightness
+         * the brightness of the color
+         * @return the RGB value of the color with the indicated hue, saturation,
+         * and brightness.
+         * @see java.awt.Color#getRGB()
+         * @see java.awt.Color#Color(int)
+         * @see java.awt.image.ColorModel#getRGBdefault()
+         * @since JDK1.0
+         */
+        static HSBtoRGB(hue: number, saturation: number, brightness: number): number;
+        /**
+         * Converts the components of a color, as specified by the default RGB
+         * model, to an equivalent set of values for hue, saturation, and brightness
+         * that are the three components of the HSB model.
+         * <p>
+         * If the <code>hsbvals</code> argument is <code>null</code>, then a new
+         * array is allocated to return the result. Otherwise, the method returns
+         * the array <code>hsbvals</code>, with the values put into that array.
+         *
+         * @param r
+         * the red component of the color
+         * @param g
+         * the green component of the color
+         * @param b
+         * the blue component of the color
+         * @param hsbvals
+         * the array used to return the three HSB values, or
+         * <code>null</code>
+         * @return an array of three elements containing the hue, saturation, and
+         * brightness (in that order), of the color with the indicated red,
+         * green, and blue components.
+         * @see java.awt.Color#getRGB()
+         * @see java.awt.Color#Color(int)
+         * @see java.awt.image.ColorModel#getRGBdefault()
+         * @since JDK1.0
+         */
+        static RGBtoHSB(r: number, g: number, b: number, hsbvals: number[]): number[];
+        /**
+         * Creates a <code>Color</code> object based on the specified values for the
+         * HSB color model.
+         * <p>
+         * The <code>s</code> and <code>b</code> components should be floating-point
+         * values between zero and one (numbers in the range 0.0-1.0). The
+         * <code>h</code> component can be any floating-point number. The floor of
+         * this number is subtracted from it to create a fraction between 0 and 1.
+         * This fractional number is then multiplied by 360 to produce the hue angle
+         * in the HSB color model.
+         *
+         * @param h
+         * the hue component
+         * @param s
+         * the saturation of the color
+         * @param b
+         * the brightness of the color
+         * @return a <code>Color</code> object with the specified hue, saturation,
+         * and brightness.
+         * @since JDK1.0
+         */
+        static getHSBColor(h: number, s: number, b: number): Color;
+        /**
+         * Returns a <code>float</code> array containing the color and alpha
+         * components of the <code>Color</code>, as represented in the default sRGB
+         * color space. If <code>compArray</code> is <code>null</code>, an array of
+         * length 4 is created for the return value. Otherwise,
+         * <code>compArray</code> must have length 4 or greater, and it is filled in
+         * with the components and returned.
+         *
+         * @param compArray
+         * an array that this method fills with color and alpha
+         * components and returns
+         * @return the RGBA components in a <code>float</code> array.
+         */
+        getRGBComponents(compArray: number[]): number[];
+        /**
+         * Returns a <code>float</code> array containing only the color components
+         * of the <code>Color</code>, in the default sRGB color space. If
+         * <code>compArray</code> is <code>null</code>, an array of length 3 is
+         * created for the return value. Otherwise, <code>compArray</code> must have
+         * length 3 or greater, and it is filled in with the components and
+         * returned.
+         *
+         * @param compArray
+         * an array that this method fills with color components and
+         * returns
+         * @return the RGB components in a <code>float</code> array.
+         */
+        getRGBColorComponents(compArray: number[]): number[];
+        /**
+         * Returns a <code>float</code> array containing the color and alpha
+         * components of the <code>Color</code>, in the <code>ColorSpace</code> of
+         * the <code>Color</code>. If <code>compArray</code> is <code>null</code>,
+         * an array with length equal to the number of components in the associated
+         * <code>ColorSpace</code> plus one is created for the return value.
+         * Otherwise, <code>compArray</code> must have at least this length and it
+         * is filled in with the components and returned.
+         *
+         * @param compArray
+         * an array that this method fills with the color and alpha
+         * components of this <code>Color</code> in its
+         * <code>ColorSpace</code> and returns
+         * @return the color and alpha components in a <code>float</code> array.
+         */
+        getComponents(compArray: number[]): number[];
+        /**
+         * Returns a <code>float</code> array containing only the color components
+         * of the <code>Color</code>, in the <code>ColorSpace</code> of the
+         * <code>Color</code>. If <code>compArray</code> is <code>null</code>, an
+         * array with length equal to the number of components in the associated
+         * <code>ColorSpace</code> is created for the return value. Otherwise,
+         * <code>compArray</code> must have at least this length and it is filled in
+         * with the components and returned.
+         *
+         * @param compArray
+         * an array that this method fills with the color components of
+         * this <code>Color</code> in its <code>ColorSpace</code> and
+         * returns
+         * @return the color components in a <code>float</code> array.
+         */
+        getColorComponents(compArray: number[]): number[];
+        /**
+         * Returns the transparency mode for this <code>Color</code>. This is
+         * required to implement the <code>Paint</code> interface.
+         *
+         * @return this <code>Color</code> object's transparency mode.
+         * @see Paint
+         * @see Transparency
+         * @see #createContext
+         */
+        getTransparency(): number;
         toHTML(): string;
     }
 }
 declare namespace java.awt {
-    class Component {
+    abstract class Component implements java.awt.HTMLComponent {
+        abstract createHTML(): any;
+        static TOP_ALIGNMENT: number;
+        static CENTER_ALIGNMENT: number;
+        static BOTTOM_ALIGNMENT: number;
+        static LEFT_ALIGNMENT: number;
+        static RIGHT_ALIGNMENT: number;
+        htmlElement: HTMLElement;
+        enabled: boolean;
+        valid: boolean;
+        background: java.awt.Color;
+        foreground: java.awt.Color;
+        font: java.awt.Font;
+        visible: boolean;
+        name: string;
+        bindHTML(htmlElement: HTMLElement): void;
+        getHTMLElement(): HTMLElement;
+        initHTML(): void;
+        getLocationOnScreen(): java.awt.Point;
+        getBounds(): java.awt.Rectangle;
+        getWidth(): number;
+        getHeight(): number;
+        getX(): number;
+        getY(): number;
+        private changeSupport;
+        getPropertyChangeListeners(propertyName?: any): any;
+        addPropertyChangeListener$java_beans_PropertyChangeListener(listener: java.beans.PropertyChangeListener): void;
+        removePropertyChangeListener$java_beans_PropertyChangeListener(listener: java.beans.PropertyChangeListener): void;
+        getPropertyChangeListeners$(): java.beans.PropertyChangeListener[];
+        addPropertyChangeListener(propertyName?: any, listener?: any): any;
+        removePropertyChangeListener(propertyName?: any, listener?: any): any;
+        firePropertyChange(propertyName: string, oldValue: any, newValue: any): void;
+        isEnabled(): boolean;
+        setEnabled(enabled: boolean): void;
+        getBackground(): java.awt.Color;
+        setBackground(background: java.awt.Color): void;
+        getForeground(): java.awt.Color;
+        setForeground(foreground: java.awt.Color): void;
+        getFont(): java.awt.Font;
+        setFont(font: java.awt.Font): void;
+        isVisible(): boolean;
+        setVisible(visible: boolean): void;
+        getName(): string;
+        setName(name: string): void;
+        paramString(): string;
+        isValid(): boolean;
+        setValid(valid: boolean): void;
+        validate(): void;
+        paint(g: java.awt.Graphics): void;
+        update(g: java.awt.Graphics): void;
+        paintAll(g: java.awt.Graphics): void;
+        constructor();
     }
 }
 declare namespace java.awt.event {
-    class ActionEvent {
-        private source;
-        private actionCommand;
-        constructor(source: any, actionCommand: string);
-        getSource(): any;
-        getActionCommand(): string;
-    }
-}
-declare namespace java.awt.event {
-    interface ActionListener {
+    interface ActionListener extends java.util.EventListener {
         actionPerformed(ae: java.awt.event.ActionEvent): any;
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * The listener interface for receiving adjustment events.
+     *
+     * @author Amy Fowler
+     * @since 1.1
+     */
+    interface AdjustmentListener extends java.util.EventListener {
+        /**
+         * Invoked when the value of the adjustable has changed.
+         */
+        adjustmentValueChanged(e: java.awt.event.AdjustmentEvent): any;
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * An abstract adapter class for receiving component events.
+     * The methods in this class are empty. This class exists as
+     * convenience for creating listener objects.
+     * <P>
+     * Extend this class to create a <code>ComponentEvent</code> listener
+     * and override the methods for the events of interest. (If you implement the
+     * <code>ComponentListener</code> interface, you have to define all of
+     * the methods in it. This abstract class defines null methods for them
+     * all, so you can only have to define methods for events you care about.)
+     * <P>
+     * Create a listener object using your class and then register it with a
+     * component using the component's <code>addComponentListener</code>
+     * method. When the component's size, location, or visibility
+     * changes, the relevant method in the listener object is invoked,
+     * and the <code>ComponentEvent</code> is passed to it.
+     *
+     * @see ComponentEvent
+     * @see ComponentListener
+     * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/componentlistener.html">Tutorial: Writing a Component Listener</a>
+     *
+     * @author Carl Quinn
+     * @since 1.1
+     */
+    abstract class ComponentAdapter implements java.awt.event.ComponentListener {
+        /**
+         * Invoked when the component's size changes.
+         */
+        componentResized(e: java.awt.event.ComponentEvent): void;
+        /**
+         * Invoked when the component's position changes.
+         */
+        componentMoved(e: java.awt.event.ComponentEvent): void;
+        /**
+         * Invoked when the component has been made visible.
+         */
+        componentShown(e: java.awt.event.ComponentEvent): void;
+        /**
+         * Invoked when the component has been made invisible.
+         */
+        componentHidden(e: java.awt.event.ComponentEvent): void;
+        constructor();
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * The listener interface for receiving component events.
+     * The class that is interested in processing a component event
+     * either implements this interface (and all the methods it
+     * contains) or extends the abstract <code>ComponentAdapter</code> class
+     * (overriding only the methods of interest).
+     * The listener object created from that class is then registered with a
+     * component using the component's <code>addComponentListener</code>
+     * method. When the component's size, location, or visibility
+     * changes, the relevant method in the listener object is invoked,
+     * and the <code>ComponentEvent</code> is passed to it.
+     * <P>
+     * Component events are provided for notification purposes ONLY;
+     * The AWT will automatically handle component moves and resizes
+     * internally so that GUI layout works properly regardless of
+     * whether a program registers a <code>ComponentListener</code> or not.
+     *
+     * @see ComponentAdapter
+     * @see ComponentEvent
+     * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/componentlistener.html">Tutorial: Writing a Component Listener</a>
+     *
+     * @author Carl Quinn
+     * @since 1.1
+     */
+    interface ComponentListener extends java.util.EventListener {
+        /**
+         * Invoked when the component's size changes.
+         */
+        componentResized(e: java.awt.event.ComponentEvent): any;
+        /**
+         * Invoked when the component's position changes.
+         */
+        componentMoved(e: java.awt.event.ComponentEvent): any;
+        /**
+         * Invoked when the component has been made visible.
+         */
+        componentShown(e: java.awt.event.ComponentEvent): any;
+        /**
+         * Invoked when the component has been made invisible.
+         */
+        componentHidden(e: java.awt.event.ComponentEvent): any;
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * An abstract adapter class for receiving container events.
+     * The methods in this class are empty. This class exists as
+     * convenience for creating listener objects.
+     * <P>
+     * Extend this class to create a <code>ContainerEvent</code> listener
+     * and override the methods for the events of interest. (If you implement the
+     * <code>ContainerListener</code> interface, you have to define all of
+     * the methods in it. This abstract class defines null methods for them
+     * all, so you can only have to define methods for events you care about.)
+     * <P>
+     * Create a listener object using the extended class and then register it with
+     * a component using the component's <code>addContainerListener</code>
+     * method. When the container's contents change because a component has
+     * been added or removed, the relevant method in the listener object is invoked,
+     * and the <code>ContainerEvent</code> is passed to it.
+     *
+     * @see ContainerEvent
+     * @see ContainerListener
+     * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/containerlistener.html">Tutorial: Writing a Container Listener</a>
+     *
+     * @author Amy Fowler
+     * @since 1.1
+     */
+    abstract class ContainerAdapter implements java.awt.event.ContainerListener {
+        /**
+         * Invoked when a component has been added to the container.
+         */
+        componentAdded(e: java.awt.event.ContainerEvent): void;
+        /**
+         * Invoked when a component has been removed from the container.
+         */
+        componentRemoved(e: java.awt.event.ContainerEvent): void;
+        constructor();
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * The listener interface for receiving container events.
+     * The class that is interested in processing a container event
+     * either implements this interface (and all the methods it
+     * contains) or extends the abstract <code>ContainerAdapter</code> class
+     * (overriding only the methods of interest).
+     * The listener object created from that class is then registered with a
+     * component using the component's <code>addContainerListener</code>
+     * method. When the container's contents change because a component
+     * has been added or removed, the relevant method in the listener object
+     * is invoked, and the <code>ContainerEvent</code> is passed to it.
+     * <P>
+     * Container events are provided for notification purposes ONLY;
+     * The AWT will automatically handle add and remove operations
+     * internally so the program works properly regardless of
+     * whether the program registers a {@code ContainerListener} or not.
+     *
+     * @see ContainerAdapter
+     * @see ContainerEvent
+     * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/containerlistener.html">Tutorial: Writing a Container Listener</a>
+     *
+     * @author Tim Prinzing
+     * @author Amy Fowler
+     * @since 1.1
+     */
+    interface ContainerListener extends java.util.EventListener {
+        /**
+         * Invoked when a component has been added to the container.
+         */
+        componentAdded(e: java.awt.event.ContainerEvent): any;
+        /**
+         * Invoked when a component has been removed from the container.
+         */
+        componentRemoved(e: java.awt.event.ContainerEvent): any;
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * The listener interface for receiving item events.
+     * The class that is interested in processing an item event
+     * implements this interface. The object created with that
+     * class is then registered with a component using the
+     * component's <code>addItemListener</code> method. When an
+     * item-selection event occurs, the listener object's
+     * <code>itemStateChanged</code> method is invoked.
+     *
+     * @author Amy Fowler
+     *
+     * @see java.awt.ItemSelectable
+     * @see ItemEvent
+     * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/itemlistener.html">Tutorial: Writing an Item Listener</a>
+     *
+     * @since 1.1
+     */
+    interface ItemListener extends java.util.EventListener {
+        /**
+         * Invoked when an item has been selected or deselected by the user.
+         * The code written for this method performs the operations
+         * that need to occur when an item is selected (or deselected).
+         */
+        itemStateChanged(e: java.awt.event.ItemEvent): any;
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * The listener interface for receiving keyboard events (keystrokes).
+     * The class that is interested in processing a keyboard event
+     * either implements this interface (and all the methods it
+     * contains) or extends the abstract <code>KeyAdapter</code> class
+     * (overriding only the methods of interest).
+     * <P>
+     * The listener object created from that class is then registered with a
+     * component using the component's <code>addKeyListener</code>
+     * method. A keyboard event is generated when a key is pressed, released,
+     * or typed. The relevant method in the listener
+     * object is then invoked, and the <code>KeyEvent</code> is passed to it.
+     *
+     * @author Carl Quinn
+     *
+     * @see KeyAdapter
+     * @see KeyEvent
+     * @see <a href="http://java.sun.com/docs/books/tutorial/post1.0/ui/keylistener.html">Tutorial: Writing a Key Listener</a>
+     *
+     * @since 1.1
+     */
+    interface KeyListener extends java.util.EventListener {
+        /**
+         * Invoked when a key has been typed.
+         * See the class description for {@link KeyEvent} for a definition of
+         * a key typed event.
+         */
+        keyTyped(e: java.awt.event.KeyEvent): any;
+        /**
+         * Invoked when a key has been pressed.
+         * See the class description for {@link KeyEvent} for a definition of
+         * a key pressed event.
+         */
+        keyPressed(e: java.awt.event.KeyEvent): any;
+        /**
+         * Invoked when a key has been released.
+         * See the class description for {@link KeyEvent} for a definition of
+         * a key released event.
+         */
+        keyReleased(e: java.awt.event.KeyEvent): any;
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * An abstract adapter class for receiving mouse events.
+     * The methods in this class are empty. This class exists as
+     * convenience for creating listener objects.
+     * <P>
+     * Mouse events let you track when a mouse is pressed, released, clicked,
+     * moved, dragged, when it enters a component, when it exits and
+     * when a mouse wheel is moved.
+     * <P>
+     * Extend this class to create a {@code MouseEvent}
+     * (including drag and motion events) or/and {@code MouseWheelEvent}
+     * listener and override the methods for the events of interest. (If you implement the
+     * {@code MouseListener},
+     * {@code MouseMotionListener}
+     * interface, you have to define all of
+     * the methods in it. This abstract class defines null methods for them
+     * all, so you can only have to define methods for events you care about.)
+     * <P>
+     * Create a listener object using the extended class and then register it with
+     * a component using the component's {@code addMouseListener}
+     * {@code addMouseMotionListener}, {@code addMouseWheelListener}
+     * methods.
+     * The relevant method in the listener object is invoked  and the {@code MouseEvent}
+     * or {@code MouseWheelEvent}  is passed to it in following cases:
+     * <ul>
+     * <li>when a mouse button is pressed, released, or clicked (pressed and  released)
+     * <li>when the mouse cursor enters or exits the component
+     * <li>when the mouse wheel rotated, or mouse moved or dragged
+     * </ul>
+     *
+     * @author Carl Quinn
+     * @author Andrei Dmitriev
+     *
+     * @see MouseEvent
+     * @see MouseWheelEvent
+     * @see MouseListener
+     * @see MouseMotionListener
+     * @see MouseWheelListener
+     * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/mouselistener.html">Tutorial: Writing a Mouse Listener</a>
+     *
+     * @since 1.1
+     */
+    abstract class MouseAdapter implements java.awt.event.MouseListener, java.awt.event.MouseWheelListener, java.awt.event.MouseMotionListener {
+        /**
+         * {@inheritDoc}
+         */
+        mouseClicked(e: java.awt.event.MouseEvent): void;
+        /**
+         * {@inheritDoc}
+         */
+        mousePressed(e: java.awt.event.MouseEvent): void;
+        /**
+         * {@inheritDoc}
+         */
+        mouseReleased(e: java.awt.event.MouseEvent): void;
+        /**
+         * {@inheritDoc}
+         */
+        mouseEntered(e: java.awt.event.MouseEvent): void;
+        /**
+         * {@inheritDoc}
+         */
+        mouseExited(e: java.awt.event.MouseEvent): void;
+        /**
+         * {@inheritDoc}
+         * @since 1.6
+         */
+        mouseWheelMoved(e: java.awt.event.MouseWheelEvent): void;
+        /**
+         * {@inheritDoc}
+         * @since 1.6
+         */
+        mouseDragged(e: java.awt.event.MouseEvent): void;
+        /**
+         * {@inheritDoc}
+         * @since 1.6
+         */
+        mouseMoved(e: java.awt.event.MouseEvent): void;
+        constructor();
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * The listener interface for receiving "interesting" mouse events
+     * (press, release, click, enter, and exit) on a component.
+     * (To track mouse moves and mouse drags, use the
+     * <code>MouseMotionListener</code>.)
+     * <P>
+     * The class that is interested in processing a mouse event
+     * either implements this interface (and all the methods it
+     * contains) or extends the abstract <code>MouseAdapter</code> class
+     * (overriding only the methods of interest).
+     * <P>
+     * The listener object created from that class is then registered with a
+     * component using the component's <code>addMouseListener</code>
+     * method. A mouse event is generated when the mouse is pressed, released
+     * clicked (pressed and released). A mouse event is also generated when
+     * the mouse cursor enters or leaves a component. When a mouse event
+     * occurs, the relevant method in the listener object is invoked, and
+     * the <code>MouseEvent</code> is passed to it.
+     *
+     * @author Carl Quinn
+     *
+     * @see MouseAdapter
+     * @see MouseEvent
+     * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/mouselistener.html">Tutorial: Writing a Mouse Listener</a>
+     *
+     * @since 1.1
+     */
+    interface MouseListener extends java.util.EventListener {
+        /**
+         * Invoked when the mouse button has been clicked (pressed
+         * and released) on a component.
+         */
+        mouseClicked(e: java.awt.event.MouseEvent): any;
+        /**
+         * Invoked when a mouse button has been pressed on a component.
+         */
+        mousePressed(e: java.awt.event.MouseEvent): any;
+        /**
+         * Invoked when a mouse button has been released on a component.
+         */
+        mouseReleased(e: java.awt.event.MouseEvent): any;
+        /**
+         * Invoked when the mouse enters a component.
+         */
+        mouseEntered(e: java.awt.event.MouseEvent): any;
+        /**
+         * Invoked when the mouse exits a component.
+         */
+        mouseExited(e: java.awt.event.MouseEvent): any;
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * An abstract adapter class for receiving mouse motion events.
+     * The methods in this class are empty. This class exists as
+     * convenience for creating listener objects.
+     * <P>
+     * Mouse motion events occur when a mouse is moved or dragged.
+     * (Many such events will be generated in a normal program.
+     * To track clicks and other mouse events, use the MouseAdapter.)
+     * <P>
+     * Extend this class to create a <code>MouseEvent</code> listener
+     * and override the methods for the events of interest. (If you implement the
+     * <code>MouseMotionListener</code> interface, you have to define all of
+     * the methods in it. This abstract class defines null methods for them
+     * all, so you can only have to define methods for events you care about.)
+     * <P>
+     * Create a listener object using the extended class and then register it with
+     * a component using the component's <code>addMouseMotionListener</code>
+     * method. When the mouse is moved or dragged, the relevant method in the
+     * listener object is invoked and the <code>MouseEvent</code> is passed to it.
+     *
+     * @author Amy Fowler
+     *
+     * @see MouseEvent
+     * @see MouseMotionListener
+     * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/mousemotionlistener.html">Tutorial: Writing a Mouse Motion Listener</a>
+     *
+     * @since 1.1
+     */
+    abstract class MouseMotionAdapter implements java.awt.event.MouseMotionListener {
+        /**
+         * Invoked when a mouse button is pressed on a component and then
+         * dragged.  Mouse drag events will continue to be delivered to
+         * the component where the first originated until the mouse button is
+         * released (regardless of whether the mouse position is within the
+         * bounds of the component).
+         */
+        mouseDragged(e: java.awt.event.MouseEvent): void;
+        /**
+         * Invoked when the mouse button has been moved on a component
+         * (with no buttons no down).
+         */
+        mouseMoved(e: java.awt.event.MouseEvent): void;
+        constructor();
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * The listener interface for receiving mouse motion events on a component.
+     * (For clicks and other mouse events, use the <code>MouseListener</code>.)
+     * <P>
+     * The class that is interested in processing a mouse motion event
+     * either implements this interface (and all the methods it
+     * contains) or extends the abstract <code>MouseMotionAdapter</code> class
+     * (overriding only the methods of interest).
+     * <P>
+     * The listener object created from that class is then registered with a
+     * component using the component's <code>addMouseMotionListener</code>
+     * method. A mouse motion event is generated when the mouse is moved
+     * or dragged. (Many such events will be generated). When a mouse motion event
+     * occurs, the relevant method in the listener object is invoked, and
+     * the <code>MouseEvent</code> is passed to it.
+     *
+     * @author Amy Fowler
+     *
+     * @see MouseMotionAdapter
+     * @see MouseEvent
+     * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/mousemotionlistener.html">Tutorial: Writing a Mouse Motion Listener</a>
+     *
+     * @since 1.1
+     */
+    interface MouseMotionListener extends java.util.EventListener {
+        /**
+         * Invoked when a mouse button is pressed on a component and then
+         * dragged.  <code>MOUSE_DRAGGED</code> events will continue to be
+         * delivered to the component where the drag originated until the
+         * mouse button is released (regardless of whether the mouse position
+         * is within the bounds of the component).
+         * <p>
+         * Due to platform-dependent Drag&amp;Drop implementations,
+         * <code>MOUSE_DRAGGED</code> events may not be delivered during a native
+         * Drag&amp;Drop operation.
+         */
+        mouseDragged(e: java.awt.event.MouseEvent): any;
+        /**
+         * Invoked when the mouse cursor has been moved onto a component
+         * but no buttons have been pushed.
+         */
+        mouseMoved(e: java.awt.event.MouseEvent): any;
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * The listener interface for receiving mouse wheel events on a component.
+     * (For clicks and other mouse events, use the <code>MouseListener</code>.
+     * For mouse movement and drags, use the <code>MouseMotionListener</code>.)
+     * <P>
+     * The class that is interested in processing a mouse wheel event
+     * implements this interface (and all the methods it contains).
+     * <P>
+     * The listener object created from that class is then registered with a
+     * component using the component's <code>addMouseWheelListener</code>
+     * method. A mouse wheel event is generated when the mouse wheel is rotated.
+     * When a mouse wheel event occurs, that object's <code>mouseWheelMoved</code>
+     * method is invoked.
+     * <p>
+     * For information on how mouse wheel events are dispatched, see
+     * the class description for {@link MouseWheelEvent}.
+     *
+     * @author Brent Christian
+     * @see MouseWheelEvent
+     * @since 1.4
+     */
+    interface MouseWheelListener extends java.util.EventListener {
+        /**
+         * Invoked when the mouse wheel is rotated.
+         * @see MouseWheelEvent
+         */
+        mouseWheelMoved(e: java.awt.event.MouseWheelEvent): any;
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * The listener interface for receiving text events.
+     *
+     * The class that is interested in processing a text event
+     * implements this interface. The object created with that
+     * class is then registered with a component using the
+     * component's <code>addTextListener</code> method. When the
+     * component's text changes, the listener object's
+     * <code>textValueChanged</code> method is invoked.
+     *
+     * @author Georges Saab
+     *
+     * @see TextEvent
+     *
+     * @since 1.1
+     */
+    interface TextListener extends java.util.EventListener {
+        /**
+         * Invoked when the value of the text has changed.
+         * The code written for this method performs the operations
+         * that need to occur when text changes.
+         */
+        textValueChanged(e: java.awt.event.TextEvent): any;
+    }
+}
+declare namespace java.awt {
+    class Event implements java.io.Serializable {
+        private data;
+        static SHIFT_MASK: number;
+        static SHIFT_MASK_$LI$(): number;
+        static CTRL_MASK: number;
+        static CTRL_MASK_$LI$(): number;
+        static META_MASK: number;
+        static META_MASK_$LI$(): number;
+        static ALT_MASK: number;
+        static ALT_MASK_$LI$(): number;
+        static HOME: number;
+        static END: number;
+        static PGUP: number;
+        static PGDN: number;
+        static UP: number;
+        static DOWN: number;
+        static LEFT: number;
+        static RIGHT: number;
+        static F1: number;
+        static F2: number;
+        static F3: number;
+        static F4: number;
+        static F5: number;
+        static F6: number;
+        static F7: number;
+        static F8: number;
+        static F9: number;
+        static F10: number;
+        static F11: number;
+        static F12: number;
+        static PRINT_SCREEN: number;
+        static SCROLL_LOCK: number;
+        static CAPS_LOCK: number;
+        static NUM_LOCK: number;
+        static PAUSE: number;
+        static INSERT: number;
+        static ENTER: number;
+        static BACK_SPACE: number;
+        static TAB: number;
+        static ESCAPE: number;
+        static DELETE: number;
+        static WINDOW_EVENT: number;
+        static WINDOW_DESTROY: number;
+        static WINDOW_DESTROY_$LI$(): number;
+        static WINDOW_EXPOSE: number;
+        static WINDOW_EXPOSE_$LI$(): number;
+        static WINDOW_ICONIFY: number;
+        static WINDOW_ICONIFY_$LI$(): number;
+        static WINDOW_DEICONIFY: number;
+        static WINDOW_DEICONIFY_$LI$(): number;
+        static WINDOW_MOVED: number;
+        static WINDOW_MOVED_$LI$(): number;
+        static KEY_EVENT: number;
+        static KEY_PRESS: number;
+        static KEY_PRESS_$LI$(): number;
+        static KEY_RELEASE: number;
+        static KEY_RELEASE_$LI$(): number;
+        static KEY_ACTION: number;
+        static KEY_ACTION_$LI$(): number;
+        static KEY_ACTION_RELEASE: number;
+        static KEY_ACTION_RELEASE_$LI$(): number;
+        static MOUSE_EVENT: number;
+        static MOUSE_DOWN: number;
+        static MOUSE_DOWN_$LI$(): number;
+        static MOUSE_UP: number;
+        static MOUSE_UP_$LI$(): number;
+        static MOUSE_MOVE: number;
+        static MOUSE_MOVE_$LI$(): number;
+        static MOUSE_ENTER: number;
+        static MOUSE_ENTER_$LI$(): number;
+        static MOUSE_EXIT: number;
+        static MOUSE_EXIT_$LI$(): number;
+        static MOUSE_DRAG: number;
+        static MOUSE_DRAG_$LI$(): number;
+        static SCROLL_EVENT: number;
+        static SCROLL_LINE_UP: number;
+        static SCROLL_LINE_UP_$LI$(): number;
+        static SCROLL_LINE_DOWN: number;
+        static SCROLL_LINE_DOWN_$LI$(): number;
+        static SCROLL_PAGE_UP: number;
+        static SCROLL_PAGE_UP_$LI$(): number;
+        static SCROLL_PAGE_DOWN: number;
+        static SCROLL_PAGE_DOWN_$LI$(): number;
+        static SCROLL_ABSOLUTE: number;
+        static SCROLL_ABSOLUTE_$LI$(): number;
+        static SCROLL_BEGIN: number;
+        static SCROLL_BEGIN_$LI$(): number;
+        static SCROLL_END: number;
+        static SCROLL_END_$LI$(): number;
+        static LIST_EVENT: number;
+        static LIST_SELECT: number;
+        static LIST_SELECT_$LI$(): number;
+        static LIST_DESELECT: number;
+        static LIST_DESELECT_$LI$(): number;
+        static MISC_EVENT: number;
+        static ACTION_EVENT: number;
+        static ACTION_EVENT_$LI$(): number;
+        static LOAD_FILE: number;
+        static LOAD_FILE_$LI$(): number;
+        static SAVE_FILE: number;
+        static SAVE_FILE_$LI$(): number;
+        static GOT_FOCUS: number;
+        static GOT_FOCUS_$LI$(): number;
+        static LOST_FOCUS: number;
+        static LOST_FOCUS_$LI$(): number;
+        target: any;
+        when: number;
+        id: number;
+        x: number;
+        y: number;
+        key: number;
+        modifiers: number;
+        clickCount: number;
+        arg: any;
+        evt: Event;
+        private consumed;
+        constructor(target?: any, when?: any, id?: any, x?: any, y?: any, key?: any, modifiers?: any, arg?: any);
+        translate(dx: number, dy: number): void;
+        shiftDown(): boolean;
+        controlDown(): boolean;
+        metaDown(): boolean;
+        consume(): void;
+        isConsumed(): boolean;
+        paramString(): string;
+        toString(): string;
+    }
+}
+declare namespace java.awt {
+    class Font implements java.io.Serializable {
+        toHTML(): string;
+        /**
+         * This is now only used during serialization. Typically it is null.
+         *
+         * @serial
+         * @see #getAttributes()
+         */
+        private fRequestedAttributes;
+        /**
+         * A String constant for the canonical family name of the logical font
+         * "Dialog". It is useful in Font construction to provide compile-time
+         * verification of the name.
+         *
+         * @since 1.6
+         */
+        static DIALOG: string;
+        /**
+         * A String constant for the canonical family name of the logical font
+         * "DialogInput". It is useful in Font construction to provide compile-time
+         * verification of the name.
+         *
+         * @since 1.6
+         */
+        static DIALOG_INPUT: string;
+        /**
+         * A String constant for the canonical family name of the logical font
+         * "SansSerif". It is useful in Font construction to provide compile-time
+         * verification of the name.
+         *
+         * @since 1.6
+         */
+        static SANS_SERIF: string;
+        /**
+         * A String constant for the canonical family name of the logical font
+         * "Serif". It is useful in Font construction to provide compile-time
+         * verification of the name.
+         *
+         * @since 1.6
+         */
+        static SERIF: string;
+        /**
+         * A String constant for the canonical family name of the logical font
+         * "Monospaced". It is useful in Font construction to provide compile-time
+         * verification of the name.
+         *
+         * @since 1.6
+         */
+        static MONOSPACED: string;
+        /**
+         * The plain style constant.
+         */
+        static PLAIN: number;
+        /**
+         * The bold style constant. This can be combined with the other style
+         * constants (except PLAIN) for mixed styles.
+         */
+        static BOLD: number;
+        /**
+         * The italicized style constant. This can be combined with the other style
+         * constants (except PLAIN) for mixed styles.
+         */
+        static ITALIC: number;
+        /**
+         * The baseline used in most Roman scripts when laying out text.
+         */
+        static ROMAN_BASELINE: number;
+        /**
+         * The baseline used in ideographic scripts like Chinese, Japanese, and
+         * Korean when laying out text.
+         */
+        static CENTER_BASELINE: number;
+        /**
+         * The baseline used in Devanigiri and similar scripts when laying out text.
+         */
+        static HANGING_BASELINE: number;
+        /**
+         * Identify a font resource of type TRUETYPE. Used to specify a TrueType
+         * font resource to the {@link #createFont} method. The TrueType format was
+         * extended to become the OpenType format, which adds support for fonts with
+         * Postscript outlines, this tag therefore references these fonts, as well
+         * as those with TrueType outlines.
+         *
+         * @since 1.3
+         */
+        static TRUETYPE_FONT: number;
+        /**
+         * Identify a font resource of type TYPE1. Used to specify a Type1 font
+         * resource to the {@link #createFont} method.
+         *
+         * @since 1.5
+         */
+        static TYPE1_FONT: number;
+        /**
+         * The logical name of this <code>Font</code>, as passed to the constructor.
+         *
+         * @since JDK1.0
+         *
+         * @serial
+         * @see #getName
+         */
+        name: string;
+        /**
+         * The style of this <code>Font</code>, as passed to the constructor. This
+         * style can be PLAIN, BOLD, ITALIC, or BOLD+ITALIC.
+         *
+         * @since JDK1.0
+         *
+         * @serial
+         * @see #getStyle()
+         */
+        style: number;
+        /**
+         * The point size of this <code>Font</code>, rounded to integer.
+         *
+         * @since JDK1.0
+         *
+         * @serial
+         * @see #getSize()
+         */
+        size: number;
+        /**
+         * The point size of this <code>Font</code> in <code>float</code>.
+         *
+         * @serial
+         * @see #getSize()
+         * @see #getSize2D()
+         */
+        pointSize: number;
+        static serialVersionUID: number;
+        constructor(name?: any, style?: any, sizePts?: any);
+        getFamily(): string;
+        getName(): string;
+        getFontName(): string;
+        getStyle(): number;
+        getSize(): number;
+        getSize2D(): number;
+        isPlain(): boolean;
+        isBold(): boolean;
+        isItalic(): boolean;
+        static decode(str: string): Font;
+        static getFont(nm: string, font?: Font): Font;
+        hash: number;
+        hashCode(): number;
+        equals(obj: any): boolean;
+        /**
+         * Converts this <code>Font</code> object to a <code>String</code>
+         * representation.
+         *
+         * @return a <code>String</code> representation of this <code>Font</code>
+         * object.
+         * @since JDK1.0
+         */
+        toString(): string;
+        /**
+         * A flag to layoutGlyphVector indicating that text is left-to-right as
+         * determined by Bidi analysis.
+         */
+        static LAYOUT_LEFT_TO_RIGHT: number;
+        /**
+         * A flag to layoutGlyphVector indicating that text is right-to-left as
+         * determined by Bidi analysis.
+         */
+        static LAYOUT_RIGHT_TO_LEFT: number;
+        /**
+         * A flag to layoutGlyphVector indicating that text in the char array before
+         * the indicated start should not be examined.
+         */
+        static LAYOUT_NO_START_CONTEXT: number;
+        /**
+         * A flag to layoutGlyphVector indicating that text in the char array after
+         * the indicated limit should not be examined.
+         */
+        static LAYOUT_NO_LIMIT_CONTEXT: number;
     }
 }
 declare namespace java.awt.geom {
@@ -5707,32 +7205,232 @@ declare namespace java.awt.geom {
 }
 declare namespace java.awt {
     abstract class Graphics {
-        abstract drawString(s: string, x: number, y: number): any;
+        constructor();
+        create$(): Graphics;
+        create(x?: any, y?: any, width?: any, height?: any): any;
+        abstract translate(x: number, y: number): any;
+        abstract getColor(): java.awt.Color;
+        abstract setColor(c: java.awt.Color): any;
+        abstract setPaintMode(): any;
+        abstract getFont(): java.awt.Font;
+        abstract setFont(font: java.awt.Font): any;
+        getClipBounds$(): java.awt.Rectangle;
+        abstract clipRect(x: number, y: number, width: number, height: number): any;
+        setClip(x?: any, y?: any, width?: any, height?: any): any;
+        abstract getClip(): java.awt.Shape;
+        setClip$java_awt_Shape(clip: java.awt.Shape): void;
+        abstract drawLine(x1: number, y1: number, x2: number, y2: number): any;
+        abstract fillRect(x: number, y: number, width: number, height: number): any;
+        drawRect(x: number, y: number, width: number, height: number): void;
+        abstract clearRect(x: number, y: number, width: number, height: number): any;
+        abstract drawRoundRect(x: number, y: number, width: number, height: number, arcWidth: number, arcHeight: number): any;
+        abstract fillRoundRect(x: number, y: number, width: number, height: number, arcWidth: number, arcHeight: number): any;
+        draw3DRect(x: number, y: number, width: number, height: number, raised: boolean): void;
+        fill3DRect(x: number, y: number, width: number, height: number, raised: boolean): void;
+        abstract drawOval(x: number, y: number, width: number, height: number): any;
+        abstract fillOval(x: number, y: number, width: number, height: number): any;
+        abstract drawArc(x: number, y: number, width: number, height: number, startAngle: number, arcAngle: number): any;
+        abstract fillArc(x: number, y: number, width: number, height: number, startAngle: number, arcAngle: number): any;
+        abstract drawPolyline(xPoints: number[], yPoints: number[], nPoints: number): any;
+        drawPolygon(xPoints?: any, yPoints?: any, nPoints?: any): any;
+        drawPolygon$java_awt_Polygon(p: java.awt.Polygon): void;
+        fillPolygon(xPoints?: any, yPoints?: any, nPoints?: any): any;
+        fillPolygon$java_awt_Polygon(p: java.awt.Polygon): void;
+        abstract drawString(str: string, x: number, y: number): any;
+        drawImage$java_awt_Image$int$int$java_awt_image_ImageObserver(img: java.awt.Image, x: number, y: number, observer: java.awt.image.ImageObserver): boolean;
+        drawImage$java_awt_Image$int$int$int$int$java_awt_image_ImageObserver(img: java.awt.Image, x: number, y: number, width: number, height: number, observer: java.awt.image.ImageObserver): boolean;
+        drawImage$java_awt_Image$int$int$java_awt_Color$java_awt_image_ImageObserver(img: java.awt.Image, x: number, y: number, bgcolor: java.awt.Color, observer: java.awt.image.ImageObserver): boolean;
+        drawImage$java_awt_Image$int$int$int$int$java_awt_Color$java_awt_image_ImageObserver(img: java.awt.Image, x: number, y: number, width: number, height: number, bgcolor: java.awt.Color, observer: java.awt.image.ImageObserver): boolean;
+        drawImage$java_awt_Image$int$int$int$int$int$int$int$int$java_awt_image_ImageObserver(img: java.awt.Image, dx1: number, dy1: number, dx2: number, dy2: number, sx1: number, sy1: number, sx2: number, sy2: number, observer: java.awt.image.ImageObserver): boolean;
+        drawImage(img?: any, dx1?: any, dy1?: any, dx2?: any, dy2?: any, sx1?: any, sy1?: any, sx2?: any, sy2?: any, bgcolor?: any, observer?: any): any;
+        abstract dispose(): any;
+        finalize(): void;
+        toString(): string;
+        hitClip(x: number, y: number, width: number, height: number): boolean;
+        getClipBounds(r?: any): any;
     }
 }
 declare namespace java.awt {
-    class GridLayout implements java.awt.Layout {
+    class GridLayout implements java.awt.LayoutManager {
+        created: boolean;
+        parent: java.awt.Container;
         table: HTMLTableElement;
         currentPosition: number;
         cols: number;
         rows: number;
         constructor(rows: number, cols: number);
-        add(component: java.awt.HTMLComponent): void;
-        getHTMLElement(): HTMLElement;
-        bind(id: string): void;
-        init(): void;
+        addLayoutComponent(name: string, component: java.awt.Component): void;
+        removeLayoutComponent(component: java.awt.Component): void;
+        layoutContainer(parent: java.awt.Container): void;
+        onComponentAdded(parent: java.awt.Container, component: java.awt.Component, position: number): void;
     }
 }
 declare namespace java.awt {
     interface HTMLComponent {
         getHTMLElement(): HTMLElement;
-        bind(id: string): any;
-        init(): any;
+        bindHTML(htmlElement: HTMLElement): any;
+        createHTML(): any;
+        initHTML(): any;
+    }
+}
+declare namespace java.awt.image {
+    interface ImageObserver {
+        imageUpdate(img: java.awt.Image, infoflags: number, x: number, y: number, width: number, height: number): boolean;
+    }
+    namespace ImageObserver {
+        var WIDTH: number;
+        var HEIGHT: number;
+        var PROPERTIES: number;
+        var SOMEBITS: number;
+        var FRAMEBITS: number;
+        var ALLBITS: number;
+        var ERROR: number;
+        var ABORT: number;
     }
 }
 declare namespace java.awt {
-    interface Layout extends java.awt.HTMLComponent {
-        add(component: java.awt.HTMLComponent): any;
+    class Image {
+        constructor(source: Image.ImageSource);
+        getWidth(observer: java.awt.image.ImageObserver): number;
+        getHeight(observer: java.awt.image.ImageObserver): number;
+        source: Image.ImageSource;
+        /**
+         * Use the default image-scaling algorithm.
+         *
+         * @since JDK1.1
+         */
+        static SCALE_DEFAULT: number;
+        /**
+         * Choose an image-scaling algorithm that gives higher priority to scaling
+         * speed than smoothness of the scaled image.
+         *
+         * @since JDK1.1
+         */
+        static SCALE_FAST: number;
+        /**
+         * Choose an image-scaling algorithm that gives higher priority to image
+         * smoothness than scaling speed.
+         *
+         * @since JDK1.1
+         */
+        static SCALE_SMOOTH: number;
+        /**
+         * Use the image scaling algorithm embodied in the
+         * <code>ReplicateScaleFilter</code> class. The <code>Image</code> object is
+         * free to substitute a different filter that performs the same algorithm
+         * yet integrates more efficiently into the imaging infrastructure supplied
+         * by the toolkit.
+         *
+         * @see java.awt.image.ReplicateScaleFilter
+         * @since JDK1.1
+         */
+        static SCALE_REPLICATE: number;
+        /**
+         * Use the Area Averaging image scaling algorithm. The image object is free
+         * to substitute a different filter that performs the same algorithm yet
+         * integrates more efficiently into the image infrastructure supplied by the
+         * toolkit.
+         *
+         * @see java.awt.image.AreaAveragingScaleFilter
+         * @since JDK1.1
+         */
+        static SCALE_AREA_AVERAGING: number;
+        flush(): void;
+    }
+    namespace Image {
+        interface ImageSource {
+            width: number;
+            height: number;
+        }
+    }
+}
+declare namespace java.awt {
+    class Insets implements java.lang.Cloneable, java.io.Serializable {
+        top: number;
+        left: number;
+        bottom: number;
+        right: number;
+        static serialVersionUID: number;
+        constructor(top: number, left: number, bottom: number, right: number);
+        set(top: number, left: number, bottom: number, right: number): void;
+        equals(obj: any): boolean;
+        hashCode(): number;
+        toString(): string;
+        clone(): any;
+    }
+}
+declare namespace java.awt {
+    interface ItemSelectable {
+        getSelectedObjects(): any[];
+        addItemListener(l: java.awt.event.ItemListener): any;
+        removeItemListener(l: java.awt.event.ItemListener): any;
+    }
+}
+declare namespace java.awt {
+    interface LayoutManager {
+        addLayoutComponent(name: string, comp: java.awt.Component): any;
+        removeLayoutComponent(comp: java.awt.Component): any;
+        layoutContainer(parent: java.awt.Container): any;
+        onComponentAdded(parent: java.awt.Container, component: java.awt.Component, position: number): any;
+    }
+}
+declare namespace java.awt {
+    class MenuComponent {
+        private name;
+        getName(): string;
+        setName(name: string): void;
+        constructor();
+    }
+}
+declare namespace java.awt {
+    interface Paint {
+    }
+}
+declare namespace java.awt {
+    class Polygon implements java.awt.Shape, java.io.Serializable {
+        npoints: number;
+        xpoints: number[];
+        ypoints: number[];
+        bounds: java.awt.Rectangle;
+        static serialVersionUID: number;
+        static MIN_LENGTH: number;
+        constructor(xpoints?: any, ypoints?: any, npoints?: any);
+        reset(): void;
+        invalidate(): void;
+        translate(deltaX: number, deltaY: number): void;
+        calculateBounds(xpoints: number[], ypoints: number[], npoints: number): void;
+        updateBounds(x: number, y: number): void;
+        addPoint(x: number, y: number): void;
+        getBounds(): java.awt.Rectangle;
+        getBoundingBox(): java.awt.Rectangle;
+        contains$java_awt_Point(p: java.awt.Point): boolean;
+        contains$int$int(x: number, y: number): boolean;
+        inside(x: number, y: number): boolean;
+        getBounds2D(): java.awt.geom.Rectangle2D;
+        contains$double$double(x: number, y: number): boolean;
+        getCrossings(xlo: number, ylo: number, xhi: number, yhi: number): sun.awt.geom.Crossings;
+        contains$java_awt_geom_Point2D(p: java.awt.geom.Point2D): boolean;
+        intersects(x?: any, y?: any, w?: any, h?: any): any;
+        intersects$java_awt_geom_Rectangle2D(r: java.awt.geom.Rectangle2D): boolean;
+        contains(x?: any, y?: any, w?: any, h?: any): any;
+        contains$java_awt_geom_Rectangle2D(r: java.awt.geom.Rectangle2D): boolean;
+        getPathIterator$java_awt_geom_AffineTransform(at: java.awt.geom.AffineTransform): java.awt.geom.PathIterator;
+        getPathIterator(at?: any, flatness?: any): any;
+    }
+    namespace Polygon {
+        class PolygonPathIterator implements java.awt.geom.PathIterator {
+            __parent: any;
+            poly: java.awt.Polygon;
+            transform: java.awt.geom.AffineTransform;
+            index: number;
+            constructor(__parent: any, pg: java.awt.Polygon, at: java.awt.geom.AffineTransform);
+            getWindingRule(): number;
+            isDone(): boolean;
+            next(doNext?: any): any;
+            next$(): void;
+            currentSegment(coords?: any): any;
+            currentSegment$double_A(coords: number[]): number;
+        }
     }
 }
 declare namespace java.awt {
@@ -5954,6 +7652,25 @@ declare namespace java.awt {
         getPathIterator(at?: any, flatness?: any): any;
     }
 }
+declare namespace java.awt {
+    interface Stroke {
+    }
+}
+declare namespace java.awt {
+    class Toolkit {
+        static getProperty(key: string, defaultValue: string): string;
+    }
+}
+declare namespace java.awt {
+    interface Transparency {
+        getTransparency(): number;
+    }
+    namespace Transparency {
+        var OPAQUE: number;
+        var BITMASK: number;
+        var TRANSLUCENT: number;
+    }
+}
 declare namespace java.beans {
     /**
      * General-purpose beans control methods. GWT only supports a limited subset of these methods. Only
@@ -5964,6 +7681,77 @@ declare namespace java.beans {
          * @return <code>true</code> if we are running in the design time mode.
          */
         static isDesignTime(): boolean;
+    }
+}
+declare namespace java.beans {
+    abstract class ChangeListenerMap<L extends java.util.EventListener> {
+        private map;
+        abstract newArray(length: number): L[];
+        newProxy(name?: any, listener?: any): any;
+        newProxy$java_lang_String$java_util_EventListener(name: string, listener: L): L;
+        add(name: string, listener: L): void;
+        remove(name: string, listener: L): void;
+        /**
+         * Returns the list of listeners for the specified property.
+         *
+         * @param name
+         * the name of the property
+         * @return the corresponding list of listeners
+         */
+        get(name: string): L[];
+        /**
+         * Sets new list of listeners for the specified property.
+         *
+         * @param name
+         * the name of the property
+         * @param listeners
+         * new list of listeners
+         */
+        set(name: string, listeners: L[]): void;
+        /**
+         * Returns all listeners in the map.
+         *
+         * @return an array of all listeners
+         */
+        getListeners$(): L[];
+        /**
+         * Returns listeners that have been associated with the named property.
+         *
+         * @param name
+         * the name of the property
+         * @return an array of listeners for the named property
+         */
+        getListeners(name?: any): any;
+        /**
+         * Indicates whether the map contains at least one listener to be notified.
+         *
+         * @param name
+         * the name of the property
+         * @return {@code true} if at least one listener exists or {@code false}
+         * otherwise
+         */
+        hasListeners(name: string): boolean;
+        /**
+         * Returns a set of entries from the map. Each entry is a pair consisted of
+         * the property name and the corresponding list of listeners.
+         *
+         * @return a set of entries from the map
+         */
+        getEntries(): java.util.Set<java.util.Map.Entry<string, L[]>>;
+        extract(listener?: any): any;
+        /**
+         * Extracts a real listener from the proxy listener. It is necessary because
+         * default proxy class is not serializable.
+         *
+         * @return a real listener
+         */
+        extract$java_util_EventListener(listener: L): L;
+        constructor();
+    }
+}
+declare namespace java.beans {
+    interface PropertyChangeListener extends java.util.EventListener {
+        propertyChange(evt: java.beans.PropertyChangeEvent): any;
     }
 }
 declare namespace java.io {
@@ -6580,13 +8368,6 @@ declare namespace java.lang.annotation {
     }
 }
 declare namespace java.lang.annotation {
-    /**
-     * Annotation which indicates annotations should be documented by javadoc/etc <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/Documented.html">[Sun
-     * docs]</a>.
-     */
-    interface Documented {
-    }
 }
 declare namespace java.lang.annotation {
     /**
@@ -6606,23 +8387,8 @@ declare namespace java.lang.annotation {
     }
 }
 declare namespace java.lang.annotation {
-    /**
-     * Annotation which indicates an annotation type is automatically inherited <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/Inherited.html">[Sun
-     * docs]</a>.
-     */
-    interface Inherited {
-    }
 }
 declare namespace java.lang.annotation {
-    /**
-     * Annotation which indicates how long annotations should be retained <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/Retention.html">[Sun
-     * doc]</a>.
-     */
-    interface Retention {
-        value(): java.lang.annotation.RetentionPolicy;
-    }
 }
 declare namespace java.lang.annotation {
     /**
@@ -6637,15 +8403,6 @@ declare namespace java.lang.annotation {
     }
 }
 declare namespace java.lang.annotation {
-    /**
-     * Annotation which indicates the kinds of program element to which an
-     * annotation type is applicable <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/Target.html">[Sun
-     * docs]</a>.
-     */
-    interface Target {
-        value(): java.lang.annotation.ElementType[];
-    }
 }
 declare namespace java.lang {
     /**
@@ -6826,15 +8583,6 @@ declare namespace java.lang {
     }
 }
 declare namespace java.lang {
-    /**
-     * A program element annotated &#64;Deprecated is one that programmers are
-     * discouraged from using, typically because it is dangerous, or because a
-     * better alternative exists. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Deprecated.html">[Sun
-     * docs]</a>
-     */
-    interface Deprecated {
-    }
 }
 declare namespace java.lang {
     /**
@@ -6870,11 +8618,6 @@ declare namespace java.lang {
     }
 }
 declare namespace java.lang {
-    /**
-     * Used to declare interfaces which must have a single abstract method.
-     */
-    interface FunctionalInterface {
-    }
 }
 declare namespace java.lang {
     /**
@@ -6891,14 +8634,6 @@ declare namespace java.lang {
     }
 }
 declare namespace java.lang {
-    /**
-     * Indicates that a method definition is intended to override a declaration from
-     * a superclass. <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Override.html">[Sun
-     * docs]</a>
-     */
-    interface Override {
-    }
 }
 declare namespace java.lang.reflect {
     /**
@@ -6925,12 +8660,6 @@ declare namespace java.lang {
     }
 }
 declare namespace java.lang {
-    /**
-     * Claims to the compiler that the annotation target does nothing potentially unsafe
-     * to its varargs argument.
-     */
-    interface SafeVarargs {
-    }
 }
 declare namespace java.lang {
     /**
@@ -6954,16 +8683,6 @@ declare namespace java.lang {
     }
 }
 declare namespace java.lang {
-    /**
-     * Indicates that the named compiler warnings should be suppressed in the
-     * annotated element (and in all program elements contained in the annotated
-     * element). <a
-     * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/SuppressWarnings.html">[Sun
-     * docs]</a>
-     */
-    interface SuppressWarnings {
-        value(): string[];
-    }
 }
 declare namespace java.lang {
     /**
@@ -7270,6 +8989,13 @@ declare namespace java.util {
      * adherence to the observer pattern.
      */
     interface EventListener {
+    }
+}
+declare namespace java.util {
+    abstract class EventListenerProxy<T extends java.util.EventListener> implements java.util.EventListener {
+        private listener;
+        constructor(listener: T);
+        getListener(): T;
     }
 }
 declare namespace java.util {
@@ -8253,74 +9979,16 @@ declare namespace java.util {
     }
 }
 declare namespace javaemul.internal.annotations {
-    /**
-     * An annotation to mark another annotation as a compiler hint.
-     */
-    interface CompilerHint {
-    }
 }
 declare namespace javaemul.internal.annotations {
-    /**
-     * An annotation to mark a given method as not inlineable.
-     * <p>
-     * Internal SDK use only, might change or disappear at any time.
-     */
-    interface DoNotInline {
-    }
 }
 declare namespace javaemul.internal.annotations {
-    /**
-     * An annotation to mark a given method as not inlineable.
-     * <p>
-     * Internal SDK use only, might change or disappear at any time.
-     */
-    interface ForceInline {
-    }
 }
 declare namespace javaemul.internal.annotations {
-    /**
-     * A simple of a GwtIncompatible annotation for internal emulation use.
-     */
-    interface GwtIncompatible {
-        value(): string;
-    }
 }
 declare namespace javaemul.internal.annotations {
-    /**
-     * An annotation to mark a given method as side-effect free.
-     * <p>
-     * Internal SDK use only, might change or disappear at any time.
-     */
-    interface HasNoSideEffects {
-    }
 }
 declare namespace javaemul.internal.annotations {
-    /**
-     * An annotation to mark a given method as being specialized. If the specified
-     * parameters and return context match of a JMethodCall, then the call
-     * is retargeted at the specialized version.
-     */
-    interface SpecializeMethod {
-        /**
-         * List of parameter types, matched via assignability.
-         */
-        params(): any[];
-        /**
-         * List of return types to match, or null if you don't care.
-         */
-        returns(): any;
-        /**
-         * The name of the method to target. It must have a signature matching to the {@link #params()}.
-         */
-        target(): string;
-    }
-    namespace SpecializeMethod {
-        /**
-         * Represents a type that matches any type, even void.
-         */
-        interface ANY {
-        }
-    }
 }
 declare namespace javaemul.internal {
     /**
@@ -8486,9 +10154,11 @@ declare namespace javaemul.internal {
         static toChars$int(codePoint: number): string[];
         static toChars(codePoint?: any, dst?: any, dstIndex?: any): any;
         static toCodePoint(highSurrogate: string, lowSurrogate: string): number;
-        static toLowerCase(c: string): string;
+        static toLowerCase(c?: any): any;
+        static toLowerCase$int(c: number): number;
         static toString(x: string): string;
-        static toUpperCase(c: string): string;
+        static toUpperCase(c?: any): any;
+        static toUpperCase$int(c: number): string;
         static valueOf(c: string): CharacterHelper;
         static codePointAt$java_lang_CharSequence$int$int(cs: string, index: number, limit: number): number;
         static codePointBefore$java_lang_CharSequence$int$int(cs: string, index: number, start: number): number;
@@ -8813,6 +10483,157 @@ declare namespace javaemul.internal {
         private static unsafeCastToInt(o);
     }
 }
+declare namespace javax.swing {
+    interface Action extends java.awt.event.ActionListener {
+        getValue(key: string): any;
+        putValue(key: string, value: any): any;
+        setEnabled(b: boolean): any;
+        isEnabled(): boolean;
+        addPropertyChangeListener(listener: java.beans.PropertyChangeListener): any;
+        removePropertyChangeListener(listener: java.beans.PropertyChangeListener): any;
+    }
+    namespace Action {
+        var DEFAULT: string;
+        var NAME: string;
+        var SHORT_DESCRIPTION: string;
+        var LONG_DESCRIPTION: string;
+        var SMALL_ICON: string;
+        var ACTION_COMMAND_KEY: string;
+        var ACCELERATOR_KEY: string;
+        var MNEMONIC_KEY: string;
+        var SELECTED_KEY: string;
+        var DISPLAYED_MNEMONIC_INDEX_KEY: string;
+        var LARGE_ICON_KEY: string;
+    }
+}
+declare namespace javax.swing.event {
+    interface ChangeListener extends java.util.EventListener {
+        stateChanged(e: javax.swing.event.ChangeEvent): any;
+    }
+}
+declare namespace javax.swing.event {
+    class EventListenerList implements java.io.Serializable {
+        static NULL_ARRAY: any[];
+        static NULL_ARRAY_$LI$(): any[];
+        listenerList: any[];
+        getListenerList(): any[];
+        getListeners<T extends java.util.EventListener>(t: any): T[];
+        getListenerCount$(): number;
+        getListenerCount$java_lang_Class(t: any): number;
+        getListenerCount(list?: any, t?: any): any;
+        add<T extends java.util.EventListener>(t: any, l: T): void;
+        remove<T extends java.util.EventListener>(t: any, l: T): void;
+        /**
+         * Returns a string representation of the EventListenerList.
+         */
+        toString(): string;
+        constructor();
+    }
+}
+declare namespace javax.swing {
+    interface Icon {
+        paintIcon(c: java.awt.Component, g: java.awt.Graphics, x: number, y: number): any;
+        getIconWidth(): number;
+        getIconHeight(): number;
+    }
+}
+declare namespace javax.swing {
+    /**
+     * A collection of constants generally used for positioning and orienting
+     * components on the screen.
+     *
+     * @author Jeff Dinkins
+     * @author Ralph Kar (orientation support)
+     */
+    interface SwingConstants {
+    }
+    namespace SwingConstants {
+        /**
+         * The central position in an area. Used for
+         * both compass-direction constants (NORTH, etc.)
+         * and box-orientation constants (TOP, etc.).
+         */
+        var CENTER: number;
+        /**
+         * Box-orientation constant used to specify the top of a box.
+         */
+        var TOP: number;
+        /**
+         * Box-orientation constant used to specify the left side of a box.
+         */
+        var LEFT: number;
+        /**
+         * Box-orientation constant used to specify the bottom of a box.
+         */
+        var BOTTOM: number;
+        /**
+         * Box-orientation constant used to specify the right side of a box.
+         */
+        var RIGHT: number;
+        /**
+         * Compass-direction North (up).
+         */
+        var NORTH: number;
+        /**
+         * Compass-direction north-east (upper right).
+         */
+        var NORTH_EAST: number;
+        /**
+         * Compass-direction east (right).
+         */
+        var EAST: number;
+        /**
+         * Compass-direction south-east (lower right).
+         */
+        var SOUTH_EAST: number;
+        /**
+         * Compass-direction south (down).
+         */
+        var SOUTH: number;
+        /**
+         * Compass-direction south-west (lower left).
+         */
+        var SOUTH_WEST: number;
+        /**
+         * Compass-direction west (left).
+         */
+        var WEST: number;
+        /**
+         * Compass-direction north west (upper left).
+         */
+        var NORTH_WEST: number;
+        /**
+         * Horizontal orientation. Used for scrollbars and sliders.
+         */
+        var HORIZONTAL: number;
+        /**
+         * Vertical orientation. Used for scrollbars and sliders.
+         */
+        var VERTICAL: number;
+        /**
+         * Identifies the leading edge of text for use with left-to-right
+         * and right-to-left languages. Used by buttons and labels.
+         */
+        var LEADING: number;
+        /**
+         * Identifies the trailing edge of text for use with left-to-right
+         * and right-to-left languages. Used by buttons and labels.
+         */
+        var TRAILING: number;
+        /**
+         * Identifies the next direction in a sequence.
+         *
+         * @since 1.4
+         */
+        var NEXT: number;
+        /**
+         * Identifies the previous direction in a sequence.
+         *
+         * @since 1.4
+         */
+        var PREVIOUS: number;
+    }
+}
 /**
  * Declares equals and hashCode on JavaScript objects, for compilation.
  */
@@ -9132,30 +10953,74 @@ declare namespace test {
     }
 }
 declare namespace java.awt {
-    class Button extends java.awt.Component implements java.awt.HTMLComponent {
-        button: HTMLButtonElement;
+    class Button extends java.awt.Component {
         actionListener: java.awt.event.ActionListener;
         actionCommand: string;
         label: string;
         background: java.awt.Color;
         constructor(label: string);
-        bind(id: string): void;
-        init(): void;
+        getHTMLElement(): HTMLButtonElement;
+        bindHTML(htmlElement: HTMLElement): void;
+        createHTML(): void;
+        initHTML(): void;
         private initActionListener();
-        getHTMLElement(): HTMLElement;
         addActionListener(actionListener: java.awt.event.ActionListener): void;
         setBackground(background: java.awt.Color): void;
     }
 }
 declare namespace java.awt {
-    class TextField extends java.awt.Component implements java.awt.HTMLComponent {
-        input: HTMLInputElement;
+    class Checkbox extends java.awt.Component implements java.awt.ItemSelectable {
+        label: string;
+        state: boolean;
+        group: java.awt.CheckboxGroup;
+        itemListeners: Array<java.awt.event.ItemListener>;
+        htmlCheckbox: HTMLInputElement;
+        htmlLabel: Text;
+        static base: string;
+        static nameCounter: number;
+        static serialVersionUID: number;
+        constructor(label?: any, group?: any, state?: any);
+        getHTMLElement(): HTMLLabelElement;
+        createHTML(): void;
+        initHTML(): void;
+        constructComponentName(): string;
+        getLabel(): string;
+        setLabel(label: string): void;
+        getState(): boolean;
+        setStateInternal(state: boolean): void;
+        setState(state: boolean): void;
+        getSelectedObjects(): any[];
+        getCheckboxGroup(): java.awt.CheckboxGroup;
+        setCheckboxGroup(g: java.awt.CheckboxGroup): void;
+        addItemListener(l: java.awt.event.ItemListener): void;
+        removeItemListener(l: java.awt.event.ItemListener): void;
+        getItemListeners(): java.awt.event.ItemListener[];
+        getListeners<T extends java.util.EventListener>(listenerType: any): T[];
+        processItemEvent(e: java.awt.event.ItemEvent): void;
+        paramString(): string;
+    }
+}
+declare namespace java.awt {
+    abstract class Container extends java.awt.Component {
+        layoutMgr: java.awt.LayoutManager;
+        components: java.awt.Component[];
+        getLayout(): java.awt.LayoutManager;
+        setLayout(mgr: java.awt.LayoutManager): void;
+        doLayout(): void;
+        layout(): void;
+        add$java_awt_Component(component: java.awt.Component): java.awt.Component;
+        add(name?: any, component?: any): any;
+        constructor();
+    }
+}
+declare namespace java.awt {
+    class TextField extends java.awt.Component {
         actionListener: java.awt.event.ActionListener;
         constructor(cols: number);
-        init(): void;
+        getHTMLElement(): HTMLInputElement;
+        createHTML(): void;
+        initHTML(): void;
         private initActionListener();
-        bind(id: string): void;
-        getHTMLElement(): HTMLElement;
         addActionListener(actionListener: java.awt.event.ActionListener): void;
         setText(text: string): void;
         getText(): string;
@@ -12663,13 +14528,66 @@ declare namespace java.awt.geom {
     }
 }
 declare namespace java.awt {
-    class WebGraphics2D extends java.awt.Graphics {
-        private canvas;
-        private context;
-        constructor(canvas: HTMLCanvasElement);
-        drawString(s: string, x: number, y: number): void;
-        getCanvas(): HTMLCanvasElement;
-        getContext(): CanvasRenderingContext2D;
+    abstract class Graphics2D extends java.awt.Graphics {
+        constructor();
+        draw3DRect(x: number, y: number, width: number, height: number, raised: boolean): void;
+        fill3DRect(x: number, y: number, width: number, height: number, raised: boolean): void;
+        abstract draw(s: java.awt.Shape): any;
+        drawImage$java_awt_Image$java_awt_geom_AffineTransform$java_awt_image_ImageObserver(img: java.awt.Image, xform: java.awt.geom.AffineTransform, obs: java.awt.image.ImageObserver): boolean;
+        drawString(str?: any, x?: any, y?: any): any;
+        drawString$java_lang_String$float$float(str: string, x: number, y: number): void;
+        abstract fill(s: java.awt.Shape): any;
+        abstract setPaint(paint: java.awt.Paint): any;
+        abstract setStroke(s: java.awt.Stroke): any;
+        translate(x?: any, y?: any): any;
+        translate$double$double(tx: number, ty: number): void;
+        rotate$double(theta: number): void;
+        rotate(theta?: any, x?: any, y?: any): any;
+        abstract scale(sx: number, sy: number): any;
+        abstract shear(shx: number, shy: number): any;
+        abstract transform(Tx: java.awt.geom.AffineTransform): any;
+        abstract setTransform(Tx: java.awt.geom.AffineTransform): any;
+        abstract getTransform(): java.awt.geom.AffineTransform;
+        abstract getPaint(): java.awt.Paint;
+        abstract setBackground(color: java.awt.Color): any;
+        abstract getBackground(): java.awt.Color;
+    }
+}
+declare namespace java.awt {
+    class RenderedImage extends java.awt.Image {
+        constructor(source: Image.ImageSource);
+    }
+}
+declare namespace java.beans {
+    class PropertyChangeSupport implements java.io.Serializable {
+        private map;
+        constructor(sourceBean: any);
+        addPropertyChangeListener$java_beans_PropertyChangeListener(listener: java.beans.PropertyChangeListener): void;
+        removePropertyChangeListener$java_beans_PropertyChangeListener(listener: java.beans.PropertyChangeListener): void;
+        getPropertyChangeListeners$(): java.beans.PropertyChangeListener[];
+        addPropertyChangeListener(propertyName?: any, listener?: any): any;
+        removePropertyChangeListener(propertyName?: any, listener?: any): any;
+        getPropertyChangeListeners(propertyName?: any): any;
+        firePropertyChange$java_lang_String$java_lang_Object$java_lang_Object(propertyName: string, oldValue: any, newValue: any): void;
+        firePropertyChange(propertyName?: any, oldValue?: any, newValue?: any): any;
+        firePropertyChange$java_lang_String$boolean$boolean(propertyName: string, oldValue: boolean, newValue: boolean): void;
+        firePropertyChange$java_beans_PropertyChangeEvent(event: java.beans.PropertyChangeEvent): void;
+        static fire(listeners: java.beans.PropertyChangeListener[], event: java.beans.PropertyChangeEvent): void;
+        fireIndexedPropertyChange$java_lang_String$int$java_lang_Object$java_lang_Object(propertyName: string, index: number, oldValue: any, newValue: any): void;
+        fireIndexedPropertyChange(propertyName?: any, index?: any, oldValue?: any, newValue?: any): any;
+        fireIndexedPropertyChange$java_lang_String$int$boolean$boolean(propertyName: string, index: number, oldValue: boolean, newValue: boolean): void;
+        hasListeners(propertyName: string): boolean;
+        private source;
+        static serialVersionUID: number;
+    }
+    namespace PropertyChangeSupport {
+        class PropertyChangeListenerMap extends java.beans.ChangeListenerMap<java.beans.PropertyChangeListener> {
+            static EMPTY: java.beans.PropertyChangeListener[];
+            static EMPTY_$LI$(): java.beans.PropertyChangeListener[];
+            newArray(length: number): java.beans.PropertyChangeListener[];
+            newProxy(name?: any, listener?: any): any;
+            extract(listener?: any): any;
+        }
     }
 }
 declare namespace java.io {
@@ -13812,6 +15730,160 @@ declare namespace java.sql {
         setTime(time: number): void;
     }
 }
+declare namespace java.beans {
+    class PropertyChangeListenerProxy extends java.util.EventListenerProxy<java.beans.PropertyChangeListener> implements java.beans.PropertyChangeListener {
+        private propertyName;
+        /**
+         * Constructor which binds the {@code PropertyChangeListener}
+         * to a specific property.
+         *
+         * @param propertyName  the name of the property to listen on
+         * @param listener      the listener object
+         */
+        constructor(propertyName: string, listener: java.beans.PropertyChangeListener);
+        /**
+         * Forwards the property change event to the listener delegate.
+         *
+         * @param event  the property change event
+         */
+        propertyChange(event: java.beans.PropertyChangeEvent): void;
+        /**
+         * Returns the name of the named property associated with the listener.
+         *
+         * @return the name of the named property associated with the listener
+         */
+        getPropertyName(): string;
+    }
+}
+declare namespace java.awt {
+    abstract class AWTEvent extends java.util.EventObject {
+        id: number;
+        consumed: boolean;
+        /**
+         * The event mask for selecting component events.
+         */
+        static COMPONENT_EVENT_MASK: number;
+        /**
+         * The event mask for selecting container events.
+         */
+        static CONTAINER_EVENT_MASK: number;
+        /**
+         * The event mask for selecting focus events.
+         */
+        static FOCUS_EVENT_MASK: number;
+        /**
+         * The event mask for selecting key events.
+         */
+        static KEY_EVENT_MASK: number;
+        /**
+         * The event mask for selecting mouse events.
+         */
+        static MOUSE_EVENT_MASK: number;
+        /**
+         * The event mask for selecting mouse motion events.
+         */
+        static MOUSE_MOTION_EVENT_MASK: number;
+        /**
+         * The event mask for selecting window events.
+         */
+        static WINDOW_EVENT_MASK: number;
+        /**
+         * The event mask for selecting action events.
+         */
+        static ACTION_EVENT_MASK: number;
+        /**
+         * The event mask for selecting adjustment events.
+         */
+        static ADJUSTMENT_EVENT_MASK: number;
+        /**
+         * The event mask for selecting item events.
+         */
+        static ITEM_EVENT_MASK: number;
+        /**
+         * The event mask for selecting text events.
+         */
+        static TEXT_EVENT_MASK: number;
+        /**
+         * The event mask for selecting input method events.
+         */
+        static INPUT_METHOD_EVENT_MASK: number;
+        /**
+         * The pseudo event mask for enabling input methods. We're using one bit in
+         * the eventMask so we don't need a separate field inputMethodsEnabled.
+         */
+        static INPUT_METHODS_ENABLED_MASK: number;
+        /**
+         * The event mask for selecting paint events.
+         */
+        static PAINT_EVENT_MASK: number;
+        /**
+         * The event mask for selecting invocation events.
+         */
+        static INVOCATION_EVENT_MASK: number;
+        /**
+         * The event mask for selecting hierarchy events.
+         */
+        static HIERARCHY_EVENT_MASK: number;
+        /**
+         * The event mask for selecting hierarchy bounds events.
+         */
+        static HIERARCHY_BOUNDS_EVENT_MASK: number;
+        /**
+         * The event mask for selecting mouse wheel events.
+         *
+         * @since 1.4
+         */
+        static MOUSE_WHEEL_EVENT_MASK: number;
+        /**
+         * The event mask for selecting window state events.
+         *
+         * @since 1.4
+         */
+        static WINDOW_STATE_EVENT_MASK: number;
+        /**
+         * The event mask for selecting window focus events.
+         *
+         * @since 1.4
+         */
+        static WINDOW_FOCUS_EVENT_MASK: number;
+        /**
+         * The maximum value for reserved AWT event IDs. Programs defining their own
+         * event IDs should use IDs greater than this value.
+         */
+        static RESERVED_ID_MAX: number;
+        constructor(source?: any, id?: any);
+        setSource(newSource: any): void;
+        /**
+         * Returns a String representation of this object.
+         */
+        toString(): string;
+        paramString(): string;
+        consume(): void;
+        isConsumed(): boolean;
+    }
+}
+declare namespace java.beans {
+    class PropertyChangeEvent extends java.util.EventObject {
+        static serialVersionUID: number;
+        constructor(source: any, propertyName: string, oldValue: any, newValue: any);
+        getPropertyName(): string;
+        getNewValue(): any;
+        getOldValue(): any;
+        setPropagationId(propagationId: any): void;
+        getPropagationId(): any;
+        private propertyName;
+        private newValue;
+        private oldValue;
+        private propagationId;
+        toString(): string;
+        appendTo(sb: java.lang.StringBuilder): void;
+    }
+}
+declare namespace javax.swing.event {
+    class ChangeEvent extends java.util.EventObject {
+        constructor(source: any);
+    }
+}
 declare namespace java.util.logging {
     /**
      * A simple console logger used in super dev mode.
@@ -14028,7 +16100,7 @@ declare namespace javaemul.internal {
         static SIZE: number;
         static bitCount(x: number): number;
         static compare(x: number, y: number): number;
-        static decode(s: string): IntegerHelper;
+        static decode(s: string): number;
         /**
          * @skip
          *
@@ -14050,8 +16122,8 @@ declare namespace javaemul.internal {
         static toOctalString(value: number): string;
         static toString$int(value: number): string;
         static toString(value?: any, radix?: any): any;
-        static valueOf$int(i: number): IntegerHelper;
-        static valueOf$java_lang_String(s: string): IntegerHelper;
+        static valueOf$int(i: number): number;
+        static valueOf$java_lang_String(s: string): number;
         static valueOf(s?: any, radix?: any): any;
         static toRadixString(value: number, radix: number): string;
         static toUnsignedRadixString(value: number, radix: number): string;
@@ -14067,14 +16139,15 @@ declare namespace javaemul.internal {
         longValue(): number;
         shortValue(): number;
         toString(): string;
+        static getInteger(nm: string): number;
     }
     namespace IntegerHelper {
         /**
          * Use nested class to avoid clinit on outer.
          */
         class BoxedValues {
-            static boxedValues: javaemul.internal.IntegerHelper[];
-            static boxedValues_$LI$(): javaemul.internal.IntegerHelper[];
+            static boxedValues: number[];
+            static boxedValues_$LI$(): number[];
         }
         /**
          * Use nested class to avoid clinit on outer.
@@ -14437,6 +16510,18 @@ declare namespace sun.awt.geom {
             compare(o1: any, o2: any): number;
             constructor();
         }
+    }
+}
+declare namespace java.awt {
+    class Panel extends java.awt.Container {
+        createHTML(): void;
+        constructor();
+    }
+}
+declare namespace javax.swing {
+    abstract class JComponent extends java.awt.Container implements java.io.Serializable {
+        listenerList: javax.swing.event.EventListenerList;
+        constructor();
     }
 }
 declare namespace java.awt.geom {
@@ -15079,21 +17164,71 @@ declare namespace java.awt {
         toString(): string;
     }
 }
-declare namespace java.applet {
-    class Applet {
-        static __static_initialized: boolean;
-        static __static_initialize(): void;
-        static CURRENT_ID: number;
-        static __static_initializer_0(): void;
-        container: HTMLElement;
-        backgroundColor: java.awt.Color;
-        layout: java.awt.Layout;
-        constructor();
-        init(): void;
-        paint(g: java.awt.Graphics): void;
-        setBackground(c: java.awt.Color): void;
-        setLayout(layout: java.awt.Layout): void;
-        add(component: java.awt.HTMLComponent): void;
+declare namespace java.awt {
+    class WebGraphics2D extends java.awt.Graphics2D {
+        private context;
+        constructor(canvas: HTMLCanvasElement);
+        drawString(s?: any, x?: any, y?: any): any;
+        getContext(): CanvasRenderingContext2D;
+        clearRect(x: number, y: number, width: number, height: number): void;
+        create$(): java.awt.Graphics;
+        drawArc(x: number, y: number, width: number, height: number, startAngle: number, arcAngle: number): void;
+        drawLine(x1: number, y1: number, x2: number, y2: number): void;
+        drawOval(x: number, y: number, width: number, height: number): void;
+        drawRoundRect(x: number, y: number, width: number, height: number, arcWidth: number, arcHeight: number): void;
+        drawRect(x: number, y: number, width: number, height: number): void;
+        drawPolygon(xPoints?: any, yPoints?: any, nPoints?: any): any;
+        drawPolygon$java_awt_Polygon(p: java.awt.Polygon): void;
+        fillPolygon$java_awt_Polygon(p: java.awt.Polygon): void;
+        getClipBounds(r?: any): any;
+        draw3DRect(x: number, y: number, width: number, height: number, raised: boolean): void;
+        hitClip(x: number, y: number, width: number, height: number): boolean;
+        drawPolyline(xPoints: number[], yPoints: number[], nPoints: number): void;
+        draw(s: java.awt.Shape): void;
+        fill(s: java.awt.Shape): void;
+        drawImage$java_awt_Image$java_awt_geom_AffineTransform$java_awt_image_ImageObserver(img: java.awt.Image, xform: java.awt.geom.AffineTransform, obs: java.awt.image.ImageObserver): boolean;
+        drawImage$java_awt_Image$int$int$java_awt_Color$java_awt_image_ImageObserver(img: java.awt.Image, x: number, y: number, bgcolor: java.awt.Color, observer: java.awt.image.ImageObserver): boolean;
+        drawImage(img?: any, dx1?: any, dy1?: any, dx2?: any, dy2?: any, sx1?: any, sy1?: any, sx2?: any, sy2?: any, bgcolor?: any, observer?: any): any;
+        drawImage$java_awt_Image$int$int$int$int$int$int$int$int$java_awt_image_ImageObserver(img: java.awt.Image, dx1: number, dy1: number, dx2: number, dy2: number, sx1: number, sy1: number, sx2: number, sy2: number, observer: java.awt.image.ImageObserver): boolean;
+        drawImage$java_awt_Image$int$int$java_awt_image_ImageObserver(img: java.awt.Image, x: number, y: number, observer: java.awt.image.ImageObserver): boolean;
+        drawImage$java_awt_Image$int$int$int$int$java_awt_Color$java_awt_image_ImageObserver(img: java.awt.Image, x: number, y: number, width: number, height: number, bgcolor: java.awt.Color, observer: java.awt.image.ImageObserver): boolean;
+        drawImage$java_awt_Image$int$int$int$int$java_awt_image_ImageObserver(img: java.awt.Image, x: number, y: number, width: number, height: number, observer: java.awt.image.ImageObserver): boolean;
+        fillPolygon(xPoints?: any, yPoints?: any, nPoints?: any): any;
+        clip: java.awt.Shape;
+        getClip(): java.awt.Shape;
+        setClip$java_awt_Shape(clip: java.awt.Shape): void;
+        setClip(x?: any, y?: any, width?: any, height?: any): any;
+        clipRect(x: number, y: number, width: number, height: number): void;
+        getClipBounds$(): java.awt.Rectangle;
+        translate(x?: any, y?: any): any;
+        drawString$java_lang_String$float$float(str: string, x: number, y: number): void;
+        fillArc(x: number, y: number, width: number, height: number, startAngle: number, arcAngle: number): void;
+        fillOval(x: number, y: number, width: number, height: number): void;
+        fillRect(x: number, y: number, width: number, height: number): void;
+        fillRoundRect(x: number, y: number, width: number, height: number, arcWidth: number, arcHeight: number): void;
+        color: java.awt.Color;
+        setColor(c: java.awt.Color): void;
+        getColor(): java.awt.Color;
+        translate$double$double(tx: number, ty: number): void;
+        rotate$double(theta: number): void;
+        rotate(theta?: any, x?: any, y?: any): any;
+        scale(sx: number, sy: number): void;
+        shear(shx: number, shy: number): void;
+        dispose(): void;
+        font: java.awt.Font;
+        setFont(font: java.awt.Font): void;
+        getFont(): java.awt.Font;
+        background: java.awt.Color;
+        setBackground(color: java.awt.Color): void;
+        getBackground(): java.awt.Color;
+        __transform: java.awt.geom.AffineTransform;
+        setTransform(transform: java.awt.geom.AffineTransform): void;
+        getTransform(): java.awt.geom.AffineTransform;
+        transform(Tx: java.awt.geom.AffineTransform): void;
+        setPaintMode(): void;
+        getPaint(): java.awt.Paint;
+        setPaint(paint: java.awt.Paint): void;
+        setStroke(s: java.awt.Stroke): void;
     }
 }
 declare namespace java.io {
@@ -16152,6 +18287,705 @@ declare namespace java.util {
         subSet$java_lang_Object$java_lang_Object(fromElement: E, toElement: E): java.util.SortedSet<E>;
         tailSet$java_lang_Object(fromElement: E): java.util.SortedSet<E>;
         tailSet(fromElement?: any, inclusive?: any): any;
+    }
+}
+declare namespace java.awt.event {
+    class ActionEvent extends java.awt.AWTEvent {
+        static SHIFT_MASK: number;
+        static SHIFT_MASK_$LI$(): number;
+        static CTRL_MASK: number;
+        static CTRL_MASK_$LI$(): number;
+        static META_MASK: number;
+        static META_MASK_$LI$(): number;
+        static ALT_MASK: number;
+        static ALT_MASK_$LI$(): number;
+        static ACTION_FIRST: number;
+        static ACTION_LAST: number;
+        static ACTION_PERFORMED: number;
+        static ACTION_PERFORMED_$LI$(): number;
+        actionCommand: string;
+        when: number;
+        modifiers: number;
+        static serialVersionUID: number;
+        constructor(source?: any, id?: any, command?: any, when?: any, modifiers?: any);
+        getActionCommand(): string;
+        getWhen(): number;
+        getModifiers(): number;
+        paramString(): string;
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * The adjustment event emitted by Adjustable objects like
+     * {@link java.awt.Scrollbar} and {@link java.awt.ScrollPane}.
+     * When the user changes the value of the scrolling component,
+     * it receives an instance of {@code AdjustmentEvent}.
+     * <p>
+     * An unspecified behavior will be caused if the {@code id} parameter
+     * of any particular {@code AdjustmentEvent} instance is not
+     * in the range from {@code ADJUSTMENT_FIRST} to {@code ADJUSTMENT_LAST}.
+     * <p>
+     * The {@code type} of any {@code AdjustmentEvent} instance takes one of the following
+     * values:
+     * <ul>
+     * <li> {@code UNIT_INCREMENT}
+     * <li> {@code UNIT_DECREMENT}
+     * <li> {@code BLOCK_INCREMENT}
+     * <li> {@code BLOCK_DECREMENT}
+     * <li> {@code TRACK}
+     * </ul>
+     * Assigning the value different from listed above will cause an unspecified behavior.
+     * @see java.awt.Adjustable
+     * @see AdjustmentListener
+     *
+     * @author Amy Fowler
+     * @since 1.1
+     */
+    class AdjustmentEvent extends java.awt.AWTEvent {
+        /**
+         * Marks the first integer id for the range of adjustment event ids.
+         */
+        static ADJUSTMENT_FIRST: number;
+        /**
+         * Marks the last integer id for the range of adjustment event ids.
+         */
+        static ADJUSTMENT_LAST: number;
+        /**
+         * The adjustment value changed event.
+         */
+        static ADJUSTMENT_VALUE_CHANGED: number;
+        static ADJUSTMENT_VALUE_CHANGED_$LI$(): number;
+        /**
+         * The unit increment adjustment type.
+         */
+        static UNIT_INCREMENT: number;
+        /**
+         * The unit decrement adjustment type.
+         */
+        static UNIT_DECREMENT: number;
+        /**
+         * The block decrement adjustment type.
+         */
+        static BLOCK_DECREMENT: number;
+        /**
+         * The block increment adjustment type.
+         */
+        static BLOCK_INCREMENT: number;
+        /**
+         * The absolute tracking adjustment type.
+         */
+        static TRACK: number;
+        /**
+         * The adjustable object that fired the event.
+         *
+         * @serial
+         * @see #getAdjustable
+         */
+        adjustable: java.awt.Adjustable;
+        /**
+         * <code>value</code> will contain the new value of the
+         * adjustable object.  This value will always be  in a
+         * range associated adjustable object.
+         *
+         * @serial
+         * @see #getValue
+         */
+        value: number;
+        /**
+         * The <code>adjustmentType</code> describes how the adjustable
+         * object value has changed.
+         * This value can be increased/decreased by a block or unit amount
+         * where the block is associated with page increments/decrements,
+         * and a unit is associated with line increments/decrements.
+         *
+         * @serial
+         * @see #getAdjustmentType
+         */
+        adjustmentType: number;
+        /**
+         * The <code>isAdjusting</code> is true if the event is one
+         * of the series of multiple adjustment events.
+         *
+         * @since 1.4
+         * @serial
+         * @see #getValueIsAdjusting
+         */
+        isAdjusting: boolean;
+        static serialVersionUID: number;
+        /**
+         * Constructs an <code>AdjustmentEvent</code> object with the
+         * specified Adjustable source, event type, adjustment type, and value.
+         * <p> This method throws an
+         * <code>IllegalArgumentException</code> if <code>source</code>
+         * is <code>null</code>.
+         *
+         * @param source The <code>Adjustable</code> object where the
+         * event originated
+         * @param id     An integer indicating the type of event.
+         * For information on allowable values, see
+         * the class description for {@link AdjustmentEvent}
+         * @param type   An integer indicating the adjustment type.
+         * For information on allowable values, see
+         * the class description for {@link AdjustmentEvent}
+         * @param value  The current value of the adjustment
+         * @param isAdjusting A boolean that equals <code>true</code> if the event is one
+         * of a series of multiple adjusting events,
+         * otherwise <code>false</code>
+         * @throws IllegalArgumentException if <code>source</code> is null
+         * @since 1.4
+         * @see #getSource()
+         * @see #getID()
+         * @see #getAdjustmentType()
+         * @see #getValue()
+         * @see #getValueIsAdjusting()
+         */
+        constructor(source: java.awt.Adjustable, id: number, type: number, value: number, isAdjusting?: boolean);
+        /**
+         * Returns the <code>Adjustable</code> object where this event originated.
+         *
+         * @return the <code>Adjustable</code> object where this event originated
+         */
+        getAdjustable(): java.awt.Adjustable;
+        /**
+         * Returns the current value in the adjustment event.
+         *
+         * @return the current value in the adjustment event
+         */
+        getValue(): number;
+        /**
+         * Returns the type of adjustment which caused the value changed
+         * event.  It will have one of the following values:
+         * <ul>
+         * <li>{@link #UNIT_INCREMENT}
+         * <li>{@link #UNIT_DECREMENT}
+         * <li>{@link #BLOCK_INCREMENT}
+         * <li>{@link #BLOCK_DECREMENT}
+         * <li>{@link #TRACK}
+         * </ul>
+         * @return one of the adjustment values listed above
+         */
+        getAdjustmentType(): number;
+        /**
+         * Returns <code>true</code> if this is one of multiple
+         * adjustment events.
+         *
+         * @return <code>true</code> if this is one of multiple
+         * adjustment events, otherwise returns <code>false</code>
+         * @since 1.4
+         */
+        getValueIsAdjusting(): boolean;
+        paramString(): string;
+    }
+}
+declare namespace java.awt.event {
+    class ComponentEvent extends java.awt.AWTEvent {
+        static COMPONENT_FIRST: number;
+        static COMPONENT_LAST: number;
+        static COMPONENT_MOVED: number;
+        static COMPONENT_MOVED_$LI$(): number;
+        static COMPONENT_RESIZED: number;
+        static COMPONENT_RESIZED_$LI$(): number;
+        static COMPONENT_SHOWN: number;
+        static COMPONENT_SHOWN_$LI$(): number;
+        static COMPONENT_HIDDEN: number;
+        static COMPONENT_HIDDEN_$LI$(): number;
+        static serialVersionUID: number;
+        constructor(source: java.awt.Component, id: number);
+        getComponent(): java.awt.Component;
+        paramString(): string;
+    }
+}
+declare namespace java.awt.event {
+    class ItemEvent extends java.awt.AWTEvent {
+        static ITEM_FIRST: number;
+        static ITEM_LAST: number;
+        static ITEM_STATE_CHANGED: number;
+        static ITEM_STATE_CHANGED_$LI$(): number;
+        static SELECTED: number;
+        static DESELECTED: number;
+        item: any;
+        stateChange: number;
+        static serialVersionUID: number;
+        constructor(source: java.awt.ItemSelectable, id: number, item: any, stateChange: number);
+        getItemSelectable(): java.awt.ItemSelectable;
+        getItem(): any;
+        getStateChange(): number;
+        paramString(): string;
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * A semantic event which indicates that an object's text changed.
+     * This high-level event is generated by an object (such as a TextComponent)
+     * when its text changes. The event is passed to
+     * every <code>TextListener</code> object which registered to receive such
+     * events using the component's <code>addTextListener</code> method.
+     * <P>
+     * The object that implements the <code>TextListener</code> interface gets
+     * this <code>TextEvent</code> when the event occurs. The listener is
+     * spared the details of processing individual mouse movements and key strokes
+     * Instead, it can process a "meaningful" (semantic) event like "text changed".
+     * <p>
+     * An unspecified behavior will be caused if the {@code id} parameter
+     * of any particular {@code TextEvent} instance is not
+     * in the range from {@code TEXT_FIRST} to {@code TEXT_LAST}.
+     *
+     * @author Georges Saab
+     *
+     * @see java.awt.TextComponent
+     * @see TextListener
+     *
+     * @since 1.1
+     */
+    class TextEvent extends java.awt.AWTEvent {
+        /**
+         * The first number in the range of ids used for text events.
+         */
+        static TEXT_FIRST: number;
+        /**
+         * The last number in the range of ids used for text events.
+         */
+        static TEXT_LAST: number;
+        /**
+         * This event id indicates that object's text changed.
+         */
+        static TEXT_VALUE_CHANGED: number;
+        static TEXT_VALUE_CHANGED_$LI$(): number;
+        static serialVersionUID: number;
+        /**
+         * Constructs a <code>TextEvent</code> object.
+         * <p> This method throws an
+         * <code>IllegalArgumentException</code> if <code>source</code>
+         * is <code>null</code>.
+         *
+         * @param source The (<code>TextComponent</code>) object that
+         * originated the event
+         * @param id     An integer that identifies the event type.
+         * For information on allowable values, see
+         * the class description for {@link TextEvent}
+         * @throws IllegalArgumentException if <code>source</code> is null
+         * @see #getSource()
+         * @see #getID()
+         */
+        constructor(source: any, id: number);
+        /**
+         * Returns a parameter string identifying this text event.
+         * This method is useful for event-logging and for debugging.
+         *
+         * @return a string identifying the event and its attributes
+         */
+        paramString(): string;
+    }
+}
+declare namespace java.beans {
+    /**
+     * An "IndexedPropertyChange" event gets delivered whenever a component that
+     * conforms to the JavaBeans&trade; specification (a "bean") changes a bound
+     * indexed property. This class is an extension of <code>PropertyChangeEvent</code>
+     * but contains the index of the property that has changed.
+     * <P>
+     * Null values may be provided for the old and the new values if their
+     * true values are not known.
+     * <P>
+     * An event source may send a null object as the name to indicate that an
+     * arbitrary set of if its properties have changed.  In this case the
+     * old and new values should also be null.
+     *
+     * @since 1.5
+     * @author Mark Davidson
+     */
+    class IndexedPropertyChangeEvent extends java.beans.PropertyChangeEvent {
+        static serialVersionUID: number;
+        private index;
+        /**
+         * Constructs a new <code>IndexedPropertyChangeEvent</code> object.
+         *
+         * @param source  The bean that fired the event.
+         * @param propertyName  The programmatic name of the property that
+         * was changed.
+         * @param oldValue      The old value of the property.
+         * @param newValue      The new value of the property.
+         * @param index index of the property element that was changed.
+         */
+        constructor(source: any, propertyName: string, oldValue: any, newValue: any, index: number);
+        /**
+         * Gets the index of the property that was changed.
+         *
+         * @return The index specifying the property element that was
+         * changed.
+         */
+        getIndex(): number;
+        appendTo(sb: java.lang.StringBuilder): void;
+    }
+}
+declare namespace javax.swing {
+    abstract class AbstractButton extends javax.swing.JComponent implements java.awt.ItemSelectable, javax.swing.SwingConstants {
+        /**
+         * Identifies a change in the button's margins.
+         */
+        static MARGIN_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change in the button's vertical alignment.
+         */
+        static VERTICAL_ALIGNMENT_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change in the button's horizontal alignment.
+         */
+        static HORIZONTAL_ALIGNMENT_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change in the button's vertical text position.
+         */
+        static VERTICAL_TEXT_POSITION_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change in the button's horizontal text position.
+         */
+        static HORIZONTAL_TEXT_POSITION_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change to having the border drawn, or having it not drawn.
+         */
+        static BORDER_PAINTED_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change to having the border highlighted when focused, or
+         * not.
+         */
+        static FOCUS_PAINTED_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change from rollover enabled to disabled or back to enabled.
+         */
+        static ROLLOVER_ENABLED_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change to having the button paint the content area.
+         */
+        static CONTENT_AREA_FILLED_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change to the icon that represents the button.
+         */
+        static ICON_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change to the icon used when the button has been pressed.
+         */
+        static PRESSED_ICON_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change to the icon used when the button has been selected.
+         */
+        static SELECTED_ICON_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change to the icon used when the cursor is over the button.
+         */
+        static ROLLOVER_ICON_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change to the icon used when the cursor is over the button
+         * and it has been selected.
+         */
+        static ROLLOVER_SELECTED_ICON_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change to the icon used when the button has been disabled.
+         */
+        static DISABLED_ICON_CHANGED_PROPERTY: string;
+        /**
+         * Identifies a change to the icon used when the button has been disabled
+         * and selected.
+         */
+        static DISABLED_SELECTED_ICON_CHANGED_PROPERTY: string;
+        private text;
+        private margin;
+        private defaultMargin;
+        private defaultIcon;
+        private pressedIcon;
+        private disabledIcon;
+        private selectedIcon;
+        private disabledSelectedIcon;
+        private rolloverIcon;
+        private rolloverSelectedIcon;
+        private paintBorder;
+        private paintFocus;
+        private rolloverEnabled;
+        private contentAreaFilled;
+        private verticalAlignment;
+        private horizontalAlignment;
+        private verticalTextPosition;
+        private horizontalTextPosition;
+        private iconTextGap;
+        private mnemonic;
+        private mnemonicIndex;
+        private multiClickThreshhold;
+        private borderPaintedSet;
+        private rolloverEnabledSet;
+        private iconTextGapSet;
+        private contentAreaFilledSet;
+        private __setLayout;
+        defaultCapable: boolean;
+        /**
+         * Combined listeners: ActionListener, ChangeListener, ItemListener.
+         */
+        private handler;
+        /**
+         * The button model's <code>changeListener</code>.
+         */
+        changeListener: javax.swing.event.ChangeListener;
+        /**
+         * The button model's <code>ActionListener</code>.
+         */
+        actionListener: java.awt.event.ActionListener;
+        /**
+         * The button model's <code>ItemListener</code>.
+         */
+        itemListener: java.awt.event.ItemListener;
+        /**
+         * Only one <code>ChangeEvent</code> is needed per button instance since the
+         * event's only state is the source property. The source of events generated
+         * is always "this".
+         */
+        changeEvent: javax.swing.event.ChangeEvent;
+        private hideActionText;
+        /**
+         * Returns the button's text.
+         *
+         * @return the buttons text
+         * @see #setText
+         */
+        getText(): string;
+        setText(text: string): void;
+        isSelected(): boolean;
+        setSelected(b: boolean): void;
+        doClick(): void;
+        setMargin(m: java.awt.Insets): void;
+        /**
+         * Returns the margin between the button's border and the label.
+         *
+         * @return an <code>Insets</code> object specifying the margin between the
+         * botton's border and the label
+         * @see #setMargin
+         */
+        getMargin(): java.awt.Insets;
+        /**
+         * Returns the default icon.
+         *
+         * @return the default <code>Icon</code>
+         * @see #setIcon
+         */
+        getIcon(): javax.swing.Icon;
+        setIcon(defaultIcon: javax.swing.Icon): void;
+        getPressedIcon(): javax.swing.Icon;
+        setPressedIcon(pressedIcon: javax.swing.Icon): void;
+        getSelectedIcon(): javax.swing.Icon;
+        setSelectedIcon(selectedIcon: javax.swing.Icon): void;
+        getRolloverIcon(): javax.swing.Icon;
+        setRolloverIcon(rolloverIcon: javax.swing.Icon): void;
+        getRolloverSelectedIcon(): javax.swing.Icon;
+        setRolloverSelectedIcon(rolloverSelectedIcon: javax.swing.Icon): void;
+        getDisabledIcon(): javax.swing.Icon;
+        setDisabledIcon(disabledIcon: javax.swing.Icon): void;
+        getDisabledSelectedIcon(): javax.swing.Icon;
+        setDisabledSelectedIcon(disabledSelectedIcon: javax.swing.Icon): void;
+        getVerticalAlignment(): number;
+        setVerticalAlignment(alignment: number): void;
+        getHorizontalAlignment(): number;
+        setHorizontalAlignment(alignment: number): void;
+        getVerticalTextPosition(): number;
+        setVerticalTextPosition(textPosition: number): void;
+        getHorizontalTextPosition(): number;
+        setHorizontalTextPosition(textPosition: number): void;
+        getIconTextGap(): number;
+        setIconTextGap(iconTextGap: number): void;
+        checkHorizontalKey(key: number, exception: string): number;
+        checkVerticalKey(key: number, exception: string): number;
+        setActionCommand(actionCommand: string): void;
+        getActionCommand(): string;
+        private action;
+        setAction(a: javax.swing.Action): void;
+        getAction(): javax.swing.Action;
+        isBorderPainted(): boolean;
+        setBorderPainted(b: boolean): void;
+        isFocusPainted(): boolean;
+        setFocusPainted(b: boolean): void;
+        isContentAreaFilled(): boolean;
+        setContentAreaFilled(b: boolean): void;
+        isRolloverEnabled(): boolean;
+        setRolloverEnabled(b: boolean): void;
+        getMnemonic(): number;
+        setMnemonic(mnemonic: number): void;
+        setDisplayedMnemonicIndex(index: number): void;
+        getDisplayedMnemonicIndex(): number;
+        setMultiClickThreshhold(threshhold: number): void;
+        getMultiClickThreshhold(): number;
+        /**
+         * Adds a <code>ChangeListener</code> to the button.
+         *
+         * @param l
+         * the listener to be added
+         */
+        addChangeListener(l: javax.swing.event.ChangeListener): void;
+        /**
+         * Removes a ChangeListener from the button.
+         *
+         * @param l
+         * the listener to be removed
+         */
+        removeChangeListener(l: javax.swing.event.ChangeListener): void;
+        /**
+         * Returns an array of all the <code>ChangeListener</code>s added to this
+         * AbstractButton with addChangeListener().
+         *
+         * @return all of the <code>ChangeListener</code>s added or an empty array
+         * if no listeners have been added
+         * @since 1.4
+         */
+        getChangeListeners(): javax.swing.event.ChangeListener[];
+        /**
+         * Notifies all listeners that have registered interest for notification on
+         * this event type. The event instance is lazily created.
+         *
+         * @see EventListenerList
+         */
+        fireStateChanged(): void;
+        /**
+         * Adds an <code>ActionListener</code> to the button.
+         *
+         * @param l
+         * the <code>ActionListener</code> to be added
+         */
+        addActionListener(l: java.awt.event.ActionListener): void;
+        /**
+         * Removes an <code>ActionListener</code> from the button. If the listener
+         * is the currently set <code>Action</code> for the button, then the
+         * <code>Action</code> is set to <code>null</code>.
+         *
+         * @param l
+         * the listener to be removed
+         */
+        removeActionListener(l: java.awt.event.ActionListener): void;
+        /**
+         * Returns an array of all the <code>ActionListener</code>s added to this
+         * AbstractButton with addActionListener().
+         *
+         * @return all of the <code>ActionListener</code>s added or an empty array
+         * if no listeners have been added
+         * @since 1.4
+         */
+        getActionListeners(): java.awt.event.ActionListener[];
+        /**
+         * Subclasses that want to handle <code>ChangeEvents</code> differently can
+         * override this to return another <code>ChangeListener</code>
+         * implementation.
+         *
+         * @return the new <code>ChangeListener</code>
+         */
+        createChangeListener(): javax.swing.event.ChangeListener;
+        /**
+         * Notifies all listeners that have registered interest for notification on
+         * this event type. The event instance is lazily created using the
+         * <code>event</code> parameter.
+         *
+         * @param event
+         * the <code>ActionEvent</code> object
+         * @see EventListenerList
+         */
+        fireActionPerformed(event: java.awt.event.ActionEvent): void;
+        /**
+         * Notifies all listeners that have registered interest for notification on
+         * this event type. The event instance is lazily created using the
+         * <code>event</code> parameter.
+         *
+         * @param event
+         * the <code>ItemEvent</code> object
+         * @see EventListenerList
+         */
+        fireItemStateChanged(event: java.awt.event.ItemEvent): void;
+        createActionListener(): java.awt.event.ActionListener;
+        createItemListener(): java.awt.event.ItemListener;
+        /**
+         * Enables (or disables) the button.
+         *
+         * @param b
+         * true to enable the button, otherwise false
+         */
+        setEnabled(b: boolean): void;
+        /**
+         * Returns the label text.
+         *
+         * @return a <code>String</code> containing the label
+         * @deprecated - Replaced by <code>getText</code>
+         */
+        getLabel(): string;
+        /**
+         * Sets the label text.
+         *
+         * @param label
+         * a <code>String</code> containing the text
+         * @deprecated - Replaced by <code>setText(text)</code>
+         * @beaninfo bound: true description: Replace by setText(text)
+         */
+        setLabel(label: string): void;
+        /**
+         * Adds an <code>ItemListener</code> to the <code>checkbox</code>.
+         *
+         * @param l
+         * the <code>ItemListener</code> to be added
+         */
+        addItemListener(l: java.awt.event.ItemListener): void;
+        /**
+         * Removes an <code>ItemListener</code> from the button.
+         *
+         * @param l
+         * the <code>ItemListener</code> to be removed
+         */
+        removeItemListener(l: java.awt.event.ItemListener): void;
+        /**
+         * Returns an array of all the <code>ItemListener</code>s added to this
+         * AbstractButton with addItemListener().
+         *
+         * @return all of the <code>ItemListener</code>s added or an empty array if
+         * no listeners have been added
+         * @since 1.4
+         */
+        getItemListeners(): java.awt.event.ItemListener[];
+        /**
+         * Returns an array (length 1) containing the label or <code>null</code> if
+         * the button is not selected.
+         *
+         * @return an array containing 1 Object: the text of the button, if the item
+         * is selected; otherwise <code>null</code>
+         */
+        getSelectedObjects(): any[];
+        init(text: string, icon: javax.swing.Icon): void;
+        imageUpdate(img: java.awt.Image, infoflags: number, x: number, y: number, w: number, h: number): boolean;
+        getHandler(): AbstractButton.Handler;
+        constructor();
+    }
+    namespace AbstractButton {
+        /**
+         * Extends <code>ChangeListener</code> to be serializable.
+         * <p>
+         * <strong>Warning:</strong> Serialized objects of this class will not be
+         * compatible with future Swing releases. The current serialization support
+         * is appropriate for short term storage or RMI between applications running
+         * the same version of Swing. As of 1.4, support for long term storage of
+         * all JavaBeans&trade; has been added to the <code>java.beans</code>
+         * package. Please see {@link java.beans.XMLEncoder}.
+         */
+        class ButtonChangeListener implements javax.swing.event.ChangeListener, java.io.Serializable {
+            __parent: any;
+            constructor(__parent: any);
+            stateChanged(e: javax.swing.event.ChangeEvent): void;
+        }
+        class Handler implements java.awt.event.ActionListener, javax.swing.event.ChangeListener, java.awt.event.ItemListener, java.io.Serializable {
+            __parent: any;
+            stateChanged(e: javax.swing.event.ChangeEvent): void;
+            actionPerformed(event: java.awt.event.ActionEvent): void;
+            itemStateChanged(event: java.awt.event.ItemEvent): void;
+            constructor(__parent: any);
+        }
+    }
+}
+declare namespace java.applet {
+    class Applet extends java.awt.Panel {
+        static __static_initialized: boolean;
+        static __static_initialize(): void;
+        static CURRENT_ID: number;
+        static __static_initializer_0(): void;
+        constructor();
+        init(): void;
     }
 }
 declare namespace java.lang {
@@ -17507,6 +20341,166 @@ declare namespace java.util {
         clone(): any;
     }
 }
+declare namespace java.awt.event {
+    /**
+     * A low-level event which indicates that a container's contents
+     * changed because a component was added or removed.
+     * <P>
+     * Container events are provided for notification purposes ONLY;
+     * The AWT will automatically handle changes to the containers
+     * contents internally so that the program works properly regardless of
+     * whether the program is receiving these events or not.
+     * <P>
+     * This low-level event is generated by a container object (such as a
+     * Panel) when a component is added to it or removed from it.
+     * The event is passed to every <code>ContainerListener</code>
+     * or <code>ContainerAdapter</code> object which registered to receive such
+     * events using the component's <code>addContainerListener</code> method.
+     * (<code>ContainerAdapter</code> objects implement the
+     * <code>ContainerListener</code> interface.) Each such listener object
+     * gets this <code>ContainerEvent</code> when the event occurs.
+     * <p>
+     * An unspecified behavior will be caused if the {@code id} parameter
+     * of any particular {@code ContainerEvent} instance is not
+     * in the range from {@code CONTAINER_FIRST} to {@code CONTAINER_LAST}.
+     *
+     * @see ContainerAdapter
+     * @see ContainerListener
+     * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/containerlistener.html">Tutorial: Writing a Container Listener</a>
+     *
+     * @author Tim Prinzing
+     * @author Amy Fowler
+     * @since 1.1
+     */
+    class ContainerEvent extends java.awt.event.ComponentEvent {
+        /**
+         * The first number in the range of ids used for container events.
+         */
+        static CONTAINER_FIRST: number;
+        /**
+         * The last number in the range of ids used for container events.
+         */
+        static CONTAINER_LAST: number;
+        /**
+         * This event indicates that a component was added to the container.
+         */
+        static COMPONENT_ADDED: number;
+        static COMPONENT_ADDED_$LI$(): number;
+        /**
+         * This event indicates that a component was removed from the container.
+         */
+        static COMPONENT_REMOVED: number;
+        static COMPONENT_REMOVED_$LI$(): number;
+        /**
+         * The non-null component that is being added or
+         * removed from the Container.
+         *
+         * @serial
+         * @see #getChild()
+         */
+        child: java.awt.Component;
+        static serialVersionUID: number;
+        /**
+         * Constructs a <code>ContainerEvent</code> object.
+         * <p> This method throws an
+         * <code>IllegalArgumentException</code> if <code>source</code>
+         * is <code>null</code>.
+         *
+         * @param source The <code>Component</code> object (container)
+         * that originated the event
+         * @param id     An integer indicating the type of event.
+         * For information on allowable values, see
+         * the class description for {@link ContainerEvent}
+         * @param child  the component that was added or removed
+         * @throws IllegalArgumentException if <code>source</code> is null
+         * @see #getContainer()
+         * @see #getID()
+         * @see #getChild()
+         */
+        constructor(source: java.awt.Component, id: number, child: java.awt.Component);
+        /**
+         * Returns the originator of the event.
+         *
+         * @return the <code>Container</code> object that originated
+         * the event, or <code>null</code> if the object is not a
+         * <code>Container</code>.
+         */
+        getContainer(): java.awt.Container;
+        /**
+         * Returns the component that was affected by the event.
+         *
+         * @return the Component object that was added or removed
+         */
+        getChild(): java.awt.Component;
+        /**
+         * Returns a parameter string identifying this event.
+         * This method is useful for event-logging and for debugging.
+         *
+         * @return a string identifying the event and its attributes
+         */
+        paramString(): string;
+    }
+}
+declare namespace java.awt.event {
+    abstract class InputEvent extends java.awt.event.ComponentEvent {
+        static SHIFT_MASK: number;
+        static SHIFT_MASK_$LI$(): number;
+        static CTRL_MASK: number;
+        static CTRL_MASK_$LI$(): number;
+        static META_MASK: number;
+        static META_MASK_$LI$(): number;
+        static ALT_MASK: number;
+        static ALT_MASK_$LI$(): number;
+        static ALT_GRAPH_MASK: number;
+        static ALT_GRAPH_MASK_$LI$(): number;
+        static BUTTON1_MASK: number;
+        static BUTTON1_MASK_$LI$(): number;
+        static BUTTON2_MASK: number;
+        static BUTTON2_MASK_$LI$(): number;
+        static BUTTON3_MASK: number;
+        static BUTTON3_MASK_$LI$(): number;
+        static SHIFT_DOWN_MASK: number;
+        static SHIFT_DOWN_MASK_$LI$(): number;
+        static CTRL_DOWN_MASK: number;
+        static CTRL_DOWN_MASK_$LI$(): number;
+        static META_DOWN_MASK: number;
+        static META_DOWN_MASK_$LI$(): number;
+        static ALT_DOWN_MASK: number;
+        static ALT_DOWN_MASK_$LI$(): number;
+        static BUTTON1_DOWN_MASK: number;
+        static BUTTON1_DOWN_MASK_$LI$(): number;
+        static BUTTON2_DOWN_MASK: number;
+        static BUTTON2_DOWN_MASK_$LI$(): number;
+        static BUTTON3_DOWN_MASK: number;
+        static BUTTON3_DOWN_MASK_$LI$(): number;
+        static ALT_GRAPH_DOWN_MASK: number;
+        static ALT_GRAPH_DOWN_MASK_$LI$(): number;
+        static BUTTON_DOWN_MASK: number[];
+        static BUTTON_DOWN_MASK_$LI$(): number[];
+        static getMaskForButton(button: number): number;
+        static FIRST_HIGH_BIT: number;
+        static FIRST_HIGH_BIT_$LI$(): number;
+        static JDK_1_3_MODIFIERS: number;
+        static JDK_1_3_MODIFIERS_$LI$(): number;
+        static HIGH_MODIFIERS: number;
+        static HIGH_MODIFIERS_$LI$(): number;
+        when: number;
+        modifiers: number;
+        constructor(source: java.awt.Component, id: number, when: number, modifiers: number);
+        isShiftDown(): boolean;
+        isControlDown(): boolean;
+        isMetaDown(): boolean;
+        isAltDown(): boolean;
+        isAltGraphDown(): boolean;
+        getWhen(): number;
+        getModifiers(): number;
+        getModifiersEx(): number;
+        consume(): void;
+        isConsumed(): boolean;
+        static serialVersionUID: number;
+        static getModifiersExText(modifiers: number): string;
+    }
+}
 declare namespace java.io {
     /**
      * JSweet implementation for file.
@@ -18184,6 +21178,314 @@ declare namespace java.util {
         }
     }
 }
+declare namespace java.awt.event {
+    class KeyEvent extends java.awt.event.InputEvent {
+        private isProxyActive;
+        static KEY_FIRST: number;
+        static KEY_LAST: number;
+        static KEY_TYPED: number;
+        static KEY_TYPED_$LI$(): number;
+        static KEY_PRESSED: number;
+        static KEY_PRESSED_$LI$(): number;
+        static KEY_RELEASED: number;
+        static KEY_RELEASED_$LI$(): number;
+        static VK_ENTER: number;
+        static VK_BACK_SPACE: number;
+        static VK_TAB: number;
+        static VK_CANCEL: number;
+        static VK_CLEAR: number;
+        static VK_SHIFT: number;
+        static VK_CONTROL: number;
+        static VK_ALT: number;
+        static VK_PAUSE: number;
+        static VK_CAPS_LOCK: number;
+        static VK_ESCAPE: number;
+        static VK_SPACE: number;
+        static VK_PAGE_UP: number;
+        static VK_PAGE_DOWN: number;
+        static VK_END: number;
+        static VK_HOME: number;
+        static VK_LEFT: number;
+        static VK_UP: number;
+        static VK_RIGHT: number;
+        static VK_DOWN: number;
+        static VK_COMMA: number;
+        static VK_MINUS: number;
+        static VK_PERIOD: number;
+        static VK_SLASH: number;
+        /**
+         * VK_0 thru VK_9 are the same as ASCII '0' thru '9' (0x30 - 0x39)
+         */
+        static VK_0: number;
+        static VK_1: number;
+        static VK_2: number;
+        static VK_3: number;
+        static VK_4: number;
+        static VK_5: number;
+        static VK_6: number;
+        static VK_7: number;
+        static VK_8: number;
+        static VK_9: number;
+        static VK_SEMICOLON: number;
+        static VK_EQUALS: number;
+        /**
+         * VK_A thru VK_Z are the same as ASCII 'A' thru 'Z' (0x41 - 0x5A)
+         */
+        static VK_A: number;
+        static VK_B: number;
+        static VK_C: number;
+        static VK_D: number;
+        static VK_E: number;
+        static VK_F: number;
+        static VK_G: number;
+        static VK_H: number;
+        static VK_I: number;
+        static VK_J: number;
+        static VK_K: number;
+        static VK_L: number;
+        static VK_M: number;
+        static VK_N: number;
+        static VK_O: number;
+        static VK_P: number;
+        static VK_Q: number;
+        static VK_R: number;
+        static VK_S: number;
+        static VK_T: number;
+        static VK_U: number;
+        static VK_V: number;
+        static VK_W: number;
+        static VK_X: number;
+        static VK_Y: number;
+        static VK_Z: number;
+        static VK_OPEN_BRACKET: number;
+        static VK_BACK_SLASH: number;
+        static VK_CLOSE_BRACKET: number;
+        static VK_NUMPAD0: number;
+        static VK_NUMPAD1: number;
+        static VK_NUMPAD2: number;
+        static VK_NUMPAD3: number;
+        static VK_NUMPAD4: number;
+        static VK_NUMPAD5: number;
+        static VK_NUMPAD6: number;
+        static VK_NUMPAD7: number;
+        static VK_NUMPAD8: number;
+        static VK_NUMPAD9: number;
+        static VK_MULTIPLY: number;
+        static VK_ADD: number;
+        static VK_SEPARATER: number;
+        static VK_SEPARATOR: number;
+        static VK_SEPARATOR_$LI$(): number;
+        static VK_SUBTRACT: number;
+        static VK_DECIMAL: number;
+        static VK_DIVIDE: number;
+        static VK_DELETE: number;
+        static VK_NUM_LOCK: number;
+        static VK_SCROLL_LOCK: number;
+        static VK_F1: number;
+        static VK_F2: number;
+        static VK_F3: number;
+        static VK_F4: number;
+        static VK_F5: number;
+        static VK_F6: number;
+        static VK_F7: number;
+        static VK_F8: number;
+        static VK_F9: number;
+        static VK_F10: number;
+        static VK_F11: number;
+        static VK_F12: number;
+        static VK_F13: number;
+        static VK_F14: number;
+        static VK_F15: number;
+        static VK_F16: number;
+        static VK_F17: number;
+        static VK_F18: number;
+        static VK_F19: number;
+        static VK_F20: number;
+        static VK_F21: number;
+        static VK_F22: number;
+        static VK_F23: number;
+        static VK_F24: number;
+        static VK_PRINTSCREEN: number;
+        static VK_INSERT: number;
+        static VK_HELP: number;
+        static VK_META: number;
+        static VK_BACK_QUOTE: number;
+        static VK_QUOTE: number;
+        static VK_KP_UP: number;
+        static VK_KP_DOWN: number;
+        static VK_KP_LEFT: number;
+        static VK_KP_RIGHT: number;
+        static VK_DEAD_GRAVE: number;
+        static VK_DEAD_ACUTE: number;
+        static VK_DEAD_CIRCUMFLEX: number;
+        static VK_DEAD_TILDE: number;
+        static VK_DEAD_MACRON: number;
+        static VK_DEAD_BREVE: number;
+        static VK_DEAD_ABOVEDOT: number;
+        static VK_DEAD_DIAERESIS: number;
+        static VK_DEAD_ABOVERING: number;
+        static VK_DEAD_DOUBLEACUTE: number;
+        static VK_DEAD_CARON: number;
+        static VK_DEAD_CEDILLA: number;
+        static VK_DEAD_OGONEK: number;
+        static VK_DEAD_IOTA: number;
+        static VK_DEAD_VOICED_SOUND: number;
+        static VK_DEAD_SEMIVOICED_SOUND: number;
+        static VK_AMPERSAND: number;
+        static VK_ASTERISK: number;
+        static VK_QUOTEDBL: number;
+        static VK_LESS: number;
+        static VK_GREATER: number;
+        static VK_BRACELEFT: number;
+        static VK_BRACERIGHT: number;
+        static VK_AT: number;
+        static VK_COLON: number;
+        static VK_CIRCUMFLEX: number;
+        static VK_DOLLAR: number;
+        static VK_EURO_SIGN: number;
+        static VK_EXCLAMATION_MARK: number;
+        static VK_INVERTED_EXCLAMATION_MARK: number;
+        static VK_LEFT_PARENTHESIS: number;
+        static VK_NUMBER_SIGN: number;
+        static VK_PLUS: number;
+        static VK_RIGHT_PARENTHESIS: number;
+        static VK_UNDERSCORE: number;
+        static VK_WINDOWS: number;
+        static VK_CONTEXT_MENU: number;
+        static VK_FINAL: number;
+        static VK_CONVERT: number;
+        static VK_NONCONVERT: number;
+        static VK_ACCEPT: number;
+        static VK_MODECHANGE: number;
+        static VK_KANA: number;
+        static VK_KANJI: number;
+        static VK_ALPHANUMERIC: number;
+        static VK_KATAKANA: number;
+        static VK_HIRAGANA: number;
+        static VK_FULL_WIDTH: number;
+        static VK_HALF_WIDTH: number;
+        static VK_ROMAN_CHARACTERS: number;
+        static VK_ALL_CANDIDATES: number;
+        static VK_PREVIOUS_CANDIDATE: number;
+        static VK_CODE_INPUT: number;
+        static VK_JAPANESE_KATAKANA: number;
+        static VK_JAPANESE_HIRAGANA: number;
+        static VK_JAPANESE_ROMAN: number;
+        static VK_KANA_LOCK: number;
+        static VK_INPUT_METHOD_ON_OFF: number;
+        static VK_CUT: number;
+        static VK_COPY: number;
+        static VK_PASTE: number;
+        static VK_UNDO: number;
+        static VK_AGAIN: number;
+        static VK_FIND: number;
+        static VK_PROPS: number;
+        static VK_STOP: number;
+        static VK_COMPOSE: number;
+        static VK_ALT_GRAPH: number;
+        static VK_BEGIN: number;
+        static VK_UNDEFINED: number;
+        static CHAR_UNDEFINED: string;
+        static KEY_LOCATION_UNKNOWN: number;
+        static KEY_LOCATION_STANDARD: number;
+        static KEY_LOCATION_LEFT: number;
+        static KEY_LOCATION_RIGHT: number;
+        static KEY_LOCATION_NUMPAD: number;
+        keyCode: number;
+        keyChar: string;
+        keyLocation: number;
+        static serialVersionUID: number;
+        private originalSource;
+        constructor(source?: any, id?: any, when?: any, modifiers?: any, keyCode?: any, keyChar?: any, keyLocation?: any, isProxyActive?: any);
+        getKeyCode(): number;
+        setKeyCode(keyCode: number): void;
+        getKeyChar(): string;
+        setKeyChar(keyChar: string): void;
+        setModifiers(modifiers: number): void;
+        getKeyLocation(): number;
+        static getKeyText(keyCode: number): string;
+        static getKeyModifiersText(modifiers: number): string;
+        isActionKey(): boolean;
+        paramString(): string;
+        getExtendedKeyCode(): number;
+        /**
+         * Returns an extended key code for a unicode character.
+         *
+         * @return for a unicode character with a corresponding {@code VK_} constant
+         * -- this {@code VK_} constant; for a character appearing on the
+         * primary level of a known keyboard layout -- a unique integer. If
+         * a character does not appear on the primary level of a known
+         * keyboard, {@code VK_UNDEFINED} is returned.
+         *
+         * @since 1.7
+         */
+        static getExtendedKeyCodeForChar(c: number): number;
+        /**
+         * Sets new modifiers by the old ones. The key modifiers override overlaping
+         * mouse modifiers.
+         */
+        private setNewModifiers();
+        private setOldModifiers();
+    }
+}
+declare namespace java.awt.event {
+    class MouseEvent extends java.awt.event.InputEvent {
+        static MOUSE_FIRST: number;
+        static MOUSE_LAST: number;
+        static MOUSE_CLICKED: number;
+        static MOUSE_CLICKED_$LI$(): number;
+        static MOUSE_PRESSED: number;
+        static MOUSE_PRESSED_$LI$(): number;
+        static MOUSE_RELEASED: number;
+        static MOUSE_RELEASED_$LI$(): number;
+        static MOUSE_MOVED: number;
+        static MOUSE_MOVED_$LI$(): number;
+        static MOUSE_ENTERED: number;
+        static MOUSE_ENTERED_$LI$(): number;
+        static MOUSE_EXITED: number;
+        static MOUSE_EXITED_$LI$(): number;
+        static MOUSE_DRAGGED: number;
+        static MOUSE_DRAGGED_$LI$(): number;
+        static MOUSE_WHEEL: number;
+        static MOUSE_WHEEL_$LI$(): number;
+        static NOBUTTON: number;
+        static BUTTON1: number;
+        static BUTTON2: number;
+        static BUTTON3: number;
+        x: number;
+        y: number;
+        private xAbs;
+        private yAbs;
+        clickCount: number;
+        button: number;
+        popupTrigger: boolean;
+        static serialVersionUID: number;
+        static cachedNumberOfButtons: number;
+        getLocationOnScreen(): java.awt.Point;
+        getXOnScreen(): number;
+        getYOnScreen(): number;
+        private shouldExcludeButtonFromExtModifiers;
+        getModifiersEx(): number;
+        constructor(source?: any, id?: any, when?: any, modifiers?: any, x?: any, y?: any, xAbs?: any, yAbs?: any, clickCount?: any, popupTrigger?: any, button?: any);
+        getX(): number;
+        getY(): number;
+        getPoint(): java.awt.Point;
+        translatePoint(x: number, y: number): void;
+        getClickCount(): number;
+        getButton(): number;
+        isPopupTrigger(): boolean;
+        static getMouseModifiersText(modifiers: number): string;
+        paramString(): string;
+        private setNewModifiers();
+        private setOldModifiers();
+    }
+}
+declare namespace java.util {
+    class Hashtable<K, V> extends java.util.HashMap<K, V> {
+        static serialVersionUID: number;
+        constructor();
+    }
+}
 declare namespace java.util {
     /**
      * Hash table implementation of the Map interface with predictable iteration
@@ -18264,5 +21566,294 @@ declare namespace java.util {
                 remove(): void;
             }
         }
+    }
+}
+declare namespace sun.awt {
+    class ExtendedKeyCodes {
+        static __static_initialized: boolean;
+        static __static_initialize(): void;
+        /**
+         * ATTN: These are the readonly hashes with load factor == 1;
+         * adding a value, please set the inital capacity to exact number of items
+         * or higher.
+         */
+        static regularKeyCodesMap: java.util.HashMap<number, number>;
+        static regularKeyCodesMap_$LI$(): java.util.HashMap<number, number>;
+        static extendedKeyCodesSet: java.util.HashSet<number>;
+        static extendedKeyCodesSet_$LI$(): java.util.HashSet<number>;
+        static getExtendedKeyCodeForChar(c: number): number;
+        static __static_initializer_0(): void;
+    }
+}
+declare namespace java.awt.event {
+    /**
+     * An event which indicates that the mouse wheel was rotated in a component.
+     * <P>
+     * A wheel mouse is a mouse which has a wheel in place of the middle button.
+     * This wheel can be rotated towards or away from the user.  Mouse wheels are
+     * most often used for scrolling, though other uses are possible.
+     * <P>
+     * A MouseWheelEvent object is passed to every <code>MouseWheelListener</code>
+     * object which registered to receive the "interesting" mouse events using the
+     * component's <code>addMouseWheelListener</code> method.  Each such listener
+     * object gets a <code>MouseEvent</code> containing the mouse event.
+     * <P>
+     * Due to the mouse wheel's special relationship to scrolling Components,
+     * MouseWheelEvents are delivered somewhat differently than other MouseEvents.
+     * This is because while other MouseEvents usually affect a change on
+     * the Component directly under the mouse
+     * cursor (for instance, when clicking a button), MouseWheelEvents often have
+     * an effect away from the mouse cursor (moving the wheel while
+     * over a Component inside a ScrollPane should scroll one of the
+     * Scrollbars on the ScrollPane).
+     * <P>
+     * MouseWheelEvents start delivery from the Component underneath the
+     * mouse cursor.  If MouseWheelEvents are not enabled on the
+     * Component, the event is delivered to the first ancestor
+     * Container with MouseWheelEvents enabled.  This will usually be
+     * a ScrollPane with wheel scrolling enabled.  The source
+     * Component and x,y coordinates will be relative to the event's
+     * final destination (the ScrollPane).  This allows a complex
+     * GUI to be installed without modification into a ScrollPane, and
+     * for all MouseWheelEvents to be delivered to the ScrollPane for
+     * scrolling.
+     * <P>
+     * Some AWT Components are implemented using native widgets which
+     * display their own scrollbars and handle their own scrolling.
+     * The particular Components for which this is true will vary from
+     * platform to platform.  When the mouse wheel is
+     * moved over one of these Components, the event is delivered straight to
+     * the native widget, and not propagated to ancestors.
+     * <P>
+     * Platforms offer customization of the amount of scrolling that
+     * should take place when the mouse wheel is moved.  The two most
+     * common settings are to scroll a certain number of "units"
+     * (commonly lines of text in a text-based component) or an entire "block"
+     * (similar to page-up/page-down).  The MouseWheelEvent offers
+     * methods for conforming to the underlying platform settings.  These
+     * platform settings can be changed at any time by the user.  MouseWheelEvents
+     * reflect the most recent settings.
+     * <P>
+     * The <code>MouseWheelEvent</code> class includes methods for
+     * getting the number of "clicks" by which the mouse wheel is rotated.
+     * The {@link #getWheelRotation} method returns the integer number
+     * of "clicks" corresponding to the number of notches by which the wheel was
+     * rotated. In addition to this method, the <code>MouseWheelEvent</code>
+     * class provides the {@link #getPreciseWheelRotation} method which returns
+     * a double number of "clicks" in case a partial rotation occurred.
+     * The {@link #getPreciseWheelRotation} method is useful if a mouse supports
+     * a high-resolution wheel, such as a freely rotating wheel with no
+     * notches. Applications can benefit by using this method to process
+     * mouse wheel events more precisely, and thus, making visual perception
+     * smoother.
+     *
+     * @author Brent Christian
+     * @see MouseWheelListener
+     * @see java.awt.ScrollPane
+     * @see java.awt.ScrollPane#setWheelScrollingEnabled(boolean)
+     * @see javax.swing.JScrollPane
+     * @see javax.swing.JScrollPane#setWheelScrollingEnabled(boolean)
+     * @since 1.4
+     */
+    class MouseWheelEvent extends java.awt.event.MouseEvent {
+        /**
+         * Constant representing scrolling by "units" (like scrolling with the
+         * arrow keys)
+         *
+         * @see #getScrollType
+         */
+        static WHEEL_UNIT_SCROLL: number;
+        /**
+         * Constant representing scrolling by a "block" (like scrolling
+         * with page-up, page-down keys)
+         *
+         * @see #getScrollType
+         */
+        static WHEEL_BLOCK_SCROLL: number;
+        /**
+         * Indicates what sort of scrolling should take place in response to this
+         * event, based on platform settings.  Legal values are:
+         * <ul>
+         * <li> WHEEL_UNIT_SCROLL
+         * <li> WHEEL_BLOCK_SCROLL
+         * </ul>
+         *
+         * @see #getScrollType
+         */
+        scrollType: number;
+        /**
+         * Only valid for scrollType WHEEL_UNIT_SCROLL.
+         * Indicates number of units that should be scrolled per
+         * click of mouse wheel rotation, based on platform settings.
+         *
+         * @see #getScrollAmount
+         * @see #getScrollType
+         */
+        scrollAmount: number;
+        /**
+         * Indicates how far the mouse wheel was rotated.
+         *
+         * @see #getWheelRotation
+         */
+        wheelRotation: number;
+        /**
+         * Indicates how far the mouse wheel was rotated.
+         *
+         * @see #getPreciseWheelRotation
+         */
+        preciseWheelRotation: number;
+        static serialVersionUID: number;
+        /**
+         * Constructs a <code>MouseWheelEvent</code> object with the specified
+         * source component, type, modifiers, coordinates, absolute coordinates,
+         * scroll type, scroll amount, and wheel rotation.
+         * <p>Note that passing in an invalid <code>id</code> parameter results
+         * in unspecified behavior. This method throws an
+         * <code>IllegalArgumentException</code> if <code>source</code> equals
+         * <code>null</code>.
+         * <p>Even if inconsistent values for relative and absolute coordinates
+         * are passed to the constructor, a <code>MouseWheelEvent</code> instance
+         * is still created and no exception is thrown.
+         *
+         * @param source         the <code>Component</code> that originated the event
+         * @param id             the integer value that identifies the event
+         * @param when           a long value that gives the time when the event occurred
+         * @param modifiers      the modifier keys down during event
+         * (shift, ctrl, alt, meta)
+         * @param x              the horizontal <code>x</code> coordinate for the
+         * mouse location
+         * @param y              the vertical <code>y</code> coordinate for the
+         * mouse location
+         * @param xAbs           the absolute horizontal <code>x</code> coordinate for
+         * the mouse location
+         * @param yAbs           the absolute vertical <code>y</code> coordinate for
+         * the mouse location
+         * @param clickCount     the number of mouse clicks associated with the event
+         * @param popupTrigger   a boolean value, <code>true</code> if this event is a trigger
+         * for a popup-menu
+         * @param scrollType     the type of scrolling which should take place in
+         * response to this event;  valid values are
+         * <code>WHEEL_UNIT_SCROLL</code> and
+         * <code>WHEEL_BLOCK_SCROLL</code>
+         * @param  scrollAmount  for scrollType <code>WHEEL_UNIT_SCROLL</code>,
+         * the number of units to be scrolled
+         * @param wheelRotation  the integer number of "clicks" by which the mouse wheel
+         * was rotated
+         * @param preciseWheelRotation the double number of "clicks" by which the mouse wheel
+         * was rotated
+         *
+         * @throws IllegalArgumentException if <code>source</code> is null
+         * @see MouseEvent#MouseEvent(java.awt.Component, int, long, int, int, int, int, boolean)
+         * @see MouseEvent#MouseEvent(java.awt.Component, int, long, int, int, int, int, int, int, boolean, int)
+         * @since 1.7
+         */
+        constructor(source?: any, id?: any, when?: any, modifiers?: any, x?: any, y?: any, xAbs?: any, yAbs?: any, clickCount?: any, popupTrigger?: any, scrollType?: any, scrollAmount?: any, wheelRotation?: any, preciseWheelRotation?: any);
+        /**
+         * Returns the type of scrolling that should take place in response to this
+         * event.  This is determined by the native platform.  Legal values are:
+         * <ul>
+         * <li> MouseWheelEvent.WHEEL_UNIT_SCROLL
+         * <li> MouseWheelEvent.WHEEL_BLOCK_SCROLL
+         * </ul>
+         *
+         * @return either MouseWheelEvent.WHEEL_UNIT_SCROLL or
+         * MouseWheelEvent.WHEEL_BLOCK_SCROLL, depending on the configuration of
+         * the native platform.
+         * @see java.awt.Adjustable#getUnitIncrement
+         * @see java.awt.Adjustable#getBlockIncrement
+         * @see javax.swing.Scrollable#getScrollableUnitIncrement
+         * @see javax.swing.Scrollable#getScrollableBlockIncrement
+         */
+        getScrollType(): number;
+        /**
+         * Returns the number of units that should be scrolled per
+         * click of mouse wheel rotation.
+         * Only valid if <code>getScrollType</code> returns
+         * <code>MouseWheelEvent.WHEEL_UNIT_SCROLL</code>
+         *
+         * @return number of units to scroll, or an undefined value if
+         * <code>getScrollType</code> returns
+         * <code>MouseWheelEvent.WHEEL_BLOCK_SCROLL</code>
+         * @see #getScrollType
+         */
+        getScrollAmount(): number;
+        /**
+         * Returns the number of "clicks" the mouse wheel was rotated, as an integer.
+         * A partial rotation may occur if the mouse supports a high-resolution wheel.
+         * In this case, the method returns zero until a full "click" has been accumulated.
+         *
+         * @return negative values if the mouse wheel was rotated up/away from
+         * the user, and positive values if the mouse wheel was rotated down/
+         * towards the user
+         * @see #getPreciseWheelRotation
+         */
+        getWheelRotation(): number;
+        /**
+         * Returns the number of "clicks" the mouse wheel was rotated, as a double.
+         * A partial rotation may occur if the mouse supports a high-resolution wheel.
+         * In this case, the return value will include a fractional "click".
+         *
+         * @return negative values if the mouse wheel was rotated up or away from
+         * the user, and positive values if the mouse wheel was rotated down or
+         * towards the user
+         * @see #getWheelRotation
+         * @since 1.7
+         */
+        getPreciseWheelRotation(): number;
+        /**
+         * This is a convenience method to aid in the implementation of
+         * the common-case MouseWheelListener - to scroll a ScrollPane or
+         * JScrollPane by an amount which conforms to the platform settings.
+         * (Note, however, that <code>ScrollPane</code> and
+         * <code>JScrollPane</code> already have this functionality built in.)
+         * <P>
+         * This method returns the number of units to scroll when scroll type is
+         * MouseWheelEvent.WHEEL_UNIT_SCROLL, and should only be called if
+         * <code>getScrollType</code> returns MouseWheelEvent.WHEEL_UNIT_SCROLL.
+         * <P>
+         * Direction of scroll, amount of wheel movement,
+         * and platform settings for wheel scrolling are all accounted for.
+         * This method does not and cannot take into account value of the
+         * Adjustable/Scrollable unit increment, as this will vary among
+         * scrolling components.
+         * <P>
+         * A simplified example of how this method might be used in a
+         * listener:
+         * <pre>
+         * mouseWheelMoved(MouseWheelEvent event) {
+         * ScrollPane sp = getScrollPaneFromSomewhere();
+         * Adjustable adj = sp.getVAdjustable()
+         * if (MouseWheelEvent.getScrollType() == WHEEL_UNIT_SCROLL) {
+         * int totalScrollAmount =
+         * event.getUnitsToScroll() *
+         * adj.getUnitIncrement();
+         * adj.setValue(adj.getValue() + totalScrollAmount);
+         * }
+         * }
+         * </pre>
+         *
+         * @return the number of units to scroll based on the direction and amount
+         * of mouse wheel rotation, and on the wheel scrolling settings of the
+         * native platform
+         * @see #getScrollType
+         * @see #getScrollAmount
+         * @see MouseWheelListener
+         * @see java.awt.Adjustable
+         * @see java.awt.Adjustable#getUnitIncrement
+         * @see javax.swing.Scrollable
+         * @see javax.swing.Scrollable#getScrollableUnitIncrement
+         * @see java.awt.ScrollPane
+         * @see java.awt.ScrollPane#setWheelScrollingEnabled
+         * @see javax.swing.JScrollPane
+         * @see javax.swing.JScrollPane#setWheelScrollingEnabled
+         */
+        getUnitsToScroll(): number;
+        /**
+         * Returns a parameter string identifying this event.
+         * This method is useful for event-logging and for debugging.
+         *
+         * @return a string identifying the event and its attributes
+         */
+        paramString(): string;
     }
 }

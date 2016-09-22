@@ -2,7 +2,6 @@ package java.io;
 
 import static jsweet.dom.Globals.btoa;
 import static jsweet.util.Globals.array;
-import static jsweet.util.Globals.string;
 
 /**
  * JSweet partial implementation based on a local storage FS.

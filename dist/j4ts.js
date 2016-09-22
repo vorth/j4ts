@@ -1,86 +1,2137 @@
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var AbstractHTMLComponent = (function () {
+            function AbstractHTMLComponent() {
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.HTMLComponent"] });
+            }
+            AbstractHTMLComponent.prototype.bindHTML = function (htmlElement) {
+                this.htmlElement = htmlElement;
+            };
+            AbstractHTMLComponent.prototype.getHTMLElement = function () {
+                if (this.htmlElement == null) {
+                    this.createHTML();
+                    this.initHTML();
+                }
+                return this.htmlElement;
+            };
+            AbstractHTMLComponent.prototype.initHTML = function () {
+                if (this.htmlElement == null) {
+                    this.createHTML();
+                }
+            };
+            return AbstractHTMLComponent;
+        }());
+        awt.AbstractHTMLComponent = AbstractHTMLComponent;
+        AbstractHTMLComponent["__classname"] = "java.awt.AbstractHTMLComponent";
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var Adjustable;
+        (function (Adjustable) {
+            Adjustable.HORIZONTAL = 0;
+            Adjustable.VERTICAL = 1;
+            Adjustable.NO_ORIENTATION = 2;
+        })(Adjustable = awt.Adjustable || (awt.Adjustable = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var CheckboxGroup = (function () {
+            function CheckboxGroup() {
+                this.selectedCheckbox = null;
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
+            }
+            CheckboxGroup.prototype.getSelectedCheckbox = function () {
+                return this.getCurrent();
+            };
+            CheckboxGroup.prototype.getCurrent = function () {
+                return this.selectedCheckbox;
+            };
+            CheckboxGroup.prototype.setSelectedCheckbox = function (box) {
+                this.setCurrent(box);
+            };
+            CheckboxGroup.prototype.setCurrent = function (box) {
+                if (box != null && box.group !== this) {
+                    return;
+                }
+                var oldChoice = this.selectedCheckbox;
+                this.selectedCheckbox = box;
+                if (oldChoice != null && oldChoice !== box && oldChoice.group === this) {
+                    oldChoice.setState(false);
+                }
+                if (box != null && oldChoice !== box && !box.getState()) {
+                    box.setStateInternal(true);
+                }
+            };
+            CheckboxGroup.prototype.toString = function () {
+                return this.constructor["__classname"] + "[selectedCheckbox=" + this.selectedCheckbox + "]";
+            };
+            CheckboxGroup.serialVersionUID = 3729780091441768983;
+            return CheckboxGroup;
+        }());
+        awt.CheckboxGroup = CheckboxGroup;
+        CheckboxGroup["__classname"] = "java.awt.CheckboxGroup";
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
     (function (awt) {
         var Color = (function () {
-            function Color(r, g, b) {
-                this.r = 0;
-                this.g = 0;
-                this.b = 0;
-                this.r = r;
-                this.g = g;
-                this.b = b;
+            /**
+             * Creates an sRGB color with the specified red, green, blue, and alpha
+             * values in the range (0 - 255).
+             *
+             * @throws IllegalArgumentException
+             * if <code>r</code>, <code>g</code>, <code>b</code> or
+             * <code>a</code> are outside of the range 0 to 255, inclusive
+             * @param r
+             * the red component
+             * @param g
+             * the green component
+             * @param b
+             * the blue component
+             * @param a
+             * the alpha component
+             * @see #getRed
+             * @see #getGreen
+             * @see #getBlue
+             * @see #getAlpha
+             * @see #getRGB
+             */
+            function Color(r, g, b, a) {
+                var _this = this;
+                /**
+                 * The color value in the default sRGB <code>ColorSpace</code> as
+                 * <code>float</code> components (no alpha). If <code>null</code> after
+                 * object construction, this must be an sRGB color constructed with 8-bit
+                 * precision, so compute from the <code>int</code> color value.
+                 *
+                 * @serial
+                 * @see #getRGBColorComponents
+                 * @see #getRGBComponents
+                 */
+                this.frgbvalue = null;
+                /**
+                 * The color value in the native <code>ColorSpace</code> as
+                 * <code>float</code> components (no alpha). If <code>null</code> after
+                 * object construction, this must be an sRGB color constructed with 8-bit
+                 * precision, so compute from the <code>int</code> color value.
+                 *
+                 * @serial
+                 * @see #getRGBColorComponents
+                 * @see #getRGBComponents
+                 */
+                this.fvalue = null;
+                /**
+                 * The alpha value as a <code>float</code> component. If
+                 * <code>frgbvalue</code> is <code>null</code>, this is not valid data, so
+                 * compute from the <code>int</code> color value.
+                 *
+                 * @serial
+                 * @see #getRGBComponents
+                 * @see #getComponents
+                 */
+                this.falpha = 0.0;
+                if (((typeof r === 'number') || r === null) && ((typeof g === 'number') || g === null) && ((typeof b === 'number') || b === null) && ((typeof a === 'number') || a === null)) {
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.Paint", "java.io.Serializable"] });
+                    this.value = 0;
+                    (function () {
+                        _this.value = ((a & 255) << 24) | ((r & 255) << 16) | ((g & 255) << 8) | ((b & 255) << 0);
+                        Color.testColorValueRange(r, g, b, a);
+                    })();
+                }
+                else if (((typeof r === 'number') || r === null) && ((typeof g === 'number') || g === null) && ((typeof b === 'number') || b === null) && ((typeof a === 'number') || a === null)) {
+                    {
+                        var r = ((r * 255 + 0.5) | 0);
+                        var g = ((g * 255 + 0.5) | 0);
+                        var b = ((b * 255 + 0.5) | 0);
+                        var a = ((a * 255 + 0.5) | 0);
+                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.Paint", "java.io.Serializable"] });
+                        this.value = 0;
+                        (function () {
+                            _this.value = ((a & 255) << 24) | ((r & 255) << 16) | ((g & 255) << 8) | ((b & 255) << 0);
+                            Color.testColorValueRange(r, g, b, a);
+                        })();
+                    }
+                    (function () {
+                        _this.frgbvalue = new Array(3);
+                        _this.frgbvalue[0] = r;
+                        _this.frgbvalue[1] = g;
+                        _this.frgbvalue[2] = b;
+                        _this.falpha = a;
+                        _this.fvalue = _this.frgbvalue;
+                    })();
+                }
+                else if (((typeof r === 'number') || r === null) && ((typeof g === 'number') || g === null) && ((typeof b === 'number') || b === null) && a === undefined) {
+                    {
+                        var a = 255;
+                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.Paint", "java.io.Serializable"] });
+                        this.value = 0;
+                        (function () {
+                            _this.value = ((a & 255) << 24) | ((r & 255) << 16) | ((g & 255) << 8) | ((b & 255) << 0);
+                            Color.testColorValueRange(r, g, b, a);
+                        })();
+                    }
+                    (function () {
+                    })();
+                }
+                else if (((typeof r === 'number') || r === null) && ((typeof g === 'number') || g === null) && ((typeof b === 'number') || b === null) && a === undefined) {
+                    {
+                        var r = ((r * 255 + 0.5) | 0);
+                        var g = ((g * 255 + 0.5) | 0);
+                        var b = ((b * 255 + 0.5) | 0);
+                        {
+                            var a = 255;
+                            Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.Paint", "java.io.Serializable"] });
+                            this.value = 0;
+                            (function () {
+                                _this.value = ((a & 255) << 24) | ((r & 255) << 16) | ((g & 255) << 8) | ((b & 255) << 0);
+                                Color.testColorValueRange(r, g, b, a);
+                            })();
+                        }
+                        (function () {
+                        })();
+                    }
+                    (function () {
+                        Color.testColorValueRange(r, g, b, 1.0);
+                        _this.frgbvalue = new Array(3);
+                        _this.frgbvalue[0] = r;
+                        _this.frgbvalue[1] = g;
+                        _this.frgbvalue[2] = b;
+                        _this.falpha = 1.0;
+                        _this.fvalue = _this.frgbvalue;
+                    })();
+                }
+                else if (((typeof r === 'number') || r === null) && ((typeof g === 'boolean') || g === null) && b === undefined && a === undefined) {
+                    var rgba = r;
+                    var hasalpha = g;
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.Paint", "java.io.Serializable"] });
+                    this.value = 0;
+                    (function () {
+                        if (hasalpha) {
+                            _this.value = rgba;
+                        }
+                        else {
+                            _this.value = -16777216 | rgba;
+                        }
+                    })();
+                }
+                else if (((typeof r === 'number') || r === null) && g === undefined && b === undefined && a === undefined) {
+                    var rgb = r;
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.Paint", "java.io.Serializable"] });
+                    this.value = 0;
+                    (function () {
+                        _this.value = -16777216 | rgb;
+                    })();
+                }
+                else
+                    throw new Error('invalid overload');
             }
+            Color.white_$LI$ = function () { if (Color.white == null)
+                Color.white = new Color(255, 255, 255); return Color.white; };
+            ;
+            Color.WHITE_$LI$ = function () { if (Color.WHITE == null)
+                Color.WHITE = Color.white_$LI$(); return Color.WHITE; };
+            ;
+            Color.lightGray_$LI$ = function () { if (Color.lightGray == null)
+                Color.lightGray = new Color(192, 192, 192); return Color.lightGray; };
+            ;
+            Color.LIGHT_GRAY_$LI$ = function () { if (Color.LIGHT_GRAY == null)
+                Color.LIGHT_GRAY = Color.lightGray_$LI$(); return Color.LIGHT_GRAY; };
+            ;
+            Color.gray_$LI$ = function () { if (Color.gray == null)
+                Color.gray = new Color(128, 128, 128); return Color.gray; };
+            ;
+            Color.GRAY_$LI$ = function () { if (Color.GRAY == null)
+                Color.GRAY = Color.gray_$LI$(); return Color.GRAY; };
+            ;
+            Color.darkGray_$LI$ = function () { if (Color.darkGray == null)
+                Color.darkGray = new Color(64, 64, 64); return Color.darkGray; };
+            ;
+            Color.DARK_GRAY_$LI$ = function () { if (Color.DARK_GRAY == null)
+                Color.DARK_GRAY = Color.darkGray_$LI$(); return Color.DARK_GRAY; };
+            ;
+            Color.black_$LI$ = function () { if (Color.black == null)
+                Color.black = new Color(0, 0, 0); return Color.black; };
+            ;
+            Color.BLACK_$LI$ = function () { if (Color.BLACK == null)
+                Color.BLACK = Color.black_$LI$(); return Color.BLACK; };
+            ;
+            Color.red_$LI$ = function () { if (Color.red == null)
+                Color.red = new Color(255, 0, 0); return Color.red; };
+            ;
+            Color.RED_$LI$ = function () { if (Color.RED == null)
+                Color.RED = Color.red_$LI$(); return Color.RED; };
+            ;
+            Color.pink_$LI$ = function () { if (Color.pink == null)
+                Color.pink = new Color(255, 175, 175); return Color.pink; };
+            ;
+            Color.PINK_$LI$ = function () { if (Color.PINK == null)
+                Color.PINK = Color.pink_$LI$(); return Color.PINK; };
+            ;
+            Color.orange_$LI$ = function () { if (Color.orange == null)
+                Color.orange = new Color(255, 200, 0); return Color.orange; };
+            ;
+            Color.ORANGE_$LI$ = function () { if (Color.ORANGE == null)
+                Color.ORANGE = Color.orange_$LI$(); return Color.ORANGE; };
+            ;
+            Color.yellow_$LI$ = function () { if (Color.yellow == null)
+                Color.yellow = new Color(255, 255, 0); return Color.yellow; };
+            ;
+            Color.YELLOW_$LI$ = function () { if (Color.YELLOW == null)
+                Color.YELLOW = Color.yellow_$LI$(); return Color.YELLOW; };
+            ;
+            Color.green_$LI$ = function () { if (Color.green == null)
+                Color.green = new Color(0, 255, 0); return Color.green; };
+            ;
+            Color.GREEN_$LI$ = function () { if (Color.GREEN == null)
+                Color.GREEN = Color.green_$LI$(); return Color.GREEN; };
+            ;
+            Color.magenta_$LI$ = function () { if (Color.magenta == null)
+                Color.magenta = new Color(255, 0, 255); return Color.magenta; };
+            ;
+            Color.MAGENTA_$LI$ = function () { if (Color.MAGENTA == null)
+                Color.MAGENTA = Color.magenta_$LI$(); return Color.MAGENTA; };
+            ;
+            Color.cyan_$LI$ = function () { if (Color.cyan == null)
+                Color.cyan = new Color(0, 255, 255); return Color.cyan; };
+            ;
+            Color.CYAN_$LI$ = function () { if (Color.CYAN == null)
+                Color.CYAN = Color.cyan_$LI$(); return Color.CYAN; };
+            ;
+            Color.blue_$LI$ = function () { if (Color.blue == null)
+                Color.blue = new Color(0, 0, 255); return Color.blue; };
+            ;
+            Color.BLUE_$LI$ = function () { if (Color.BLUE == null)
+                Color.BLUE = Color.blue_$LI$(); return Color.BLUE; };
+            ;
+            /**
+             * Checks the color integer components supplied for validity. Throws an
+             * {@link IllegalArgumentException} if the value is out of range.
+             *
+             * @param r
+             * the Red component
+             * @param g
+             * the Green component
+             * @param b
+             * the Blue component
+             */
+            Color.testColorValueRange = function (r, g, b, a) {
+                if (((typeof r === 'number') || r === null) && ((typeof g === 'number') || g === null) && ((typeof b === 'number') || b === null) && ((typeof a === 'number') || a === null)) {
+                    return (function () {
+                        var rangeError = false;
+                        var badComponentString = "";
+                        if (a < 0 || a > 255) {
+                            rangeError = true;
+                            badComponentString = badComponentString + " Alpha";
+                        }
+                        if (r < 0 || r > 255) {
+                            rangeError = true;
+                            badComponentString = badComponentString + " Red";
+                        }
+                        if (g < 0 || g > 255) {
+                            rangeError = true;
+                            badComponentString = badComponentString + " Green";
+                        }
+                        if (b < 0 || b > 255) {
+                            rangeError = true;
+                            badComponentString = badComponentString + " Blue";
+                        }
+                        if (rangeError === true) {
+                            throw new java.lang.IllegalArgumentException("Color parameter outside of expected range:" + badComponentString);
+                        }
+                    })();
+                }
+                else if (((typeof r === 'number') || r === null) && ((typeof g === 'number') || g === null) && ((typeof b === 'number') || b === null) && ((typeof a === 'number') || a === null)) {
+                    return java.awt.Color.testColorValueRange$float$float$float$float(r, g, b, a);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            /**
+             * Checks the color <code>float</code> components supplied for validity.
+             * Throws an <code>IllegalArgumentException</code> if the value is out of
+             * range.
+             *
+             * @param r
+             * the Red component
+             * @param g
+             * the Green component
+             * @param b
+             * the Blue component
+             */
+            Color.testColorValueRange$float$float$float$float = function (r, g, b, a) {
+                var rangeError = false;
+                var badComponentString = "";
+                if (a < 0.0 || a > 1.0) {
+                    rangeError = true;
+                    badComponentString = badComponentString + " Alpha";
+                }
+                if (r < 0.0 || r > 1.0) {
+                    rangeError = true;
+                    badComponentString = badComponentString + " Red";
+                }
+                if (g < 0.0 || g > 1.0) {
+                    rangeError = true;
+                    badComponentString = badComponentString + " Green";
+                }
+                if (b < 0.0 || b > 1.0) {
+                    rangeError = true;
+                    badComponentString = badComponentString + " Blue";
+                }
+                if (rangeError === true) {
+                    throw new java.lang.IllegalArgumentException("Color parameter outside of expected range:" + badComponentString);
+                }
+            };
+            /**
+             * Returns the red component in the range 0-255 in the default sRGB space.
+             *
+             * @return the red component.
+             * @see #getRGB
+             */
+            Color.prototype.getRed = function () {
+                return (this.getRGB() >> 16) & 255;
+            };
+            /**
+             * Returns the green component in the range 0-255 in the default sRGB space.
+             *
+             * @return the green component.
+             * @see #getRGB
+             */
+            Color.prototype.getGreen = function () {
+                return (this.getRGB() >> 8) & 255;
+            };
+            /**
+             * Returns the blue component in the range 0-255 in the default sRGB space.
+             *
+             * @return the blue component.
+             * @see #getRGB
+             */
+            Color.prototype.getBlue = function () {
+                return (this.getRGB() >> 0) & 255;
+            };
+            /**
+             * Returns the alpha component in the range 0-255.
+             *
+             * @return the alpha component.
+             * @see #getRGB
+             */
+            Color.prototype.getAlpha = function () {
+                return (this.getRGB() >> 24) & 255;
+            };
+            /**
+             * Returns the RGB value representing the color in the default sRGB
+             * {@link ColorModel}. (Bits 24-31 are alpha, 16-23 are red, 8-15 are green,
+             * 0-7 are blue).
+             *
+             * @return the RGB value of the color in the default sRGB
+             * <code>ColorModel</code>.
+             * @see java.awt.image.ColorModel#getRGBdefault
+             * @see #getRed
+             * @see #getGreen
+             * @see #getBlue
+             * @since JDK1.0
+             */
+            Color.prototype.getRGB = function () {
+                return this.value;
+            };
+            /**
+             * Creates a new <code>Color</code> that is a brighter version of this
+             * <code>Color</code>.
+             * <p>
+             * This method applies an arbitrary scale factor to each of the three RGB
+             * components of this <code>Color</code> to create a brighter version of
+             * this <code>Color</code>. The {@code alpha} value is preserved. Although
+             * <code>brighter</code> and <code>darker</code> are inverse operations, the
+             * results of a series of invocations of these two methods might be
+             * inconsistent because of rounding errors.
+             *
+             * @return a new <code>Color</code> object that is a brighter version of
+             * this <code>Color</code> with the same {@code alpha} value.
+             * @see java.awt.Color#darker
+             * @since JDK1.0
+             */
+            Color.prototype.brighter = function () {
+                var r = this.getRed();
+                var g = this.getGreen();
+                var b = this.getBlue();
+                var alpha = this.getAlpha();
+                var i = ((1.0 / (1.0 - Color.FACTOR)) | 0);
+                if (r === 0 && g === 0 && b === 0) {
+                    return new Color(i, i, i, alpha);
+                }
+                if (r > 0 && r < i)
+                    r = i;
+                if (g > 0 && g < i)
+                    g = i;
+                if (b > 0 && b < i)
+                    b = i;
+                return new Color(Math.min(((r / Color.FACTOR) | 0), 255), Math.min(((g / Color.FACTOR) | 0), 255), Math.min(((b / Color.FACTOR) | 0), 255), alpha);
+            };
+            /**
+             * Creates a new <code>Color</code> that is a darker version of this
+             * <code>Color</code>.
+             * <p>
+             * This method applies an arbitrary scale factor to each of the three RGB
+             * components of this <code>Color</code> to create a darker version of this
+             * <code>Color</code>. The {@code alpha} value is preserved. Although
+             * <code>brighter</code> and <code>darker</code> are inverse operations, the
+             * results of a series of invocations of these two methods might be
+             * inconsistent because of rounding errors.
+             *
+             * @return a new <code>Color</code> object that is a darker version of this
+             * <code>Color</code> with the same {@code alpha} value.
+             * @see java.awt.Color#brighter
+             * @since JDK1.0
+             */
+            Color.prototype.darker = function () {
+                return new Color(Math.max(((this.getRed() * Color.FACTOR) | 0), 0), Math.max(((this.getGreen() * Color.FACTOR) | 0), 0), Math.max(((this.getBlue() * Color.FACTOR) | 0), 0), this.getAlpha());
+            };
+            /**
+             * Computes the hash code for this <code>Color</code>.
+             *
+             * @return a hash code value for this object.
+             * @since JDK1.0
+             */
+            Color.prototype.hashCode = function () {
+                return this.value;
+            };
+            /**
+             * Determines whether another object is equal to this <code>Color</code>.
+             * <p>
+             * The result is <code>true</code> if and only if the argument is not
+             * <code>null</code> and is a <code>Color</code> object that has the same
+             * red, green, blue, and alpha values as this object.
+             *
+             * @param obj
+             * the object to test for equality with this <code>Color</code>
+             * @return <code>true</code> if the objects are the same; <code>false</code>
+             * otherwise.
+             * @since JDK1.0
+             */
+            Color.prototype.equals = function (obj) {
+                return (obj != null && obj instanceof java.awt.Color) && obj.getRGB() === this.getRGB();
+            };
+            /**
+             * Returns a string representation of this <code>Color</code>. This method
+             * is intended to be used only for debugging purposes. The content and
+             * format of the returned string might vary between implementations. The
+             * returned string might be empty but cannot be <code>null</code>.
+             *
+             * @return a string representation of this <code>Color</code>.
+             */
+            Color.prototype.toString = function () {
+                return this.constructor["__classname"] + "[r=" + this.getRed() + ",g=" + this.getGreen() + ",b=" + this.getBlue() + "]";
+            };
+            /**
+             * Converts a <code>String</code> to an integer and returns the specified
+             * opaque <code>Color</code>. This method handles string formats that are
+             * used to represent octal and hexadecimal numbers.
+             *
+             * @param nm
+             * a <code>String</code> that represents an opaque color as a
+             * 24-bit integer
+             * @return the new <code>Color</code> object.
+             * @see java.lang.Integer#decode
+             * @exception NumberFormatException
+             * if the specified string cannot be interpreted as a
+             * decimal, octal, or hexadecimal integer.
+             * @since JDK1.1
+             */
+            Color.decode = function (nm) {
+                var intval = javaemul.internal.IntegerHelper.decode(nm);
+                var i = (intval | 0);
+                return new Color((i >> 16) & 255, (i >> 8) & 255, i & 255);
+            };
+            /**
+             * Finds a color in the system properties.
+             * <p>
+             * The argument is treated as the name of a system property to be obtained.
+             * The string value of this property is then interpreted as an integer which
+             * is then converted to a <code>Color</code> object.
+             * <p>
+             * If the specified property is not found or could not be parsed as an
+             * integer then <code>null</code> is returned.
+             *
+             * @param nm
+             * the name of the color property
+             * @return the <code>Color</code> converted from the system property.
+             * @see java.lang.System#getProperty(java.lang.String)
+             * @see java.lang.Integer#getInteger(java.lang.String)
+             * @see java.awt.Color#Color(int)
+             * @since JDK1.0
+             */
+            Color.getColor$java_lang_String = function (nm) {
+                return Color.getColor(nm, null);
+            };
+            /**
+             * Finds a color in the system properties.
+             * <p>
+             * The first argument is treated as the name of a system property to be
+             * obtained. The string value of this property is then interpreted as an
+             * integer which is then converted to a <code>Color</code> object.
+             * <p>
+             * If the specified property is not found or cannot be parsed as an integer
+             * then the <code>Color</code> specified by the second argument is returned
+             * instead.
+             *
+             * @param nm
+             * the name of the color property
+             * @param v
+             * the default <code>Color</code>
+             * @return the <code>Color</code> converted from the system property, or the
+             * specified <code>Color</code>.
+             * @see java.lang.System#getProperty(java.lang.String)
+             * @see java.lang.Integer#getInteger(java.lang.String)
+             * @see java.awt.Color#Color(int)
+             * @since JDK1.0
+             */
+            Color.getColor = function (nm, v) {
+                if (((typeof nm === 'string') || nm === null) && ((v != null && v instanceof java.awt.Color) || v === null)) {
+                    return (function () {
+                        var intval = javaemul.internal.IntegerHelper.getInteger(nm);
+                        if (intval == null) {
+                            return v;
+                        }
+                        var i = (intval | 0);
+                        return new Color((i >> 16) & 255, (i >> 8) & 255, i & 255);
+                    })();
+                }
+                else if (((typeof nm === 'string') || nm === null) && ((typeof v === 'number') || v === null)) {
+                    return java.awt.Color.getColor$java_lang_String$int(nm, v);
+                }
+                else if (((typeof nm === 'string') || nm === null) && v === undefined) {
+                    return java.awt.Color.getColor$java_lang_String(nm);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            /**
+             * Finds a color in the system properties.
+             * <p>
+             * The first argument is treated as the name of a system property to be
+             * obtained. The string value of this property is then interpreted as an
+             * integer which is then converted to a <code>Color</code> object.
+             * <p>
+             * If the specified property is not found or could not be parsed as an
+             * integer then the integer value <code>v</code> is used instead, and is
+             * converted to a <code>Color</code> object.
+             *
+             * @param nm
+             * the name of the color property
+             * @param v
+             * the default color value, as an integer
+             * @return the <code>Color</code> converted from the system property or the
+             * <code>Color</code> converted from the specified integer.
+             * @see java.lang.System#getProperty(java.lang.String)
+             * @see java.lang.Integer#getInteger(java.lang.String)
+             * @see java.awt.Color#Color(int)
+             * @since JDK1.0
+             */
+            Color.getColor$java_lang_String$int = function (nm, v) {
+                var intval = javaemul.internal.IntegerHelper.getInteger(nm);
+                var i = (intval != null) ? (intval | 0) : v;
+                return new Color((i >> 16) & 255, (i >> 8) & 255, (i >> 0) & 255);
+            };
+            /**
+             * Converts the components of a color, as specified by the HSB model, to an
+             * equivalent set of values for the default RGB model.
+             * <p>
+             * The <code>saturation</code> and <code>brightness</code> components should
+             * be floating-point values between zero and one (numbers in the range
+             * 0.0-1.0). The <code>hue</code> component can be any floating-point
+             * number. The floor of this number is subtracted from it to create a
+             * fraction between 0 and 1. This fractional number is then multiplied by
+             * 360 to produce the hue angle in the HSB color model.
+             * <p>
+             * The integer that is returned by <code>HSBtoRGB</code> encodes the value
+             * of a color in bits 0-23 of an integer value that is the same format used
+             * by the method {@link #getRGB() getRGB}. This integer can be supplied as
+             * an argument to the <code>Color</code> constructor that takes a single
+             * integer argument.
+             *
+             * @param hue
+             * the hue component of the color
+             * @param saturation
+             * the saturation of the color
+             * @param brightness
+             * the brightness of the color
+             * @return the RGB value of the color with the indicated hue, saturation,
+             * and brightness.
+             * @see java.awt.Color#getRGB()
+             * @see java.awt.Color#Color(int)
+             * @see java.awt.image.ColorModel#getRGBdefault()
+             * @since JDK1.0
+             */
+            Color.HSBtoRGB = function (hue, saturation, brightness) {
+                var r = 0;
+                var g = 0;
+                var b = 0;
+                if (saturation === 0) {
+                    r = g = b = ((brightness * 255.0 + 0.5) | 0);
+                }
+                else {
+                    var h = (hue - Math.floor(hue)) * 6.0;
+                    var f = h - Math.floor(h);
+                    var p = brightness * (1.0 - saturation);
+                    var q = brightness * (1.0 - saturation * f);
+                    var t = brightness * (1.0 - (saturation * (1.0 - f)));
+                    switch (((h | 0))) {
+                        case 0:
+                            r = ((brightness * 255.0 + 0.5) | 0);
+                            g = ((t * 255.0 + 0.5) | 0);
+                            b = ((p * 255.0 + 0.5) | 0);
+                            break;
+                        case 1:
+                            r = ((q * 255.0 + 0.5) | 0);
+                            g = ((brightness * 255.0 + 0.5) | 0);
+                            b = ((p * 255.0 + 0.5) | 0);
+                            break;
+                        case 2:
+                            r = ((p * 255.0 + 0.5) | 0);
+                            g = ((brightness * 255.0 + 0.5) | 0);
+                            b = ((t * 255.0 + 0.5) | 0);
+                            break;
+                        case 3:
+                            r = ((p * 255.0 + 0.5) | 0);
+                            g = ((q * 255.0 + 0.5) | 0);
+                            b = ((brightness * 255.0 + 0.5) | 0);
+                            break;
+                        case 4:
+                            r = ((t * 255.0 + 0.5) | 0);
+                            g = ((p * 255.0 + 0.5) | 0);
+                            b = ((brightness * 255.0 + 0.5) | 0);
+                            break;
+                        case 5:
+                            r = ((brightness * 255.0 + 0.5) | 0);
+                            g = ((p * 255.0 + 0.5) | 0);
+                            b = ((q * 255.0 + 0.5) | 0);
+                            break;
+                    }
+                }
+                return -16777216 | (r << 16) | (g << 8) | (b << 0);
+            };
+            /**
+             * Converts the components of a color, as specified by the default RGB
+             * model, to an equivalent set of values for hue, saturation, and brightness
+             * that are the three components of the HSB model.
+             * <p>
+             * If the <code>hsbvals</code> argument is <code>null</code>, then a new
+             * array is allocated to return the result. Otherwise, the method returns
+             * the array <code>hsbvals</code>, with the values put into that array.
+             *
+             * @param r
+             * the red component of the color
+             * @param g
+             * the green component of the color
+             * @param b
+             * the blue component of the color
+             * @param hsbvals
+             * the array used to return the three HSB values, or
+             * <code>null</code>
+             * @return an array of three elements containing the hue, saturation, and
+             * brightness (in that order), of the color with the indicated red,
+             * green, and blue components.
+             * @see java.awt.Color#getRGB()
+             * @see java.awt.Color#Color(int)
+             * @see java.awt.image.ColorModel#getRGBdefault()
+             * @since JDK1.0
+             */
+            Color.RGBtoHSB = function (r, g, b, hsbvals) {
+                var hue;
+                var saturation;
+                var brightness;
+                if (hsbvals == null) {
+                    hsbvals = new Array(3);
+                }
+                var cmax = (r > g) ? r : g;
+                if (b > cmax)
+                    cmax = b;
+                var cmin = (r < g) ? r : g;
+                if (b < cmin)
+                    cmin = b;
+                brightness = cmax / 255.0;
+                if (cmax !== 0)
+                    saturation = (cmax - cmin) / cmax;
+                else
+                    saturation = 0;
+                if (saturation === 0)
+                    hue = 0;
+                else {
+                    var redc = (cmax - r) / (cmax - cmin);
+                    var greenc = (cmax - g) / (cmax - cmin);
+                    var bluec = (cmax - b) / (cmax - cmin);
+                    if (r === cmax)
+                        hue = bluec - greenc;
+                    else if (g === cmax)
+                        hue = 2.0 + redc - bluec;
+                    else
+                        hue = 4.0 + greenc - redc;
+                    hue = hue / 6.0;
+                    if (hue < 0)
+                        hue = hue + 1.0;
+                }
+                hsbvals[0] = hue;
+                hsbvals[1] = saturation;
+                hsbvals[2] = brightness;
+                return hsbvals;
+            };
+            /**
+             * Creates a <code>Color</code> object based on the specified values for the
+             * HSB color model.
+             * <p>
+             * The <code>s</code> and <code>b</code> components should be floating-point
+             * values between zero and one (numbers in the range 0.0-1.0). The
+             * <code>h</code> component can be any floating-point number. The floor of
+             * this number is subtracted from it to create a fraction between 0 and 1.
+             * This fractional number is then multiplied by 360 to produce the hue angle
+             * in the HSB color model.
+             *
+             * @param h
+             * the hue component
+             * @param s
+             * the saturation of the color
+             * @param b
+             * the brightness of the color
+             * @return a <code>Color</code> object with the specified hue, saturation,
+             * and brightness.
+             * @since JDK1.0
+             */
+            Color.getHSBColor = function (h, s, b) {
+                return new Color(Color.HSBtoRGB(h, s, b));
+            };
+            /**
+             * Returns a <code>float</code> array containing the color and alpha
+             * components of the <code>Color</code>, as represented in the default sRGB
+             * color space. If <code>compArray</code> is <code>null</code>, an array of
+             * length 4 is created for the return value. Otherwise,
+             * <code>compArray</code> must have length 4 or greater, and it is filled in
+             * with the components and returned.
+             *
+             * @param compArray
+             * an array that this method fills with color and alpha
+             * components and returns
+             * @return the RGBA components in a <code>float</code> array.
+             */
+            Color.prototype.getRGBComponents = function (compArray) {
+                var f;
+                if (compArray == null) {
+                    f = new Array(4);
+                }
+                else {
+                    f = compArray;
+                }
+                if (this.frgbvalue == null) {
+                    f[0] = this.getRed() / 255.0;
+                    f[1] = this.getGreen() / 255.0;
+                    f[2] = this.getBlue() / 255.0;
+                    f[3] = this.getAlpha() / 255.0;
+                }
+                else {
+                    f[0] = this.frgbvalue[0];
+                    f[1] = this.frgbvalue[1];
+                    f[2] = this.frgbvalue[2];
+                    f[3] = this.falpha;
+                }
+                return f;
+            };
+            /**
+             * Returns a <code>float</code> array containing only the color components
+             * of the <code>Color</code>, in the default sRGB color space. If
+             * <code>compArray</code> is <code>null</code>, an array of length 3 is
+             * created for the return value. Otherwise, <code>compArray</code> must have
+             * length 3 or greater, and it is filled in with the components and
+             * returned.
+             *
+             * @param compArray
+             * an array that this method fills with color components and
+             * returns
+             * @return the RGB components in a <code>float</code> array.
+             */
+            Color.prototype.getRGBColorComponents = function (compArray) {
+                var f;
+                if (compArray == null) {
+                    f = new Array(3);
+                }
+                else {
+                    f = compArray;
+                }
+                if (this.frgbvalue == null) {
+                    f[0] = this.getRed() / 255.0;
+                    f[1] = this.getGreen() / 255.0;
+                    f[2] = this.getBlue() / 255.0;
+                }
+                else {
+                    f[0] = this.frgbvalue[0];
+                    f[1] = this.frgbvalue[1];
+                    f[2] = this.frgbvalue[2];
+                }
+                return f;
+            };
+            /**
+             * Returns a <code>float</code> array containing the color and alpha
+             * components of the <code>Color</code>, in the <code>ColorSpace</code> of
+             * the <code>Color</code>. If <code>compArray</code> is <code>null</code>,
+             * an array with length equal to the number of components in the associated
+             * <code>ColorSpace</code> plus one is created for the return value.
+             * Otherwise, <code>compArray</code> must have at least this length and it
+             * is filled in with the components and returned.
+             *
+             * @param compArray
+             * an array that this method fills with the color and alpha
+             * components of this <code>Color</code> in its
+             * <code>ColorSpace</code> and returns
+             * @return the color and alpha components in a <code>float</code> array.
+             */
+            Color.prototype.getComponents = function (compArray) {
+                if (this.fvalue == null)
+                    return this.getRGBComponents(compArray);
+                var f;
+                var n = this.fvalue.length;
+                if (compArray == null) {
+                    f = new Array(n + 1);
+                }
+                else {
+                    f = compArray;
+                }
+                for (var i = 0; i < n; i++) {
+                    f[i] = this.fvalue[i];
+                }
+                f[n] = this.falpha;
+                return f;
+            };
+            /**
+             * Returns a <code>float</code> array containing only the color components
+             * of the <code>Color</code>, in the <code>ColorSpace</code> of the
+             * <code>Color</code>. If <code>compArray</code> is <code>null</code>, an
+             * array with length equal to the number of components in the associated
+             * <code>ColorSpace</code> is created for the return value. Otherwise,
+             * <code>compArray</code> must have at least this length and it is filled in
+             * with the components and returned.
+             *
+             * @param compArray
+             * an array that this method fills with the color components of
+             * this <code>Color</code> in its <code>ColorSpace</code> and
+             * returns
+             * @return the color components in a <code>float</code> array.
+             */
+            Color.prototype.getColorComponents = function (compArray) {
+                if (this.fvalue == null)
+                    return this.getRGBColorComponents(compArray);
+                var f;
+                var n = this.fvalue.length;
+                if (compArray == null) {
+                    f = new Array(n);
+                }
+                else {
+                    f = compArray;
+                }
+                for (var i = 0; i < n; i++) {
+                    f[i] = this.fvalue[i];
+                }
+                return f;
+            };
+            /**
+             * Returns the transparency mode for this <code>Color</code>. This is
+             * required to implement the <code>Paint</code> interface.
+             *
+             * @return this <code>Color</code> object's transparency mode.
+             * @see Paint
+             * @see Transparency
+             * @see #createContext
+             */
+            Color.prototype.getTransparency = function () {
+                var alpha = this.getAlpha();
+                if (alpha === 255) {
+                    return java.awt.Transparency.OPAQUE;
+                }
+                else if (alpha === 0) {
+                    return java.awt.Transparency.BITMASK;
+                }
+                else {
+                    return java.awt.Transparency.TRANSLUCENT;
+                }
+            };
             Color.prototype.toHTML = function () {
                 var sb = new java.lang.StringBuilder();
                 sb.append("#");
-                var s = javaemul.internal.IntegerHelper.toHexString(this.r);
+                var s = javaemul.internal.IntegerHelper.toHexString(this.getRed());
                 if (s.length === 1) {
                     sb.append("0");
                 }
                 sb.append(s);
-                s = javaemul.internal.IntegerHelper.toHexString(this.g);
+                s = javaemul.internal.IntegerHelper.toHexString(this.getGreen());
                 if (s.length === 1) {
                     sb.append("0");
                 }
                 sb.append(s);
-                s = javaemul.internal.IntegerHelper.toHexString(this.b);
+                s = javaemul.internal.IntegerHelper.toHexString(this.getBlue());
                 if (s.length === 1) {
                     sb.append("0");
                 }
                 sb.append(s);
                 return sb.toString();
             };
+            Color.serialVersionUID = 118526816881161077;
+            Color.FACTOR = 0.7;
             return Color;
         }());
         awt.Color = Color;
+        Color["__classname"] = "java.awt.Color";
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
     (function (awt) {
         var Component = (function () {
             function Component() {
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.HTMLComponent"] });
+                this.enabled = false;
+                this.valid = false;
+                this.visible = false;
             }
+            Component.prototype.bindHTML = function (htmlElement) {
+                this.htmlElement = htmlElement;
+            };
+            Component.prototype.getHTMLElement = function () {
+                if (this.htmlElement == null) {
+                    this.createHTML();
+                    this.initHTML();
+                }
+                return this.htmlElement;
+            };
+            Component.prototype.initHTML = function () {
+                if (this.htmlElement == null) {
+                    this.createHTML();
+                }
+                this.htmlElement.id = "cmp" + java.applet.Applet.CURRENT_ID++;
+                if (this.background != null) {
+                    this.htmlElement.style.backgroundColor = this.background.toHTML();
+                }
+            };
+            Component.prototype.getLocationOnScreen = function () {
+                return new java.awt.Point(this.getX(), this.getY());
+            };
+            Component.prototype.getBounds = function () {
+                return new java.awt.Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+            };
+            Component.prototype.getWidth = function () {
+                return (this.htmlElement.clientWidth | 0);
+            };
+            Component.prototype.getHeight = function () {
+                return (this.htmlElement.clientHeight | 0);
+            };
+            Component.prototype.getX = function () {
+                return (this.htmlElement.clientLeft | 0);
+            };
+            Component.prototype.getY = function () {
+                return (this.htmlElement.clientTop | 0);
+            };
+            Component.prototype.getPropertyChangeListeners = function (propertyName) {
+                var _this = this;
+                if (((typeof propertyName === 'string') || propertyName === null)) {
+                    return (function () {
+                        if (_this.changeSupport == null) {
+                            return new Array(0);
+                        }
+                        return _this.changeSupport.getPropertyChangeListeners(propertyName);
+                    })();
+                }
+                else if (propertyName === undefined) {
+                    return this.getPropertyChangeListeners$();
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            Component.prototype.addPropertyChangeListener$java_beans_PropertyChangeListener = function (listener) {
+                if (listener == null) {
+                    return;
+                }
+                if (this.changeSupport == null) {
+                    this.changeSupport = new java.beans.PropertyChangeSupport(this);
+                }
+                this.changeSupport.addPropertyChangeListener(listener);
+            };
+            Component.prototype.removePropertyChangeListener$java_beans_PropertyChangeListener = function (listener) {
+                if (listener == null || this.changeSupport == null) {
+                    return;
+                }
+                this.changeSupport.removePropertyChangeListener(listener);
+            };
+            Component.prototype.getPropertyChangeListeners$ = function () {
+                if (this.changeSupport == null) {
+                    return new Array(0);
+                }
+                return this.changeSupport.getPropertyChangeListeners();
+            };
+            Component.prototype.addPropertyChangeListener = function (propertyName, listener) {
+                var _this = this;
+                if (((typeof propertyName === 'string') || propertyName === null) && ((listener != null && listener["__interfaces"] != null && listener["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || listener === null)) {
+                    return (function () {
+                        if (listener == null) {
+                            return;
+                        }
+                        if (_this.changeSupport == null) {
+                            _this.changeSupport = new java.beans.PropertyChangeSupport(_this);
+                        }
+                        _this.changeSupport.addPropertyChangeListener(propertyName, listener);
+                    })();
+                }
+                else if (((propertyName != null && propertyName["__interfaces"] != null && propertyName["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || propertyName === null) && listener === undefined) {
+                    return this.addPropertyChangeListener$java_beans_PropertyChangeListener(propertyName);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            Component.prototype.removePropertyChangeListener = function (propertyName, listener) {
+                var _this = this;
+                if (((typeof propertyName === 'string') || propertyName === null) && ((listener != null && listener["__interfaces"] != null && listener["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || listener === null)) {
+                    return (function () {
+                        if (listener == null || _this.changeSupport == null) {
+                            return;
+                        }
+                        _this.changeSupport.removePropertyChangeListener(propertyName, listener);
+                    })();
+                }
+                else if (((propertyName != null && propertyName["__interfaces"] != null && propertyName["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || propertyName === null) && listener === undefined) {
+                    return this.removePropertyChangeListener$java_beans_PropertyChangeListener(propertyName);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            Component.prototype.firePropertyChange = function (propertyName, oldValue, newValue) {
+                var changeSupport;
+                changeSupport = this.changeSupport;
+                if (changeSupport == null || (oldValue != null && newValue != null && (oldValue === newValue))) {
+                    return;
+                }
+                changeSupport.firePropertyChange(propertyName, oldValue, newValue);
+            };
+            Component.prototype.isEnabled = function () {
+                return this.enabled;
+            };
+            Component.prototype.setEnabled = function (enabled) {
+                this.enabled = enabled;
+            };
+            Component.prototype.getBackground = function () {
+                return this.background;
+            };
+            Component.prototype.setBackground = function (background) {
+                this.background = background;
+            };
+            Component.prototype.getForeground = function () {
+                return this.foreground;
+            };
+            Component.prototype.setForeground = function (foreground) {
+                this.foreground = foreground;
+            };
+            Component.prototype.getFont = function () {
+                return this.font;
+            };
+            Component.prototype.setFont = function (font) {
+                this.font = font;
+            };
+            Component.prototype.isVisible = function () {
+                return this.visible;
+            };
+            Component.prototype.setVisible = function (visible) {
+                this.visible = visible;
+            };
+            Component.prototype.getName = function () {
+                return this.name;
+            };
+            Component.prototype.setName = function (name) {
+                this.name = name;
+            };
+            Component.prototype.paramString = function () {
+                var thisName = this.getName();
+                var str = (thisName != null ? thisName : "") + "," + this.getX() + "," + this.getY() + "," + this.getWidth() + "x" + this.getHeight();
+                if (!this.isValid()) {
+                    str += ",invalid";
+                }
+                if (!this.visible) {
+                    str += ",hidden";
+                }
+                if (!this.enabled) {
+                    str += ",disabled";
+                }
+                return str;
+            };
+            Component.prototype.isValid = function () {
+                return this.valid;
+            };
+            Component.prototype.setValid = function (valid) {
+                this.valid = valid;
+            };
+            Component.prototype.validate = function () {
+            };
+            Component.prototype.paint = function (g) {
+            };
+            Component.prototype.update = function (g) {
+                this.paint(g);
+            };
+            Component.prototype.paintAll = function (g) {
+                this.paint(g);
+            };
+            Component.TOP_ALIGNMENT = 0.0;
+            Component.CENTER_ALIGNMENT = 0.5;
+            Component.BOTTOM_ALIGNMENT = 1.0;
+            Component.LEFT_ALIGNMENT = 0.0;
+            Component.RIGHT_ALIGNMENT = 1.0;
             return Component;
         }());
         awt.Component = Component;
+        Component["__classname"] = "java.awt.Component";
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
     (function (awt) {
         var event;
         (function (event) {
-            var ActionEvent = (function () {
-                function ActionEvent(source, actionCommand) {
-                    this.source = source;
-                    this.actionCommand = actionCommand;
+            /**
+             * An abstract adapter class for receiving component events.
+             * The methods in this class are empty. This class exists as
+             * convenience for creating listener objects.
+             * <P>
+             * Extend this class to create a <code>ComponentEvent</code> listener
+             * and override the methods for the events of interest. (If you implement the
+             * <code>ComponentListener</code> interface, you have to define all of
+             * the methods in it. This abstract class defines null methods for them
+             * all, so you can only have to define methods for events you care about.)
+             * <P>
+             * Create a listener object using your class and then register it with a
+             * component using the component's <code>addComponentListener</code>
+             * method. When the component's size, location, or visibility
+             * changes, the relevant method in the listener object is invoked,
+             * and the <code>ComponentEvent</code> is passed to it.
+             *
+             * @see ComponentEvent
+             * @see ComponentListener
+             * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/componentlistener.html">Tutorial: Writing a Component Listener</a>
+             *
+             * @author Carl Quinn
+             * @since 1.1
+             */
+            var ComponentAdapter = (function () {
+                function ComponentAdapter() {
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.EventListener", "java.awt.event.ComponentListener"] });
                 }
-                ActionEvent.prototype.getSource = function () {
-                    return this.source;
+                /**
+                 * Invoked when the component's size changes.
+                 */
+                ComponentAdapter.prototype.componentResized = function (e) {
                 };
-                ActionEvent.prototype.getActionCommand = function () {
-                    return this.actionCommand;
+                /**
+                 * Invoked when the component's position changes.
+                 */
+                ComponentAdapter.prototype.componentMoved = function (e) {
                 };
-                return ActionEvent;
+                /**
+                 * Invoked when the component has been made visible.
+                 */
+                ComponentAdapter.prototype.componentShown = function (e) {
+                };
+                /**
+                 * Invoked when the component has been made invisible.
+                 */
+                ComponentAdapter.prototype.componentHidden = function (e) {
+                };
+                return ComponentAdapter;
             }());
-            event.ActionEvent = ActionEvent;
+            event.ComponentAdapter = ComponentAdapter;
+            ComponentAdapter["__classname"] = "java.awt.event.ComponentAdapter";
         })(event = awt.event || (awt.event = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var event;
+        (function (event) {
+            /**
+             * An abstract adapter class for receiving container events.
+             * The methods in this class are empty. This class exists as
+             * convenience for creating listener objects.
+             * <P>
+             * Extend this class to create a <code>ContainerEvent</code> listener
+             * and override the methods for the events of interest. (If you implement the
+             * <code>ContainerListener</code> interface, you have to define all of
+             * the methods in it. This abstract class defines null methods for them
+             * all, so you can only have to define methods for events you care about.)
+             * <P>
+             * Create a listener object using the extended class and then register it with
+             * a component using the component's <code>addContainerListener</code>
+             * method. When the container's contents change because a component has
+             * been added or removed, the relevant method in the listener object is invoked,
+             * and the <code>ContainerEvent</code> is passed to it.
+             *
+             * @see ContainerEvent
+             * @see ContainerListener
+             * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/containerlistener.html">Tutorial: Writing a Container Listener</a>
+             *
+             * @author Amy Fowler
+             * @since 1.1
+             */
+            var ContainerAdapter = (function () {
+                function ContainerAdapter() {
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.EventListener", "java.awt.event.ContainerListener"] });
+                }
+                /**
+                 * Invoked when a component has been added to the container.
+                 */
+                ContainerAdapter.prototype.componentAdded = function (e) {
+                };
+                /**
+                 * Invoked when a component has been removed from the container.
+                 */
+                ContainerAdapter.prototype.componentRemoved = function (e) {
+                };
+                return ContainerAdapter;
+            }());
+            event.ContainerAdapter = ContainerAdapter;
+            ContainerAdapter["__classname"] = "java.awt.event.ContainerAdapter";
+        })(event = awt.event || (awt.event = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var event;
+        (function (event) {
+            /**
+             * An abstract adapter class for receiving mouse events.
+             * The methods in this class are empty. This class exists as
+             * convenience for creating listener objects.
+             * <P>
+             * Mouse events let you track when a mouse is pressed, released, clicked,
+             * moved, dragged, when it enters a component, when it exits and
+             * when a mouse wheel is moved.
+             * <P>
+             * Extend this class to create a {@code MouseEvent}
+             * (including drag and motion events) or/and {@code MouseWheelEvent}
+             * listener and override the methods for the events of interest. (If you implement the
+             * {@code MouseListener},
+             * {@code MouseMotionListener}
+             * interface, you have to define all of
+             * the methods in it. This abstract class defines null methods for them
+             * all, so you can only have to define methods for events you care about.)
+             * <P>
+             * Create a listener object using the extended class and then register it with
+             * a component using the component's {@code addMouseListener}
+             * {@code addMouseMotionListener}, {@code addMouseWheelListener}
+             * methods.
+             * The relevant method in the listener object is invoked  and the {@code MouseEvent}
+             * or {@code MouseWheelEvent}  is passed to it in following cases:
+             * <ul>
+             * <li>when a mouse button is pressed, released, or clicked (pressed and  released)
+             * <li>when the mouse cursor enters or exits the component
+             * <li>when the mouse wheel rotated, or mouse moved or dragged
+             * </ul>
+             *
+             * @author Carl Quinn
+             * @author Andrei Dmitriev
+             *
+             * @see MouseEvent
+             * @see MouseWheelEvent
+             * @see MouseListener
+             * @see MouseMotionListener
+             * @see MouseWheelListener
+             * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/mouselistener.html">Tutorial: Writing a Mouse Listener</a>
+             *
+             * @since 1.1
+             */
+            var MouseAdapter = (function () {
+                function MouseAdapter() {
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.EventListener", "java.awt.event.MouseMotionListener", "java.awt.event.MouseWheelListener", "java.awt.event.MouseListener"] });
+                }
+                /**
+                 * {@inheritDoc}
+                 */
+                MouseAdapter.prototype.mouseClicked = function (e) {
+                };
+                /**
+                 * {@inheritDoc}
+                 */
+                MouseAdapter.prototype.mousePressed = function (e) {
+                };
+                /**
+                 * {@inheritDoc}
+                 */
+                MouseAdapter.prototype.mouseReleased = function (e) {
+                };
+                /**
+                 * {@inheritDoc}
+                 */
+                MouseAdapter.prototype.mouseEntered = function (e) {
+                };
+                /**
+                 * {@inheritDoc}
+                 */
+                MouseAdapter.prototype.mouseExited = function (e) {
+                };
+                /**
+                 * {@inheritDoc}
+                 * @since 1.6
+                 */
+                MouseAdapter.prototype.mouseWheelMoved = function (e) {
+                };
+                /**
+                 * {@inheritDoc}
+                 * @since 1.6
+                 */
+                MouseAdapter.prototype.mouseDragged = function (e) {
+                };
+                /**
+                 * {@inheritDoc}
+                 * @since 1.6
+                 */
+                MouseAdapter.prototype.mouseMoved = function (e) {
+                };
+                return MouseAdapter;
+            }());
+            event.MouseAdapter = MouseAdapter;
+            MouseAdapter["__classname"] = "java.awt.event.MouseAdapter";
+        })(event = awt.event || (awt.event = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var event;
+        (function (event) {
+            /**
+             * An abstract adapter class for receiving mouse motion events.
+             * The methods in this class are empty. This class exists as
+             * convenience for creating listener objects.
+             * <P>
+             * Mouse motion events occur when a mouse is moved or dragged.
+             * (Many such events will be generated in a normal program.
+             * To track clicks and other mouse events, use the MouseAdapter.)
+             * <P>
+             * Extend this class to create a <code>MouseEvent</code> listener
+             * and override the methods for the events of interest. (If you implement the
+             * <code>MouseMotionListener</code> interface, you have to define all of
+             * the methods in it. This abstract class defines null methods for them
+             * all, so you can only have to define methods for events you care about.)
+             * <P>
+             * Create a listener object using the extended class and then register it with
+             * a component using the component's <code>addMouseMotionListener</code>
+             * method. When the mouse is moved or dragged, the relevant method in the
+             * listener object is invoked and the <code>MouseEvent</code> is passed to it.
+             *
+             * @author Amy Fowler
+             *
+             * @see MouseEvent
+             * @see MouseMotionListener
+             * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/mousemotionlistener.html">Tutorial: Writing a Mouse Motion Listener</a>
+             *
+             * @since 1.1
+             */
+            var MouseMotionAdapter = (function () {
+                function MouseMotionAdapter() {
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.EventListener", "java.awt.event.MouseMotionListener"] });
+                }
+                /**
+                 * Invoked when a mouse button is pressed on a component and then
+                 * dragged.  Mouse drag events will continue to be delivered to
+                 * the component where the first originated until the mouse button is
+                 * released (regardless of whether the mouse position is within the
+                 * bounds of the component).
+                 */
+                MouseMotionAdapter.prototype.mouseDragged = function (e) {
+                };
+                /**
+                 * Invoked when the mouse button has been moved on a component
+                 * (with no buttons no down).
+                 */
+                MouseMotionAdapter.prototype.mouseMoved = function (e) {
+                };
+                return MouseMotionAdapter;
+            }());
+            event.MouseMotionAdapter = MouseMotionAdapter;
+            MouseMotionAdapter["__classname"] = "java.awt.event.MouseMotionAdapter";
+        })(event = awt.event || (awt.event = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var Event = (function () {
+            function Event(target, when, id, x, y, key, modifiers, arg) {
+                var _this = this;
+                this.consumed = false;
+                if (((target != null) || target === null) && ((typeof when === 'number') || when === null) && ((typeof id === 'number') || id === null) && ((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && ((typeof key === 'number') || key === null) && ((typeof modifiers === 'number') || modifiers === null) && ((arg != null) || arg === null)) {
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
+                    this.data = 0;
+                    this.when = 0;
+                    this.id = 0;
+                    this.x = 0;
+                    this.y = 0;
+                    this.key = 0;
+                    this.modifiers = 0;
+                    this.clickCount = 0;
+                    (function () {
+                        _this.target = target;
+                        _this.when = when;
+                        _this.id = id;
+                        _this.x = x;
+                        _this.y = y;
+                        _this.key = key;
+                        _this.modifiers = modifiers;
+                        _this.arg = arg;
+                        _this.data = 0;
+                        _this.clickCount = 0;
+                        switch ((id)) {
+                            case Event.ACTION_EVENT_$LI$():
+                            case Event.WINDOW_DESTROY_$LI$():
+                            case Event.WINDOW_ICONIFY_$LI$():
+                            case Event.WINDOW_DEICONIFY_$LI$():
+                            case Event.WINDOW_MOVED_$LI$():
+                            case Event.SCROLL_LINE_UP_$LI$():
+                            case Event.SCROLL_LINE_DOWN_$LI$():
+                            case Event.SCROLL_PAGE_UP_$LI$():
+                            case Event.SCROLL_PAGE_DOWN_$LI$():
+                            case Event.SCROLL_ABSOLUTE_$LI$():
+                            case Event.SCROLL_BEGIN_$LI$():
+                            case Event.SCROLL_END_$LI$():
+                            case Event.LIST_SELECT_$LI$():
+                            case Event.LIST_DESELECT_$LI$():
+                                _this.consumed = true;
+                                break;
+                            default:
+                        }
+                    })();
+                }
+                else if (((target != null) || target === null) && ((typeof when === 'number') || when === null) && ((typeof id === 'number') || id === null) && ((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && ((typeof key === 'number') || key === null) && ((typeof modifiers === 'number') || modifiers === null) && arg === undefined) {
+                    {
+                        var arg = null;
+                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
+                        this.data = 0;
+                        this.when = 0;
+                        this.id = 0;
+                        this.x = 0;
+                        this.y = 0;
+                        this.key = 0;
+                        this.modifiers = 0;
+                        this.clickCount = 0;
+                        (function () {
+                            _this.target = target;
+                            _this.when = when;
+                            _this.id = id;
+                            _this.x = x;
+                            _this.y = y;
+                            _this.key = key;
+                            _this.modifiers = modifiers;
+                            _this.arg = arg;
+                            _this.data = 0;
+                            _this.clickCount = 0;
+                            switch ((id)) {
+                                case Event.ACTION_EVENT_$LI$():
+                                case Event.WINDOW_DESTROY_$LI$():
+                                case Event.WINDOW_ICONIFY_$LI$():
+                                case Event.WINDOW_DEICONIFY_$LI$():
+                                case Event.WINDOW_MOVED_$LI$():
+                                case Event.SCROLL_LINE_UP_$LI$():
+                                case Event.SCROLL_LINE_DOWN_$LI$():
+                                case Event.SCROLL_PAGE_UP_$LI$():
+                                case Event.SCROLL_PAGE_DOWN_$LI$():
+                                case Event.SCROLL_ABSOLUTE_$LI$():
+                                case Event.SCROLL_BEGIN_$LI$():
+                                case Event.SCROLL_END_$LI$():
+                                case Event.LIST_SELECT_$LI$():
+                                case Event.LIST_DESELECT_$LI$():
+                                    _this.consumed = true;
+                                    break;
+                                default:
+                            }
+                        })();
+                    }
+                    (function () {
+                    })();
+                }
+                else if (((target != null) || target === null) && ((typeof when === 'number') || when === null) && ((id != null) || id === null) && x === undefined && y === undefined && key === undefined && modifiers === undefined && arg === undefined) {
+                    var id = when;
+                    var arg = id;
+                    {
+                        var when = 0;
+                        var x = 0;
+                        var y = 0;
+                        var key = 0;
+                        var modifiers = 0;
+                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
+                        this.data = 0;
+                        this.when = 0;
+                        this.id = 0;
+                        this.x = 0;
+                        this.y = 0;
+                        this.key = 0;
+                        this.modifiers = 0;
+                        this.clickCount = 0;
+                        (function () {
+                            _this.target = target;
+                            _this.when = when;
+                            _this.id = id;
+                            _this.x = x;
+                            _this.y = y;
+                            _this.key = key;
+                            _this.modifiers = modifiers;
+                            _this.arg = arg;
+                            _this.data = 0;
+                            _this.clickCount = 0;
+                            switch ((id)) {
+                                case Event.ACTION_EVENT_$LI$():
+                                case Event.WINDOW_DESTROY_$LI$():
+                                case Event.WINDOW_ICONIFY_$LI$():
+                                case Event.WINDOW_DEICONIFY_$LI$():
+                                case Event.WINDOW_MOVED_$LI$():
+                                case Event.SCROLL_LINE_UP_$LI$():
+                                case Event.SCROLL_LINE_DOWN_$LI$():
+                                case Event.SCROLL_PAGE_UP_$LI$():
+                                case Event.SCROLL_PAGE_DOWN_$LI$():
+                                case Event.SCROLL_ABSOLUTE_$LI$():
+                                case Event.SCROLL_BEGIN_$LI$():
+                                case Event.SCROLL_END_$LI$():
+                                case Event.LIST_SELECT_$LI$():
+                                case Event.LIST_DESELECT_$LI$():
+                                    _this.consumed = true;
+                                    break;
+                                default:
+                            }
+                        })();
+                    }
+                    (function () {
+                    })();
+                }
+                else
+                    throw new Error('invalid overload');
+            }
+            Event.SHIFT_MASK_$LI$ = function () { if (Event.SHIFT_MASK == null)
+                Event.SHIFT_MASK = 1 << 0; return Event.SHIFT_MASK; };
+            ;
+            Event.CTRL_MASK_$LI$ = function () { if (Event.CTRL_MASK == null)
+                Event.CTRL_MASK = 1 << 1; return Event.CTRL_MASK; };
+            ;
+            Event.META_MASK_$LI$ = function () { if (Event.META_MASK == null)
+                Event.META_MASK = 1 << 2; return Event.META_MASK; };
+            ;
+            Event.ALT_MASK_$LI$ = function () { if (Event.ALT_MASK == null)
+                Event.ALT_MASK = 1 << 3; return Event.ALT_MASK; };
+            ;
+            Event.WINDOW_DESTROY_$LI$ = function () { if (Event.WINDOW_DESTROY == null)
+                Event.WINDOW_DESTROY = 1 + Event.WINDOW_EVENT; return Event.WINDOW_DESTROY; };
+            ;
+            Event.WINDOW_EXPOSE_$LI$ = function () { if (Event.WINDOW_EXPOSE == null)
+                Event.WINDOW_EXPOSE = 2 + Event.WINDOW_EVENT; return Event.WINDOW_EXPOSE; };
+            ;
+            Event.WINDOW_ICONIFY_$LI$ = function () { if (Event.WINDOW_ICONIFY == null)
+                Event.WINDOW_ICONIFY = 3 + Event.WINDOW_EVENT; return Event.WINDOW_ICONIFY; };
+            ;
+            Event.WINDOW_DEICONIFY_$LI$ = function () { if (Event.WINDOW_DEICONIFY == null)
+                Event.WINDOW_DEICONIFY = 4 + Event.WINDOW_EVENT; return Event.WINDOW_DEICONIFY; };
+            ;
+            Event.WINDOW_MOVED_$LI$ = function () { if (Event.WINDOW_MOVED == null)
+                Event.WINDOW_MOVED = 5 + Event.WINDOW_EVENT; return Event.WINDOW_MOVED; };
+            ;
+            Event.KEY_PRESS_$LI$ = function () { if (Event.KEY_PRESS == null)
+                Event.KEY_PRESS = 1 + Event.KEY_EVENT; return Event.KEY_PRESS; };
+            ;
+            Event.KEY_RELEASE_$LI$ = function () { if (Event.KEY_RELEASE == null)
+                Event.KEY_RELEASE = 2 + Event.KEY_EVENT; return Event.KEY_RELEASE; };
+            ;
+            Event.KEY_ACTION_$LI$ = function () { if (Event.KEY_ACTION == null)
+                Event.KEY_ACTION = 3 + Event.KEY_EVENT; return Event.KEY_ACTION; };
+            ;
+            Event.KEY_ACTION_RELEASE_$LI$ = function () { if (Event.KEY_ACTION_RELEASE == null)
+                Event.KEY_ACTION_RELEASE = 4 + Event.KEY_EVENT; return Event.KEY_ACTION_RELEASE; };
+            ;
+            Event.MOUSE_DOWN_$LI$ = function () { if (Event.MOUSE_DOWN == null)
+                Event.MOUSE_DOWN = 1 + Event.MOUSE_EVENT; return Event.MOUSE_DOWN; };
+            ;
+            Event.MOUSE_UP_$LI$ = function () { if (Event.MOUSE_UP == null)
+                Event.MOUSE_UP = 2 + Event.MOUSE_EVENT; return Event.MOUSE_UP; };
+            ;
+            Event.MOUSE_MOVE_$LI$ = function () { if (Event.MOUSE_MOVE == null)
+                Event.MOUSE_MOVE = 3 + Event.MOUSE_EVENT; return Event.MOUSE_MOVE; };
+            ;
+            Event.MOUSE_ENTER_$LI$ = function () { if (Event.MOUSE_ENTER == null)
+                Event.MOUSE_ENTER = 4 + Event.MOUSE_EVENT; return Event.MOUSE_ENTER; };
+            ;
+            Event.MOUSE_EXIT_$LI$ = function () { if (Event.MOUSE_EXIT == null)
+                Event.MOUSE_EXIT = 5 + Event.MOUSE_EVENT; return Event.MOUSE_EXIT; };
+            ;
+            Event.MOUSE_DRAG_$LI$ = function () { if (Event.MOUSE_DRAG == null)
+                Event.MOUSE_DRAG = 6 + Event.MOUSE_EVENT; return Event.MOUSE_DRAG; };
+            ;
+            Event.SCROLL_LINE_UP_$LI$ = function () { if (Event.SCROLL_LINE_UP == null)
+                Event.SCROLL_LINE_UP = 1 + Event.SCROLL_EVENT; return Event.SCROLL_LINE_UP; };
+            ;
+            Event.SCROLL_LINE_DOWN_$LI$ = function () { if (Event.SCROLL_LINE_DOWN == null)
+                Event.SCROLL_LINE_DOWN = 2 + Event.SCROLL_EVENT; return Event.SCROLL_LINE_DOWN; };
+            ;
+            Event.SCROLL_PAGE_UP_$LI$ = function () { if (Event.SCROLL_PAGE_UP == null)
+                Event.SCROLL_PAGE_UP = 3 + Event.SCROLL_EVENT; return Event.SCROLL_PAGE_UP; };
+            ;
+            Event.SCROLL_PAGE_DOWN_$LI$ = function () { if (Event.SCROLL_PAGE_DOWN == null)
+                Event.SCROLL_PAGE_DOWN = 4 + Event.SCROLL_EVENT; return Event.SCROLL_PAGE_DOWN; };
+            ;
+            Event.SCROLL_ABSOLUTE_$LI$ = function () { if (Event.SCROLL_ABSOLUTE == null)
+                Event.SCROLL_ABSOLUTE = 5 + Event.SCROLL_EVENT; return Event.SCROLL_ABSOLUTE; };
+            ;
+            Event.SCROLL_BEGIN_$LI$ = function () { if (Event.SCROLL_BEGIN == null)
+                Event.SCROLL_BEGIN = 6 + Event.SCROLL_EVENT; return Event.SCROLL_BEGIN; };
+            ;
+            Event.SCROLL_END_$LI$ = function () { if (Event.SCROLL_END == null)
+                Event.SCROLL_END = 7 + Event.SCROLL_EVENT; return Event.SCROLL_END; };
+            ;
+            Event.LIST_SELECT_$LI$ = function () { if (Event.LIST_SELECT == null)
+                Event.LIST_SELECT = 1 + Event.LIST_EVENT; return Event.LIST_SELECT; };
+            ;
+            Event.LIST_DESELECT_$LI$ = function () { if (Event.LIST_DESELECT == null)
+                Event.LIST_DESELECT = 2 + Event.LIST_EVENT; return Event.LIST_DESELECT; };
+            ;
+            Event.ACTION_EVENT_$LI$ = function () { if (Event.ACTION_EVENT == null)
+                Event.ACTION_EVENT = 1 + Event.MISC_EVENT; return Event.ACTION_EVENT; };
+            ;
+            Event.LOAD_FILE_$LI$ = function () { if (Event.LOAD_FILE == null)
+                Event.LOAD_FILE = 2 + Event.MISC_EVENT; return Event.LOAD_FILE; };
+            ;
+            Event.SAVE_FILE_$LI$ = function () { if (Event.SAVE_FILE == null)
+                Event.SAVE_FILE = 3 + Event.MISC_EVENT; return Event.SAVE_FILE; };
+            ;
+            Event.GOT_FOCUS_$LI$ = function () { if (Event.GOT_FOCUS == null)
+                Event.GOT_FOCUS = 4 + Event.MISC_EVENT; return Event.GOT_FOCUS; };
+            ;
+            Event.LOST_FOCUS_$LI$ = function () { if (Event.LOST_FOCUS == null)
+                Event.LOST_FOCUS = 5 + Event.MISC_EVENT; return Event.LOST_FOCUS; };
+            ;
+            Event.prototype.translate = function (dx, dy) {
+                this.x += dx;
+                this.y += dy;
+            };
+            Event.prototype.shiftDown = function () {
+                return (this.modifiers & Event.SHIFT_MASK_$LI$()) !== 0;
+            };
+            Event.prototype.controlDown = function () {
+                return (this.modifiers & Event.CTRL_MASK_$LI$()) !== 0;
+            };
+            Event.prototype.metaDown = function () {
+                return (this.modifiers & Event.META_MASK_$LI$()) !== 0;
+            };
+            Event.prototype.consume = function () {
+                switch ((this.id)) {
+                    case Event.KEY_PRESS_$LI$():
+                    case Event.KEY_RELEASE_$LI$():
+                    case Event.KEY_ACTION_$LI$():
+                    case Event.KEY_ACTION_RELEASE_$LI$():
+                        this.consumed = true;
+                        break;
+                    default:
+                }
+            };
+            Event.prototype.isConsumed = function () {
+                return this.consumed;
+            };
+            Event.prototype.paramString = function () {
+                var str = "id=" + this.id + ",x=" + this.x + ",y=" + this.y;
+                if (this.key !== 0) {
+                    str += ",key=" + this.key;
+                }
+                if (this.shiftDown()) {
+                    str += ",shift";
+                }
+                if (this.controlDown()) {
+                    str += ",control";
+                }
+                if (this.metaDown()) {
+                    str += ",meta";
+                }
+                if (this.target != null) {
+                    str += ",target=" + this.target;
+                }
+                if (this.arg != null) {
+                    str += ",arg=" + this.arg;
+                }
+                return str;
+            };
+            Event.prototype.toString = function () {
+                return this.constructor["__classname"] + "[" + this.paramString() + "]";
+            };
+            Event.HOME = 1000;
+            Event.END = 1001;
+            Event.PGUP = 1002;
+            Event.PGDN = 1003;
+            Event.UP = 1004;
+            Event.DOWN = 1005;
+            Event.LEFT = 1006;
+            Event.RIGHT = 1007;
+            Event.F1 = 1008;
+            Event.F2 = 1009;
+            Event.F3 = 1010;
+            Event.F4 = 1011;
+            Event.F5 = 1012;
+            Event.F6 = 1013;
+            Event.F7 = 1014;
+            Event.F8 = 1015;
+            Event.F9 = 1016;
+            Event.F10 = 1017;
+            Event.F11 = 1018;
+            Event.F12 = 1019;
+            Event.PRINT_SCREEN = 1020;
+            Event.SCROLL_LOCK = 1021;
+            Event.CAPS_LOCK = 1022;
+            Event.NUM_LOCK = 1023;
+            Event.PAUSE = 1024;
+            Event.INSERT = 1025;
+            Event.ENTER = ('\n').charCodeAt(0);
+            Event.BACK_SPACE = ('\b').charCodeAt(0);
+            Event.TAB = ('\t').charCodeAt(0);
+            Event.ESCAPE = 27;
+            Event.DELETE = 127;
+            Event.WINDOW_EVENT = 200;
+            Event.KEY_EVENT = 400;
+            Event.MOUSE_EVENT = 500;
+            Event.SCROLL_EVENT = 600;
+            Event.LIST_EVENT = 700;
+            Event.MISC_EVENT = 1000;
+            return Event;
+        }());
+        awt.Event = Event;
+        Event["__classname"] = "java.awt.Event";
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var Font = (function () {
+            function Font(name, style, sizePts) {
+                var _this = this;
+                if (((typeof name === 'string') || name === null) && ((typeof style === 'number') || style === null) && ((typeof sizePts === 'number') || sizePts === null)) {
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
+                    this.style = 0;
+                    this.size = 0;
+                    this.pointSize = 0;
+                    this.hash = 0;
+                    (function () {
+                        _this.name = (name != null) ? name : "Default";
+                        _this.style = (style & ~3) === 0 ? style : 0;
+                        _this.size = ((sizePts + 0.5) | 0);
+                        _this.pointSize = sizePts;
+                    })();
+                }
+                else if (((name != null && name instanceof java.awt.Font) || name === null) && style === undefined && sizePts === undefined) {
+                    var font = name;
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
+                    this.style = 0;
+                    this.size = 0;
+                    this.pointSize = 0;
+                    this.hash = 0;
+                    (function () {
+                        _this.name = font.name;
+                        _this.style = font.style;
+                        _this.size = font.size;
+                        _this.pointSize = font.pointSize;
+                    })();
+                }
+                else
+                    throw new Error('invalid overload');
+            }
+            Font.prototype.toHTML = function () {
+                return this.style + " " + this.size + "px " + this.name;
+            };
+            Font.prototype.getFamily = function () {
+                return this.name;
+            };
+            Font.prototype.getName = function () {
+                return this.name;
+            };
+            Font.prototype.getFontName = function () {
+                return this.name;
+            };
+            Font.prototype.getStyle = function () {
+                return this.style;
+            };
+            Font.prototype.getSize = function () {
+                return this.size;
+            };
+            Font.prototype.getSize2D = function () {
+                return this.pointSize;
+            };
+            Font.prototype.isPlain = function () {
+                return this.style === 0;
+            };
+            Font.prototype.isBold = function () {
+                return (this.style & Font.BOLD) !== 0;
+            };
+            Font.prototype.isItalic = function () {
+                return (this.style & Font.ITALIC) !== 0;
+            };
+            Font.decode = function (str) {
+                var fontName = str;
+                var styleName = "";
+                var fontSize = 12;
+                var fontStyle = Font.PLAIN;
+                if (str == null) {
+                    return new Font(Font.DIALOG, fontStyle, fontSize);
+                }
+                var lastHyphen = str.lastIndexOf('-');
+                var lastSpace = str.lastIndexOf(' ');
+                var sepChar = (lastHyphen > lastSpace) ? '-' : ' ';
+                var sizeIndex = str.lastIndexOf(sepChar);
+                var styleIndex = str.lastIndexOf(sepChar, sizeIndex - 1);
+                var strlen = str.length;
+                if (sizeIndex > 0 && sizeIndex + 1 < strlen) {
+                    try {
+                        fontSize = (javaemul.internal.IntegerHelper.valueOf(str.substring(sizeIndex + 1)) | 0);
+                        if (fontSize <= 0) {
+                            fontSize = 12;
+                        }
+                    }
+                    catch (e) {
+                        styleIndex = sizeIndex;
+                        sizeIndex = strlen;
+                        if (str.charAt(sizeIndex - 1) === sepChar) {
+                            sizeIndex--;
+                        }
+                    }
+                    ;
+                }
+                if (styleIndex >= 0 && styleIndex + 1 < strlen) {
+                    styleName = str.substring(styleIndex + 1, sizeIndex);
+                    styleName = styleName.toLowerCase();
+                    if ((styleName === "bolditalic")) {
+                        fontStyle = Font.BOLD | Font.ITALIC;
+                    }
+                    else if ((styleName === "italic")) {
+                        fontStyle = Font.ITALIC;
+                    }
+                    else if ((styleName === "bold")) {
+                        fontStyle = Font.BOLD;
+                    }
+                    else if ((styleName === "plain")) {
+                        fontStyle = Font.PLAIN;
+                    }
+                    else {
+                        styleIndex = sizeIndex;
+                        if (str.charAt(styleIndex - 1) === sepChar) {
+                            styleIndex--;
+                        }
+                    }
+                    fontName = str.substring(0, styleIndex);
+                }
+                else {
+                    var fontEnd = strlen;
+                    if (styleIndex > 0) {
+                        fontEnd = styleIndex;
+                    }
+                    else if (sizeIndex > 0) {
+                        fontEnd = sizeIndex;
+                    }
+                    if (fontEnd > 0 && str.charAt(fontEnd - 1) === sepChar) {
+                        fontEnd--;
+                    }
+                    fontName = str.substring(0, fontEnd);
+                }
+                return new Font(fontName, fontStyle, fontSize);
+            };
+            Font.getFont = function (nm, font) {
+                if (font === void 0) { font = null; }
+                var str = null;
+                try {
+                    str = java.lang.System.getProperty(nm);
+                }
+                catch (e) {
+                }
+                ;
+                if (str == null) {
+                    return font;
+                }
+                return Font.decode(str);
+            };
+            Font.prototype.hashCode = function () {
+                if (this.hash === 0) {
+                    this.hash = this.name.toString() ^ this.style ^ this.size;
+                }
+                return this.hash;
+            };
+            Font.prototype.equals = function (obj) {
+                if (obj === this) {
+                    return true;
+                }
+                if (obj != null) {
+                    try {
+                        var font = obj;
+                        if (this.size === font.size && this.style === font.style && this.pointSize === font.pointSize && (this.name === font.name)) {
+                            return true;
+                        }
+                    }
+                    catch (e) {
+                    }
+                    ;
+                }
+                return false;
+            };
+            /**
+             * Converts this <code>Font</code> object to a <code>String</code>
+             * representation.
+             *
+             * @return a <code>String</code> representation of this <code>Font</code>
+             * object.
+             * @since JDK1.0
+             */
+            Font.prototype.toString = function () {
+                var strStyle;
+                if (this.isBold()) {
+                    strStyle = this.isItalic() ? "bolditalic" : "bold";
+                }
+                else {
+                    strStyle = this.isItalic() ? "italic" : "plain";
+                }
+                return this.constructor["__classname"] + "[family=" + this.getFamily() + ",name=" + this.name + ",style=" + strStyle + ",size=" + this.size + "]";
+            };
+            /**
+             * A String constant for the canonical family name of the logical font
+             * "Dialog". It is useful in Font construction to provide compile-time
+             * verification of the name.
+             *
+             * @since 1.6
+             */
+            Font.DIALOG = "Dialog";
+            /**
+             * A String constant for the canonical family name of the logical font
+             * "DialogInput". It is useful in Font construction to provide compile-time
+             * verification of the name.
+             *
+             * @since 1.6
+             */
+            Font.DIALOG_INPUT = "DialogInput";
+            /**
+             * A String constant for the canonical family name of the logical font
+             * "SansSerif". It is useful in Font construction to provide compile-time
+             * verification of the name.
+             *
+             * @since 1.6
+             */
+            Font.SANS_SERIF = "SansSerif";
+            /**
+             * A String constant for the canonical family name of the logical font
+             * "Serif". It is useful in Font construction to provide compile-time
+             * verification of the name.
+             *
+             * @since 1.6
+             */
+            Font.SERIF = "Serif";
+            /**
+             * A String constant for the canonical family name of the logical font
+             * "Monospaced". It is useful in Font construction to provide compile-time
+             * verification of the name.
+             *
+             * @since 1.6
+             */
+            Font.MONOSPACED = "Monospaced";
+            /**
+             * The plain style constant.
+             */
+            Font.PLAIN = 0;
+            /**
+             * The bold style constant. This can be combined with the other style
+             * constants (except PLAIN) for mixed styles.
+             */
+            Font.BOLD = 1;
+            /**
+             * The italicized style constant. This can be combined with the other style
+             * constants (except PLAIN) for mixed styles.
+             */
+            Font.ITALIC = 2;
+            /**
+             * The baseline used in most Roman scripts when laying out text.
+             */
+            Font.ROMAN_BASELINE = 0;
+            /**
+             * The baseline used in ideographic scripts like Chinese, Japanese, and
+             * Korean when laying out text.
+             */
+            Font.CENTER_BASELINE = 1;
+            /**
+             * The baseline used in Devanigiri and similar scripts when laying out text.
+             */
+            Font.HANGING_BASELINE = 2;
+            /**
+             * Identify a font resource of type TRUETYPE. Used to specify a TrueType
+             * font resource to the {@link #createFont} method. The TrueType format was
+             * extended to become the OpenType format, which adds support for fonts with
+             * Postscript outlines, this tag therefore references these fonts, as well
+             * as those with TrueType outlines.
+             *
+             * @since 1.3
+             */
+            Font.TRUETYPE_FONT = 0;
+            /**
+             * Identify a font resource of type TYPE1. Used to specify a Type1 font
+             * resource to the {@link #createFont} method.
+             *
+             * @since 1.5
+             */
+            Font.TYPE1_FONT = 1;
+            Font.serialVersionUID = -4206021311591459213;
+            /**
+             * A flag to layoutGlyphVector indicating that text is left-to-right as
+             * determined by Bidi analysis.
+             */
+            Font.LAYOUT_LEFT_TO_RIGHT = 0;
+            /**
+             * A flag to layoutGlyphVector indicating that text is right-to-left as
+             * determined by Bidi analysis.
+             */
+            Font.LAYOUT_RIGHT_TO_LEFT = 1;
+            /**
+             * A flag to layoutGlyphVector indicating that text in the char array before
+             * the indicated start should not be examined.
+             */
+            Font.LAYOUT_NO_START_CONTEXT = 2;
+            /**
+             * A flag to layoutGlyphVector indicating that text in the char array after
+             * the indicated limit should not be examined.
+             */
+            Font.LAYOUT_NO_LIMIT_CONTEXT = 4;
+            return Font;
+        }());
+        awt.Font = Font;
+        Font["__classname"] = "java.awt.Font";
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -3849,10 +5900,11 @@ var java;
                 return AffineTransform;
             }());
             geom.AffineTransform = AffineTransform;
+            AffineTransform["__classname"] = "java.awt.geom.AffineTransform";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -4073,10 +6125,11 @@ var java;
                 return ArcIterator;
             }());
             geom.ArcIterator = ArcIterator;
+            ArcIterator["__classname"] = "java.awt.geom.ArcIterator";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -4987,6 +7040,7 @@ var java;
                 return CubicCurve2D;
             }());
             geom.CubicCurve2D = CubicCurve2D;
+            CubicCurve2D["__classname"] = "java.awt.geom.CubicCurve2D";
             var CubicCurve2D;
             (function (CubicCurve2D) {
                 /**
@@ -5250,6 +7304,7 @@ var java;
                     return Float;
                 }(java.awt.geom.CubicCurve2D));
                 CubicCurve2D.Float = Float;
+                Float["__classname"] = "java.awt.geom.CubicCurve2D.Float";
                 /**
                  * A cubic parametric curve segment specified with {@code double}
                  * coordinates.
@@ -5498,11 +7553,12 @@ var java;
                     return Double;
                 }(java.awt.geom.CubicCurve2D));
                 CubicCurve2D.Double = Double;
+                Double["__classname"] = "java.awt.geom.CubicCurve2D.Double";
             })(CubicCurve2D = geom.CubicCurve2D || (geom.CubicCurve2D = {}));
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -5640,10 +7696,11 @@ var java;
                 return CubicIterator;
             }());
             geom.CubicIterator = CubicIterator;
+            CubicIterator["__classname"] = "java.awt.geom.CubicIterator";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -5730,10 +7787,11 @@ var java;
                 return Dimension2D;
             }());
             geom.Dimension2D = Dimension2D;
+            Dimension2D["__classname"] = "java.awt.geom.Dimension2D";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -5899,10 +7957,11 @@ var java;
                 return EllipseIterator;
             }());
             geom.EllipseIterator = EllipseIterator;
+            EllipseIterator["__classname"] = "java.awt.geom.EllipseIterator";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -6201,10 +8260,11 @@ var java;
                 return FlatteningPathIterator;
             }());
             geom.FlatteningPathIterator = FlatteningPathIterator;
+            FlatteningPathIterator["__classname"] = "java.awt.geom.FlatteningPathIterator";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -7042,6 +9102,7 @@ var java;
                 return Line2D;
             }());
             geom.Line2D = Line2D;
+            Line2D["__classname"] = "java.awt.geom.Line2D";
             var Line2D;
             (function (Line2D) {
                 /**
@@ -7230,6 +9291,7 @@ var java;
                     return Float;
                 }(java.awt.geom.Line2D));
                 Line2D.Float = Float;
+                Float["__classname"] = "java.awt.geom.Line2D.Float";
                 /**
                  * A line segment specified with double coordinates.
                  *
@@ -7408,11 +9470,12 @@ var java;
                     return Double;
                 }(java.awt.geom.Line2D));
                 Line2D.Double = Double;
+                Double["__classname"] = "java.awt.geom.Line2D.Double";
             })(Line2D = geom.Line2D || (geom.Line2D = {}));
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -7549,10 +9612,11 @@ var java;
                 return LineIterator;
             }());
             geom.LineIterator = LineIterator;
+            LineIterator["__classname"] = "java.awt.geom.LineIterator";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -7637,7 +9701,7 @@ var java;
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -7883,6 +9947,7 @@ var java;
                 return Point2D;
             }());
             geom.Point2D = Point2D;
+            Point2D["__classname"] = "java.awt.geom.Point2D";
             var Point2D;
             (function (Point2D) {
                 /**
@@ -7994,6 +10059,7 @@ var java;
                     return Float;
                 }(java.awt.geom.Point2D));
                 Point2D.Float = Float;
+                Float["__classname"] = "java.awt.geom.Point2D.Float";
                 /**
                  * The <code>Double</code> class defines a point specified in
                  * <code>double</code> precision.
@@ -8096,11 +10162,12 @@ var java;
                     return Double;
                 }(java.awt.geom.Point2D));
                 Point2D.Double = Double;
+                Double["__classname"] = "java.awt.geom.Point2D.Double";
             })(Point2D = geom.Point2D || (geom.Point2D = {}));
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -8920,6 +10987,7 @@ var java;
                 return QuadCurve2D;
             }());
             geom.QuadCurve2D = QuadCurve2D;
+            QuadCurve2D["__classname"] = "java.awt.geom.QuadCurve2D";
             var QuadCurve2D;
             (function (QuadCurve2D) {
                 /**
@@ -9127,6 +11195,7 @@ var java;
                     return Float;
                 }(java.awt.geom.QuadCurve2D));
                 QuadCurve2D.Float = Float;
+                Float["__classname"] = "java.awt.geom.QuadCurve2D.Float";
                 /**
                  * A quadratic parametric curve segment specified with {@code double}
                  * coordinates.
@@ -9321,11 +11390,12 @@ var java;
                     return Double;
                 }(java.awt.geom.QuadCurve2D));
                 QuadCurve2D.Double = Double;
+                Double["__classname"] = "java.awt.geom.QuadCurve2D.Double";
             })(QuadCurve2D = geom.QuadCurve2D || (geom.QuadCurve2D = {}));
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -9466,10 +11536,11 @@ var java;
                 return QuadIterator;
             }());
             geom.QuadIterator = QuadIterator;
+            QuadIterator["__classname"] = "java.awt.geom.QuadIterator";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -9852,10 +11923,11 @@ var java;
                 return RectangularShape;
             }());
             geom.RectangularShape = RectangularShape;
+            RectangularShape["__classname"] = "java.awt.geom.RectangularShape";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -10002,10 +12074,11 @@ var java;
                 return RectIterator;
             }());
             geom.RectIterator = RectIterator;
+            RectIterator["__classname"] = "java.awt.geom.RectIterator";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -10170,10 +12243,11 @@ var java;
                 return RoundRectIterator;
             }());
             geom.RoundRectIterator = RoundRectIterator;
+            RoundRectIterator["__classname"] = "java.awt.geom.RoundRectIterator";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -10181,29 +12255,215 @@ var java;
         var Graphics = (function () {
             function Graphics() {
             }
+            Graphics.prototype.create$ = function () { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            Graphics.prototype.create = function (x, y, width, height) {
+                var _this = this;
+                if (((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && ((typeof width === 'number') || width === null) && ((typeof height === 'number') || height === null)) {
+                    return (function () {
+                        var g = _this.create();
+                        if (g == null)
+                            return null;
+                        g.translate(x, y);
+                        g.clipRect(0, 0, width, height);
+                        return g;
+                    })();
+                }
+                else if (x === undefined && y === undefined && width === undefined && height === undefined) {
+                    return this.create$();
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            Graphics.prototype.getClipBounds$ = function () { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            Graphics.prototype.setClip = function (x, y, width, height) {
+                if (((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && ((typeof width === 'number') || width === null) && ((typeof height === 'number') || height === null)) {
+                }
+                else if (((x != null && x["__interfaces"] != null && x["__interfaces"].indexOf("java.awt.Shape") >= 0) || x === null) && y === undefined && width === undefined && height === undefined) {
+                    return this.setClip$java_awt_Shape(x);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            Graphics.prototype.setClip$java_awt_Shape = function (clip) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            Graphics.prototype.drawRect = function (x, y, width, height) {
+                if ((width < 0) || (height < 0)) {
+                    return;
+                }
+                if (height === 0 || width === 0) {
+                    this.drawLine(x, y, x + width, y + height);
+                }
+                else {
+                    this.drawLine(x, y, x + width - 1, y);
+                    this.drawLine(x + width, y, x + width, y + height - 1);
+                    this.drawLine(x + width, y + height, x + 1, y + height);
+                    this.drawLine(x, y + height, x, y + 1);
+                }
+            };
+            Graphics.prototype.draw3DRect = function (x, y, width, height, raised) {
+                var c = this.getColor();
+                var brighter = c.brighter();
+                var darker = c.darker();
+                this.setColor(raised ? brighter : darker);
+                this.drawLine(x, y, x, y + height);
+                this.drawLine(x + 1, y, x + width - 1, y);
+                this.setColor(raised ? darker : brighter);
+                this.drawLine(x + 1, y + height, x + width, y + height);
+                this.drawLine(x + width, y, x + width, y + height - 1);
+                this.setColor(c);
+            };
+            Graphics.prototype.fill3DRect = function (x, y, width, height, raised) {
+                var c = this.getColor();
+                var brighter = c.brighter();
+                var darker = c.darker();
+                if (!raised) {
+                    this.setColor(darker);
+                }
+                this.fillRect(x + 1, y + 1, width - 2, height - 2);
+                this.setColor(raised ? brighter : darker);
+                this.drawLine(x, y, x, y + height - 1);
+                this.drawLine(x + 1, y, x + width - 2, y);
+                this.setColor(raised ? darker : brighter);
+                this.drawLine(x + 1, y + height - 1, x + width - 1, y + height - 1);
+                this.drawLine(x + width - 1, y, x + width - 1, y + height - 2);
+                this.setColor(c);
+            };
+            Graphics.prototype.drawPolygon = function (xPoints, yPoints, nPoints) {
+                if (((xPoints != null && xPoints instanceof Array) || xPoints === null) && ((yPoints != null && yPoints instanceof Array) || yPoints === null) && ((typeof nPoints === 'number') || nPoints === null)) {
+                }
+                else if (((xPoints != null && xPoints instanceof java.awt.Polygon) || xPoints === null) && yPoints === undefined && nPoints === undefined) {
+                    return this.drawPolygon$java_awt_Polygon(xPoints);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            Graphics.prototype.drawPolygon$java_awt_Polygon = function (p) {
+                this.drawPolygon(p.xpoints, p.ypoints, p.npoints);
+            };
+            Graphics.prototype.fillPolygon = function (xPoints, yPoints, nPoints) {
+                if (((xPoints != null && xPoints instanceof Array) || xPoints === null) && ((yPoints != null && yPoints instanceof Array) || yPoints === null) && ((typeof nPoints === 'number') || nPoints === null)) {
+                }
+                else if (((xPoints != null && xPoints instanceof java.awt.Polygon) || xPoints === null) && yPoints === undefined && nPoints === undefined) {
+                    return this.fillPolygon$java_awt_Polygon(xPoints);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            Graphics.prototype.fillPolygon$java_awt_Polygon = function (p) {
+                this.fillPolygon(p.xpoints, p.ypoints, p.npoints);
+            };
+            Graphics.prototype.drawImage$java_awt_Image$int$int$java_awt_image_ImageObserver = function (img, x, y, observer) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            Graphics.prototype.drawImage$java_awt_Image$int$int$int$int$java_awt_image_ImageObserver = function (img, x, y, width, height, observer) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            Graphics.prototype.drawImage$java_awt_Image$int$int$java_awt_Color$java_awt_image_ImageObserver = function (img, x, y, bgcolor, observer) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            Graphics.prototype.drawImage$java_awt_Image$int$int$int$int$java_awt_Color$java_awt_image_ImageObserver = function (img, x, y, width, height, bgcolor, observer) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            Graphics.prototype.drawImage$java_awt_Image$int$int$int$int$int$int$int$int$java_awt_image_ImageObserver = function (img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, observer) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            Graphics.prototype.drawImage = function (img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, bgcolor, observer) {
+                if (((img != null && img instanceof java.awt.Image) || img === null) && ((typeof dx1 === 'number') || dx1 === null) && ((typeof dy1 === 'number') || dy1 === null) && ((typeof dx2 === 'number') || dx2 === null) && ((typeof dy2 === 'number') || dy2 === null) && ((typeof sx1 === 'number') || sx1 === null) && ((typeof sy1 === 'number') || sy1 === null) && ((typeof sx2 === 'number') || sx2 === null) && ((typeof sy2 === 'number') || sy2 === null) && ((bgcolor != null && bgcolor instanceof java.awt.Color) || bgcolor === null) && ((observer != null && observer["__interfaces"] != null && observer["__interfaces"].indexOf("java.awt.image.ImageObserver") >= 0) || observer === null)) {
+                    return false;
+                }
+                else if (((img != null && img instanceof java.awt.Image) || img === null) && ((typeof dx1 === 'number') || dx1 === null) && ((typeof dy1 === 'number') || dy1 === null) && ((typeof dx2 === 'number') || dx2 === null) && ((typeof dy2 === 'number') || dy2 === null) && ((typeof sx1 === 'number') || sx1 === null) && ((typeof sy1 === 'number') || sy1 === null) && ((typeof sx2 === 'number') || sx2 === null) && ((typeof sy2 === 'number') || sy2 === null) && ((bgcolor != null && bgcolor["__interfaces"] != null && bgcolor["__interfaces"].indexOf("java.awt.image.ImageObserver") >= 0) || bgcolor === null) && observer === undefined) {
+                    return this.drawImage$java_awt_Image$int$int$int$int$int$int$int$int$java_awt_image_ImageObserver(img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, bgcolor);
+                }
+                else if (((img != null && img instanceof java.awt.Image) || img === null) && ((typeof dx1 === 'number') || dx1 === null) && ((typeof dy1 === 'number') || dy1 === null) && ((typeof dx2 === 'number') || dx2 === null) && ((typeof dy2 === 'number') || dy2 === null) && ((sx1 != null && sx1 instanceof java.awt.Color) || sx1 === null) && ((sy1 != null && sy1["__interfaces"] != null && sy1["__interfaces"].indexOf("java.awt.image.ImageObserver") >= 0) || sy1 === null) && sx2 === undefined && sy2 === undefined && bgcolor === undefined && observer === undefined) {
+                    return this.drawImage$java_awt_Image$int$int$int$int$java_awt_Color$java_awt_image_ImageObserver(img, dx1, dy1, dx2, dy2, sx1, sy1);
+                }
+                else if (((img != null && img instanceof java.awt.Image) || img === null) && ((typeof dx1 === 'number') || dx1 === null) && ((typeof dy1 === 'number') || dy1 === null) && ((typeof dx2 === 'number') || dx2 === null) && ((typeof dy2 === 'number') || dy2 === null) && ((sx1 != null && sx1["__interfaces"] != null && sx1["__interfaces"].indexOf("java.awt.image.ImageObserver") >= 0) || sx1 === null) && sy1 === undefined && sx2 === undefined && sy2 === undefined && bgcolor === undefined && observer === undefined) {
+                    return this.drawImage$java_awt_Image$int$int$int$int$java_awt_image_ImageObserver(img, dx1, dy1, dx2, dy2, sx1);
+                }
+                else if (((img != null && img instanceof java.awt.Image) || img === null) && ((typeof dx1 === 'number') || dx1 === null) && ((typeof dy1 === 'number') || dy1 === null) && ((dx2 != null && dx2 instanceof java.awt.Color) || dx2 === null) && ((dy2 != null && dy2["__interfaces"] != null && dy2["__interfaces"].indexOf("java.awt.image.ImageObserver") >= 0) || dy2 === null) && sx1 === undefined && sy1 === undefined && sx2 === undefined && sy2 === undefined && bgcolor === undefined && observer === undefined) {
+                    return this.drawImage$java_awt_Image$int$int$java_awt_Color$java_awt_image_ImageObserver(img, dx1, dy1, dx2, dy2);
+                }
+                else if (((img != null && img instanceof java.awt.Image) || img === null) && ((typeof dx1 === 'number') || dx1 === null) && ((typeof dy1 === 'number') || dy1 === null) && ((dx2 != null && dx2["__interfaces"] != null && dx2["__interfaces"].indexOf("java.awt.image.ImageObserver") >= 0) || dx2 === null) && dy2 === undefined && sx1 === undefined && sy1 === undefined && sx2 === undefined && sy2 === undefined && bgcolor === undefined && observer === undefined) {
+                    return this.drawImage$java_awt_Image$int$int$java_awt_image_ImageObserver(img, dx1, dy1, dx2);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            Graphics.prototype.finalize = function () {
+                this.dispose();
+            };
+            Graphics.prototype.toString = function () {
+                return this.constructor["__classname"] + "[font=" + this.getFont() + ",color=" + this.getColor() + "]";
+            };
+            Graphics.prototype.hitClip = function (x, y, width, height) {
+                var clipRect = this.getClipBounds();
+                if (clipRect == null) {
+                    return true;
+                }
+                return clipRect.intersects(x, y, width, height);
+            };
+            Graphics.prototype.getClipBounds = function (r) {
+                var _this = this;
+                if (((r != null && r instanceof java.awt.Rectangle) || r === null)) {
+                    return (function () {
+                        var clipRect = _this.getClipBounds();
+                        if (clipRect != null) {
+                            r.x = clipRect.x;
+                            r.y = clipRect.y;
+                            r.width = clipRect.width;
+                            r.height = clipRect.height;
+                        }
+                        else if (r == null) {
+                            throw new java.lang.NullPointerException("null rectangle parameter");
+                        }
+                        return r;
+                    })();
+                }
+                else if (r === undefined) {
+                    return this.getClipBounds$();
+                }
+                else
+                    throw new Error('invalid overload');
+            };
             return Graphics;
         }());
         awt.Graphics = Graphics;
+        Graphics["__classname"] = "java.awt.Graphics";
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
     (function (awt) {
         var GridLayout = (function () {
             function GridLayout(rows, cols) {
+                this.created = false;
                 this.currentPosition = 0;
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.HTMLComponent", "java.awt.Layout"] });
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.LayoutManager"] });
                 this.cols = 0;
                 this.rows = 0;
                 this.rows = rows;
                 this.cols = cols;
             }
-            GridLayout.prototype.add = function (component) {
-                if (this.table == null) {
-                    this.init();
+            GridLayout.prototype.addLayoutComponent = function (name, component) {
+            };
+            GridLayout.prototype.removeLayoutComponent = function (component) {
+            };
+            GridLayout.prototype.layoutContainer = function (parent) {
+                if (!this.created) {
+                    this.parent = parent;
+                    this.created = true;
+                    var div = parent.getHTMLElement();
+                    this.table = document.createElement("table");
+                    this.table.style.width = "100%";
+                    this.table.style.height = "100%";
+                    this.table.style.position = "absolute";
+                    this.table.style.left = "0px";
+                    this.table.style.right = "0px";
+                    this.table.style.zIndex = "0";
+                    for (var j = 0; j < this.rows; j++) {
+                        var row = document.createElement("tr");
+                        this.table.appendChild(row);
+                        for (var i = 0; i < this.cols; i++) {
+                            var col = document.createElement("td");
+                            row.appendChild(col);
+                            col.style.width = "" + (((100 | 0) / this.cols | 0)) + "%";
+                        }
+                    }
+                    div.appendChild(this.table);
                 }
+            };
+            GridLayout.prototype.onComponentAdded = function (parent, component, position) {
                 var pos = 0;
                 for (var j = 0; j < this.rows; j++) {
                     var row = this.table.childNodes[j];
@@ -10219,41 +12479,549 @@ var java;
                     }
                 }
             };
-            GridLayout.prototype.getHTMLElement = function () {
-                if (this.table == null) {
-                    this.init();
-                }
-                return this.table;
-            };
-            GridLayout.prototype.bind = function (id) {
-            };
-            GridLayout.prototype.init = function () {
-                this.table = document.createElement("table");
-                this.table.style.width = "100%";
-                this.table.style.height = "100%";
-                this.table.style.position = "absolute";
-                this.table.style.left = "0px";
-                this.table.style.right = "0px";
-                this.table.style.zIndex = "0";
-                for (var j = 0; j < this.rows; j++) {
-                    var row = document.createElement("tr");
-                    this.table.appendChild(row);
-                    for (var i = 0; i < this.cols; i++) {
-                        var col = document.createElement("td");
-                        row.appendChild(col);
-                        col.style.width = "" + (((100 | 0) / this.cols | 0)) + "%";
-                    }
-                }
-            };
             return GridLayout;
         }());
         awt.GridLayout = GridLayout;
+        GridLayout["__classname"] = "java.awt.GridLayout";
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var image;
+        (function (image) {
+            var ImageObserver;
+            (function (ImageObserver) {
+                ImageObserver.WIDTH = 1;
+                ImageObserver.HEIGHT = 2;
+                ImageObserver.PROPERTIES = 4;
+                ImageObserver.SOMEBITS = 8;
+                ImageObserver.FRAMEBITS = 16;
+                ImageObserver.ALLBITS = 32;
+                ImageObserver.ERROR = 64;
+                ImageObserver.ABORT = 128;
+            })(ImageObserver = image.ImageObserver || (image.ImageObserver = {}));
+        })(image = awt.image || (awt.image = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var Image = (function () {
+            function Image(source) {
+                this.source = source;
+            }
+            Image.prototype.getWidth = function (observer) {
+                return (this.source.width | 0);
+            };
+            Image.prototype.getHeight = function (observer) {
+                return (this.source.height | 0);
+            };
+            Image.prototype.flush = function () {
+            };
+            /**
+             * Use the default image-scaling algorithm.
+             *
+             * @since JDK1.1
+             */
+            Image.SCALE_DEFAULT = 1;
+            /**
+             * Choose an image-scaling algorithm that gives higher priority to scaling
+             * speed than smoothness of the scaled image.
+             *
+             * @since JDK1.1
+             */
+            Image.SCALE_FAST = 2;
+            /**
+             * Choose an image-scaling algorithm that gives higher priority to image
+             * smoothness than scaling speed.
+             *
+             * @since JDK1.1
+             */
+            Image.SCALE_SMOOTH = 4;
+            /**
+             * Use the image scaling algorithm embodied in the
+             * <code>ReplicateScaleFilter</code> class. The <code>Image</code> object is
+             * free to substitute a different filter that performs the same algorithm
+             * yet integrates more efficiently into the imaging infrastructure supplied
+             * by the toolkit.
+             *
+             * @see java.awt.image.ReplicateScaleFilter
+             * @since JDK1.1
+             */
+            Image.SCALE_REPLICATE = 8;
+            /**
+             * Use the Area Averaging image scaling algorithm. The image object is free
+             * to substitute a different filter that performs the same algorithm yet
+             * integrates more efficiently into the image infrastructure supplied by the
+             * toolkit.
+             *
+             * @see java.awt.image.AreaAveragingScaleFilter
+             * @since JDK1.1
+             */
+            Image.SCALE_AREA_AVERAGING = 16;
+            return Image;
+        }());
+        awt.Image = Image;
+        Image["__classname"] = "java.awt.Image";
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var Insets = (function () {
+            function Insets(top, left, bottom, right) {
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.io.Serializable"] });
+                this.top = 0;
+                this.left = 0;
+                this.bottom = 0;
+                this.right = 0;
+                this.top = top;
+                this.left = left;
+                this.bottom = bottom;
+                this.right = right;
+            }
+            Insets.prototype.set = function (top, left, bottom, right) {
+                this.top = top;
+                this.left = left;
+                this.bottom = bottom;
+                this.right = right;
+            };
+            Insets.prototype.equals = function (obj) {
+                if (obj != null && obj instanceof java.awt.Insets) {
+                    var insets = obj;
+                    return ((this.top === insets.top) && (this.left === insets.left) && (this.bottom === insets.bottom) && (this.right === insets.right));
+                }
+                return false;
+            };
+            Insets.prototype.hashCode = function () {
+                var sum1 = this.left + this.bottom;
+                var sum2 = this.right + this.top;
+                var val1 = (sum1 * (sum1 + 1) / 2 | 0) + this.left;
+                var val2 = (sum2 * (sum2 + 1) / 2 | 0) + this.top;
+                var sum3 = val1 + val2;
+                return (sum3 * (sum3 + 1) / 2 | 0) + val2;
+            };
+            Insets.prototype.toString = function () {
+                return this.constructor["__classname"] + "[top=" + this.top + ",left=" + this.left + ",bottom=" + this.bottom + ",right=" + this.right + "]";
+            };
+            Insets.prototype.clone = function () {
+                try {
+                    return javaemul.internal.ObjectHelper.clone(this);
+                }
+                catch (e) {
+                    throw new java.lang.InternalError(e);
+                }
+                ;
+            };
+            Insets.serialVersionUID = -2272572637695466749;
+            return Insets;
+        }());
+        awt.Insets = Insets;
+        Insets["__classname"] = "java.awt.Insets";
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var MenuComponent = (function () {
+            function MenuComponent() {
+            }
+            MenuComponent.prototype.getName = function () {
+                return this.name;
+            };
+            MenuComponent.prototype.setName = function (name) {
+                this.name = name;
+            };
+            return MenuComponent;
+        }());
+        awt.MenuComponent = MenuComponent;
+        MenuComponent["__classname"] = "java.awt.MenuComponent";
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var Polygon = (function () {
+            function Polygon(xpoints, ypoints, npoints) {
+                var _this = this;
+                if (((xpoints != null && xpoints instanceof Array) || xpoints === null) && ((ypoints != null && ypoints instanceof Array) || ypoints === null) && ((typeof npoints === 'number') || npoints === null)) {
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.Shape", "java.io.Serializable"] });
+                    this.npoints = 0;
+                    (function () {
+                        if (npoints > xpoints.length || npoints > ypoints.length) {
+                            throw new java.lang.IndexOutOfBoundsException("npoints > xpoints.length || npoints > ypoints.length");
+                        }
+                        if (npoints < 0) {
+                            throw new java.lang.NegativeArraySizeException("npoints < 0");
+                        }
+                        _this.npoints = npoints;
+                        _this.xpoints = java.util.Arrays.copyOf(xpoints, npoints);
+                        _this.ypoints = java.util.Arrays.copyOf(ypoints, npoints);
+                    })();
+                }
+                else if (xpoints === undefined && ypoints === undefined && npoints === undefined) {
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.Shape", "java.io.Serializable"] });
+                    this.npoints = 0;
+                    (function () {
+                        _this.xpoints = new Array(Polygon.MIN_LENGTH);
+                        _this.ypoints = new Array(Polygon.MIN_LENGTH);
+                    })();
+                }
+                else
+                    throw new Error('invalid overload');
+            }
+            Polygon.prototype.reset = function () {
+                this.npoints = 0;
+                this.bounds = null;
+            };
+            Polygon.prototype.invalidate = function () {
+                this.bounds = null;
+            };
+            Polygon.prototype.translate = function (deltaX, deltaY) {
+                for (var i = 0; i < this.npoints; i++) {
+                    this.xpoints[i] += deltaX;
+                    this.ypoints[i] += deltaY;
+                }
+                if (this.bounds != null) {
+                    this.bounds.translate(deltaX, deltaY);
+                }
+            };
+            Polygon.prototype.calculateBounds = function (xpoints, ypoints, npoints) {
+                var boundsMinX = javaemul.internal.IntegerHelper.MAX_VALUE;
+                var boundsMinY = javaemul.internal.IntegerHelper.MAX_VALUE;
+                var boundsMaxX = javaemul.internal.IntegerHelper.MIN_VALUE;
+                var boundsMaxY = javaemul.internal.IntegerHelper.MIN_VALUE;
+                for (var i = 0; i < npoints; i++) {
+                    var x = xpoints[i];
+                    boundsMinX = Math.min(boundsMinX, x);
+                    boundsMaxX = Math.max(boundsMaxX, x);
+                    var y = ypoints[i];
+                    boundsMinY = Math.min(boundsMinY, y);
+                    boundsMaxY = Math.max(boundsMaxY, y);
+                }
+                this.bounds = new java.awt.Rectangle(boundsMinX, boundsMinY, boundsMaxX - boundsMinX, boundsMaxY - boundsMinY);
+            };
+            Polygon.prototype.updateBounds = function (x, y) {
+                if (x < this.bounds.x) {
+                    this.bounds.width = this.bounds.width + (this.bounds.x - x);
+                    this.bounds.x = x;
+                }
+                else {
+                    this.bounds.width = Math.max(this.bounds.width, x - this.bounds.x);
+                }
+                if (y < this.bounds.y) {
+                    this.bounds.height = this.bounds.height + (this.bounds.y - y);
+                    this.bounds.y = y;
+                }
+                else {
+                    this.bounds.height = Math.max(this.bounds.height, y - this.bounds.y);
+                }
+            };
+            Polygon.prototype.addPoint = function (x, y) {
+                if (this.npoints >= this.xpoints.length || this.npoints >= this.ypoints.length) {
+                    var newLength = this.npoints * 2;
+                    if (newLength < Polygon.MIN_LENGTH) {
+                        newLength = Polygon.MIN_LENGTH;
+                    }
+                    else if ((newLength & (newLength - 1)) !== 0) {
+                        newLength = javaemul.internal.IntegerHelper.highestOneBit(newLength);
+                    }
+                    this.xpoints = java.util.Arrays.copyOf(this.xpoints, newLength);
+                    this.ypoints = java.util.Arrays.copyOf(this.ypoints, newLength);
+                }
+                this.xpoints[this.npoints] = x;
+                this.ypoints[this.npoints] = y;
+                this.npoints++;
+                if (this.bounds != null) {
+                    this.updateBounds(x, y);
+                }
+            };
+            Polygon.prototype.getBounds = function () {
+                return this.getBoundingBox();
+            };
+            Polygon.prototype.getBoundingBox = function () {
+                if (this.npoints === 0) {
+                    return new java.awt.Rectangle();
+                }
+                if (this.bounds == null) {
+                    this.calculateBounds(this.xpoints, this.ypoints, this.npoints);
+                }
+                return this.bounds.getBounds();
+            };
+            Polygon.prototype.contains$java_awt_Point = function (p) {
+                return this.contains(p.x, p.y);
+            };
+            Polygon.prototype.contains$int$int = function (x, y) {
+                return this.contains(x, y);
+            };
+            Polygon.prototype.inside = function (x, y) {
+                return this.contains(x, y);
+            };
+            Polygon.prototype.getBounds2D = function () {
+                return this.getBounds();
+            };
+            Polygon.prototype.contains$double$double = function (x, y) {
+                if (this.npoints <= 2 || !this.getBoundingBox().contains(x, y)) {
+                    return false;
+                }
+                var hits = 0;
+                var lastx = this.xpoints[this.npoints - 1];
+                var lasty = this.ypoints[this.npoints - 1];
+                var curx;
+                var cury;
+                for (var i = 0; i < this.npoints; lastx = curx, lasty = cury, i++) {
+                    curx = this.xpoints[i];
+                    cury = this.ypoints[i];
+                    if (cury === lasty) {
+                        continue;
+                    }
+                    var leftx;
+                    if (curx < lastx) {
+                        if (x >= lastx) {
+                            continue;
+                        }
+                        leftx = curx;
+                    }
+                    else {
+                        if (x >= curx) {
+                            continue;
+                        }
+                        leftx = lastx;
+                    }
+                    var test1;
+                    var test2;
+                    if (cury < lasty) {
+                        if (y < cury || y >= lasty) {
+                            continue;
+                        }
+                        if (x < leftx) {
+                            hits++;
+                            continue;
+                        }
+                        test1 = x - curx;
+                        test2 = y - cury;
+                    }
+                    else {
+                        if (y < lasty || y >= cury) {
+                            continue;
+                        }
+                        if (x < leftx) {
+                            hits++;
+                            continue;
+                        }
+                        test1 = x - lastx;
+                        test2 = y - lasty;
+                    }
+                    if (test1 < (test2 / (lasty - cury) * (lastx - curx))) {
+                        hits++;
+                    }
+                }
+                return ((hits & 1) !== 0);
+            };
+            Polygon.prototype.getCrossings = function (xlo, ylo, xhi, yhi) {
+                var cross = new sun.awt.geom.Crossings.EvenOdd(xlo, ylo, xhi, yhi);
+                var lastx = this.xpoints[this.npoints - 1];
+                var lasty = this.ypoints[this.npoints - 1];
+                var curx;
+                var cury;
+                for (var i = 0; i < this.npoints; i++) {
+                    curx = this.xpoints[i];
+                    cury = this.ypoints[i];
+                    if (cross.accumulateLine(lastx, lasty, curx, cury)) {
+                        return null;
+                    }
+                    lastx = curx;
+                    lasty = cury;
+                }
+                return cross;
+            };
+            Polygon.prototype.contains$java_awt_geom_Point2D = function (p) {
+                return this.contains(p.getX(), p.getY());
+            };
+            Polygon.prototype.intersects = function (x, y, w, h) {
+                var _this = this;
+                if (((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && ((typeof w === 'number') || w === null) && ((typeof h === 'number') || h === null)) {
+                    return (function () {
+                        if (_this.npoints <= 0 || !_this.getBoundingBox().intersects(x, y, w, h)) {
+                            return false;
+                        }
+                        var cross = _this.getCrossings(x, y, x + w, y + h);
+                        return (cross == null || !cross.isEmpty());
+                    })();
+                }
+                else if (((x != null && x instanceof java.awt.geom.Rectangle2D) || x === null) && y === undefined && w === undefined && h === undefined) {
+                    return this.intersects$java_awt_geom_Rectangle2D(x);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            Polygon.prototype.intersects$java_awt_geom_Rectangle2D = function (r) {
+                return this.intersects(r.getX(), r.getY(), r.getWidth(), r.getHeight());
+            };
+            Polygon.prototype.contains = function (x, y, w, h) {
+                var _this = this;
+                if (((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && ((typeof w === 'number') || w === null) && ((typeof h === 'number') || h === null)) {
+                    return (function () {
+                        if (_this.npoints <= 0 || !_this.getBoundingBox().intersects(x, y, w, h)) {
+                            return false;
+                        }
+                        var cross = _this.getCrossings(x, y, x + w, y + h);
+                        return (cross != null && cross.covers(y, y + h));
+                    })();
+                }
+                else if (((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && w === undefined && h === undefined) {
+                    return this.contains$int$int(x, y);
+                }
+                else if (((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && w === undefined && h === undefined) {
+                    return this.contains$double$double(x, y);
+                }
+                else if (((x != null && x instanceof java.awt.Point) || x === null) && y === undefined && w === undefined && h === undefined) {
+                    return this.contains$java_awt_Point(x);
+                }
+                else if (((x != null && x instanceof java.awt.geom.Point2D) || x === null) && y === undefined && w === undefined && h === undefined) {
+                    return this.contains$java_awt_geom_Point2D(x);
+                }
+                else if (((x != null && x instanceof java.awt.geom.Rectangle2D) || x === null) && y === undefined && w === undefined && h === undefined) {
+                    return this.contains$java_awt_geom_Rectangle2D(x);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            Polygon.prototype.contains$java_awt_geom_Rectangle2D = function (r) {
+                return this.contains(r.getX(), r.getY(), r.getWidth(), r.getHeight());
+            };
+            Polygon.prototype.getPathIterator$java_awt_geom_AffineTransform = function (at) {
+                return new Polygon.PolygonPathIterator(this, this, at);
+            };
+            Polygon.prototype.getPathIterator = function (at, flatness) {
+                var _this = this;
+                if (((at != null && at instanceof java.awt.geom.AffineTransform) || at === null) && ((typeof flatness === 'number') || flatness === null)) {
+                    return (function () {
+                        return _this.getPathIterator(at);
+                    })();
+                }
+                else if (((at != null && at instanceof java.awt.geom.AffineTransform) || at === null) && flatness === undefined) {
+                    return this.getPathIterator$java_awt_geom_AffineTransform(at);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            Polygon.serialVersionUID = -6460061437900069969;
+            Polygon.MIN_LENGTH = 4;
+            return Polygon;
+        }());
+        awt.Polygon = Polygon;
+        Polygon["__classname"] = "java.awt.Polygon";
+        var Polygon;
+        (function (Polygon) {
+            var PolygonPathIterator = (function () {
+                function PolygonPathIterator(__parent, pg, at) {
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.geom.PathIterator"] });
+                    this.__parent = __parent;
+                    this.index = 0;
+                    this.poly = pg;
+                    this.transform = at;
+                    if (pg.npoints === 0) {
+                        this.index = 1;
+                    }
+                }
+                PolygonPathIterator.prototype.getWindingRule = function () {
+                    return java.awt.geom.PathIterator.WIND_EVEN_ODD;
+                };
+                PolygonPathIterator.prototype.isDone = function () {
+                    return this.index > this.poly.npoints;
+                };
+                PolygonPathIterator.prototype.next = function (doNext) {
+                    if (doNext === undefined) {
+                        return this.next$();
+                    }
+                    else
+                        throw new Error('invalid overload');
+                };
+                PolygonPathIterator.prototype.next$ = function () {
+                    this.index++;
+                };
+                PolygonPathIterator.prototype.currentSegment = function (coords) {
+                    var _this = this;
+                    if (((coords != null && coords instanceof Array) || coords === null)) {
+                        return (function () {
+                            if (_this.index >= _this.poly.npoints) {
+                                return java.awt.geom.PathIterator.SEG_CLOSE;
+                            }
+                            coords[0] = _this.poly.xpoints[_this.index];
+                            coords[1] = _this.poly.ypoints[_this.index];
+                            if (_this.transform != null) {
+                                _this.transform.transform(coords, 0, coords, 0, 1);
+                            }
+                            return (_this.index === 0 ? java.awt.geom.PathIterator.SEG_MOVETO : java.awt.geom.PathIterator.SEG_LINETO);
+                        })();
+                    }
+                    else if (((coords != null && coords instanceof Array) || coords === null)) {
+                        return this.currentSegment$double_A(coords);
+                    }
+                    else
+                        throw new Error('invalid overload');
+                };
+                PolygonPathIterator.prototype.currentSegment$double_A = function (coords) {
+                    if (this.index >= this.poly.npoints) {
+                        return java.awt.geom.PathIterator.SEG_CLOSE;
+                    }
+                    coords[0] = this.poly.xpoints[this.index];
+                    coords[1] = this.poly.ypoints[this.index];
+                    if (this.transform != null) {
+                        this.transform.transform(coords, 0, coords, 0, 1);
+                    }
+                    return (this.index === 0 ? java.awt.geom.PathIterator.SEG_MOVETO : java.awt.geom.PathIterator.SEG_LINETO);
+                };
+                return PolygonPathIterator;
+            }());
+            Polygon.PolygonPathIterator = PolygonPathIterator;
+            PolygonPathIterator["__classname"] = "java.awt.Polygon.PolygonPathIterator";
+        })(Polygon = awt.Polygon || (awt.Polygon = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var Toolkit = (function () {
+            function Toolkit() {
+            }
+            Toolkit.getProperty = function (key, defaultValue) {
+                return defaultValue;
+            };
+            return Toolkit;
+        }());
+        awt.Toolkit = Toolkit;
+        Toolkit["__classname"] = "java.awt.Toolkit";
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var Transparency;
+        (function (Transparency) {
+            Transparency.OPAQUE = 1;
+            Transparency.BITMASK = 2;
+            Transparency.TRANSLUCENT = 3;
+        })(Transparency = awt.Transparency || (awt.Transparency = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var beans;
@@ -10274,11 +13042,204 @@ var java;
             return Beans;
         }());
         beans.Beans = Beans;
+        Beans["__classname"] = "java.beans.Beans";
     })(beans = java.beans || (java.beans = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var beans;
+    (function (beans) {
+        var ChangeListenerMap = (function () {
+            function ChangeListenerMap() {
+            }
+            ChangeListenerMap.prototype.newProxy = function (name, listener) {
+                if (((typeof name === 'string') || name === null) && ((listener != null) || listener === null)) {
+                    return this.newProxy$java_lang_String$java_util_EventListener(name, listener);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            ChangeListenerMap.prototype.newProxy$java_lang_String$java_util_EventListener = function (name, listener) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            ChangeListenerMap.prototype.add = function (name, listener) {
+                if (this.map == null) {
+                    this.map = new java.util.HashMap();
+                }
+                var array = this.map.get(name);
+                var size = (array != null) ? array.length : 0;
+                var clone = this.newArray(size + 1);
+                clone[size] = listener;
+                if (array != null) {
+                    java.lang.System.arraycopy(array, 0, clone, 0, size);
+                }
+                this.map.put(name, clone);
+            };
+            ChangeListenerMap.prototype.remove = function (name, listener) {
+                if (this.map != null) {
+                    var array = this.map.get(name);
+                    if (array != null) {
+                        for (var i = 0; i < array.length; i++) {
+                            if (listener.equals(array[i])) {
+                                var size = array.length - 1;
+                                if (size > 0) {
+                                    var clone = this.newArray(size);
+                                    java.lang.System.arraycopy(array, 0, clone, 0, i);
+                                    java.lang.System.arraycopy(array, i + 1, clone, i, size - i);
+                                    this.map.put(name, clone);
+                                }
+                                else {
+                                    this.map.remove(name);
+                                    if (this.map.isEmpty()) {
+                                        this.map = null;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            };
+            /**
+             * Returns the list of listeners for the specified property.
+             *
+             * @param name
+             * the name of the property
+             * @return the corresponding list of listeners
+             */
+            ChangeListenerMap.prototype.get = function (name) {
+                return (this.map != null) ? this.map.get(name) : null;
+            };
+            /**
+             * Sets new list of listeners for the specified property.
+             *
+             * @param name
+             * the name of the property
+             * @param listeners
+             * new list of listeners
+             */
+            ChangeListenerMap.prototype.set = function (name, listeners) {
+                if (listeners != null) {
+                    if (this.map == null) {
+                        this.map = new java.util.HashMap();
+                    }
+                    this.map.put(name, listeners);
+                }
+                else if (this.map != null) {
+                    this.map.remove(name);
+                    if (this.map.isEmpty()) {
+                        this.map = null;
+                    }
+                }
+            };
+            /**
+             * Returns all listeners in the map.
+             *
+             * @return an array of all listeners
+             */
+            ChangeListenerMap.prototype.getListeners$ = function () {
+                if (this.map == null) {
+                    return this.newArray(0);
+                }
+                var list = new java.util.ArrayList();
+                var listeners = this.map.get(null);
+                if (listeners != null) {
+                    for (var index121 = 0; index121 < listeners.length; index121++) {
+                        var listener = listeners[index121];
+                        {
+                            list.add(listener);
+                        }
+                    }
+                }
+                for (var index122 = this.map.entrySet().iterator(); index122.hasNext();) {
+                    var entry = index122.next();
+                    {
+                        var name = entry.getKey();
+                        if (name != null) {
+                            {
+                                var array124 = entry.getValue();
+                                for (var index123 = 0; index123 < array124.length; index123++) {
+                                    var listener = array124[index123];
+                                    {
+                                        list.add(this.newProxy(name, listener));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                return list.toArray(this.newArray(list.size()));
+            };
+            /**
+             * Returns listeners that have been associated with the named property.
+             *
+             * @param name
+             * the name of the property
+             * @return an array of listeners for the named property
+             */
+            ChangeListenerMap.prototype.getListeners = function (name) {
+                var _this = this;
+                if (((typeof name === 'string') || name === null)) {
+                    return (function () {
+                        if (name != null) {
+                            var listeners = _this.get(name);
+                            if (listeners != null) {
+                                return (listeners).slice(0);
+                            }
+                        }
+                        return _this.newArray(0);
+                    })();
+                }
+                else if (name === undefined) {
+                    return this.getListeners$();
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            /**
+             * Indicates whether the map contains at least one listener to be notified.
+             *
+             * @param name
+             * the name of the property
+             * @return {@code true} if at least one listener exists or {@code false}
+             * otherwise
+             */
+            ChangeListenerMap.prototype.hasListeners = function (name) {
+                if (this.map == null) {
+                    return false;
+                }
+                var array = this.map.get(null);
+                return (array != null) || ((name != null) && (null != this.map.get(name)));
+            };
+            /**
+             * Returns a set of entries from the map. Each entry is a pair consisted of
+             * the property name and the corresponding list of listeners.
+             *
+             * @return a set of entries from the map
+             */
+            ChangeListenerMap.prototype.getEntries = function () {
+                return (this.map != null) ? this.map.entrySet() : java.util.Collections.emptySet();
+            };
+            ChangeListenerMap.prototype.extract = function (listener) {
+                if (((listener != null) || listener === null)) {
+                    return this.extract$java_util_EventListener(listener);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            /**
+             * Extracts a real listener from the proxy listener. It is necessary because
+             * default proxy class is not serializable.
+             *
+             * @return a real listener
+             */
+            ChangeListenerMap.prototype.extract$java_util_EventListener = function (listener) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            return ChangeListenerMap;
+        }());
+        beans.ChangeListenerMap = ChangeListenerMap;
+        ChangeListenerMap["__classname"] = "java.beans.ChangeListenerMap";
+    })(beans = java.beans || (java.beans = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -10356,10 +13317,10 @@ var java;
             return FileSystem;
         }());
         io.FileSystem = FileSystem;
+        FileSystem["__classname"] = "java.io.FileSystem";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -10601,9 +13562,10 @@ var java;
             return InputStream;
         }());
         io.InputStream = InputStream;
+        InputStream["__classname"] = "java.io.InputStream";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -10673,9 +13635,10 @@ var java;
             return IOUtils;
         }());
         io.IOUtils = IOUtils;
+        IOUtils["__classname"] = "java.io.IOUtils";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -10793,9 +13756,10 @@ var java;
             return OutputStream;
         }());
         io.OutputStream = OutputStream;
+        OutputStream["__classname"] = "java.io.OutputStream";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -10886,10 +13850,10 @@ var java;
             return Reader;
         }());
         io.Reader = Reader;
+        Reader["__classname"] = "java.io.Reader";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -10997,16 +13961,17 @@ var java;
                     throw new Error('invalid overload');
             };
             Writer.prototype.append$char = function (c) {
-                this.write(c);
+                this.write((c).charCodeAt(0));
                 return this;
             };
             Writer.WRITE_BUFFER_SIZE = 1024;
             return Writer;
         }());
         io.Writer = Writer;
+        Writer["__classname"] = "java.io.Writer";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -11147,10 +14112,10 @@ var java;
             return AbstractStringBuilder;
         }());
         lang.AbstractStringBuilder = AbstractStringBuilder;
+        AbstractStringBuilder["__classname"] = "java.lang.AbstractStringBuilder";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -11172,11 +14137,11 @@ var java;
                 return AnnotationFormatError;
             }(Error));
             annotation.AnnotationFormatError = AnnotationFormatError;
+            AnnotationFormatError["__classname"] = "java.lang.annotation.AnnotationFormatError";
         })(annotation = lang.annotation || (lang.annotation = {}));
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -11202,9 +14167,7 @@ var java;
         })(annotation = lang.annotation || (lang.annotation = {}));
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -11225,9 +14188,7 @@ var java;
         })(annotation = lang.annotation || (lang.annotation = {}));
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -11343,11 +14304,10 @@ var java;
             return AssertionError;
         }(Error));
         lang.AssertionError = AssertionError;
+        AssertionError["__classname"] = "java.lang.AssertionError";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -11495,13 +14455,13 @@ var java;
                         clazz.typeName = "[" + componentType.typeId;
                     }
                     else if (!componentType.isArray()) {
-                        clazz.typeName = "[L" + componentType.getName() + ";";
+                        clazz.typeName = "[L" + componentType["__classname"] + ";";
                     }
                     else {
-                        clazz.typeName = "[" + componentType.getName();
+                        clazz.typeName = "[" + componentType["__classname"];
                     }
                     clazz.canonicalName = componentType.getCanonicalName() + "[]";
-                    clazz.simpleName = componentType.getSimpleName() + "[]";
+                    clazz.simpleName = (function (name) { return name.substring(name.lastIndexOf('.') + 1); })(componentType["__classname"]) + "[]";
                     return;
                 }
                 var packageName = clazz.packageName;
@@ -11580,12 +14540,10 @@ var java;
             return Class;
         }());
         lang.Class = Class;
+        Class["__classname"] = "java.lang.Class";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -11619,8 +14577,8 @@ var java;
             };
             Enum.createValueOfMap = function (enumConstants) {
                 var result = new Object();
-                for (var index121 = 0; index121 < enumConstants.length; index121++) {
-                    var value = enumConstants[index121];
+                for (var index125 = 0; index125 < enumConstants.length; index125++) {
+                    var value = enumConstants[index125];
                     {
                         Enum.put0(result, ":" + value.name(), value);
                     }
@@ -11667,9 +14625,10 @@ var java;
             return Enum;
         }());
         lang.Enum = Enum;
+        Enum["__classname"] = "java.lang.Enum";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -11723,15 +14682,10 @@ var java;
             return Exception;
         }(Error));
         lang.Exception = Exception;
+        Exception["__classname"] = "java.lang.Exception";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -11791,10 +14745,10 @@ var java;
             return StackTraceElement;
         }());
         lang.StackTraceElement = StackTraceElement;
+        StackTraceElement["__classname"] = "java.lang.StackTraceElement";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -11859,9 +14813,10 @@ var java;
             return VirtualMachineError;
         }(Error));
         lang.VirtualMachineError = VirtualMachineError;
+        VirtualMachineError["__classname"] = "java.lang.VirtualMachineError";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -11878,9 +14833,10 @@ var java;
             return Void;
         }());
         lang.Void = Void;
+        Void["__classname"] = "java.lang.Void";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var nio;
@@ -11959,6 +14915,7 @@ var java;
                 return Charset;
             }());
             charset.Charset = Charset;
+            Charset["__classname"] = "java.nio.charset.Charset";
             var Charset;
             (function (Charset) {
                 var AvailableCharsets = (function () {
@@ -11967,11 +14924,12 @@ var java;
                     return AvailableCharsets;
                 }());
                 Charset.AvailableCharsets = AvailableCharsets;
+                AvailableCharsets["__classname"] = "java.nio.charset.Charset.AvailableCharsets";
             })(Charset = charset.Charset || (charset.Charset = {}));
         })(charset = nio.charset || (nio.charset = {}));
     })(nio = java.nio || (java.nio = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var security;
@@ -12022,9 +14980,10 @@ var java;
             return MessageDigestSpi;
         }());
         security.MessageDigestSpi = MessageDigestSpi;
+        MessageDigestSpi["__classname"] = "java.security.MessageDigestSpi";
     })(security = java.security || (java.security = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -12042,8 +15001,8 @@ var java;
             }
             AbstractCollection.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index122 = this.iterator(); index122.hasNext();) {
-                    var t = index122.next();
+                for (var index126 = this.iterator(); index126.hasNext();) {
+                    var t = index126.next();
                     {
                         action(t);
                     }
@@ -12069,8 +15028,8 @@ var java;
             AbstractCollection.prototype.addAll$java_util_Collection = function (c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
                 var changed = false;
-                for (var index123 = c.iterator(); index123.hasNext();) {
-                    var e = index123.next();
+                for (var index127 = c.iterator(); index127.hasNext();) {
+                    var e = index127.next();
                     {
                         changed = changed || this.add(e);
                     }
@@ -12088,8 +15047,8 @@ var java;
             };
             AbstractCollection.prototype.containsAll = function (c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
-                for (var index124 = c.iterator(); index124.hasNext();) {
-                    var e = index124.next();
+                for (var index128 = c.iterator(); index128.hasNext();) {
+                    var e = index128.next();
                     {
                         if (!this.contains(e)) {
                             return false;
@@ -12165,8 +15124,8 @@ var java;
             };
             AbstractCollection.prototype.toString = function () {
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index125 = this.iterator(); index125.hasNext();) {
-                    var e = index125.next();
+                for (var index129 = this.iterator(); index129.hasNext();) {
+                    var e = index129.next();
                     {
                         joiner.add(e === this ? "(this Collection)" : new String(e).toString());
                     }
@@ -12188,9 +15147,10 @@ var java;
             return AbstractCollection;
         }());
         util.AbstractCollection = AbstractCollection;
+        AbstractCollection["__classname"] = "java.util.AbstractCollection";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -12222,11 +15182,10 @@ var java;
             return AbstractMapEntry;
         }());
         util.AbstractMapEntry = AbstractMapEntry;
+        AbstractMapEntry["__classname"] = "java.util.AbstractMapEntry";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -12252,6 +15211,7 @@ var java;
             return Comparators;
         }());
         util.Comparators = Comparators;
+        Comparators["__classname"] = "java.util.Comparators";
         var Comparators;
         (function (Comparators) {
             var NaturalComparator = (function () {
@@ -12266,10 +15226,11 @@ var java;
                 return NaturalComparator;
             }());
             Comparators.NaturalComparator = NaturalComparator;
+            NaturalComparator["__classname"] = "java.util.Comparators.NaturalComparator";
         })(Comparators = util.Comparators || (util.Comparators = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -12526,6 +15487,7 @@ var java;
             return Date;
         }());
         util.Date = Date;
+        Date["__classname"] = "java.util.Date";
         var Date;
         (function (Date) {
             /**
@@ -12544,13 +15506,30 @@ var java;
                 return StringData;
             }());
             Date.StringData = StringData;
+            StringData["__classname"] = "java.util.Date.StringData";
         })(Date = util.Date || (util.Date = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var util;
+    (function (util) {
+        var EventListenerProxy = (function () {
+            function EventListenerProxy(listener) {
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.EventListener"] });
+                this.listener = listener;
+            }
+            EventListenerProxy.prototype.getListener = function () {
+                return this.listener;
+            };
+            return EventListenerProxy;
+        }());
+        util.EventListenerProxy = EventListenerProxy;
+        EventListenerProxy["__classname"] = "java.util.EventListenerProxy";
+    })(util = java.util || (java.util = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -12568,9 +15547,10 @@ var java;
             return EventObject;
         }());
         util.EventObject = EventObject;
+        EventObject["__classname"] = "java.util.EventObject";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -12594,8 +15574,8 @@ var java;
             }
             InternalHashCodeMap.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index126 = this.iterator(); index126.hasNext();) {
-                    var t = index126.next();
+                for (var index130 = this.iterator(); index130.hasNext();) {
+                    var t = index130.next();
                     {
                         action(t);
                     }
@@ -12642,8 +15622,8 @@ var java;
                 return this.findEntryInChain(key, this.getChainOrEmpty(this.hash(key)));
             };
             InternalHashCodeMap.prototype.findEntryInChain = function (key, chain) {
-                for (var index127 = 0; index127 < chain.length; index127++) {
-                    var entry = chain[index127];
+                for (var index131 = 0; index131 < chain.length; index131++) {
+                    var entry = chain[index131];
                     {
                         if (this.host._equals(key, entry.getKey())) {
                             return entry;
@@ -12678,6 +15658,7 @@ var java;
             return InternalHashCodeMap;
         }());
         util.InternalHashCodeMap = InternalHashCodeMap;
+        InternalHashCodeMap["__classname"] = "java.util.InternalHashCodeMap";
         var InternalHashCodeMap;
         (function (InternalHashCodeMap) {
             var InternalHashCodeMap$0 = (function () {
@@ -12724,7 +15705,7 @@ var java;
         })(InternalHashCodeMap = util.InternalHashCodeMap || (util.InternalHashCodeMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -12782,6 +15763,7 @@ var java;
             return InternalJsMap;
         }());
         util.InternalJsMap = InternalJsMap;
+        InternalJsMap["__classname"] = "java.util.InternalJsMap";
         var InternalJsMap;
         (function (InternalJsMap) {
             var Iterator = (function () {
@@ -12793,6 +15775,7 @@ var java;
                 return Iterator;
             }());
             InternalJsMap.Iterator = Iterator;
+            Iterator["__classname"] = "java.util.InternalJsMap.Iterator";
             var IteratorEntry = (function () {
                 function IteratorEntry() {
                     this.done = false;
@@ -12800,6 +15783,7 @@ var java;
                 return IteratorEntry;
             }());
             InternalJsMap.IteratorEntry = IteratorEntry;
+            IteratorEntry["__classname"] = "java.util.InternalJsMap.IteratorEntry";
             var JsHelper = (function () {
                 function JsHelper() {
                 }
@@ -12821,10 +15805,11 @@ var java;
                 return JsHelper;
             }());
             InternalJsMap.JsHelper = JsHelper;
+            JsHelper["__classname"] = "java.util.InternalJsMap.JsHelper";
         })(InternalJsMap = util.InternalJsMap || (util.InternalJsMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -12847,12 +15832,10 @@ var java;
             return InternalJsMapFactory;
         }());
         util.InternalJsMapFactory = InternalJsMapFactory;
+        InternalJsMapFactory["__classname"] = "java.util.InternalJsMapFactory";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -12889,6 +15872,7 @@ var java;
             return Locale;
         }());
         util.Locale = Locale;
+        Locale["__classname"] = "java.util.Locale";
         var Locale;
         (function (Locale) {
             var RootLocale = (function (_super) {
@@ -12902,6 +15886,7 @@ var java;
                 return RootLocale;
             }(java.util.Locale));
             Locale.RootLocale = RootLocale;
+            RootLocale["__classname"] = "java.util.Locale.RootLocale";
             var EnglishLocale = (function (_super) {
                 __extends(EnglishLocale, _super);
                 function EnglishLocale() {
@@ -12913,6 +15898,7 @@ var java;
                 return EnglishLocale;
             }(java.util.Locale));
             Locale.EnglishLocale = EnglishLocale;
+            EnglishLocale["__classname"] = "java.util.Locale.EnglishLocale";
             var USLocale = (function (_super) {
                 __extends(USLocale, _super);
                 function USLocale() {
@@ -12924,6 +15910,7 @@ var java;
                 return USLocale;
             }(java.util.Locale));
             Locale.USLocale = USLocale;
+            USLocale["__classname"] = "java.util.Locale.USLocale";
             var DefaultLocale = (function (_super) {
                 __extends(DefaultLocale, _super);
                 function DefaultLocale() {
@@ -12935,10 +15922,11 @@ var java;
                 return DefaultLocale;
             }(java.util.Locale));
             Locale.DefaultLocale = DefaultLocale;
+            DefaultLocale["__classname"] = "java.util.Locale.DefaultLocale";
         })(Locale = util.Locale || (util.Locale = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -12959,10 +15947,11 @@ var java;
                 return Formatter;
             }());
             logging.Formatter = Formatter;
+            Formatter["__classname"] = "java.util.logging.Formatter";
         })(logging = util.logging || (util.logging = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -12998,10 +15987,11 @@ var java;
                 return Handler;
             }());
             logging.Handler = Handler;
+            Handler["__classname"] = "java.util.logging.Handler";
         })(logging = util.logging || (util.logging = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -13086,6 +16076,7 @@ var java;
                 return Level;
             }());
             logging.Level = Level;
+            Level["__classname"] = "java.util.logging.Level";
             var Level;
             (function (Level) {
                 var LevelAll = (function (_super) {
@@ -13103,6 +16094,7 @@ var java;
                     return LevelAll;
                 }(java.util.logging.Level));
                 Level.LevelAll = LevelAll;
+                LevelAll["__classname"] = "java.util.logging.Level.LevelAll";
                 var LevelConfig = (function (_super) {
                     __extends(LevelConfig, _super);
                     function LevelConfig() {
@@ -13118,6 +16110,7 @@ var java;
                     return LevelConfig;
                 }(java.util.logging.Level));
                 Level.LevelConfig = LevelConfig;
+                LevelConfig["__classname"] = "java.util.logging.Level.LevelConfig";
                 var LevelFine = (function (_super) {
                     __extends(LevelFine, _super);
                     function LevelFine() {
@@ -13133,6 +16126,7 @@ var java;
                     return LevelFine;
                 }(java.util.logging.Level));
                 Level.LevelFine = LevelFine;
+                LevelFine["__classname"] = "java.util.logging.Level.LevelFine";
                 var LevelFiner = (function (_super) {
                     __extends(LevelFiner, _super);
                     function LevelFiner() {
@@ -13148,6 +16142,7 @@ var java;
                     return LevelFiner;
                 }(java.util.logging.Level));
                 Level.LevelFiner = LevelFiner;
+                LevelFiner["__classname"] = "java.util.logging.Level.LevelFiner";
                 var LevelFinest = (function (_super) {
                     __extends(LevelFinest, _super);
                     function LevelFinest() {
@@ -13163,6 +16158,7 @@ var java;
                     return LevelFinest;
                 }(java.util.logging.Level));
                 Level.LevelFinest = LevelFinest;
+                LevelFinest["__classname"] = "java.util.logging.Level.LevelFinest";
                 var LevelInfo = (function (_super) {
                     __extends(LevelInfo, _super);
                     function LevelInfo() {
@@ -13178,6 +16174,7 @@ var java;
                     return LevelInfo;
                 }(java.util.logging.Level));
                 Level.LevelInfo = LevelInfo;
+                LevelInfo["__classname"] = "java.util.logging.Level.LevelInfo";
                 var LevelOff = (function (_super) {
                     __extends(LevelOff, _super);
                     function LevelOff() {
@@ -13193,6 +16190,7 @@ var java;
                     return LevelOff;
                 }(java.util.logging.Level));
                 Level.LevelOff = LevelOff;
+                LevelOff["__classname"] = "java.util.logging.Level.LevelOff";
                 var LevelSevere = (function (_super) {
                     __extends(LevelSevere, _super);
                     function LevelSevere() {
@@ -13208,6 +16206,7 @@ var java;
                     return LevelSevere;
                 }(java.util.logging.Level));
                 Level.LevelSevere = LevelSevere;
+                LevelSevere["__classname"] = "java.util.logging.Level.LevelSevere";
                 var LevelWarning = (function (_super) {
                     __extends(LevelWarning, _super);
                     function LevelWarning() {
@@ -13223,11 +16222,12 @@ var java;
                     return LevelWarning;
                 }(java.util.logging.Level));
                 Level.LevelWarning = LevelWarning;
+                LevelWarning["__classname"] = "java.util.logging.Level.LevelWarning";
             })(Level = logging.Level || (logging.Level = {}));
         })(logging = util.logging || (util.logging = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -13304,10 +16304,11 @@ var java;
                 return LogManager;
             }());
             logging.LogManager = LogManager;
+            LogManager["__classname"] = "java.util.logging.LogManager";
         })(logging = util.logging || (util.logging = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -13375,13 +16376,11 @@ var java;
                 return LogRecord;
             }());
             logging.LogRecord = LogRecord;
+            LogRecord["__classname"] = "java.util.logging.LogRecord";
         })(logging = util.logging || (util.logging = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -13407,8 +16406,8 @@ var java;
                 if ((a === b)) {
                     return true;
                 }
-                var class1 = a.getClass();
-                var class2 = b.getClass();
+                var class1 = a.constructor;
+                var class2 = b.constructor;
                 if (!class1.isArray() || !class1.equals(class2)) {
                     return false;
                 }
@@ -13508,9 +16507,10 @@ var java;
             return Objects;
         }());
         util.Objects = Objects;
+        Objects["__classname"] = "java.util.Objects";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -13628,10 +16628,10 @@ var java;
             return Observable;
         }());
         util.Observable = Observable;
+        Observable["__classname"] = "java.util.Observable";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -13734,9 +16734,10 @@ var java;
             return Optional;
         }());
         util.Optional = Optional;
+        Optional["__classname"] = "java.util.Optional";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -13819,9 +16820,10 @@ var java;
             return OptionalDouble;
         }());
         util.OptionalDouble = OptionalDouble;
+        OptionalDouble["__classname"] = "java.util.OptionalDouble";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -13904,9 +16906,10 @@ var java;
             return OptionalInt;
         }());
         util.OptionalInt = OptionalInt;
+        OptionalInt["__classname"] = "java.util.OptionalInt";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -13989,11 +16992,10 @@ var java;
             return OptionalLong;
         }());
         util.OptionalLong = OptionalLong;
+        OptionalLong["__classname"] = "java.util.OptionalLong";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -14291,13 +17293,10 @@ var java;
             return Random;
         }());
         util.Random = Random;
+        Random["__classname"] = "java.util.Random";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -14364,15 +17363,10 @@ var java;
             return StringJoiner;
         }());
         util.StringJoiner = StringJoiner;
+        StringJoiner["__classname"] = "java.util.StringJoiner";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -14443,9 +17437,10 @@ var javaemul;
             return ArrayHelper;
         }());
         internal.ArrayHelper = ArrayHelper;
+        ArrayHelper["__classname"] = "javaemul.internal.ArrayHelper";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -14463,9 +17458,10 @@ var javaemul;
             return ArrayStamper;
         }());
         internal.ArrayStamper = ArrayStamper;
+        ArrayStamper["__classname"] = "javaemul.internal.ArrayStamper";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -14546,9 +17542,10 @@ var javaemul;
             return BooleanHelper;
         }());
         internal.BooleanHelper = BooleanHelper;
+        BooleanHelper["__classname"] = "javaemul.internal.BooleanHelper";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -14872,13 +17869,37 @@ var javaemul;
                 return CharacterHelper.MIN_SUPPLEMENTARY_CODE_POINT + (((highSurrogate).charCodeAt(0) & 1023) << 10) + ((lowSurrogate).charCodeAt(0) & 1023);
             };
             CharacterHelper.toLowerCase = function (c) {
-                return new String(c).toString().toLowerCase().charAt(0);
+                if (((typeof c === 'string') || c === null)) {
+                    return (function () {
+                        return new String(c).toString().toLowerCase().charAt(0);
+                    })();
+                }
+                else if (((typeof c === 'number') || c === null)) {
+                    return javaemul.internal.CharacterHelper.toLowerCase$int(c);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            CharacterHelper.toLowerCase$int = function (c) {
+                return (new String(String.fromCharCode(c)).toString().toLowerCase().charAt(0)).charCodeAt(0);
             };
             CharacterHelper.toString = function (x) {
                 return new String(x).toString();
             };
             CharacterHelper.toUpperCase = function (c) {
-                return new String(c).toString().toUpperCase().charAt(0);
+                if (((typeof c === 'string') || c === null)) {
+                    return (function () {
+                        return new String(c).toString().toUpperCase().charAt(0);
+                    })();
+                }
+                else if (((typeof c === 'number') || c === null)) {
+                    return javaemul.internal.CharacterHelper.toUpperCase$int(c);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            CharacterHelper.toUpperCase$int = function (c) {
+                return new String(String.fromCharCode(c)).toString().toUpperCase().charAt(0);
             };
             CharacterHelper.valueOf = function (c) {
                 if ((c).charCodeAt(0) < 128) {
@@ -14978,6 +17999,7 @@ var javaemul;
             return CharacterHelper;
         }());
         internal.CharacterHelper = CharacterHelper;
+        CharacterHelper["__classname"] = "javaemul.internal.CharacterHelper";
         var CharacterHelper;
         (function (CharacterHelper) {
             /**
@@ -14992,10 +18014,11 @@ var javaemul;
                 return BoxedValues;
             }());
             CharacterHelper.BoxedValues = BoxedValues;
+            BoxedValues["__classname"] = "javaemul.internal.CharacterHelper.BoxedValues";
         })(CharacterHelper = internal.CharacterHelper || (internal.CharacterHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -15018,9 +18041,10 @@ var javaemul;
             return Coercions;
         }());
         internal.Coercions = Coercions;
+        Coercions["__classname"] = "javaemul.internal.Coercions";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -15048,10 +18072,10 @@ var javaemul;
             return DateUtil;
         }());
         internal.DateUtil = DateUtil;
+        DateUtil["__classname"] = "javaemul.internal.DateUtil";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -15093,9 +18117,10 @@ var javaemul;
             return HashCodes;
         }());
         internal.HashCodes = HashCodes;
+        HashCodes["__classname"] = "javaemul.internal.HashCodes";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -15109,9 +18134,10 @@ var javaemul;
             return JreHelper;
         }());
         internal.JreHelper = JreHelper;
+        JreHelper["__classname"] = "javaemul.internal.JreHelper";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -15151,9 +18177,10 @@ var javaemul;
             return JsUtils;
         }());
         internal.JsUtils = JsUtils;
+        JsUtils["__classname"] = "javaemul.internal.JsUtils";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -15170,9 +18197,10 @@ var javaemul;
             return LongCompareHolder;
         }());
         internal.LongCompareHolder = LongCompareHolder;
+        LongCompareHolder["__classname"] = "javaemul.internal.LongCompareHolder";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -15548,9 +18576,10 @@ var javaemul;
             return MathHelper;
         }());
         internal.MathHelper = MathHelper;
+        MathHelper["__classname"] = "javaemul.internal.MathHelper";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -15769,6 +18798,7 @@ var javaemul;
             return NumberHelper;
         }());
         internal.NumberHelper = NumberHelper;
+        NumberHelper["__classname"] = "javaemul.internal.NumberHelper";
         var NumberHelper;
         (function (NumberHelper) {
             var __Decode = (function () {
@@ -15780,6 +18810,7 @@ var javaemul;
                 return __Decode;
             }());
             NumberHelper.__Decode = __Decode;
+            __Decode["__classname"] = "javaemul.internal.NumberHelper.__Decode";
             /**
              * Use nested class to avoid clinit on outer.
              */
@@ -15812,10 +18843,11 @@ var javaemul;
                 return __ParseLong;
             }());
             NumberHelper.__ParseLong = __ParseLong;
+            __ParseLong["__classname"] = "javaemul.internal.NumberHelper.__ParseLong";
         })(NumberHelper = internal.NumberHelper || (internal.NumberHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -15856,9 +18888,10 @@ var javaemul;
             return ObjectHelper;
         }());
         internal.ObjectHelper = ObjectHelper;
+        ObjectHelper["__classname"] = "javaemul.internal.ObjectHelper";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -15933,10 +18966,243 @@ var javaemul;
             return StringHashCache;
         }());
         internal.StringHashCache = StringHashCache;
+        StringHashCache["__classname"] = "javaemul.internal.StringHashCache";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var javax;
+(function (javax) {
+    var swing;
+    (function (swing) {
+        var Action;
+        (function (Action) {
+            Action.DEFAULT = "Default";
+            Action.NAME = "Name";
+            Action.SHORT_DESCRIPTION = "ShortDescription";
+            Action.LONG_DESCRIPTION = "LongDescription";
+            Action.SMALL_ICON = "SmallIcon";
+            Action.ACTION_COMMAND_KEY = "ActionCommandKey";
+            Action.ACCELERATOR_KEY = "AcceleratorKey";
+            Action.MNEMONIC_KEY = "MnemonicKey";
+            Action.SELECTED_KEY = "SwingSelectedKey";
+            Action.DISPLAYED_MNEMONIC_INDEX_KEY = "SwingDisplayedMnemonicIndexKey";
+            Action.LARGE_ICON_KEY = "SwingLargeIconKey";
+        })(Action = swing.Action || (swing.Action = {}));
+    })(swing = javax.swing || (javax.swing = {}));
+})(javax || (javax = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var javax;
+(function (javax) {
+    var swing;
+    (function (swing) {
+        var event;
+        (function (event) {
+            var EventListenerList = (function () {
+                function EventListenerList() {
+                    this.listenerList = EventListenerList.NULL_ARRAY_$LI$();
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
+                }
+                EventListenerList.NULL_ARRAY_$LI$ = function () { if (EventListenerList.NULL_ARRAY == null)
+                    EventListenerList.NULL_ARRAY = new Array(0); return EventListenerList.NULL_ARRAY; };
+                ;
+                EventListenerList.prototype.getListenerList = function () {
+                    return this.listenerList;
+                };
+                EventListenerList.prototype.getListeners = function (t) {
+                    var lList = this.listenerList;
+                    var n = this.getListenerCount(lList, t);
+                    var result = new Array(n);
+                    var j = 0;
+                    for (var i = lList.length - 2; i >= 0; i -= 2) {
+                        if (lList[i] === t) {
+                            result[j++] = lList[i + 1];
+                        }
+                    }
+                    return result;
+                };
+                EventListenerList.prototype.getListenerCount$ = function () {
+                    return (this.listenerList.length / 2 | 0);
+                };
+                EventListenerList.prototype.getListenerCount$java_lang_Class = function (t) {
+                    var lList = this.listenerList;
+                    return this.getListenerCount(lList, t);
+                };
+                EventListenerList.prototype.getListenerCount = function (list, t) {
+                    if (((list != null && list instanceof Array) || list === null) && ((t != null && t instanceof java.lang.Class) || t === null)) {
+                        return (function () {
+                            var count = 0;
+                            for (var i = 0; i < list.length; i += 2) {
+                                if (t === list[i])
+                                    count++;
+                            }
+                            return count;
+                        })();
+                    }
+                    else if (((list != null && list instanceof java.lang.Class) || list === null) && t === undefined) {
+                        return this.getListenerCount$java_lang_Class(list);
+                    }
+                    else if (list === undefined && t === undefined) {
+                        return this.getListenerCount$();
+                    }
+                    else
+                        throw new Error('invalid overload');
+                };
+                EventListenerList.prototype.add = function (t, l) {
+                    if (l == null) {
+                        return;
+                    }
+                    if (l.constructor !== t) {
+                        throw new java.lang.IllegalArgumentException("Listener " + l + " is not of type " + t);
+                    }
+                    if (this.listenerList === EventListenerList.NULL_ARRAY_$LI$()) {
+                        this.listenerList = [t, l];
+                    }
+                    else {
+                        var i = this.listenerList.length;
+                        var tmp = new Array(i + 2);
+                        java.lang.System.arraycopy(this.listenerList, 0, tmp, 0, i);
+                        tmp[i] = t;
+                        tmp[i + 1] = l;
+                        this.listenerList = tmp;
+                    }
+                };
+                EventListenerList.prototype.remove = function (t, l) {
+                    if (l == null) {
+                        return;
+                    }
+                    if (l.constructor !== t) {
+                        throw new java.lang.IllegalArgumentException("Listener " + l + " is not of type " + t);
+                    }
+                    var index = -1;
+                    for (var i = this.listenerList.length - 2; i >= 0; i -= 2) {
+                        if ((this.listenerList[i] === t) && ((this.listenerList[i + 1] === l) === true)) {
+                            index = i;
+                            break;
+                        }
+                    }
+                    if (index !== -1) {
+                        var tmp = new Array(this.listenerList.length - 2);
+                        java.lang.System.arraycopy(this.listenerList, 0, tmp, 0, index);
+                        if (index < tmp.length)
+                            java.lang.System.arraycopy(this.listenerList, index + 2, tmp, index, tmp.length - index);
+                        this.listenerList = (tmp.length === 0) ? EventListenerList.NULL_ARRAY_$LI$() : tmp;
+                    }
+                };
+                /**
+                 * Returns a string representation of the EventListenerList.
+                 */
+                EventListenerList.prototype.toString = function () {
+                    var lList = this.listenerList;
+                    var s = "EventListenerList: ";
+                    s += (lList.length / 2 | 0) + " listeners: ";
+                    for (var i = 0; i <= lList.length - 2; i += 2) {
+                        s += " type " + lList[i]["__classname"];
+                        s += " listener " + lList[i + 1];
+                    }
+                    return s;
+                };
+                return EventListenerList;
+            }());
+            event.EventListenerList = EventListenerList;
+            EventListenerList["__classname"] = "javax.swing.event.EventListenerList";
+        })(event = swing.event || (swing.event = {}));
+    })(swing = javax.swing || (javax.swing = {}));
+})(javax || (javax = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var javax;
+(function (javax) {
+    var swing;
+    (function (swing) {
+        var SwingConstants;
+        (function (SwingConstants) {
+            /**
+             * The central position in an area. Used for
+             * both compass-direction constants (NORTH, etc.)
+             * and box-orientation constants (TOP, etc.).
+             */
+            SwingConstants.CENTER = 0;
+            /**
+             * Box-orientation constant used to specify the top of a box.
+             */
+            SwingConstants.TOP = 1;
+            /**
+             * Box-orientation constant used to specify the left side of a box.
+             */
+            SwingConstants.LEFT = 2;
+            /**
+             * Box-orientation constant used to specify the bottom of a box.
+             */
+            SwingConstants.BOTTOM = 3;
+            /**
+             * Box-orientation constant used to specify the right side of a box.
+             */
+            SwingConstants.RIGHT = 4;
+            /**
+             * Compass-direction North (up).
+             */
+            SwingConstants.NORTH = 1;
+            /**
+             * Compass-direction north-east (upper right).
+             */
+            SwingConstants.NORTH_EAST = 2;
+            /**
+             * Compass-direction east (right).
+             */
+            SwingConstants.EAST = 3;
+            /**
+             * Compass-direction south-east (lower right).
+             */
+            SwingConstants.SOUTH_EAST = 4;
+            /**
+             * Compass-direction south (down).
+             */
+            SwingConstants.SOUTH = 5;
+            /**
+             * Compass-direction south-west (lower left).
+             */
+            SwingConstants.SOUTH_WEST = 6;
+            /**
+             * Compass-direction west (left).
+             */
+            SwingConstants.WEST = 7;
+            /**
+             * Compass-direction north west (upper left).
+             */
+            SwingConstants.NORTH_WEST = 8;
+            /**
+             * Horizontal orientation. Used for scrollbars and sliders.
+             */
+            SwingConstants.HORIZONTAL = 0;
+            /**
+             * Vertical orientation. Used for scrollbars and sliders.
+             */
+            SwingConstants.VERTICAL = 1;
+            /**
+             * Identifies the leading edge of text for use with left-to-right
+             * and right-to-left languages. Used by buttons and labels.
+             */
+            SwingConstants.LEADING = 10;
+            /**
+             * Identifies the trailing edge of text for use with left-to-right
+             * and right-to-left languages. Used by buttons and labels.
+             */
+            SwingConstants.TRAILING = 11;
+            /**
+             * Identifies the next direction in a sequence.
+             *
+             * @since 1.4
+             */
+            SwingConstants.NEXT = 12;
+            /**
+             * Identifies the previous direction in a sequence.
+             *
+             * @since 1.4
+             */
+            SwingConstants.PREVIOUS = 13;
+        })(SwingConstants = swing.SwingConstants || (swing.SwingConstants = {}));
+    })(swing = javax.swing || (javax.swing = {}));
+})(javax || (javax = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var sun;
 (function (sun) {
     var awt;
@@ -16019,10 +19285,11 @@ var sun;
                 return ChainEnd;
             }());
             geom.ChainEnd = ChainEnd;
+            ChainEnd["__classname"] = "sun.awt.geom.ChainEnd";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = sun.awt || (sun.awt = {}));
 })(sun || (sun = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var sun;
 (function (sun) {
     var awt;
@@ -16288,6 +19555,7 @@ var sun;
                 return Crossings;
             }());
             geom.Crossings = Crossings;
+            Crossings["__classname"] = "sun.awt.geom.Crossings";
             var Crossings;
             (function (Crossings) {
                 var EvenOdd = (function (_super) {
@@ -16378,6 +19646,7 @@ var sun;
                     return EvenOdd;
                 }(sun.awt.geom.Crossings));
                 Crossings.EvenOdd = EvenOdd;
+                EvenOdd["__classname"] = "sun.awt.geom.Crossings.EvenOdd";
                 var NonZero = (function (_super) {
                     __extends(NonZero, _super);
                     function NonZero(xlo, ylo, xhi, yhi) {
@@ -16494,11 +19763,12 @@ var sun;
                     return NonZero;
                 }(sun.awt.geom.Crossings));
                 Crossings.NonZero = NonZero;
+                NonZero["__classname"] = "sun.awt.geom.Crossings.NonZero";
             })(Crossings = geom.Crossings || (geom.Crossings = {}));
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = sun.awt || (sun.awt = {}));
 })(sun || (sun = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var sun;
 (function (sun) {
     var awt;
@@ -17387,10 +20657,11 @@ var sun;
                 return Curve;
             }());
             geom.Curve = Curve;
+            Curve["__classname"] = "sun.awt.geom.Curve";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = sun.awt || (sun.awt = {}));
 })(sun || (sun = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var sun;
 (function (sun) {
     var awt;
@@ -17476,10 +20747,11 @@ var sun;
                 return CurveLink;
             }());
             geom.CurveLink = CurveLink;
+            CurveLink["__classname"] = "sun.awt.geom.CurveLink";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = sun.awt || (sun.awt = {}));
 })(sun || (sun = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var sun;
 (function (sun) {
     var awt;
@@ -17551,11 +20823,11 @@ var sun;
                 return Edge;
             }());
             geom.Edge = Edge;
+            Edge["__classname"] = "sun.awt.geom.Edge";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = sun.awt || (sun.awt = {}));
 })(sun || (sun = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var test;
 (function (test) {
     var Test = (function () {
@@ -17615,8 +20887,8 @@ var test;
             Test.assertEquals(l.get(1), "c");
             Test.assertEquals(l.indexOf("a"), 0);
             var res = "";
-            for (var index128 = l.iterator(); index128.hasNext();) {
-                var s = index128.next();
+            for (var index132 = l.iterator(); index132.hasNext();) {
+                var s = index132.next();
                 {
                     res += s;
                 }
@@ -17676,6 +20948,8 @@ var test;
             sb2.append("test");
             sb2.deleteCharAt(sb2.length() - 1);
             Test.assertEquals("truectes", sb2.toString());
+            Test.assertEquals('a', javaemul.internal.CharacterHelper.toLowerCase('A'));
+            Test.assertEquals("abc", "ABC".toLowerCase());
             console.info("end testing strings");
         };
         Test.testIO = function () {
@@ -17712,8 +20986,9 @@ var test;
         return Test;
     }());
     test.Test = Test;
+    Test["__classname"] = "test.Test";
 })(test || (test = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -17726,41 +21001,37 @@ var java;
                 this.label = label;
                 this.actionCommand = label;
             }
-            Button.prototype.bind = function (id) {
-                this.button = document.getElementById(id);
-                this.button.innerHTML = this.label;
+            Button.prototype.getHTMLElement = function () {
+                return _super.prototype.getHTMLElement.call(this);
             };
-            Button.prototype.init = function () {
-                if (this.button != null) {
+            Button.prototype.bindHTML = function (htmlElement) {
+                _super.prototype.bindHTML.call(this, htmlElement);
+                htmlElement.innerHTML = this.label;
+            };
+            Button.prototype.createHTML = function () {
+                if (this.htmlElement != null) {
                     return;
                 }
-                this.button = document.createElement("button");
-                this.button.innerHTML = this.label;
-                this.button.id = "cmp" + java.applet.Applet.CURRENT_ID++;
-                if (this.background != null) {
-                    this.button.style.backgroundColor = this.background.toHTML();
-                }
+                this.htmlElement = document.createElement("button");
+            };
+            Button.prototype.initHTML = function () {
+                _super.prototype.initHTML.call(this);
+                this.htmlElement.innerHTML = this.label;
                 this.initActionListener();
             };
             Button.prototype.initActionListener = function () {
                 var _this = this;
                 if (this.actionListener != null) {
-                    this.button.onclick = function (e) {
-                        console.log("button clicked: " + _this.actionCommand);
-                        _this.actionListener.actionPerformed(new java.awt.event.ActionEvent(_this, _this.actionCommand));
+                    this.htmlElement.onclick = function (e) {
+                        console.log("htmlElement clicked: " + _this.actionCommand);
+                        _this.actionListener.actionPerformed(new java.awt.event.ActionEvent(_this, 0, _this.actionCommand));
                         return e;
                     };
                 }
             };
-            Button.prototype.getHTMLElement = function () {
-                if (this.button == null) {
-                    this.init();
-                }
-                return this.button;
-            };
             Button.prototype.addActionListener = function (actionListener) {
                 this.actionListener = actionListener;
-                if (this.button != null) {
+                if (this.htmlElement != null) {
                     this.initActionListener();
                 }
             };
@@ -17770,9 +21041,307 @@ var java;
             return Button;
         }(java.awt.Component));
         awt.Button = Button;
+        Button["__classname"] = "java.awt.Button";
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var Checkbox = (function (_super) {
+            __extends(Checkbox, _super);
+            function Checkbox(label, group, state) {
+                var _this = this;
+                if (((typeof label === 'string') || label === null) && ((group != null && group instanceof java.awt.CheckboxGroup) || group === null) && ((typeof state === 'boolean') || state === null)) {
+                    {
+                        _super.call(this);
+                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.ItemSelectable", "java.awt.HTMLComponent"] });
+                        this.state = false;
+                        (function () {
+                            _this.label = label;
+                            _this.state = state;
+                            _this.group = group;
+                            if (state && (group != null)) {
+                                group.setSelectedCheckbox(_this);
+                            }
+                        })();
+                    }
+                    (function () {
+                    })();
+                }
+                else if (((typeof label === 'string') || label === null) && ((typeof group === 'boolean') || group === null) && ((state != null && state instanceof java.awt.CheckboxGroup) || state === null)) {
+                    var state = group;
+                    var group = state;
+                    _super.call(this);
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.ItemSelectable", "java.awt.HTMLComponent"] });
+                    this.state = false;
+                    (function () {
+                        _this.label = label;
+                        _this.state = state;
+                        _this.group = group;
+                        if (state && (group != null)) {
+                            group.setSelectedCheckbox(_this);
+                        }
+                    })();
+                }
+                else if (((typeof label === 'string') || label === null) && ((typeof group === 'boolean') || group === null) && state === undefined) {
+                    var state = group;
+                    {
+                        var group = null;
+                        _super.call(this);
+                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.ItemSelectable", "java.awt.HTMLComponent"] });
+                        this.state = false;
+                        (function () {
+                            _this.label = label;
+                            _this.state = state;
+                            _this.group = group;
+                            if (state && (group != null)) {
+                                group.setSelectedCheckbox(_this);
+                            }
+                        })();
+                    }
+                    (function () {
+                    })();
+                }
+                else if (((typeof label === 'string') || label === null) && group === undefined && state === undefined) {
+                    {
+                        var state = false;
+                        var group = null;
+                        _super.call(this);
+                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.ItemSelectable", "java.awt.HTMLComponent"] });
+                        this.state = false;
+                        (function () {
+                            _this.label = label;
+                            _this.state = state;
+                            _this.group = group;
+                            if (state && (group != null)) {
+                                group.setSelectedCheckbox(_this);
+                            }
+                        })();
+                    }
+                    (function () {
+                    })();
+                }
+                else if (label === undefined && group === undefined && state === undefined) {
+                    {
+                        var label = "";
+                        var state = false;
+                        var group = null;
+                        _super.call(this);
+                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.ItemSelectable", "java.awt.HTMLComponent"] });
+                        this.state = false;
+                        (function () {
+                            _this.label = label;
+                            _this.state = state;
+                            _this.group = group;
+                            if (state && (group != null)) {
+                                group.setSelectedCheckbox(_this);
+                            }
+                        })();
+                    }
+                    (function () {
+                    })();
+                }
+                else
+                    throw new Error('invalid overload');
+            }
+            Checkbox.prototype.getHTMLElement = function () {
+                return _super.prototype.getHTMLElement.call(this);
+            };
+            Checkbox.prototype.createHTML = function () {
+                if (this.htmlElement != null) {
+                    return;
+                }
+                this.htmlElement = document.createElement("label");
+                this.htmlElement.appendChild(this.htmlLabel = document.createTextNode(""));
+                this.htmlCheckbox = document.createElement("input");
+                this.htmlCheckbox.type = "checkbox";
+            };
+            Checkbox.prototype.initHTML = function () {
+                _super.prototype.initHTML.call(this);
+                this.htmlCheckbox.checked = this.state;
+                this.htmlLabel.data = this.label;
+            };
+            Checkbox.prototype.constructComponentName = function () {
+                {
+                    return Checkbox.base + Checkbox.nameCounter++;
+                }
+                ;
+            };
+            Checkbox.prototype.getLabel = function () {
+                return this.label;
+            };
+            Checkbox.prototype.setLabel = function (label) {
+                {
+                    if (label !== this.label && (this.label == null || !(this.label === label))) {
+                        this.label = label;
+                    }
+                }
+                ;
+            };
+            Checkbox.prototype.getState = function () {
+                return this.htmlCheckbox.checked;
+            };
+            Checkbox.prototype.setStateInternal = function (state) {
+                this.state = state;
+                this.htmlCheckbox.checked = state;
+            };
+            Checkbox.prototype.setState = function (state) {
+                var group = this.group;
+                if (group != null) {
+                    if (state) {
+                        group.setSelectedCheckbox(this);
+                    }
+                    else if (group.getSelectedCheckbox() === this) {
+                        state = true;
+                    }
+                }
+                this.setStateInternal(state);
+            };
+            Checkbox.prototype.getSelectedObjects = function () {
+                if (this.state) {
+                    var items = new Array(1);
+                    items[0] = this.label;
+                    return items;
+                }
+                return null;
+            };
+            Checkbox.prototype.getCheckboxGroup = function () {
+                return this.group;
+            };
+            Checkbox.prototype.setCheckboxGroup = function (g) {
+                var oldGroup;
+                var oldState;
+                if (this.group === g) {
+                    return;
+                }
+                {
+                    oldGroup = this.group;
+                    oldState = this.getState();
+                    this.group = g;
+                    if (this.group != null && this.getState()) {
+                        if (this.group.getSelectedCheckbox() != null) {
+                            this.setState(false);
+                        }
+                        else {
+                            this.group.setSelectedCheckbox(this);
+                        }
+                    }
+                }
+                ;
+                if (oldGroup != null && oldState) {
+                    oldGroup.setSelectedCheckbox(null);
+                }
+            };
+            Checkbox.prototype.addItemListener = function (l) {
+                if (l == null) {
+                    return;
+                }
+                this.itemListeners.push(l);
+            };
+            Checkbox.prototype.removeItemListener = function (l) {
+                if (l == null) {
+                    return;
+                }
+                var index = (this.itemListeners.indexOf(l) | 0);
+                if (index > -1) {
+                    this.itemListeners.splice(index, 1);
+                }
+            };
+            Checkbox.prototype.getItemListeners = function () {
+                return this.itemListeners;
+            };
+            Checkbox.prototype.getListeners = function (listenerType) {
+                var result = new Array();
+                for (var i = 0; i < this.itemListeners.length; i++) {
+                    if (this.itemListeners[i].constructor === listenerType) {
+                        result.push((this.itemListeners[i]));
+                    }
+                }
+                return result;
+            };
+            Checkbox.prototype.processItemEvent = function (e) {
+                for (var index133 = 0; index133 < this.itemListeners.length; index133++) {
+                    var listener = this.itemListeners[index133];
+                    {
+                        listener.itemStateChanged(e);
+                    }
+                }
+            };
+            Checkbox.prototype.paramString = function () {
+                var str = _super.prototype.paramString.call(this);
+                var label = this.label;
+                if (label != null) {
+                    str += ",label=" + label;
+                }
+                return str + ",state=" + this.state;
+            };
+            Checkbox.base = "checkbox";
+            Checkbox.nameCounter = 0;
+            Checkbox.serialVersionUID = 7270714317450821763;
+            return Checkbox;
+        }(java.awt.Component));
+        awt.Checkbox = Checkbox;
+        Checkbox["__classname"] = "java.awt.Checkbox";
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var Container = (function (_super) {
+            __extends(Container, _super);
+            function Container() {
+                _super.call(this);
+                this.components = [];
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.HTMLComponent"] });
+            }
+            Container.prototype.getLayout = function () {
+                return this.layoutMgr;
+            };
+            Container.prototype.setLayout = function (mgr) {
+                this.layoutMgr = mgr;
+                this.layoutMgr.layoutContainer(this);
+            };
+            Container.prototype.doLayout = function () {
+                this.layout();
+            };
+            Container.prototype.layout = function () {
+                var layoutMgr = this.layoutMgr;
+                if (layoutMgr != null) {
+                }
+            };
+            Container.prototype.add$java_awt_Component = function (component) {
+                this.add(null, component);
+                return component;
+            };
+            Container.prototype.add = function (name, component) {
+                var _this = this;
+                if (((typeof name === 'string') || name === null) && ((component != null && component instanceof java.awt.Component) || component === null)) {
+                    return (function () {
+                        (_this.components).push(component);
+                        component.initHTML();
+                        if (_this.layoutMgr != null) {
+                            _this.layoutMgr.onComponentAdded(_this, component, -1);
+                        }
+                        return component;
+                    })();
+                }
+                else if (((name != null && name instanceof java.awt.Component) || name === null) && component === undefined) {
+                    return this.add$java_awt_Component(name);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            return Container;
+        }(java.awt.Component));
+        awt.Container = Container;
+        Container["__classname"] = "java.awt.Container";
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -17783,51 +21352,49 @@ var java;
                 _super.call(this);
                 Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.HTMLComponent"] });
             }
-            TextField.prototype.init = function () {
-                if (this.input != null) {
+            TextField.prototype.getHTMLElement = function () {
+                return this.htmlElement;
+            };
+            TextField.prototype.createHTML = function () {
+                if (this.htmlElement != null) {
                     return;
                 }
-                this.input = document.createElement("input");
-                this.input.setAttribute("type", "text");
-                this.input.id = "cmp" + java.applet.Applet.CURRENT_ID++;
+                this.htmlElement = document.createElement("input");
+                this.htmlElement.setAttribute("type", "text");
+            };
+            TextField.prototype.initHTML = function () {
+                _super.prototype.initHTML.call(this);
+                this.htmlElement.id = "cmp" + java.applet.Applet.CURRENT_ID++;
                 this.initActionListener();
             };
             TextField.prototype.initActionListener = function () {
                 var _this = this;
                 if (this.actionListener != null) {
-                    this.input.onclick = function (e) {
-                        _this.actionListener.actionPerformed(new java.awt.event.ActionEvent(_this, null));
+                    this.htmlElement.onclick = function (e) {
+                        _this.actionListener.actionPerformed(new java.awt.event.ActionEvent(_this, 0, null));
                         return e;
                     };
                 }
             };
-            TextField.prototype.bind = function (id) {
-                this.input = document.getElementById(id);
-            };
-            TextField.prototype.getHTMLElement = function () {
-                if (this.input == null) {
-                    this.init();
-                }
-                return this.input;
-            };
             TextField.prototype.addActionListener = function (actionListener) {
                 this.actionListener = actionListener;
-                if (this.input != null) {
+                if (this.htmlElement != null) {
                     this.initActionListener();
                 }
             };
             TextField.prototype.setText = function (text) {
-                this.input.value = text;
+                this.getHTMLElement().value = text;
             };
             TextField.prototype.getText = function () {
-                return this.input.value;
+                return this.getHTMLElement().value;
             };
             return TextField;
         }(java.awt.Component));
         awt.TextField = TextField;
+        TextField["__classname"] = "java.awt.TextField";
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -18030,15 +21597,16 @@ var java;
              * object
              */
             Dimension.prototype.toString = function () {
-                return "java.awt.Dimension" + "[width=" + this.width + ",height=" + this.height + "]";
+                return Dimension["__classname"] + "[width=" + this.width + ",height=" + this.height + "]";
             };
             Dimension.serialVersionUID = 4723952579491349524;
             return Dimension;
         }(java.awt.geom.Dimension2D));
         awt.Dimension = Dimension;
+        Dimension["__classname"] = "java.awt.Dimension";
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -18872,6 +22440,7 @@ var java;
                 return Path2D;
             }());
             geom.Path2D = Path2D;
+            Path2D["__classname"] = "java.awt.geom.Path2D";
             var Path2D;
             (function (Path2D) {
                 var Iterator = (function () {
@@ -18904,6 +22473,7 @@ var java;
                     return Iterator;
                 }());
                 Path2D.Iterator = Iterator;
+                Iterator["__classname"] = "java.awt.geom.Path2D.Iterator";
                 /**
                  * The {@code Float} class defines a geometric path with coordinates stored
                  * in single precision floating point.
@@ -19508,6 +23078,7 @@ var java;
                     return Float;
                 }(java.awt.geom.Path2D));
                 Path2D.Float = Float;
+                Float["__classname"] = "java.awt.geom.Path2D.Float";
                 var Float;
                 (function (Float) {
                     var CopyIterator = (function (_super) {
@@ -19548,6 +23119,7 @@ var java;
                         return CopyIterator;
                     }(java.awt.geom.Path2D.Iterator));
                     Float.CopyIterator = CopyIterator;
+                    CopyIterator["__classname"] = "java.awt.geom.Path2D.Float.CopyIterator";
                     var TxIterator = (function (_super) {
                         __extends(TxIterator, _super);
                         function TxIterator(p2df, at) {
@@ -19585,6 +23157,7 @@ var java;
                         return TxIterator;
                     }(java.awt.geom.Path2D.Iterator));
                     Float.TxIterator = TxIterator;
+                    TxIterator["__classname"] = "java.awt.geom.Path2D.Float.TxIterator";
                 })(Float = Path2D.Float || (Path2D.Float = {}));
                 /**
                  * The {@code Double} class defines a geometric path with coordinates stored
@@ -20144,6 +23717,7 @@ var java;
                     return Double;
                 }(java.awt.geom.Path2D));
                 Path2D.Double = Double;
+                Double["__classname"] = "java.awt.geom.Path2D.Double";
                 var Double;
                 (function (Double) {
                     var CopyIterator = (function (_super) {
@@ -20184,6 +23758,7 @@ var java;
                         return CopyIterator;
                     }(java.awt.geom.Path2D.Iterator));
                     Double.CopyIterator = CopyIterator;
+                    CopyIterator["__classname"] = "java.awt.geom.Path2D.Double.CopyIterator";
                     var TxIterator = (function (_super) {
                         __extends(TxIterator, _super);
                         function TxIterator(p2dd, at) {
@@ -20221,12 +23796,13 @@ var java;
                         return TxIterator;
                     }(java.awt.geom.Path2D.Iterator));
                     Double.TxIterator = TxIterator;
+                    TxIterator["__classname"] = "java.awt.geom.Path2D.Double.TxIterator";
                 })(Double = Path2D.Double || (Path2D.Double = {}));
             })(Path2D = geom.Path2D || (geom.Path2D = {}));
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -20436,15 +24012,16 @@ var java;
              * @return  a string representation of this point
              */
             Point.prototype.toString = function () {
-                return "java.awt.Point" + "[x=" + this.x + ",y=" + this.y + "]";
+                return Point["__classname"] + "[x=" + this.x + ",y=" + this.y + "]";
             };
             Point.serialVersionUID = -5276940640259749850;
             return Point;
         }(java.awt.geom.Point2D));
         awt.Point = Point;
+        Point["__classname"] = "java.awt.Point";
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -21215,6 +24792,7 @@ var java;
                 return Arc2D;
             }(java.awt.geom.RectangularShape));
             geom.Arc2D = Arc2D;
+            Arc2D["__classname"] = "java.awt.geom.Arc2D";
             var Arc2D;
             (function (Arc2D) {
                 /**
@@ -21430,6 +25008,7 @@ var java;
                     return Float;
                 }(java.awt.geom.Arc2D));
                 Arc2D.Float = Float;
+                Float["__classname"] = "java.awt.geom.Arc2D.Float";
                 /**
                  * This class defines an arc specified in {@code double} precision.
                  * @since 1.2
@@ -21643,11 +25222,12 @@ var java;
                     return Double;
                 }(java.awt.geom.Arc2D));
                 Arc2D.Double = Double;
+                Double["__classname"] = "java.awt.geom.Arc2D.Double";
             })(Arc2D = geom.Arc2D || (geom.Arc2D = {}));
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -21836,6 +25416,7 @@ var java;
                 return Ellipse2D;
             }(java.awt.geom.RectangularShape));
             geom.Ellipse2D = Ellipse2D;
+            Ellipse2D["__classname"] = "java.awt.geom.Ellipse2D";
             var Ellipse2D;
             (function (Ellipse2D) {
                 /**
@@ -21989,6 +25570,7 @@ var java;
                     return Float;
                 }(java.awt.geom.Ellipse2D));
                 Ellipse2D.Float = Float;
+                Float["__classname"] = "java.awt.geom.Ellipse2D.Float";
                 /**
                  * The <code>Double</code> class defines an ellipse specified in
                  * <code>double</code> precision.
@@ -22131,11 +25713,12 @@ var java;
                     return Double;
                 }(java.awt.geom.Ellipse2D));
                 Ellipse2D.Double = Double;
+                Double["__classname"] = "java.awt.geom.Ellipse2D.Double";
             })(Ellipse2D = geom.Ellipse2D || (geom.Ellipse2D = {}));
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -22704,6 +26287,7 @@ var java;
                 return Rectangle2D;
             }(java.awt.geom.RectangularShape));
             geom.Rectangle2D = Rectangle2D;
+            Rectangle2D["__classname"] = "java.awt.geom.Rectangle2D";
             var Rectangle2D;
             (function (Rectangle2D) {
                 /**
@@ -22941,12 +26525,13 @@ var java;
                      * @since 1.2
                      */
                     Float.prototype.toString = function () {
-                        return "java.awt.geom.Rectangle2D.Float" + "[x=" + this.x + ",y=" + this.y + ",w=" + this.width + ",h=" + this.height + "]";
+                        return Rectangle2D.Float["__classname"] + "[x=" + this.x + ",y=" + this.y + ",w=" + this.width + ",h=" + this.height + "]";
                     };
                     Float.serialVersionUID = 3798716824173675777;
                     return Float;
                 }(java.awt.geom.Rectangle2D));
                 Rectangle2D.Float = Float;
+                Float["__classname"] = "java.awt.geom.Rectangle2D.Float";
                 /**
                  * The <code>Double</code> class defines a rectangle specified in double
                  * coordinates.
@@ -23161,17 +26746,18 @@ var java;
                      * @since 1.2
                      */
                     Double.prototype.toString = function () {
-                        return "java.awt.geom.Rectangle2D.Double" + "[x=" + this.x + ",y=" + this.y + ",w=" + this.width + ",h=" + this.height + "]";
+                        return Rectangle2D.Double["__classname"] + "[x=" + this.x + ",y=" + this.y + ",w=" + this.width + ",h=" + this.height + "]";
                     };
                     Double.serialVersionUID = 7771313791441850493;
                     return Double;
                 }(java.awt.geom.Rectangle2D));
                 Rectangle2D.Double = Double;
+                Double["__classname"] = "java.awt.geom.Rectangle2D.Double";
             })(Rectangle2D = geom.Rectangle2D || (geom.Rectangle2D = {}));
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -23476,6 +27062,7 @@ var java;
                 return RoundRectangle2D;
             }(java.awt.geom.RectangularShape));
             geom.RoundRectangle2D = RoundRectangle2D;
+            RoundRectangle2D["__classname"] = "java.awt.geom.RoundRectangle2D";
             var RoundRectangle2D;
             (function (RoundRectangle2D) {
                 /**
@@ -23680,6 +27267,7 @@ var java;
                     return Float;
                 }(java.awt.geom.RoundRectangle2D));
                 RoundRectangle2D.Float = Float;
+                Float["__classname"] = "java.awt.geom.RoundRectangle2D.Float";
                 /**
                  * The <code>Double</code> class defines a rectangle with rounded corners
                  * all specified in <code>double</code> coordinates.
@@ -23871,37 +27459,334 @@ var java;
                     return Double;
                 }(java.awt.geom.RoundRectangle2D));
                 RoundRectangle2D.Double = Double;
+                Double["__classname"] = "java.awt.geom.RoundRectangle2D.Double";
             })(RoundRectangle2D = geom.RoundRectangle2D || (geom.RoundRectangle2D = {}));
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
     (function (awt) {
-        var WebGraphics2D = (function (_super) {
-            __extends(WebGraphics2D, _super);
-            function WebGraphics2D(canvas) {
+        var Graphics2D = (function (_super) {
+            __extends(Graphics2D, _super);
+            function Graphics2D() {
                 _super.call(this);
-                this.canvas = canvas;
-                this.context = canvas.getContext("2d");
             }
-            WebGraphics2D.prototype.drawString = function (s, x, y) {
-                this.context.fillText(s, x, y);
+            Graphics2D.prototype.draw3DRect = function (x, y, width, height, raised) {
+                var p = this.getPaint();
+                var c = this.getColor();
+                var brighter = c.brighter();
+                var darker = c.darker();
+                this.setColor(raised ? brighter : darker);
+                this.fillRect(x, y, 1, height + 1);
+                this.fillRect(x + 1, y, width - 1, 1);
+                this.setColor(raised ? darker : brighter);
+                this.fillRect(x + 1, y + height, width, 1);
+                this.fillRect(x + width, y, 1, height);
+                this.setPaint(p);
             };
-            WebGraphics2D.prototype.getCanvas = function () {
-                return this.canvas;
+            Graphics2D.prototype.fill3DRect = function (x, y, width, height, raised) {
+                var p = this.getPaint();
+                var c = this.getColor();
+                var brighter = c.brighter();
+                var darker = c.darker();
+                if (!raised) {
+                    this.setColor(darker);
+                }
+                else if (p !== c) {
+                    this.setColor(c);
+                }
+                this.fillRect(x + 1, y + 1, width - 2, height - 2);
+                this.setColor(raised ? brighter : darker);
+                this.fillRect(x, y, 1, height);
+                this.fillRect(x + 1, y, width - 2, 1);
+                this.setColor(raised ? darker : brighter);
+                this.fillRect(x + 1, y + height - 1, width - 1, 1);
+                this.fillRect(x + width - 1, y, 1, height - 1);
+                this.setPaint(p);
             };
-            WebGraphics2D.prototype.getContext = function () {
-                return this.context;
+            Graphics2D.prototype.drawImage$java_awt_Image$java_awt_geom_AffineTransform$java_awt_image_ImageObserver = function (img, xform, obs) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            Graphics2D.prototype.drawString = function (str, x, y) {
+                if (((typeof str === 'string') || str === null) && ((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null)) {
+                }
+                else if (((typeof str === 'string') || str === null) && ((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null)) {
+                    return this.drawString$java_lang_String$float$float(str, x, y);
+                }
+                else
+                    throw new Error('invalid overload');
             };
-            return WebGraphics2D;
+            Graphics2D.prototype.drawString$java_lang_String$float$float = function (str, x, y) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            Graphics2D.prototype.translate = function (x, y) {
+                if (((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null)) {
+                    return this.translate$double$double(x, y);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            Graphics2D.prototype.translate$double$double = function (tx, ty) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            Graphics2D.prototype.rotate$double = function (theta) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            Graphics2D.prototype.rotate = function (theta, x, y) {
+                if (((typeof theta === 'number') || theta === null) && ((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null)) {
+                }
+                else if (((typeof theta === 'number') || theta === null) && x === undefined && y === undefined) {
+                    return this.rotate$double(theta);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            return Graphics2D;
         }(java.awt.Graphics));
-        awt.WebGraphics2D = WebGraphics2D;
+        awt.Graphics2D = Graphics2D;
+        Graphics2D["__classname"] = "java.awt.Graphics2D";
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var RenderedImage = (function (_super) {
+            __extends(RenderedImage, _super);
+            function RenderedImage(source) {
+                _super.call(this, source);
+            }
+            return RenderedImage;
+        }(java.awt.Image));
+        awt.RenderedImage = RenderedImage;
+        RenderedImage["__classname"] = "java.awt.RenderedImage";
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var beans;
+    (function (beans) {
+        var PropertyChangeSupport = (function () {
+            function PropertyChangeSupport(sourceBean) {
+                this.map = new PropertyChangeSupport.PropertyChangeListenerMap();
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
+                if (sourceBean == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                this.source = sourceBean;
+            }
+            PropertyChangeSupport.prototype.addPropertyChangeListener$java_beans_PropertyChangeListener = function (listener) {
+                if (listener == null) {
+                    return;
+                }
+                if (listener != null && listener instanceof java.beans.PropertyChangeListenerProxy) {
+                    var proxy = listener;
+                    this.addPropertyChangeListener(proxy.getPropertyName(), proxy.getListener());
+                }
+                else {
+                    this.map.add(null, listener);
+                }
+            };
+            PropertyChangeSupport.prototype.removePropertyChangeListener$java_beans_PropertyChangeListener = function (listener) {
+                if (listener == null) {
+                    return;
+                }
+                if (listener != null && listener instanceof java.beans.PropertyChangeListenerProxy) {
+                    var proxy = listener;
+                    this.removePropertyChangeListener(proxy.getPropertyName(), proxy.getListener());
+                }
+                else {
+                    this.map.remove(null, listener);
+                }
+            };
+            PropertyChangeSupport.prototype.getPropertyChangeListeners$ = function () {
+                return this.map.getListeners();
+            };
+            PropertyChangeSupport.prototype.addPropertyChangeListener = function (propertyName, listener) {
+                var _this = this;
+                if (((typeof propertyName === 'string') || propertyName === null) && ((listener != null && listener["__interfaces"] != null && listener["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || listener === null)) {
+                    return (function () {
+                        if (listener == null || propertyName == null) {
+                            return;
+                        }
+                        listener = _this.map.extract(listener);
+                        if (listener != null) {
+                            _this.map.add(propertyName, listener);
+                        }
+                    })();
+                }
+                else if (((propertyName != null && propertyName["__interfaces"] != null && propertyName["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || propertyName === null) && listener === undefined) {
+                    return this.addPropertyChangeListener$java_beans_PropertyChangeListener(propertyName);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            PropertyChangeSupport.prototype.removePropertyChangeListener = function (propertyName, listener) {
+                var _this = this;
+                if (((typeof propertyName === 'string') || propertyName === null) && ((listener != null && listener["__interfaces"] != null && listener["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || listener === null)) {
+                    return (function () {
+                        if (listener == null || propertyName == null) {
+                            return;
+                        }
+                        listener = _this.map.extract(listener);
+                        if (listener != null) {
+                            _this.map.remove(propertyName, listener);
+                        }
+                    })();
+                }
+                else if (((propertyName != null && propertyName["__interfaces"] != null && propertyName["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || propertyName === null) && listener === undefined) {
+                    return this.removePropertyChangeListener$java_beans_PropertyChangeListener(propertyName);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            PropertyChangeSupport.prototype.getPropertyChangeListeners = function (propertyName) {
+                var _this = this;
+                if (((typeof propertyName === 'string') || propertyName === null)) {
+                    return (function () {
+                        return _this.map.getListeners(propertyName);
+                    })();
+                }
+                else if (propertyName === undefined) {
+                    return this.getPropertyChangeListeners$();
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            PropertyChangeSupport.prototype.firePropertyChange$java_lang_String$java_lang_Object$java_lang_Object = function (propertyName, oldValue, newValue) {
+                if (oldValue == null || newValue == null || !(oldValue === newValue)) {
+                    this.firePropertyChange(new java.beans.PropertyChangeEvent(this.source, propertyName, oldValue, newValue));
+                }
+            };
+            PropertyChangeSupport.prototype.firePropertyChange = function (propertyName, oldValue, newValue) {
+                var _this = this;
+                if (((typeof propertyName === 'string') || propertyName === null) && ((typeof oldValue === 'number') || oldValue === null) && ((typeof newValue === 'number') || newValue === null)) {
+                    return (function () {
+                        if (oldValue !== newValue) {
+                            _this.firePropertyChange(propertyName, javaemul.internal.IntegerHelper.valueOf(oldValue), javaemul.internal.IntegerHelper.valueOf(newValue));
+                        }
+                    })();
+                }
+                else if (((typeof propertyName === 'string') || propertyName === null) && ((typeof oldValue === 'boolean') || oldValue === null) && ((typeof newValue === 'boolean') || newValue === null)) {
+                    return this.firePropertyChange$java_lang_String$boolean$boolean(propertyName, oldValue, newValue);
+                }
+                else if (((typeof propertyName === 'string') || propertyName === null) && ((oldValue != null) || oldValue === null) && ((newValue != null) || newValue === null)) {
+                    return this.firePropertyChange$java_lang_String$java_lang_Object$java_lang_Object(propertyName, oldValue, newValue);
+                }
+                else if (((propertyName != null && propertyName instanceof java.beans.PropertyChangeEvent) || propertyName === null) && oldValue === undefined && newValue === undefined) {
+                    return this.firePropertyChange$java_beans_PropertyChangeEvent(propertyName);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            PropertyChangeSupport.prototype.firePropertyChange$java_lang_String$boolean$boolean = function (propertyName, oldValue, newValue) {
+                if (oldValue !== newValue) {
+                    this.firePropertyChange(propertyName, javaemul.internal.BooleanHelper.valueOf(oldValue), javaemul.internal.BooleanHelper.valueOf(newValue));
+                }
+            };
+            PropertyChangeSupport.prototype.firePropertyChange$java_beans_PropertyChangeEvent = function (event) {
+                var oldValue = event.getOldValue();
+                var newValue = event.getNewValue();
+                if (oldValue == null || newValue == null || !(oldValue === newValue)) {
+                    var name = event.getPropertyName();
+                    var common = this.map.get(null);
+                    var named = (name != null) ? this.map.get(name) : null;
+                    PropertyChangeSupport.fire(common, event);
+                    PropertyChangeSupport.fire(named, event);
+                }
+            };
+            PropertyChangeSupport.fire = function (listeners, event) {
+                if (listeners != null) {
+                    for (var index134 = 0; index134 < listeners.length; index134++) {
+                        var listener = listeners[index134];
+                        {
+                            listener.propertyChange(event);
+                        }
+                    }
+                }
+            };
+            PropertyChangeSupport.prototype.fireIndexedPropertyChange$java_lang_String$int$java_lang_Object$java_lang_Object = function (propertyName, index, oldValue, newValue) {
+                if (oldValue == null || newValue == null || !(oldValue === newValue)) {
+                    this.firePropertyChange(new java.beans.IndexedPropertyChangeEvent(this.source, propertyName, oldValue, newValue, index));
+                }
+            };
+            PropertyChangeSupport.prototype.fireIndexedPropertyChange = function (propertyName, index, oldValue, newValue) {
+                var _this = this;
+                if (((typeof propertyName === 'string') || propertyName === null) && ((typeof index === 'number') || index === null) && ((typeof oldValue === 'number') || oldValue === null) && ((typeof newValue === 'number') || newValue === null)) {
+                    return (function () {
+                        if (oldValue !== newValue) {
+                            _this.fireIndexedPropertyChange(propertyName, index, javaemul.internal.IntegerHelper.valueOf(oldValue), javaemul.internal.IntegerHelper.valueOf(newValue));
+                        }
+                    })();
+                }
+                else if (((typeof propertyName === 'string') || propertyName === null) && ((typeof index === 'number') || index === null) && ((typeof oldValue === 'boolean') || oldValue === null) && ((typeof newValue === 'boolean') || newValue === null)) {
+                    return this.fireIndexedPropertyChange$java_lang_String$int$boolean$boolean(propertyName, index, oldValue, newValue);
+                }
+                else if (((typeof propertyName === 'string') || propertyName === null) && ((typeof index === 'number') || index === null) && ((oldValue != null) || oldValue === null) && ((newValue != null) || newValue === null)) {
+                    return this.fireIndexedPropertyChange$java_lang_String$int$java_lang_Object$java_lang_Object(propertyName, index, oldValue, newValue);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            PropertyChangeSupport.prototype.fireIndexedPropertyChange$java_lang_String$int$boolean$boolean = function (propertyName, index, oldValue, newValue) {
+                if (oldValue !== newValue) {
+                    this.fireIndexedPropertyChange(propertyName, index, javaemul.internal.BooleanHelper.valueOf(oldValue), javaemul.internal.BooleanHelper.valueOf(newValue));
+                }
+            };
+            PropertyChangeSupport.prototype.hasListeners = function (propertyName) {
+                return this.map.hasListeners(propertyName);
+            };
+            PropertyChangeSupport.serialVersionUID = 6401253773779951803;
+            return PropertyChangeSupport;
+        }());
+        beans.PropertyChangeSupport = PropertyChangeSupport;
+        PropertyChangeSupport["__classname"] = "java.beans.PropertyChangeSupport";
+        var PropertyChangeSupport;
+        (function (PropertyChangeSupport) {
+            var PropertyChangeListenerMap = (function (_super) {
+                __extends(PropertyChangeListenerMap, _super);
+                function PropertyChangeListenerMap() {
+                    _super.apply(this, arguments);
+                }
+                PropertyChangeListenerMap.EMPTY_$LI$ = function () { if (PropertyChangeListenerMap.EMPTY == null)
+                    PropertyChangeListenerMap.EMPTY = []; return PropertyChangeListenerMap.EMPTY; };
+                ;
+                PropertyChangeListenerMap.prototype.newArray = function (length) {
+                    return (0 < length) ? new Array(length) : PropertyChangeListenerMap.EMPTY_$LI$();
+                };
+                PropertyChangeListenerMap.prototype.newProxy = function (name, listener) {
+                    if (((typeof name === 'string') || name === null) && ((listener != null && listener["__interfaces"] != null && listener["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || listener === null)) {
+                        return (function () {
+                            return new java.beans.PropertyChangeListenerProxy(name, listener);
+                        })();
+                    }
+                    else if (((typeof name === 'string') || name === null) && ((listener != null) || listener === null)) {
+                        return this.newProxy$java_lang_String$java_util_EventListener(name, listener);
+                    }
+                    else
+                        throw new Error('invalid overload');
+                };
+                PropertyChangeListenerMap.prototype.extract = function (listener) {
+                    if (((listener != null && listener["__interfaces"] != null && listener["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || listener === null)) {
+                        return (function () {
+                            while ((listener != null && listener instanceof java.beans.PropertyChangeListenerProxy)) {
+                                listener = listener.getListener();
+                            }
+                            ;
+                            return listener;
+                        })();
+                    }
+                    else if (((listener != null) || listener === null)) {
+                        return this.extract$java_util_EventListener(listener);
+                    }
+                    else
+                        throw new Error('invalid overload');
+                };
+                return PropertyChangeListenerMap;
+            }(java.beans.ChangeListenerMap));
+            PropertyChangeSupport.PropertyChangeListenerMap = PropertyChangeListenerMap;
+            PropertyChangeListenerMap["__classname"] = "java.beans.PropertyChangeSupport.PropertyChangeListenerMap";
+        })(PropertyChangeSupport = beans.PropertyChangeSupport || (beans.PropertyChangeSupport = {}));
+    })(beans = java.beans || (java.beans = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -24087,9 +27972,9 @@ var java;
             };
             LocalStorageFileSystem.prototype.removeEntry = function (pathname) {
                 {
-                    var array130 = this.getChildEntries(pathname);
-                    for (var index129 = 0; index129 < array130.length; index129++) {
-                        var e = array130[index129];
+                    var array136 = this.getChildEntries(pathname);
+                    for (var index135 = 0; index135 < array136.length; index135++) {
+                        var e = array136[index135];
                         {
                             this.removeEntry(pathname + "/" + e);
                         }
@@ -24183,9 +28068,10 @@ var java;
             return LocalStorageFileSystem;
         }(java.io.FileSystem));
         io.LocalStorageFileSystem = LocalStorageFileSystem;
+        LocalStorageFileSystem["__classname"] = "java.io.LocalStorageFileSystem";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -24334,9 +28220,10 @@ var java;
             return ByteArrayInputStream;
         }(java.io.InputStream));
         io.ByteArrayInputStream = ByteArrayInputStream;
+        ByteArrayInputStream["__classname"] = "java.io.ByteArrayInputStream";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -24446,9 +28333,10 @@ var java;
             return FileInputStream;
         }(java.io.InputStream));
         io.FileInputStream = FileInputStream;
+        FileInputStream["__classname"] = "java.io.FileInputStream";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -24584,9 +28472,10 @@ var java;
             return FilterInputStream;
         }(java.io.InputStream));
         io.FilterInputStream = FilterInputStream;
+        FilterInputStream["__classname"] = "java.io.FilterInputStream";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -24808,9 +28697,10 @@ var java;
             return ByteArrayOutputStream;
         }(java.io.OutputStream));
         io.ByteArrayOutputStream = ByteArrayOutputStream;
+        ByteArrayOutputStream["__classname"] = "java.io.ByteArrayOutputStream";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -24944,9 +28834,10 @@ var java;
             return FileOutputStream;
         }(java.io.OutputStream));
         io.FileOutputStream = FileOutputStream;
+        FileOutputStream["__classname"] = "java.io.FileOutputStream";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -25064,9 +28955,10 @@ var java;
             return FilterOutputStream;
         }(java.io.OutputStream));
         io.FilterOutputStream = FilterOutputStream;
+        FilterOutputStream["__classname"] = "java.io.FilterOutputStream";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -25408,9 +29300,10 @@ var java;
             return BufferedReader;
         }(java.io.Reader));
         io.BufferedReader = BufferedReader;
+        BufferedReader["__classname"] = "java.io.BufferedReader";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -25475,9 +29368,10 @@ var java;
             return InputStreamReader;
         }(java.io.Reader));
         io.InputStreamReader = InputStreamReader;
+        InputStreamReader["__classname"] = "java.io.InputStreamReader";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -25561,9 +29455,10 @@ var java;
             return OutputStreamWriter;
         }(java.io.Writer));
         io.OutputStreamWriter = OutputStreamWriter;
+        OutputStreamWriter["__classname"] = "java.io.OutputStreamWriter";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -25800,9 +29695,10 @@ var java;
             return StringBuffer;
         }(java.lang.AbstractStringBuilder));
         lang.StringBuffer = StringBuffer;
+        StringBuffer["__classname"] = "java.lang.StringBuffer";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -26040,9 +29936,10 @@ var java;
             return StringBuilder;
         }(java.lang.AbstractStringBuilder));
         lang.StringBuilder = StringBuilder;
+        StringBuilder["__classname"] = "java.lang.StringBuilder";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -26073,10 +29970,11 @@ var java;
                 return NoninvertibleTransformException;
             }(java.lang.Exception));
             geom.NoninvertibleTransformException = NoninvertibleTransformException;
+            NoninvertibleTransformException["__classname"] = "java.awt.geom.NoninvertibleTransformException";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -26123,9 +30021,10 @@ var java;
             return IOException;
         }(Error));
         io.IOException = IOException;
+        IOException["__classname"] = "java.io.IOException";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -26157,9 +30056,10 @@ var java;
             return CloneNotSupportedException;
         }(Error));
         lang.CloneNotSupportedException = CloneNotSupportedException;
+        CloneNotSupportedException["__classname"] = "java.lang.CloneNotSupportedException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -26194,9 +30094,10 @@ var java;
             return NoSuchMethodException;
         }(Error));
         lang.NoSuchMethodException = NoSuchMethodException;
+        NoSuchMethodException["__classname"] = "java.lang.NoSuchMethodException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -26250,9 +30151,10 @@ var java;
             return RuntimeException;
         }(Error));
         lang.RuntimeException = RuntimeException;
+        RuntimeException["__classname"] = "java.lang.RuntimeException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var security;
@@ -26284,9 +30186,10 @@ var java;
             return GeneralSecurityException;
         }(Error));
         security.GeneralSecurityException = GeneralSecurityException;
+        GeneralSecurityException["__classname"] = "java.security.GeneralSecurityException";
     })(security = java.security || (java.security = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var text;
@@ -26309,9 +30212,10 @@ var java;
             return ParseException;
         }(Error));
         text.ParseException = ParseException;
+        ParseException["__classname"] = "java.text.ParseException";
     })(text = java.text || (java.text = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -26342,9 +30246,10 @@ var java;
             return TooManyListenersException;
         }(Error));
         util.TooManyListenersException = TooManyListenersException;
+        TooManyListenersException["__classname"] = "java.util.TooManyListenersException";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -26405,9 +30310,10 @@ var java;
             return InternalError;
         }(java.lang.VirtualMachineError));
         lang.InternalError = InternalError;
+        InternalError["__classname"] = "java.lang.InternalError";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -26433,6 +30339,7 @@ var javaemul;
             return EmulatedCharset;
         }(java.nio.charset.Charset));
         internal.EmulatedCharset = EmulatedCharset;
+        EmulatedCharset["__classname"] = "javaemul.internal.EmulatedCharset";
         var EmulatedCharset;
         (function (EmulatedCharset) {
             var LatinCharset = (function (_super) {
@@ -26459,6 +30366,7 @@ var javaemul;
                 return LatinCharset;
             }(javaemul.internal.EmulatedCharset));
             EmulatedCharset.LatinCharset = LatinCharset;
+            LatinCharset["__classname"] = "javaemul.internal.EmulatedCharset.LatinCharset";
             var UtfCharset = (function (_super) {
                 __extends(UtfCharset, _super);
                 function UtfCharset(name) {
@@ -26605,10 +30513,11 @@ var javaemul;
                 return UtfCharset;
             }(javaemul.internal.EmulatedCharset));
             EmulatedCharset.UtfCharset = UtfCharset;
+            UtfCharset["__classname"] = "javaemul.internal.EmulatedCharset.UtfCharset";
         })(EmulatedCharset = internal.EmulatedCharset || (internal.EmulatedCharset = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var security;
@@ -26699,6 +30608,7 @@ var java;
             return MessageDigest;
         }(java.security.MessageDigestSpi));
         security.MessageDigest = MessageDigest;
+        MessageDigest["__classname"] = "java.security.MessageDigest";
         var MessageDigest;
         (function (MessageDigest) {
             var Md5Digest = (function (_super) {
@@ -26938,10 +30848,11 @@ var java;
                 return Md5Digest;
             }(java.security.MessageDigest));
             MessageDigest.Md5Digest = Md5Digest;
+            Md5Digest["__classname"] = "java.security.MessageDigest.Md5Digest";
         })(MessageDigest = security.MessageDigest || (security.MessageDigest = {}));
     })(security = java.security || (java.security = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -26962,8 +30873,8 @@ var java;
             }
             AbstractList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index131 = this.iterator(); index131.hasNext();) {
-                    var t = index131.next();
+                for (var index137 = this.iterator(); index137.hasNext();) {
+                    var t = index137.next();
                     {
                         action(t);
                     }
@@ -26991,8 +30902,8 @@ var java;
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkNotNull(c);
                         var changed = false;
-                        for (var index132 = c.iterator(); index132.hasNext();) {
-                            var e = index132.next();
+                        for (var index138 = c.iterator(); index138.hasNext();) {
+                            var e = index138.next();
                             {
                                 _this.add(index++, e);
                                 changed = true;
@@ -27022,8 +30933,8 @@ var java;
                     return false;
                 }
                 var iterOther = other.iterator();
-                for (var index133 = this.iterator(); index133.hasNext();) {
-                    var elem = index133.next();
+                for (var index139 = this.iterator(); index139.hasNext();) {
+                    var elem = index139.next();
                     {
                         var elemOther = iterOther.next();
                         if (!java.util.Objects.equals(elem, elemOther)) {
@@ -27113,6 +31024,7 @@ var java;
             return AbstractList;
         }(java.util.AbstractCollection));
         util.AbstractList = AbstractList;
+        AbstractList["__classname"] = "java.util.AbstractList";
         var AbstractList;
         (function (AbstractList) {
             var IteratorImpl = (function () {
@@ -27147,6 +31059,7 @@ var java;
                 return IteratorImpl;
             }());
             AbstractList.IteratorImpl = IteratorImpl;
+            IteratorImpl["__classname"] = "java.util.AbstractList.IteratorImpl";
             /**
              * Implementation of <code>ListIterator</code> for abstract lists.
              */
@@ -27205,6 +31118,7 @@ var java;
                 return ListIteratorImpl;
             }(AbstractList.IteratorImpl));
             AbstractList.ListIteratorImpl = ListIteratorImpl;
+            ListIteratorImpl["__classname"] = "java.util.AbstractList.ListIteratorImpl";
             var SubList = (function (_super) {
                 __extends(SubList, _super);
                 function SubList(wrapped, fromIndex, toIndex) {
@@ -27262,10 +31176,11 @@ var java;
                 return SubList;
             }(java.util.AbstractList));
             AbstractList.SubList = SubList;
+            SubList["__classname"] = "java.util.AbstractList.SubList";
         })(AbstractList = util.AbstractList || (util.AbstractList = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -27285,8 +31200,8 @@ var java;
             }
             AbstractQueue.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index134 = this.iterator(); index134.hasNext();) {
-                    var t = index134.next();
+                for (var index140 = this.iterator(); index140.hasNext();) {
+                    var t = index140.next();
                     {
                         action(t);
                     }
@@ -27343,9 +31258,10 @@ var java;
             return AbstractQueue;
         }(java.util.AbstractCollection));
         util.AbstractQueue = AbstractQueue;
+        AbstractQueue["__classname"] = "java.util.AbstractQueue";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -27365,8 +31281,8 @@ var java;
             }
             AbstractSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index135 = this.iterator(); index135.hasNext();) {
-                    var t = index135.next();
+                for (var index141 = this.iterator(); index141.hasNext();) {
+                    var t = index141.next();
                     {
                         action(t);
                     }
@@ -27400,8 +31316,8 @@ var java;
                     }
                 }
                 else {
-                    for (var index136 = c.iterator(); index136.hasNext();) {
-                        var o1 = index136.next();
+                    for (var index142 = c.iterator(); index142.hasNext();) {
+                        var o1 = index142.next();
                         {
                             this.remove(o1);
                         }
@@ -27412,9 +31328,10 @@ var java;
             return AbstractSet;
         }(java.util.AbstractCollection));
         util.AbstractSet = AbstractSet;
+        AbstractSet["__classname"] = "java.util.AbstractSet";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -27432,8 +31349,8 @@ var java;
             }
             InternalStringMap.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index137 = this.iterator(); index137.hasNext();) {
-                    var t = index137.next();
+                for (var index143 = this.iterator(); index143.hasNext();) {
+                    var t = index143.next();
                     {
                         action(t);
                     }
@@ -27484,6 +31401,7 @@ var java;
             return InternalStringMap;
         }());
         util.InternalStringMap = InternalStringMap;
+        InternalStringMap["__classname"] = "java.util.InternalStringMap";
         var InternalStringMap;
         (function (InternalStringMap) {
             var InternalStringMap$0 = (function () {
@@ -27541,7 +31459,7 @@ var java;
         })(InternalStringMap = util.InternalStringMap || (util.InternalStringMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -27695,6 +31613,7 @@ var javaemul;
             return StringHelper;
         }());
         internal.StringHelper = StringHelper;
+        StringHelper["__classname"] = "javaemul.internal.StringHelper";
         var StringHelper;
         (function (StringHelper) {
             var StringHelper$0 = (function () {
@@ -27710,7 +31629,7 @@ var javaemul;
         })(StringHelper = internal.StringHelper || (internal.StringHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var sql;
@@ -27775,9 +31694,10 @@ var java;
             return Date;
         }(java.util.Date));
         sql.Date = Date;
+        Date["__classname"] = "java.sql.Date";
     })(sql = java.sql || (java.sql = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var sql;
@@ -27845,9 +31765,10 @@ var java;
             return Time;
         }(java.util.Date));
         sql.Time = Time;
+        Time["__classname"] = "java.sql.Time";
     })(sql = java.sql || (java.sql = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var sql;
@@ -28009,9 +31930,312 @@ var java;
             return Timestamp;
         }(java.util.Date));
         sql.Timestamp = Timestamp;
+        Timestamp["__classname"] = "java.sql.Timestamp";
     })(sql = java.sql || (java.sql = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var beans;
+    (function (beans) {
+        var PropertyChangeListenerProxy = (function (_super) {
+            __extends(PropertyChangeListenerProxy, _super);
+            /**
+             * Constructor which binds the {@code PropertyChangeListener}
+             * to a specific property.
+             *
+             * @param propertyName  the name of the property to listen on
+             * @param listener      the listener object
+             */
+            function PropertyChangeListenerProxy(propertyName, listener) {
+                _super.call(this, listener);
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.EventListener", "java.beans.PropertyChangeListener"] });
+                this.propertyName = propertyName;
+            }
+            /**
+             * Forwards the property change event to the listener delegate.
+             *
+             * @param event  the property change event
+             */
+            PropertyChangeListenerProxy.prototype.propertyChange = function (event) {
+                this.getListener().propertyChange(event);
+            };
+            /**
+             * Returns the name of the named property associated with the listener.
+             *
+             * @return the name of the named property associated with the listener
+             */
+            PropertyChangeListenerProxy.prototype.getPropertyName = function () {
+                return this.propertyName;
+            };
+            return PropertyChangeListenerProxy;
+        }(java.util.EventListenerProxy));
+        beans.PropertyChangeListenerProxy = PropertyChangeListenerProxy;
+        PropertyChangeListenerProxy["__classname"] = "java.beans.PropertyChangeListenerProxy";
+    })(beans = java.beans || (java.beans = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var AWTEvent = (function (_super) {
+            __extends(AWTEvent, _super);
+            function AWTEvent(source, id) {
+                var _this = this;
+                if (((source != null) || source === null) && ((typeof id === 'number') || id === null)) {
+                    _super.call(this, source);
+                    this.id = 0;
+                    this.consumed = false;
+                    (function () {
+                        _this.id = id;
+                        _this.consumed = false;
+                        switch ((id)) {
+                            case java.awt.event.ActionEvent.ACTION_PERFORMED_$LI$():
+                            case java.awt.event.ItemEvent.ITEM_STATE_CHANGED_$LI$():
+                            case java.awt.event.AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED_$LI$():
+                            case java.awt.event.TextEvent.TEXT_VALUE_CHANGED_$LI$():
+                                _this.consumed = true;
+                                break;
+                            default:
+                        }
+                    })();
+                }
+                else if (((source != null && source instanceof java.awt.Event) || source === null) && id === undefined) {
+                    var event = source;
+                    {
+                        var source = event.target;
+                        var id = event.id;
+                        _super.call(this, source);
+                        this.id = 0;
+                        this.consumed = false;
+                        (function () {
+                            _this.id = id;
+                            _this.consumed = false;
+                            switch ((id)) {
+                                case java.awt.event.ActionEvent.ACTION_PERFORMED_$LI$():
+                                case java.awt.event.ItemEvent.ITEM_STATE_CHANGED_$LI$():
+                                case java.awt.event.AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED_$LI$():
+                                case java.awt.event.TextEvent.TEXT_VALUE_CHANGED_$LI$():
+                                    _this.consumed = true;
+                                    break;
+                                default:
+                            }
+                        })();
+                    }
+                    (function () {
+                        _this.consumed = false;
+                    })();
+                }
+                else
+                    throw new Error('invalid overload');
+            }
+            AWTEvent.prototype.setSource = function (newSource) {
+                if (this.source === newSource) {
+                    return;
+                }
+                this.source = newSource;
+            };
+            /**
+             * Returns a String representation of this object.
+             */
+            AWTEvent.prototype.toString = function () {
+                var srcName = null;
+                if (this.source != null && this.source instanceof java.awt.Component) {
+                    srcName = this.source.getName();
+                }
+                else if (this.source != null && this.source instanceof java.awt.MenuComponent) {
+                    srcName = this.source.getName();
+                }
+                return this.constructor["__classname"] + "[" + this.paramString() + "] on " + (srcName != null ? srcName : this.source);
+            };
+            AWTEvent.prototype.paramString = function () {
+                return "";
+            };
+            AWTEvent.prototype.consume = function () {
+                switch ((this.id)) {
+                    case java.awt.event.KeyEvent.KEY_PRESSED_$LI$():
+                    case java.awt.event.KeyEvent.KEY_RELEASED_$LI$():
+                    case java.awt.event.MouseEvent.MOUSE_PRESSED_$LI$():
+                    case java.awt.event.MouseEvent.MOUSE_RELEASED_$LI$():
+                    case java.awt.event.MouseEvent.MOUSE_MOVED_$LI$():
+                    case java.awt.event.MouseEvent.MOUSE_DRAGGED_$LI$():
+                    case java.awt.event.MouseEvent.MOUSE_ENTERED_$LI$():
+                    case java.awt.event.MouseEvent.MOUSE_EXITED_$LI$():
+                    case java.awt.event.MouseEvent.MOUSE_WHEEL_$LI$():
+                        this.consumed = true;
+                        break;
+                    default:
+                }
+            };
+            AWTEvent.prototype.isConsumed = function () {
+                return this.consumed;
+            };
+            /**
+             * The event mask for selecting component events.
+             */
+            AWTEvent.COMPONENT_EVENT_MASK = 1;
+            /**
+             * The event mask for selecting container events.
+             */
+            AWTEvent.CONTAINER_EVENT_MASK = 2;
+            /**
+             * The event mask for selecting focus events.
+             */
+            AWTEvent.FOCUS_EVENT_MASK = 4;
+            /**
+             * The event mask for selecting key events.
+             */
+            AWTEvent.KEY_EVENT_MASK = 8;
+            /**
+             * The event mask for selecting mouse events.
+             */
+            AWTEvent.MOUSE_EVENT_MASK = 16;
+            /**
+             * The event mask for selecting mouse motion events.
+             */
+            AWTEvent.MOUSE_MOTION_EVENT_MASK = 32;
+            /**
+             * The event mask for selecting window events.
+             */
+            AWTEvent.WINDOW_EVENT_MASK = 64;
+            /**
+             * The event mask for selecting action events.
+             */
+            AWTEvent.ACTION_EVENT_MASK = 128;
+            /**
+             * The event mask for selecting adjustment events.
+             */
+            AWTEvent.ADJUSTMENT_EVENT_MASK = 256;
+            /**
+             * The event mask for selecting item events.
+             */
+            AWTEvent.ITEM_EVENT_MASK = 512;
+            /**
+             * The event mask for selecting text events.
+             */
+            AWTEvent.TEXT_EVENT_MASK = 1024;
+            /**
+             * The event mask for selecting input method events.
+             */
+            AWTEvent.INPUT_METHOD_EVENT_MASK = 2048;
+            /**
+             * The pseudo event mask for enabling input methods. We're using one bit in
+             * the eventMask so we don't need a separate field inputMethodsEnabled.
+             */
+            AWTEvent.INPUT_METHODS_ENABLED_MASK = 4096;
+            /**
+             * The event mask for selecting paint events.
+             */
+            AWTEvent.PAINT_EVENT_MASK = 8192;
+            /**
+             * The event mask for selecting invocation events.
+             */
+            AWTEvent.INVOCATION_EVENT_MASK = 16384;
+            /**
+             * The event mask for selecting hierarchy events.
+             */
+            AWTEvent.HIERARCHY_EVENT_MASK = 32768;
+            /**
+             * The event mask for selecting hierarchy bounds events.
+             */
+            AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK = 65536;
+            /**
+             * The event mask for selecting mouse wheel events.
+             *
+             * @since 1.4
+             */
+            AWTEvent.MOUSE_WHEEL_EVENT_MASK = 131072;
+            /**
+             * The event mask for selecting window state events.
+             *
+             * @since 1.4
+             */
+            AWTEvent.WINDOW_STATE_EVENT_MASK = 262144;
+            /**
+             * The event mask for selecting window focus events.
+             *
+             * @since 1.4
+             */
+            AWTEvent.WINDOW_FOCUS_EVENT_MASK = 524288;
+            /**
+             * The maximum value for reserved AWT event IDs. Programs defining their own
+             * event IDs should use IDs greater than this value.
+             */
+            AWTEvent.RESERVED_ID_MAX = 1999;
+            return AWTEvent;
+        }(java.util.EventObject));
+        awt.AWTEvent = AWTEvent;
+        AWTEvent["__classname"] = "java.awt.AWTEvent";
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var beans;
+    (function (beans) {
+        var PropertyChangeEvent = (function (_super) {
+            __extends(PropertyChangeEvent, _super);
+            function PropertyChangeEvent(source, propertyName, oldValue, newValue) {
+                _super.call(this, source);
+                this.propertyName = propertyName;
+                this.newValue = newValue;
+                this.oldValue = oldValue;
+            }
+            PropertyChangeEvent.prototype.getPropertyName = function () {
+                return this.propertyName;
+            };
+            PropertyChangeEvent.prototype.getNewValue = function () {
+                return this.newValue;
+            };
+            PropertyChangeEvent.prototype.getOldValue = function () {
+                return this.oldValue;
+            };
+            PropertyChangeEvent.prototype.setPropagationId = function (propagationId) {
+                this.propagationId = propagationId;
+            };
+            PropertyChangeEvent.prototype.getPropagationId = function () {
+                return this.propagationId;
+            };
+            PropertyChangeEvent.prototype.toString = function () {
+                var sb = new java.lang.StringBuilder(/* getName */ this.constructor["__classname"]);
+                sb.append("[propertyName=").append(this.getPropertyName());
+                this.appendTo(sb);
+                sb.append("; oldValue=").append(this.getOldValue());
+                sb.append("; newValue=").append(this.getNewValue());
+                sb.append("; propagationId=").append(this.getPropagationId());
+                sb.append("; source=").append(this.getSource());
+                return sb.append("]").toString();
+            };
+            PropertyChangeEvent.prototype.appendTo = function (sb) {
+            };
+            PropertyChangeEvent.serialVersionUID = 7042693688939648123;
+            return PropertyChangeEvent;
+        }(java.util.EventObject));
+        beans.PropertyChangeEvent = PropertyChangeEvent;
+        PropertyChangeEvent["__classname"] = "java.beans.PropertyChangeEvent";
+    })(beans = java.beans || (java.beans = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var javax;
+(function (javax) {
+    var swing;
+    (function (swing) {
+        var event;
+        (function (event) {
+            var ChangeEvent = (function (_super) {
+                __extends(ChangeEvent, _super);
+                function ChangeEvent(source) {
+                    _super.call(this, source);
+                }
+                return ChangeEvent;
+            }(java.util.EventObject));
+            event.ChangeEvent = ChangeEvent;
+            ChangeEvent["__classname"] = "javax.swing.event.ChangeEvent";
+        })(event = swing.event || (swing.event = {}));
+    })(swing = javax.swing || (javax.swing = {}));
+})(javax || (javax = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -28058,10 +32282,11 @@ var java;
                 return SimpleConsoleLogHandler;
             }(java.util.logging.Handler));
             logging.SimpleConsoleLogHandler = SimpleConsoleLogHandler;
+            SimpleConsoleLogHandler["__classname"] = "java.util.logging.SimpleConsoleLogHandler";
         })(logging = util.logging || (util.logging = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -28190,6 +32415,7 @@ var javaemul;
             return ByteHelper;
         }(javaemul.internal.NumberHelper));
         internal.ByteHelper = ByteHelper;
+        ByteHelper["__classname"] = "javaemul.internal.ByteHelper";
         var ByteHelper;
         (function (ByteHelper) {
             /**
@@ -28204,10 +32430,11 @@ var javaemul;
                 return BoxedValues;
             }());
             ByteHelper.BoxedValues = BoxedValues;
+            BoxedValues["__classname"] = "javaemul.internal.ByteHelper.BoxedValues";
         })(ByteHelper = internal.ByteHelper || (internal.ByteHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -28501,6 +32728,7 @@ var javaemul;
             return DoubleHelper;
         }(javaemul.internal.NumberHelper));
         internal.DoubleHelper = DoubleHelper;
+        DoubleHelper["__classname"] = "javaemul.internal.DoubleHelper";
         var DoubleHelper;
         (function (DoubleHelper) {
             var PowersTable = (function () {
@@ -28515,10 +32743,11 @@ var javaemul;
                 return PowersTable;
             }());
             DoubleHelper.PowersTable = PowersTable;
+            PowersTable["__classname"] = "javaemul.internal.DoubleHelper.PowersTable";
         })(DoubleHelper = internal.DoubleHelper || (internal.DoubleHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -28743,9 +32972,10 @@ var javaemul;
             return FloatHelper;
         }(javaemul.internal.NumberHelper));
         internal.FloatHelper = FloatHelper;
+        FloatHelper["__classname"] = "javaemul.internal.FloatHelper";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -28943,11 +33173,11 @@ var javaemul;
                     var rebase = i + 128;
                     var result = IntegerHelper.BoxedValues.boxedValues_$LI$()[rebase];
                     if (result == null) {
-                        result = IntegerHelper.BoxedValues.boxedValues_$LI$()[rebase] = new IntegerHelper(i);
+                        result = IntegerHelper.BoxedValues.boxedValues_$LI$()[rebase] = new Number(i);
                     }
                     return result;
                 }
-                return new IntegerHelper(i);
+                return new Number(i);
             };
             IntegerHelper.valueOf$java_lang_String = function (s) {
                 return IntegerHelper.valueOf(s, 10);
@@ -29011,12 +33241,16 @@ var javaemul;
             IntegerHelper.prototype.toString = function () {
                 return IntegerHelper.toString(this.value);
             };
+            IntegerHelper.getInteger = function (nm) {
+                return IntegerHelper.decode(java.lang.System.getProperty(nm));
+            };
             IntegerHelper.MAX_VALUE = 2147483647;
             IntegerHelper.MIN_VALUE = -2147483648;
             IntegerHelper.SIZE = 32;
             return IntegerHelper;
         }(javaemul.internal.NumberHelper));
         internal.IntegerHelper = IntegerHelper;
+        IntegerHelper["__classname"] = "javaemul.internal.IntegerHelper";
         var IntegerHelper;
         (function (IntegerHelper) {
             /**
@@ -29031,6 +33265,7 @@ var javaemul;
                 return BoxedValues;
             }());
             IntegerHelper.BoxedValues = BoxedValues;
+            BoxedValues["__classname"] = "javaemul.internal.IntegerHelper.BoxedValues";
             /**
              * Use nested class to avoid clinit on outer.
              */
@@ -29043,10 +33278,11 @@ var javaemul;
                 return ReverseNibbles;
             }());
             IntegerHelper.ReverseNibbles = ReverseNibbles;
+            ReverseNibbles["__classname"] = "javaemul.internal.IntegerHelper.ReverseNibbles";
         })(IntegerHelper = internal.IntegerHelper || (internal.IntegerHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -29314,6 +33550,7 @@ var javaemul;
             return LongHelper;
         }(javaemul.internal.NumberHelper));
         internal.LongHelper = LongHelper;
+        LongHelper["__classname"] = "javaemul.internal.LongHelper";
         var LongHelper;
         (function (LongHelper) {
             /**
@@ -29328,10 +33565,11 @@ var javaemul;
                 return BoxedValues;
             }());
             LongHelper.BoxedValues = BoxedValues;
+            BoxedValues["__classname"] = "javaemul.internal.LongHelper.BoxedValues";
         })(LongHelper = internal.LongHelper || (internal.LongHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -29464,6 +33702,7 @@ var javaemul;
             return ShortHelper;
         }(javaemul.internal.NumberHelper));
         internal.ShortHelper = ShortHelper;
+        ShortHelper["__classname"] = "javaemul.internal.ShortHelper";
         var ShortHelper;
         (function (ShortHelper) {
             /**
@@ -29478,10 +33717,11 @@ var javaemul;
                 return BoxedValues;
             }());
             ShortHelper.BoxedValues = BoxedValues;
+            BoxedValues["__classname"] = "javaemul.internal.ShortHelper.BoxedValues";
         })(ShortHelper = internal.ShortHelper || (internal.ShortHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var sun;
 (function (sun) {
     var awt;
@@ -29584,10 +33824,11 @@ var sun;
                 return Order0;
             }(sun.awt.geom.Curve));
             geom.Order0 = Order0;
+            Order0["__classname"] = "sun.awt.geom.Order0";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = sun.awt || (sun.awt = {}));
 })(sun || (sun = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var sun;
 (function (sun) {
     var awt;
@@ -29826,10 +34067,11 @@ var sun;
                 return Order1;
             }(sun.awt.geom.Curve));
             geom.Order1 = Order1;
+            Order1["__classname"] = "sun.awt.geom.Order1";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = sun.awt || (sun.awt = {}));
 })(sun || (sun = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var sun;
 (function (sun) {
     var awt;
@@ -30149,10 +34391,11 @@ var sun;
                 return Order2;
             }(sun.awt.geom.Curve));
             geom.Order2 = Order2;
+            Order2["__classname"] = "sun.awt.geom.Order2";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = sun.awt || (sun.awt = {}));
 })(sun || (sun = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var sun;
 (function (sun) {
     var awt;
@@ -30658,10 +34901,11 @@ var sun;
                 return Order3;
             }(sun.awt.geom.Curve));
             geom.Order3 = Order3;
+            Order3["__classname"] = "sun.awt.geom.Order3";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = sun.awt || (sun.awt = {}));
 })(sun || (sun = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var sun;
 (function (sun) {
     var awt;
@@ -31006,6 +35250,7 @@ var sun;
                 return AreaOp;
             }());
             geom.AreaOp = AreaOp;
+            AreaOp["__classname"] = "sun.awt.geom.AreaOp";
             var AreaOp;
             (function (AreaOp) {
                 var CAGOp = (function (_super) {
@@ -31041,6 +35286,7 @@ var sun;
                     return CAGOp;
                 }(sun.awt.geom.AreaOp));
                 AreaOp.CAGOp = CAGOp;
+                CAGOp["__classname"] = "sun.awt.geom.AreaOp.CAGOp";
                 var AddOp = (function (_super) {
                     __extends(AddOp, _super);
                     function AddOp() {
@@ -31052,6 +35298,7 @@ var sun;
                     return AddOp;
                 }(AreaOp.CAGOp));
                 AreaOp.AddOp = AddOp;
+                AddOp["__classname"] = "sun.awt.geom.AreaOp.AddOp";
                 var SubOp = (function (_super) {
                     __extends(SubOp, _super);
                     function SubOp() {
@@ -31063,6 +35310,7 @@ var sun;
                     return SubOp;
                 }(AreaOp.CAGOp));
                 AreaOp.SubOp = SubOp;
+                SubOp["__classname"] = "sun.awt.geom.AreaOp.SubOp";
                 var IntOp = (function (_super) {
                     __extends(IntOp, _super);
                     function IntOp() {
@@ -31074,6 +35322,7 @@ var sun;
                     return IntOp;
                 }(AreaOp.CAGOp));
                 AreaOp.IntOp = IntOp;
+                IntOp["__classname"] = "sun.awt.geom.AreaOp.IntOp";
                 var XorOp = (function (_super) {
                     __extends(XorOp, _super);
                     function XorOp() {
@@ -31085,6 +35334,7 @@ var sun;
                     return XorOp;
                 }(AreaOp.CAGOp));
                 AreaOp.XorOp = XorOp;
+                XorOp["__classname"] = "sun.awt.geom.AreaOp.XorOp";
                 var NZWindOp = (function (_super) {
                     __extends(NZWindOp, _super);
                     function NZWindOp() {
@@ -31107,6 +35357,7 @@ var sun;
                     return NZWindOp;
                 }(sun.awt.geom.AreaOp));
                 AreaOp.NZWindOp = NZWindOp;
+                NZWindOp["__classname"] = "sun.awt.geom.AreaOp.NZWindOp";
                 var EOWindOp = (function (_super) {
                     __extends(EOWindOp, _super);
                     function EOWindOp() {
@@ -31127,6 +35378,7 @@ var sun;
                     return EOWindOp;
                 }(sun.awt.geom.AreaOp));
                 AreaOp.EOWindOp = EOWindOp;
+                EOWindOp["__classname"] = "sun.awt.geom.AreaOp.EOWindOp";
                 var AreaOp$0 = (function () {
                     function AreaOp$0() {
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Comparator"] });
@@ -31153,7 +35405,47 @@ var sun;
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = sun.awt || (sun.awt = {}));
 })(sun || (sun = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var Panel = (function (_super) {
+            __extends(Panel, _super);
+            function Panel() {
+                _super.call(this);
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.HTMLComponent"] });
+            }
+            Panel.prototype.createHTML = function () {
+                this.htmlElement = document.createElement("div");
+                this.htmlElement.style.width = "100%";
+                this.htmlElement.style.height = "100%";
+            };
+            return Panel;
+        }(java.awt.Container));
+        awt.Panel = Panel;
+        Panel["__classname"] = "java.awt.Panel";
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var javax;
+(function (javax) {
+    var swing;
+    (function (swing) {
+        var JComponent = (function (_super) {
+            __extends(JComponent, _super);
+            function JComponent() {
+                _super.call(this);
+                this.listenerList = new javax.swing.event.EventListenerList();
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.HTMLComponent", "java.io.Serializable"] });
+            }
+            return JComponent;
+        }(java.awt.Container));
+        swing.JComponent = JComponent;
+        JComponent["__classname"] = "javax.swing.JComponent";
+    })(swing = javax.swing || (javax.swing = {}));
+})(javax || (javax = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -31231,10 +35523,11 @@ var java;
                 return GeneralPath;
             }(java.awt.geom.Path2D.Float));
             geom.GeneralPath = GeneralPath;
+            GeneralPath["__classname"] = "java.awt.geom.GeneralPath";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -32473,106 +36766,429 @@ var java;
              * <code>Rectangle</code> object's coordinate and size values.
              */
             Rectangle.prototype.toString = function () {
-                return "java.awt.Rectangle" + "[x=" + this.x + ",y=" + this.y + ",width=" + this.width + ",height=" + this.height + "]";
+                return Rectangle["__classname"] + "[x=" + this.x + ",y=" + this.y + ",width=" + this.width + ",height=" + this.height + "]";
             };
             Rectangle.serialVersionUID = -4345857070255674764;
             return Rectangle;
         }(java.awt.geom.Rectangle2D));
         awt.Rectangle = Rectangle;
+        Rectangle["__classname"] = "java.awt.Rectangle";
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
-    var applet;
-    (function (applet_1) {
-        var Applet = (function () {
-            function Applet() {
+    var awt;
+    (function (awt) {
+        var WebGraphics2D = (function (_super) {
+            __extends(WebGraphics2D, _super);
+            function WebGraphics2D(canvas) {
+                _super.call(this);
+                this.context = canvas.getContext("2d");
             }
-            Applet.__static_initialize = function () { if (!Applet.__static_initialized) {
-                Applet.__static_initialized = true;
-                Applet.__static_initializer_0();
-            } };
-            Applet.__static_initializer_0 = function () {
-                console.info("installing applet onload hook");
-                window.onload = function (e) {
-                    console.info("applet onload hook");
-                    var divList = document.getElementsByClassName("applet");
-                    if (divList.length === 0) {
-                        return null;
-                    }
-                    var div = divList[0];
-                    if (div.getAttribute("data-applet") != null) {
-                        console.info("installing applet: " + div.getAttribute("data-applet"));
-                        div.style.position = "relative";
-                        var canvas = document.createElement("canvas");
-                        canvas.setAttribute("width", div.getAttribute("data-width"));
-                        canvas.setAttribute("height", div.getAttribute("data-height"));
-                        div.style.width = div.getAttribute("data-width");
-                        div.style.height = div.getAttribute("data-height");
-                        if (div.firstChild != null) {
-                            div.insertBefore(canvas, div.firstChild);
+            WebGraphics2D.prototype.drawString = function (s, x, y) {
+                var _this = this;
+                if (((typeof s === 'string') || s === null) && ((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null)) {
+                    return (function () {
+                        _this.context.fillText(s, x, y);
+                    })();
+                }
+                else if (((typeof s === 'string') || s === null) && ((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null)) {
+                    return this.drawString$java_lang_String$float$float(s, x, y);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            WebGraphics2D.prototype.getContext = function () {
+                return this.context;
+            };
+            WebGraphics2D.prototype.clearRect = function (x, y, width, height) {
+                this.context.clearRect(x, y, width, height);
+            };
+            WebGraphics2D.prototype.create$ = function () {
+                var canvas = new HTMLCanvasElement();
+                var graphics = new WebGraphics2D(canvas);
+                return graphics;
+            };
+            WebGraphics2D.prototype.drawArc = function (x, y, width, height, startAngle, arcAngle) {
+                this.context.beginPath();
+                this.context["ellipse"](x - (width / 2 | 0), y - (height / 2 | 0), (width / 2 | 0), (height / 2 | 0), 0, /* toRadians */ (function (x) { return x * Math.PI / 180; })(startAngle), /* toRadians */ (function (x) { return x * Math.PI / 180; })(startAngle) + (function (x) { return x * Math.PI / 180; })(arcAngle));
+                this.context.stroke();
+            };
+            WebGraphics2D.prototype.drawLine = function (x1, y1, x2, y2) {
+                this.context.beginPath();
+                this.context.moveTo(x1, y1);
+                this.context.lineTo(x2, y2);
+                this.context.stroke();
+            };
+            WebGraphics2D.prototype.drawOval = function (x, y, width, height) {
+                this.context.beginPath();
+                this.context["ellipse"](x - (width / 2 | 0), y - (height / 2 | 0), (width / 2 | 0), (height / 2 | 0), 0, 0, Math.PI * 2);
+                this.context.stroke();
+            };
+            WebGraphics2D.prototype.drawRoundRect = function (x, y, width, height, arcWidth, arcHeight) {
+                this.drawRect(x, y, width, height);
+            };
+            WebGraphics2D.prototype.drawRect = function (x, y, width, height) {
+                this.context.beginPath();
+                this.context.rect(x, y, width, height);
+                this.context.stroke();
+            };
+            WebGraphics2D.prototype.drawPolygon = function (xPoints, yPoints, nPoints) {
+                var _this = this;
+                if (((xPoints != null && xPoints instanceof Array) || xPoints === null) && ((yPoints != null && yPoints instanceof Array) || yPoints === null) && ((typeof nPoints === 'number') || nPoints === null)) {
+                    return (function () {
+                        _this.context.beginPath();
+                        if (nPoints <= 0) {
+                            return;
+                        }
+                        _this.context.moveTo(xPoints[0], yPoints[0]);
+                        for (var i = 0; i < nPoints; i++) {
+                            _this.context.lineTo(xPoints[i], yPoints[i]);
+                        }
+                        _this.context.moveTo(xPoints[0], yPoints[0]);
+                        _this.context.stroke();
+                    })();
+                }
+                else if (((xPoints != null && xPoints instanceof java.awt.Polygon) || xPoints === null) && yPoints === undefined && nPoints === undefined) {
+                    return this.drawPolygon$java_awt_Polygon(xPoints);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            WebGraphics2D.prototype.drawPolygon$java_awt_Polygon = function (p) {
+                this.drawPolygon(p.xpoints, p.ypoints, p.npoints);
+            };
+            WebGraphics2D.prototype.fillPolygon$java_awt_Polygon = function (p) {
+                this.fillPolygon(p.xpoints, p.ypoints, p.npoints);
+            };
+            WebGraphics2D.prototype.getClipBounds = function (r) {
+                var _this = this;
+                if (((r != null && r instanceof java.awt.Rectangle) || r === null)) {
+                    return (function () {
+                        if (_this.clip == null) {
+                            return r;
                         }
                         else {
-                            div.appendChild(canvas);
+                            return _this.clip.getBounds().createIntersection(r).getBounds();
                         }
-                        canvas.style.position = "absolute";
-                        canvas.style.left = "0px";
-                        canvas.style.right = "0px";
-                        canvas.style.width = div.style.width;
-                        canvas.style.height = div.style.height;
-                        canvas.style.zIndex = "-1";
-                        var names = div.getAttribute("data-applet").split(".");
-                        var constructor = window;
-                        for (var index138 = 0; index138 < names.length; index138++) {
-                            var name = names[index138];
-                            {
-                                constructor = constructor[name];
-                                console.info("name: " + name + " -> " + constructor);
-                            }
-                        }
-                        var applet = new constructor();
-                        applet.container = div;
-                        var g = new java.awt.WebGraphics2D(canvas);
-                        applet.init();
-                        applet.paint(g);
+                    })();
+                }
+                else if (r === undefined) {
+                    return this.getClipBounds$();
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            WebGraphics2D.prototype.draw3DRect = function (x, y, width, height, raised) {
+                this.drawRect(x, y, width, height);
+            };
+            WebGraphics2D.prototype.hitClip = function (x, y, width, height) {
+                return this.clip.getBounds().intersects(x, y, width, height);
+            };
+            WebGraphics2D.prototype.drawPolyline = function (xPoints, yPoints, nPoints) {
+                this.context.beginPath();
+                if (nPoints <= 0) {
+                    return;
+                }
+                this.context.moveTo(xPoints[0], yPoints[0]);
+                for (var i = 0; i < nPoints; i++) {
+                    this.context.lineTo(xPoints[i], yPoints[i]);
+                }
+                this.context.stroke();
+            };
+            WebGraphics2D.prototype.draw = function (s) {
+                var it = s.getPathIterator(java.awt.geom.AffineTransform.getTranslateInstance(0, 0));
+                var coords = new Array(6);
+                while ((it.isDone())) {
+                    switch ((it.currentSegment(coords))) {
+                        case java.awt.geom.PathIterator.SEG_MOVETO:
+                            this.context.moveTo(coords[0], coords[1]);
+                            break;
+                        case java.awt.geom.PathIterator.SEG_LINETO:
+                            this.context.lineTo(coords[0], coords[1]);
+                            break;
+                        case java.awt.geom.PathIterator.SEG_QUADTO:
+                            break;
+                        case java.awt.geom.PathIterator.SEG_CUBICTO:
+                            break;
+                        case java.awt.geom.PathIterator.SEG_CLOSE:
+                            this.context.stroke();
+                            break;
+                        default:
+                            break;
                     }
-                    return null;
-                };
+                }
+                ;
+                this.context.stroke();
             };
-            Applet.prototype.init = function () {
+            WebGraphics2D.prototype.fill = function (s) {
+                var it = s.getPathIterator(java.awt.geom.AffineTransform.getTranslateInstance(0, 0));
+                var coords = new Array(6);
+                while ((it.isDone())) {
+                    switch ((it.currentSegment(coords))) {
+                        case java.awt.geom.PathIterator.SEG_MOVETO:
+                            this.context.moveTo(coords[0], coords[1]);
+                            break;
+                        case java.awt.geom.PathIterator.SEG_LINETO:
+                            this.context.lineTo(coords[0], coords[1]);
+                            break;
+                        case java.awt.geom.PathIterator.SEG_QUADTO:
+                            break;
+                        case java.awt.geom.PathIterator.SEG_CUBICTO:
+                            break;
+                        case java.awt.geom.PathIterator.SEG_CLOSE:
+                            this.context.stroke();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                ;
+                this.context.fill();
             };
-            Applet.prototype.paint = function (g) {
-                var wg = g;
-                if (this.backgroundColor != null) {
-                    wg.getContext().fillStyle = this.backgroundColor.toHTML();
-                    console.log("painting background: " + this.backgroundColor.toHTML());
-                    wg.getContext().fillRect(0, 0, wg.getContext().canvas.width, wg.getContext().canvas.height);
+            WebGraphics2D.prototype.drawImage$java_awt_Image$java_awt_geom_AffineTransform$java_awt_image_ImageObserver = function (img, xform, obs) {
+                return false;
+            };
+            WebGraphics2D.prototype.drawImage$java_awt_Image$int$int$java_awt_Color$java_awt_image_ImageObserver = function (img, x, y, bgcolor, observer) {
+                this.context["drawImage"](img.source, x, y);
+                return true;
+            };
+            WebGraphics2D.prototype.drawImage = function (img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, bgcolor, observer) {
+                var _this = this;
+                if (((img != null && img instanceof java.awt.Image) || img === null) && ((typeof dx1 === 'number') || dx1 === null) && ((typeof dy1 === 'number') || dy1 === null) && ((typeof dx2 === 'number') || dx2 === null) && ((typeof dy2 === 'number') || dy2 === null) && ((typeof sx1 === 'number') || sx1 === null) && ((typeof sy1 === 'number') || sy1 === null) && ((typeof sx2 === 'number') || sx2 === null) && ((typeof sy2 === 'number') || sy2 === null) && ((bgcolor != null && bgcolor instanceof java.awt.Color) || bgcolor === null) && ((observer != null && observer["__interfaces"] != null && observer["__interfaces"].indexOf("java.awt.image.ImageObserver") >= 0) || observer === null)) {
+                    return (function () {
+                        _this.context["drawImage"](img.source, Math.min(sx1, sx2), Math.min(sy1, sy2), Math.abs(sx2 - sx1), Math.abs(sy2 - sy1), Math.min(dx1, dx2), Math.min(dy1, dy2), Math.abs(dx2 - dx1), Math.abs(dy2 - dy1));
+                        return true;
+                    })();
+                }
+                else if (((img != null && img instanceof java.awt.Image) || img === null) && ((typeof dx1 === 'number') || dx1 === null) && ((typeof dy1 === 'number') || dy1 === null) && ((typeof dx2 === 'number') || dx2 === null) && ((typeof dy2 === 'number') || dy2 === null) && ((typeof sx1 === 'number') || sx1 === null) && ((typeof sy1 === 'number') || sy1 === null) && ((typeof sx2 === 'number') || sx2 === null) && ((typeof sy2 === 'number') || sy2 === null) && ((bgcolor != null && bgcolor["__interfaces"] != null && bgcolor["__interfaces"].indexOf("java.awt.image.ImageObserver") >= 0) || bgcolor === null) && observer === undefined) {
+                    return this.drawImage$java_awt_Image$int$int$int$int$int$int$int$int$java_awt_image_ImageObserver(img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, bgcolor);
+                }
+                else if (((img != null && img instanceof java.awt.Image) || img === null) && ((typeof dx1 === 'number') || dx1 === null) && ((typeof dy1 === 'number') || dy1 === null) && ((typeof dx2 === 'number') || dx2 === null) && ((typeof dy2 === 'number') || dy2 === null) && ((sx1 != null && sx1 instanceof java.awt.Color) || sx1 === null) && ((sy1 != null && sy1["__interfaces"] != null && sy1["__interfaces"].indexOf("java.awt.image.ImageObserver") >= 0) || sy1 === null) && sx2 === undefined && sy2 === undefined && bgcolor === undefined && observer === undefined) {
+                    return this.drawImage$java_awt_Image$int$int$int$int$java_awt_Color$java_awt_image_ImageObserver(img, dx1, dy1, dx2, dy2, sx1, sy1);
+                }
+                else if (((img != null && img instanceof java.awt.Image) || img === null) && ((typeof dx1 === 'number') || dx1 === null) && ((typeof dy1 === 'number') || dy1 === null) && ((typeof dx2 === 'number') || dx2 === null) && ((typeof dy2 === 'number') || dy2 === null) && ((sx1 != null && sx1["__interfaces"] != null && sx1["__interfaces"].indexOf("java.awt.image.ImageObserver") >= 0) || sx1 === null) && sy1 === undefined && sx2 === undefined && sy2 === undefined && bgcolor === undefined && observer === undefined) {
+                    return this.drawImage$java_awt_Image$int$int$int$int$java_awt_image_ImageObserver(img, dx1, dy1, dx2, dy2, sx1);
+                }
+                else if (((img != null && img instanceof java.awt.Image) || img === null) && ((typeof dx1 === 'number') || dx1 === null) && ((typeof dy1 === 'number') || dy1 === null) && ((dx2 != null && dx2 instanceof java.awt.Color) || dx2 === null) && ((dy2 != null && dy2["__interfaces"] != null && dy2["__interfaces"].indexOf("java.awt.image.ImageObserver") >= 0) || dy2 === null) && sx1 === undefined && sy1 === undefined && sx2 === undefined && sy2 === undefined && bgcolor === undefined && observer === undefined) {
+                    return this.drawImage$java_awt_Image$int$int$java_awt_Color$java_awt_image_ImageObserver(img, dx1, dy1, dx2, dy2);
+                }
+                else if (((img != null && img instanceof java.awt.Image) || img === null) && ((typeof dx1 === 'number') || dx1 === null) && ((typeof dy1 === 'number') || dy1 === null) && ((dx2 != null && dx2["__interfaces"] != null && dx2["__interfaces"].indexOf("java.awt.image.ImageObserver") >= 0) || dx2 === null) && dy2 === undefined && sx1 === undefined && sy1 === undefined && sx2 === undefined && sy2 === undefined && bgcolor === undefined && observer === undefined) {
+                    return this.drawImage$java_awt_Image$int$int$java_awt_image_ImageObserver(img, dx1, dy1, dx2);
+                }
+                else if (((img != null && img instanceof java.awt.Image) || img === null) && ((dx1 != null && dx1 instanceof java.awt.geom.AffineTransform) || dx1 === null) && ((dy1 != null && dy1["__interfaces"] != null && dy1["__interfaces"].indexOf("java.awt.image.ImageObserver") >= 0) || dy1 === null) && dx2 === undefined && dy2 === undefined && sx1 === undefined && sy1 === undefined && sx2 === undefined && sy2 === undefined && bgcolor === undefined && observer === undefined) {
+                    return this.drawImage$java_awt_Image$java_awt_geom_AffineTransform$java_awt_image_ImageObserver(img, dx1, dy1);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            WebGraphics2D.prototype.drawImage$java_awt_Image$int$int$int$int$int$int$int$int$java_awt_image_ImageObserver = function (img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, observer) {
+                this.context["drawImage"](img.source, Math.min(sx1, sx2), Math.min(sy1, sy2), Math.abs(sx2 - sx1), Math.abs(sy2 - sy1), Math.min(dx1, dx2), Math.min(dy1, dy2), Math.abs(dx2 - dx1), Math.abs(dy2 - dy1));
+                return true;
+            };
+            WebGraphics2D.prototype.drawImage$java_awt_Image$int$int$java_awt_image_ImageObserver = function (img, x, y, observer) {
+                this.context["drawImage"](img.source, x, y);
+                return true;
+            };
+            WebGraphics2D.prototype.drawImage$java_awt_Image$int$int$int$int$java_awt_Color$java_awt_image_ImageObserver = function (img, x, y, width, height, bgcolor, observer) {
+                this.context["drawImage"](img.source, x, y, width, height);
+                return true;
+            };
+            WebGraphics2D.prototype.drawImage$java_awt_Image$int$int$int$int$java_awt_image_ImageObserver = function (img, x, y, width, height, observer) {
+                this.context["drawImage"](img.source, x, y, width, height);
+                return true;
+            };
+            WebGraphics2D.prototype.fillPolygon = function (xPoints, yPoints, nPoints) {
+                var _this = this;
+                if (((xPoints != null && xPoints instanceof Array) || xPoints === null) && ((yPoints != null && yPoints instanceof Array) || yPoints === null) && ((typeof nPoints === 'number') || nPoints === null)) {
+                    return (function () {
+                        _this.context.beginPath();
+                        if (nPoints <= 0) {
+                            return;
+                        }
+                        _this.context.moveTo(xPoints[0], yPoints[0]);
+                        for (var i = 0; i < nPoints; i++) {
+                            _this.context.lineTo(xPoints[i], yPoints[i]);
+                        }
+                        _this.context.moveTo(xPoints[0], yPoints[0]);
+                        _this.context.fill();
+                    })();
+                }
+                else if (((xPoints != null && xPoints instanceof java.awt.Polygon) || xPoints === null) && yPoints === undefined && nPoints === undefined) {
+                    return this.fillPolygon$java_awt_Polygon(xPoints);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            WebGraphics2D.prototype.getClip = function () {
+                return this.clip;
+            };
+            WebGraphics2D.prototype.setClip$java_awt_Shape = function (clip) {
+                this.clip = clip;
+                if (clip != null) {
+                    var it = clip.getPathIterator(java.awt.geom.AffineTransform.getTranslateInstance(0, 0));
+                    var coords = new Array(6);
+                    while ((it.isDone())) {
+                        switch ((it.currentSegment(coords))) {
+                            case java.awt.geom.PathIterator.SEG_MOVETO:
+                                this.context.moveTo(coords[0], coords[1]);
+                                break;
+                            case java.awt.geom.PathIterator.SEG_LINETO:
+                                this.context.lineTo(coords[0], coords[1]);
+                                break;
+                            case java.awt.geom.PathIterator.SEG_QUADTO:
+                                break;
+                            case java.awt.geom.PathIterator.SEG_CUBICTO:
+                                break;
+                            case java.awt.geom.PathIterator.SEG_CLOSE:
+                                this.context.stroke();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    ;
+                    this.context.clip();
                 }
             };
-            Applet.prototype.setBackground = function (c) {
-                this.backgroundColor = c;
+            WebGraphics2D.prototype.setClip = function (x, y, width, height) {
+                var _this = this;
+                if (((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && ((typeof width === 'number') || width === null) && ((typeof height === 'number') || height === null)) {
+                    return (function () {
+                        _this.setClip(new java.awt.Rectangle(x, y, width, height));
+                    })();
+                }
+                else if (((x != null && x["__interfaces"] != null && x["__interfaces"].indexOf("java.awt.Shape") >= 0) || x === null) && y === undefined && width === undefined && height === undefined) {
+                    return this.setClip$java_awt_Shape(x);
+                }
+                else
+                    throw new Error('invalid overload');
             };
-            Applet.prototype.setLayout = function (layout) {
-                this.layout = layout;
-                if (this.container.firstChild != null) {
-                    this.container.insertBefore(layout.getHTMLElement(), this.container.firstChild);
+            WebGraphics2D.prototype.clipRect = function (x, y, width, height) {
+                if (this.clip == null) {
+                    this.setClip(x, y, width, height);
                 }
                 else {
-                    this.container.appendChild(layout.getHTMLElement());
+                    this.setClip(this.clip.getBounds().createIntersection(new java.awt.geom.Rectangle2D.Double(x, y, width, height)));
                 }
             };
-            Applet.prototype.add = function (component) {
-                this.layout.add(component);
+            WebGraphics2D.prototype.getClipBounds$ = function () {
+                return this.clip.getBounds();
             };
-            Applet.__static_initialized = false;
-            Applet.CURRENT_ID = 0;
-            return Applet;
-        }());
-        applet_1.Applet = Applet;
-    })(applet = java.applet || (java.applet = {}));
+            WebGraphics2D.prototype.translate = function (x, y) {
+                var _this = this;
+                if (((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null)) {
+                    return (function () {
+                        _this.context.translate(x, y);
+                    })();
+                }
+                else if (((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null)) {
+                    return this.translate$double$double(x, y);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            WebGraphics2D.prototype.drawString$java_lang_String$float$float = function (str, x, y) {
+                this.context.strokeText(str, x, y);
+            };
+            WebGraphics2D.prototype.fillArc = function (x, y, width, height, startAngle, arcAngle) {
+                this.context.beginPath();
+                this.context["ellipse"](x - (width / 2 | 0), y - (height / 2 | 0), (width / 2 | 0), (height / 2 | 0), 0, /* toRadians */ (function (x) { return x * Math.PI / 180; })(startAngle), /* toRadians */ (function (x) { return x * Math.PI / 180; })(startAngle) + (function (x) { return x * Math.PI / 180; })(arcAngle));
+                this.context.fill();
+            };
+            WebGraphics2D.prototype.fillOval = function (x, y, width, height) {
+                this.context.beginPath();
+                this.context["ellipse"](x - (width / 2 | 0), y - (height / 2 | 0), (width / 2 | 0), (height / 2 | 0), 0, 0, Math.PI * 2);
+                this.context.fill();
+            };
+            WebGraphics2D.prototype.fillRect = function (x, y, width, height) {
+                this.context.fillRect(x, y, width, height);
+            };
+            WebGraphics2D.prototype.fillRoundRect = function (x, y, width, height, arcWidth, arcHeight) {
+                this.fillRect(x, y, width, height);
+            };
+            WebGraphics2D.prototype.setColor = function (c) {
+                this.context.strokeStyle = c.toHTML();
+            };
+            WebGraphics2D.prototype.getColor = function () {
+                return this.color;
+            };
+            WebGraphics2D.prototype.translate$double$double = function (tx, ty) {
+                this.context.translate(tx, ty);
+            };
+            WebGraphics2D.prototype.rotate$double = function (theta) {
+                this.context.rotate(theta);
+            };
+            WebGraphics2D.prototype.rotate = function (theta, x, y) {
+                var _this = this;
+                if (((typeof theta === 'number') || theta === null) && ((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null)) {
+                    return (function () {
+                        _this.context.translate(-x, -y);
+                        _this.context.rotate(theta);
+                        _this.context.translate(x, y);
+                    })();
+                }
+                else if (((typeof theta === 'number') || theta === null) && x === undefined && y === undefined) {
+                    return this.rotate$double(theta);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            WebGraphics2D.prototype.scale = function (sx, sy) {
+                this.context.scale(sx, sy);
+            };
+            WebGraphics2D.prototype.shear = function (shx, shy) {
+                this.context.setTransform(0, shx, shy, 0, 0, 0);
+            };
+            WebGraphics2D.prototype.dispose = function () {
+            };
+            WebGraphics2D.prototype.setFont = function (font) {
+                this.font = font;
+                this.context.font = font.toHTML();
+            };
+            WebGraphics2D.prototype.getFont = function () {
+                return this.font;
+            };
+            WebGraphics2D.prototype.setBackground = function (color) {
+                this.background = color;
+                this.context.fillStyle = color.toHTML();
+            };
+            WebGraphics2D.prototype.getBackground = function () {
+                return this.background;
+            };
+            WebGraphics2D.prototype.setTransform = function (transform) {
+                this.__transform = transform;
+                this.context.setTransform(transform.getScaleX(), transform.getShearX(), transform.getShearY(), transform.getScaleY(), transform.getTranslateX(), transform.getTranslateY());
+            };
+            WebGraphics2D.prototype.getTransform = function () {
+                return this.__transform;
+            };
+            WebGraphics2D.prototype.transform = function (Tx) {
+                if (this.__transform == null) {
+                    this.setTransform(Tx);
+                }
+                else {
+                    this.__transform.concatenate(Tx);
+                    this.setTransform(this.__transform);
+                }
+            };
+            WebGraphics2D.prototype.setPaintMode = function () {
+            };
+            WebGraphics2D.prototype.getPaint = function () {
+                return this.color;
+            };
+            WebGraphics2D.prototype.setPaint = function (paint) {
+            };
+            WebGraphics2D.prototype.setStroke = function (s) {
+            };
+            return WebGraphics2D;
+        }(java.awt.Graphics2D));
+        awt.WebGraphics2D = WebGraphics2D;
+        WebGraphics2D["__classname"] = "java.awt.WebGraphics2D";
+    })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -32690,9 +37306,10 @@ var java;
             return PrintStream;
         }(java.io.FilterOutputStream));
         io.PrintStream = PrintStream;
+        PrintStream["__classname"] = "java.io.PrintStream";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -32722,9 +37339,10 @@ var java;
             return FileReader;
         }(java.io.InputStreamReader));
         io.FileReader = FileReader;
+        FileReader["__classname"] = "java.io.FileReader";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -32767,9 +37385,10 @@ var java;
             return FileWriter;
         }(java.io.OutputStreamWriter));
         io.FileWriter = FileWriter;
+        FileWriter["__classname"] = "java.io.FileWriter";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -32799,9 +37418,10 @@ var java;
             return FileNotFoundException;
         }(java.io.IOException));
         io.FileNotFoundException = FileNotFoundException;
+        FileNotFoundException["__classname"] = "java.io.FileNotFoundException";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -32832,9 +37452,10 @@ var java;
             return UnsupportedEncodingException;
         }(java.io.IOException));
         io.UnsupportedEncodingException = UnsupportedEncodingException;
+        UnsupportedEncodingException["__classname"] = "java.io.UnsupportedEncodingException";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -32876,10 +37497,11 @@ var java;
                 return IllegalPathStateException;
             }(Error));
             geom.IllegalPathStateException = IllegalPathStateException;
+            IllegalPathStateException["__classname"] = "java.awt.geom.IllegalPathStateException";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -32916,9 +37538,10 @@ var java;
             return UncheckedIOException;
         }(Error));
         io.UncheckedIOException = UncheckedIOException;
+        UncheckedIOException["__classname"] = "java.io.UncheckedIOException";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -32940,10 +37563,11 @@ var java;
                 return AnnotationTypeMismatchException;
             }(Error));
             annotation.AnnotationTypeMismatchException = AnnotationTypeMismatchException;
+            AnnotationTypeMismatchException["__classname"] = "java.lang.annotation.AnnotationTypeMismatchException";
         })(annotation = lang.annotation || (lang.annotation = {}));
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -32974,10 +37598,11 @@ var java;
                 return IncompleteAnnotationException;
             }(Error));
             annotation.IncompleteAnnotationException = IncompleteAnnotationException;
+            IncompleteAnnotationException["__classname"] = "java.lang.annotation.IncompleteAnnotationException";
         })(annotation = lang.annotation || (lang.annotation = {}));
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -33012,9 +37637,10 @@ var java;
             return ArithmeticException;
         }(Error));
         lang.ArithmeticException = ArithmeticException;
+        ArithmeticException["__classname"] = "java.lang.ArithmeticException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -33046,9 +37672,10 @@ var java;
             return ArrayStoreException;
         }(Error));
         lang.ArrayStoreException = ArrayStoreException;
+        ArrayStoreException["__classname"] = "java.lang.ArrayStoreException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -33078,9 +37705,10 @@ var java;
             return ClassCastException;
         }(Error));
         lang.ClassCastException = ClassCastException;
+        ClassCastException["__classname"] = "java.lang.ClassCastException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -33127,9 +37755,10 @@ var java;
             return IllegalArgumentException;
         }(Error));
         lang.IllegalArgumentException = IllegalArgumentException;
+        IllegalArgumentException["__classname"] = "java.lang.IllegalArgumentException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -33176,9 +37805,10 @@ var java;
             return IllegalStateException;
         }(Error));
         lang.IllegalStateException = IllegalStateException;
+        IllegalStateException["__classname"] = "java.lang.IllegalStateException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -33210,9 +37840,10 @@ var java;
             return IndexOutOfBoundsException;
         }(Error));
         lang.IndexOutOfBoundsException = IndexOutOfBoundsException;
+        IndexOutOfBoundsException["__classname"] = "java.lang.IndexOutOfBoundsException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -33244,9 +37875,10 @@ var java;
             return NegativeArraySizeException;
         }(Error));
         lang.NegativeArraySizeException = NegativeArraySizeException;
+        NegativeArraySizeException["__classname"] = "java.lang.NegativeArraySizeException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -33281,9 +37913,10 @@ var java;
             return NullPointerException;
         }(Error));
         lang.NullPointerException = NullPointerException;
+        NullPointerException["__classname"] = "java.lang.NullPointerException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -33330,9 +37963,10 @@ var java;
             return UnsupportedOperationException;
         }(Error));
         lang.UnsupportedOperationException = UnsupportedOperationException;
+        UnsupportedOperationException["__classname"] = "java.lang.UnsupportedOperationException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -33364,9 +37998,10 @@ var java;
             return ConcurrentModificationException;
         }(Error));
         util.ConcurrentModificationException = ConcurrentModificationException;
+        ConcurrentModificationException["__classname"] = "java.util.ConcurrentModificationException";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -33385,9 +38020,10 @@ var java;
             return EmptyStackException;
         }(Error));
         util.EmptyStackException = EmptyStackException;
+        EmptyStackException["__classname"] = "java.util.EmptyStackException";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -33415,9 +38051,10 @@ var java;
             return MissingResourceException;
         }(Error));
         util.MissingResourceException = MissingResourceException;
+        MissingResourceException["__classname"] = "java.util.MissingResourceException";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -33449,9 +38086,10 @@ var java;
             return NoSuchElementException;
         }(Error));
         util.NoSuchElementException = NoSuchElementException;
+        NoSuchElementException["__classname"] = "java.util.NoSuchElementException";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var security;
@@ -33482,9 +38120,10 @@ var java;
             return DigestException;
         }(java.security.GeneralSecurityException));
         security.DigestException = DigestException;
+        DigestException["__classname"] = "java.security.DigestException";
     })(security = java.security || (java.security = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var security;
@@ -33515,9 +38154,10 @@ var java;
             return NoSuchAlgorithmException;
         }(java.security.GeneralSecurityException));
         security.NoSuchAlgorithmException = NoSuchAlgorithmException;
+        NoSuchAlgorithmException["__classname"] = "java.security.NoSuchAlgorithmException";
     })(security = java.security || (java.security = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var nio;
@@ -33539,10 +38179,11 @@ var java;
                 return StandardCharsets;
             }());
             charset.StandardCharsets = StandardCharsets;
+            StandardCharsets["__classname"] = "java.nio.charset.StandardCharsets";
         })(charset = nio.charset || (nio.charset = {}));
     })(nio = java.nio || (java.nio = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -33581,8 +38222,8 @@ var java;
                         javaemul.internal.InternalPreconditions.checkNotNull(c);
                         var modified = false;
                         var iter = _this.listIterator(index);
-                        for (var index139 = c.iterator(); index139.hasNext();) {
-                            var e = index139.next();
+                        for (var index144 = c.iterator(); index144.hasNext();) {
+                            var e = index144.next();
                             {
                                 iter.add(e);
                                 modified = true;
@@ -33657,9 +38298,10 @@ var java;
             return AbstractSequentialList;
         }(java.util.AbstractList));
         util.AbstractSequentialList = AbstractSequentialList;
+        AbstractSequentialList["__classname"] = "java.util.AbstractSequentialList";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -33715,8 +38357,8 @@ var java;
             }
             ArrayList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index140 = this.iterator(); index140.hasNext();) {
-                    var t = index140.next();
+                for (var index145 = this.iterator(); index145.hasNext();) {
+                    var t = index145.next();
                     {
                         action(t);
                     }
@@ -33908,6 +38550,7 @@ var java;
             return ArrayList;
         }(java.util.AbstractList));
         util.ArrayList = ArrayList;
+        ArrayList["__classname"] = "java.util.ArrayList";
         var ArrayList;
         (function (ArrayList) {
             var ArrayList$0 = (function () {
@@ -33943,7 +38586,7 @@ var java;
         })(ArrayList = util.ArrayList || (util.ArrayList = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -34436,8 +39079,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index141 = 0; index141 < a.length; index141++) {
-                    var obj = a[index141];
+                for (var index146 = 0; index146 < a.length; index146++) {
+                    var obj = a[index146];
                     {
                         var hash;
                         if (obj != null && obj instanceof Array) {
@@ -34800,8 +39443,8 @@ var java;
                             return 0;
                         }
                         var hashCode = 1;
-                        for (var index142 = 0; index142 < a.length; index142++) {
-                            var e = a[index142];
+                        for (var index147 = 0; index147 < a.length; index147++) {
+                            var e = a[index147];
                             {
                                 hashCode = 31 * hashCode + javaemul.internal.BooleanHelper.hashCode(e);
                                 hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -34842,8 +39485,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index143 = 0; index143 < a.length; index143++) {
-                    var e = a[index143];
+                for (var index148 = 0; index148 < a.length; index148++) {
+                    var e = a[index148];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.ByteHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -34856,8 +39499,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index144 = 0; index144 < a.length; index144++) {
-                    var e = a[index144];
+                for (var index149 = 0; index149 < a.length; index149++) {
+                    var e = a[index149];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.CharacterHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -34870,8 +39513,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index145 = 0; index145 < a.length; index145++) {
-                    var e = a[index145];
+                for (var index150 = 0; index150 < a.length; index150++) {
+                    var e = a[index150];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.DoubleHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -34884,8 +39527,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index146 = 0; index146 < a.length; index146++) {
-                    var e = a[index146];
+                for (var index151 = 0; index151 < a.length; index151++) {
+                    var e = a[index151];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.FloatHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -34898,8 +39541,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index147 = 0; index147 < a.length; index147++) {
-                    var e = a[index147];
+                for (var index152 = 0; index152 < a.length; index152++) {
+                    var e = a[index152];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.IntegerHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -34912,8 +39555,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index148 = 0; index148 < a.length; index148++) {
-                    var e = a[index148];
+                for (var index153 = 0; index153 < a.length; index153++) {
+                    var e = a[index153];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.LongHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -34926,8 +39569,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index149 = 0; index149 < a.length; index149++) {
-                    var e = a[index149];
+                for (var index154 = 0; index154 < a.length; index154++) {
+                    var e = a[index154];
                     {
                         hashCode = 31 * hashCode + java.util.Objects.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -34940,8 +39583,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index150 = 0; index150 < a.length; index150++) {
-                    var e = a[index150];
+                for (var index155 = 0; index155 < a.length; index155++) {
+                    var e = a[index155];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.ShortHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -35075,8 +39718,8 @@ var java;
                             return "null";
                         }
                         var joiner = new java.util.StringJoiner(", ", "[", "]");
-                        for (var index151 = 0; index151 < a.length; index151++) {
-                            var element = a[index151];
+                        for (var index156 = 0; index156 < a.length; index156++) {
+                            var element = a[index156];
                             {
                                 joiner.add(/* valueOf */ new String(element).toString());
                             }
@@ -35116,8 +39759,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index152 = 0; index152 < a.length; index152++) {
-                    var element = a[index152];
+                for (var index157 = 0; index157 < a.length; index157++) {
+                    var element = a[index157];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -35129,8 +39772,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index153 = 0; index153 < a.length; index153++) {
-                    var element = a[index153];
+                for (var index158 = 0; index158 < a.length; index158++) {
+                    var element = a[index158];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -35142,8 +39785,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index154 = 0; index154 < a.length; index154++) {
-                    var element = a[index154];
+                for (var index159 = 0; index159 < a.length; index159++) {
+                    var element = a[index159];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -35155,8 +39798,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index155 = 0; index155 < a.length; index155++) {
-                    var element = a[index155];
+                for (var index160 = 0; index160 < a.length; index160++) {
+                    var element = a[index160];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -35168,8 +39811,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index156 = 0; index156 < a.length; index156++) {
-                    var element = a[index156];
+                for (var index161 = 0; index161 < a.length; index161++) {
+                    var element = a[index161];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -35181,8 +39824,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index157 = 0; index157 < a.length; index157++) {
-                    var element = a[index157];
+                for (var index162 = 0; index162 < a.length; index162++) {
+                    var element = a[index162];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -35200,8 +39843,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index158 = 0; index158 < a.length; index158++) {
-                    var element = a[index158];
+                for (var index163 = 0; index163 < a.length; index163++) {
+                    var element = a[index163];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -35221,10 +39864,10 @@ var java;
                             return "[...]";
                         }
                         var joiner = new java.util.StringJoiner(", ", "[", "]");
-                        for (var index159 = 0; index159 < a.length; index159++) {
-                            var obj = a[index159];
+                        for (var index164 = 0; index164 < a.length; index164++) {
+                            var obj = a[index164];
                             {
-                                if (obj != null && obj.getClass().isArray()) {
+                                if (obj != null && obj.constructor.isArray()) {
                                     if (obj != null && obj instanceof Array) {
                                         if (arraysIveSeen.contains(obj)) {
                                             joiner.add("[...]");
@@ -35431,6 +40074,7 @@ var java;
             return Arrays;
         }());
         util.Arrays = Arrays;
+        Arrays["__classname"] = "java.util.Arrays";
         var Arrays;
         (function (Arrays) {
             var ArrayList = (function (_super) {
@@ -35484,10 +40128,11 @@ var java;
                 return ArrayList;
             }(java.util.AbstractList));
             Arrays.ArrayList = ArrayList;
+            ArrayList["__classname"] = "java.util.Arrays.ArrayList";
         })(Arrays = util.Arrays || (util.Arrays = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -35546,8 +40191,8 @@ var java;
             }
             Vector.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index160 = this.iterator(); index160.hasNext();) {
-                    var t = index160.next();
+                for (var index165 = this.iterator(); index165.hasNext();) {
+                    var t = index165.next();
                     {
                         action(t);
                     }
@@ -35757,9 +40402,10 @@ var java;
             return Vector;
         }(java.util.AbstractList));
         util.Vector = Vector;
+        Vector["__classname"] = "java.util.Vector";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -36075,9 +40721,10 @@ var java;
             return PriorityQueue;
         }(java.util.AbstractQueue));
         util.PriorityQueue = PriorityQueue;
+        PriorityQueue["__classname"] = "java.util.PriorityQueue";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -36103,8 +40750,8 @@ var java;
                 return this.implFindEntry(key, false) != null;
             };
             AbstractMap.prototype.containsValue = function (value) {
-                for (var index161 = this.entrySet().iterator(); index161.hasNext();) {
-                    var entry = index161.next();
+                for (var index166 = this.entrySet().iterator(); index166.hasNext();) {
+                    var entry = index166.next();
                     {
                         var v = entry.getValue();
                         if (java.util.Objects.equals(value, v)) {
@@ -36137,8 +40784,8 @@ var java;
                 if (this.size() !== otherMap.size()) {
                     return false;
                 }
-                for (var index162 = otherMap.entrySet().iterator(); index162.hasNext();) {
-                    var entry = index162.next();
+                for (var index167 = otherMap.entrySet().iterator(); index167.hasNext();) {
+                    var entry = index167.next();
                     {
                         if (!this.containsEntry(entry)) {
                             return false;
@@ -36171,8 +40818,8 @@ var java;
             };
             AbstractMap.prototype.putAll = function (map) {
                 javaemul.internal.InternalPreconditions.checkNotNull(map);
-                for (var index163 = map.entrySet().iterator(); index163.hasNext();) {
-                    var e = index163.next();
+                for (var index168 = map.entrySet().iterator(); index168.hasNext();) {
+                    var e = index168.next();
                     {
                         this.put(e.getKey(), e.getValue());
                     }
@@ -36186,8 +40833,8 @@ var java;
             };
             AbstractMap.prototype.toString$ = function () {
                 var joiner = new java.util.StringJoiner(", ", "{", "}");
-                for (var index164 = this.entrySet().iterator(); index164.hasNext();) {
-                    var entry = index164.next();
+                for (var index169 = this.entrySet().iterator(); index169.hasNext();) {
+                    var entry = index169.next();
                     {
                         joiner.add(this.toString(entry));
                     }
@@ -36239,6 +40886,7 @@ var java;
             return AbstractMap;
         }());
         util.AbstractMap = AbstractMap;
+        AbstractMap["__classname"] = "java.util.AbstractMap";
         var AbstractMap;
         (function (AbstractMap) {
             /**
@@ -36281,6 +40929,7 @@ var java;
                 return AbstractEntry;
             }());
             AbstractMap.AbstractEntry = AbstractEntry;
+            AbstractEntry["__classname"] = "java.util.AbstractMap.AbstractEntry";
             /**
              * A mutable {@link Map.Entry} shared by several {@link Map}
              * implementations.
@@ -36307,6 +40956,7 @@ var java;
                 return SimpleEntry;
             }(AbstractMap.AbstractEntry));
             AbstractMap.SimpleEntry = SimpleEntry;
+            SimpleEntry["__classname"] = "java.util.AbstractMap.SimpleEntry";
             /**
              * An immutable {@link Map.Entry} shared by several {@link Map}
              * implementations.
@@ -36336,6 +40986,7 @@ var java;
                 return SimpleImmutableEntry;
             }(AbstractMap.AbstractEntry));
             AbstractMap.SimpleImmutableEntry = SimpleImmutableEntry;
+            SimpleImmutableEntry["__classname"] = "java.util.AbstractMap.SimpleImmutableEntry";
             var AbstractMap$0 = (function (_super) {
                 __extends(AbstractMap$0, _super);
                 function AbstractMap$0(__parent) {
@@ -36450,7 +41101,7 @@ var java;
         })(AbstractMap = util.AbstractMap || (util.AbstractMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -36556,6 +41207,7 @@ var java;
             return EnumSet;
         }(java.util.AbstractSet));
         util.EnumSet = EnumSet;
+        EnumSet["__classname"] = "java.util.EnumSet";
         var EnumSet;
         (function (EnumSet) {
             /**
@@ -36642,6 +41294,7 @@ var java;
                 return EnumSetImpl;
             }(java.util.EnumSet));
             EnumSet.EnumSetImpl = EnumSetImpl;
+            EnumSetImpl["__classname"] = "java.util.EnumSet.EnumSetImpl";
             var EnumSetImpl;
             (function (EnumSetImpl) {
                 var IteratorImpl = (function () {
@@ -36685,11 +41338,12 @@ var java;
                     return IteratorImpl;
                 }());
                 EnumSetImpl.IteratorImpl = IteratorImpl;
+                IteratorImpl["__classname"] = "java.util.EnumSet.EnumSetImpl.IteratorImpl";
             })(EnumSetImpl = EnumSet.EnumSetImpl || (EnumSet.EnumSetImpl = {}));
         })(EnumSet = util.EnumSet || (util.EnumSet = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -36748,8 +41402,8 @@ var java;
             }
             HashSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index165 = this.iterator(); index165.hasNext();) {
-                    var t = index165.next();
+                for (var index170 = this.iterator(); index170.hasNext();) {
+                    var t = index170.next();
                     {
                         action(t);
                     }
@@ -36800,9 +41454,10 @@ var java;
             return HashSet;
         }(java.util.AbstractSet));
         util.HashSet = HashSet;
+        HashSet["__classname"] = "java.util.HashSet";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -36871,8 +41526,8 @@ var java;
             }
             TreeSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index166 = this.iterator(); index166.hasNext();) {
-                    var t = index166.next();
+                for (var index171 = this.iterator(); index171.hasNext();) {
+                    var t = index171.next();
                     {
                         action(t);
                     }
@@ -36994,9 +41649,1291 @@ var java;
             return TreeSet;
         }(java.util.AbstractSet));
         util.TreeSet = TreeSet;
+        TreeSet["__classname"] = "java.util.TreeSet";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var event;
+        (function (event) {
+            var ActionEvent = (function (_super) {
+                __extends(ActionEvent, _super);
+                function ActionEvent(source, id, command, when, modifiers) {
+                    var _this = this;
+                    if (((source != null) || source === null) && ((typeof id === 'number') || id === null) && ((typeof command === 'string') || command === null) && ((typeof when === 'number') || when === null) && ((typeof modifiers === 'number') || modifiers === null)) {
+                        _super.call(this, source, id);
+                        this.when = 0;
+                        this.modifiers = 0;
+                        (function () {
+                            _this.actionCommand = command;
+                            _this.when = when;
+                            _this.modifiers = modifiers;
+                        })();
+                    }
+                    else if (((source != null) || source === null) && ((typeof id === 'number') || id === null) && ((typeof command === 'string') || command === null) && ((typeof when === 'number') || when === null) && modifiers === undefined) {
+                        var modifiers = when;
+                        {
+                            var when = 0;
+                            _super.call(this, source, id);
+                            this.when = 0;
+                            this.modifiers = 0;
+                            (function () {
+                                _this.actionCommand = command;
+                                _this.when = when;
+                                _this.modifiers = modifiers;
+                            })();
+                        }
+                        (function () {
+                        })();
+                    }
+                    else if (((source != null) || source === null) && ((typeof id === 'number') || id === null) && ((typeof command === 'string') || command === null) && when === undefined && modifiers === undefined) {
+                        {
+                            var modifiers = 0;
+                            {
+                                var when = 0;
+                                _super.call(this, source, id);
+                                this.when = 0;
+                                this.modifiers = 0;
+                                (function () {
+                                    _this.actionCommand = command;
+                                    _this.when = when;
+                                    _this.modifiers = modifiers;
+                                })();
+                            }
+                            (function () {
+                            })();
+                        }
+                        (function () {
+                        })();
+                    }
+                    else
+                        throw new Error('invalid overload');
+                }
+                ActionEvent.SHIFT_MASK_$LI$ = function () { if (ActionEvent.SHIFT_MASK == null)
+                    ActionEvent.SHIFT_MASK = java.awt.Event.SHIFT_MASK_$LI$(); return ActionEvent.SHIFT_MASK; };
+                ;
+                ActionEvent.CTRL_MASK_$LI$ = function () { if (ActionEvent.CTRL_MASK == null)
+                    ActionEvent.CTRL_MASK = java.awt.Event.CTRL_MASK_$LI$(); return ActionEvent.CTRL_MASK; };
+                ;
+                ActionEvent.META_MASK_$LI$ = function () { if (ActionEvent.META_MASK == null)
+                    ActionEvent.META_MASK = java.awt.Event.META_MASK_$LI$(); return ActionEvent.META_MASK; };
+                ;
+                ActionEvent.ALT_MASK_$LI$ = function () { if (ActionEvent.ALT_MASK == null)
+                    ActionEvent.ALT_MASK = java.awt.Event.ALT_MASK_$LI$(); return ActionEvent.ALT_MASK; };
+                ;
+                ActionEvent.ACTION_PERFORMED_$LI$ = function () { if (ActionEvent.ACTION_PERFORMED == null)
+                    ActionEvent.ACTION_PERFORMED = ActionEvent.ACTION_FIRST; return ActionEvent.ACTION_PERFORMED; };
+                ;
+                ActionEvent.prototype.getActionCommand = function () {
+                    return this.actionCommand;
+                };
+                ActionEvent.prototype.getWhen = function () {
+                    return this.when;
+                };
+                ActionEvent.prototype.getModifiers = function () {
+                    return this.modifiers;
+                };
+                ActionEvent.prototype.paramString = function () {
+                    var typeStr;
+                    switch ((this.id)) {
+                        case ActionEvent.ACTION_PERFORMED_$LI$():
+                            typeStr = "ACTION_PERFORMED";
+                            break;
+                        default:
+                            typeStr = "unknown type";
+                    }
+                    return typeStr + ",cmd=" + this.actionCommand + ",when=" + this.when + ",modifiers=" + java.awt.event.KeyEvent.getKeyModifiersText(this.modifiers);
+                };
+                ActionEvent.ACTION_FIRST = 1001;
+                ActionEvent.ACTION_LAST = 1001;
+                ActionEvent.serialVersionUID = -7671078796273832149;
+                return ActionEvent;
+            }(java.awt.AWTEvent));
+            event.ActionEvent = ActionEvent;
+            ActionEvent["__classname"] = "java.awt.event.ActionEvent";
+        })(event = awt.event || (awt.event = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var event;
+        (function (event) {
+            /**
+             * The adjustment event emitted by Adjustable objects like
+             * {@link java.awt.Scrollbar} and {@link java.awt.ScrollPane}.
+             * When the user changes the value of the scrolling component,
+             * it receives an instance of {@code AdjustmentEvent}.
+             * <p>
+             * An unspecified behavior will be caused if the {@code id} parameter
+             * of any particular {@code AdjustmentEvent} instance is not
+             * in the range from {@code ADJUSTMENT_FIRST} to {@code ADJUSTMENT_LAST}.
+             * <p>
+             * The {@code type} of any {@code AdjustmentEvent} instance takes one of the following
+             * values:
+             * <ul>
+             * <li> {@code UNIT_INCREMENT}
+             * <li> {@code UNIT_DECREMENT}
+             * <li> {@code BLOCK_INCREMENT}
+             * <li> {@code BLOCK_DECREMENT}
+             * <li> {@code TRACK}
+             * </ul>
+             * Assigning the value different from listed above will cause an unspecified behavior.
+             * @see java.awt.Adjustable
+             * @see AdjustmentListener
+             *
+             * @author Amy Fowler
+             * @since 1.1
+             */
+            var AdjustmentEvent = (function (_super) {
+                __extends(AdjustmentEvent, _super);
+                /**
+                 * Constructs an <code>AdjustmentEvent</code> object with the
+                 * specified Adjustable source, event type, adjustment type, and value.
+                 * <p> This method throws an
+                 * <code>IllegalArgumentException</code> if <code>source</code>
+                 * is <code>null</code>.
+                 *
+                 * @param source The <code>Adjustable</code> object where the
+                 * event originated
+                 * @param id     An integer indicating the type of event.
+                 * For information on allowable values, see
+                 * the class description for {@link AdjustmentEvent}
+                 * @param type   An integer indicating the adjustment type.
+                 * For information on allowable values, see
+                 * the class description for {@link AdjustmentEvent}
+                 * @param value  The current value of the adjustment
+                 * @param isAdjusting A boolean that equals <code>true</code> if the event is one
+                 * of a series of multiple adjusting events,
+                 * otherwise <code>false</code>
+                 * @throws IllegalArgumentException if <code>source</code> is null
+                 * @since 1.4
+                 * @see #getSource()
+                 * @see #getID()
+                 * @see #getAdjustmentType()
+                 * @see #getValue()
+                 * @see #getValueIsAdjusting()
+                 */
+                function AdjustmentEvent(source, id, type, value, isAdjusting) {
+                    if (isAdjusting === void 0) { isAdjusting = false; }
+                    _super.call(this, source, id);
+                    this.value = 0;
+                    this.adjustmentType = 0;
+                    this.isAdjusting = false;
+                    this.adjustable = source;
+                    this.adjustmentType = type;
+                    this.value = value;
+                    this.isAdjusting = isAdjusting;
+                }
+                AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED_$LI$ = function () { if (AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED == null)
+                    AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED = AdjustmentEvent.ADJUSTMENT_FIRST; return AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED; };
+                ;
+                /**
+                 * Returns the <code>Adjustable</code> object where this event originated.
+                 *
+                 * @return the <code>Adjustable</code> object where this event originated
+                 */
+                AdjustmentEvent.prototype.getAdjustable = function () {
+                    return this.adjustable;
+                };
+                /**
+                 * Returns the current value in the adjustment event.
+                 *
+                 * @return the current value in the adjustment event
+                 */
+                AdjustmentEvent.prototype.getValue = function () {
+                    return this.value;
+                };
+                /**
+                 * Returns the type of adjustment which caused the value changed
+                 * event.  It will have one of the following values:
+                 * <ul>
+                 * <li>{@link #UNIT_INCREMENT}
+                 * <li>{@link #UNIT_DECREMENT}
+                 * <li>{@link #BLOCK_INCREMENT}
+                 * <li>{@link #BLOCK_DECREMENT}
+                 * <li>{@link #TRACK}
+                 * </ul>
+                 * @return one of the adjustment values listed above
+                 */
+                AdjustmentEvent.prototype.getAdjustmentType = function () {
+                    return this.adjustmentType;
+                };
+                /**
+                 * Returns <code>true</code> if this is one of multiple
+                 * adjustment events.
+                 *
+                 * @return <code>true</code> if this is one of multiple
+                 * adjustment events, otherwise returns <code>false</code>
+                 * @since 1.4
+                 */
+                AdjustmentEvent.prototype.getValueIsAdjusting = function () {
+                    return this.isAdjusting;
+                };
+                AdjustmentEvent.prototype.paramString = function () {
+                    var typeStr;
+                    switch ((this.id)) {
+                        case AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED_$LI$():
+                            typeStr = "ADJUSTMENT_VALUE_CHANGED";
+                            break;
+                        default:
+                            typeStr = "unknown type";
+                    }
+                    var adjTypeStr;
+                    switch ((this.adjustmentType)) {
+                        case AdjustmentEvent.UNIT_INCREMENT:
+                            adjTypeStr = "UNIT_INCREMENT";
+                            break;
+                        case AdjustmentEvent.UNIT_DECREMENT:
+                            adjTypeStr = "UNIT_DECREMENT";
+                            break;
+                        case AdjustmentEvent.BLOCK_INCREMENT:
+                            adjTypeStr = "BLOCK_INCREMENT";
+                            break;
+                        case AdjustmentEvent.BLOCK_DECREMENT:
+                            adjTypeStr = "BLOCK_DECREMENT";
+                            break;
+                        case AdjustmentEvent.TRACK:
+                            adjTypeStr = "TRACK";
+                            break;
+                        default:
+                            adjTypeStr = "unknown type";
+                    }
+                    return typeStr + ",adjType=" + adjTypeStr + ",value=" + this.value + ",isAdjusting=" + this.isAdjusting;
+                };
+                /**
+                 * Marks the first integer id for the range of adjustment event ids.
+                 */
+                AdjustmentEvent.ADJUSTMENT_FIRST = 601;
+                /**
+                 * Marks the last integer id for the range of adjustment event ids.
+                 */
+                AdjustmentEvent.ADJUSTMENT_LAST = 601;
+                /**
+                 * The unit increment adjustment type.
+                 */
+                AdjustmentEvent.UNIT_INCREMENT = 1;
+                /**
+                 * The unit decrement adjustment type.
+                 */
+                AdjustmentEvent.UNIT_DECREMENT = 2;
+                /**
+                 * The block decrement adjustment type.
+                 */
+                AdjustmentEvent.BLOCK_DECREMENT = 3;
+                /**
+                 * The block increment adjustment type.
+                 */
+                AdjustmentEvent.BLOCK_INCREMENT = 4;
+                /**
+                 * The absolute tracking adjustment type.
+                 */
+                AdjustmentEvent.TRACK = 5;
+                AdjustmentEvent.serialVersionUID = 5700290645205279921;
+                return AdjustmentEvent;
+            }(java.awt.AWTEvent));
+            event.AdjustmentEvent = AdjustmentEvent;
+            AdjustmentEvent["__classname"] = "java.awt.event.AdjustmentEvent";
+        })(event = awt.event || (awt.event = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var event;
+        (function (event) {
+            var ComponentEvent = (function (_super) {
+                __extends(ComponentEvent, _super);
+                function ComponentEvent(source, id) {
+                    _super.call(this, source, id);
+                }
+                ComponentEvent.COMPONENT_MOVED_$LI$ = function () { if (ComponentEvent.COMPONENT_MOVED == null)
+                    ComponentEvent.COMPONENT_MOVED = ComponentEvent.COMPONENT_FIRST; return ComponentEvent.COMPONENT_MOVED; };
+                ;
+                ComponentEvent.COMPONENT_RESIZED_$LI$ = function () { if (ComponentEvent.COMPONENT_RESIZED == null)
+                    ComponentEvent.COMPONENT_RESIZED = 1 + ComponentEvent.COMPONENT_FIRST; return ComponentEvent.COMPONENT_RESIZED; };
+                ;
+                ComponentEvent.COMPONENT_SHOWN_$LI$ = function () { if (ComponentEvent.COMPONENT_SHOWN == null)
+                    ComponentEvent.COMPONENT_SHOWN = 2 + ComponentEvent.COMPONENT_FIRST; return ComponentEvent.COMPONENT_SHOWN; };
+                ;
+                ComponentEvent.COMPONENT_HIDDEN_$LI$ = function () { if (ComponentEvent.COMPONENT_HIDDEN == null)
+                    ComponentEvent.COMPONENT_HIDDEN = 3 + ComponentEvent.COMPONENT_FIRST; return ComponentEvent.COMPONENT_HIDDEN; };
+                ;
+                ComponentEvent.prototype.getComponent = function () {
+                    return (this.source != null && this.source instanceof java.awt.Component) ? this.source : null;
+                };
+                ComponentEvent.prototype.paramString = function () {
+                    var typeStr;
+                    var b = (this.source != null ? this.source.getBounds() : null);
+                    switch ((this.id)) {
+                        case ComponentEvent.COMPONENT_SHOWN_$LI$():
+                            typeStr = "COMPONENT_SHOWN";
+                            break;
+                        case ComponentEvent.COMPONENT_HIDDEN_$LI$():
+                            typeStr = "COMPONENT_HIDDEN";
+                            break;
+                        case ComponentEvent.COMPONENT_MOVED_$LI$():
+                            typeStr = "COMPONENT_MOVED (" + b.x + "," + b.y + " " + b.width + "x" + b.height + ")";
+                            break;
+                        case ComponentEvent.COMPONENT_RESIZED_$LI$():
+                            typeStr = "COMPONENT_RESIZED (" + b.x + "," + b.y + " " + b.width + "x" + b.height + ")";
+                            break;
+                        default:
+                            typeStr = "unknown type";
+                    }
+                    return typeStr;
+                };
+                ComponentEvent.COMPONENT_FIRST = 100;
+                ComponentEvent.COMPONENT_LAST = 103;
+                ComponentEvent.serialVersionUID = 8101406823902992965;
+                return ComponentEvent;
+            }(java.awt.AWTEvent));
+            event.ComponentEvent = ComponentEvent;
+            ComponentEvent["__classname"] = "java.awt.event.ComponentEvent";
+        })(event = awt.event || (awt.event = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var event;
+        (function (event) {
+            var ItemEvent = (function (_super) {
+                __extends(ItemEvent, _super);
+                function ItemEvent(source, id, item, stateChange) {
+                    _super.call(this, source, id);
+                    this.stateChange = 0;
+                    this.item = item;
+                    this.stateChange = stateChange;
+                }
+                ItemEvent.ITEM_STATE_CHANGED_$LI$ = function () { if (ItemEvent.ITEM_STATE_CHANGED == null)
+                    ItemEvent.ITEM_STATE_CHANGED = ItemEvent.ITEM_FIRST; return ItemEvent.ITEM_STATE_CHANGED; };
+                ;
+                ItemEvent.prototype.getItemSelectable = function () {
+                    return this.source;
+                };
+                ItemEvent.prototype.getItem = function () {
+                    return this.item;
+                };
+                ItemEvent.prototype.getStateChange = function () {
+                    return this.stateChange;
+                };
+                ItemEvent.prototype.paramString = function () {
+                    var typeStr;
+                    switch ((this.id)) {
+                        case ItemEvent.ITEM_STATE_CHANGED_$LI$():
+                            typeStr = "ITEM_STATE_CHANGED";
+                            break;
+                        default:
+                            typeStr = "unknown type";
+                    }
+                    var stateStr;
+                    switch ((this.stateChange)) {
+                        case ItemEvent.SELECTED:
+                            stateStr = "SELECTED";
+                            break;
+                        case ItemEvent.DESELECTED:
+                            stateStr = "DESELECTED";
+                            break;
+                        default:
+                            stateStr = "unknown type";
+                    }
+                    return typeStr + ",item=" + this.item + ",stateChange=" + stateStr;
+                };
+                ItemEvent.ITEM_FIRST = 701;
+                ItemEvent.ITEM_LAST = 701;
+                ItemEvent.SELECTED = 1;
+                ItemEvent.DESELECTED = 2;
+                ItemEvent.serialVersionUID = -608708132447206933;
+                return ItemEvent;
+            }(java.awt.AWTEvent));
+            event.ItemEvent = ItemEvent;
+            ItemEvent["__classname"] = "java.awt.event.ItemEvent";
+        })(event = awt.event || (awt.event = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var event;
+        (function (event) {
+            /**
+             * A semantic event which indicates that an object's text changed.
+             * This high-level event is generated by an object (such as a TextComponent)
+             * when its text changes. The event is passed to
+             * every <code>TextListener</code> object which registered to receive such
+             * events using the component's <code>addTextListener</code> method.
+             * <P>
+             * The object that implements the <code>TextListener</code> interface gets
+             * this <code>TextEvent</code> when the event occurs. The listener is
+             * spared the details of processing individual mouse movements and key strokes
+             * Instead, it can process a "meaningful" (semantic) event like "text changed".
+             * <p>
+             * An unspecified behavior will be caused if the {@code id} parameter
+             * of any particular {@code TextEvent} instance is not
+             * in the range from {@code TEXT_FIRST} to {@code TEXT_LAST}.
+             *
+             * @author Georges Saab
+             *
+             * @see java.awt.TextComponent
+             * @see TextListener
+             *
+             * @since 1.1
+             */
+            var TextEvent = (function (_super) {
+                __extends(TextEvent, _super);
+                /**
+                 * Constructs a <code>TextEvent</code> object.
+                 * <p> This method throws an
+                 * <code>IllegalArgumentException</code> if <code>source</code>
+                 * is <code>null</code>.
+                 *
+                 * @param source The (<code>TextComponent</code>) object that
+                 * originated the event
+                 * @param id     An integer that identifies the event type.
+                 * For information on allowable values, see
+                 * the class description for {@link TextEvent}
+                 * @throws IllegalArgumentException if <code>source</code> is null
+                 * @see #getSource()
+                 * @see #getID()
+                 */
+                function TextEvent(source, id) {
+                    _super.call(this, source, id);
+                }
+                TextEvent.TEXT_VALUE_CHANGED_$LI$ = function () { if (TextEvent.TEXT_VALUE_CHANGED == null)
+                    TextEvent.TEXT_VALUE_CHANGED = TextEvent.TEXT_FIRST; return TextEvent.TEXT_VALUE_CHANGED; };
+                ;
+                /**
+                 * Returns a parameter string identifying this text event.
+                 * This method is useful for event-logging and for debugging.
+                 *
+                 * @return a string identifying the event and its attributes
+                 */
+                TextEvent.prototype.paramString = function () {
+                    var typeStr;
+                    switch ((this.id)) {
+                        case TextEvent.TEXT_VALUE_CHANGED_$LI$():
+                            typeStr = "TEXT_VALUE_CHANGED";
+                            break;
+                        default:
+                            typeStr = "unknown type";
+                    }
+                    return typeStr;
+                };
+                /**
+                 * The first number in the range of ids used for text events.
+                 */
+                TextEvent.TEXT_FIRST = 900;
+                /**
+                 * The last number in the range of ids used for text events.
+                 */
+                TextEvent.TEXT_LAST = 900;
+                TextEvent.serialVersionUID = 6269902291250941179;
+                return TextEvent;
+            }(java.awt.AWTEvent));
+            event.TextEvent = TextEvent;
+            TextEvent["__classname"] = "java.awt.event.TextEvent";
+        })(event = awt.event || (awt.event = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var beans;
+    (function (beans) {
+        /**
+         * An "IndexedPropertyChange" event gets delivered whenever a component that
+         * conforms to the JavaBeans&trade; specification (a "bean") changes a bound
+         * indexed property. This class is an extension of <code>PropertyChangeEvent</code>
+         * but contains the index of the property that has changed.
+         * <P>
+         * Null values may be provided for the old and the new values if their
+         * true values are not known.
+         * <P>
+         * An event source may send a null object as the name to indicate that an
+         * arbitrary set of if its properties have changed.  In this case the
+         * old and new values should also be null.
+         *
+         * @since 1.5
+         * @author Mark Davidson
+         */
+        var IndexedPropertyChangeEvent = (function (_super) {
+            __extends(IndexedPropertyChangeEvent, _super);
+            /**
+             * Constructs a new <code>IndexedPropertyChangeEvent</code> object.
+             *
+             * @param source  The bean that fired the event.
+             * @param propertyName  The programmatic name of the property that
+             * was changed.
+             * @param oldValue      The old value of the property.
+             * @param newValue      The new value of the property.
+             * @param index index of the property element that was changed.
+             */
+            function IndexedPropertyChangeEvent(source, propertyName, oldValue, newValue, index) {
+                _super.call(this, source, propertyName, oldValue, newValue);
+                this.index = 0;
+                this.index = index;
+            }
+            /**
+             * Gets the index of the property that was changed.
+             *
+             * @return The index specifying the property element that was
+             * changed.
+             */
+            IndexedPropertyChangeEvent.prototype.getIndex = function () {
+                return this.index;
+            };
+            IndexedPropertyChangeEvent.prototype.appendTo = function (sb) {
+                sb.append("; index=").append(this.getIndex());
+            };
+            IndexedPropertyChangeEvent.serialVersionUID = -320227448495806870;
+            return IndexedPropertyChangeEvent;
+        }(java.beans.PropertyChangeEvent));
+        beans.IndexedPropertyChangeEvent = IndexedPropertyChangeEvent;
+        IndexedPropertyChangeEvent["__classname"] = "java.beans.IndexedPropertyChangeEvent";
+    })(beans = java.beans || (java.beans = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var javax;
+(function (javax) {
+    var swing;
+    (function (swing) {
+        var AbstractButton = (function (_super) {
+            __extends(AbstractButton, _super);
+            function AbstractButton() {
+                _super.call(this);
+                this.text = "";
+                this.margin = null;
+                this.defaultMargin = null;
+                this.defaultIcon = null;
+                this.pressedIcon = null;
+                this.disabledIcon = null;
+                this.selectedIcon = null;
+                this.disabledSelectedIcon = null;
+                this.rolloverIcon = null;
+                this.rolloverSelectedIcon = null;
+                this.paintBorder = true;
+                this.paintFocus = true;
+                this.rolloverEnabled = false;
+                this.contentAreaFilled = true;
+                this.verticalAlignment = javax.swing.SwingConstants.CENTER;
+                this.horizontalAlignment = javax.swing.SwingConstants.CENTER;
+                this.verticalTextPosition = javax.swing.SwingConstants.CENTER;
+                this.horizontalTextPosition = javax.swing.SwingConstants.TRAILING;
+                this.iconTextGap = 4;
+                this.mnemonicIndex = -1;
+                this.multiClickThreshhold = 0;
+                this.borderPaintedSet = false;
+                this.rolloverEnabledSet = false;
+                this.iconTextGapSet = false;
+                this.contentAreaFilledSet = false;
+                this.__setLayout = false;
+                this.defaultCapable = true;
+                /**
+                 * The button model's <code>changeListener</code>.
+                 */
+                this.changeListener = null;
+                /**
+                 * The button model's <code>ActionListener</code>.
+                 */
+                this.actionListener = null;
+                /**
+                 * The button model's <code>ItemListener</code>.
+                 */
+                this.itemListener = null;
+                this.hideActionText = false;
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.ItemSelectable", "java.awt.HTMLComponent", "javax.swing.SwingConstants", "java.io.Serializable"] });
+                this.mnemonic = 0;
+            }
+            /**
+             * Returns the button's text.
+             *
+             * @return the buttons text
+             * @see #setText
+             */
+            AbstractButton.prototype.getText = function () {
+                return this.text;
+            };
+            AbstractButton.prototype.setText = function (text) {
+                this.text = text;
+                this.getHTMLElement().innerText = text;
+            };
+            AbstractButton.prototype.isSelected = function () {
+                return false;
+            };
+            AbstractButton.prototype.setSelected = function (b) {
+            };
+            AbstractButton.prototype.doClick = function () {
+                $(this.getHTMLElement()).click();
+            };
+            AbstractButton.prototype.setMargin = function (m) {
+            };
+            /**
+             * Returns the margin between the button's border and the label.
+             *
+             * @return an <code>Insets</code> object specifying the margin between the
+             * botton's border and the label
+             * @see #setMargin
+             */
+            AbstractButton.prototype.getMargin = function () {
+                return (this.margin == null) ? null : this.margin.clone();
+            };
+            /**
+             * Returns the default icon.
+             *
+             * @return the default <code>Icon</code>
+             * @see #setIcon
+             */
+            AbstractButton.prototype.getIcon = function () {
+                return this.defaultIcon;
+            };
+            AbstractButton.prototype.setIcon = function (defaultIcon) {
+                var oldValue = this.defaultIcon;
+                this.defaultIcon = defaultIcon;
+                if (defaultIcon !== oldValue) {
+                    this.disabledIcon = null;
+                }
+                this.firePropertyChange(AbstractButton.ICON_CHANGED_PROPERTY, oldValue, defaultIcon);
+            };
+            AbstractButton.prototype.getPressedIcon = function () {
+                return this.pressedIcon;
+            };
+            AbstractButton.prototype.setPressedIcon = function (pressedIcon) {
+                var oldValue = this.pressedIcon;
+                this.pressedIcon = pressedIcon;
+                this.firePropertyChange(AbstractButton.PRESSED_ICON_CHANGED_PROPERTY, oldValue, pressedIcon);
+            };
+            AbstractButton.prototype.getSelectedIcon = function () {
+                return this.selectedIcon;
+            };
+            AbstractButton.prototype.setSelectedIcon = function (selectedIcon) {
+                var oldValue = this.selectedIcon;
+                this.selectedIcon = selectedIcon;
+                if (selectedIcon !== oldValue) {
+                    this.disabledSelectedIcon = null;
+                }
+                this.firePropertyChange(AbstractButton.SELECTED_ICON_CHANGED_PROPERTY, oldValue, selectedIcon);
+            };
+            AbstractButton.prototype.getRolloverIcon = function () {
+                return this.rolloverIcon;
+            };
+            AbstractButton.prototype.setRolloverIcon = function (rolloverIcon) {
+                var oldValue = this.rolloverIcon;
+                this.rolloverIcon = rolloverIcon;
+                this.firePropertyChange(AbstractButton.ROLLOVER_ICON_CHANGED_PROPERTY, oldValue, rolloverIcon);
+            };
+            AbstractButton.prototype.getRolloverSelectedIcon = function () {
+                return this.rolloverSelectedIcon;
+            };
+            AbstractButton.prototype.setRolloverSelectedIcon = function (rolloverSelectedIcon) {
+                var oldValue = this.rolloverSelectedIcon;
+                this.rolloverSelectedIcon = rolloverSelectedIcon;
+                this.firePropertyChange(AbstractButton.ROLLOVER_SELECTED_ICON_CHANGED_PROPERTY, oldValue, rolloverSelectedIcon);
+                this.setRolloverEnabled(true);
+            };
+            AbstractButton.prototype.getDisabledIcon = function () {
+                return this.disabledIcon;
+            };
+            AbstractButton.prototype.setDisabledIcon = function (disabledIcon) {
+                var oldValue = this.disabledIcon;
+                this.disabledIcon = disabledIcon;
+                this.firePropertyChange(AbstractButton.DISABLED_ICON_CHANGED_PROPERTY, oldValue, disabledIcon);
+            };
+            AbstractButton.prototype.getDisabledSelectedIcon = function () {
+                return this.disabledSelectedIcon;
+            };
+            AbstractButton.prototype.setDisabledSelectedIcon = function (disabledSelectedIcon) {
+                var oldValue = this.disabledSelectedIcon;
+                this.disabledSelectedIcon = disabledSelectedIcon;
+                this.firePropertyChange(AbstractButton.DISABLED_SELECTED_ICON_CHANGED_PROPERTY, oldValue, disabledSelectedIcon);
+            };
+            AbstractButton.prototype.getVerticalAlignment = function () {
+                return this.verticalAlignment;
+            };
+            AbstractButton.prototype.setVerticalAlignment = function (alignment) {
+                if (alignment === this.verticalAlignment)
+                    return;
+                var oldValue = this.verticalAlignment;
+                this.verticalAlignment = this.checkVerticalKey(alignment, "verticalAlignment");
+                this.firePropertyChange(AbstractButton.VERTICAL_ALIGNMENT_CHANGED_PROPERTY, oldValue, this.verticalAlignment);
+            };
+            AbstractButton.prototype.getHorizontalAlignment = function () {
+                return this.horizontalAlignment;
+            };
+            AbstractButton.prototype.setHorizontalAlignment = function (alignment) {
+                if (alignment === this.horizontalAlignment)
+                    return;
+                var oldValue = this.horizontalAlignment;
+                this.horizontalAlignment = this.checkHorizontalKey(alignment, "horizontalAlignment");
+                this.firePropertyChange(AbstractButton.HORIZONTAL_ALIGNMENT_CHANGED_PROPERTY, oldValue, this.horizontalAlignment);
+            };
+            AbstractButton.prototype.getVerticalTextPosition = function () {
+                return this.verticalTextPosition;
+            };
+            AbstractButton.prototype.setVerticalTextPosition = function (textPosition) {
+                if (textPosition === this.verticalTextPosition)
+                    return;
+                var oldValue = this.verticalTextPosition;
+                this.verticalTextPosition = this.checkVerticalKey(textPosition, "verticalTextPosition");
+                this.firePropertyChange(AbstractButton.VERTICAL_TEXT_POSITION_CHANGED_PROPERTY, oldValue, this.verticalTextPosition);
+            };
+            AbstractButton.prototype.getHorizontalTextPosition = function () {
+                return this.horizontalTextPosition;
+            };
+            AbstractButton.prototype.setHorizontalTextPosition = function (textPosition) {
+                if (textPosition === this.horizontalTextPosition)
+                    return;
+                var oldValue = this.horizontalTextPosition;
+                this.horizontalTextPosition = this.checkHorizontalKey(textPosition, "horizontalTextPosition");
+                this.firePropertyChange(AbstractButton.HORIZONTAL_TEXT_POSITION_CHANGED_PROPERTY, oldValue, this.horizontalTextPosition);
+            };
+            AbstractButton.prototype.getIconTextGap = function () {
+                return this.iconTextGap;
+            };
+            AbstractButton.prototype.setIconTextGap = function (iconTextGap) {
+                var oldValue = this.iconTextGap;
+                this.iconTextGap = iconTextGap;
+                this.iconTextGapSet = true;
+                this.firePropertyChange("iconTextGap", oldValue, iconTextGap);
+            };
+            AbstractButton.prototype.checkHorizontalKey = function (key, exception) {
+                if ((key === javax.swing.SwingConstants.LEFT) || (key === javax.swing.SwingConstants.CENTER) || (key === javax.swing.SwingConstants.RIGHT) || (key === javax.swing.SwingConstants.LEADING) || (key === javax.swing.SwingConstants.TRAILING)) {
+                    return key;
+                }
+                else {
+                    throw new java.lang.IllegalArgumentException(exception);
+                }
+            };
+            AbstractButton.prototype.checkVerticalKey = function (key, exception) {
+                if ((key === javax.swing.SwingConstants.TOP) || (key === javax.swing.SwingConstants.CENTER) || (key === javax.swing.SwingConstants.BOTTOM)) {
+                    return key;
+                }
+                else {
+                    throw new java.lang.IllegalArgumentException(exception);
+                }
+            };
+            AbstractButton.prototype.setActionCommand = function (actionCommand) {
+            };
+            AbstractButton.prototype.getActionCommand = function () {
+                return this.getText();
+            };
+            AbstractButton.prototype.setAction = function (a) {
+                var oldValue = this.getAction();
+                if (this.action == null || !this.action.equals(a)) {
+                    this.action = a;
+                    if (oldValue != null) {
+                        this.removeActionListener(oldValue);
+                    }
+                    if (this.action != null) {
+                        this.addActionListener(this.action);
+                    }
+                    this.firePropertyChange("action", oldValue, this.action);
+                }
+            };
+            AbstractButton.prototype.getAction = function () {
+                return this.action;
+            };
+            AbstractButton.prototype.isBorderPainted = function () {
+                return this.paintBorder;
+            };
+            AbstractButton.prototype.setBorderPainted = function (b) {
+                var oldValue = this.paintBorder;
+                this.paintBorder = b;
+                this.borderPaintedSet = true;
+                this.firePropertyChange(AbstractButton.BORDER_PAINTED_CHANGED_PROPERTY, oldValue, this.paintBorder);
+            };
+            AbstractButton.prototype.isFocusPainted = function () {
+                return this.paintFocus;
+            };
+            AbstractButton.prototype.setFocusPainted = function (b) {
+                var oldValue = this.paintFocus;
+                this.paintFocus = b;
+                this.firePropertyChange(AbstractButton.FOCUS_PAINTED_CHANGED_PROPERTY, oldValue, this.paintFocus);
+            };
+            AbstractButton.prototype.isContentAreaFilled = function () {
+                return this.contentAreaFilled;
+            };
+            AbstractButton.prototype.setContentAreaFilled = function (b) {
+                var oldValue = this.contentAreaFilled;
+                this.contentAreaFilled = b;
+                this.contentAreaFilledSet = true;
+                this.firePropertyChange(AbstractButton.CONTENT_AREA_FILLED_CHANGED_PROPERTY, oldValue, this.contentAreaFilled);
+            };
+            AbstractButton.prototype.isRolloverEnabled = function () {
+                return this.rolloverEnabled;
+            };
+            AbstractButton.prototype.setRolloverEnabled = function (b) {
+                var oldValue = this.rolloverEnabled;
+                this.rolloverEnabled = b;
+                this.rolloverEnabledSet = true;
+                this.firePropertyChange(AbstractButton.ROLLOVER_ENABLED_CHANGED_PROPERTY, oldValue, this.rolloverEnabled);
+            };
+            AbstractButton.prototype.getMnemonic = function () {
+                return this.mnemonic;
+            };
+            AbstractButton.prototype.setMnemonic = function (mnemonic) {
+            };
+            AbstractButton.prototype.setDisplayedMnemonicIndex = function (index) {
+                var oldValue = this.mnemonicIndex;
+                if (index === -1) {
+                    this.mnemonicIndex = -1;
+                }
+                else {
+                    var text = this.getText();
+                    var textLength = (text == null) ? 0 : text.length;
+                    if (index < -1 || index >= textLength) {
+                        throw new java.lang.IllegalArgumentException("index == " + index);
+                    }
+                }
+                this.mnemonicIndex = index;
+                this.firePropertyChange("displayedMnemonicIndex", oldValue, index);
+            };
+            AbstractButton.prototype.getDisplayedMnemonicIndex = function () {
+                return this.mnemonicIndex;
+            };
+            AbstractButton.prototype.setMultiClickThreshhold = function (threshhold) {
+                if (threshhold < 0) {
+                    throw new java.lang.IllegalArgumentException("threshhold must be >= 0");
+                }
+                this.multiClickThreshhold = threshhold;
+            };
+            AbstractButton.prototype.getMultiClickThreshhold = function () {
+                return this.multiClickThreshhold;
+            };
+            /**
+             * Adds a <code>ChangeListener</code> to the button.
+             *
+             * @param l
+             * the listener to be added
+             */
+            AbstractButton.prototype.addChangeListener = function (l) {
+                this.listenerList.add("javax.swing.event.ChangeListener", l);
+            };
+            /**
+             * Removes a ChangeListener from the button.
+             *
+             * @param l
+             * the listener to be removed
+             */
+            AbstractButton.prototype.removeChangeListener = function (l) {
+                this.listenerList.remove("javax.swing.event.ChangeListener", l);
+            };
+            /**
+             * Returns an array of all the <code>ChangeListener</code>s added to this
+             * AbstractButton with addChangeListener().
+             *
+             * @return all of the <code>ChangeListener</code>s added or an empty array
+             * if no listeners have been added
+             * @since 1.4
+             */
+            AbstractButton.prototype.getChangeListeners = function () {
+                return this.listenerList.getListeners("javax.swing.event.ChangeListener");
+            };
+            /**
+             * Notifies all listeners that have registered interest for notification on
+             * this event type. The event instance is lazily created.
+             *
+             * @see EventListenerList
+             */
+            AbstractButton.prototype.fireStateChanged = function () {
+                var listeners = this.listenerList.getListenerList();
+                for (var i = listeners.length - 2; i >= 0; i -= 2) {
+                    if (listeners[i] === "javax.swing.event.ChangeListener") {
+                        if (this.changeEvent == null)
+                            this.changeEvent = new javax.swing.event.ChangeEvent(this);
+                        listeners[i + 1].stateChanged(this.changeEvent);
+                    }
+                }
+            };
+            /**
+             * Adds an <code>ActionListener</code> to the button.
+             *
+             * @param l
+             * the <code>ActionListener</code> to be added
+             */
+            AbstractButton.prototype.addActionListener = function (l) {
+                this.listenerList.add("java.awt.event.ActionListener", l);
+            };
+            /**
+             * Removes an <code>ActionListener</code> from the button. If the listener
+             * is the currently set <code>Action</code> for the button, then the
+             * <code>Action</code> is set to <code>null</code>.
+             *
+             * @param l
+             * the listener to be removed
+             */
+            AbstractButton.prototype.removeActionListener = function (l) {
+                if ((l != null) && (this.getAction() === l)) {
+                    this.setAction(null);
+                }
+                else {
+                    this.listenerList.remove("java.awt.event.ActionListener", l);
+                }
+            };
+            /**
+             * Returns an array of all the <code>ActionListener</code>s added to this
+             * AbstractButton with addActionListener().
+             *
+             * @return all of the <code>ActionListener</code>s added or an empty array
+             * if no listeners have been added
+             * @since 1.4
+             */
+            AbstractButton.prototype.getActionListeners = function () {
+                return this.listenerList.getListeners("java.awt.event.ActionListener");
+            };
+            /**
+             * Subclasses that want to handle <code>ChangeEvents</code> differently can
+             * override this to return another <code>ChangeListener</code>
+             * implementation.
+             *
+             * @return the new <code>ChangeListener</code>
+             */
+            AbstractButton.prototype.createChangeListener = function () {
+                return this.getHandler();
+            };
+            /**
+             * Notifies all listeners that have registered interest for notification on
+             * this event type. The event instance is lazily created using the
+             * <code>event</code> parameter.
+             *
+             * @param event
+             * the <code>ActionEvent</code> object
+             * @see EventListenerList
+             */
+            AbstractButton.prototype.fireActionPerformed = function (event) {
+                var listeners = this.listenerList.getListenerList();
+                var e = null;
+                for (var i = listeners.length - 2; i >= 0; i -= 2) {
+                    if (listeners[i] === "java.awt.event.ActionListener") {
+                        if (e == null) {
+                            var actionCommand = event.getActionCommand();
+                            if (actionCommand == null) {
+                                actionCommand = this.getActionCommand();
+                            }
+                            e = new java.awt.event.ActionEvent(this, java.awt.event.ActionEvent.ACTION_PERFORMED_$LI$(), actionCommand, event.getWhen(), event.getModifiers());
+                        }
+                        listeners[i + 1].actionPerformed(e);
+                    }
+                }
+            };
+            /**
+             * Notifies all listeners that have registered interest for notification on
+             * this event type. The event instance is lazily created using the
+             * <code>event</code> parameter.
+             *
+             * @param event
+             * the <code>ItemEvent</code> object
+             * @see EventListenerList
+             */
+            AbstractButton.prototype.fireItemStateChanged = function (event) {
+                var listeners = this.listenerList.getListenerList();
+                var e = null;
+                for (var i = listeners.length - 2; i >= 0; i -= 2) {
+                    if (listeners[i] === "java.awt.event.ItemListener") {
+                        if (e == null) {
+                            e = new java.awt.event.ItemEvent(this, java.awt.event.ItemEvent.ITEM_STATE_CHANGED_$LI$(), this, event.getStateChange());
+                        }
+                        listeners[i + 1].itemStateChanged(e);
+                    }
+                }
+            };
+            AbstractButton.prototype.createActionListener = function () {
+                return this.getHandler();
+            };
+            AbstractButton.prototype.createItemListener = function () {
+                return this.getHandler();
+            };
+            /**
+             * Enables (or disables) the button.
+             *
+             * @param b
+             * true to enable the button, otherwise false
+             */
+            AbstractButton.prototype.setEnabled = function (b) {
+                _super.prototype.setEnabled.call(this, b);
+            };
+            /**
+             * Returns the label text.
+             *
+             * @return a <code>String</code> containing the label
+             * @deprecated - Replaced by <code>getText</code>
+             */
+            AbstractButton.prototype.getLabel = function () {
+                return this.getText();
+            };
+            /**
+             * Sets the label text.
+             *
+             * @param label
+             * a <code>String</code> containing the text
+             * @deprecated - Replaced by <code>setText(text)</code>
+             * @beaninfo bound: true description: Replace by setText(text)
+             */
+            AbstractButton.prototype.setLabel = function (label) {
+                this.setText(label);
+            };
+            /**
+             * Adds an <code>ItemListener</code> to the <code>checkbox</code>.
+             *
+             * @param l
+             * the <code>ItemListener</code> to be added
+             */
+            AbstractButton.prototype.addItemListener = function (l) {
+                this.listenerList.add("java.awt.event.ItemListener", l);
+            };
+            /**
+             * Removes an <code>ItemListener</code> from the button.
+             *
+             * @param l
+             * the <code>ItemListener</code> to be removed
+             */
+            AbstractButton.prototype.removeItemListener = function (l) {
+                this.listenerList.remove("java.awt.event.ItemListener", l);
+            };
+            /**
+             * Returns an array of all the <code>ItemListener</code>s added to this
+             * AbstractButton with addItemListener().
+             *
+             * @return all of the <code>ItemListener</code>s added or an empty array if
+             * no listeners have been added
+             * @since 1.4
+             */
+            AbstractButton.prototype.getItemListeners = function () {
+                return this.listenerList.getListeners("java.awt.event.ItemListener");
+            };
+            /**
+             * Returns an array (length 1) containing the label or <code>null</code> if
+             * the button is not selected.
+             *
+             * @return an array containing 1 Object: the text of the button, if the item
+             * is selected; otherwise <code>null</code>
+             */
+            AbstractButton.prototype.getSelectedObjects = function () {
+                if (this.isSelected() === false) {
+                    return null;
+                }
+                var selectedObjects = new Array(1);
+                selectedObjects[0] = this.getText();
+                return selectedObjects;
+            };
+            AbstractButton.prototype.init = function (text, icon) {
+                if (text != null) {
+                    this.setText(text);
+                }
+                if (icon != null) {
+                    this.setIcon(icon);
+                }
+            };
+            AbstractButton.prototype.imageUpdate = function (img, infoflags, x, y, w, h) {
+                return false;
+            };
+            AbstractButton.prototype.getHandler = function () {
+                if (this.handler == null) {
+                    this.handler = new AbstractButton.Handler(this);
+                }
+                return this.handler;
+            };
+            /**
+             * Identifies a change in the button's margins.
+             */
+            AbstractButton.MARGIN_CHANGED_PROPERTY = "margin";
+            /**
+             * Identifies a change in the button's vertical alignment.
+             */
+            AbstractButton.VERTICAL_ALIGNMENT_CHANGED_PROPERTY = "verticalAlignment";
+            /**
+             * Identifies a change in the button's horizontal alignment.
+             */
+            AbstractButton.HORIZONTAL_ALIGNMENT_CHANGED_PROPERTY = "horizontalAlignment";
+            /**
+             * Identifies a change in the button's vertical text position.
+             */
+            AbstractButton.VERTICAL_TEXT_POSITION_CHANGED_PROPERTY = "verticalTextPosition";
+            /**
+             * Identifies a change in the button's horizontal text position.
+             */
+            AbstractButton.HORIZONTAL_TEXT_POSITION_CHANGED_PROPERTY = "horizontalTextPosition";
+            /**
+             * Identifies a change to having the border drawn, or having it not drawn.
+             */
+            AbstractButton.BORDER_PAINTED_CHANGED_PROPERTY = "borderPainted";
+            /**
+             * Identifies a change to having the border highlighted when focused, or
+             * not.
+             */
+            AbstractButton.FOCUS_PAINTED_CHANGED_PROPERTY = "focusPainted";
+            /**
+             * Identifies a change from rollover enabled to disabled or back to enabled.
+             */
+            AbstractButton.ROLLOVER_ENABLED_CHANGED_PROPERTY = "rolloverEnabled";
+            /**
+             * Identifies a change to having the button paint the content area.
+             */
+            AbstractButton.CONTENT_AREA_FILLED_CHANGED_PROPERTY = "contentAreaFilled";
+            /**
+             * Identifies a change to the icon that represents the button.
+             */
+            AbstractButton.ICON_CHANGED_PROPERTY = "icon";
+            /**
+             * Identifies a change to the icon used when the button has been pressed.
+             */
+            AbstractButton.PRESSED_ICON_CHANGED_PROPERTY = "pressedIcon";
+            /**
+             * Identifies a change to the icon used when the button has been selected.
+             */
+            AbstractButton.SELECTED_ICON_CHANGED_PROPERTY = "selectedIcon";
+            /**
+             * Identifies a change to the icon used when the cursor is over the button.
+             */
+            AbstractButton.ROLLOVER_ICON_CHANGED_PROPERTY = "rolloverIcon";
+            /**
+             * Identifies a change to the icon used when the cursor is over the button
+             * and it has been selected.
+             */
+            AbstractButton.ROLLOVER_SELECTED_ICON_CHANGED_PROPERTY = "rolloverSelectedIcon";
+            /**
+             * Identifies a change to the icon used when the button has been disabled.
+             */
+            AbstractButton.DISABLED_ICON_CHANGED_PROPERTY = "disabledIcon";
+            /**
+             * Identifies a change to the icon used when the button has been disabled
+             * and selected.
+             */
+            AbstractButton.DISABLED_SELECTED_ICON_CHANGED_PROPERTY = "disabledSelectedIcon";
+            return AbstractButton;
+        }(javax.swing.JComponent));
+        swing.AbstractButton = AbstractButton;
+        AbstractButton["__classname"] = "javax.swing.AbstractButton";
+        var AbstractButton;
+        (function (AbstractButton) {
+            /**
+             * Extends <code>ChangeListener</code> to be serializable.
+             * <p>
+             * <strong>Warning:</strong> Serialized objects of this class will not be
+             * compatible with future Swing releases. The current serialization support
+             * is appropriate for short term storage or RMI between applications running
+             * the same version of Swing. As of 1.4, support for long term storage of
+             * all JavaBeans&trade; has been added to the <code>java.beans</code>
+             * package. Please see {@link java.beans.XMLEncoder}.
+             */
+            var ButtonChangeListener = (function () {
+                function ButtonChangeListener(__parent) {
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.EventListener", "javax.swing.event.ChangeListener", "java.io.Serializable"] });
+                    this.__parent = __parent;
+                }
+                ButtonChangeListener.prototype.stateChanged = function (e) {
+                    this.__parent.getHandler().stateChanged(e);
+                };
+                return ButtonChangeListener;
+            }());
+            AbstractButton.ButtonChangeListener = ButtonChangeListener;
+            ButtonChangeListener["__classname"] = "javax.swing.AbstractButton.ButtonChangeListener";
+            var Handler = (function () {
+                function Handler(__parent) {
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.EventListener", "java.awt.event.ActionListener", "javax.swing.event.ChangeListener", "java.awt.event.ItemListener", "java.io.Serializable"] });
+                    this.__parent = __parent;
+                }
+                Handler.prototype.stateChanged = function (e) {
+                    this.__parent.fireStateChanged();
+                };
+                Handler.prototype.actionPerformed = function (event) {
+                    this.__parent.fireActionPerformed(event);
+                };
+                Handler.prototype.itemStateChanged = function (event) {
+                    this.__parent.fireItemStateChanged(event);
+                };
+                return Handler;
+            }());
+            AbstractButton.Handler = Handler;
+            Handler["__classname"] = "javax.swing.AbstractButton.Handler";
+        })(AbstractButton = swing.AbstractButton || (swing.AbstractButton = {}));
+    })(swing = javax.swing || (javax.swing = {}));
+})(javax || (javax = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var applet;
+    (function (applet_1) {
+        var Applet = (function (_super) {
+            __extends(Applet, _super);
+            function Applet() {
+                _super.call(this);
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.HTMLComponent"] });
+            }
+            Applet.__static_initialize = function () { if (!Applet.__static_initialized) {
+                Applet.__static_initialized = true;
+                Applet.__static_initializer_0();
+            } };
+            Applet.__static_initializer_0 = function () {
+                console.info("installing applet onload hook");
+                window.onload = function (e) {
+                    console.info("applet onload hook");
+                    var divList = document.getElementsByClassName("applet");
+                    if (divList.length === 0) {
+                        return null;
+                    }
+                    var div = divList[0];
+                    if (div.getAttribute("data-applet") != null) {
+                        console.info("installing applet: " + div.getAttribute("data-applet"));
+                        div.style.position = "relative";
+                        var canvas = document.createElement("canvas");
+                        canvas.setAttribute("width", div.getAttribute("data-width"));
+                        canvas.setAttribute("height", div.getAttribute("data-height"));
+                        div.style.width = div.getAttribute("data-width");
+                        div.style.height = div.getAttribute("data-height");
+                        if (div.firstChild != null) {
+                            div.insertBefore(canvas, div.firstChild);
+                        }
+                        else {
+                            div.appendChild(canvas);
+                        }
+                        canvas.style.position = "absolute";
+                        canvas.style.left = "0px";
+                        canvas.style.right = "0px";
+                        canvas.style.width = div.style.width;
+                        canvas.style.height = div.style.height;
+                        canvas.style.zIndex = "-1";
+                        var names = div.getAttribute("data-applet").split(".");
+                        var constructor = window;
+                        for (var index172 = 0; index172 < names.length; index172++) {
+                            var name = names[index172];
+                            {
+                                constructor = constructor[name];
+                                console.info("name: " + name + " -> " + constructor);
+                            }
+                        }
+                        var applet = new constructor();
+                        applet.bindHTML(div);
+                        var g = new java.awt.WebGraphics2D(canvas);
+                        applet.initHTML();
+                        applet.init();
+                        applet.paint(g);
+                    }
+                    return null;
+                };
+            };
+            Applet.prototype.init = function () {
+            };
+            Applet.__static_initialized = false;
+            Applet.CURRENT_ID = 0;
+            return Applet;
+        }(java.awt.Panel));
+        applet_1.Applet = Applet;
+        Applet["__classname"] = "java.applet.Applet";
+    })(applet = java.applet || (java.applet = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -37018,8 +42955,8 @@ var java;
             System.arraycopy = function (src, srcOfs, dest, destOfs, len) {
                 javaemul.internal.InternalPreconditions.checkNotNull(src, "src");
                 javaemul.internal.InternalPreconditions.checkNotNull(dest, "dest");
-                var srcType = src.getClass();
-                var destType = dest.getClass();
+                var srcType = src.constructor;
+                var destType = dest.constructor;
                 javaemul.internal.InternalPreconditions.checkArrayType(srcType.isArray(), "srcType is not an array");
                 javaemul.internal.InternalPreconditions.checkArrayType(destType.isArray(), "destType is not an array");
                 var srcComp = srcType.getComponentType();
@@ -37128,9 +43065,10 @@ var java;
             return System;
         }());
         lang.System = System;
+        System["__classname"] = "java.lang.System";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -37170,9 +43108,10 @@ var java;
             return NumberFormatException;
         }(java.lang.IllegalArgumentException));
         lang.NumberFormatException = NumberFormatException;
+        NumberFormatException["__classname"] = "java.lang.NumberFormatException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var nio;
@@ -37195,10 +43134,11 @@ var java;
                 return IllegalCharsetNameException;
             }(java.lang.IllegalArgumentException));
             charset.IllegalCharsetNameException = IllegalCharsetNameException;
+            IllegalCharsetNameException["__classname"] = "java.nio.charset.IllegalCharsetNameException";
         })(charset = nio.charset || (nio.charset = {}));
     })(nio = java.nio || (java.nio = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var nio;
@@ -37221,10 +43161,11 @@ var java;
                 return UnsupportedCharsetException;
             }(java.lang.IllegalArgumentException));
             charset.UnsupportedCharsetException = UnsupportedCharsetException;
+            UnsupportedCharsetException["__classname"] = "java.nio.charset.UnsupportedCharsetException";
         })(charset = nio.charset || (nio.charset = {}));
     })(nio = java.nio || (java.nio = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -37265,9 +43206,10 @@ var java;
             return ArrayIndexOutOfBoundsException;
         }(java.lang.IndexOutOfBoundsException));
         lang.ArrayIndexOutOfBoundsException = ArrayIndexOutOfBoundsException;
+        ArrayIndexOutOfBoundsException["__classname"] = "java.lang.ArrayIndexOutOfBoundsException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var lang;
@@ -37305,9 +43247,10 @@ var java;
             return StringIndexOutOfBoundsException;
         }(java.lang.IndexOutOfBoundsException));
         lang.StringIndexOutOfBoundsException = StringIndexOutOfBoundsException;
+        StringIndexOutOfBoundsException["__classname"] = "java.lang.StringIndexOutOfBoundsException";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -37350,8 +43293,8 @@ var java;
             }
             LinkedList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index167 = this.iterator(); index167.hasNext();) {
-                    var t = index167.next();
+                for (var index173 = this.iterator(); index173.hasNext();) {
+                    var t = index173.next();
                     {
                         action(t);
                     }
@@ -37501,6 +43444,7 @@ var java;
             return LinkedList;
         }(java.util.AbstractSequentialList));
         util.LinkedList = LinkedList;
+        LinkedList["__classname"] = "java.util.LinkedList";
         var LinkedList;
         (function (LinkedList) {
             var DescendingIteratorImpl = (function () {
@@ -37528,6 +43472,7 @@ var java;
                 return DescendingIteratorImpl;
             }());
             LinkedList.DescendingIteratorImpl = DescendingIteratorImpl;
+            DescendingIteratorImpl["__classname"] = "java.util.LinkedList.DescendingIteratorImpl";
             /**
              * Implementation of ListIterator for linked lists.
              */
@@ -37602,6 +43547,7 @@ var java;
                 return ListIteratorImpl2;
             }());
             LinkedList.ListIteratorImpl2 = ListIteratorImpl2;
+            ListIteratorImpl2["__classname"] = "java.util.LinkedList.ListIteratorImpl2";
             /**
              * Internal class representing a doubly-linked list node.
              *
@@ -37614,10 +43560,11 @@ var java;
                 return Node;
             }());
             LinkedList.Node = Node;
+            Node["__classname"] = "java.util.LinkedList.Node";
         })(LinkedList = util.LinkedList || (util.LinkedList = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var awt;
@@ -38266,6 +44213,7 @@ var java;
                 return Area;
             }());
             geom.Area = Area;
+            Area["__classname"] = "java.awt.geom.Area";
             var AreaIterator = (function () {
                 function AreaIterator(curves, at) {
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.geom.PathIterator"] });
@@ -38356,10 +44304,11 @@ var java;
                 return AreaIterator;
             }());
             geom.AreaIterator = AreaIterator;
+            AreaIterator["__classname"] = "java.awt.geom.AreaIterator";
         })(geom = awt.geom || (awt.geom = {}));
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -38417,9 +44366,10 @@ var java;
             return Stack;
         }(java.util.Vector));
         util.Stack = Stack;
+        Stack["__classname"] = "java.util.Stack";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -38493,8 +44443,8 @@ var java;
                 return this._containsValue(value, this.stringMap) || this._containsValue(value, this.hashCodeMap);
             };
             AbstractHashMap.prototype._containsValue = function (value, entries) {
-                for (var index168 = entries.iterator(); index168.hasNext();) {
-                    var entry = index168.next();
+                for (var index174 = entries.iterator(); index174.hasNext();) {
+                    var entry = index174.next();
                     {
                         if (this._equals(value, entry.getValue())) {
                             return true;
@@ -38584,6 +44534,7 @@ var java;
             return AbstractHashMap;
         }(java.util.AbstractMap));
         util.AbstractHashMap = AbstractHashMap;
+        AbstractHashMap["__classname"] = "java.util.AbstractHashMap";
         var AbstractHashMap;
         (function (AbstractHashMap) {
             var EntrySet = (function (_super) {
@@ -38626,6 +44577,7 @@ var java;
                 return EntrySet;
             }(java.util.AbstractSet));
             AbstractHashMap.EntrySet = EntrySet;
+            EntrySet["__classname"] = "java.util.AbstractHashMap.EntrySet";
             /**
              * Iterator for <code>EntrySet</code>.
              */
@@ -38678,10 +44630,11 @@ var java;
                 return EntrySetIterator;
             }());
             AbstractHashMap.EntrySetIterator = EntrySetIterator;
+            EntrySetIterator["__classname"] = "java.util.AbstractHashMap.EntrySetIterator";
         })(AbstractHashMap = util.AbstractHashMap || (util.AbstractHashMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -38813,6 +44766,7 @@ var java;
             return AbstractNavigableMap;
         }(java.util.AbstractMap));
         util.AbstractNavigableMap = AbstractNavigableMap;
+        AbstractNavigableMap["__classname"] = "java.util.AbstractNavigableMap";
         var AbstractNavigableMap;
         (function (AbstractNavigableMap) {
             var DescendingMap = (function (_super) {
@@ -38915,6 +44869,7 @@ var java;
                 return DescendingMap;
             }(java.util.AbstractNavigableMap));
             AbstractNavigableMap.DescendingMap = DescendingMap;
+            DescendingMap["__classname"] = "java.util.AbstractNavigableMap.DescendingMap";
             var EntrySet = (function (_super) {
                 __extends(EntrySet, _super);
                 function EntrySet(__parent) {
@@ -38948,6 +44903,7 @@ var java;
                 return EntrySet;
             }(java.util.AbstractSet));
             AbstractNavigableMap.EntrySet = EntrySet;
+            EntrySet["__classname"] = "java.util.AbstractNavigableMap.EntrySet";
             var NavigableKeySet = (function (_super) {
                 __extends(NavigableKeySet, _super);
                 function NavigableKeySet(map) {
@@ -38957,8 +44913,8 @@ var java;
                 }
                 NavigableKeySet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index169 = this.iterator(); index169.hasNext();) {
-                        var t = index169.next();
+                    for (var index175 = this.iterator(); index175.hasNext();) {
+                        var t = index175.next();
                         {
                             action(t);
                         }
@@ -39075,6 +45031,7 @@ var java;
                 return NavigableKeySet;
             }(java.util.AbstractSet));
             AbstractNavigableMap.NavigableKeySet = NavigableKeySet;
+            NavigableKeySet["__classname"] = "java.util.AbstractNavigableMap.NavigableKeySet";
             var NavigableKeySet;
             (function (NavigableKeySet) {
                 var NavigableKeySet$0 = (function () {
@@ -39107,7 +45064,7 @@ var java;
         })(AbstractNavigableMap = util.AbstractNavigableMap || (util.AbstractNavigableMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -39135,8 +45092,8 @@ var java;
                     a[_i - 1] = arguments[_i];
                 }
                 var result = false;
-                for (var index170 = 0; index170 < a.length; index170++) {
-                    var e = a[index170];
+                for (var index176 = 0; index176 < a.length; index176++) {
+                    var e = a[index176];
                     {
                         result = result || c.add(e);
                     }
@@ -39197,8 +45154,8 @@ var java;
                     throw new java.lang.IndexOutOfBoundsException("src does not fit in dest");
                 }
                 var destIt = dest.listIterator();
-                for (var index171 = src.iterator(); index171.hasNext();) {
-                    var e = index171.next();
+                for (var index177 = src.iterator(); index177.hasNext();) {
+                    var e = index177.next();
                     {
                         destIt.next();
                         destIt.set(e);
@@ -39212,8 +45169,8 @@ var java;
                     iterating = c2;
                     testing = c1;
                 }
-                for (var index172 = iterating.iterator(); index172.hasNext();) {
-                    var o = index172.next();
+                for (var index178 = iterating.iterator(); index178.hasNext();) {
+                    var o = index178.next();
                     {
                         if (testing.contains(o)) {
                             return false;
@@ -39249,8 +45206,8 @@ var java;
             };
             Collections.frequency = function (c, o) {
                 var count = 0;
-                for (var index173 = c.iterator(); index173.hasNext();) {
-                    var e = index173.next();
+                for (var index179 = c.iterator(); index179.hasNext();) {
+                    var e = index179.next();
                     {
                         if (java.util.Objects.equals(o, e)) {
                             ++count;
@@ -39404,8 +45361,8 @@ var java;
                         Collections.swapImpl(arr, i, rnd.nextInt(i + 1));
                     }
                     var it = list.listIterator();
-                    for (var index174 = 0; index174 < arr.length; index174++) {
-                        var e = arr[index174];
+                    for (var index180 = 0; index180 < arr.length; index180++) {
+                        var e = arr[index180];
                         {
                             it.next();
                             it.set(e);
@@ -39458,8 +45415,8 @@ var java;
              */
             Collections.hashCode$java_lang_Iterable = function (collection) {
                 var hashCode = 0;
-                for (var index175 = collection.iterator(); index175.hasNext();) {
-                    var e = index175.next();
+                for (var index181 = collection.iterator(); index181.hasNext();) {
+                    var e = index181.next();
                     {
                         hashCode = hashCode + java.util.Objects.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -39474,8 +45431,8 @@ var java;
                 if (((list != null && list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.List") >= 0) || list === null)) {
                     return (function () {
                         var hashCode = 1;
-                        for (var index176 = list.iterator(); index176.hasNext();) {
-                            var e = index176.next();
+                        for (var index182 = list.iterator(); index182.hasNext();) {
+                            var e = index182.next();
                             {
                                 hashCode = 31 * hashCode + java.util.Objects.hashCode(e);
                                 hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -39525,6 +45482,7 @@ var java;
             return Collections;
         }());
         util.Collections = Collections;
+        Collections["__classname"] = "java.util.Collections";
         var Collections;
         (function (Collections) {
             var LifoQueue = (function (_super) {
@@ -39552,6 +45510,7 @@ var java;
                 return LifoQueue;
             }(java.util.AbstractQueue));
             Collections.LifoQueue = LifoQueue;
+            LifoQueue["__classname"] = "java.util.Collections.LifoQueue";
             var EmptyList = (function (_super) {
                 __extends(EmptyList, _super);
                 function EmptyList() {
@@ -39577,6 +45536,7 @@ var java;
                 return EmptyList;
             }(java.util.AbstractList));
             Collections.EmptyList = EmptyList;
+            EmptyList["__classname"] = "java.util.Collections.EmptyList";
             var EmptyListIterator = (function () {
                 function EmptyListIterator() {
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator", "java.util.ListIterator"] });
@@ -39621,6 +45581,7 @@ var java;
                 return EmptyListIterator;
             }());
             Collections.EmptyListIterator = EmptyListIterator;
+            EmptyListIterator["__classname"] = "java.util.Collections.EmptyListIterator";
             var EmptySet = (function (_super) {
                 __extends(EmptySet, _super);
                 function EmptySet() {
@@ -39639,6 +45600,7 @@ var java;
                 return EmptySet;
             }(java.util.AbstractSet));
             Collections.EmptySet = EmptySet;
+            EmptySet["__classname"] = "java.util.Collections.EmptySet";
             var EmptyMap = (function (_super) {
                 __extends(EmptyMap, _super);
                 function EmptyMap() {
@@ -39669,6 +45631,7 @@ var java;
                 return EmptyMap;
             }(java.util.AbstractMap));
             Collections.EmptyMap = EmptyMap;
+            EmptyMap["__classname"] = "java.util.Collections.EmptyMap";
             var ReverseComparator = (function () {
                 function ReverseComparator() {
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Comparator"] });
@@ -39688,6 +45651,7 @@ var java;
                 return ReverseComparator;
             }());
             Collections.ReverseComparator = ReverseComparator;
+            ReverseComparator["__classname"] = "java.util.Collections.ReverseComparator";
             var SetFromMap = (function (_super) {
                 __extends(SetFromMap, _super);
                 function SetFromMap(map) {
@@ -39748,6 +45712,7 @@ var java;
                 return SetFromMap;
             }(java.util.AbstractSet));
             Collections.SetFromMap = SetFromMap;
+            SetFromMap["__classname"] = "java.util.Collections.SetFromMap";
             var SingletonList = (function (_super) {
                 __extends(SingletonList, _super);
                 function SingletonList(element) {
@@ -39768,6 +45733,7 @@ var java;
                 return SingletonList;
             }(java.util.AbstractList));
             Collections.SingletonList = SingletonList;
+            SingletonList["__classname"] = "java.util.Collections.SingletonList";
             var UnmodifiableCollection = (function () {
                 function UnmodifiableCollection(coll) {
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.lang.Iterable"] });
@@ -39775,8 +45741,8 @@ var java;
                 }
                 UnmodifiableCollection.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index177 = this.iterator(); index177.hasNext();) {
-                        var t = index177.next();
+                    for (var index183 = this.iterator(); index183.hasNext();) {
+                        var t = index183.next();
                         {
                             action(t);
                         }
@@ -39858,6 +45824,7 @@ var java;
                 return UnmodifiableCollection;
             }());
             Collections.UnmodifiableCollection = UnmodifiableCollection;
+            UnmodifiableCollection["__classname"] = "java.util.Collections.UnmodifiableCollection";
             var UnmodifiableList = (function (_super) {
                 __extends(UnmodifiableList, _super);
                 function UnmodifiableList(list) {
@@ -39867,8 +45834,8 @@ var java;
                 }
                 UnmodifiableList.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index178 = this.iterator(); index178.hasNext();) {
-                        var t = index178.next();
+                    for (var index184 = this.iterator(); index184.hasNext();) {
+                        var t = index184.next();
                         {
                             action(t);
                         }
@@ -39967,6 +45934,7 @@ var java;
                 return UnmodifiableList;
             }(Collections.UnmodifiableCollection));
             Collections.UnmodifiableList = UnmodifiableList;
+            UnmodifiableList["__classname"] = "java.util.Collections.UnmodifiableList";
             var UnmodifiableRandomAccessList = (function (_super) {
                 __extends(UnmodifiableRandomAccessList, _super);
                 function UnmodifiableRandomAccessList(list) {
@@ -39976,6 +45944,7 @@ var java;
                 return UnmodifiableRandomAccessList;
             }(Collections.UnmodifiableList));
             Collections.UnmodifiableRandomAccessList = UnmodifiableRandomAccessList;
+            UnmodifiableRandomAccessList["__classname"] = "java.util.Collections.UnmodifiableRandomAccessList";
             var UnmodifiableSet = (function (_super) {
                 __extends(UnmodifiableSet, _super);
                 function UnmodifiableSet(set) {
@@ -39984,8 +45953,8 @@ var java;
                 }
                 UnmodifiableSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index179 = this.iterator(); index179.hasNext();) {
-                        var t = index179.next();
+                    for (var index185 = this.iterator(); index185.hasNext();) {
+                        var t = index185.next();
                         {
                             action(t);
                         }
@@ -40000,6 +45969,7 @@ var java;
                 return UnmodifiableSet;
             }(Collections.UnmodifiableCollection));
             Collections.UnmodifiableSet = UnmodifiableSet;
+            UnmodifiableSet["__classname"] = "java.util.Collections.UnmodifiableSet";
             var UnmodifiableMap = (function () {
                 function UnmodifiableMap(map) {
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
@@ -40062,6 +46032,7 @@ var java;
                 return UnmodifiableMap;
             }());
             Collections.UnmodifiableMap = UnmodifiableMap;
+            UnmodifiableMap["__classname"] = "java.util.Collections.UnmodifiableMap";
             var UnmodifiableMap;
             (function (UnmodifiableMap) {
                 var UnmodifiableEntrySet = (function (_super) {
@@ -40114,6 +46085,7 @@ var java;
                     return UnmodifiableEntrySet;
                 }(Collections.UnmodifiableSet));
                 UnmodifiableMap.UnmodifiableEntrySet = UnmodifiableEntrySet;
+                UnmodifiableEntrySet["__classname"] = "java.util.Collections.UnmodifiableMap.UnmodifiableEntrySet";
                 var UnmodifiableEntrySet;
                 (function (UnmodifiableEntrySet) {
                     var UnmodifiableEntry = (function () {
@@ -40142,6 +46114,7 @@ var java;
                         return UnmodifiableEntry;
                     }());
                     UnmodifiableEntrySet.UnmodifiableEntry = UnmodifiableEntry;
+                    UnmodifiableEntry["__classname"] = "java.util.Collections.UnmodifiableMap.UnmodifiableEntrySet.UnmodifiableEntry";
                     var UnmodifiableEntrySet$0 = (function () {
                         function UnmodifiableEntrySet$0(__parent, it) {
                             this.it = it;
@@ -40224,6 +46197,7 @@ var java;
                 return UnmodifiableSortedMap;
             }(Collections.UnmodifiableMap));
             Collections.UnmodifiableSortedMap = UnmodifiableSortedMap;
+            UnmodifiableSortedMap["__classname"] = "java.util.Collections.UnmodifiableSortedMap";
             var UnmodifiableSortedSet = (function (_super) {
                 __extends(UnmodifiableSortedSet, _super);
                 function UnmodifiableSortedSet(sortedSet) {
@@ -40233,8 +46207,8 @@ var java;
                 }
                 UnmodifiableSortedSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index180 = this.iterator(); index180.hasNext();) {
-                        var t = index180.next();
+                    for (var index186 = this.iterator(); index186.hasNext();) {
+                        var t = index186.next();
                         {
                             action(t);
                         }
@@ -40288,6 +46262,7 @@ var java;
                 return UnmodifiableSortedSet;
             }(Collections.UnmodifiableSet));
             Collections.UnmodifiableSortedSet = UnmodifiableSortedSet;
+            UnmodifiableSortedSet["__classname"] = "java.util.Collections.UnmodifiableSortedSet";
             var UnmodifiableCollectionIterator = (function () {
                 function UnmodifiableCollectionIterator(it) {
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
@@ -40312,6 +46287,7 @@ var java;
                 return UnmodifiableCollectionIterator;
             }());
             Collections.UnmodifiableCollectionIterator = UnmodifiableCollectionIterator;
+            UnmodifiableCollectionIterator["__classname"] = "java.util.Collections.UnmodifiableCollectionIterator";
             var UnmodifiableListIterator = (function (_super) {
                 __extends(UnmodifiableListIterator, _super);
                 function UnmodifiableListIterator(lit) {
@@ -40347,6 +46323,7 @@ var java;
                 return UnmodifiableListIterator;
             }(Collections.UnmodifiableCollectionIterator));
             Collections.UnmodifiableListIterator = UnmodifiableListIterator;
+            UnmodifiableListIterator["__classname"] = "java.util.Collections.UnmodifiableListIterator";
             var RandomHolder = (function () {
                 function RandomHolder() {
                 }
@@ -40356,6 +46333,7 @@ var java;
                 return RandomHolder;
             }());
             Collections.RandomHolder = RandomHolder;
+            RandomHolder["__classname"] = "java.util.Collections.RandomHolder";
             var Collections$0 = (function () {
                 function Collections$0(it) {
                     this.it = it;
@@ -40384,7 +46362,7 @@ var java;
         })(Collections = util.Collections || (util.Collections = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -40445,8 +46423,8 @@ var java;
                 return this.__keySet.contains(key);
             };
             EnumMap.prototype.containsValue = function (value) {
-                for (var index181 = this.__keySet.iterator(); index181.hasNext();) {
-                    var key = index181.next();
+                for (var index187 = this.__keySet.iterator(); index187.hasNext();) {
+                    var key = index187.next();
                     {
                         if (java.util.Objects.equals(value, this.__values[key.ordinal()])) {
                             return true;
@@ -40518,6 +46496,7 @@ var java;
             return EnumMap;
         }(java.util.AbstractMap));
         util.EnumMap = EnumMap;
+        EnumMap["__classname"] = "java.util.EnumMap";
         var EnumMap;
         (function (EnumMap) {
             var EntrySet = (function (_super) {
@@ -40560,6 +46539,7 @@ var java;
                 return EntrySet;
             }(java.util.AbstractSet));
             EnumMap.EntrySet = EntrySet;
+            EntrySet["__classname"] = "java.util.EnumMap.EntrySet";
             var EntrySetIterator = (function () {
                 function EntrySetIterator(__parent) {
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
@@ -40588,6 +46568,7 @@ var java;
                 return EntrySetIterator;
             }());
             EnumMap.EntrySetIterator = EntrySetIterator;
+            EntrySetIterator["__classname"] = "java.util.EnumMap.EntrySetIterator";
             var MapEntry = (function (_super) {
                 __extends(MapEntry, _super);
                 function MapEntry(__parent, key) {
@@ -40608,10 +46589,11 @@ var java;
                 return MapEntry;
             }(java.util.AbstractMapEntry));
             EnumMap.MapEntry = MapEntry;
+            MapEntry["__classname"] = "java.util.EnumMap.MapEntry";
         })(EnumMap = util.EnumMap || (util.EnumMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -40659,8 +46641,8 @@ var java;
             }
             LinkedHashSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index182 = this.iterator(); index182.hasNext();) {
-                    var t = index182.next();
+                for (var index188 = this.iterator(); index188.hasNext();) {
+                    var t = index188.next();
                     {
                         action(t);
                     }
@@ -40672,9 +46654,288 @@ var java;
             return LinkedHashSet;
         }(java.util.HashSet));
         util.LinkedHashSet = LinkedHashSet;
+        LinkedHashSet["__classname"] = "java.util.LinkedHashSet";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var event;
+        (function (event) {
+            /**
+             * A low-level event which indicates that a container's contents
+             * changed because a component was added or removed.
+             * <P>
+             * Container events are provided for notification purposes ONLY;
+             * The AWT will automatically handle changes to the containers
+             * contents internally so that the program works properly regardless of
+             * whether the program is receiving these events or not.
+             * <P>
+             * This low-level event is generated by a container object (such as a
+             * Panel) when a component is added to it or removed from it.
+             * The event is passed to every <code>ContainerListener</code>
+             * or <code>ContainerAdapter</code> object which registered to receive such
+             * events using the component's <code>addContainerListener</code> method.
+             * (<code>ContainerAdapter</code> objects implement the
+             * <code>ContainerListener</code> interface.) Each such listener object
+             * gets this <code>ContainerEvent</code> when the event occurs.
+             * <p>
+             * An unspecified behavior will be caused if the {@code id} parameter
+             * of any particular {@code ContainerEvent} instance is not
+             * in the range from {@code CONTAINER_FIRST} to {@code CONTAINER_LAST}.
+             *
+             * @see ContainerAdapter
+             * @see ContainerListener
+             * @see <a href="http://docs.oracle.com/javase/tutorial/uiswing/events/containerlistener.html">Tutorial: Writing a Container Listener</a>
+             *
+             * @author Tim Prinzing
+             * @author Amy Fowler
+             * @since 1.1
+             */
+            var ContainerEvent = (function (_super) {
+                __extends(ContainerEvent, _super);
+                /**
+                 * Constructs a <code>ContainerEvent</code> object.
+                 * <p> This method throws an
+                 * <code>IllegalArgumentException</code> if <code>source</code>
+                 * is <code>null</code>.
+                 *
+                 * @param source The <code>Component</code> object (container)
+                 * that originated the event
+                 * @param id     An integer indicating the type of event.
+                 * For information on allowable values, see
+                 * the class description for {@link ContainerEvent}
+                 * @param child  the component that was added or removed
+                 * @throws IllegalArgumentException if <code>source</code> is null
+                 * @see #getContainer()
+                 * @see #getID()
+                 * @see #getChild()
+                 */
+                function ContainerEvent(source, id, child) {
+                    _super.call(this, source, id);
+                    this.child = child;
+                }
+                ContainerEvent.COMPONENT_ADDED_$LI$ = function () { if (ContainerEvent.COMPONENT_ADDED == null)
+                    ContainerEvent.COMPONENT_ADDED = ContainerEvent.CONTAINER_FIRST; return ContainerEvent.COMPONENT_ADDED; };
+                ;
+                ContainerEvent.COMPONENT_REMOVED_$LI$ = function () { if (ContainerEvent.COMPONENT_REMOVED == null)
+                    ContainerEvent.COMPONENT_REMOVED = 1 + ContainerEvent.CONTAINER_FIRST; return ContainerEvent.COMPONENT_REMOVED; };
+                ;
+                /**
+                 * Returns the originator of the event.
+                 *
+                 * @return the <code>Container</code> object that originated
+                 * the event, or <code>null</code> if the object is not a
+                 * <code>Container</code>.
+                 */
+                ContainerEvent.prototype.getContainer = function () {
+                    return (this.source != null && this.source instanceof java.awt.Container) ? this.source : null;
+                };
+                /**
+                 * Returns the component that was affected by the event.
+                 *
+                 * @return the Component object that was added or removed
+                 */
+                ContainerEvent.prototype.getChild = function () {
+                    return this.child;
+                };
+                /**
+                 * Returns a parameter string identifying this event.
+                 * This method is useful for event-logging and for debugging.
+                 *
+                 * @return a string identifying the event and its attributes
+                 */
+                ContainerEvent.prototype.paramString = function () {
+                    var typeStr;
+                    switch ((this.id)) {
+                        case ContainerEvent.COMPONENT_ADDED_$LI$():
+                            typeStr = "COMPONENT_ADDED";
+                            break;
+                        case ContainerEvent.COMPONENT_REMOVED_$LI$():
+                            typeStr = "COMPONENT_REMOVED";
+                            break;
+                        default:
+                            typeStr = "unknown type";
+                    }
+                    return typeStr + ",child=" + this.child.getName();
+                };
+                /**
+                 * The first number in the range of ids used for container events.
+                 */
+                ContainerEvent.CONTAINER_FIRST = 300;
+                /**
+                 * The last number in the range of ids used for container events.
+                 */
+                ContainerEvent.CONTAINER_LAST = 301;
+                ContainerEvent.serialVersionUID = -4114942250539772041;
+                return ContainerEvent;
+            }(java.awt.event.ComponentEvent));
+            event.ContainerEvent = ContainerEvent;
+            ContainerEvent["__classname"] = "java.awt.event.ContainerEvent";
+        })(event = awt.event || (awt.event = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var event;
+        (function (event) {
+            var InputEvent = (function (_super) {
+                __extends(InputEvent, _super);
+                function InputEvent(source, id, when, modifiers) {
+                    _super.call(this, source, id);
+                    this.when = 0;
+                    this.modifiers = 0;
+                    this.when = when;
+                    this.modifiers = modifiers;
+                }
+                InputEvent.SHIFT_MASK_$LI$ = function () { if (InputEvent.SHIFT_MASK == null)
+                    InputEvent.SHIFT_MASK = java.awt.Event.SHIFT_MASK_$LI$(); return InputEvent.SHIFT_MASK; };
+                ;
+                InputEvent.CTRL_MASK_$LI$ = function () { if (InputEvent.CTRL_MASK == null)
+                    InputEvent.CTRL_MASK = java.awt.Event.CTRL_MASK_$LI$(); return InputEvent.CTRL_MASK; };
+                ;
+                InputEvent.META_MASK_$LI$ = function () { if (InputEvent.META_MASK == null)
+                    InputEvent.META_MASK = java.awt.Event.META_MASK_$LI$(); return InputEvent.META_MASK; };
+                ;
+                InputEvent.ALT_MASK_$LI$ = function () { if (InputEvent.ALT_MASK == null)
+                    InputEvent.ALT_MASK = java.awt.Event.ALT_MASK_$LI$(); return InputEvent.ALT_MASK; };
+                ;
+                InputEvent.ALT_GRAPH_MASK_$LI$ = function () { if (InputEvent.ALT_GRAPH_MASK == null)
+                    InputEvent.ALT_GRAPH_MASK = 1 << 5; return InputEvent.ALT_GRAPH_MASK; };
+                ;
+                InputEvent.BUTTON1_MASK_$LI$ = function () { if (InputEvent.BUTTON1_MASK == null)
+                    InputEvent.BUTTON1_MASK = 1 << 4; return InputEvent.BUTTON1_MASK; };
+                ;
+                InputEvent.BUTTON2_MASK_$LI$ = function () { if (InputEvent.BUTTON2_MASK == null)
+                    InputEvent.BUTTON2_MASK = java.awt.Event.ALT_MASK_$LI$(); return InputEvent.BUTTON2_MASK; };
+                ;
+                InputEvent.BUTTON3_MASK_$LI$ = function () { if (InputEvent.BUTTON3_MASK == null)
+                    InputEvent.BUTTON3_MASK = java.awt.Event.META_MASK_$LI$(); return InputEvent.BUTTON3_MASK; };
+                ;
+                InputEvent.SHIFT_DOWN_MASK_$LI$ = function () { if (InputEvent.SHIFT_DOWN_MASK == null)
+                    InputEvent.SHIFT_DOWN_MASK = 1 << 6; return InputEvent.SHIFT_DOWN_MASK; };
+                ;
+                InputEvent.CTRL_DOWN_MASK_$LI$ = function () { if (InputEvent.CTRL_DOWN_MASK == null)
+                    InputEvent.CTRL_DOWN_MASK = 1 << 7; return InputEvent.CTRL_DOWN_MASK; };
+                ;
+                InputEvent.META_DOWN_MASK_$LI$ = function () { if (InputEvent.META_DOWN_MASK == null)
+                    InputEvent.META_DOWN_MASK = 1 << 8; return InputEvent.META_DOWN_MASK; };
+                ;
+                InputEvent.ALT_DOWN_MASK_$LI$ = function () { if (InputEvent.ALT_DOWN_MASK == null)
+                    InputEvent.ALT_DOWN_MASK = 1 << 9; return InputEvent.ALT_DOWN_MASK; };
+                ;
+                InputEvent.BUTTON1_DOWN_MASK_$LI$ = function () { if (InputEvent.BUTTON1_DOWN_MASK == null)
+                    InputEvent.BUTTON1_DOWN_MASK = 1 << 10; return InputEvent.BUTTON1_DOWN_MASK; };
+                ;
+                InputEvent.BUTTON2_DOWN_MASK_$LI$ = function () { if (InputEvent.BUTTON2_DOWN_MASK == null)
+                    InputEvent.BUTTON2_DOWN_MASK = 1 << 11; return InputEvent.BUTTON2_DOWN_MASK; };
+                ;
+                InputEvent.BUTTON3_DOWN_MASK_$LI$ = function () { if (InputEvent.BUTTON3_DOWN_MASK == null)
+                    InputEvent.BUTTON3_DOWN_MASK = 1 << 12; return InputEvent.BUTTON3_DOWN_MASK; };
+                ;
+                InputEvent.ALT_GRAPH_DOWN_MASK_$LI$ = function () { if (InputEvent.ALT_GRAPH_DOWN_MASK == null)
+                    InputEvent.ALT_GRAPH_DOWN_MASK = 1 << 13; return InputEvent.ALT_GRAPH_DOWN_MASK; };
+                ;
+                InputEvent.BUTTON_DOWN_MASK_$LI$ = function () { if (InputEvent.BUTTON_DOWN_MASK == null)
+                    InputEvent.BUTTON_DOWN_MASK = [InputEvent.BUTTON1_DOWN_MASK_$LI$(), InputEvent.BUTTON2_DOWN_MASK_$LI$(), InputEvent.BUTTON3_DOWN_MASK_$LI$(), 1 << 14, 1 << 15, 1 << 16, 1 << 17, 1 << 18, 1 << 19, 1 << 20, 1 << 21, 1 << 22, 1 << 23, 1 << 24, 1 << 25, 1 << 26, 1 << 27, 1 << 28, 1 << 29, 1 << 30]; return InputEvent.BUTTON_DOWN_MASK; };
+                ;
+                InputEvent.getMaskForButton = function (button) {
+                    if (button <= 0 || button > InputEvent.BUTTON_DOWN_MASK_$LI$().length) {
+                        throw new java.lang.IllegalArgumentException("button doesn\'t exist " + button);
+                    }
+                    return InputEvent.BUTTON_DOWN_MASK_$LI$()[button - 1];
+                };
+                InputEvent.FIRST_HIGH_BIT_$LI$ = function () { if (InputEvent.FIRST_HIGH_BIT == null)
+                    InputEvent.FIRST_HIGH_BIT = 1 << 31; return InputEvent.FIRST_HIGH_BIT; };
+                ;
+                InputEvent.JDK_1_3_MODIFIERS_$LI$ = function () { if (InputEvent.JDK_1_3_MODIFIERS == null)
+                    InputEvent.JDK_1_3_MODIFIERS = InputEvent.SHIFT_DOWN_MASK_$LI$() - 1; return InputEvent.JDK_1_3_MODIFIERS; };
+                ;
+                InputEvent.HIGH_MODIFIERS_$LI$ = function () { if (InputEvent.HIGH_MODIFIERS == null)
+                    InputEvent.HIGH_MODIFIERS = ~(InputEvent.FIRST_HIGH_BIT_$LI$() - 1); return InputEvent.HIGH_MODIFIERS; };
+                ;
+                InputEvent.prototype.isShiftDown = function () {
+                    return (this.modifiers & InputEvent.SHIFT_MASK_$LI$()) !== 0;
+                };
+                InputEvent.prototype.isControlDown = function () {
+                    return (this.modifiers & InputEvent.CTRL_MASK_$LI$()) !== 0;
+                };
+                InputEvent.prototype.isMetaDown = function () {
+                    return (this.modifiers & InputEvent.META_MASK_$LI$()) !== 0;
+                };
+                InputEvent.prototype.isAltDown = function () {
+                    return (this.modifiers & InputEvent.ALT_MASK_$LI$()) !== 0;
+                };
+                InputEvent.prototype.isAltGraphDown = function () {
+                    return (this.modifiers & InputEvent.ALT_GRAPH_MASK_$LI$()) !== 0;
+                };
+                InputEvent.prototype.getWhen = function () {
+                    return this.when;
+                };
+                InputEvent.prototype.getModifiers = function () {
+                    return this.modifiers & (InputEvent.JDK_1_3_MODIFIERS_$LI$() | InputEvent.HIGH_MODIFIERS_$LI$());
+                };
+                InputEvent.prototype.getModifiersEx = function () {
+                    return this.modifiers & ~InputEvent.JDK_1_3_MODIFIERS_$LI$();
+                };
+                InputEvent.prototype.consume = function () {
+                    this.consumed = true;
+                };
+                InputEvent.prototype.isConsumed = function () {
+                    return this.consumed;
+                };
+                InputEvent.getModifiersExText = function (modifiers) {
+                    var buf = new java.lang.StringBuilder();
+                    if ((modifiers & InputEvent.META_DOWN_MASK_$LI$()) !== 0) {
+                        buf.append("Meta");
+                        buf.append("+");
+                    }
+                    if ((modifiers & InputEvent.CTRL_DOWN_MASK_$LI$()) !== 0) {
+                        buf.append("Ctrl");
+                        buf.append("+");
+                    }
+                    if ((modifiers & InputEvent.ALT_DOWN_MASK_$LI$()) !== 0) {
+                        buf.append("Alt");
+                        buf.append("+");
+                    }
+                    if ((modifiers & InputEvent.SHIFT_DOWN_MASK_$LI$()) !== 0) {
+                        buf.append("Shift");
+                        buf.append("+");
+                    }
+                    if ((modifiers & InputEvent.ALT_GRAPH_DOWN_MASK_$LI$()) !== 0) {
+                        buf.append("Alt Graph");
+                        buf.append("+");
+                    }
+                    var buttonNumber = 1;
+                    for (var index189 = 0; index189 < InputEvent.BUTTON_DOWN_MASK_$LI$().length; index189++) {
+                        var mask = InputEvent.BUTTON_DOWN_MASK_$LI$()[index189];
+                        {
+                            if ((modifiers & mask) !== 0) {
+                                buf.append("Button" + buttonNumber);
+                                buf.append("+");
+                            }
+                            buttonNumber++;
+                        }
+                    }
+                    if (buf.length() > 0) {
+                        buf.setLength(buf.length() - 1);
+                    }
+                    return buf.toString();
+                };
+                InputEvent.serialVersionUID = -2482525981698309786;
+                return InputEvent;
+            }(java.awt.event.ComponentEvent));
+            event.InputEvent = InputEvent;
+            InputEvent["__classname"] = "java.awt.event.InputEvent";
+        })(event = awt.event || (awt.event = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var io;
@@ -40950,8 +47211,8 @@ var java;
                         if (ss == null)
                             return null;
                         var files = new java.util.ArrayList();
-                        for (var index183 = 0; index183 < ss.length; index183++) {
-                            var s = ss[index183];
+                        for (var index190 = 0; index190 < ss.length; index190++) {
+                            var s = ss[index190];
                             if ((filter == null) || filter(_this, s))
                                 files.add(new File(_this, s, true));
                         }
@@ -40972,8 +47233,8 @@ var java;
                 if (ss == null)
                     return null;
                 var files = new java.util.ArrayList();
-                for (var index184 = 0; index184 < ss.length; index184++) {
-                    var s = ss[index184];
+                for (var index191 = 0; index191 < ss.length; index191++) {
+                    var s = ss[index191];
                     {
                         var f = new File(this, s, true);
                         if ((filter == null) || filter(f))
@@ -41118,6 +47379,7 @@ var java;
             return File;
         }());
         io.File = File;
+        File["__classname"] = "java.io.File";
         var File;
         (function (File) {
             (function (PathStatus) {
@@ -41153,10 +47415,11 @@ var java;
                 return TempDirectory;
             }());
             File.TempDirectory = TempDirectory;
+            TempDirectory["__classname"] = "java.io.File.TempDirectory";
         })(File = io.File || (io.File = {}));
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -41197,9 +47460,10 @@ var java;
             return ConcurrentModificationDetector;
         }());
         util.ConcurrentModificationDetector = ConcurrentModificationDetector;
+        ConcurrentModificationDetector["__classname"] = "java.util.ConcurrentModificationDetector";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -41439,9 +47703,9 @@ var java;
                 Logger.prototype.actuallyLog$java_util_logging_LogRecord = function (record) {
                     if (this.isLoggable(record.getLevel())) {
                         {
-                            var array186 = this.getHandlers();
-                            for (var index185 = 0; index185 < array186.length; index185++) {
-                                var handler = array186[index185];
+                            var array193 = this.getHandlers();
+                            for (var index192 = 0; index192 < array193.length; index192++) {
+                                var handler = array193[index192];
                                 {
                                     handler.publish(record);
                                 }
@@ -41450,9 +47714,9 @@ var java;
                         var logger = this.getUseParentHandlers() ? this.getParent() : null;
                         while ((logger != null)) {
                             {
-                                var array188 = logger.getHandlers();
-                                for (var index187 = 0; index187 < array188.length; index187++) {
-                                    var handler = array188[index187];
+                                var array195 = logger.getHandlers();
+                                for (var index194 = 0; index194 < array195.length; index194++) {
+                                    var handler = array195[index194];
                                     {
                                         handler.publish(record);
                                     }
@@ -41468,10 +47732,11 @@ var java;
                 return Logger;
             }());
             logging.Logger = Logger;
+            Logger["__classname"] = "java.util.logging.Logger";
         })(logging = util.logging || (util.logging = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -42060,9 +48325,10 @@ var javaemul;
             return InternalPreconditions;
         }());
         internal.InternalPreconditions = InternalPreconditions;
+        InternalPreconditions["__classname"] = "javaemul.internal.InternalPreconditions";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -42119,9 +48385,10 @@ var java;
             return HashMap;
         }(java.util.AbstractHashMap));
         util.HashMap = HashMap;
+        HashMap["__classname"] = "java.util.HashMap";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -42173,8 +48440,8 @@ var java;
                 if (this.size() !== otherMap.size()) {
                     return false;
                 }
-                for (var index189 = otherMap.entrySet().iterator(); index189.hasNext();) {
-                    var entry = index189.next();
+                for (var index196 = otherMap.entrySet().iterator(); index196.hasNext();) {
+                    var entry = index196.next();
                     {
                         var otherKey = entry.getKey();
                         var otherValue = entry.getValue();
@@ -42190,8 +48457,8 @@ var java;
             };
             IdentityHashMap.prototype.hashCode = function () {
                 var hashCode = 0;
-                for (var index190 = this.entrySet().iterator(); index190.hasNext();) {
-                    var entry = index190.next();
+                for (var index197 = this.entrySet().iterator(); index197.hasNext();) {
+                    var entry = index197.next();
                     {
                         hashCode += java.lang.System.identityHashCode(entry.getKey());
                         hashCode += java.lang.System.identityHashCode(entry.getValue());
@@ -42208,9 +48475,10 @@ var java;
             return IdentityHashMap;
         }(java.util.AbstractHashMap));
         util.IdentityHashMap = IdentityHashMap;
+        IdentityHashMap["__classname"] = "java.util.IdentityHashMap";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -42805,6 +49073,7 @@ var java;
             return TreeMap;
         }(java.util.AbstractNavigableMap));
         util.TreeMap = TreeMap;
+        TreeMap["__classname"] = "java.util.TreeMap";
         var TreeMap;
         (function (TreeMap) {
             /**
@@ -42850,6 +49119,7 @@ var java;
                 return DescendingEntryIterator;
             }());
             TreeMap.DescendingEntryIterator = DescendingEntryIterator;
+            DescendingEntryIterator["__classname"] = "java.util.TreeMap.DescendingEntryIterator";
             /**
              * Iterator for <code>EntrySet</code>.
              */
@@ -42893,6 +49163,7 @@ var java;
                 return EntryIterator;
             }());
             TreeMap.EntryIterator = EntryIterator;
+            EntryIterator["__classname"] = "java.util.TreeMap.EntryIterator";
             var EntrySet = (function (_super) {
                 __extends(EntrySet, _super);
                 function EntrySet(__parent) {
@@ -42906,6 +49177,7 @@ var java;
                 return EntrySet;
             }(java.util.AbstractNavigableMap.EntrySet));
             TreeMap.EntrySet = EntrySet;
+            EntrySet["__classname"] = "java.util.TreeMap.EntrySet";
             /**
              * Tree node.
              *
@@ -42932,6 +49204,7 @@ var java;
                 return Node;
             }(util.AbstractMap.SimpleEntry));
             TreeMap.Node = Node;
+            Node["__classname"] = "java.util.TreeMap.Node";
             /**
              * A state object which is passed down the tree for both insert and remove.
              * All uses make use of the done flag to indicate when no further rebalancing
@@ -42955,6 +49228,7 @@ var java;
                 return State;
             }());
             TreeMap.State = State;
+            State["__classname"] = "java.util.TreeMap.State";
             var SubMap = (function (_super) {
                 __extends(SubMap, _super);
                 function SubMap(__parent, type, fromKey, fromInclusive, toKey, toInclusive) {
@@ -43142,6 +49416,7 @@ var java;
                 return SubMap;
             }(java.util.AbstractNavigableMap));
             TreeMap.SubMap = SubMap;
+            SubMap["__classname"] = "java.util.TreeMap.SubMap";
             var SubMap;
             (function (SubMap) {
                 var SubMap$0 = (function (_super) {
@@ -43176,6 +49451,7 @@ var java;
                 return SubMapType;
             }());
             TreeMap.SubMapType = SubMapType;
+            SubMapType["__classname"] = "java.util.TreeMap.SubMapType";
             var SubMapTypeHead = (function (_super) {
                 __extends(SubMapTypeHead, _super);
                 function SubMapTypeHead() {
@@ -43187,6 +49463,7 @@ var java;
                 return SubMapTypeHead;
             }(TreeMap.SubMapType));
             TreeMap.SubMapTypeHead = SubMapTypeHead;
+            SubMapTypeHead["__classname"] = "java.util.TreeMap.SubMapTypeHead";
             var SubMapTypeRange = (function (_super) {
                 __extends(SubMapTypeRange, _super);
                 function SubMapTypeRange() {
@@ -43201,6 +49478,7 @@ var java;
                 return SubMapTypeRange;
             }(TreeMap.SubMapType));
             TreeMap.SubMapTypeRange = SubMapTypeRange;
+            SubMapTypeRange["__classname"] = "java.util.TreeMap.SubMapTypeRange";
             var SubMapTypeTail = (function (_super) {
                 __extends(SubMapTypeTail, _super);
                 function SubMapTypeTail() {
@@ -43212,10 +49490,1422 @@ var java;
                 return SubMapTypeTail;
             }(TreeMap.SubMapType));
             TreeMap.SubMapTypeTail = SubMapTypeTail;
+            SubMapTypeTail["__classname"] = "java.util.TreeMap.SubMapTypeTail";
         })(TreeMap = util.TreeMap || (util.TreeMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
-"Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org";
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var event;
+        (function (event) {
+            var KeyEvent = (function (_super) {
+                __extends(KeyEvent, _super);
+                function KeyEvent(source, id, when, modifiers, keyCode, keyChar, keyLocation, isProxyActive) {
+                    var _this = this;
+                    if (((source != null && source instanceof java.awt.Component) || source === null) && ((typeof id === 'number') || id === null) && ((typeof when === 'number') || when === null) && ((typeof modifiers === 'number') || modifiers === null) && ((typeof keyCode === 'number') || keyCode === null) && ((typeof keyChar === 'string') || keyChar === null) && ((typeof keyLocation === 'number') || keyLocation === null) && ((typeof isProxyActive === 'boolean') || isProxyActive === null)) {
+                        {
+                            _super.call(this, source, id, when, modifiers);
+                            this.isProxyActive = false;
+                            this.keyCode = 0;
+                            this.keyChar = null;
+                            this.keyLocation = 0;
+                            (function () {
+                                if (id === KeyEvent.KEY_TYPED_$LI$()) {
+                                    if (keyChar === KeyEvent.CHAR_UNDEFINED) {
+                                        throw new java.lang.IllegalArgumentException("invalid keyChar");
+                                    }
+                                    if (keyCode !== KeyEvent.VK_UNDEFINED) {
+                                        throw new java.lang.IllegalArgumentException("invalid keyCode");
+                                    }
+                                    if (keyLocation !== KeyEvent.KEY_LOCATION_UNKNOWN) {
+                                        throw new java.lang.IllegalArgumentException("invalid keyLocation");
+                                    }
+                                }
+                                _this.keyCode = keyCode;
+                                _this.keyChar = keyChar;
+                                if ((keyLocation < KeyEvent.KEY_LOCATION_UNKNOWN) || (keyLocation > KeyEvent.KEY_LOCATION_NUMPAD)) {
+                                    throw new java.lang.IllegalArgumentException("invalid keyLocation");
+                                }
+                                _this.keyLocation = keyLocation;
+                                if ((_this.getModifiers() !== 0) && (_this.getModifiersEx() === 0)) {
+                                    _this.setNewModifiers();
+                                }
+                                else if ((_this.getModifiers() === 0) && (_this.getModifiersEx() !== 0)) {
+                                    _this.setOldModifiers();
+                                }
+                                _this.originalSource = source;
+                            })();
+                        }
+                        (function () {
+                            _this.isProxyActive = isProxyActive;
+                        })();
+                    }
+                    else if (((source != null && source instanceof java.awt.Component) || source === null) && ((typeof id === 'number') || id === null) && ((typeof when === 'number') || when === null) && ((typeof modifiers === 'number') || modifiers === null) && ((typeof keyCode === 'number') || keyCode === null) && ((typeof keyChar === 'string') || keyChar === null) && ((typeof keyLocation === 'number') || keyLocation === null) && isProxyActive === undefined) {
+                        _super.call(this, source, id, when, modifiers);
+                        this.isProxyActive = false;
+                        this.keyCode = 0;
+                        this.keyChar = null;
+                        this.keyLocation = 0;
+                        (function () {
+                            if (id === KeyEvent.KEY_TYPED_$LI$()) {
+                                if (keyChar === KeyEvent.CHAR_UNDEFINED) {
+                                    throw new java.lang.IllegalArgumentException("invalid keyChar");
+                                }
+                                if (keyCode !== KeyEvent.VK_UNDEFINED) {
+                                    throw new java.lang.IllegalArgumentException("invalid keyCode");
+                                }
+                                if (keyLocation !== KeyEvent.KEY_LOCATION_UNKNOWN) {
+                                    throw new java.lang.IllegalArgumentException("invalid keyLocation");
+                                }
+                            }
+                            _this.keyCode = keyCode;
+                            _this.keyChar = keyChar;
+                            if ((keyLocation < KeyEvent.KEY_LOCATION_UNKNOWN) || (keyLocation > KeyEvent.KEY_LOCATION_NUMPAD)) {
+                                throw new java.lang.IllegalArgumentException("invalid keyLocation");
+                            }
+                            _this.keyLocation = keyLocation;
+                            if ((_this.getModifiers() !== 0) && (_this.getModifiersEx() === 0)) {
+                                _this.setNewModifiers();
+                            }
+                            else if ((_this.getModifiers() === 0) && (_this.getModifiersEx() !== 0)) {
+                                _this.setOldModifiers();
+                            }
+                            _this.originalSource = source;
+                        })();
+                    }
+                    else if (((source != null && source instanceof java.awt.Component) || source === null) && ((typeof id === 'number') || id === null) && ((typeof when === 'number') || when === null) && ((typeof modifiers === 'number') || modifiers === null) && ((typeof keyCode === 'number') || keyCode === null) && ((typeof keyChar === 'string') || keyChar === null) && keyLocation === undefined && isProxyActive === undefined) {
+                        {
+                            var keyLocation = KeyEvent.KEY_LOCATION_UNKNOWN;
+                            _super.call(this, source, id, when, modifiers);
+                            this.isProxyActive = false;
+                            this.keyCode = 0;
+                            this.keyChar = null;
+                            this.keyLocation = 0;
+                            (function () {
+                                if (id === KeyEvent.KEY_TYPED_$LI$()) {
+                                    if (keyChar === KeyEvent.CHAR_UNDEFINED) {
+                                        throw new java.lang.IllegalArgumentException("invalid keyChar");
+                                    }
+                                    if (keyCode !== KeyEvent.VK_UNDEFINED) {
+                                        throw new java.lang.IllegalArgumentException("invalid keyCode");
+                                    }
+                                    if (keyLocation !== KeyEvent.KEY_LOCATION_UNKNOWN) {
+                                        throw new java.lang.IllegalArgumentException("invalid keyLocation");
+                                    }
+                                }
+                                _this.keyCode = keyCode;
+                                _this.keyChar = keyChar;
+                                if ((keyLocation < KeyEvent.KEY_LOCATION_UNKNOWN) || (keyLocation > KeyEvent.KEY_LOCATION_NUMPAD)) {
+                                    throw new java.lang.IllegalArgumentException("invalid keyLocation");
+                                }
+                                _this.keyLocation = keyLocation;
+                                if ((_this.getModifiers() !== 0) && (_this.getModifiersEx() === 0)) {
+                                    _this.setNewModifiers();
+                                }
+                                else if ((_this.getModifiers() === 0) && (_this.getModifiersEx() !== 0)) {
+                                    _this.setOldModifiers();
+                                }
+                                _this.originalSource = source;
+                            })();
+                        }
+                        (function () {
+                        })();
+                    }
+                    else if (((source != null && source instanceof java.awt.Component) || source === null) && ((typeof id === 'number') || id === null) && ((typeof when === 'number') || when === null) && ((typeof modifiers === 'number') || modifiers === null) && ((typeof keyCode === 'number') || keyCode === null) && keyChar === undefined && keyLocation === undefined && isProxyActive === undefined) {
+                        {
+                            var keyChar = String.fromCharCode(keyCode);
+                            {
+                                var keyLocation = KeyEvent.KEY_LOCATION_UNKNOWN;
+                                _super.call(this, source, id, when, modifiers);
+                                this.isProxyActive = false;
+                                this.keyCode = 0;
+                                this.keyChar = null;
+                                this.keyLocation = 0;
+                                (function () {
+                                    if (id === KeyEvent.KEY_TYPED_$LI$()) {
+                                        if (keyChar === KeyEvent.CHAR_UNDEFINED) {
+                                            throw new java.lang.IllegalArgumentException("invalid keyChar");
+                                        }
+                                        if (keyCode !== KeyEvent.VK_UNDEFINED) {
+                                            throw new java.lang.IllegalArgumentException("invalid keyCode");
+                                        }
+                                        if (keyLocation !== KeyEvent.KEY_LOCATION_UNKNOWN) {
+                                            throw new java.lang.IllegalArgumentException("invalid keyLocation");
+                                        }
+                                    }
+                                    _this.keyCode = keyCode;
+                                    _this.keyChar = keyChar;
+                                    if ((keyLocation < KeyEvent.KEY_LOCATION_UNKNOWN) || (keyLocation > KeyEvent.KEY_LOCATION_NUMPAD)) {
+                                        throw new java.lang.IllegalArgumentException("invalid keyLocation");
+                                    }
+                                    _this.keyLocation = keyLocation;
+                                    if ((_this.getModifiers() !== 0) && (_this.getModifiersEx() === 0)) {
+                                        _this.setNewModifiers();
+                                    }
+                                    else if ((_this.getModifiers() === 0) && (_this.getModifiersEx() !== 0)) {
+                                        _this.setOldModifiers();
+                                    }
+                                    _this.originalSource = source;
+                                })();
+                            }
+                            (function () {
+                            })();
+                        }
+                        (function () {
+                        })();
+                    }
+                    else
+                        throw new Error('invalid overload');
+                }
+                KeyEvent.KEY_TYPED_$LI$ = function () { if (KeyEvent.KEY_TYPED == null)
+                    KeyEvent.KEY_TYPED = KeyEvent.KEY_FIRST; return KeyEvent.KEY_TYPED; };
+                ;
+                KeyEvent.KEY_PRESSED_$LI$ = function () { if (KeyEvent.KEY_PRESSED == null)
+                    KeyEvent.KEY_PRESSED = 1 + KeyEvent.KEY_FIRST; return KeyEvent.KEY_PRESSED; };
+                ;
+                KeyEvent.KEY_RELEASED_$LI$ = function () { if (KeyEvent.KEY_RELEASED == null)
+                    KeyEvent.KEY_RELEASED = 2 + KeyEvent.KEY_FIRST; return KeyEvent.KEY_RELEASED; };
+                ;
+                KeyEvent.VK_SEPARATOR_$LI$ = function () { if (KeyEvent.VK_SEPARATOR == null)
+                    KeyEvent.VK_SEPARATOR = KeyEvent.VK_SEPARATER; return KeyEvent.VK_SEPARATOR; };
+                ;
+                KeyEvent.prototype.getKeyCode = function () {
+                    return this.keyCode;
+                };
+                KeyEvent.prototype.setKeyCode = function (keyCode) {
+                    this.keyCode = keyCode;
+                };
+                KeyEvent.prototype.getKeyChar = function () {
+                    return this.keyChar;
+                };
+                KeyEvent.prototype.setKeyChar = function (keyChar) {
+                    this.keyChar = keyChar;
+                };
+                KeyEvent.prototype.setModifiers = function (modifiers) {
+                    this.modifiers = modifiers;
+                    if ((this.getModifiers() !== 0) && (this.getModifiersEx() === 0)) {
+                        this.setNewModifiers();
+                    }
+                    else if ((this.getModifiers() === 0) && (this.getModifiersEx() !== 0)) {
+                        this.setOldModifiers();
+                    }
+                };
+                KeyEvent.prototype.getKeyLocation = function () {
+                    return this.keyLocation;
+                };
+                KeyEvent.getKeyText = function (keyCode) {
+                    if (keyCode >= KeyEvent.VK_0 && keyCode <= KeyEvent.VK_9 || keyCode >= KeyEvent.VK_A && keyCode <= KeyEvent.VK_Z) {
+                        return new String(String.fromCharCode(keyCode)).toString();
+                    }
+                    switch ((keyCode)) {
+                        case KeyEvent.VK_ENTER:
+                            return "Enter";
+                        case KeyEvent.VK_BACK_SPACE:
+                            return java.awt.Toolkit.getProperty("AWT.backSpace", "Backspace");
+                        case KeyEvent.VK_TAB:
+                            return java.awt.Toolkit.getProperty("AWT.tab", "Tab");
+                        case KeyEvent.VK_CANCEL:
+                            return java.awt.Toolkit.getProperty("AWT.cancel", "Cancel");
+                        case KeyEvent.VK_CLEAR:
+                            return java.awt.Toolkit.getProperty("AWT.clear", "Clear");
+                        case KeyEvent.VK_COMPOSE:
+                            return java.awt.Toolkit.getProperty("AWT.compose", "Compose");
+                        case KeyEvent.VK_PAUSE:
+                            return java.awt.Toolkit.getProperty("AWT.pause", "Pause");
+                        case KeyEvent.VK_CAPS_LOCK:
+                            return java.awt.Toolkit.getProperty("AWT.capsLock", "Caps Lock");
+                        case KeyEvent.VK_ESCAPE:
+                            return java.awt.Toolkit.getProperty("AWT.escape", "Escape");
+                        case KeyEvent.VK_SPACE:
+                            return java.awt.Toolkit.getProperty("AWT.space", "Space");
+                        case KeyEvent.VK_PAGE_UP:
+                            return java.awt.Toolkit.getProperty("AWT.pgup", "Page Up");
+                        case KeyEvent.VK_PAGE_DOWN:
+                            return java.awt.Toolkit.getProperty("AWT.pgdn", "Page Down");
+                        case KeyEvent.VK_END:
+                            return java.awt.Toolkit.getProperty("AWT.end", "End");
+                        case KeyEvent.VK_HOME:
+                            return java.awt.Toolkit.getProperty("AWT.home", "Home");
+                        case KeyEvent.VK_LEFT:
+                            return java.awt.Toolkit.getProperty("AWT.left", "Left");
+                        case KeyEvent.VK_UP:
+                            return java.awt.Toolkit.getProperty("AWT.up", "Up");
+                        case KeyEvent.VK_RIGHT:
+                            return java.awt.Toolkit.getProperty("AWT.right", "Right");
+                        case KeyEvent.VK_DOWN:
+                            return java.awt.Toolkit.getProperty("AWT.down", "Down");
+                        case KeyEvent.VK_BEGIN:
+                            return java.awt.Toolkit.getProperty("AWT.begin", "Begin");
+                        case KeyEvent.VK_SHIFT:
+                            return java.awt.Toolkit.getProperty("AWT.shift", "Shift");
+                        case KeyEvent.VK_CONTROL:
+                            return java.awt.Toolkit.getProperty("AWT.control", "Control");
+                        case KeyEvent.VK_ALT:
+                            return java.awt.Toolkit.getProperty("AWT.alt", "Alt");
+                        case KeyEvent.VK_META:
+                            return java.awt.Toolkit.getProperty("AWT.meta", "Meta");
+                        case KeyEvent.VK_ALT_GRAPH:
+                            return java.awt.Toolkit.getProperty("AWT.altGraph", "Alt Graph");
+                        case KeyEvent.VK_COMMA:
+                            return java.awt.Toolkit.getProperty("AWT.comma", "Comma");
+                        case KeyEvent.VK_PERIOD:
+                            return java.awt.Toolkit.getProperty("AWT.period", "Period");
+                        case KeyEvent.VK_SLASH:
+                            return java.awt.Toolkit.getProperty("AWT.slash", "Slash");
+                        case KeyEvent.VK_SEMICOLON:
+                            return java.awt.Toolkit.getProperty("AWT.semicolon", "Semicolon");
+                        case KeyEvent.VK_EQUALS:
+                            return java.awt.Toolkit.getProperty("AWT.equals", "Equals");
+                        case KeyEvent.VK_OPEN_BRACKET:
+                            return java.awt.Toolkit.getProperty("AWT.openBracket", "Open Bracket");
+                        case KeyEvent.VK_BACK_SLASH:
+                            return java.awt.Toolkit.getProperty("AWT.backSlash", "Back Slash");
+                        case KeyEvent.VK_CLOSE_BRACKET:
+                            return java.awt.Toolkit.getProperty("AWT.closeBracket", "Close Bracket");
+                        case KeyEvent.VK_MULTIPLY:
+                            return java.awt.Toolkit.getProperty("AWT.multiply", "NumPad *");
+                        case KeyEvent.VK_ADD:
+                            return java.awt.Toolkit.getProperty("AWT.add", "NumPad +");
+                        case KeyEvent.VK_SEPARATOR_$LI$():
+                            return java.awt.Toolkit.getProperty("AWT.separator", "NumPad ,");
+                        case KeyEvent.VK_SUBTRACT:
+                            return java.awt.Toolkit.getProperty("AWT.subtract", "NumPad -");
+                        case KeyEvent.VK_DECIMAL:
+                            return java.awt.Toolkit.getProperty("AWT.decimal", "NumPad .");
+                        case KeyEvent.VK_DIVIDE:
+                            return java.awt.Toolkit.getProperty("AWT.divide", "NumPad /");
+                        case KeyEvent.VK_DELETE:
+                            return java.awt.Toolkit.getProperty("AWT.delete", "Delete");
+                        case KeyEvent.VK_NUM_LOCK:
+                            return java.awt.Toolkit.getProperty("AWT.numLock", "Num Lock");
+                        case KeyEvent.VK_SCROLL_LOCK:
+                            return java.awt.Toolkit.getProperty("AWT.scrollLock", "Scroll Lock");
+                        case KeyEvent.VK_WINDOWS:
+                            return java.awt.Toolkit.getProperty("AWT.windows", "Windows");
+                        case KeyEvent.VK_CONTEXT_MENU:
+                            return java.awt.Toolkit.getProperty("AWT.context", "Context Menu");
+                        case KeyEvent.VK_F1:
+                            return java.awt.Toolkit.getProperty("AWT.f1", "F1");
+                        case KeyEvent.VK_F2:
+                            return java.awt.Toolkit.getProperty("AWT.f2", "F2");
+                        case KeyEvent.VK_F3:
+                            return java.awt.Toolkit.getProperty("AWT.f3", "F3");
+                        case KeyEvent.VK_F4:
+                            return java.awt.Toolkit.getProperty("AWT.f4", "F4");
+                        case KeyEvent.VK_F5:
+                            return java.awt.Toolkit.getProperty("AWT.f5", "F5");
+                        case KeyEvent.VK_F6:
+                            return java.awt.Toolkit.getProperty("AWT.f6", "F6");
+                        case KeyEvent.VK_F7:
+                            return java.awt.Toolkit.getProperty("AWT.f7", "F7");
+                        case KeyEvent.VK_F8:
+                            return java.awt.Toolkit.getProperty("AWT.f8", "F8");
+                        case KeyEvent.VK_F9:
+                            return java.awt.Toolkit.getProperty("AWT.f9", "F9");
+                        case KeyEvent.VK_F10:
+                            return java.awt.Toolkit.getProperty("AWT.f10", "F10");
+                        case KeyEvent.VK_F11:
+                            return java.awt.Toolkit.getProperty("AWT.f11", "F11");
+                        case KeyEvent.VK_F12:
+                            return java.awt.Toolkit.getProperty("AWT.f12", "F12");
+                        case KeyEvent.VK_F13:
+                            return java.awt.Toolkit.getProperty("AWT.f13", "F13");
+                        case KeyEvent.VK_F14:
+                            return java.awt.Toolkit.getProperty("AWT.f14", "F14");
+                        case KeyEvent.VK_F15:
+                            return java.awt.Toolkit.getProperty("AWT.f15", "F15");
+                        case KeyEvent.VK_F16:
+                            return java.awt.Toolkit.getProperty("AWT.f16", "F16");
+                        case KeyEvent.VK_F17:
+                            return java.awt.Toolkit.getProperty("AWT.f17", "F17");
+                        case KeyEvent.VK_F18:
+                            return java.awt.Toolkit.getProperty("AWT.f18", "F18");
+                        case KeyEvent.VK_F19:
+                            return java.awt.Toolkit.getProperty("AWT.f19", "F19");
+                        case KeyEvent.VK_F20:
+                            return java.awt.Toolkit.getProperty("AWT.f20", "F20");
+                        case KeyEvent.VK_F21:
+                            return java.awt.Toolkit.getProperty("AWT.f21", "F21");
+                        case KeyEvent.VK_F22:
+                            return java.awt.Toolkit.getProperty("AWT.f22", "F22");
+                        case KeyEvent.VK_F23:
+                            return java.awt.Toolkit.getProperty("AWT.f23", "F23");
+                        case KeyEvent.VK_F24:
+                            return java.awt.Toolkit.getProperty("AWT.f24", "F24");
+                        case KeyEvent.VK_PRINTSCREEN:
+                            return java.awt.Toolkit.getProperty("AWT.printScreen", "Print Screen");
+                        case KeyEvent.VK_INSERT:
+                            return java.awt.Toolkit.getProperty("AWT.insert", "Insert");
+                        case KeyEvent.VK_HELP:
+                            return java.awt.Toolkit.getProperty("AWT.help", "Help");
+                        case KeyEvent.VK_BACK_QUOTE:
+                            return java.awt.Toolkit.getProperty("AWT.backQuote", "Back Quote");
+                        case KeyEvent.VK_QUOTE:
+                            return java.awt.Toolkit.getProperty("AWT.quote", "Quote");
+                        case KeyEvent.VK_KP_UP:
+                            return java.awt.Toolkit.getProperty("AWT.up", "Up");
+                        case KeyEvent.VK_KP_DOWN:
+                            return java.awt.Toolkit.getProperty("AWT.down", "Down");
+                        case KeyEvent.VK_KP_LEFT:
+                            return java.awt.Toolkit.getProperty("AWT.left", "Left");
+                        case KeyEvent.VK_KP_RIGHT:
+                            return java.awt.Toolkit.getProperty("AWT.right", "Right");
+                        case KeyEvent.VK_DEAD_GRAVE:
+                            return java.awt.Toolkit.getProperty("AWT.deadGrave", "Dead Grave");
+                        case KeyEvent.VK_DEAD_ACUTE:
+                            return java.awt.Toolkit.getProperty("AWT.deadAcute", "Dead Acute");
+                        case KeyEvent.VK_DEAD_CIRCUMFLEX:
+                            return java.awt.Toolkit.getProperty("AWT.deadCircumflex", "Dead Circumflex");
+                        case KeyEvent.VK_DEAD_TILDE:
+                            return java.awt.Toolkit.getProperty("AWT.deadTilde", "Dead Tilde");
+                        case KeyEvent.VK_DEAD_MACRON:
+                            return java.awt.Toolkit.getProperty("AWT.deadMacron", "Dead Macron");
+                        case KeyEvent.VK_DEAD_BREVE:
+                            return java.awt.Toolkit.getProperty("AWT.deadBreve", "Dead Breve");
+                        case KeyEvent.VK_DEAD_ABOVEDOT:
+                            return java.awt.Toolkit.getProperty("AWT.deadAboveDot", "Dead Above Dot");
+                        case KeyEvent.VK_DEAD_DIAERESIS:
+                            return java.awt.Toolkit.getProperty("AWT.deadDiaeresis", "Dead Diaeresis");
+                        case KeyEvent.VK_DEAD_ABOVERING:
+                            return java.awt.Toolkit.getProperty("AWT.deadAboveRing", "Dead Above Ring");
+                        case KeyEvent.VK_DEAD_DOUBLEACUTE:
+                            return java.awt.Toolkit.getProperty("AWT.deadDoubleAcute", "Dead Double Acute");
+                        case KeyEvent.VK_DEAD_CARON:
+                            return java.awt.Toolkit.getProperty("AWT.deadCaron", "Dead Caron");
+                        case KeyEvent.VK_DEAD_CEDILLA:
+                            return java.awt.Toolkit.getProperty("AWT.deadCedilla", "Dead Cedilla");
+                        case KeyEvent.VK_DEAD_OGONEK:
+                            return java.awt.Toolkit.getProperty("AWT.deadOgonek", "Dead Ogonek");
+                        case KeyEvent.VK_DEAD_IOTA:
+                            return java.awt.Toolkit.getProperty("AWT.deadIota", "Dead Iota");
+                        case KeyEvent.VK_DEAD_VOICED_SOUND:
+                            return java.awt.Toolkit.getProperty("AWT.deadVoicedSound", "Dead Voiced Sound");
+                        case KeyEvent.VK_DEAD_SEMIVOICED_SOUND:
+                            return java.awt.Toolkit.getProperty("AWT.deadSemivoicedSound", "Dead Semivoiced Sound");
+                        case KeyEvent.VK_AMPERSAND:
+                            return java.awt.Toolkit.getProperty("AWT.ampersand", "Ampersand");
+                        case KeyEvent.VK_ASTERISK:
+                            return java.awt.Toolkit.getProperty("AWT.asterisk", "Asterisk");
+                        case KeyEvent.VK_QUOTEDBL:
+                            return java.awt.Toolkit.getProperty("AWT.quoteDbl", "Double Quote");
+                        case KeyEvent.VK_LESS:
+                            return java.awt.Toolkit.getProperty("AWT.Less", "Less");
+                        case KeyEvent.VK_GREATER:
+                            return java.awt.Toolkit.getProperty("AWT.greater", "Greater");
+                        case KeyEvent.VK_BRACELEFT:
+                            return java.awt.Toolkit.getProperty("AWT.braceLeft", "Left Brace");
+                        case KeyEvent.VK_BRACERIGHT:
+                            return java.awt.Toolkit.getProperty("AWT.braceRight", "Right Brace");
+                        case KeyEvent.VK_AT:
+                            return java.awt.Toolkit.getProperty("AWT.at", "At");
+                        case KeyEvent.VK_COLON:
+                            return java.awt.Toolkit.getProperty("AWT.colon", "Colon");
+                        case KeyEvent.VK_CIRCUMFLEX:
+                            return java.awt.Toolkit.getProperty("AWT.circumflex", "Circumflex");
+                        case KeyEvent.VK_DOLLAR:
+                            return java.awt.Toolkit.getProperty("AWT.dollar", "Dollar");
+                        case KeyEvent.VK_EURO_SIGN:
+                            return java.awt.Toolkit.getProperty("AWT.euro", "Euro");
+                        case KeyEvent.VK_EXCLAMATION_MARK:
+                            return java.awt.Toolkit.getProperty("AWT.exclamationMark", "Exclamation Mark");
+                        case KeyEvent.VK_INVERTED_EXCLAMATION_MARK:
+                            return java.awt.Toolkit.getProperty("AWT.invertedExclamationMark", "Inverted Exclamation Mark");
+                        case KeyEvent.VK_LEFT_PARENTHESIS:
+                            return java.awt.Toolkit.getProperty("AWT.leftParenthesis", "Left Parenthesis");
+                        case KeyEvent.VK_NUMBER_SIGN:
+                            return java.awt.Toolkit.getProperty("AWT.numberSign", "Number Sign");
+                        case KeyEvent.VK_MINUS:
+                            return java.awt.Toolkit.getProperty("AWT.minus", "Minus");
+                        case KeyEvent.VK_PLUS:
+                            return java.awt.Toolkit.getProperty("AWT.plus", "Plus");
+                        case KeyEvent.VK_RIGHT_PARENTHESIS:
+                            return java.awt.Toolkit.getProperty("AWT.rightParenthesis", "Right Parenthesis");
+                        case KeyEvent.VK_UNDERSCORE:
+                            return java.awt.Toolkit.getProperty("AWT.underscore", "Underscore");
+                        case KeyEvent.VK_FINAL:
+                            return java.awt.Toolkit.getProperty("AWT.final", "Final");
+                        case KeyEvent.VK_CONVERT:
+                            return java.awt.Toolkit.getProperty("AWT.convert", "Convert");
+                        case KeyEvent.VK_NONCONVERT:
+                            return java.awt.Toolkit.getProperty("AWT.noconvert", "No Convert");
+                        case KeyEvent.VK_ACCEPT:
+                            return java.awt.Toolkit.getProperty("AWT.accept", "Accept");
+                        case KeyEvent.VK_MODECHANGE:
+                            return java.awt.Toolkit.getProperty("AWT.modechange", "Mode Change");
+                        case KeyEvent.VK_KANA:
+                            return java.awt.Toolkit.getProperty("AWT.kana", "Kana");
+                        case KeyEvent.VK_KANJI:
+                            return java.awt.Toolkit.getProperty("AWT.kanji", "Kanji");
+                        case KeyEvent.VK_ALPHANUMERIC:
+                            return java.awt.Toolkit.getProperty("AWT.alphanumeric", "Alphanumeric");
+                        case KeyEvent.VK_KATAKANA:
+                            return java.awt.Toolkit.getProperty("AWT.katakana", "Katakana");
+                        case KeyEvent.VK_HIRAGANA:
+                            return java.awt.Toolkit.getProperty("AWT.hiragana", "Hiragana");
+                        case KeyEvent.VK_FULL_WIDTH:
+                            return java.awt.Toolkit.getProperty("AWT.fullWidth", "Full-Width");
+                        case KeyEvent.VK_HALF_WIDTH:
+                            return java.awt.Toolkit.getProperty("AWT.halfWidth", "Half-Width");
+                        case KeyEvent.VK_ROMAN_CHARACTERS:
+                            return java.awt.Toolkit.getProperty("AWT.romanCharacters", "Roman Characters");
+                        case KeyEvent.VK_ALL_CANDIDATES:
+                            return java.awt.Toolkit.getProperty("AWT.allCandidates", "All Candidates");
+                        case KeyEvent.VK_PREVIOUS_CANDIDATE:
+                            return java.awt.Toolkit.getProperty("AWT.previousCandidate", "Previous Candidate");
+                        case KeyEvent.VK_CODE_INPUT:
+                            return java.awt.Toolkit.getProperty("AWT.codeInput", "Code Input");
+                        case KeyEvent.VK_JAPANESE_KATAKANA:
+                            return java.awt.Toolkit.getProperty("AWT.japaneseKatakana", "Japanese Katakana");
+                        case KeyEvent.VK_JAPANESE_HIRAGANA:
+                            return java.awt.Toolkit.getProperty("AWT.japaneseHiragana", "Japanese Hiragana");
+                        case KeyEvent.VK_JAPANESE_ROMAN:
+                            return java.awt.Toolkit.getProperty("AWT.japaneseRoman", "Japanese Roman");
+                        case KeyEvent.VK_KANA_LOCK:
+                            return java.awt.Toolkit.getProperty("AWT.kanaLock", "Kana Lock");
+                        case KeyEvent.VK_INPUT_METHOD_ON_OFF:
+                            return java.awt.Toolkit.getProperty("AWT.inputMethodOnOff", "Input Method On/Off");
+                        case KeyEvent.VK_AGAIN:
+                            return java.awt.Toolkit.getProperty("AWT.again", "Again");
+                        case KeyEvent.VK_UNDO:
+                            return java.awt.Toolkit.getProperty("AWT.undo", "Undo");
+                        case KeyEvent.VK_COPY:
+                            return java.awt.Toolkit.getProperty("AWT.copy", "Copy");
+                        case KeyEvent.VK_PASTE:
+                            return java.awt.Toolkit.getProperty("AWT.paste", "Paste");
+                        case KeyEvent.VK_CUT:
+                            return java.awt.Toolkit.getProperty("AWT.cut", "Cut");
+                        case KeyEvent.VK_FIND:
+                            return java.awt.Toolkit.getProperty("AWT.find", "Find");
+                        case KeyEvent.VK_PROPS:
+                            return java.awt.Toolkit.getProperty("AWT.props", "Props");
+                        case KeyEvent.VK_STOP:
+                            return java.awt.Toolkit.getProperty("AWT.stop", "Stop");
+                    }
+                    if (keyCode >= KeyEvent.VK_NUMPAD0 && keyCode <= KeyEvent.VK_NUMPAD9) {
+                        var numpad = java.awt.Toolkit.getProperty("AWT.numpad", "NumPad");
+                        var c = String.fromCharCode((keyCode - KeyEvent.VK_NUMPAD0 + ('0').charCodeAt(0)));
+                        return numpad + "-" + c;
+                    }
+                    if ((keyCode & 16777216) !== 0) {
+                        return new String(String.fromCharCode((keyCode ^ 16777216))).toString();
+                    }
+                    var unknown = java.awt.Toolkit.getProperty("AWT.unknown", "Unknown");
+                    return unknown + " keyCode: 0x" + ('' + keyCode);
+                };
+                KeyEvent.getKeyModifiersText = function (modifiers) {
+                    var buf = new java.lang.StringBuilder();
+                    if ((modifiers & java.awt.event.InputEvent.META_MASK_$LI$()) !== 0) {
+                        buf.append(java.awt.Toolkit.getProperty("AWT.meta", "Meta"));
+                        buf.append("+");
+                    }
+                    if ((modifiers & java.awt.event.InputEvent.CTRL_MASK_$LI$()) !== 0) {
+                        buf.append(java.awt.Toolkit.getProperty("AWT.control", "Ctrl"));
+                        buf.append("+");
+                    }
+                    if ((modifiers & java.awt.event.InputEvent.ALT_MASK_$LI$()) !== 0) {
+                        buf.append(java.awt.Toolkit.getProperty("AWT.alt", "Alt"));
+                        buf.append("+");
+                    }
+                    if ((modifiers & java.awt.event.InputEvent.SHIFT_MASK_$LI$()) !== 0) {
+                        buf.append(java.awt.Toolkit.getProperty("AWT.shift", "Shift"));
+                        buf.append("+");
+                    }
+                    if ((modifiers & java.awt.event.InputEvent.ALT_GRAPH_MASK_$LI$()) !== 0) {
+                        buf.append(java.awt.Toolkit.getProperty("AWT.altGraph", "Alt Graph"));
+                        buf.append("+");
+                    }
+                    if ((modifiers & java.awt.event.InputEvent.BUTTON1_MASK_$LI$()) !== 0) {
+                        buf.append(java.awt.Toolkit.getProperty("AWT.button1", "Button1"));
+                        buf.append("+");
+                    }
+                    if (buf.length() > 0) {
+                        buf.setLength(buf.length() - 1);
+                    }
+                    return buf.toString();
+                };
+                KeyEvent.prototype.isActionKey = function () {
+                    switch ((this.keyCode)) {
+                        case KeyEvent.VK_HOME:
+                        case KeyEvent.VK_END:
+                        case KeyEvent.VK_PAGE_UP:
+                        case KeyEvent.VK_PAGE_DOWN:
+                        case KeyEvent.VK_UP:
+                        case KeyEvent.VK_DOWN:
+                        case KeyEvent.VK_LEFT:
+                        case KeyEvent.VK_RIGHT:
+                        case KeyEvent.VK_BEGIN:
+                        case KeyEvent.VK_KP_LEFT:
+                        case KeyEvent.VK_KP_UP:
+                        case KeyEvent.VK_KP_RIGHT:
+                        case KeyEvent.VK_KP_DOWN:
+                        case KeyEvent.VK_F1:
+                        case KeyEvent.VK_F2:
+                        case KeyEvent.VK_F3:
+                        case KeyEvent.VK_F4:
+                        case KeyEvent.VK_F5:
+                        case KeyEvent.VK_F6:
+                        case KeyEvent.VK_F7:
+                        case KeyEvent.VK_F8:
+                        case KeyEvent.VK_F9:
+                        case KeyEvent.VK_F10:
+                        case KeyEvent.VK_F11:
+                        case KeyEvent.VK_F12:
+                        case KeyEvent.VK_F13:
+                        case KeyEvent.VK_F14:
+                        case KeyEvent.VK_F15:
+                        case KeyEvent.VK_F16:
+                        case KeyEvent.VK_F17:
+                        case KeyEvent.VK_F18:
+                        case KeyEvent.VK_F19:
+                        case KeyEvent.VK_F20:
+                        case KeyEvent.VK_F21:
+                        case KeyEvent.VK_F22:
+                        case KeyEvent.VK_F23:
+                        case KeyEvent.VK_F24:
+                        case KeyEvent.VK_PRINTSCREEN:
+                        case KeyEvent.VK_SCROLL_LOCK:
+                        case KeyEvent.VK_CAPS_LOCK:
+                        case KeyEvent.VK_NUM_LOCK:
+                        case KeyEvent.VK_PAUSE:
+                        case KeyEvent.VK_INSERT:
+                        case KeyEvent.VK_FINAL:
+                        case KeyEvent.VK_CONVERT:
+                        case KeyEvent.VK_NONCONVERT:
+                        case KeyEvent.VK_ACCEPT:
+                        case KeyEvent.VK_MODECHANGE:
+                        case KeyEvent.VK_KANA:
+                        case KeyEvent.VK_KANJI:
+                        case KeyEvent.VK_ALPHANUMERIC:
+                        case KeyEvent.VK_KATAKANA:
+                        case KeyEvent.VK_HIRAGANA:
+                        case KeyEvent.VK_FULL_WIDTH:
+                        case KeyEvent.VK_HALF_WIDTH:
+                        case KeyEvent.VK_ROMAN_CHARACTERS:
+                        case KeyEvent.VK_ALL_CANDIDATES:
+                        case KeyEvent.VK_PREVIOUS_CANDIDATE:
+                        case KeyEvent.VK_CODE_INPUT:
+                        case KeyEvent.VK_JAPANESE_KATAKANA:
+                        case KeyEvent.VK_JAPANESE_HIRAGANA:
+                        case KeyEvent.VK_JAPANESE_ROMAN:
+                        case KeyEvent.VK_KANA_LOCK:
+                        case KeyEvent.VK_INPUT_METHOD_ON_OFF:
+                        case KeyEvent.VK_AGAIN:
+                        case KeyEvent.VK_UNDO:
+                        case KeyEvent.VK_COPY:
+                        case KeyEvent.VK_PASTE:
+                        case KeyEvent.VK_CUT:
+                        case KeyEvent.VK_FIND:
+                        case KeyEvent.VK_PROPS:
+                        case KeyEvent.VK_STOP:
+                        case KeyEvent.VK_HELP:
+                        case KeyEvent.VK_WINDOWS:
+                        case KeyEvent.VK_CONTEXT_MENU:
+                            return true;
+                    }
+                    return false;
+                };
+                KeyEvent.prototype.paramString = function () {
+                    var str = new java.lang.StringBuilder(100);
+                    switch ((this.id)) {
+                        case KeyEvent.KEY_PRESSED_$LI$():
+                            str.append("KEY_PRESSED");
+                            break;
+                        case KeyEvent.KEY_RELEASED_$LI$():
+                            str.append("KEY_RELEASED");
+                            break;
+                        case KeyEvent.KEY_TYPED_$LI$():
+                            str.append("KEY_TYPED");
+                            break;
+                        default:
+                            str.append("unknown type");
+                            break;
+                    }
+                    str.append(",keyCode=").append(this.keyCode);
+                    str.append(",keyText=").append(KeyEvent.getKeyText(this.keyCode));
+                    str.append(",keyChar=");
+                    switch ((this.keyChar)) {
+                        case '\b':
+                            str.append(KeyEvent.getKeyText(KeyEvent.VK_BACK_SPACE));
+                            break;
+                        case '\t':
+                            str.append(KeyEvent.getKeyText(KeyEvent.VK_TAB));
+                            break;
+                        case '\n':
+                            str.append(KeyEvent.getKeyText(KeyEvent.VK_ENTER));
+                            break;
+                        case '\u0018':
+                            str.append(KeyEvent.getKeyText(KeyEvent.VK_CANCEL));
+                            break;
+                        case '\u001b':
+                            str.append(KeyEvent.getKeyText(KeyEvent.VK_ESCAPE));
+                            break;
+                        case '\u007f':
+                            str.append(KeyEvent.getKeyText(KeyEvent.VK_DELETE));
+                            break;
+                        case KeyEvent.CHAR_UNDEFINED:
+                            str.append(java.awt.Toolkit.getProperty("AWT.undefined", "Undefined"));
+                            str.append(" keyChar");
+                            break;
+                        default:
+                            str.append("\'").append(this.keyChar).append("\'");
+                            break;
+                    }
+                    if (this.getModifiers() !== 0) {
+                        str.append(",modifiers=").append(KeyEvent.getKeyModifiersText(this.modifiers));
+                    }
+                    if (this.getModifiersEx() !== 0) {
+                        str.append(",extModifiers=").append(event.InputEvent.getModifiersExText(this.modifiers));
+                    }
+                    str.append(",keyLocation=");
+                    switch ((this.keyLocation)) {
+                        case KeyEvent.KEY_LOCATION_UNKNOWN:
+                            str.append("KEY_LOCATION_UNKNOWN");
+                            break;
+                        case KeyEvent.KEY_LOCATION_STANDARD:
+                            str.append("KEY_LOCATION_STANDARD");
+                            break;
+                        case KeyEvent.KEY_LOCATION_LEFT:
+                            str.append("KEY_LOCATION_LEFT");
+                            break;
+                        case KeyEvent.KEY_LOCATION_RIGHT:
+                            str.append("KEY_LOCATION_RIGHT");
+                            break;
+                        case KeyEvent.KEY_LOCATION_NUMPAD:
+                            str.append("KEY_LOCATION_NUMPAD");
+                            break;
+                        default:
+                            str.append("KEY_LOCATION_UNKNOWN");
+                            break;
+                    }
+                    return str.toString();
+                };
+                KeyEvent.prototype.getExtendedKeyCode = function () {
+                    return (KeyEvent.getExtendedKeyCodeForChar((this.keyChar).charCodeAt(0)) | 0);
+                };
+                /**
+                 * Returns an extended key code for a unicode character.
+                 *
+                 * @return for a unicode character with a corresponding {@code VK_} constant
+                 * -- this {@code VK_} constant; for a character appearing on the
+                 * primary level of a known keyboard layout -- a unique integer. If
+                 * a character does not appear on the primary level of a known
+                 * keyboard, {@code VK_UNDEFINED} is returned.
+                 *
+                 * @since 1.7
+                 */
+                KeyEvent.getExtendedKeyCodeForChar = function (c) {
+                    return sun.awt.ExtendedKeyCodes.getExtendedKeyCodeForChar(c);
+                };
+                /**
+                 * Sets new modifiers by the old ones. The key modifiers override overlaping
+                 * mouse modifiers.
+                 */
+                KeyEvent.prototype.setNewModifiers = function () {
+                    if ((this.modifiers & java.awt.event.InputEvent.SHIFT_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.SHIFT_DOWN_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.ALT_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.ALT_DOWN_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.CTRL_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.CTRL_DOWN_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.META_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.META_DOWN_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.ALT_GRAPH_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.ALT_GRAPH_DOWN_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.BUTTON1_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.BUTTON1_DOWN_MASK_$LI$();
+                    }
+                };
+                KeyEvent.prototype.setOldModifiers = function () {
+                    if ((this.modifiers & java.awt.event.InputEvent.SHIFT_DOWN_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.SHIFT_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.ALT_DOWN_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.ALT_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.CTRL_DOWN_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.CTRL_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.META_DOWN_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.META_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.ALT_GRAPH_DOWN_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.ALT_GRAPH_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.BUTTON1_DOWN_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.BUTTON1_MASK_$LI$();
+                    }
+                };
+                KeyEvent.KEY_FIRST = 400;
+                KeyEvent.KEY_LAST = 402;
+                KeyEvent.VK_ENTER = ('\n').charCodeAt(0);
+                KeyEvent.VK_BACK_SPACE = ('\b').charCodeAt(0);
+                KeyEvent.VK_TAB = ('\t').charCodeAt(0);
+                KeyEvent.VK_CANCEL = 3;
+                KeyEvent.VK_CLEAR = 12;
+                KeyEvent.VK_SHIFT = 16;
+                KeyEvent.VK_CONTROL = 17;
+                KeyEvent.VK_ALT = 18;
+                KeyEvent.VK_PAUSE = 19;
+                KeyEvent.VK_CAPS_LOCK = 20;
+                KeyEvent.VK_ESCAPE = 27;
+                KeyEvent.VK_SPACE = 32;
+                KeyEvent.VK_PAGE_UP = 33;
+                KeyEvent.VK_PAGE_DOWN = 34;
+                KeyEvent.VK_END = 35;
+                KeyEvent.VK_HOME = 36;
+                KeyEvent.VK_LEFT = 37;
+                KeyEvent.VK_UP = 38;
+                KeyEvent.VK_RIGHT = 39;
+                KeyEvent.VK_DOWN = 40;
+                KeyEvent.VK_COMMA = 44;
+                KeyEvent.VK_MINUS = 45;
+                KeyEvent.VK_PERIOD = 46;
+                KeyEvent.VK_SLASH = 47;
+                /**
+                 * VK_0 thru VK_9 are the same as ASCII '0' thru '9' (0x30 - 0x39)
+                 */
+                KeyEvent.VK_0 = 48;
+                KeyEvent.VK_1 = 49;
+                KeyEvent.VK_2 = 50;
+                KeyEvent.VK_3 = 51;
+                KeyEvent.VK_4 = 52;
+                KeyEvent.VK_5 = 53;
+                KeyEvent.VK_6 = 54;
+                KeyEvent.VK_7 = 55;
+                KeyEvent.VK_8 = 56;
+                KeyEvent.VK_9 = 57;
+                KeyEvent.VK_SEMICOLON = 59;
+                KeyEvent.VK_EQUALS = 61;
+                /**
+                 * VK_A thru VK_Z are the same as ASCII 'A' thru 'Z' (0x41 - 0x5A)
+                 */
+                KeyEvent.VK_A = 65;
+                KeyEvent.VK_B = 66;
+                KeyEvent.VK_C = 67;
+                KeyEvent.VK_D = 68;
+                KeyEvent.VK_E = 69;
+                KeyEvent.VK_F = 70;
+                KeyEvent.VK_G = 71;
+                KeyEvent.VK_H = 72;
+                KeyEvent.VK_I = 73;
+                KeyEvent.VK_J = 74;
+                KeyEvent.VK_K = 75;
+                KeyEvent.VK_L = 76;
+                KeyEvent.VK_M = 77;
+                KeyEvent.VK_N = 78;
+                KeyEvent.VK_O = 79;
+                KeyEvent.VK_P = 80;
+                KeyEvent.VK_Q = 81;
+                KeyEvent.VK_R = 82;
+                KeyEvent.VK_S = 83;
+                KeyEvent.VK_T = 84;
+                KeyEvent.VK_U = 85;
+                KeyEvent.VK_V = 86;
+                KeyEvent.VK_W = 87;
+                KeyEvent.VK_X = 88;
+                KeyEvent.VK_Y = 89;
+                KeyEvent.VK_Z = 90;
+                KeyEvent.VK_OPEN_BRACKET = 91;
+                KeyEvent.VK_BACK_SLASH = 92;
+                KeyEvent.VK_CLOSE_BRACKET = 93;
+                KeyEvent.VK_NUMPAD0 = 96;
+                KeyEvent.VK_NUMPAD1 = 97;
+                KeyEvent.VK_NUMPAD2 = 98;
+                KeyEvent.VK_NUMPAD3 = 99;
+                KeyEvent.VK_NUMPAD4 = 100;
+                KeyEvent.VK_NUMPAD5 = 101;
+                KeyEvent.VK_NUMPAD6 = 102;
+                KeyEvent.VK_NUMPAD7 = 103;
+                KeyEvent.VK_NUMPAD8 = 104;
+                KeyEvent.VK_NUMPAD9 = 105;
+                KeyEvent.VK_MULTIPLY = 106;
+                KeyEvent.VK_ADD = 107;
+                KeyEvent.VK_SEPARATER = 108;
+                KeyEvent.VK_SUBTRACT = 109;
+                KeyEvent.VK_DECIMAL = 110;
+                KeyEvent.VK_DIVIDE = 111;
+                KeyEvent.VK_DELETE = 127;
+                KeyEvent.VK_NUM_LOCK = 144;
+                KeyEvent.VK_SCROLL_LOCK = 145;
+                KeyEvent.VK_F1 = 112;
+                KeyEvent.VK_F2 = 113;
+                KeyEvent.VK_F3 = 114;
+                KeyEvent.VK_F4 = 115;
+                KeyEvent.VK_F5 = 116;
+                KeyEvent.VK_F6 = 117;
+                KeyEvent.VK_F7 = 118;
+                KeyEvent.VK_F8 = 119;
+                KeyEvent.VK_F9 = 120;
+                KeyEvent.VK_F10 = 121;
+                KeyEvent.VK_F11 = 122;
+                KeyEvent.VK_F12 = 123;
+                KeyEvent.VK_F13 = 61440;
+                KeyEvent.VK_F14 = 61441;
+                KeyEvent.VK_F15 = 61442;
+                KeyEvent.VK_F16 = 61443;
+                KeyEvent.VK_F17 = 61444;
+                KeyEvent.VK_F18 = 61445;
+                KeyEvent.VK_F19 = 61446;
+                KeyEvent.VK_F20 = 61447;
+                KeyEvent.VK_F21 = 61448;
+                KeyEvent.VK_F22 = 61449;
+                KeyEvent.VK_F23 = 61450;
+                KeyEvent.VK_F24 = 61451;
+                KeyEvent.VK_PRINTSCREEN = 154;
+                KeyEvent.VK_INSERT = 155;
+                KeyEvent.VK_HELP = 156;
+                KeyEvent.VK_META = 157;
+                KeyEvent.VK_BACK_QUOTE = 192;
+                KeyEvent.VK_QUOTE = 222;
+                KeyEvent.VK_KP_UP = 224;
+                KeyEvent.VK_KP_DOWN = 225;
+                KeyEvent.VK_KP_LEFT = 226;
+                KeyEvent.VK_KP_RIGHT = 227;
+                KeyEvent.VK_DEAD_GRAVE = 128;
+                KeyEvent.VK_DEAD_ACUTE = 129;
+                KeyEvent.VK_DEAD_CIRCUMFLEX = 130;
+                KeyEvent.VK_DEAD_TILDE = 131;
+                KeyEvent.VK_DEAD_MACRON = 132;
+                KeyEvent.VK_DEAD_BREVE = 133;
+                KeyEvent.VK_DEAD_ABOVEDOT = 134;
+                KeyEvent.VK_DEAD_DIAERESIS = 135;
+                KeyEvent.VK_DEAD_ABOVERING = 136;
+                KeyEvent.VK_DEAD_DOUBLEACUTE = 137;
+                KeyEvent.VK_DEAD_CARON = 138;
+                KeyEvent.VK_DEAD_CEDILLA = 139;
+                KeyEvent.VK_DEAD_OGONEK = 140;
+                KeyEvent.VK_DEAD_IOTA = 141;
+                KeyEvent.VK_DEAD_VOICED_SOUND = 142;
+                KeyEvent.VK_DEAD_SEMIVOICED_SOUND = 143;
+                KeyEvent.VK_AMPERSAND = 150;
+                KeyEvent.VK_ASTERISK = 151;
+                KeyEvent.VK_QUOTEDBL = 152;
+                KeyEvent.VK_LESS = 153;
+                KeyEvent.VK_GREATER = 160;
+                KeyEvent.VK_BRACELEFT = 161;
+                KeyEvent.VK_BRACERIGHT = 162;
+                KeyEvent.VK_AT = 512;
+                KeyEvent.VK_COLON = 513;
+                KeyEvent.VK_CIRCUMFLEX = 514;
+                KeyEvent.VK_DOLLAR = 515;
+                KeyEvent.VK_EURO_SIGN = 516;
+                KeyEvent.VK_EXCLAMATION_MARK = 517;
+                KeyEvent.VK_INVERTED_EXCLAMATION_MARK = 518;
+                KeyEvent.VK_LEFT_PARENTHESIS = 519;
+                KeyEvent.VK_NUMBER_SIGN = 520;
+                KeyEvent.VK_PLUS = 521;
+                KeyEvent.VK_RIGHT_PARENTHESIS = 522;
+                KeyEvent.VK_UNDERSCORE = 523;
+                KeyEvent.VK_WINDOWS = 524;
+                KeyEvent.VK_CONTEXT_MENU = 525;
+                KeyEvent.VK_FINAL = 24;
+                KeyEvent.VK_CONVERT = 28;
+                KeyEvent.VK_NONCONVERT = 29;
+                KeyEvent.VK_ACCEPT = 30;
+                KeyEvent.VK_MODECHANGE = 31;
+                KeyEvent.VK_KANA = 21;
+                KeyEvent.VK_KANJI = 25;
+                KeyEvent.VK_ALPHANUMERIC = 240;
+                KeyEvent.VK_KATAKANA = 241;
+                KeyEvent.VK_HIRAGANA = 242;
+                KeyEvent.VK_FULL_WIDTH = 243;
+                KeyEvent.VK_HALF_WIDTH = 244;
+                KeyEvent.VK_ROMAN_CHARACTERS = 245;
+                KeyEvent.VK_ALL_CANDIDATES = 256;
+                KeyEvent.VK_PREVIOUS_CANDIDATE = 257;
+                KeyEvent.VK_CODE_INPUT = 258;
+                KeyEvent.VK_JAPANESE_KATAKANA = 259;
+                KeyEvent.VK_JAPANESE_HIRAGANA = 260;
+                KeyEvent.VK_JAPANESE_ROMAN = 261;
+                KeyEvent.VK_KANA_LOCK = 262;
+                KeyEvent.VK_INPUT_METHOD_ON_OFF = 263;
+                KeyEvent.VK_CUT = 65489;
+                KeyEvent.VK_COPY = 65485;
+                KeyEvent.VK_PASTE = 65487;
+                KeyEvent.VK_UNDO = 65483;
+                KeyEvent.VK_AGAIN = 65481;
+                KeyEvent.VK_FIND = 65488;
+                KeyEvent.VK_PROPS = 65482;
+                KeyEvent.VK_STOP = 65480;
+                KeyEvent.VK_COMPOSE = 65312;
+                KeyEvent.VK_ALT_GRAPH = 65406;
+                KeyEvent.VK_BEGIN = 65368;
+                KeyEvent.VK_UNDEFINED = 0;
+                KeyEvent.CHAR_UNDEFINED = String.fromCharCode(65535);
+                KeyEvent.KEY_LOCATION_UNKNOWN = 0;
+                KeyEvent.KEY_LOCATION_STANDARD = 1;
+                KeyEvent.KEY_LOCATION_LEFT = 2;
+                KeyEvent.KEY_LOCATION_RIGHT = 3;
+                KeyEvent.KEY_LOCATION_NUMPAD = 4;
+                KeyEvent.serialVersionUID = -2352130953028126954;
+                return KeyEvent;
+            }(java.awt.event.InputEvent));
+            event.KeyEvent = KeyEvent;
+            KeyEvent["__classname"] = "java.awt.event.KeyEvent";
+        })(event = awt.event || (awt.event = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var event;
+        (function (event) {
+            var MouseEvent = (function (_super) {
+                __extends(MouseEvent, _super);
+                function MouseEvent(source, id, when, modifiers, x, y, xAbs, yAbs, clickCount, popupTrigger, button) {
+                    var _this = this;
+                    if (((source != null && source instanceof java.awt.Component) || source === null) && ((typeof id === 'number') || id === null) && ((typeof when === 'number') || when === null) && ((typeof modifiers === 'number') || modifiers === null) && ((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && ((typeof xAbs === 'number') || xAbs === null) && ((typeof yAbs === 'number') || yAbs === null) && ((typeof clickCount === 'number') || clickCount === null) && ((typeof popupTrigger === 'boolean') || popupTrigger === null) && ((typeof button === 'number') || button === null)) {
+                        _super.call(this, source, id, when, modifiers);
+                        this.x = 0;
+                        this.y = 0;
+                        this.xAbs = 0;
+                        this.yAbs = 0;
+                        this.clickCount = 0;
+                        this.button = 0;
+                        this.popupTrigger = false;
+                        this.shouldExcludeButtonFromExtModifiers = false;
+                        (function () {
+                            _this.x = x;
+                            _this.y = y;
+                            _this.xAbs = xAbs;
+                            _this.yAbs = yAbs;
+                            _this.clickCount = clickCount;
+                            _this.popupTrigger = popupTrigger;
+                            _this.shouldExcludeButtonFromExtModifiers = false;
+                            if (button < MouseEvent.NOBUTTON) {
+                                throw new java.lang.IllegalArgumentException("Invalid button value :" + button);
+                            }
+                            if (button > MouseEvent.BUTTON3) {
+                                if (_this.getModifiersEx() !== 0) {
+                                    if (id === MouseEvent.MOUSE_RELEASED_$LI$() || id === MouseEvent.MOUSE_CLICKED_$LI$()) {
+                                        _this.shouldExcludeButtonFromExtModifiers = true;
+                                    }
+                                }
+                            }
+                            _this.button = button;
+                            if ((_this.getModifiers() !== 0) && (_this.getModifiersEx() === 0)) {
+                                _this.setNewModifiers();
+                            }
+                            else if ((_this.getModifiers() === 0) && (_this.getModifiersEx() !== 0 || button !== MouseEvent.NOBUTTON) && (button <= MouseEvent.BUTTON3)) {
+                                _this.setOldModifiers();
+                            }
+                        })();
+                    }
+                    else if (((source != null && source instanceof java.awt.Component) || source === null) && ((typeof id === 'number') || id === null) && ((typeof when === 'number') || when === null) && ((typeof modifiers === 'number') || modifiers === null) && ((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && ((typeof xAbs === 'number') || xAbs === null) && ((typeof yAbs === 'boolean') || yAbs === null) && ((typeof clickCount === 'number') || clickCount === null) && popupTrigger === undefined && button === undefined) {
+                        var clickCount = xAbs;
+                        var popupTrigger = yAbs;
+                        var button = clickCount;
+                        {
+                            var xAbs = 0;
+                            var yAbs = 0;
+                            _super.call(this, source, id, when, modifiers);
+                            this.x = 0;
+                            this.y = 0;
+                            this.xAbs = 0;
+                            this.yAbs = 0;
+                            this.clickCount = 0;
+                            this.button = 0;
+                            this.popupTrigger = false;
+                            this.shouldExcludeButtonFromExtModifiers = false;
+                            (function () {
+                                _this.x = x;
+                                _this.y = y;
+                                _this.xAbs = xAbs;
+                                _this.yAbs = yAbs;
+                                _this.clickCount = clickCount;
+                                _this.popupTrigger = popupTrigger;
+                                _this.shouldExcludeButtonFromExtModifiers = false;
+                                if (button < MouseEvent.NOBUTTON) {
+                                    throw new java.lang.IllegalArgumentException("Invalid button value :" + button);
+                                }
+                                if (button > MouseEvent.BUTTON3) {
+                                    if (_this.getModifiersEx() !== 0) {
+                                        if (id === MouseEvent.MOUSE_RELEASED_$LI$() || id === MouseEvent.MOUSE_CLICKED_$LI$()) {
+                                            _this.shouldExcludeButtonFromExtModifiers = true;
+                                        }
+                                    }
+                                }
+                                _this.button = button;
+                                if ((_this.getModifiers() !== 0) && (_this.getModifiersEx() === 0)) {
+                                    _this.setNewModifiers();
+                                }
+                                else if ((_this.getModifiers() === 0) && (_this.getModifiersEx() !== 0 || button !== MouseEvent.NOBUTTON) && (button <= MouseEvent.BUTTON3)) {
+                                    _this.setOldModifiers();
+                                }
+                            })();
+                        }
+                        (function () {
+                            var eventLocationOnScreen = new java.awt.Point(0, 0);
+                            try {
+                                eventLocationOnScreen = source.getLocationOnScreen();
+                                _this.xAbs = eventLocationOnScreen.x + x;
+                                _this.yAbs = eventLocationOnScreen.y + y;
+                            }
+                            catch (e) {
+                                _this.xAbs = 0;
+                                _this.yAbs = 0;
+                            }
+                            ;
+                        })();
+                    }
+                    else if (((source != null && source instanceof java.awt.Component) || source === null) && ((typeof id === 'number') || id === null) && ((typeof when === 'number') || when === null) && ((typeof modifiers === 'number') || modifiers === null) && ((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && ((typeof xAbs === 'number') || xAbs === null) && ((typeof yAbs === 'boolean') || yAbs === null) && clickCount === undefined && popupTrigger === undefined && button === undefined) {
+                        var clickCount = xAbs;
+                        var popupTrigger = yAbs;
+                        {
+                            var button = MouseEvent.NOBUTTON;
+                            {
+                                var xAbs = 0;
+                                var yAbs = 0;
+                                _super.call(this, source, id, when, modifiers);
+                                this.x = 0;
+                                this.y = 0;
+                                this.xAbs = 0;
+                                this.yAbs = 0;
+                                this.clickCount = 0;
+                                this.button = 0;
+                                this.popupTrigger = false;
+                                this.shouldExcludeButtonFromExtModifiers = false;
+                                (function () {
+                                    _this.x = x;
+                                    _this.y = y;
+                                    _this.xAbs = xAbs;
+                                    _this.yAbs = yAbs;
+                                    _this.clickCount = clickCount;
+                                    _this.popupTrigger = popupTrigger;
+                                    _this.shouldExcludeButtonFromExtModifiers = false;
+                                    if (button < MouseEvent.NOBUTTON) {
+                                        throw new java.lang.IllegalArgumentException("Invalid button value :" + button);
+                                    }
+                                    if (button > MouseEvent.BUTTON3) {
+                                        if (_this.getModifiersEx() !== 0) {
+                                            if (id === MouseEvent.MOUSE_RELEASED_$LI$() || id === MouseEvent.MOUSE_CLICKED_$LI$()) {
+                                                _this.shouldExcludeButtonFromExtModifiers = true;
+                                            }
+                                        }
+                                    }
+                                    _this.button = button;
+                                    if ((_this.getModifiers() !== 0) && (_this.getModifiersEx() === 0)) {
+                                        _this.setNewModifiers();
+                                    }
+                                    else if ((_this.getModifiers() === 0) && (_this.getModifiersEx() !== 0 || button !== MouseEvent.NOBUTTON) && (button <= MouseEvent.BUTTON3)) {
+                                        _this.setOldModifiers();
+                                    }
+                                })();
+                            }
+                            (function () {
+                                var eventLocationOnScreen = new java.awt.Point(0, 0);
+                                try {
+                                    eventLocationOnScreen = source.getLocationOnScreen();
+                                    _this.xAbs = eventLocationOnScreen.x + x;
+                                    _this.yAbs = eventLocationOnScreen.y + y;
+                                }
+                                catch (e) {
+                                    _this.xAbs = 0;
+                                    _this.yAbs = 0;
+                                }
+                                ;
+                            })();
+                        }
+                        (function () {
+                        })();
+                    }
+                    else
+                        throw new Error('invalid overload');
+                }
+                MouseEvent.MOUSE_CLICKED_$LI$ = function () { if (MouseEvent.MOUSE_CLICKED == null)
+                    MouseEvent.MOUSE_CLICKED = MouseEvent.MOUSE_FIRST; return MouseEvent.MOUSE_CLICKED; };
+                ;
+                MouseEvent.MOUSE_PRESSED_$LI$ = function () { if (MouseEvent.MOUSE_PRESSED == null)
+                    MouseEvent.MOUSE_PRESSED = 1 + MouseEvent.MOUSE_FIRST; return MouseEvent.MOUSE_PRESSED; };
+                ;
+                MouseEvent.MOUSE_RELEASED_$LI$ = function () { if (MouseEvent.MOUSE_RELEASED == null)
+                    MouseEvent.MOUSE_RELEASED = 2 + MouseEvent.MOUSE_FIRST; return MouseEvent.MOUSE_RELEASED; };
+                ;
+                MouseEvent.MOUSE_MOVED_$LI$ = function () { if (MouseEvent.MOUSE_MOVED == null)
+                    MouseEvent.MOUSE_MOVED = 3 + MouseEvent.MOUSE_FIRST; return MouseEvent.MOUSE_MOVED; };
+                ;
+                MouseEvent.MOUSE_ENTERED_$LI$ = function () { if (MouseEvent.MOUSE_ENTERED == null)
+                    MouseEvent.MOUSE_ENTERED = 4 + MouseEvent.MOUSE_FIRST; return MouseEvent.MOUSE_ENTERED; };
+                ;
+                MouseEvent.MOUSE_EXITED_$LI$ = function () { if (MouseEvent.MOUSE_EXITED == null)
+                    MouseEvent.MOUSE_EXITED = 5 + MouseEvent.MOUSE_FIRST; return MouseEvent.MOUSE_EXITED; };
+                ;
+                MouseEvent.MOUSE_DRAGGED_$LI$ = function () { if (MouseEvent.MOUSE_DRAGGED == null)
+                    MouseEvent.MOUSE_DRAGGED = 6 + MouseEvent.MOUSE_FIRST; return MouseEvent.MOUSE_DRAGGED; };
+                ;
+                MouseEvent.MOUSE_WHEEL_$LI$ = function () { if (MouseEvent.MOUSE_WHEEL == null)
+                    MouseEvent.MOUSE_WHEEL = 7 + MouseEvent.MOUSE_FIRST; return MouseEvent.MOUSE_WHEEL; };
+                ;
+                MouseEvent.prototype.getLocationOnScreen = function () {
+                    return new java.awt.Point(this.xAbs, this.yAbs);
+                };
+                MouseEvent.prototype.getXOnScreen = function () {
+                    return this.xAbs;
+                };
+                MouseEvent.prototype.getYOnScreen = function () {
+                    return this.yAbs;
+                };
+                MouseEvent.prototype.getModifiersEx = function () {
+                    var tmpModifiers = this.modifiers;
+                    if (this.shouldExcludeButtonFromExtModifiers) {
+                        tmpModifiers &= ~(java.awt.event.InputEvent.getMaskForButton(this.getButton()));
+                    }
+                    return tmpModifiers & ~java.awt.event.InputEvent.JDK_1_3_MODIFIERS_$LI$();
+                };
+                MouseEvent.prototype.getX = function () {
+                    return this.x;
+                };
+                MouseEvent.prototype.getY = function () {
+                    return this.y;
+                };
+                MouseEvent.prototype.getPoint = function () {
+                    var x;
+                    var y;
+                    {
+                        x = this.x;
+                        y = this.y;
+                    }
+                    ;
+                    return new java.awt.Point(x, y);
+                };
+                MouseEvent.prototype.translatePoint = function (x, y) {
+                    this.x += x;
+                    this.y += y;
+                };
+                MouseEvent.prototype.getClickCount = function () {
+                    return this.clickCount;
+                };
+                MouseEvent.prototype.getButton = function () {
+                    return this.button;
+                };
+                MouseEvent.prototype.isPopupTrigger = function () {
+                    return this.popupTrigger;
+                };
+                MouseEvent.getMouseModifiersText = function (modifiers) {
+                    var buf = new java.lang.StringBuilder();
+                    if ((modifiers & java.awt.event.InputEvent.ALT_MASK_$LI$()) !== 0) {
+                        buf.append(java.awt.Toolkit.getProperty("AWT.alt", "Alt"));
+                        buf.append("+");
+                    }
+                    if ((modifiers & java.awt.event.InputEvent.META_MASK_$LI$()) !== 0) {
+                        buf.append(java.awt.Toolkit.getProperty("AWT.meta", "Meta"));
+                        buf.append("+");
+                    }
+                    if ((modifiers & java.awt.event.InputEvent.CTRL_MASK_$LI$()) !== 0) {
+                        buf.append(java.awt.Toolkit.getProperty("AWT.control", "Ctrl"));
+                        buf.append("+");
+                    }
+                    if ((modifiers & java.awt.event.InputEvent.SHIFT_MASK_$LI$()) !== 0) {
+                        buf.append(java.awt.Toolkit.getProperty("AWT.shift", "Shift"));
+                        buf.append("+");
+                    }
+                    if ((modifiers & java.awt.event.InputEvent.ALT_GRAPH_MASK_$LI$()) !== 0) {
+                        buf.append(java.awt.Toolkit.getProperty("AWT.altGraph", "Alt Graph"));
+                        buf.append("+");
+                    }
+                    if ((modifiers & java.awt.event.InputEvent.BUTTON1_MASK_$LI$()) !== 0) {
+                        buf.append(java.awt.Toolkit.getProperty("AWT.button1", "Button1"));
+                        buf.append("+");
+                    }
+                    if ((modifiers & java.awt.event.InputEvent.BUTTON2_MASK_$LI$()) !== 0) {
+                        buf.append(java.awt.Toolkit.getProperty("AWT.button2", "Button2"));
+                        buf.append("+");
+                    }
+                    if ((modifiers & java.awt.event.InputEvent.BUTTON3_MASK_$LI$()) !== 0) {
+                        buf.append(java.awt.Toolkit.getProperty("AWT.button3", "Button3"));
+                        buf.append("+");
+                    }
+                    var mask;
+                    for (var i = 1; i <= MouseEvent.cachedNumberOfButtons; i++) {
+                        mask = java.awt.event.InputEvent.getMaskForButton(i);
+                        if ((modifiers & mask) !== 0 && buf.indexOf(java.awt.Toolkit.getProperty("AWT.button" + i, "Button" + i)) === -1) {
+                            buf.append(java.awt.Toolkit.getProperty("AWT.button" + i, "Button" + i));
+                            buf.append("+");
+                        }
+                    }
+                    if (buf.length() > 0) {
+                        buf.setLength(buf.length() - 1);
+                    }
+                    return buf.toString();
+                };
+                MouseEvent.prototype.paramString = function () {
+                    var str = new java.lang.StringBuilder(80);
+                    switch ((this.id)) {
+                        case MouseEvent.MOUSE_PRESSED_$LI$():
+                            str.append("MOUSE_PRESSED");
+                            break;
+                        case MouseEvent.MOUSE_RELEASED_$LI$():
+                            str.append("MOUSE_RELEASED");
+                            break;
+                        case MouseEvent.MOUSE_CLICKED_$LI$():
+                            str.append("MOUSE_CLICKED");
+                            break;
+                        case MouseEvent.MOUSE_ENTERED_$LI$():
+                            str.append("MOUSE_ENTERED");
+                            break;
+                        case MouseEvent.MOUSE_EXITED_$LI$():
+                            str.append("MOUSE_EXITED");
+                            break;
+                        case MouseEvent.MOUSE_MOVED_$LI$():
+                            str.append("MOUSE_MOVED");
+                            break;
+                        case MouseEvent.MOUSE_DRAGGED_$LI$():
+                            str.append("MOUSE_DRAGGED");
+                            break;
+                        case MouseEvent.MOUSE_WHEEL_$LI$():
+                            str.append("MOUSE_WHEEL");
+                            break;
+                        default:
+                            str.append("unknown type");
+                    }
+                    str.append(",(").append(this.x).append(",").append(this.y).append(")");
+                    str.append(",absolute(").append(this.xAbs).append(",").append(this.yAbs).append(")");
+                    if (this.id !== MouseEvent.MOUSE_DRAGGED_$LI$() && this.id !== MouseEvent.MOUSE_MOVED_$LI$()) {
+                        str.append(",button=").append(this.getButton());
+                    }
+                    if (this.getModifiers() !== 0) {
+                        str.append(",modifiers=").append(MouseEvent.getMouseModifiersText(this.modifiers));
+                    }
+                    if (this.getModifiersEx() !== 0) {
+                        str.append(",extModifiers=").append(event.InputEvent.getModifiersExText(this.getModifiersEx()));
+                    }
+                    str.append(",clickCount=").append(this.clickCount);
+                    return str.toString();
+                };
+                MouseEvent.prototype.setNewModifiers = function () {
+                    if ((this.modifiers & java.awt.event.InputEvent.BUTTON1_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.BUTTON1_DOWN_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.BUTTON2_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.BUTTON2_DOWN_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.BUTTON3_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.BUTTON3_DOWN_MASK_$LI$();
+                    }
+                    if (this.id === MouseEvent.MOUSE_PRESSED_$LI$() || this.id === MouseEvent.MOUSE_RELEASED_$LI$() || this.id === MouseEvent.MOUSE_CLICKED_$LI$()) {
+                        if ((this.modifiers & java.awt.event.InputEvent.BUTTON1_MASK_$LI$()) !== 0) {
+                            this.button = MouseEvent.BUTTON1;
+                            this.modifiers &= ~java.awt.event.InputEvent.BUTTON2_MASK_$LI$() & ~java.awt.event.InputEvent.BUTTON3_MASK_$LI$();
+                            if (this.id !== MouseEvent.MOUSE_PRESSED_$LI$()) {
+                                this.modifiers &= ~java.awt.event.InputEvent.BUTTON1_DOWN_MASK_$LI$();
+                            }
+                        }
+                        else if ((this.modifiers & java.awt.event.InputEvent.BUTTON2_MASK_$LI$()) !== 0) {
+                            this.button = MouseEvent.BUTTON2;
+                            this.modifiers &= ~java.awt.event.InputEvent.BUTTON1_MASK_$LI$() & ~java.awt.event.InputEvent.BUTTON3_MASK_$LI$();
+                            if (this.id !== MouseEvent.MOUSE_PRESSED_$LI$()) {
+                                this.modifiers &= ~java.awt.event.InputEvent.BUTTON2_DOWN_MASK_$LI$();
+                            }
+                        }
+                        else if ((this.modifiers & java.awt.event.InputEvent.BUTTON3_MASK_$LI$()) !== 0) {
+                            this.button = MouseEvent.BUTTON3;
+                            this.modifiers &= ~java.awt.event.InputEvent.BUTTON1_MASK_$LI$() & ~java.awt.event.InputEvent.BUTTON2_MASK_$LI$();
+                            if (this.id !== MouseEvent.MOUSE_PRESSED_$LI$()) {
+                                this.modifiers &= ~java.awt.event.InputEvent.BUTTON3_DOWN_MASK_$LI$();
+                            }
+                        }
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.ALT_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.ALT_DOWN_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.META_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.META_DOWN_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.SHIFT_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.SHIFT_DOWN_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.CTRL_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.CTRL_DOWN_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.ALT_GRAPH_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.ALT_GRAPH_DOWN_MASK_$LI$();
+                    }
+                };
+                MouseEvent.prototype.setOldModifiers = function () {
+                    if (this.id === MouseEvent.MOUSE_PRESSED_$LI$() || this.id === MouseEvent.MOUSE_RELEASED_$LI$() || this.id === MouseEvent.MOUSE_CLICKED_$LI$()) {
+                        switch ((this.button)) {
+                            case MouseEvent.BUTTON1:
+                                this.modifiers |= java.awt.event.InputEvent.BUTTON1_MASK_$LI$();
+                                break;
+                            case MouseEvent.BUTTON2:
+                                this.modifiers |= java.awt.event.InputEvent.BUTTON2_MASK_$LI$();
+                                break;
+                            case MouseEvent.BUTTON3:
+                                this.modifiers |= java.awt.event.InputEvent.BUTTON3_MASK_$LI$();
+                                break;
+                        }
+                    }
+                    else {
+                        if ((this.modifiers & java.awt.event.InputEvent.BUTTON1_DOWN_MASK_$LI$()) !== 0) {
+                            this.modifiers |= java.awt.event.InputEvent.BUTTON1_MASK_$LI$();
+                        }
+                        if ((this.modifiers & java.awt.event.InputEvent.BUTTON2_DOWN_MASK_$LI$()) !== 0) {
+                            this.modifiers |= java.awt.event.InputEvent.BUTTON2_MASK_$LI$();
+                        }
+                        if ((this.modifiers & java.awt.event.InputEvent.BUTTON3_DOWN_MASK_$LI$()) !== 0) {
+                            this.modifiers |= java.awt.event.InputEvent.BUTTON3_MASK_$LI$();
+                        }
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.ALT_DOWN_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.ALT_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.META_DOWN_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.META_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.SHIFT_DOWN_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.SHIFT_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.CTRL_DOWN_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.CTRL_MASK_$LI$();
+                    }
+                    if ((this.modifiers & java.awt.event.InputEvent.ALT_GRAPH_DOWN_MASK_$LI$()) !== 0) {
+                        this.modifiers |= java.awt.event.InputEvent.ALT_GRAPH_MASK_$LI$();
+                    }
+                };
+                MouseEvent.MOUSE_FIRST = 500;
+                MouseEvent.MOUSE_LAST = 507;
+                MouseEvent.NOBUTTON = 0;
+                MouseEvent.BUTTON1 = 1;
+                MouseEvent.BUTTON2 = 2;
+                MouseEvent.BUTTON3 = 3;
+                MouseEvent.serialVersionUID = -991214153494842848;
+                MouseEvent.cachedNumberOfButtons = 2;
+                return MouseEvent;
+            }(java.awt.event.InputEvent));
+            event.MouseEvent = MouseEvent;
+            MouseEvent["__classname"] = "java.awt.event.MouseEvent";
+        })(event = awt.event || (awt.event = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var util;
+    (function (util) {
+        var Hashtable = (function (_super) {
+            __extends(Hashtable, _super);
+            function Hashtable() {
+                _super.call(this);
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
+            }
+            Hashtable.serialVersionUID = 1;
+            return Hashtable;
+        }(java.util.HashMap));
+        util.Hashtable = Hashtable;
+        Hashtable["__classname"] = "java.util.Hashtable";
+    })(util = java.util || (java.util = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var util;
@@ -43381,6 +51071,7 @@ var java;
             return LinkedHashMap;
         }(java.util.HashMap));
         util.LinkedHashMap = LinkedHashMap;
+        LinkedHashMap["__classname"] = "java.util.LinkedHashMap";
         var LinkedHashMap;
         (function (LinkedHashMap) {
             /**
@@ -43424,6 +51115,7 @@ var java;
                 return ChainEntry;
             }(util.AbstractMap.SimpleEntry));
             LinkedHashMap.ChainEntry = ChainEntry;
+            ChainEntry["__classname"] = "java.util.LinkedHashMap.ChainEntry";
             var EntrySet = (function (_super) {
                 __extends(EntrySet, _super);
                 function EntrySet(__parent) {
@@ -43464,6 +51156,7 @@ var java;
                 return EntrySet;
             }(java.util.AbstractSet));
             LinkedHashMap.EntrySet = EntrySet;
+            EntrySet["__classname"] = "java.util.LinkedHashMap.EntrySet";
             var EntrySet;
             (function (EntrySet) {
                 var EntryIterator = (function () {
@@ -43501,10 +51194,1009 @@ var java;
                     return EntryIterator;
                 }());
                 EntrySet.EntryIterator = EntryIterator;
+                EntryIterator["__classname"] = "java.util.LinkedHashMap.EntrySet.EntryIterator";
             })(EntrySet = LinkedHashMap.EntrySet || (LinkedHashMap.EntrySet = {}));
         })(LinkedHashMap = util.LinkedHashMap || (util.LinkedHashMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var sun;
+(function (sun) {
+    var awt;
+    (function (awt) {
+        var ExtendedKeyCodes = (function () {
+            function ExtendedKeyCodes() {
+            }
+            ExtendedKeyCodes.__static_initialize = function () { if (!ExtendedKeyCodes.__static_initialized) {
+                ExtendedKeyCodes.__static_initialized = true;
+                ExtendedKeyCodes.__static_initializer_0();
+            } };
+            ExtendedKeyCodes.regularKeyCodesMap_$LI$ = function () { ExtendedKeyCodes.__static_initialize(); if (ExtendedKeyCodes.regularKeyCodesMap == null)
+                ExtendedKeyCodes.regularKeyCodesMap = new java.util.HashMap(98, 1.0); return ExtendedKeyCodes.regularKeyCodesMap; };
+            ;
+            ExtendedKeyCodes.extendedKeyCodesSet_$LI$ = function () { ExtendedKeyCodes.__static_initialize(); if (ExtendedKeyCodes.extendedKeyCodesSet == null)
+                ExtendedKeyCodes.extendedKeyCodesSet = new java.util.HashSet(501, 1.0); return ExtendedKeyCodes.extendedKeyCodesSet; };
+            ;
+            ExtendedKeyCodes.getExtendedKeyCodeForChar = function (c) {
+                var uc = javaemul.internal.CharacterHelper.toUpperCase(c);
+                var lc = javaemul.internal.CharacterHelper.toLowerCase(c);
+                if (ExtendedKeyCodes.regularKeyCodesMap_$LI$().containsKey(c)) {
+                    if (ExtendedKeyCodes.regularKeyCodesMap_$LI$().containsKey(uc)) {
+                        return ExtendedKeyCodes.regularKeyCodesMap_$LI$().get(uc);
+                    }
+                    return ExtendedKeyCodes.regularKeyCodesMap_$LI$().get(c);
+                }
+                uc += 16777216;
+                lc += 16777216;
+                if (ExtendedKeyCodes.extendedKeyCodesSet_$LI$().contains(uc)) {
+                    return uc;
+                }
+                else if (ExtendedKeyCodes.extendedKeyCodesSet_$LI$().contains(lc)) {
+                    return lc;
+                }
+                return java.awt.event.KeyEvent.VK_UNDEFINED;
+            };
+            ExtendedKeyCodes.__static_initializer_0 = function () {
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(8, java.awt.event.KeyEvent.VK_BACK_SPACE);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(9, java.awt.event.KeyEvent.VK_TAB);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(10, java.awt.event.KeyEvent.VK_ENTER);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(27, java.awt.event.KeyEvent.VK_ESCAPE);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(8364, java.awt.event.KeyEvent.VK_EURO_SIGN);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(32, java.awt.event.KeyEvent.VK_SPACE);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(33, java.awt.event.KeyEvent.VK_EXCLAMATION_MARK);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(34, java.awt.event.KeyEvent.VK_QUOTEDBL);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(35, java.awt.event.KeyEvent.VK_NUMBER_SIGN);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(36, java.awt.event.KeyEvent.VK_DOLLAR);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(38, java.awt.event.KeyEvent.VK_AMPERSAND);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(39, java.awt.event.KeyEvent.VK_QUOTE);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(40, java.awt.event.KeyEvent.VK_LEFT_PARENTHESIS);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(41, java.awt.event.KeyEvent.VK_RIGHT_PARENTHESIS);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(42, java.awt.event.KeyEvent.VK_ASTERISK);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(43, java.awt.event.KeyEvent.VK_PLUS);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(44, java.awt.event.KeyEvent.VK_COMMA);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(45, java.awt.event.KeyEvent.VK_MINUS);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(46, java.awt.event.KeyEvent.VK_PERIOD);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(47, java.awt.event.KeyEvent.VK_SLASH);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(48, java.awt.event.KeyEvent.VK_0);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(49, java.awt.event.KeyEvent.VK_1);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(50, java.awt.event.KeyEvent.VK_2);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(51, java.awt.event.KeyEvent.VK_3);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(52, java.awt.event.KeyEvent.VK_4);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(53, java.awt.event.KeyEvent.VK_5);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(54, java.awt.event.KeyEvent.VK_6);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(55, java.awt.event.KeyEvent.VK_7);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(56, java.awt.event.KeyEvent.VK_8);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(57, java.awt.event.KeyEvent.VK_9);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(58, java.awt.event.KeyEvent.VK_COLON);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(59, java.awt.event.KeyEvent.VK_SEMICOLON);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(60, java.awt.event.KeyEvent.VK_LESS);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(61, java.awt.event.KeyEvent.VK_EQUALS);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(62, java.awt.event.KeyEvent.VK_GREATER);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(64, java.awt.event.KeyEvent.VK_AT);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(65, java.awt.event.KeyEvent.VK_A);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(66, java.awt.event.KeyEvent.VK_B);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(67, java.awt.event.KeyEvent.VK_C);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(68, java.awt.event.KeyEvent.VK_D);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(69, java.awt.event.KeyEvent.VK_E);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(70, java.awt.event.KeyEvent.VK_F);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(71, java.awt.event.KeyEvent.VK_G);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(72, java.awt.event.KeyEvent.VK_H);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(73, java.awt.event.KeyEvent.VK_I);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(74, java.awt.event.KeyEvent.VK_J);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(75, java.awt.event.KeyEvent.VK_K);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(76, java.awt.event.KeyEvent.VK_L);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(77, java.awt.event.KeyEvent.VK_M);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(78, java.awt.event.KeyEvent.VK_N);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(79, java.awt.event.KeyEvent.VK_O);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(80, java.awt.event.KeyEvent.VK_P);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(81, java.awt.event.KeyEvent.VK_Q);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(82, java.awt.event.KeyEvent.VK_R);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(83, java.awt.event.KeyEvent.VK_S);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(84, java.awt.event.KeyEvent.VK_T);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(85, java.awt.event.KeyEvent.VK_U);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(86, java.awt.event.KeyEvent.VK_V);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(87, java.awt.event.KeyEvent.VK_W);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(88, java.awt.event.KeyEvent.VK_X);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(89, java.awt.event.KeyEvent.VK_Y);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(90, java.awt.event.KeyEvent.VK_Z);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(91, java.awt.event.KeyEvent.VK_OPEN_BRACKET);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(92, java.awt.event.KeyEvent.VK_BACK_SLASH);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(93, java.awt.event.KeyEvent.VK_CLOSE_BRACKET);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(94, java.awt.event.KeyEvent.VK_CIRCUMFLEX);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(95, java.awt.event.KeyEvent.VK_UNDERSCORE);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(96, java.awt.event.KeyEvent.VK_BACK_QUOTE);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(97, java.awt.event.KeyEvent.VK_A);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(98, java.awt.event.KeyEvent.VK_B);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(99, java.awt.event.KeyEvent.VK_C);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(100, java.awt.event.KeyEvent.VK_D);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(101, java.awt.event.KeyEvent.VK_E);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(102, java.awt.event.KeyEvent.VK_F);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(103, java.awt.event.KeyEvent.VK_G);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(104, java.awt.event.KeyEvent.VK_H);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(105, java.awt.event.KeyEvent.VK_I);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(106, java.awt.event.KeyEvent.VK_J);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(107, java.awt.event.KeyEvent.VK_K);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(108, java.awt.event.KeyEvent.VK_L);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(109, java.awt.event.KeyEvent.VK_M);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(110, java.awt.event.KeyEvent.VK_N);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(111, java.awt.event.KeyEvent.VK_O);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(112, java.awt.event.KeyEvent.VK_P);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(113, java.awt.event.KeyEvent.VK_Q);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(114, java.awt.event.KeyEvent.VK_R);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(115, java.awt.event.KeyEvent.VK_S);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(116, java.awt.event.KeyEvent.VK_T);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(117, java.awt.event.KeyEvent.VK_U);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(118, java.awt.event.KeyEvent.VK_V);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(119, java.awt.event.KeyEvent.VK_W);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(120, java.awt.event.KeyEvent.VK_X);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(121, java.awt.event.KeyEvent.VK_Y);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(122, java.awt.event.KeyEvent.VK_Z);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(123, java.awt.event.KeyEvent.VK_BRACELEFT);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(125, java.awt.event.KeyEvent.VK_BRACERIGHT);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(127, java.awt.event.KeyEvent.VK_DELETE);
+                ExtendedKeyCodes.regularKeyCodesMap_$LI$().put(161, java.awt.event.KeyEvent.VK_INVERTED_EXCLAMATION_MARK);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 96);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 124);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 126);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 162);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 163);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 165);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 167);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 168);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 171);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 176);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 177);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 178);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 179);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 180);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 181);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 182);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 183);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 185);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 186);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 187);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 188);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 189);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 190);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 191);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 196);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 197);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 198);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 199);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 209);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 214);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 215);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 216);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 223);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 224);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 225);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 226);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 228);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 229);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 230);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 231);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 232);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 233);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 234);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 235);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 236);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 237);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 238);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 240);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 241);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 242);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 243);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 244);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 245);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 246);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 247);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 248);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 249);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 250);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 251);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 252);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 253);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 254);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 261);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 731);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 322);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 318);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 347);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 353);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 351);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 357);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 382);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 380);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 259);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 263);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 269);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 281);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 283);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 273);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 328);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 337);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 369);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 345);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 367);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 355);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 729);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 304);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 295);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 293);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 305);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 287);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 309);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 267);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 265);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 289);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 285);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 365);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 349);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 312);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 343);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 316);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 275);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 291);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 359);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 331);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 257);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 303);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 279);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 299);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 326);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 333);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 311);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 371);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 363);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 339);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12540);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12450);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12452);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12454);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12456);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12458);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12459);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12461);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12463);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12465);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12467);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12469);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12471);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12473);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12475);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12477);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12479);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12481);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12484);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12486);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12488);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12490);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12491);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12492);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12493);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12494);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12495);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12498);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12501);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12504);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12507);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12510);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12511);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12512);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12513);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12514);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12516);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12518);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12520);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12521);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12522);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12523);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12524);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12525);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12527);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12531);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12443);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 12444);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1776);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1777);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1778);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1779);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1780);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1781);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1782);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1783);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1784);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1785);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1648);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1662);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1670);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1548);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1748);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1632);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1633);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1634);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1635);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1636);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1637);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1638);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1639);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1640);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1641);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1563);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1569);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1572);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1574);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1575);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1576);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1577);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1578);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1579);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1580);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1581);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1582);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1583);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1584);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1585);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1586);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1587);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1588);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1589);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1590);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1591);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1592);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1593);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1594);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1601);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1602);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1603);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1604);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1605);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1606);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1607);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1608);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1609);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1610);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1614);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1615);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1616);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1618);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1688);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1700);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1705);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1711);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1726);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1740);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1740);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1746);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1171);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1175);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1179);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1181);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1187);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1199);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1201);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1203);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1209);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1211);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1241);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1257);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1106);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1107);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1105);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1108);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1109);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1110);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1111);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1112);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1113);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1114);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1115);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1116);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1169);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1118);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1119);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 8470);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1102);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1072);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1073);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1094);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1076);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1077);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1092);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1075);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1093);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1080);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1081);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1082);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1083);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1084);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1085);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1086);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1087);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1103);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1088);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1089);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1090);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1091);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1078);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1074);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1100);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1099);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1079);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1096);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1101);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1097);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1095);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1098);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 8213);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 945);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 946);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 947);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 948);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 949);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 950);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 951);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 952);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 953);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 954);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 955);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 956);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 957);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 958);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 959);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 960);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 961);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 963);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 962);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 964);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 965);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 966);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 967);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 968);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 969);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 8592);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 8594);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 8595);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 8211);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 8220);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 8221);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 8222);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1488);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1489);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1490);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1491);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1492);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1493);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1494);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1495);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1496);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1497);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1498);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1499);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1500);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1501);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1502);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1503);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1504);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1505);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1506);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1507);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1508);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1509);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1510);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1511);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1512);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1513);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1514);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3585);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3586);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3587);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3588);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3589);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3591);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3592);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3594);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3596);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3604);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3605);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3606);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3607);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3609);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3610);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3611);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3612);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3613);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3614);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3615);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3616);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3617);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3618);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3619);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3621);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3623);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3626);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3627);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3629);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3632);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3633);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3634);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3635);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3636);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3637);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3638);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3639);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3640);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3641);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3647);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3648);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3649);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3651);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3652);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3653);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3654);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3655);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3656);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3657);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3664);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3665);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3666);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3667);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3668);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3669);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3670);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3671);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3672);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 3673);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1415);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1417);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1417);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1373);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1373);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1371);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1371);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1374);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1374);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1377);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1378);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1379);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1380);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1381);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1382);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1383);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1384);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1385);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1386);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1387);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1388);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1389);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1390);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1391);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1392);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1393);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1394);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1395);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1396);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1397);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1398);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1399);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1400);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1401);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1402);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1403);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1404);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1405);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1406);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1407);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1408);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1409);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1410);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1411);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1412);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1413);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 1414);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4304);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4305);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4306);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4307);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4308);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4309);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4310);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4311);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4312);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4313);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4314);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4315);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4316);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4317);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4318);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4319);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4320);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4321);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4322);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4323);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4324);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4325);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4326);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4327);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4328);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4329);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4330);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4331);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4332);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4333);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4334);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4335);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 4336);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 487);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 601);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 7865);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 7883);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 7885);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 7909);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 417);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 432);
+                ExtendedKeyCodes.extendedKeyCodesSet_$LI$().add(16777216 + 8363);
+            };
+            ExtendedKeyCodes.__static_initialized = false;
+            return ExtendedKeyCodes;
+        }());
+        awt.ExtendedKeyCodes = ExtendedKeyCodes;
+        ExtendedKeyCodes["__classname"] = "sun.awt.ExtendedKeyCodes";
+    })(awt = sun.awt || (sun.awt = {}));
+})(sun || (sun = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var event;
+        (function (event) {
+            /**
+             * An event which indicates that the mouse wheel was rotated in a component.
+             * <P>
+             * A wheel mouse is a mouse which has a wheel in place of the middle button.
+             * This wheel can be rotated towards or away from the user.  Mouse wheels are
+             * most often used for scrolling, though other uses are possible.
+             * <P>
+             * A MouseWheelEvent object is passed to every <code>MouseWheelListener</code>
+             * object which registered to receive the "interesting" mouse events using the
+             * component's <code>addMouseWheelListener</code> method.  Each such listener
+             * object gets a <code>MouseEvent</code> containing the mouse event.
+             * <P>
+             * Due to the mouse wheel's special relationship to scrolling Components,
+             * MouseWheelEvents are delivered somewhat differently than other MouseEvents.
+             * This is because while other MouseEvents usually affect a change on
+             * the Component directly under the mouse
+             * cursor (for instance, when clicking a button), MouseWheelEvents often have
+             * an effect away from the mouse cursor (moving the wheel while
+             * over a Component inside a ScrollPane should scroll one of the
+             * Scrollbars on the ScrollPane).
+             * <P>
+             * MouseWheelEvents start delivery from the Component underneath the
+             * mouse cursor.  If MouseWheelEvents are not enabled on the
+             * Component, the event is delivered to the first ancestor
+             * Container with MouseWheelEvents enabled.  This will usually be
+             * a ScrollPane with wheel scrolling enabled.  The source
+             * Component and x,y coordinates will be relative to the event's
+             * final destination (the ScrollPane).  This allows a complex
+             * GUI to be installed without modification into a ScrollPane, and
+             * for all MouseWheelEvents to be delivered to the ScrollPane for
+             * scrolling.
+             * <P>
+             * Some AWT Components are implemented using native widgets which
+             * display their own scrollbars and handle their own scrolling.
+             * The particular Components for which this is true will vary from
+             * platform to platform.  When the mouse wheel is
+             * moved over one of these Components, the event is delivered straight to
+             * the native widget, and not propagated to ancestors.
+             * <P>
+             * Platforms offer customization of the amount of scrolling that
+             * should take place when the mouse wheel is moved.  The two most
+             * common settings are to scroll a certain number of "units"
+             * (commonly lines of text in a text-based component) or an entire "block"
+             * (similar to page-up/page-down).  The MouseWheelEvent offers
+             * methods for conforming to the underlying platform settings.  These
+             * platform settings can be changed at any time by the user.  MouseWheelEvents
+             * reflect the most recent settings.
+             * <P>
+             * The <code>MouseWheelEvent</code> class includes methods for
+             * getting the number of "clicks" by which the mouse wheel is rotated.
+             * The {@link #getWheelRotation} method returns the integer number
+             * of "clicks" corresponding to the number of notches by which the wheel was
+             * rotated. In addition to this method, the <code>MouseWheelEvent</code>
+             * class provides the {@link #getPreciseWheelRotation} method which returns
+             * a double number of "clicks" in case a partial rotation occurred.
+             * The {@link #getPreciseWheelRotation} method is useful if a mouse supports
+             * a high-resolution wheel, such as a freely rotating wheel with no
+             * notches. Applications can benefit by using this method to process
+             * mouse wheel events more precisely, and thus, making visual perception
+             * smoother.
+             *
+             * @author Brent Christian
+             * @see MouseWheelListener
+             * @see java.awt.ScrollPane
+             * @see java.awt.ScrollPane#setWheelScrollingEnabled(boolean)
+             * @see javax.swing.JScrollPane
+             * @see javax.swing.JScrollPane#setWheelScrollingEnabled(boolean)
+             * @since 1.4
+             */
+            var MouseWheelEvent = (function (_super) {
+                __extends(MouseWheelEvent, _super);
+                /**
+                 * Constructs a <code>MouseWheelEvent</code> object with the specified
+                 * source component, type, modifiers, coordinates, absolute coordinates,
+                 * scroll type, scroll amount, and wheel rotation.
+                 * <p>Note that passing in an invalid <code>id</code> parameter results
+                 * in unspecified behavior. This method throws an
+                 * <code>IllegalArgumentException</code> if <code>source</code> equals
+                 * <code>null</code>.
+                 * <p>Even if inconsistent values for relative and absolute coordinates
+                 * are passed to the constructor, a <code>MouseWheelEvent</code> instance
+                 * is still created and no exception is thrown.
+                 *
+                 * @param source         the <code>Component</code> that originated the event
+                 * @param id             the integer value that identifies the event
+                 * @param when           a long value that gives the time when the event occurred
+                 * @param modifiers      the modifier keys down during event
+                 * (shift, ctrl, alt, meta)
+                 * @param x              the horizontal <code>x</code> coordinate for the
+                 * mouse location
+                 * @param y              the vertical <code>y</code> coordinate for the
+                 * mouse location
+                 * @param xAbs           the absolute horizontal <code>x</code> coordinate for
+                 * the mouse location
+                 * @param yAbs           the absolute vertical <code>y</code> coordinate for
+                 * the mouse location
+                 * @param clickCount     the number of mouse clicks associated with the event
+                 * @param popupTrigger   a boolean value, <code>true</code> if this event is a trigger
+                 * for a popup-menu
+                 * @param scrollType     the type of scrolling which should take place in
+                 * response to this event;  valid values are
+                 * <code>WHEEL_UNIT_SCROLL</code> and
+                 * <code>WHEEL_BLOCK_SCROLL</code>
+                 * @param  scrollAmount  for scrollType <code>WHEEL_UNIT_SCROLL</code>,
+                 * the number of units to be scrolled
+                 * @param wheelRotation  the integer number of "clicks" by which the mouse wheel
+                 * was rotated
+                 * @param preciseWheelRotation the double number of "clicks" by which the mouse wheel
+                 * was rotated
+                 *
+                 * @throws IllegalArgumentException if <code>source</code> is null
+                 * @see MouseEvent#MouseEvent(java.awt.Component, int, long, int, int, int, int, boolean)
+                 * @see MouseEvent#MouseEvent(java.awt.Component, int, long, int, int, int, int, int, int, boolean, int)
+                 * @since 1.7
+                 */
+                function MouseWheelEvent(source, id, when, modifiers, x, y, xAbs, yAbs, clickCount, popupTrigger, scrollType, scrollAmount, wheelRotation, preciseWheelRotation) {
+                    var _this = this;
+                    if (((source != null && source instanceof java.awt.Component) || source === null) && ((typeof id === 'number') || id === null) && ((typeof when === 'number') || when === null) && ((typeof modifiers === 'number') || modifiers === null) && ((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && ((typeof xAbs === 'number') || xAbs === null) && ((typeof yAbs === 'number') || yAbs === null) && ((typeof clickCount === 'number') || clickCount === null) && ((typeof popupTrigger === 'boolean') || popupTrigger === null) && ((typeof scrollType === 'number') || scrollType === null) && ((typeof scrollAmount === 'number') || scrollAmount === null) && ((typeof wheelRotation === 'number') || wheelRotation === null) && ((typeof preciseWheelRotation === 'number') || preciseWheelRotation === null)) {
+                        _super.call(this, source, id, when, modifiers, x, y, xAbs, yAbs, clickCount, popupTrigger, java.awt.event.MouseEvent.NOBUTTON);
+                        this.scrollType = 0;
+                        this.scrollAmount = 0;
+                        this.wheelRotation = 0;
+                        this.preciseWheelRotation = 0;
+                        (function () {
+                            _this.scrollType = scrollType;
+                            _this.scrollAmount = scrollAmount;
+                            _this.wheelRotation = wheelRotation;
+                            _this.preciseWheelRotation = preciseWheelRotation;
+                        })();
+                    }
+                    else if (((source != null && source instanceof java.awt.Component) || source === null) && ((typeof id === 'number') || id === null) && ((typeof when === 'number') || when === null) && ((typeof modifiers === 'number') || modifiers === null) && ((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && ((typeof xAbs === 'number') || xAbs === null) && ((typeof yAbs === 'number') || yAbs === null) && ((typeof clickCount === 'number') || clickCount === null) && ((typeof popupTrigger === 'boolean') || popupTrigger === null) && ((typeof scrollType === 'number') || scrollType === null) && ((typeof scrollAmount === 'number') || scrollAmount === null) && ((typeof wheelRotation === 'number') || wheelRotation === null) && preciseWheelRotation === undefined) {
+                        {
+                            var preciseWheelRotation = wheelRotation;
+                            _super.call(this, source, id, when, modifiers, x, y, xAbs, yAbs, clickCount, popupTrigger, java.awt.event.MouseEvent.NOBUTTON);
+                            this.scrollType = 0;
+                            this.scrollAmount = 0;
+                            this.wheelRotation = 0;
+                            this.preciseWheelRotation = 0;
+                            (function () {
+                                _this.scrollType = scrollType;
+                                _this.scrollAmount = scrollAmount;
+                                _this.wheelRotation = wheelRotation;
+                                _this.preciseWheelRotation = preciseWheelRotation;
+                            })();
+                        }
+                        (function () {
+                        })();
+                    }
+                    else if (((source != null && source instanceof java.awt.Component) || source === null) && ((typeof id === 'number') || id === null) && ((typeof when === 'number') || when === null) && ((typeof modifiers === 'number') || modifiers === null) && ((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null) && ((typeof xAbs === 'number') || xAbs === null) && ((typeof yAbs === 'boolean') || yAbs === null) && ((typeof clickCount === 'number') || clickCount === null) && ((typeof popupTrigger === 'number') || popupTrigger === null) && ((typeof scrollType === 'number') || scrollType === null) && scrollAmount === undefined && wheelRotation === undefined && preciseWheelRotation === undefined) {
+                        var clickCount = xAbs;
+                        var popupTrigger = yAbs;
+                        var scrollType = clickCount;
+                        var scrollAmount = popupTrigger;
+                        var wheelRotation = scrollType;
+                        {
+                            var xAbs = 0;
+                            var yAbs = 0;
+                            {
+                                var preciseWheelRotation = wheelRotation;
+                                _super.call(this, source, id, when, modifiers, x, y, xAbs, yAbs, clickCount, popupTrigger, java.awt.event.MouseEvent.NOBUTTON);
+                                this.scrollType = 0;
+                                this.scrollAmount = 0;
+                                this.wheelRotation = 0;
+                                this.preciseWheelRotation = 0;
+                                (function () {
+                                    _this.scrollType = scrollType;
+                                    _this.scrollAmount = scrollAmount;
+                                    _this.wheelRotation = wheelRotation;
+                                    _this.preciseWheelRotation = preciseWheelRotation;
+                                })();
+                            }
+                            (function () {
+                            })();
+                        }
+                        (function () {
+                        })();
+                    }
+                    else
+                        throw new Error('invalid overload');
+                }
+                /**
+                 * Returns the type of scrolling that should take place in response to this
+                 * event.  This is determined by the native platform.  Legal values are:
+                 * <ul>
+                 * <li> MouseWheelEvent.WHEEL_UNIT_SCROLL
+                 * <li> MouseWheelEvent.WHEEL_BLOCK_SCROLL
+                 * </ul>
+                 *
+                 * @return either MouseWheelEvent.WHEEL_UNIT_SCROLL or
+                 * MouseWheelEvent.WHEEL_BLOCK_SCROLL, depending on the configuration of
+                 * the native platform.
+                 * @see java.awt.Adjustable#getUnitIncrement
+                 * @see java.awt.Adjustable#getBlockIncrement
+                 * @see javax.swing.Scrollable#getScrollableUnitIncrement
+                 * @see javax.swing.Scrollable#getScrollableBlockIncrement
+                 */
+                MouseWheelEvent.prototype.getScrollType = function () {
+                    return this.scrollType;
+                };
+                /**
+                 * Returns the number of units that should be scrolled per
+                 * click of mouse wheel rotation.
+                 * Only valid if <code>getScrollType</code> returns
+                 * <code>MouseWheelEvent.WHEEL_UNIT_SCROLL</code>
+                 *
+                 * @return number of units to scroll, or an undefined value if
+                 * <code>getScrollType</code> returns
+                 * <code>MouseWheelEvent.WHEEL_BLOCK_SCROLL</code>
+                 * @see #getScrollType
+                 */
+                MouseWheelEvent.prototype.getScrollAmount = function () {
+                    return this.scrollAmount;
+                };
+                /**
+                 * Returns the number of "clicks" the mouse wheel was rotated, as an integer.
+                 * A partial rotation may occur if the mouse supports a high-resolution wheel.
+                 * In this case, the method returns zero until a full "click" has been accumulated.
+                 *
+                 * @return negative values if the mouse wheel was rotated up/away from
+                 * the user, and positive values if the mouse wheel was rotated down/
+                 * towards the user
+                 * @see #getPreciseWheelRotation
+                 */
+                MouseWheelEvent.prototype.getWheelRotation = function () {
+                    return this.wheelRotation;
+                };
+                /**
+                 * Returns the number of "clicks" the mouse wheel was rotated, as a double.
+                 * A partial rotation may occur if the mouse supports a high-resolution wheel.
+                 * In this case, the return value will include a fractional "click".
+                 *
+                 * @return negative values if the mouse wheel was rotated up or away from
+                 * the user, and positive values if the mouse wheel was rotated down or
+                 * towards the user
+                 * @see #getWheelRotation
+                 * @since 1.7
+                 */
+                MouseWheelEvent.prototype.getPreciseWheelRotation = function () {
+                    return this.preciseWheelRotation;
+                };
+                /**
+                 * This is a convenience method to aid in the implementation of
+                 * the common-case MouseWheelListener - to scroll a ScrollPane or
+                 * JScrollPane by an amount which conforms to the platform settings.
+                 * (Note, however, that <code>ScrollPane</code> and
+                 * <code>JScrollPane</code> already have this functionality built in.)
+                 * <P>
+                 * This method returns the number of units to scroll when scroll type is
+                 * MouseWheelEvent.WHEEL_UNIT_SCROLL, and should only be called if
+                 * <code>getScrollType</code> returns MouseWheelEvent.WHEEL_UNIT_SCROLL.
+                 * <P>
+                 * Direction of scroll, amount of wheel movement,
+                 * and platform settings for wheel scrolling are all accounted for.
+                 * This method does not and cannot take into account value of the
+                 * Adjustable/Scrollable unit increment, as this will vary among
+                 * scrolling components.
+                 * <P>
+                 * A simplified example of how this method might be used in a
+                 * listener:
+                 * <pre>
+                 * mouseWheelMoved(MouseWheelEvent event) {
+                 * ScrollPane sp = getScrollPaneFromSomewhere();
+                 * Adjustable adj = sp.getVAdjustable()
+                 * if (MouseWheelEvent.getScrollType() == WHEEL_UNIT_SCROLL) {
+                 * int totalScrollAmount =
+                 * event.getUnitsToScroll() *
+                 * adj.getUnitIncrement();
+                 * adj.setValue(adj.getValue() + totalScrollAmount);
+                 * }
+                 * }
+                 * </pre>
+                 *
+                 * @return the number of units to scroll based on the direction and amount
+                 * of mouse wheel rotation, and on the wheel scrolling settings of the
+                 * native platform
+                 * @see #getScrollType
+                 * @see #getScrollAmount
+                 * @see MouseWheelListener
+                 * @see java.awt.Adjustable
+                 * @see java.awt.Adjustable#getUnitIncrement
+                 * @see javax.swing.Scrollable
+                 * @see javax.swing.Scrollable#getScrollableUnitIncrement
+                 * @see java.awt.ScrollPane
+                 * @see java.awt.ScrollPane#setWheelScrollingEnabled
+                 * @see javax.swing.JScrollPane
+                 * @see javax.swing.JScrollPane#setWheelScrollingEnabled
+                 */
+                MouseWheelEvent.prototype.getUnitsToScroll = function () {
+                    return this.scrollAmount * this.wheelRotation;
+                };
+                /**
+                 * Returns a parameter string identifying this event.
+                 * This method is useful for event-logging and for debugging.
+                 *
+                 * @return a string identifying the event and its attributes
+                 */
+                MouseWheelEvent.prototype.paramString = function () {
+                    var scrollTypeStr = null;
+                    if (this.getScrollType() === MouseWheelEvent.WHEEL_UNIT_SCROLL) {
+                        scrollTypeStr = "WHEEL_UNIT_SCROLL";
+                    }
+                    else if (this.getScrollType() === MouseWheelEvent.WHEEL_BLOCK_SCROLL) {
+                        scrollTypeStr = "WHEEL_BLOCK_SCROLL";
+                    }
+                    else {
+                        scrollTypeStr = "unknown scroll type";
+                    }
+                    return _super.prototype.paramString.call(this) + ",scrollType=" + scrollTypeStr + ",scrollAmount=" + this.getScrollAmount() + ",wheelRotation=" + this.getWheelRotation() + ",preciseWheelRotation=" + this.getPreciseWheelRotation();
+                };
+                /**
+                 * Constant representing scrolling by "units" (like scrolling with the
+                 * arrow keys)
+                 *
+                 * @see #getScrollType
+                 */
+                MouseWheelEvent.WHEEL_UNIT_SCROLL = 0;
+                /**
+                 * Constant representing scrolling by a "block" (like scrolling
+                 * with page-up, page-down keys)
+                 *
+                 * @see #getScrollType
+                 */
+                MouseWheelEvent.WHEEL_BLOCK_SCROLL = 1;
+                MouseWheelEvent.serialVersionUID = 6459879390515399677;
+                return MouseWheelEvent;
+            }(java.awt.event.MouseEvent));
+            event.MouseWheelEvent = MouseWheelEvent;
+            MouseWheelEvent["__classname"] = "java.awt.event.MouseWheelEvent";
+        })(event = awt.event || (awt.event = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+sun.awt.ExtendedKeyCodes.extendedKeyCodesSet_$LI$();
+sun.awt.ExtendedKeyCodes.regularKeyCodesMap_$LI$();
+sun.awt.ExtendedKeyCodes.__static_initialize();
+java.awt.event.MouseEvent.MOUSE_WHEEL_$LI$();
+java.awt.event.MouseEvent.MOUSE_DRAGGED_$LI$();
+java.awt.event.MouseEvent.MOUSE_EXITED_$LI$();
+java.awt.event.MouseEvent.MOUSE_ENTERED_$LI$();
+java.awt.event.MouseEvent.MOUSE_MOVED_$LI$();
+java.awt.event.MouseEvent.MOUSE_RELEASED_$LI$();
+java.awt.event.MouseEvent.MOUSE_PRESSED_$LI$();
+java.awt.event.MouseEvent.MOUSE_CLICKED_$LI$();
+java.awt.event.KeyEvent.VK_SEPARATOR_$LI$();
+java.awt.event.KeyEvent.KEY_RELEASED_$LI$();
+java.awt.event.KeyEvent.KEY_PRESSED_$LI$();
+java.awt.event.KeyEvent.KEY_TYPED_$LI$();
 java.util.TreeMap.SubMapType_Tail_$LI$();
 java.util.TreeMap.SubMapType_Range_$LI$();
 java.util.TreeMap.SubMapType_Head_$LI$();
@@ -43525,6 +52217,28 @@ java.io.File.pathSeparatorChar_$LI$();
 java.io.File.separator_$LI$();
 java.io.File.separatorChar_$LI$();
 java.io.File.fs_$LI$();
+java.awt.event.InputEvent.HIGH_MODIFIERS_$LI$();
+java.awt.event.InputEvent.JDK_1_3_MODIFIERS_$LI$();
+java.awt.event.InputEvent.FIRST_HIGH_BIT_$LI$();
+java.awt.event.InputEvent.BUTTON_DOWN_MASK_$LI$();
+java.awt.event.InputEvent.ALT_GRAPH_DOWN_MASK_$LI$();
+java.awt.event.InputEvent.BUTTON3_DOWN_MASK_$LI$();
+java.awt.event.InputEvent.BUTTON2_DOWN_MASK_$LI$();
+java.awt.event.InputEvent.BUTTON1_DOWN_MASK_$LI$();
+java.awt.event.InputEvent.ALT_DOWN_MASK_$LI$();
+java.awt.event.InputEvent.META_DOWN_MASK_$LI$();
+java.awt.event.InputEvent.CTRL_DOWN_MASK_$LI$();
+java.awt.event.InputEvent.SHIFT_DOWN_MASK_$LI$();
+java.awt.event.InputEvent.BUTTON3_MASK_$LI$();
+java.awt.event.InputEvent.BUTTON2_MASK_$LI$();
+java.awt.event.InputEvent.BUTTON1_MASK_$LI$();
+java.awt.event.InputEvent.ALT_GRAPH_MASK_$LI$();
+java.awt.event.InputEvent.ALT_MASK_$LI$();
+java.awt.event.InputEvent.META_MASK_$LI$();
+java.awt.event.InputEvent.CTRL_MASK_$LI$();
+java.awt.event.InputEvent.SHIFT_MASK_$LI$();
+java.awt.event.ContainerEvent.COMPONENT_REMOVED_$LI$();
+java.awt.event.ContainerEvent.COMPONENT_ADDED_$LI$();
 java.util.Collections.RandomHolder.rnd_$LI$();
 java.util.Collections.ReverseComparator.INSTANCE_$LI$();
 java.util.Collections.EmptyListIterator.INSTANCE_$LI$();
@@ -43534,9 +52248,21 @@ java.util.Collections.EMPTY_LIST_$LI$();
 java.awt.geom.Area.EmptyCurves_$LI$();
 java.lang.System.out_$LI$();
 java.lang.System.err_$LI$();
+java.applet.Applet.__static_initialize();
+java.awt.event.TextEvent.TEXT_VALUE_CHANGED_$LI$();
+java.awt.event.ItemEvent.ITEM_STATE_CHANGED_$LI$();
+java.awt.event.ComponentEvent.COMPONENT_HIDDEN_$LI$();
+java.awt.event.ComponentEvent.COMPONENT_SHOWN_$LI$();
+java.awt.event.ComponentEvent.COMPONENT_RESIZED_$LI$();
+java.awt.event.ComponentEvent.COMPONENT_MOVED_$LI$();
+java.awt.event.AdjustmentEvent.ADJUSTMENT_VALUE_CHANGED_$LI$();
+java.awt.event.ActionEvent.ACTION_PERFORMED_$LI$();
+java.awt.event.ActionEvent.ALT_MASK_$LI$();
+java.awt.event.ActionEvent.META_MASK_$LI$();
+java.awt.event.ActionEvent.CTRL_MASK_$LI$();
+java.awt.event.ActionEvent.SHIFT_MASK_$LI$();
 java.nio.charset.StandardCharsets.UTF_8_$LI$();
 java.nio.charset.StandardCharsets.ISO_8859_1_$LI$();
-java.applet.Applet.__static_initialize();
 sun.awt.geom.AreaOp.EmptyChainList_$LI$();
 sun.awt.geom.AreaOp.EmptyLinkList_$LI$();
 sun.awt.geom.AreaOp.YXTopComparator_$LI$();
@@ -43564,6 +52290,7 @@ java.security.MessageDigest.Md5Digest.padding_$LI$();
 javaemul.internal.EmulatedCharset.ISO_8859_1_$LI$();
 javaemul.internal.EmulatedCharset.ISO_LATIN_1_$LI$();
 javaemul.internal.EmulatedCharset.UTF_8_$LI$();
+java.beans.PropertyChangeSupport.PropertyChangeListenerMap.EMPTY_$LI$();
 java.awt.geom.Path2D.Iterator.curvecoords_$LI$();
 java.awt.geom.Path2D.SEG_CLOSE_$LI$();
 java.awt.geom.Path2D.SEG_CUBICTO_$LI$();
@@ -43572,6 +52299,7 @@ java.awt.geom.Path2D.SEG_LINETO_$LI$();
 java.awt.geom.Path2D.SEG_MOVETO_$LI$();
 java.awt.geom.Path2D.WIND_NON_ZERO_$LI$();
 java.awt.geom.Path2D.WIND_EVEN_ODD_$LI$();
+javax.swing.event.EventListenerList.NULL_ARRAY_$LI$();
 javaemul.internal.StringHashCache.front_$LI$();
 javaemul.internal.StringHashCache.back_$LI$();
 javaemul.internal.NumberHelper.__ParseLong.maxValueForRadix_$LI$();
@@ -43634,3 +52362,62 @@ java.awt.geom.AffineTransform.HI_TRANSLATE_$LI$();
 java.awt.geom.AffineTransform.HI_IDENTITY_$LI$();
 java.awt.geom.AffineTransform.TYPE_MASK_ROTATION_$LI$();
 java.awt.geom.AffineTransform.TYPE_MASK_SCALE_$LI$();
+java.awt.Event.LOST_FOCUS_$LI$();
+java.awt.Event.GOT_FOCUS_$LI$();
+java.awt.Event.SAVE_FILE_$LI$();
+java.awt.Event.LOAD_FILE_$LI$();
+java.awt.Event.ACTION_EVENT_$LI$();
+java.awt.Event.LIST_DESELECT_$LI$();
+java.awt.Event.LIST_SELECT_$LI$();
+java.awt.Event.SCROLL_END_$LI$();
+java.awt.Event.SCROLL_BEGIN_$LI$();
+java.awt.Event.SCROLL_ABSOLUTE_$LI$();
+java.awt.Event.SCROLL_PAGE_DOWN_$LI$();
+java.awt.Event.SCROLL_PAGE_UP_$LI$();
+java.awt.Event.SCROLL_LINE_DOWN_$LI$();
+java.awt.Event.SCROLL_LINE_UP_$LI$();
+java.awt.Event.MOUSE_DRAG_$LI$();
+java.awt.Event.MOUSE_EXIT_$LI$();
+java.awt.Event.MOUSE_ENTER_$LI$();
+java.awt.Event.MOUSE_MOVE_$LI$();
+java.awt.Event.MOUSE_UP_$LI$();
+java.awt.Event.MOUSE_DOWN_$LI$();
+java.awt.Event.KEY_ACTION_RELEASE_$LI$();
+java.awt.Event.KEY_ACTION_$LI$();
+java.awt.Event.KEY_RELEASE_$LI$();
+java.awt.Event.KEY_PRESS_$LI$();
+java.awt.Event.WINDOW_MOVED_$LI$();
+java.awt.Event.WINDOW_DEICONIFY_$LI$();
+java.awt.Event.WINDOW_ICONIFY_$LI$();
+java.awt.Event.WINDOW_EXPOSE_$LI$();
+java.awt.Event.WINDOW_DESTROY_$LI$();
+java.awt.Event.ALT_MASK_$LI$();
+java.awt.Event.META_MASK_$LI$();
+java.awt.Event.CTRL_MASK_$LI$();
+java.awt.Event.SHIFT_MASK_$LI$();
+java.awt.Color.BLUE_$LI$();
+java.awt.Color.blue_$LI$();
+java.awt.Color.CYAN_$LI$();
+java.awt.Color.cyan_$LI$();
+java.awt.Color.MAGENTA_$LI$();
+java.awt.Color.magenta_$LI$();
+java.awt.Color.GREEN_$LI$();
+java.awt.Color.green_$LI$();
+java.awt.Color.YELLOW_$LI$();
+java.awt.Color.yellow_$LI$();
+java.awt.Color.ORANGE_$LI$();
+java.awt.Color.orange_$LI$();
+java.awt.Color.PINK_$LI$();
+java.awt.Color.pink_$LI$();
+java.awt.Color.RED_$LI$();
+java.awt.Color.red_$LI$();
+java.awt.Color.BLACK_$LI$();
+java.awt.Color.black_$LI$();
+java.awt.Color.DARK_GRAY_$LI$();
+java.awt.Color.darkGray_$LI$();
+java.awt.Color.GRAY_$LI$();
+java.awt.Color.gray_$LI$();
+java.awt.Color.LIGHT_GRAY_$LI$();
+java.awt.Color.lightGray_$LI$();
+java.awt.Color.WHITE_$LI$();
+java.awt.Color.white_$LI$();

@@ -33,7 +33,7 @@ public final class IntegerHelper extends NumberHelper implements Comparable<Inte
 	 */
 	private static class BoxedValues {
 		// Box values according to JLS - between -128 and 127
-		private static IntegerHelper[] boxedValues = new IntegerHelper[256];
+		private static Integer[] boxedValues = new Integer[256];
 	}
 
 	/**
@@ -69,7 +69,7 @@ public final class IntegerHelper extends NumberHelper implements Comparable<Inte
 		}
 	}
 
-	public static IntegerHelper decode(String s) throws NumberFormatException {
+	public static int decode(String s) throws NumberFormatException {
 		return IntegerHelper.valueOf(__decodeAndValidateInt(s, MIN_VALUE, MAX_VALUE));
 	}
 
@@ -147,6 +147,23 @@ public final class IntegerHelper extends NumberHelper implements Comparable<Inte
 		}
 	}
 
+	// public static int decode(String s) {
+	// s = s.trim();
+	// char sign = s.charAt(0);
+	// if (sign == '+' || sign == '-') {
+	// s = s.substring(1);
+	// }
+	// if (s.startsWith("0x") || s.startsWith("0X")) {
+	// return parseInt(sign + s.substring(2), 16);
+	// } else if (s.startsWith("#")) {
+	// return parseInt(sign + s.substring(1), 16);
+	// } else if (s.startsWith("0")) {
+	// return parseInt(sign + s.substring(1), 8);
+	// } else {
+	// return parseInt(sign + s, 10);
+	// }
+	// }
+
 	public static int parseInt(String s) throws NumberFormatException {
 		return parseInt(s, 10);
 	}
@@ -220,23 +237,23 @@ public final class IntegerHelper extends NumberHelper implements Comparable<Inte
 		return toRadixString(value, radix);
 	}
 
-	public static IntegerHelper valueOf(int i) {
+	public static Integer valueOf(int i) {
 		if (i > -129 && i < 128) {
 			int rebase = i + 128;
-			IntegerHelper result = BoxedValues.boxedValues[rebase];
+			Integer result = BoxedValues.boxedValues[rebase];
 			if (result == null) {
-				result = BoxedValues.boxedValues[rebase] = new IntegerHelper(i);
+				result = BoxedValues.boxedValues[rebase] = new Integer(i);
 			}
 			return result;
 		}
-		return new IntegerHelper(i);
+		return new Integer(i);
 	}
 
-	public static IntegerHelper valueOf(String s) throws NumberFormatException {
+	public static int valueOf(String s) throws NumberFormatException {
 		return valueOf(s, 10);
 	}
 
-	public static IntegerHelper valueOf(String s, int radix) throws NumberFormatException {
+	public static int valueOf(String s, int radix) throws NumberFormatException {
 		return IntegerHelper.valueOf(IntegerHelper.parseInt(s, radix));
 	}
 
@@ -307,6 +324,10 @@ public final class IntegerHelper extends NumberHelper implements Comparable<Inte
 	@Override
 	public String toString() {
 		return toString(value);
+	}
+
+	public static Integer getInteger(String nm) {
+		return decode(System.getProperty(nm));
 	}
 
 }

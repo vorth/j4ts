@@ -15,8 +15,10 @@
  */
 package javaemul.internal;
 
-import static jsweet.lang.Globals.*;
-import static jsweet.util.Globals.*;
+import static jsweet.lang.Globals.Infinity;
+import static jsweet.util.Globals.$get;
+import static jsweet.util.Globals.$set;
+import static jsweet.util.Globals.typeof;
 
 /**
  * Provides an interface for simple JavaScript idioms that can not be expressed in Java.

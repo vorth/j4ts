@@ -15,11 +15,11 @@
  */
 package java.util;
 
+import static javaemul.internal.InternalPreconditions.checkCriticalElement;
+
 import java.util.function.IntConsumer;
 import java.util.function.IntSupplier;
 import java.util.function.Supplier;
-
-import static javaemul.internal.InternalPreconditions.checkCriticalElement;
 
 /**
  * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/OptionalInt.html">

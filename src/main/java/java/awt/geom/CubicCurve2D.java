@@ -25,15 +25,16 @@
 
 package java.awt.geom;
 
-import java.awt.Shape;
-import java.awt.Rectangle;
-import java.util.Arrays;
-import java.io.Serializable;
-import sun.awt.geom.Curve;
-
 import static java.lang.Math.abs;
 import static java.lang.Math.max;
 import static java.lang.Math.ulp;
+
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.io.Serializable;
+import java.util.Arrays;
+
+import sun.awt.geom.Curve;
 
 /**
  * The <code>CubicCurve2D</code> class defines a cubic parametric curve segment

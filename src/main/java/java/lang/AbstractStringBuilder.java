@@ -16,7 +16,6 @@
 package java.lang;
 
 import static javaemul.internal.InternalPreconditions.checkStringBounds;
-import static jsweet.util.Globals.union;
 
 /**
  * A base class to share implementation between {@link StringBuffer} and {@link StringBuilder}.

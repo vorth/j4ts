@@ -2,8 +2,8 @@ package java.awt;
 
 import static jsweet.dom.Globals.console;
 import static jsweet.dom.Globals.document;
+import static jsweet.util.Globals.any;
 
-import java.applet.Applet;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,9 +11,8 @@ import jsweet.dom.HTMLButtonElement;
 import jsweet.dom.HTMLElement;
 import jsweet.util.StringTypes;
 
-public class Button extends Component implements HTMLComponent {
+public class Button extends Component {
 
-	HTMLButtonElement button;
 	ActionListener actionListener;
 	String actionCommand;
 	String label;
@@ -25,46 +24,44 @@ public class Button extends Component implements HTMLComponent {
 	}
 
 	@Override
-	public void bind(String id) {
-		button = (HTMLButtonElement) document.getElementById(id);
-		button.innerHTML = label;
+	public HTMLButtonElement getHTMLElement() {
+		return any(super.getHTMLElement());
 	}
 
 	@Override
-	public void init() {
-		if (button != null) {
+	public void bindHTML(HTMLElement htmlElement) {
+		super.bindHTML(htmlElement);
+		htmlElement.innerHTML = label;
+	}
+
+	@Override
+	public void createHTML() {
+		if (htmlElement != null) {
 			return;
 		}
-		button = document.createElement(StringTypes.button);
-		button.innerHTML = label;
-		button.id = "cmp" + Applet.CURRENT_ID++;
-		if(background!=null) {
-			button.style.backgroundColor = background.toHTML();
-		}
+		htmlElement = document.createElement(StringTypes.button);
+	}
+
+	@Override
+	public void initHTML() {
+		super.initHTML();
+		htmlElement.innerHTML = label;
 		initActionListener();
 	}
 
 	private void initActionListener() {
 		if (actionListener != null) {
-			button.onclick = e -> {
-				console.log("button clicked: " + actionCommand);
-				this.actionListener.actionPerformed(new ActionEvent(this, actionCommand));
+			htmlElement.onclick = e -> {
+				console.log("htmlElement clicked: " + actionCommand);
+				this.actionListener.actionPerformed(new ActionEvent(this, 0, actionCommand));
 				return e;
 			};
 		}
 	}
 
-	@Override
-	public HTMLElement getHTMLElement() {
-		if (button == null) {
-			init();
-		}
-		return button;
-	}
-
 	public void addActionListener(ActionListener actionListener) {
 		this.actionListener = actionListener;
-		if (button != null) {
+		if (htmlElement != null) {
 			initActionListener();
 		}
 	}

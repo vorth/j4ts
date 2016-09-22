@@ -17,7 +17,6 @@
 package java.util.logging;
 
 import java.io.Serializable;
-import java.util.Locale;
 
 /**
  *  An emulation of the java.util.logging.Level class. See

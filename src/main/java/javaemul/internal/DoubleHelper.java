@@ -17,7 +17,6 @@ package javaemul.internal;
 
 import static javaemul.internal.InternalPreconditions.checkNotNull;
 
-import javaemul.internal.JsUtils;
 import jsweet.lang.Erased;
 
 /**

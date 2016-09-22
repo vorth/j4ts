@@ -15,11 +15,8 @@
  */
 package java.util;
 
-import static jsweet.dom.Globals.window;
-import static jsweet.util.Globals.$get;
-import static jsweet.util.Globals.$new;
 import static javaemul.internal.globals.Globals.Map;
-import jsweet.lang.Ambient;
+import static jsweet.util.Globals.$new;
 
 // TODO: remove this file!!
 

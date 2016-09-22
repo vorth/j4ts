@@ -371,12 +371,20 @@ public final class CharacterHelper implements Comparable<CharacterHelper>, Seria
 		return String.valueOf(c).toLowerCase().charAt(0);
 	}
 
+	public static int toLowerCase(int c) {
+		return String.valueOf((char) c).toLowerCase().charAt(0);
+	}
+
 	public static String toString(char x) {
 		return String.valueOf(x);
 	}
 
 	public static char toUpperCase(char c) {
 		return String.valueOf(c).toUpperCase().charAt(0);
+	}
+
+	public static char toUpperCase(int c) {
+		return String.valueOf((char) c).toUpperCase().charAt(0);
 	}
 
 	public static CharacterHelper valueOf(char c) {

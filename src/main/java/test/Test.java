@@ -145,6 +145,8 @@ public class Test {
 		sb2.append("test");
 		sb2.deleteCharAt(sb2.length() - 1);
 		assertEquals("truectes", sb2.toString());
+		assertEquals('a', Character.toLowerCase('A'));
+		assertEquals("abc", "ABC".toLowerCase());
 		console.info("end testing strings");
 	}
 

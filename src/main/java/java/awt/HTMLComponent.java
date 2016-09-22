@@ -6,8 +6,10 @@ public interface HTMLComponent {
 
 	HTMLElement getHTMLElement();
 
-	void bind(String id);
+	void bindHTML(HTMLElement htmlElement);
 
-	void init();
+	void createHTML();
+
+	void initHTML();
 
 }

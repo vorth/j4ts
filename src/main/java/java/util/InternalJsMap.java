@@ -17,8 +17,6 @@ package java.util;
 import static jsweet.util.Globals.$apply;
 import static jsweet.util.Globals.$get;
 
-import javaemul.internal.JsUtils;
-
 // TODO(goktug): These classes should be interfaces with defender methods instead.
 class InternalJsMap<V> {
 	static class Iterator<V> {

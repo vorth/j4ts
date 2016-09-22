@@ -15,13 +15,13 @@
  */
 package java.util;
 
+import static javaemul.internal.InternalPreconditions.checkCriticalElement;
+import static javaemul.internal.InternalPreconditions.checkCriticalNotNull;
+
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-
-import static javaemul.internal.InternalPreconditions.checkCriticalElement;
-import static javaemul.internal.InternalPreconditions.checkCriticalNotNull;
 
 /**
  * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html">
