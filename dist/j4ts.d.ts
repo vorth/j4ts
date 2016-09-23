@@ -646,6 +646,10 @@ declare namespace java.awt {
         font: java.awt.Font;
         visible: boolean;
         name: string;
+        x: number;
+        y: number;
+        width: number;
+        height: number;
         bindHTML(htmlElement: HTMLElement): void;
         getHTMLElement(): HTMLElement;
         initHTML(): void;
@@ -655,7 +659,10 @@ declare namespace java.awt {
         getHeight(): number;
         getX(): number;
         getY(): number;
+        setSize(width?: any, height?: any): any;
+        setSize$java_awt_Dimension(d: java.awt.Dimension): void;
         private changeSupport;
+        static CURRENT_ID: number;
         getPropertyChangeListeners(propertyName?: any): any;
         addPropertyChangeListener$java_beans_PropertyChangeListener(listener: java.beans.PropertyChangeListener): void;
         removePropertyChangeListener$java_beans_PropertyChangeListener(listener: java.beans.PropertyChangeListener): void;
@@ -682,6 +689,8 @@ declare namespace java.awt {
         paint(g: java.awt.Graphics): void;
         update(g: java.awt.Graphics): void;
         paintAll(g: java.awt.Graphics): void;
+        getGraphics(): java.awt.Graphics;
+        doPaintInternal(): void;
         constructor();
     }
 }
@@ -1344,6 +1353,34 @@ declare namespace java.awt {
         isConsumed(): boolean;
         paramString(): string;
         toString(): string;
+    }
+}
+declare namespace java.awt {
+    class FlowLayout implements java.awt.LayoutManager {
+        created: boolean;
+        parent: java.awt.Container;
+        static LEFT: number;
+        static CENTER: number;
+        static RIGHT: number;
+        static LEADING: number;
+        static TRAILING: number;
+        align: number;
+        hgap: number;
+        vgap: number;
+        private alignOnBaseline;
+        constructor(align?: number, hgap?: number, vgap?: number);
+        getAlignment(): number;
+        setAlignment(align: number): void;
+        addLayoutComponent(name: string, component: java.awt.Component): void;
+        removeLayoutComponent(component: java.awt.Component): void;
+        layoutContainer(parent: java.awt.Container): void;
+        onComponentAdded(parent: java.awt.Container, component: java.awt.Component, position: number): void;
+        getParent(): java.awt.Container;
+        setParent(parent: java.awt.Container): void;
+        getHgap(): number;
+        setHgap(hgap: number): void;
+        getVgap(): number;
+        setVgap(vgap: number): void;
     }
 }
 declare namespace java.awt {
@@ -7290,10 +7327,10 @@ declare namespace java.awt.image {
 }
 declare namespace java.awt {
     class Image {
-        constructor(source: Image.ImageSource);
+        constructor(src: string);
         getWidth(observer: java.awt.image.ImageObserver): number;
         getHeight(observer: java.awt.image.ImageObserver): number;
-        source: Image.ImageSource;
+        source: HTMLImageElement;
         /**
          * Use the default image-scaling algorithm.
          *
@@ -7307,41 +7344,10 @@ declare namespace java.awt {
          * @since JDK1.1
          */
         static SCALE_FAST: number;
-        /**
-         * Choose an image-scaling algorithm that gives higher priority to image
-         * smoothness than scaling speed.
-         *
-         * @since JDK1.1
-         */
         static SCALE_SMOOTH: number;
-        /**
-         * Use the image scaling algorithm embodied in the
-         * <code>ReplicateScaleFilter</code> class. The <code>Image</code> object is
-         * free to substitute a different filter that performs the same algorithm
-         * yet integrates more efficiently into the imaging infrastructure supplied
-         * by the toolkit.
-         *
-         * @see java.awt.image.ReplicateScaleFilter
-         * @since JDK1.1
-         */
         static SCALE_REPLICATE: number;
-        /**
-         * Use the Area Averaging image scaling algorithm. The image object is free
-         * to substitute a different filter that performs the same algorithm yet
-         * integrates more efficiently into the image infrastructure supplied by the
-         * toolkit.
-         *
-         * @see java.awt.image.AreaAveragingScaleFilter
-         * @since JDK1.1
-         */
         static SCALE_AREA_AVERAGING: number;
         flush(): void;
-    }
-    namespace Image {
-        interface ImageSource {
-            width: number;
-            height: number;
-        }
     }
 }
 declare namespace java.awt {
@@ -10483,6 +10489,11 @@ declare namespace javaemul.internal {
         private static unsafeCastToInt(o);
     }
 }
+declare namespace javax.imageio {
+    class ImageIO {
+        static read(input: java.io.File): java.awt.image.BufferedImage;
+    }
+}
 declare namespace javax.swing {
     interface Action extends java.awt.event.ActionListener {
         getValue(key: string): any;
@@ -10960,7 +10971,6 @@ declare namespace java.awt {
         background: java.awt.Color;
         constructor(label: string);
         getHTMLElement(): HTMLButtonElement;
-        bindHTML(htmlElement: HTMLElement): void;
         createHTML(): void;
         initHTML(): void;
         private initActionListener();
@@ -10979,7 +10989,7 @@ declare namespace java.awt {
         static base: string;
         static nameCounter: number;
         static serialVersionUID: number;
-        constructor(label?: any, group?: any, state?: any);
+        constructor(label?: string, state?: boolean, group?: java.awt.CheckboxGroup);
         getHTMLElement(): HTMLLabelElement;
         createHTML(): void;
         initHTML(): void;
@@ -11010,6 +11020,7 @@ declare namespace java.awt {
         layout(): void;
         add$java_awt_Component(component: java.awt.Component): java.awt.Component;
         add(name?: any, component?: any): any;
+        doPaintInternal(): void;
         constructor();
     }
 }
@@ -14553,9 +14564,14 @@ declare namespace java.awt {
         abstract getBackground(): java.awt.Color;
     }
 }
+declare namespace java.awt.image {
+    class BufferedImage extends java.awt.Image {
+        constructor(src: string);
+    }
+}
 declare namespace java.awt {
     class RenderedImage extends java.awt.Image {
-        constructor(source: Image.ImageSource);
+        constructor(src: string);
     }
 }
 declare namespace java.beans {
@@ -16514,8 +16530,13 @@ declare namespace sun.awt.geom {
 }
 declare namespace java.awt {
     class Panel extends java.awt.Container {
+        private htmlCanvas;
+        constructor(layout?: any);
         createHTML(): void;
-        constructor();
+        getGraphics(): java.awt.Graphics;
+        setBackground(background: java.awt.Color): void;
+        doPaintInternal(): void;
+        initHTML(): void;
     }
 }
 declare namespace javax.swing {
@@ -17166,7 +17187,7 @@ declare namespace java.awt {
 }
 declare namespace java.awt {
     class WebGraphics2D extends java.awt.Graphics2D {
-        private context;
+        context: CanvasRenderingContext2D;
         constructor(canvas: HTMLCanvasElement);
         drawString(s?: any, x?: any, y?: any): any;
         getContext(): CanvasRenderingContext2D;
@@ -18618,6 +18639,15 @@ declare namespace java.beans {
         appendTo(sb: java.lang.StringBuilder): void;
     }
 }
+declare namespace java.applet {
+    class Applet extends java.awt.Panel {
+        static __static_initialized: boolean;
+        static __static_initialize(): void;
+        static __static_initializer_0(): void;
+        constructor();
+        init(): void;
+    }
+}
 declare namespace javax.swing {
     abstract class AbstractButton extends javax.swing.JComponent implements java.awt.ItemSelectable, javax.swing.SwingConstants {
         /**
@@ -18976,16 +19006,6 @@ declare namespace javax.swing {
             itemStateChanged(event: java.awt.event.ItemEvent): void;
             constructor(__parent: any);
         }
-    }
-}
-declare namespace java.applet {
-    class Applet extends java.awt.Panel {
-        static __static_initialized: boolean;
-        static __static_initialize(): void;
-        static CURRENT_ID: number;
-        static __static_initializer_0(): void;
-        constructor();
-        init(): void;
     }
 }
 declare namespace java.lang {

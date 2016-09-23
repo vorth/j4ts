@@ -12,7 +12,7 @@ public class File implements Serializable, Comparable<File> {
 	/**
 	 * The FileSystem object representing the platform's local file system.
 	 */
-	static final LocalStorageFileSystem fs = new LocalStorageFileSystem();
+	public static final LocalStorageFileSystem fs = new LocalStorageFileSystem();
 
 	private final String path;
 

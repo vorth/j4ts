@@ -15,7 +15,7 @@ public class GridLayout implements LayoutManager {
 	boolean created = false;
 
 	Container parent;
-	HTMLTableElement table;
+	public HTMLTableElement table;
 	int currentPosition = 0;
 	int cols, rows;
 
@@ -41,7 +41,7 @@ public class GridLayout implements LayoutManager {
 			table = document.createElement(StringTypes.table);
 			table.style.width = "100%";
 			table.style.height = "100%";
-			table.style.position = "absolute";
+			// table.style.position = "absolute";
 			table.style.left = "0px";
 			table.style.right = "0px";
 			table.style.zIndex = "0";

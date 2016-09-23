@@ -29,12 +29,6 @@ public class Button extends Component {
 	}
 
 	@Override
-	public void bindHTML(HTMLElement htmlElement) {
-		super.bindHTML(htmlElement);
-		htmlElement.innerHTML = label;
-	}
-
-	@Override
 	public void createHTML() {
 		if (htmlElement != null) {
 			return;

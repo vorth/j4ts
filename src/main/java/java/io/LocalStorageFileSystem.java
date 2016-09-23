@@ -15,11 +15,11 @@ public class LocalStorageFileSystem extends FileSystem {
 
 	@Interface
 	public static class Entry {
-		int attributes;
-		int access;
-		String data;
-		long lastModifiedTime;
-		long length;
+		public int attributes;
+		public int access;
+		public String data;
+		public long lastModifiedTime;
+		public long length;
 	}
 
 	@Interface
@@ -200,11 +200,11 @@ public class LocalStorageFileSystem extends FileSystem {
 		return localStorage.getItem(getKey(pathname)) != null;
 	}
 
-	Entry getEntry(String pathname) {
+	public Entry getEntry(String pathname) {
 		return (Entry) JSON.parse((String) localStorage.getItem(getKey(pathname)));
 	}
 
-	DirectoryEntry getDirectoryEntry(String pathname) {
+	public DirectoryEntry getDirectoryEntry(String pathname) {
 		return (DirectoryEntry) JSON.parse((String) localStorage.getItem(getKey(pathname)));
 	}
 

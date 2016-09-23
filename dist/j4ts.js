@@ -1010,11 +1010,14 @@ var java;
                 this.visible = false;
             }
             Component.prototype.bindHTML = function (htmlElement) {
+                if (this.htmlElement != null) {
+                    throw new Error("already bound");
+                }
                 this.htmlElement = htmlElement;
+                this.initHTML();
             };
             Component.prototype.getHTMLElement = function () {
                 if (this.htmlElement == null) {
-                    this.createHTML();
                     this.initHTML();
                 }
                 return this.htmlElement;
@@ -1023,9 +1026,21 @@ var java;
                 if (this.htmlElement == null) {
                     this.createHTML();
                 }
-                this.htmlElement.id = "cmp" + java.applet.Applet.CURRENT_ID++;
+                this.htmlElement.id = "cmp" + Component.CURRENT_ID++;
                 if (this.background != null) {
                     this.htmlElement.style.backgroundColor = this.background.toHTML();
+                }
+                if (this.width != null) {
+                    this.htmlElement.style.width = this.width + "px";
+                }
+                else {
+                    this.htmlElement.style.width = "auto";
+                }
+                if (this.height != null) {
+                    this.htmlElement.style.height = this.height + "px";
+                }
+                else {
+                    this.htmlElement.style.height = "auto";
                 }
             };
             Component.prototype.getLocationOnScreen = function () {
@@ -1035,16 +1050,37 @@ var java;
                 return new java.awt.Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
             };
             Component.prototype.getWidth = function () {
-                return (this.htmlElement.clientWidth | 0);
+                return (this.htmlElement.offsetWidth | 0);
             };
             Component.prototype.getHeight = function () {
-                return (this.htmlElement.clientHeight | 0);
+                return (this.htmlElement.offsetHeight | 0);
             };
             Component.prototype.getX = function () {
-                return (this.htmlElement.clientLeft | 0);
+                return (this.htmlElement.offsetLeft | 0);
             };
             Component.prototype.getY = function () {
-                return (this.htmlElement.clientTop | 0);
+                return (this.htmlElement.offsetTop | 0);
+            };
+            Component.prototype.setSize = function (width, height) {
+                var _this = this;
+                if (((typeof width === 'number') || width === null) && ((typeof height === 'number') || height === null)) {
+                    return (function () {
+                        _this.width = width;
+                        _this.height = height;
+                        if (_this.htmlElement != null) {
+                            _this.htmlElement.style.width = width + "px";
+                            _this.htmlElement.style.height = height + "px";
+                        }
+                    })();
+                }
+                else if (((width != null && width instanceof java.awt.Dimension) || width === null) && height === undefined) {
+                    return this.setSize$java_awt_Dimension(width);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            Component.prototype.setSize$java_awt_Dimension = function (d) {
+                this.setSize(d.width, d.height);
             };
             Component.prototype.getPropertyChangeListeners = function (propertyName) {
                 var _this = this;
@@ -1137,24 +1173,36 @@ var java;
             };
             Component.prototype.setBackground = function (background) {
                 this.background = background;
+                if (this.htmlElement != null) {
+                    this.htmlElement.style.backgroundColor = background.toHTML();
+                }
             };
             Component.prototype.getForeground = function () {
                 return this.foreground;
             };
             Component.prototype.setForeground = function (foreground) {
                 this.foreground = foreground;
+                if (this.htmlElement != null) {
+                    this.htmlElement.style.color = foreground.toHTML();
+                }
             };
             Component.prototype.getFont = function () {
                 return this.font;
             };
             Component.prototype.setFont = function (font) {
                 this.font = font;
+                if (this.htmlElement != null) {
+                    this.htmlElement.style.font = font.toHTML();
+                }
             };
             Component.prototype.isVisible = function () {
                 return this.visible;
             };
             Component.prototype.setVisible = function (visible) {
                 this.visible = visible;
+                if (this.htmlElement != null) {
+                    this.htmlElement.style.display = "none";
+                }
             };
             Component.prototype.getName = function () {
                 return this.name;
@@ -1192,11 +1240,21 @@ var java;
             Component.prototype.paintAll = function (g) {
                 this.paint(g);
             };
+            Component.prototype.getGraphics = function () {
+                return null;
+            };
+            Component.prototype.doPaintInternal = function () {
+                var g = this.getGraphics();
+                if (g != null) {
+                    this.paint(g);
+                }
+            };
             Component.TOP_ALIGNMENT = 0.0;
             Component.CENTER_ALIGNMENT = 0.5;
             Component.BOTTOM_ALIGNMENT = 1.0;
             Component.LEFT_ALIGNMENT = 0.0;
             Component.RIGHT_ALIGNMENT = 1.0;
+            Component.CURRENT_ID = 0;
             return Component;
         }());
         awt.Component = Component;
@@ -1827,6 +1885,94 @@ var java;
         }());
         awt.Event = Event;
         Event["__classname"] = "java.awt.Event";
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
+        var FlowLayout = (function () {
+            function FlowLayout(align, hgap, vgap) {
+                if (align === void 0) { align = FlowLayout.CENTER; }
+                if (hgap === void 0) { hgap = 5; }
+                if (vgap === void 0) { vgap = 5; }
+                this.created = false;
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.LayoutManager"] });
+                this.align = 0;
+                this.hgap = 0;
+                this.vgap = 0;
+                this.alignOnBaseline = false;
+                this.hgap = hgap;
+                this.vgap = vgap;
+                this.setAlignment(align);
+            }
+            FlowLayout.prototype.getAlignment = function () {
+                return this.align;
+            };
+            FlowLayout.prototype.setAlignment = function (align) {
+                this.align = align;
+            };
+            FlowLayout.prototype.addLayoutComponent = function (name, component) {
+            };
+            FlowLayout.prototype.removeLayoutComponent = function (component) {
+            };
+            FlowLayout.prototype.layoutContainer = function (parent) {
+                if (!this.created) {
+                    this.parent = parent;
+                    this.created = true;
+                }
+            };
+            FlowLayout.prototype.onComponentAdded = function (parent, component, position) {
+                var element = component.getHTMLElement();
+                switch ((this.align)) {
+                    case FlowLayout.CENTER:
+                    case FlowLayout.LEFT:
+                    case FlowLayout.LEADING:
+                        element.style.display = "inline-block";
+                        element.style.marginRight = this.hgap + "px";
+                        element.style.marginBottom = this.vgap + "px";
+                        element.style.verticalAlign = "top";
+                        break;
+                    case FlowLayout.RIGHT:
+                    case FlowLayout.TRAILING:
+                        element.style.cssFloat = "right";
+                        element.style.marginLeft = this.hgap + "px";
+                        element.style.marginBottom = this.vgap + "px";
+                        break;
+                }
+                if ((component != null && component instanceof java.awt.Container) && (component.getLayout() != null && component.getLayout() instanceof java.awt.GridLayout)) {
+                    component.getLayout().table.style.height = "auto";
+                }
+                parent.getHTMLElement().appendChild(element);
+            };
+            FlowLayout.prototype.getParent = function () {
+                return this.parent;
+            };
+            FlowLayout.prototype.setParent = function (parent) {
+                this.parent = parent;
+            };
+            FlowLayout.prototype.getHgap = function () {
+                return this.hgap;
+            };
+            FlowLayout.prototype.setHgap = function (hgap) {
+                this.hgap = hgap;
+            };
+            FlowLayout.prototype.getVgap = function () {
+                return this.vgap;
+            };
+            FlowLayout.prototype.setVgap = function (vgap) {
+                this.vgap = vgap;
+            };
+            FlowLayout.LEFT = 0;
+            FlowLayout.CENTER = 1;
+            FlowLayout.RIGHT = 2;
+            FlowLayout.LEADING = 3;
+            FlowLayout.TRAILING = 4;
+            return FlowLayout;
+        }());
+        awt.FlowLayout = FlowLayout;
+        FlowLayout["__classname"] = "java.awt.FlowLayout";
     })(awt = java.awt || (java.awt = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -12447,7 +12593,6 @@ var java;
                     this.table = document.createElement("table");
                     this.table.style.width = "100%";
                     this.table.style.height = "100%";
-                    this.table.style.position = "absolute";
                     this.table.style.left = "0px";
                     this.table.style.right = "0px";
                     this.table.style.zIndex = "0";
@@ -12512,8 +12657,9 @@ var java;
     var awt;
     (function (awt) {
         var Image = (function () {
-            function Image(source) {
-                this.source = source;
+            function Image(src) {
+                this.source = new HTMLImageElement();
+                this.source.src = src;
             }
             Image.prototype.getWidth = function (observer) {
                 return (this.source.width | 0);
@@ -12536,33 +12682,8 @@ var java;
              * @since JDK1.1
              */
             Image.SCALE_FAST = 2;
-            /**
-             * Choose an image-scaling algorithm that gives higher priority to image
-             * smoothness than scaling speed.
-             *
-             * @since JDK1.1
-             */
             Image.SCALE_SMOOTH = 4;
-            /**
-             * Use the image scaling algorithm embodied in the
-             * <code>ReplicateScaleFilter</code> class. The <code>Image</code> object is
-             * free to substitute a different filter that performs the same algorithm
-             * yet integrates more efficiently into the imaging infrastructure supplied
-             * by the toolkit.
-             *
-             * @see java.awt.image.ReplicateScaleFilter
-             * @since JDK1.1
-             */
             Image.SCALE_REPLICATE = 8;
-            /**
-             * Use the Area Averaging image scaling algorithm. The image object is free
-             * to substitute a different filter that performs the same algorithm yet
-             * integrates more efficiently into the image infrastructure supplied by the
-             * toolkit.
-             *
-             * @see java.awt.image.AreaAveragingScaleFilter
-             * @since JDK1.1
-             */
             Image.SCALE_AREA_AVERAGING = 16;
             return Image;
         }());
@@ -18972,6 +19093,24 @@ var javaemul;
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javax;
 (function (javax) {
+    var imageio;
+    (function (imageio) {
+        var ImageIO = (function () {
+            function ImageIO() {
+            }
+            ImageIO.read = function (input) {
+                var src = "data:image/png;base64," + java.io.File.fs_$LI$().getEntry(input.getAbsolutePath()).data;
+                return new java.awt.image.BufferedImage(src);
+            };
+            return ImageIO;
+        }());
+        imageio.ImageIO = ImageIO;
+        ImageIO["__classname"] = "javax.imageio.ImageIO";
+    })(imageio = javax.imageio || (javax.imageio = {}));
+})(javax || (javax = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var javax;
+(function (javax) {
     var swing;
     (function (swing) {
         var Action;
@@ -21004,10 +21143,6 @@ var java;
             Button.prototype.getHTMLElement = function () {
                 return _super.prototype.getHTMLElement.call(this);
             };
-            Button.prototype.bindHTML = function (htmlElement) {
-                _super.prototype.bindHTML.call(this, htmlElement);
-                htmlElement.innerHTML = this.label;
-            };
             Button.prototype.createHTML = function () {
                 if (this.htmlElement != null) {
                     return;
@@ -21051,100 +21186,20 @@ var java;
     (function (awt) {
         var Checkbox = (function (_super) {
             __extends(Checkbox, _super);
-            function Checkbox(label, group, state) {
-                var _this = this;
-                if (((typeof label === 'string') || label === null) && ((group != null && group instanceof java.awt.CheckboxGroup) || group === null) && ((typeof state === 'boolean') || state === null)) {
-                    {
-                        _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.ItemSelectable", "java.awt.HTMLComponent"] });
-                        this.state = false;
-                        (function () {
-                            _this.label = label;
-                            _this.state = state;
-                            _this.group = group;
-                            if (state && (group != null)) {
-                                group.setSelectedCheckbox(_this);
-                            }
-                        })();
-                    }
-                    (function () {
-                    })();
+            function Checkbox(label, state, group) {
+                if (label === void 0) { label = ""; }
+                if (state === void 0) { state = false; }
+                if (group === void 0) { group = null; }
+                _super.call(this);
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.ItemSelectable", "java.awt.HTMLComponent"] });
+                this.state = false;
+                this.label = label;
+                this.state = state;
+                this.group = group;
+                this.itemListeners = new Array();
+                if (state && (group != null)) {
+                    group.setSelectedCheckbox(this);
                 }
-                else if (((typeof label === 'string') || label === null) && ((typeof group === 'boolean') || group === null) && ((state != null && state instanceof java.awt.CheckboxGroup) || state === null)) {
-                    var state = group;
-                    var group = state;
-                    _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.ItemSelectable", "java.awt.HTMLComponent"] });
-                    this.state = false;
-                    (function () {
-                        _this.label = label;
-                        _this.state = state;
-                        _this.group = group;
-                        if (state && (group != null)) {
-                            group.setSelectedCheckbox(_this);
-                        }
-                    })();
-                }
-                else if (((typeof label === 'string') || label === null) && ((typeof group === 'boolean') || group === null) && state === undefined) {
-                    var state = group;
-                    {
-                        var group = null;
-                        _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.ItemSelectable", "java.awt.HTMLComponent"] });
-                        this.state = false;
-                        (function () {
-                            _this.label = label;
-                            _this.state = state;
-                            _this.group = group;
-                            if (state && (group != null)) {
-                                group.setSelectedCheckbox(_this);
-                            }
-                        })();
-                    }
-                    (function () {
-                    })();
-                }
-                else if (((typeof label === 'string') || label === null) && group === undefined && state === undefined) {
-                    {
-                        var state = false;
-                        var group = null;
-                        _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.ItemSelectable", "java.awt.HTMLComponent"] });
-                        this.state = false;
-                        (function () {
-                            _this.label = label;
-                            _this.state = state;
-                            _this.group = group;
-                            if (state && (group != null)) {
-                                group.setSelectedCheckbox(_this);
-                            }
-                        })();
-                    }
-                    (function () {
-                    })();
-                }
-                else if (label === undefined && group === undefined && state === undefined) {
-                    {
-                        var label = "";
-                        var state = false;
-                        var group = null;
-                        _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.ItemSelectable", "java.awt.HTMLComponent"] });
-                        this.state = false;
-                        (function () {
-                            _this.label = label;
-                            _this.state = state;
-                            _this.group = group;
-                            if (state && (group != null)) {
-                                group.setSelectedCheckbox(_this);
-                            }
-                        })();
-                    }
-                    (function () {
-                    })();
-                }
-                else
-                    throw new Error('invalid overload');
             }
             Checkbox.prototype.getHTMLElement = function () {
                 return _super.prototype.getHTMLElement.call(this);
@@ -21156,12 +21211,20 @@ var java;
                 this.htmlElement = document.createElement("label");
                 this.htmlElement.appendChild(this.htmlLabel = document.createTextNode(""));
                 this.htmlCheckbox = document.createElement("input");
-                this.htmlCheckbox.type = "checkbox";
+                this.htmlCheckbox.type = this.group == null ? "checkbox" : "radio";
+                this.htmlElement.appendChild(this.htmlCheckbox);
             };
             Checkbox.prototype.initHTML = function () {
+                var _this = this;
                 _super.prototype.initHTML.call(this);
                 this.htmlCheckbox.checked = this.state;
                 this.htmlLabel.data = this.label;
+                this.htmlCheckbox.onclick = function (e) {
+                    console.info(e + " / " + _this.htmlCheckbox.checked);
+                    _this.setState(_this.htmlCheckbox.checked);
+                    _this.processItemEvent(new java.awt.event.ItemEvent(_this, 0, null, _this.htmlCheckbox.checked ? java.awt.event.ItemEvent.SELECTED : java.awt.event.ItemEvent.DESELECTED));
+                    return e;
+                };
             };
             Checkbox.prototype.constructComponentName = function () {
                 {
@@ -21181,11 +21244,13 @@ var java;
                 ;
             };
             Checkbox.prototype.getState = function () {
-                return this.htmlCheckbox.checked;
+                return this.state;
             };
             Checkbox.prototype.setStateInternal = function (state) {
                 this.state = state;
-                this.htmlCheckbox.checked = state;
+                if (this.htmlCheckbox != null) {
+                    this.htmlCheckbox.checked = state;
+                }
             };
             Checkbox.prototype.setState = function (state) {
                 var group = this.group;
@@ -21335,6 +21400,15 @@ var java;
                 else
                     throw new Error('invalid overload');
             };
+            Container.prototype.doPaintInternal = function () {
+                _super.prototype.doPaintInternal.call(this);
+                for (var index134 = 0; index134 < this.components.length; index134++) {
+                    var c = this.components[index134];
+                    {
+                        c.doPaintInternal();
+                    }
+                }
+            };
             return Container;
         }(java.awt.Component));
         awt.Container = Container;
@@ -21364,7 +21438,7 @@ var java;
             };
             TextField.prototype.initHTML = function () {
                 _super.prototype.initHTML.call(this);
-                this.htmlElement.id = "cmp" + java.applet.Applet.CURRENT_ID++;
+                this.htmlElement.id = "cmp" + java.awt.Component.CURRENT_ID++;
                 this.initActionListener();
             };
             TextField.prototype.initActionListener = function () {
@@ -27547,10 +27621,29 @@ var java;
 (function (java) {
     var awt;
     (function (awt) {
+        var image;
+        (function (image) {
+            var BufferedImage = (function (_super) {
+                __extends(BufferedImage, _super);
+                function BufferedImage(src) {
+                    _super.call(this, src);
+                }
+                return BufferedImage;
+            }(java.awt.Image));
+            image.BufferedImage = BufferedImage;
+            BufferedImage["__classname"] = "java.awt.image.BufferedImage";
+        })(image = awt.image || (awt.image = {}));
+    })(awt = java.awt || (java.awt = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var awt;
+    (function (awt) {
         var RenderedImage = (function (_super) {
             __extends(RenderedImage, _super);
-            function RenderedImage(source) {
-                _super.call(this, source);
+            function RenderedImage(src) {
+                _super.call(this, src);
             }
             return RenderedImage;
         }(java.awt.Image));
@@ -27694,8 +27787,8 @@ var java;
             };
             PropertyChangeSupport.fire = function (listeners, event) {
                 if (listeners != null) {
-                    for (var index134 = 0; index134 < listeners.length; index134++) {
-                        var listener = listeners[index134];
+                    for (var index135 = 0; index135 < listeners.length; index135++) {
+                        var listener = listeners[index135];
                         {
                             listener.propertyChange(event);
                         }
@@ -27972,9 +28065,9 @@ var java;
             };
             LocalStorageFileSystem.prototype.removeEntry = function (pathname) {
                 {
-                    var array136 = this.getChildEntries(pathname);
-                    for (var index135 = 0; index135 < array136.length; index135++) {
-                        var e = array136[index135];
+                    var array137 = this.getChildEntries(pathname);
+                    for (var index136 = 0; index136 < array137.length; index136++) {
+                        var e = array137[index136];
                         {
                             this.removeEntry(pathname + "/" + e);
                         }
@@ -30873,8 +30966,8 @@ var java;
             }
             AbstractList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index137 = this.iterator(); index137.hasNext();) {
-                    var t = index137.next();
+                for (var index138 = this.iterator(); index138.hasNext();) {
+                    var t = index138.next();
                     {
                         action(t);
                     }
@@ -30902,8 +30995,8 @@ var java;
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkNotNull(c);
                         var changed = false;
-                        for (var index138 = c.iterator(); index138.hasNext();) {
-                            var e = index138.next();
+                        for (var index139 = c.iterator(); index139.hasNext();) {
+                            var e = index139.next();
                             {
                                 _this.add(index++, e);
                                 changed = true;
@@ -30933,8 +31026,8 @@ var java;
                     return false;
                 }
                 var iterOther = other.iterator();
-                for (var index139 = this.iterator(); index139.hasNext();) {
-                    var elem = index139.next();
+                for (var index140 = this.iterator(); index140.hasNext();) {
+                    var elem = index140.next();
                     {
                         var elemOther = iterOther.next();
                         if (!java.util.Objects.equals(elem, elemOther)) {
@@ -31200,8 +31293,8 @@ var java;
             }
             AbstractQueue.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index140 = this.iterator(); index140.hasNext();) {
-                    var t = index140.next();
+                for (var index141 = this.iterator(); index141.hasNext();) {
+                    var t = index141.next();
                     {
                         action(t);
                     }
@@ -31281,8 +31374,8 @@ var java;
             }
             AbstractSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index141 = this.iterator(); index141.hasNext();) {
-                    var t = index141.next();
+                for (var index142 = this.iterator(); index142.hasNext();) {
+                    var t = index142.next();
                     {
                         action(t);
                     }
@@ -31316,8 +31409,8 @@ var java;
                     }
                 }
                 else {
-                    for (var index142 = c.iterator(); index142.hasNext();) {
-                        var o1 = index142.next();
+                    for (var index143 = c.iterator(); index143.hasNext();) {
+                        var o1 = index143.next();
                         {
                             this.remove(o1);
                         }
@@ -31349,8 +31442,8 @@ var java;
             }
             InternalStringMap.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index143 = this.iterator(); index143.hasNext();) {
-                    var t = index143.next();
+                for (var index144 = this.iterator(); index144.hasNext();) {
+                    var t = index144.next();
                     {
                         action(t);
                     }
@@ -35412,14 +35505,75 @@ var java;
     (function (awt) {
         var Panel = (function (_super) {
             __extends(Panel, _super);
-            function Panel() {
-                _super.call(this);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.HTMLComponent"] });
+            function Panel(layout) {
+                var _this = this;
+                if (((layout != null && layout["__interfaces"] != null && layout["__interfaces"].indexOf("java.awt.LayoutManager") >= 0) || layout === null)) {
+                    _super.call(this);
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.HTMLComponent"] });
+                    (function () {
+                        _this.setLayout(layout);
+                    })();
+                }
+                else if (layout === undefined) {
+                    {
+                        var layout = new java.awt.FlowLayout();
+                        _super.call(this);
+                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.HTMLComponent"] });
+                        (function () {
+                            _this.setLayout(layout);
+                        })();
+                    }
+                    (function () {
+                    })();
+                }
+                else
+                    throw new Error('invalid overload');
             }
             Panel.prototype.createHTML = function () {
+                if (this.htmlElement != null) {
+                    return;
+                }
                 this.htmlElement = document.createElement("div");
-                this.htmlElement.style.width = "100%";
-                this.htmlElement.style.height = "100%";
+            };
+            Panel.prototype.getGraphics = function () {
+                return new java.awt.WebGraphics2D(this.htmlCanvas);
+            };
+            Panel.prototype.setBackground = function (background) {
+                _super.prototype.setBackground.call(this, background);
+                this.htmlElement.style.backgroundColor = null;
+                if (background != null) {
+                    this.htmlCanvas.style.backgroundColor = background.toHTML();
+                }
+            };
+            Panel.prototype.doPaintInternal = function () {
+                if (this.htmlCanvas.width === 0 && this.htmlCanvas.height === 0) {
+                    this.htmlCanvas.width = this.htmlElement.offsetWidth;
+                    this.htmlCanvas.height = this.htmlElement.offsetHeight;
+                }
+                _super.prototype.doPaintInternal.call(this);
+            };
+            Panel.prototype.initHTML = function () {
+                var _this = this;
+                _super.prototype.initHTML.call(this);
+                console.info("INIT PANEL");
+                if (this.htmlCanvas == null) {
+                    this.htmlCanvas = document.createElement("canvas");
+                    this.htmlElement.appendChild(this.htmlCanvas);
+                    window.onresize = function (e) {
+                        console.info("resizing");
+                        _this.htmlCanvas.width = _this.htmlElement.offsetWidth;
+                        _this.htmlCanvas.height = _this.htmlElement.offsetHeight;
+                        return e;
+                    };
+                }
+                if (this.background != null) {
+                    this.htmlElement.style.backgroundColor = null;
+                    this.htmlCanvas.style.backgroundColor = this.background.toHTML();
+                }
+                this.htmlCanvas.width = this.htmlElement.offsetWidth;
+                this.htmlCanvas.height = this.htmlElement.offsetHeight;
+                this.htmlCanvas.style.position = "absolute";
+                this.htmlCanvas.style.zIndex = "-1";
             };
             return Panel;
         }(java.awt.Container));
@@ -38222,8 +38376,8 @@ var java;
                         javaemul.internal.InternalPreconditions.checkNotNull(c);
                         var modified = false;
                         var iter = _this.listIterator(index);
-                        for (var index144 = c.iterator(); index144.hasNext();) {
-                            var e = index144.next();
+                        for (var index145 = c.iterator(); index145.hasNext();) {
+                            var e = index145.next();
                             {
                                 iter.add(e);
                                 modified = true;
@@ -38357,8 +38511,8 @@ var java;
             }
             ArrayList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index145 = this.iterator(); index145.hasNext();) {
-                    var t = index145.next();
+                for (var index146 = this.iterator(); index146.hasNext();) {
+                    var t = index146.next();
                     {
                         action(t);
                     }
@@ -39079,8 +39233,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index146 = 0; index146 < a.length; index146++) {
-                    var obj = a[index146];
+                for (var index147 = 0; index147 < a.length; index147++) {
+                    var obj = a[index147];
                     {
                         var hash;
                         if (obj != null && obj instanceof Array) {
@@ -39443,8 +39597,8 @@ var java;
                             return 0;
                         }
                         var hashCode = 1;
-                        for (var index147 = 0; index147 < a.length; index147++) {
-                            var e = a[index147];
+                        for (var index148 = 0; index148 < a.length; index148++) {
+                            var e = a[index148];
                             {
                                 hashCode = 31 * hashCode + javaemul.internal.BooleanHelper.hashCode(e);
                                 hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -39485,8 +39639,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index148 = 0; index148 < a.length; index148++) {
-                    var e = a[index148];
+                for (var index149 = 0; index149 < a.length; index149++) {
+                    var e = a[index149];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.ByteHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -39499,8 +39653,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index149 = 0; index149 < a.length; index149++) {
-                    var e = a[index149];
+                for (var index150 = 0; index150 < a.length; index150++) {
+                    var e = a[index150];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.CharacterHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -39513,8 +39667,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index150 = 0; index150 < a.length; index150++) {
-                    var e = a[index150];
+                for (var index151 = 0; index151 < a.length; index151++) {
+                    var e = a[index151];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.DoubleHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -39527,8 +39681,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index151 = 0; index151 < a.length; index151++) {
-                    var e = a[index151];
+                for (var index152 = 0; index152 < a.length; index152++) {
+                    var e = a[index152];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.FloatHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -39541,8 +39695,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index152 = 0; index152 < a.length; index152++) {
-                    var e = a[index152];
+                for (var index153 = 0; index153 < a.length; index153++) {
+                    var e = a[index153];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.IntegerHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -39555,8 +39709,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index153 = 0; index153 < a.length; index153++) {
-                    var e = a[index153];
+                for (var index154 = 0; index154 < a.length; index154++) {
+                    var e = a[index154];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.LongHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -39569,8 +39723,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index154 = 0; index154 < a.length; index154++) {
-                    var e = a[index154];
+                for (var index155 = 0; index155 < a.length; index155++) {
+                    var e = a[index155];
                     {
                         hashCode = 31 * hashCode + java.util.Objects.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -39583,8 +39737,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index155 = 0; index155 < a.length; index155++) {
-                    var e = a[index155];
+                for (var index156 = 0; index156 < a.length; index156++) {
+                    var e = a[index156];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.ShortHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -39718,8 +39872,8 @@ var java;
                             return "null";
                         }
                         var joiner = new java.util.StringJoiner(", ", "[", "]");
-                        for (var index156 = 0; index156 < a.length; index156++) {
-                            var element = a[index156];
+                        for (var index157 = 0; index157 < a.length; index157++) {
+                            var element = a[index157];
                             {
                                 joiner.add(/* valueOf */ new String(element).toString());
                             }
@@ -39759,19 +39913,6 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index157 = 0; index157 < a.length; index157++) {
-                    var element = a[index157];
-                    {
-                        joiner.add(/* valueOf */ new String(element).toString());
-                    }
-                }
-                return joiner.toString();
-            };
-            Arrays.toString$char_A = function (a) {
-                if (a == null) {
-                    return "null";
-                }
-                var joiner = new java.util.StringJoiner(", ", "[", "]");
                 for (var index158 = 0; index158 < a.length; index158++) {
                     var element = a[index158];
                     {
@@ -39780,7 +39921,7 @@ var java;
                 }
                 return joiner.toString();
             };
-            Arrays.toString$double_A = function (a) {
+            Arrays.toString$char_A = function (a) {
                 if (a == null) {
                     return "null";
                 }
@@ -39793,7 +39934,7 @@ var java;
                 }
                 return joiner.toString();
             };
-            Arrays.toString$float_A = function (a) {
+            Arrays.toString$double_A = function (a) {
                 if (a == null) {
                     return "null";
                 }
@@ -39806,7 +39947,7 @@ var java;
                 }
                 return joiner.toString();
             };
-            Arrays.toString$int_A = function (a) {
+            Arrays.toString$float_A = function (a) {
                 if (a == null) {
                     return "null";
                 }
@@ -39819,13 +39960,26 @@ var java;
                 }
                 return joiner.toString();
             };
-            Arrays.toString$long_A = function (a) {
+            Arrays.toString$int_A = function (a) {
                 if (a == null) {
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
                 for (var index162 = 0; index162 < a.length; index162++) {
                     var element = a[index162];
+                    {
+                        joiner.add(/* valueOf */ new String(element).toString());
+                    }
+                }
+                return joiner.toString();
+            };
+            Arrays.toString$long_A = function (a) {
+                if (a == null) {
+                    return "null";
+                }
+                var joiner = new java.util.StringJoiner(", ", "[", "]");
+                for (var index163 = 0; index163 < a.length; index163++) {
+                    var element = a[index163];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -39843,8 +39997,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index163 = 0; index163 < a.length; index163++) {
-                    var element = a[index163];
+                for (var index164 = 0; index164 < a.length; index164++) {
+                    var element = a[index164];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -39864,8 +40018,8 @@ var java;
                             return "[...]";
                         }
                         var joiner = new java.util.StringJoiner(", ", "[", "]");
-                        for (var index164 = 0; index164 < a.length; index164++) {
-                            var obj = a[index164];
+                        for (var index165 = 0; index165 < a.length; index165++) {
+                            var obj = a[index165];
                             {
                                 if (obj != null && obj.constructor.isArray()) {
                                     if (obj != null && obj instanceof Array) {
@@ -40191,8 +40345,8 @@ var java;
             }
             Vector.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index165 = this.iterator(); index165.hasNext();) {
-                    var t = index165.next();
+                for (var index166 = this.iterator(); index166.hasNext();) {
+                    var t = index166.next();
                     {
                         action(t);
                     }
@@ -40750,8 +40904,8 @@ var java;
                 return this.implFindEntry(key, false) != null;
             };
             AbstractMap.prototype.containsValue = function (value) {
-                for (var index166 = this.entrySet().iterator(); index166.hasNext();) {
-                    var entry = index166.next();
+                for (var index167 = this.entrySet().iterator(); index167.hasNext();) {
+                    var entry = index167.next();
                     {
                         var v = entry.getValue();
                         if (java.util.Objects.equals(value, v)) {
@@ -40784,8 +40938,8 @@ var java;
                 if (this.size() !== otherMap.size()) {
                     return false;
                 }
-                for (var index167 = otherMap.entrySet().iterator(); index167.hasNext();) {
-                    var entry = index167.next();
+                for (var index168 = otherMap.entrySet().iterator(); index168.hasNext();) {
+                    var entry = index168.next();
                     {
                         if (!this.containsEntry(entry)) {
                             return false;
@@ -40818,8 +40972,8 @@ var java;
             };
             AbstractMap.prototype.putAll = function (map) {
                 javaemul.internal.InternalPreconditions.checkNotNull(map);
-                for (var index168 = map.entrySet().iterator(); index168.hasNext();) {
-                    var e = index168.next();
+                for (var index169 = map.entrySet().iterator(); index169.hasNext();) {
+                    var e = index169.next();
                     {
                         this.put(e.getKey(), e.getValue());
                     }
@@ -40833,8 +40987,8 @@ var java;
             };
             AbstractMap.prototype.toString$ = function () {
                 var joiner = new java.util.StringJoiner(", ", "{", "}");
-                for (var index169 = this.entrySet().iterator(); index169.hasNext();) {
-                    var entry = index169.next();
+                for (var index170 = this.entrySet().iterator(); index170.hasNext();) {
+                    var entry = index170.next();
                     {
                         joiner.add(this.toString(entry));
                     }
@@ -41402,8 +41556,8 @@ var java;
             }
             HashSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index170 = this.iterator(); index170.hasNext();) {
-                    var t = index170.next();
+                for (var index171 = this.iterator(); index171.hasNext();) {
+                    var t = index171.next();
                     {
                         action(t);
                     }
@@ -41526,8 +41680,8 @@ var java;
             }
             TreeSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index171 = this.iterator(); index171.hasNext();) {
-                    var t = index171.next();
+                for (var index172 = this.iterator(); index172.hasNext();) {
+                    var t = index172.next();
                     {
                         action(t);
                     }
@@ -42205,6 +42359,59 @@ var java;
     })(beans = java.beans || (java.beans = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var applet;
+    (function (applet_1) {
+        var Applet = (function (_super) {
+            __extends(Applet, _super);
+            function Applet() {
+                _super.call(this);
+                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.HTMLComponent"] });
+            }
+            Applet.__static_initialize = function () { if (!Applet.__static_initialized) {
+                Applet.__static_initialized = true;
+                Applet.__static_initializer_0();
+            } };
+            Applet.__static_initializer_0 = function () {
+                console.info("installing applet onload hook");
+                window.onload = function (e) {
+                    console.info("applet onload hook");
+                    var divList = document.getElementsByClassName("applet");
+                    if (divList.length === 0) {
+                        return null;
+                    }
+                    var div = divList[0];
+                    if (div.getAttribute("data-applet") != null) {
+                        console.info("installing applet: " + div.getAttribute("data-applet"));
+                        var names = div.getAttribute("data-applet").split(".");
+                        var constructor = window;
+                        for (var index173 = 0; index173 < names.length; index173++) {
+                            var name = names[index173];
+                            {
+                                constructor = constructor[name];
+                                console.info("name: " + name + " -> " + constructor);
+                            }
+                        }
+                        var applet = new constructor();
+                        applet.setSize(javaemul.internal.IntegerHelper.parseInt(div.getAttribute("data-width")), javaemul.internal.IntegerHelper.parseInt(div.getAttribute("data-height")));
+                        applet.bindHTML(div);
+                        applet.init();
+                        applet.doPaintInternal();
+                    }
+                    return null;
+                };
+            };
+            Applet.prototype.init = function () {
+            };
+            Applet.__static_initialized = false;
+            return Applet;
+        }(java.awt.Panel));
+        applet_1.Applet = Applet;
+        Applet["__classname"] = "java.applet.Applet";
+    })(applet = java.applet || (java.applet = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var javax;
 (function (javax) {
     var swing;
@@ -42863,79 +43070,6 @@ var javax;
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
-    var applet;
-    (function (applet_1) {
-        var Applet = (function (_super) {
-            __extends(Applet, _super);
-            function Applet() {
-                _super.call(this);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.awt.HTMLComponent"] });
-            }
-            Applet.__static_initialize = function () { if (!Applet.__static_initialized) {
-                Applet.__static_initialized = true;
-                Applet.__static_initializer_0();
-            } };
-            Applet.__static_initializer_0 = function () {
-                console.info("installing applet onload hook");
-                window.onload = function (e) {
-                    console.info("applet onload hook");
-                    var divList = document.getElementsByClassName("applet");
-                    if (divList.length === 0) {
-                        return null;
-                    }
-                    var div = divList[0];
-                    if (div.getAttribute("data-applet") != null) {
-                        console.info("installing applet: " + div.getAttribute("data-applet"));
-                        div.style.position = "relative";
-                        var canvas = document.createElement("canvas");
-                        canvas.setAttribute("width", div.getAttribute("data-width"));
-                        canvas.setAttribute("height", div.getAttribute("data-height"));
-                        div.style.width = div.getAttribute("data-width");
-                        div.style.height = div.getAttribute("data-height");
-                        if (div.firstChild != null) {
-                            div.insertBefore(canvas, div.firstChild);
-                        }
-                        else {
-                            div.appendChild(canvas);
-                        }
-                        canvas.style.position = "absolute";
-                        canvas.style.left = "0px";
-                        canvas.style.right = "0px";
-                        canvas.style.width = div.style.width;
-                        canvas.style.height = div.style.height;
-                        canvas.style.zIndex = "-1";
-                        var names = div.getAttribute("data-applet").split(".");
-                        var constructor = window;
-                        for (var index172 = 0; index172 < names.length; index172++) {
-                            var name = names[index172];
-                            {
-                                constructor = constructor[name];
-                                console.info("name: " + name + " -> " + constructor);
-                            }
-                        }
-                        var applet = new constructor();
-                        applet.bindHTML(div);
-                        var g = new java.awt.WebGraphics2D(canvas);
-                        applet.initHTML();
-                        applet.init();
-                        applet.paint(g);
-                    }
-                    return null;
-                };
-            };
-            Applet.prototype.init = function () {
-            };
-            Applet.__static_initialized = false;
-            Applet.CURRENT_ID = 0;
-            return Applet;
-        }(java.awt.Panel));
-        applet_1.Applet = Applet;
-        Applet["__classname"] = "java.applet.Applet";
-    })(applet = java.applet || (java.applet = {}));
-})(java || (java = {}));
-/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
-var java;
-(function (java) {
     var lang;
     (function (lang) {
         /**
@@ -43293,8 +43427,8 @@ var java;
             }
             LinkedList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index173 = this.iterator(); index173.hasNext();) {
-                    var t = index173.next();
+                for (var index174 = this.iterator(); index174.hasNext();) {
+                    var t = index174.next();
                     {
                         action(t);
                     }
@@ -44443,8 +44577,8 @@ var java;
                 return this._containsValue(value, this.stringMap) || this._containsValue(value, this.hashCodeMap);
             };
             AbstractHashMap.prototype._containsValue = function (value, entries) {
-                for (var index174 = entries.iterator(); index174.hasNext();) {
-                    var entry = index174.next();
+                for (var index175 = entries.iterator(); index175.hasNext();) {
+                    var entry = index175.next();
                     {
                         if (this._equals(value, entry.getValue())) {
                             return true;
@@ -44913,8 +45047,8 @@ var java;
                 }
                 NavigableKeySet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index175 = this.iterator(); index175.hasNext();) {
-                        var t = index175.next();
+                    for (var index176 = this.iterator(); index176.hasNext();) {
+                        var t = index176.next();
                         {
                             action(t);
                         }
@@ -45092,8 +45226,8 @@ var java;
                     a[_i - 1] = arguments[_i];
                 }
                 var result = false;
-                for (var index176 = 0; index176 < a.length; index176++) {
-                    var e = a[index176];
+                for (var index177 = 0; index177 < a.length; index177++) {
+                    var e = a[index177];
                     {
                         result = result || c.add(e);
                     }
@@ -45154,8 +45288,8 @@ var java;
                     throw new java.lang.IndexOutOfBoundsException("src does not fit in dest");
                 }
                 var destIt = dest.listIterator();
-                for (var index177 = src.iterator(); index177.hasNext();) {
-                    var e = index177.next();
+                for (var index178 = src.iterator(); index178.hasNext();) {
+                    var e = index178.next();
                     {
                         destIt.next();
                         destIt.set(e);
@@ -45169,8 +45303,8 @@ var java;
                     iterating = c2;
                     testing = c1;
                 }
-                for (var index178 = iterating.iterator(); index178.hasNext();) {
-                    var o = index178.next();
+                for (var index179 = iterating.iterator(); index179.hasNext();) {
+                    var o = index179.next();
                     {
                         if (testing.contains(o)) {
                             return false;
@@ -45206,8 +45340,8 @@ var java;
             };
             Collections.frequency = function (c, o) {
                 var count = 0;
-                for (var index179 = c.iterator(); index179.hasNext();) {
-                    var e = index179.next();
+                for (var index180 = c.iterator(); index180.hasNext();) {
+                    var e = index180.next();
                     {
                         if (java.util.Objects.equals(o, e)) {
                             ++count;
@@ -45361,8 +45495,8 @@ var java;
                         Collections.swapImpl(arr, i, rnd.nextInt(i + 1));
                     }
                     var it = list.listIterator();
-                    for (var index180 = 0; index180 < arr.length; index180++) {
-                        var e = arr[index180];
+                    for (var index181 = 0; index181 < arr.length; index181++) {
+                        var e = arr[index181];
                         {
                             it.next();
                             it.set(e);
@@ -45415,8 +45549,8 @@ var java;
              */
             Collections.hashCode$java_lang_Iterable = function (collection) {
                 var hashCode = 0;
-                for (var index181 = collection.iterator(); index181.hasNext();) {
-                    var e = index181.next();
+                for (var index182 = collection.iterator(); index182.hasNext();) {
+                    var e = index182.next();
                     {
                         hashCode = hashCode + java.util.Objects.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -45431,8 +45565,8 @@ var java;
                 if (((list != null && list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.List") >= 0) || list === null)) {
                     return (function () {
                         var hashCode = 1;
-                        for (var index182 = list.iterator(); index182.hasNext();) {
-                            var e = index182.next();
+                        for (var index183 = list.iterator(); index183.hasNext();) {
+                            var e = index183.next();
                             {
                                 hashCode = 31 * hashCode + java.util.Objects.hashCode(e);
                                 hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -45741,8 +45875,8 @@ var java;
                 }
                 UnmodifiableCollection.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index183 = this.iterator(); index183.hasNext();) {
-                        var t = index183.next();
+                    for (var index184 = this.iterator(); index184.hasNext();) {
+                        var t = index184.next();
                         {
                             action(t);
                         }
@@ -45834,8 +45968,8 @@ var java;
                 }
                 UnmodifiableList.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index184 = this.iterator(); index184.hasNext();) {
-                        var t = index184.next();
+                    for (var index185 = this.iterator(); index185.hasNext();) {
+                        var t = index185.next();
                         {
                             action(t);
                         }
@@ -45953,8 +46087,8 @@ var java;
                 }
                 UnmodifiableSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index185 = this.iterator(); index185.hasNext();) {
-                        var t = index185.next();
+                    for (var index186 = this.iterator(); index186.hasNext();) {
+                        var t = index186.next();
                         {
                             action(t);
                         }
@@ -46207,8 +46341,8 @@ var java;
                 }
                 UnmodifiableSortedSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index186 = this.iterator(); index186.hasNext();) {
-                        var t = index186.next();
+                    for (var index187 = this.iterator(); index187.hasNext();) {
+                        var t = index187.next();
                         {
                             action(t);
                         }
@@ -46423,8 +46557,8 @@ var java;
                 return this.__keySet.contains(key);
             };
             EnumMap.prototype.containsValue = function (value) {
-                for (var index187 = this.__keySet.iterator(); index187.hasNext();) {
-                    var key = index187.next();
+                for (var index188 = this.__keySet.iterator(); index188.hasNext();) {
+                    var key = index188.next();
                     {
                         if (java.util.Objects.equals(value, this.__values[key.ordinal()])) {
                             return true;
@@ -46641,8 +46775,8 @@ var java;
             }
             LinkedHashSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index188 = this.iterator(); index188.hasNext();) {
-                    var t = index188.next();
+                for (var index189 = this.iterator(); index189.hasNext();) {
+                    var t = index189.next();
                     {
                         action(t);
                     }
@@ -46912,8 +47046,8 @@ var java;
                         buf.append("+");
                     }
                     var buttonNumber = 1;
-                    for (var index189 = 0; index189 < InputEvent.BUTTON_DOWN_MASK_$LI$().length; index189++) {
-                        var mask = InputEvent.BUTTON_DOWN_MASK_$LI$()[index189];
+                    for (var index190 = 0; index190 < InputEvent.BUTTON_DOWN_MASK_$LI$().length; index190++) {
+                        var mask = InputEvent.BUTTON_DOWN_MASK_$LI$()[index190];
                         {
                             if ((modifiers & mask) !== 0) {
                                 buf.append("Button" + buttonNumber);
@@ -47211,8 +47345,8 @@ var java;
                         if (ss == null)
                             return null;
                         var files = new java.util.ArrayList();
-                        for (var index190 = 0; index190 < ss.length; index190++) {
-                            var s = ss[index190];
+                        for (var index191 = 0; index191 < ss.length; index191++) {
+                            var s = ss[index191];
                             if ((filter == null) || filter(_this, s))
                                 files.add(new File(_this, s, true));
                         }
@@ -47233,8 +47367,8 @@ var java;
                 if (ss == null)
                     return null;
                 var files = new java.util.ArrayList();
-                for (var index191 = 0; index191 < ss.length; index191++) {
-                    var s = ss[index191];
+                for (var index192 = 0; index192 < ss.length; index192++) {
+                    var s = ss[index192];
                     {
                         var f = new File(this, s, true);
                         if ((filter == null) || filter(f))
@@ -47703,9 +47837,9 @@ var java;
                 Logger.prototype.actuallyLog$java_util_logging_LogRecord = function (record) {
                     if (this.isLoggable(record.getLevel())) {
                         {
-                            var array193 = this.getHandlers();
-                            for (var index192 = 0; index192 < array193.length; index192++) {
-                                var handler = array193[index192];
+                            var array194 = this.getHandlers();
+                            for (var index193 = 0; index193 < array194.length; index193++) {
+                                var handler = array194[index193];
                                 {
                                     handler.publish(record);
                                 }
@@ -47714,9 +47848,9 @@ var java;
                         var logger = this.getUseParentHandlers() ? this.getParent() : null;
                         while ((logger != null)) {
                             {
-                                var array195 = logger.getHandlers();
-                                for (var index194 = 0; index194 < array195.length; index194++) {
-                                    var handler = array195[index194];
+                                var array196 = logger.getHandlers();
+                                for (var index195 = 0; index195 < array196.length; index195++) {
+                                    var handler = array196[index195];
                                     {
                                         handler.publish(record);
                                     }
@@ -48440,8 +48574,8 @@ var java;
                 if (this.size() !== otherMap.size()) {
                     return false;
                 }
-                for (var index196 = otherMap.entrySet().iterator(); index196.hasNext();) {
-                    var entry = index196.next();
+                for (var index197 = otherMap.entrySet().iterator(); index197.hasNext();) {
+                    var entry = index197.next();
                     {
                         var otherKey = entry.getKey();
                         var otherValue = entry.getValue();
@@ -48457,8 +48591,8 @@ var java;
             };
             IdentityHashMap.prototype.hashCode = function () {
                 var hashCode = 0;
-                for (var index197 = this.entrySet().iterator(); index197.hasNext();) {
-                    var entry = index197.next();
+                for (var index198 = this.entrySet().iterator(); index198.hasNext();) {
+                    var entry = index198.next();
                     {
                         hashCode += java.lang.System.identityHashCode(entry.getKey());
                         hashCode += java.lang.System.identityHashCode(entry.getValue());

@@ -2,7 +2,6 @@ package java.awt;
 
 import static jsweet.util.Globals.any;
 
-import java.applet.Applet;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -36,15 +35,20 @@ public abstract class Component implements HTMLComponent {
 
 	String name;
 
-	@Override
-	public void bindHTML(HTMLElement htmlElement) {
-		this.htmlElement = htmlElement;
-	}
+	Integer x, y, width, height;
 
 	@Override
+	public final void bindHTML(HTMLElement htmlElement) {
+		if (this.htmlElement != null) {
+			throw new RuntimeException("already bound");
+		}
+		this.htmlElement = htmlElement;
+		initHTML();
+	}
+
+	@Override	
 	public HTMLElement getHTMLElement() {
 		if (htmlElement == null) {
-			createHTML();
 			initHTML();
 		}
 		return any(htmlElement);
@@ -55,9 +59,19 @@ public abstract class Component implements HTMLComponent {
 		if (htmlElement == null) {
 			createHTML();
 		}
-		htmlElement.id = "cmp" + Applet.CURRENT_ID++;
+		htmlElement.id = "cmp" + Component.CURRENT_ID++;
 		if (background != null) {
 			htmlElement.style.backgroundColor = background.toHTML();
+		}
+		if (width != null) {
+			htmlElement.style.width = width + "px";
+		} else {
+			htmlElement.style.width = "auto";
+		}
+		if (height != null) {
+			htmlElement.style.height = height + "px";
+		} else {
+			htmlElement.style.height = "auto";
 		}
 	}
 
@@ -70,22 +84,37 @@ public abstract class Component implements HTMLComponent {
 	}
 
 	public int getWidth() {
-		return (int) htmlElement.clientWidth;
+		return (int) htmlElement.offsetWidth;
 	}
 
 	public int getHeight() {
-		return (int) htmlElement.clientHeight;
+		return (int) htmlElement.offsetHeight;
 	}
 
 	public int getX() {
-		return (int) htmlElement.clientLeft;
+		return (int) htmlElement.offsetLeft;
 	}
 
 	public int getY() {
-		return (int) htmlElement.clientTop;
+		return (int) htmlElement.offsetTop;
+	}
+
+	public void setSize(int width, int height) {
+		this.width = width;
+		this.height = height;
+		if (htmlElement != null) {
+			htmlElement.style.width = width + "px";
+			htmlElement.style.height = height + "px";
+		}
+	}
+
+	public void setSize(Dimension d) {
+		setSize(d.width, d.height);
 	}
 
 	private PropertyChangeSupport changeSupport;
+
+	public static int CURRENT_ID = 0;
 
 	public PropertyChangeListener[] getPropertyChangeListeners(String propertyName) {
 		if (changeSupport == null) {
@@ -158,6 +187,9 @@ public abstract class Component implements HTMLComponent {
 
 	public void setBackground(Color background) {
 		this.background = background;
+		if (htmlElement != null) {
+			htmlElement.style.backgroundColor = background.toHTML();
+		}
 	}
 
 	public Color getForeground() {
@@ -166,6 +198,9 @@ public abstract class Component implements HTMLComponent {
 
 	public void setForeground(Color foreground) {
 		this.foreground = foreground;
+		if (htmlElement != null) {
+			htmlElement.style.color = foreground.toHTML();
+		}
 	}
 
 	public Font getFont() {
@@ -174,6 +209,9 @@ public abstract class Component implements HTMLComponent {
 
 	public void setFont(Font font) {
 		this.font = font;
+		if (htmlElement != null) {
+			htmlElement.style.font = font.toHTML();
+		}
 	}
 
 	public boolean isVisible() {
@@ -182,6 +220,9 @@ public abstract class Component implements HTMLComponent {
 
 	public void setVisible(boolean visible) {
 		this.visible = visible;
+		if (htmlElement != null) {
+			htmlElement.style.display = "none";
+		}
 	}
 
 	public String getName() {
@@ -228,6 +269,17 @@ public abstract class Component implements HTMLComponent {
 
 	public void paintAll(Graphics g) {
 		paint(g);
+	}
+
+	public Graphics getGraphics() {
+		return null;
+	}
+
+	public void doPaintInternal() {
+		Graphics g = getGraphics();
+		if (g != null) {
+			paint(g);
+		}
 	}
 
 }

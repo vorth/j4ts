@@ -72,20 +72,23 @@ public class Checkbox extends Component implements ItemSelectable {
 		this.label = label;
 		this.state = state;
 		this.group = group;
+		this.itemListeners = new Array<ItemListener>();
 		if (state && (group != null)) {
 			group.setSelectedCheckbox(this);
 		}
 	}
 
-	public Checkbox(String label, CheckboxGroup group, boolean state) throws HeadlessException {
-		this(label, state, group);
-	}
+	// TODO: JSweet overload does not work for parameter swapping
+	// public Checkbox(String label, CheckboxGroup group, boolean state) throws
+	// HeadlessException {
+	// this(label, state, group);
+	// }
 
 	@Override
 	public HTMLLabelElement getHTMLElement() {
 		return any(super.getHTMLElement());
 	}
-	
+
 	@Override
 	public void createHTML() {
 		if (htmlElement != null) {
@@ -94,7 +97,8 @@ public class Checkbox extends Component implements ItemSelectable {
 		htmlElement = document.createElement(StringTypes.label);
 		htmlElement.appendChild(htmlLabel = document.createTextNode(""));
 		htmlCheckbox = document.createElement(StringTypes.input);
-		htmlCheckbox.type = "checkbox";
+		htmlCheckbox.type = group == null ? "checkbox" : "radio";
+		htmlElement.appendChild(htmlCheckbox);
 	}
 
 	@Override
@@ -102,6 +106,13 @@ public class Checkbox extends Component implements ItemSelectable {
 		super.initHTML();
 		htmlCheckbox.checked = state;
 		htmlLabel.data = label;
+		htmlCheckbox.onclick = e -> {
+			System.out.println(e + " / " + htmlCheckbox.checked);
+			setState(htmlCheckbox.checked);
+			processItemEvent(
+					new ItemEvent(this, 0, null, htmlCheckbox.checked ? ItemEvent.SELECTED : ItemEvent.DESELECTED));
+			return e;
+		};
 	}
 
 	String constructComponentName() {
@@ -124,12 +135,14 @@ public class Checkbox extends Component implements ItemSelectable {
 	}
 
 	public boolean getState() {
-		return htmlCheckbox.checked;
+		return this.state;
 	}
 
 	void setStateInternal(boolean state) {
 		this.state = state;
-		htmlCheckbox.checked = state;
+		if (htmlCheckbox != null) {
+			htmlCheckbox.checked = state;
+		}
 	}
 
 	public void setState(boolean state) {

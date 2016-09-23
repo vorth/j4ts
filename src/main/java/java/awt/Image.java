@@ -26,34 +26,38 @@ package java.awt;
 
 import java.awt.image.ImageObserver;
 
-import jsweet.lang.Interface;
-
+import jsweet.dom.HTMLImageElement;
 
 public class Image {
 
-	@Interface
-	class ImageSource {
-		public double width;
-		public double height;
+	// @Interface
+	// class ImageSource {
+	// public double width;
+	// public double height;
+	// }
+
+	// public Image(ImageSource source) {
+	// this.source = source;
+	// }
+
+	public Image(String src) {
+		source = new HTMLImageElement();
+		source.src = src;
 	}
-	
-	public Image(ImageSource source) {
-		this.source = source;
-	}
-	
+
 	public int getWidth(ImageObserver observer) {
-		return (int)source.width;
+		return (int) source.width;
 	}
 
 	public int getHeight(ImageObserver observer) {
-		return (int)source.height;
+		return (int) source.height;
 	}
 
-	public ImageSource source;
+	public HTMLImageElement source;
 
 	// public abstract ImageProducer getSource();
 
-	//public Graphics getGraphics();
+	// public Graphics getGraphics();
 
 	/**
 	 * Use the default image-scaling algorithm.
@@ -70,35 +74,10 @@ public class Image {
 	 */
 	public static final int SCALE_FAST = 2;
 
-	/**
-	 * Choose an image-scaling algorithm that gives higher priority to image
-	 * smoothness than scaling speed.
-	 * 
-	 * @since JDK1.1
-	 */
 	public static final int SCALE_SMOOTH = 4;
 
-	/**
-	 * Use the image scaling algorithm embodied in the
-	 * <code>ReplicateScaleFilter</code> class. The <code>Image</code> object is
-	 * free to substitute a different filter that performs the same algorithm
-	 * yet integrates more efficiently into the imaging infrastructure supplied
-	 * by the toolkit.
-	 * 
-	 * @see java.awt.image.ReplicateScaleFilter
-	 * @since JDK1.1
-	 */
 	public static final int SCALE_REPLICATE = 8;
 
-	/**
-	 * Use the Area Averaging image scaling algorithm. The image object is free
-	 * to substitute a different filter that performs the same algorithm yet
-	 * integrates more efficiently into the image infrastructure supplied by the
-	 * toolkit.
-	 * 
-	 * @see java.awt.image.AreaAveragingScaleFilter
-	 * @since JDK1.1
-	 */
 	public static final int SCALE_AREA_AVERAGING = 16;
 
 	public void flush() {

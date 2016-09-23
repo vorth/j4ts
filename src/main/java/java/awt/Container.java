@@ -66,4 +66,12 @@ public abstract class Container extends Component {
 		return component;
 	}
 
+	@Override
+	public void doPaintInternal() {
+		super.doPaintInternal();
+		for (Component c : components) {
+			c.doPaintInternal();
+		}
+	}
+
 }

@@ -15,7 +15,7 @@ import jsweet.util.StringTypes;
 
 public class WebGraphics2D extends Graphics2D {
 
-	private CanvasRenderingContext2D context;
+	public CanvasRenderingContext2D context;
 
 	public WebGraphics2D(HTMLCanvasElement canvas) {
 		this.context = canvas.getContext(StringTypes._2d);

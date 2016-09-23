@@ -3,7 +3,6 @@ package java.awt;
 import static jsweet.dom.Globals.document;
 import static jsweet.util.Globals.any;
 
-import java.applet.Applet;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,7 +33,7 @@ public class TextField extends Component {
 	@Override
 	public void initHTML() {
 		super.initHTML();
-		htmlElement.id = "cmp" + Applet.CURRENT_ID++;
+		htmlElement.id = "cmp" + Component.CURRENT_ID++;
 		initActionListener();
 	}
 
