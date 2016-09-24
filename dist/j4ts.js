@@ -12658,7 +12658,7 @@ var java;
     (function (awt) {
         var Image = (function () {
             function Image(src) {
-                this.source = new HTMLImageElement();
+                this.source = document.createElement("img");
                 this.source.src = src;
             }
             Image.prototype.getWidth = function (observer) {
@@ -28016,11 +28016,11 @@ var java;
             LocalStorageFileSystem.prototype.getKey = function (pathname) {
                 return this.PREFIX + pathname;
             };
-            LocalStorageFileSystem.prototype.createFileExclusively = function (pathname) {
+            LocalStorageFileSystem.prototype.createFileEntry = function (pathname) {
                 var f = new java.io.File(pathname);
                 pathname = f.getAbsolutePath();
                 if (this.hasEntry(pathname)) {
-                    return false;
+                    return null;
                 }
                 var parent = f.getParentFile();
                 if (parent != null) {
@@ -28033,14 +28033,19 @@ var java;
                     entries.push(f.getName());
                     this.putEntry(parentPath, directoryEntry);
                 }
-                this.putEntry(pathname, Object.defineProperty({
+                var e;
+                this.putEntry(pathname, e = Object.defineProperty({
                     lastModifiedTime: java.lang.System.currentTimeMillis(),
                     length: 0,
                     data: "",
                     attributes: java.io.FileSystem.BA_EXISTS | java.io.FileSystem.BA_REGULAR,
                     access: java.io.FileSystem.ACCESS_READ | java.io.FileSystem.ACCESS_WRITE
                 }, '__interfaces', { configurable: true, value: ["java.io.LocalStorageFileSystem.Entry"] }));
-                return true;
+                return e;
+            };
+            LocalStorageFileSystem.prototype.createFileExclusively = function (pathname) {
+                var e = this.createFileEntry(pathname);
+                return e != null;
             };
             LocalStorageFileSystem.prototype.hasEntry = function (pathname) {
                 return localStorage.getItem(this.getKey(pathname)) != null;

@@ -166,12 +166,11 @@ public class LocalStorageFileSystem extends FileSystem {
 		return PREFIX + pathname;
 	}
 
-	@Override
-	public boolean createFileExclusively(String pathname) throws IOException {
+	public Entry createFileEntry(String pathname) throws IOException {
 		File f = new File(pathname);
 		pathname = f.getAbsolutePath();
 		if (hasEntry(pathname)) {
-			return false;
+			return null;
 		}
 		File parent = f.getParentFile();
 		if (parent != null) {
@@ -184,7 +183,8 @@ public class LocalStorageFileSystem extends FileSystem {
 			entries.push(f.getName());
 			putEntry(parentPath, directoryEntry);
 		}
-		putEntry(pathname, new Entry() {
+		Entry e;
+		putEntry(pathname, e = new Entry() {
 			{
 				lastModifiedTime = System.currentTimeMillis();
 				length = 0;
@@ -193,7 +193,13 @@ public class LocalStorageFileSystem extends FileSystem {
 				access = ACCESS_READ | ACCESS_WRITE;
 			}
 		});
-		return true;
+		return e;
+	}
+
+	@Override
+	public boolean createFileExclusively(String pathname) throws IOException {
+		Entry e = createFileEntry(pathname);
+		return e != null;
 	}
 
 	boolean hasEntry(String pathname) {

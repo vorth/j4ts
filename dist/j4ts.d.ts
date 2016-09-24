@@ -14628,6 +14628,7 @@ declare namespace java.io {
         getLength(f: java.io.File): number;
         clear(): void;
         getKey(pathname: string): string;
+        createFileEntry(pathname: string): LocalStorageFileSystem.Entry;
         createFileExclusively(pathname: string): boolean;
         hasEntry(pathname: string): boolean;
         getEntry(pathname: string): LocalStorageFileSystem.Entry;

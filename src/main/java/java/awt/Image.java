@@ -24,9 +24,12 @@
  */
 package java.awt;
 
+import static jsweet.dom.Globals.document;
+
 import java.awt.image.ImageObserver;
 
 import jsweet.dom.HTMLImageElement;
+import jsweet.util.StringTypes;
 
 public class Image {
 
@@ -41,7 +44,7 @@ public class Image {
 	// }
 
 	public Image(String src) {
-		source = new HTMLImageElement();
+		source = document.createElement(StringTypes.img);
 		source.src = src;
 	}
 
