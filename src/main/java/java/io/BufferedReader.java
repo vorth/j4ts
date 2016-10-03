@@ -3,7 +3,6 @@ package java.io;
 /**
  * JSweet implementation.
  */
-
 public class BufferedReader extends Reader {
 
 	private Reader in;
@@ -14,12 +13,10 @@ public class BufferedReader extends Reader {
 	private static final int INVALIDATED = -2;
 	private static final int UNMARKED = -1;
 	private int markedChar;
-	private int readAheadLimit; /* Valid only when markedChar > 0 */
+	private int readAheadLimit;
 
-	/** If the next character is a line feed, skip it */
 	private boolean skipLF;
 
-	/** The skipLF flag when the mark was set */
 	private boolean markedSkipLF;
 
 	private static int defaultCharBufferSize = 8192;
@@ -28,7 +25,7 @@ public class BufferedReader extends Reader {
 	public BufferedReader(Reader in, int sz) {
 		super(in);
 		markedChar = UNMARKED;
-		readAheadLimit = 0; /* Valid only when markedChar > 0 */
+		readAheadLimit = 0;
 		skipLF = false;
 		markedSkipLF = false;
 		if (sz <= 0)
@@ -42,36 +39,27 @@ public class BufferedReader extends Reader {
 		this(in, defaultCharBufferSize);
 	}
 
-	/** Checks to make sure that the stream has not been closed */
 	private void ensureOpen() throws IOException {
 		if (in == null)
 			throw new IOException("Stream closed");
 	}
 
-	/**
-	 * Fills the input buffer, taking the mark into account if it is valid.
-	 */
 	private void fill() throws IOException {
 		int dst;
 		if (markedChar <= UNMARKED) {
-			/* No mark */
 			dst = 0;
 		} else {
-			/* Marked */
 			int delta = nextChar - markedChar;
 			if (delta >= readAheadLimit) {
-				/* Gone past read-ahead limit: Invalidate mark */
 				markedChar = INVALIDATED;
 				readAheadLimit = 0;
 				dst = 0;
 			} else {
 				if (readAheadLimit <= cb.length) {
-					/* Shuffle in the current buffer */
 					System.arraycopy(cb, markedChar, cb, 0, delta);
 					markedChar = 0;
 					dst = delta;
 				} else {
-					/* Reallocate buffer to accommodate read-ahead limit */
 					char ncb[] = new char[readAheadLimit];
 					System.arraycopy(cb, markedChar, ncb, 0, delta);
 					cb = ncb;
@@ -115,13 +103,6 @@ public class BufferedReader extends Reader {
 
 	private int read1(char[] cbuf, int off, int len) throws IOException {
 		if (nextChar >= nChars) {
-			/*
-			 * If the requested length is at least as large as the buffer, and
-			 * if there is no mark/reset activity, and if line feeds are not
-			 * being skipped, do not bother to copy the characters into the
-			 * local buffer. In this way buffered streams will cascade
-			 * harmlessly.
-			 */
 			if (len >= cb.length && markedChar <= UNMARKED && !skipLF) {
 				return in.read(cbuf, off, len);
 			}
@@ -179,7 +160,7 @@ public class BufferedReader extends Reader {
 
 				if (nextChar >= nChars)
 					fill();
-				if (nextChar >= nChars) { /* EOF */
+				if (nextChar >= nChars) {
 					if (s != null && s.length() > 0)
 						return s.toString();
 					else
@@ -189,7 +170,6 @@ public class BufferedReader extends Reader {
 				char c = 0;
 				int i;
 
-				/* Skip a leftover '\n', if necessary */
 				if (omitLF && (cb[nextChar] == '\n'))
 					nextChar++;
 				skipLF = false;
@@ -265,29 +245,19 @@ public class BufferedReader extends Reader {
 	}
 
 	public boolean ready() throws IOException {
-		synchronized (lock) {
-			ensureOpen();
+		ensureOpen();
 
-			/*
-			 * If newline needs to be skipped and the next char to be read is a
-			 * newline character, then just skip it right away.
-			 */
-			if (skipLF) {
-				/*
-				 * Note that in.ready() will return true if and only if the next
-				 * read on the stream will not block.
-				 */
-				if (nextChar >= nChars && in.ready()) {
-					fill();
-				}
-				if (nextChar < nChars) {
-					if (cb[nextChar] == '\n')
-						nextChar++;
-					skipLF = false;
-				}
+		if (skipLF) {
+			if (nextChar >= nChars && in.ready()) {
+				fill();
 			}
-			return (nextChar < nChars) || in.ready();
+			if (nextChar < nChars) {
+				if (cb[nextChar] == '\n')
+					nextChar++;
+				skipLF = false;
+			}
 		}
+		return (nextChar < nChars) || in.ready();
 	}
 
 	public boolean markSupported() {
@@ -298,34 +268,28 @@ public class BufferedReader extends Reader {
 		if (readAheadLimit < 0) {
 			throw new IllegalArgumentException("Read-ahead limit < 0");
 		}
-		synchronized (lock) {
-			ensureOpen();
-			this.readAheadLimit = readAheadLimit;
-			markedChar = nextChar;
-			markedSkipLF = skipLF;
-		}
+		ensureOpen();
+		this.readAheadLimit = readAheadLimit;
+		markedChar = nextChar;
+		markedSkipLF = skipLF;
 	}
 
 	public void reset() throws IOException {
-		synchronized (lock) {
-			ensureOpen();
-			if (markedChar < 0)
-				throw new IOException((markedChar == INVALIDATED) ? "Mark invalid" : "Stream not marked");
-			nextChar = markedChar;
-			skipLF = markedSkipLF;
-		}
+		ensureOpen();
+		if (markedChar < 0)
+			throw new IOException((markedChar == INVALIDATED) ? "Mark invalid" : "Stream not marked");
+		nextChar = markedChar;
+		skipLF = markedSkipLF;
 	}
 
 	public void close() throws IOException {
-		synchronized (lock) {
-			if (in == null)
-				return;
-			try {
-				in.close();
-			} finally {
-				in = null;
-				cb = null;
-			}
+		if (in == null)
+			return;
+		try {
+			in.close();
+		} finally {
+			in = null;
+			cb = null;
 		}
 	}
 

@@ -4,8 +4,6 @@ import static jsweet.dom.Globals.console;
 import static jsweet.dom.Globals.document;
 import static jsweet.dom.Globals.localStorage;
 
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -50,7 +48,6 @@ public class Test {
 			testSet();
 			testString();
 			testIO();
-			testAwtGeom();
 			// not available
 			// testMath();
 			HTMLElement result = document.getElementById("result");
@@ -152,35 +149,9 @@ public class Test {
 
 	public static void testIO() throws IOException {
 		console.info("testing io");
-		localStorage.clear();
 		ByteArrayInputStream s = new ByteArrayInputStream("abc".getBytes());
 		assertEquals(Character.getNumericValue('a'), s.read());
-		File dir = new File("/a/b/c");
-		assertFalse(dir.exists());
-		dir.mkdirs();
-		assertTrue(dir.exists());
-		File f = new File(dir, "test.txt");
-		assertFalse(f.exists());
-		f.createNewFile();
-		assertTrue(f.exists());
-		FileWriter fw = new FileWriter(f);
-		fw.append("abc");
-		fw.close();
-		BufferedReader reader = new BufferedReader(new FileReader(f));
-		String line = reader.readLine();
-		reader.close();
-		assertEquals("abc", line);
 		console.info("end testing io");
-	}
-
-	public static void testAwtGeom() throws IOException {
-		console.info("testing awt.geom");
-		Rectangle2D r = new Rectangle2D.Double(0, 0, 10, 10);
-		Point2D p1 = new Point2D.Double(5, 5);
-		Point2D p2 = new Point2D.Double(5, 50);
-		assertTrue(r.contains(p1));
-		assertFalse(r.contains(p2));
-		console.info("end testing awt.geom");
 	}
 
 	// java.math is not available yet and should be implemented as a wrapper to
