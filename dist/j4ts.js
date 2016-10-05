@@ -4330,9 +4330,13 @@ var javaemul;
                 for (var batchStart = srcOfs, end = srcOfs + len; batchStart < end;) {
                     var batchEnd = Math.min(batchStart + ArrayHelper.ARRAY_PROCESS_BATCH_SIZE, end);
                     len = batchEnd - batchStart;
+                    ArrayHelper.applySplice(dest, destOfs, overwrite ? len : 0, ArrayHelper.unsafeClone(src, batchStart, batchEnd));
                     batchStart = batchEnd;
                     destOfs += len;
                 }
+            };
+            ArrayHelper.applySplice = function (arrayObject, index, deleteCount, arrayToAdd) {
+                Array.prototype.splice.apply(arrayObject, [index, deleteCount].concat(arrayToAdd));
             };
             ArrayHelper.ARRAY_PROCESS_BATCH_SIZE = 10000;
             return ArrayHelper;
@@ -5893,6 +5897,7 @@ var test;
         };
         Test.test = function () {
             try {
+                Test.testArrays();
                 Test.testList();
                 Test.testMap();
                 Test.testSet();
@@ -5911,6 +5916,20 @@ var test;
                 }
             }
             ;
+        };
+        Test.testArrays = function () {
+            console.info("testing arrays");
+            var srcArray = ["a", "b", "c"];
+            var dstArray = new Array(srcArray.length - 1);
+            java.lang.System.arraycopy(srcArray, 1, dstArray, 0, srcArray.length - 1);
+            Test.assertEquals(2, dstArray.length);
+            Test.assertEquals("b", dstArray[0]);
+            Test.assertEquals("c", dstArray[1]);
+            var myArray = [3, 2, 1];
+            Test.assertEquals(3, myArray[0]);
+            java.util.Arrays.sort(myArray);
+            Test.assertEquals(1, myArray[0]);
+            console.info("end testing arrays");
         };
         Test.testList = function () {
             console.info("testing lists");
@@ -15751,34 +15770,12 @@ var java;
             System.arraycopy = function (src, srcOfs, dest, destOfs, len) {
                 javaemul.internal.InternalPreconditions.checkNotNull(src, "src");
                 javaemul.internal.InternalPreconditions.checkNotNull(dest, "dest");
-                var srcType = src.constructor;
-                var destType = dest.constructor;
-                javaemul.internal.InternalPreconditions.checkArrayType(srcType.isArray(), "srcType is not an array");
-                javaemul.internal.InternalPreconditions.checkArrayType(destType.isArray(), "destType is not an array");
-                var srcComp = srcType.getComponentType();
-                var destComp = destType.getComponentType();
-                javaemul.internal.InternalPreconditions.checkArrayType(System.arrayTypeMatch(srcComp, destComp), "Array types don\'t match");
                 var srclen = javaemul.internal.ArrayHelper.getLength(src);
                 var destlen = javaemul.internal.ArrayHelper.getLength(dest);
                 if (srcOfs < 0 || destOfs < 0 || len < 0 || srcOfs + len > srclen || destOfs + len > destlen) {
                     throw new java.lang.IndexOutOfBoundsException();
                 }
-                if ((!srcComp.isPrimitive() || srcComp.isArray()) && !srcType.equals(destType)) {
-                    var srcArray = src;
-                    var destArray = dest;
-                    if (src === dest && srcOfs < destOfs) {
-                        srcOfs += len;
-                        for (var destEnd = destOfs + len; destEnd-- > destOfs;) {
-                            destArray[destEnd] = srcArray[--srcOfs];
-                        }
-                    }
-                    else {
-                        for (var destEnd = destOfs + len; destOfs < destEnd;) {
-                            destArray[destOfs++] = srcArray[srcOfs++];
-                        }
-                    }
-                }
-                else if (len > 0) {
+                if (len > 0) {
                     javaemul.internal.ArrayHelper.copy(src, srcOfs, dest, destOfs, len);
                 }
             };

@@ -2272,6 +2272,7 @@ declare namespace javaemul.internal {
         static insertTo$java_lang_Object$int$java_lang_Object(array: any, index: number, value: any): void;
         static insertTo(array?: any, index?: any, values?: any): any;
         static copy(src: any, srcOfs: number, dest: any, destOfs: number, len: number, overwrite?: boolean): void;
+        private static applySplice(arrayObject, index, deleteCount, arrayToAdd);
     }
 }
 declare namespace javaemul.internal {
@@ -2757,6 +2758,7 @@ declare namespace test {
         static assertTrue(b: boolean): void;
         static assertFalse(b: boolean): void;
         static test(): void;
+        static testArrays(): void;
         static testList(): void;
         static testSet(): void;
         static testMap(): void;

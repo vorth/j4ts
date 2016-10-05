@@ -15,7 +15,6 @@
  */
 package java.lang;
 
-import static javaemul.internal.InternalPreconditions.checkArrayType;
 import static javaemul.internal.InternalPreconditions.checkNotNull;
 
 import java.io.PrintStream;
@@ -47,14 +46,21 @@ public final class System {
 		checkNotNull(src, "src");
 		checkNotNull(dest, "dest");
 
-		Class<?> srcType = src.getClass();
-		Class<?> destType = dest.getClass();
-		checkArrayType(srcType.isArray(), "srcType is not an array");
-		checkArrayType(destType.isArray(), "destType is not an array");
+		// TODO: right now, all checks are disabled but could be reactivated
+		// when appropriate support is available
 
-		Class<?> srcComp = srcType.getComponentType();
-		Class<?> destComp = destType.getComponentType();
-		checkArrayType(arrayTypeMatch(srcComp, destComp), "Array types don't match");
+		// Class<?> srcType = src.getClass();
+		// Class<?> destType = dest.getClass();
+
+		// TODO: support isArray() as a macro
+		// checkArrayType(srcType.isArray(), "srcType is not an array");
+		// checkArrayType(destType.isArray(), "destType is not an array");
+
+		// TODO: support getComponentType() as a macro
+		// Class<?> srcComp = srcType.getComponentType();
+		// Class<?> destComp = destType.getComponentType();
+		// checkArrayType(arrayTypeMatch(srcComp, destComp), "Array types don't
+		// match");
 
 		int srclen = ArrayHelper.getLength(src);
 		int destlen = ArrayHelper.getLength(dest);
@@ -66,26 +72,28 @@ public final class System {
 		 * type, we can copy them in native code for speed. Otherwise, we have
 		 * to copy them in Java so we get appropriate errors.
 		 */
-		if ((!srcComp.isPrimitive() || srcComp.isArray()) && !srcType.equals(destType)) {
-			// copy in Java to make sure we get ArrayStoreExceptions if the
-			// values
-			// aren't compatible
-			Object[] srcArray = (Object[]) src;
-			Object[] destArray = (Object[]) dest;
-			if (src == dest && srcOfs < destOfs) {
-				// TODO(jat): how does backward copies handle failures in the
-				// middle?
-				// copy backwards to avoid destructive copies
-				srcOfs += len;
-				for (int destEnd = destOfs + len; destEnd-- > destOfs;) {
-					destArray[destEnd] = srcArray[--srcOfs];
-				}
-			} else {
-				for (int destEnd = destOfs + len; destOfs < destEnd;) {
-					destArray[destOfs++] = srcArray[srcOfs++];
-				}
-			}
-		} else if (len > 0) {
+		// if ((!srcComp.isPrimitive() || srcComp.isArray()) &&
+		// !srcType.equals(destType)) {
+		// // copy in Java to make sure we get ArrayStoreExceptions if the
+		// // values
+		// // aren't compatible
+		// Object[] srcArray = (Object[]) src;
+		// Object[] destArray = (Object[]) dest;
+		// if (src == dest && srcOfs < destOfs) {
+		// // TODO(jat): how does backward copies handle failures in the
+		// // middle?
+		// // copy backwards to avoid destructive copies
+		// srcOfs += len;
+		// for (int destEnd = destOfs + len; destEnd-- > destOfs;) {
+		// destArray[destEnd] = srcArray[--srcOfs];
+		// }
+		// } else {
+		// for (int destEnd = destOfs + len; destOfs < destEnd;) {
+		// destArray[destOfs++] = srcArray[srcOfs++];
+		// }
+		// }
+		// } else
+		if (len > 0) {
 			ArrayHelper.copy(src, srcOfs, dest, destOfs, len);
 		}
 	}
@@ -157,11 +165,11 @@ public final class System {
 		System.out = out;
 	}
 
-	private static boolean arrayTypeMatch(Class<?> srcComp, Class<?> destComp) {
-		if (srcComp.isPrimitive()) {
-			return srcComp.equals(destComp);
-		} else {
-			return !destComp.isPrimitive();
-		}
-	}
+//	private static boolean arrayTypeMatch(Class<?> srcComp, Class<?> destComp) {
+//		if (srcComp.isPrimitive()) {
+//			return srcComp.equals(destComp);
+//		} else {
+//			return !destComp.isPrimitive();
+//		}
+//	}
 }

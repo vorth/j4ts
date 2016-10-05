@@ -2,15 +2,11 @@ package test;
 
 import static jsweet.dom.Globals.console;
 import static jsweet.dom.Globals.document;
-import static jsweet.dom.Globals.localStorage;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -43,6 +39,7 @@ public class Test {
 
 	public static void test() {
 		try {
+			testArrays();
 			testList();
 			testMap();
 			testSet();
@@ -61,6 +58,21 @@ public class Test {
 				result.innerHTML = "Failure: " + e.getMessage();
 			}
 		}
+	}
+
+	public static void testArrays() {
+		console.info("testing arrays");
+		String[] srcArray = { "a", "b", "c" };
+		String[] dstArray = new String[srcArray.length - 1];
+		System.arraycopy(srcArray, 1, dstArray, 0, srcArray.length - 1);
+		assertEquals(2, dstArray.length);
+		assertEquals("b", dstArray[0]);
+		assertEquals("c", dstArray[1]);
+		int[] myArray = { 3, 2, 1 };
+		assertEquals(3, myArray[0]);
+		Arrays.sort(myArray);
+		assertEquals(1, myArray[0]);
+		console.info("end testing arrays");
 	}
 
 	public static void testList() {

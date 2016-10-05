@@ -88,18 +88,13 @@ public class ArrayHelper {
 			// increment in block
 			int batchEnd = Math.min(batchStart + ARRAY_PROCESS_BATCH_SIZE, end);
 			len = batchEnd - batchStart;
-			// applySplice(dest, destOfs, overwrite ? len : 0, unsafeClone(src,
-			// batchStart, batchEnd));
+			applySplice(dest, destOfs, overwrite ? len : 0, unsafeClone(src, batchStart, batchEnd));
 			batchStart = batchEnd;
 			destOfs += len;
 		}
 	}
-	//
-	// private static void applySplice(Object array, int index, int deleteCount,
-	// Object arrayToAdd) {
-	//
-	// ((Function) Array.prototype.$get("splice")).apply(array,
-	// Globals.array(new int[] { index, deleteCount })
-	// .concat(new Array.ItemsUs<Integer>((Integer) arrayToAdd)));
-	// };
+
+	private static native void applySplice(Object arrayObject, int index, int deleteCount, Object arrayToAdd) /*-{
+		Array.prototype.splice.apply(arrayObject, [index, deleteCount].concat(arrayToAdd));
+	}-*/;
 }
