@@ -1899,6 +1899,213 @@ var java;
 (function (java) {
     var util;
     (function (util) {
+        /**
+         * Incomplete and naive implementation of the BitSet utility (mainly for
+         * compatibility/compilation purpose).
+         *
+         * @author Renaud Pawlak
+         */
+        var BitSet = (function () {
+            function BitSet(nbits) {
+                var _this = this;
+                this.bits = [];
+                if (((typeof nbits === 'number') || nbits === null)) {
+                    this.bits = [];
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.io.Serializable"] });
+                    (function () {
+                        while ((nbits > 0)) {
+                            (_this.bits).push(false);
+                        }
+                        ;
+                    })();
+                }
+                else if (nbits === undefined) {
+                    this.bits = [];
+                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.io.Serializable"] });
+                    (function () {
+                    })();
+                }
+                else
+                    throw new Error('invalid overload');
+            }
+            BitSet.valueOf = function (longs) {
+                var bs = new BitSet();
+                bs.bits = new Array(longs.length * 64);
+                for (var n = 0; n < longs.length * 64; n++) {
+                    bs.bits[n] = ((longs[(n / 64 | 0)] & (1 << (n % 64))) !== 0);
+                }
+                return bs;
+            };
+            BitSet.prototype.flip$int = function (bitIndex) {
+                this.bits[bitIndex] = !this.bits[bitIndex];
+            };
+            BitSet.prototype.flip = function (fromIndex, toIndex) {
+                var _this = this;
+                if (((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null)) {
+                    return (function () {
+                        for (var i = fromIndex; i <= toIndex; i++) {
+                            _this.flip(i);
+                        }
+                    })();
+                }
+                else if (((typeof fromIndex === 'number') || fromIndex === null) && toIndex === undefined) {
+                    return this.flip$int(fromIndex);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            BitSet.prototype.set$int = function (bitIndex) {
+                this.bits[bitIndex] = true;
+            };
+            BitSet.prototype.set$int$boolean = function (bitIndex, value) {
+                if (value) {
+                    this.set(bitIndex);
+                }
+                else {
+                    this.clear(bitIndex);
+                }
+            };
+            BitSet.prototype.set$int$int = function (fromIndex, toIndex) {
+                for (var i = fromIndex; i <= toIndex; i++) {
+                    this.set(i);
+                }
+            };
+            BitSet.prototype.set = function (fromIndex, toIndex, value) {
+                var _this = this;
+                if (((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null) && ((typeof value === 'boolean') || value === null)) {
+                    return (function () {
+                        if (value) {
+                            _this.set(fromIndex, toIndex);
+                        }
+                        else {
+                            _this.clear(fromIndex, toIndex);
+                        }
+                    })();
+                }
+                else if (((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'boolean') || toIndex === null) && value === undefined) {
+                    return this.set$int$boolean(fromIndex, toIndex);
+                }
+                else if (((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null) && value === undefined) {
+                    return this.set$int$int(fromIndex, toIndex);
+                }
+                else if (((typeof fromIndex === 'number') || fromIndex === null) && toIndex === undefined && value === undefined) {
+                    return this.set$int(fromIndex);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            BitSet.prototype.clear$int = function (bitIndex) {
+                this.bits[bitIndex] = false;
+            };
+            BitSet.prototype.clear = function (fromIndex, toIndex) {
+                var _this = this;
+                if (((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null)) {
+                    return (function () {
+                        for (var i = fromIndex; i <= toIndex; i++) {
+                            _this.clear(i);
+                        }
+                    })();
+                }
+                else if (((typeof fromIndex === 'number') || fromIndex === null) && toIndex === undefined) {
+                    return this.clear$int(fromIndex);
+                }
+                else if (fromIndex === undefined && toIndex === undefined) {
+                    return this.clear$();
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            BitSet.prototype.clear$ = function () {
+                this.bits = new Array(0);
+            };
+            BitSet.prototype.get$int = function (bitIndex) {
+                return this.bits[bitIndex];
+            };
+            BitSet.prototype.get = function (fromIndex, toIndex) {
+                var _this = this;
+                if (((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null)) {
+                    return (function () {
+                        var bs = new BitSet();
+                        for (var i = fromIndex; i <= toIndex; i++) {
+                            (bs.bits).push(_this.bits[i]);
+                        }
+                        return bs;
+                    })();
+                }
+                else if (((typeof fromIndex === 'number') || fromIndex === null) && toIndex === undefined) {
+                    return this.get$int(fromIndex);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            BitSet.prototype.length = function () {
+                return this.bits.length;
+            };
+            BitSet.prototype.isEmpty = function () {
+                return this.bits.length === 0;
+            };
+            BitSet.prototype.cardinality = function () {
+                var sum = 0;
+                for (var i = 0; i < this.bits.length; i++) {
+                    sum += this.bits[i] ? 1 : 0;
+                }
+                return sum;
+            };
+            BitSet.prototype.and = function (set) {
+                for (var i = 0; i < this.bits.length; i++) {
+                    this.bits[i] = this.bits[i] && set.get(i);
+                }
+            };
+            BitSet.prototype.or = function (set) {
+                for (var i = 0; i < this.bits.length; i++) {
+                    this.bits[i] = this.bits[i] || set.get(i);
+                }
+            };
+            BitSet.prototype.xor = function (set) {
+                for (var i = 0; i < this.bits.length; i++) {
+                    this.bits[i] = (this.bits[i] && !set.get(i)) || (!this.bits[i] && set.get(i));
+                }
+            };
+            BitSet.prototype.andNot = function (set) {
+                for (var i = 0; i < this.bits.length; i++) {
+                    this.bits[i] = this.bits[i] && !set.get(i);
+                }
+            };
+            BitSet.prototype.size = function () {
+                return this.bits.length;
+            };
+            BitSet.prototype.equals = function (obj) {
+                if (!(obj != null && obj instanceof java.util.BitSet))
+                    return false;
+                if (this === obj)
+                    return true;
+                var set = obj;
+                if (set.bits.length !== this.bits.length) {
+                    return false;
+                }
+                for (var i = 0; i < set.bits.length; i++) {
+                    if (!(set.bits[i] == this.bits[i])) {
+                        return false;
+                    }
+                }
+                return true;
+            };
+            BitSet.prototype.clone = function () {
+                var bs = new BitSet();
+                bs.bits = (this.bits).slice(0, this.bits.length);
+                return bs;
+            };
+            return BitSet;
+        }());
+        util.BitSet = BitSet;
+        BitSet["__classname"] = "java.util.BitSet";
+    })(util = java.util || (java.util = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var util;
+    (function (util) {
         var Comparators = (function () {
             function Comparators() {
             }
@@ -5791,6 +5998,18 @@ var test;
             Test.assertTrue(s.contains("c"));
             Test.assertFalse(s.contains("b"));
             Test.assertEquals(s.size(), 2);
+            console.info("testing bit sets");
+            var bs = java.util.BitSet.valueOf([255]);
+            Test.assertTrue(bs.get(0));
+            Test.assertTrue(bs.get(1));
+            Test.assertTrue(bs.get(7));
+            Test.assertFalse(bs.get(8));
+            var bs2 = java.util.BitSet.valueOf([1]);
+            Test.assertTrue(bs2.get(0));
+            Test.assertFalse(bs2.get(1));
+            bs.and(bs2);
+            Test.assertTrue(bs.get(0));
+            Test.assertFalse(bs.get(1));
             console.info("end testing sets");
         };
         Test.testMap = function () {

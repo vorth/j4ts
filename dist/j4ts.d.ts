@@ -906,6 +906,40 @@ declare namespace java.util {
 }
 declare namespace java.util {
     /**
+     * Incomplete and naive implementation of the BitSet utility (mainly for
+     * compatibility/compilation purpose).
+     *
+     * @author Renaud Pawlak
+     */
+    class BitSet implements java.lang.Cloneable, java.io.Serializable {
+        private bits;
+        constructor(nbits?: any);
+        static valueOf(longs: number[]): BitSet;
+        flip$int(bitIndex: number): void;
+        flip(fromIndex?: any, toIndex?: any): any;
+        set$int(bitIndex: number): void;
+        set$int$boolean(bitIndex: number, value: boolean): void;
+        set$int$int(fromIndex: number, toIndex: number): void;
+        set(fromIndex?: any, toIndex?: any, value?: any): any;
+        clear$int(bitIndex: number): void;
+        clear(fromIndex?: any, toIndex?: any): any;
+        clear$(): void;
+        get$int(bitIndex: number): boolean;
+        get(fromIndex?: any, toIndex?: any): any;
+        length(): number;
+        isEmpty(): boolean;
+        cardinality(): number;
+        and(set: BitSet): void;
+        or(set: BitSet): void;
+        xor(set: BitSet): void;
+        andNot(set: BitSet): void;
+        size(): number;
+        equals(obj: any): boolean;
+        clone(): any;
+    }
+}
+declare namespace java.util {
+    /**
      * General-purpose interface for storing collections of objects. <a
      * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html">[Sun
      * docs]</a>

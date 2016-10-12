@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -120,6 +121,19 @@ public class Test {
 		assertTrue(s.contains("c"));
 		assertFalse(s.contains("b"));
 		assertEquals(s.size(), 2);
+		// BitSet
+		console.info("testing bit sets");
+		BitSet bs = BitSet.valueOf(new long[] { 255 });
+		assertTrue(bs.get(0));
+		assertTrue(bs.get(1));
+		assertTrue(bs.get(7));
+		assertFalse(bs.get(8));
+		BitSet bs2 = BitSet.valueOf(new long[] { 1 });
+		assertTrue(bs2.get(0));
+		assertFalse(bs2.get(1));
+		bs.and(bs2);
+		assertTrue(bs.get(0));
+		assertFalse(bs.get(1));
 		console.info("end testing sets");
 	}
 
