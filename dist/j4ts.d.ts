@@ -10,77 +10,6 @@ declare namespace java.beans {
         static isDesignTime(): boolean;
     }
 }
-declare namespace java.beans {
-    abstract class ChangeListenerMap<L extends java.util.EventListener> {
-        private map;
-        abstract newArray(length: number): L[];
-        newProxy(name?: any, listener?: any): any;
-        newProxy$java_lang_String$java_util_EventListener(name: string, listener: L): L;
-        add(name: string, listener: L): void;
-        remove(name: string, listener: L): void;
-        /**
-         * Returns the list of listeners for the specified property.
-         *
-         * @param name
-         * the name of the property
-         * @return the corresponding list of listeners
-         */
-        get(name: string): L[];
-        /**
-         * Sets new list of listeners for the specified property.
-         *
-         * @param name
-         * the name of the property
-         * @param listeners
-         * new list of listeners
-         */
-        set(name: string, listeners: L[]): void;
-        /**
-         * Returns all listeners in the map.
-         *
-         * @return an array of all listeners
-         */
-        getListeners$(): L[];
-        /**
-         * Returns listeners that have been associated with the named property.
-         *
-         * @param name
-         * the name of the property
-         * @return an array of listeners for the named property
-         */
-        getListeners(name?: any): any;
-        /**
-         * Indicates whether the map contains at least one listener to be notified.
-         *
-         * @param name
-         * the name of the property
-         * @return {@code true} if at least one listener exists or {@code false}
-         * otherwise
-         */
-        hasListeners(name: string): boolean;
-        /**
-         * Returns a set of entries from the map. Each entry is a pair consisted of
-         * the property name and the corresponding list of listeners.
-         *
-         * @return a set of entries from the map
-         */
-        getEntries(): java.util.Set<java.util.Map.Entry<string, L[]>>;
-        extract(listener?: any): any;
-        /**
-         * Extracts a real listener from the proxy listener. It is necessary because
-         * default proxy class is not serializable.
-         *
-         * @return a real listener
-         */
-        extract$java_util_EventListener(listener: L): L;
-        constructor();
-    }
-}
-declare namespace java.beans {
-    interface PropertyChangeListener extends java.util.EventListener {
-        propertyChange(evt: java.beans.PropertyChangeEvent): any;
-    }
-}
 declare namespace java.io {
     /**
      * An {@code AutoCloseable} whose close method may throw an {@link IOException}.
@@ -2766,38 +2695,6 @@ declare namespace test {
         static testIO(): void;
     }
 }
-declare namespace java.beans {
-    class PropertyChangeSupport implements java.io.Serializable {
-        private map;
-        constructor(sourceBean: any);
-        addPropertyChangeListener$java_beans_PropertyChangeListener(listener: java.beans.PropertyChangeListener): void;
-        removePropertyChangeListener$java_beans_PropertyChangeListener(listener: java.beans.PropertyChangeListener): void;
-        getPropertyChangeListeners$(): java.beans.PropertyChangeListener[];
-        addPropertyChangeListener(propertyName?: any, listener?: any): any;
-        removePropertyChangeListener(propertyName?: any, listener?: any): any;
-        getPropertyChangeListeners(propertyName?: any): any;
-        firePropertyChange$java_lang_String$java_lang_Object$java_lang_Object(propertyName: string, oldValue: any, newValue: any): void;
-        firePropertyChange(propertyName?: any, oldValue?: any, newValue?: any): any;
-        firePropertyChange$java_lang_String$boolean$boolean(propertyName: string, oldValue: boolean, newValue: boolean): void;
-        firePropertyChange$java_beans_PropertyChangeEvent(event: java.beans.PropertyChangeEvent): void;
-        static fire(listeners: java.beans.PropertyChangeListener[], event: java.beans.PropertyChangeEvent): void;
-        fireIndexedPropertyChange$java_lang_String$int$java_lang_Object$java_lang_Object(propertyName: string, index: number, oldValue: any, newValue: any): void;
-        fireIndexedPropertyChange(propertyName?: any, index?: any, oldValue?: any, newValue?: any): any;
-        fireIndexedPropertyChange$java_lang_String$int$boolean$boolean(propertyName: string, index: number, oldValue: boolean, newValue: boolean): void;
-        hasListeners(propertyName: string): boolean;
-        private source;
-        static serialVersionUID: number;
-    }
-    namespace PropertyChangeSupport {
-        class PropertyChangeListenerMap extends java.beans.ChangeListenerMap<java.beans.PropertyChangeListener> {
-            static EMPTY: java.beans.PropertyChangeListener[];
-            static EMPTY_$LI$(): java.beans.PropertyChangeListener[];
-            newArray(length: number): java.beans.PropertyChangeListener[];
-            newProxy(name?: any, listener?: any): any;
-            extract(listener?: any): any;
-        }
-    }
-}
 declare namespace java.io {
     /**
      * A specialized {@link InputStream } for reading the contents of a byte array.
@@ -3812,48 +3709,6 @@ declare namespace java.sql {
         hashCode(): number;
         setNanos(n: number): void;
         setTime(time: number): void;
-    }
-}
-declare namespace java.beans {
-    class PropertyChangeListenerProxy extends java.util.EventListenerProxy<java.beans.PropertyChangeListener> implements java.beans.PropertyChangeListener {
-        private propertyName;
-        /**
-         * Constructor which binds the {@code PropertyChangeListener}
-         * to a specific property.
-         *
-         * @param propertyName  the name of the property to listen on
-         * @param listener      the listener object
-         */
-        constructor(propertyName: string, listener: java.beans.PropertyChangeListener);
-        /**
-         * Forwards the property change event to the listener delegate.
-         *
-         * @param event  the property change event
-         */
-        propertyChange(event: java.beans.PropertyChangeEvent): void;
-        /**
-         * Returns the name of the named property associated with the listener.
-         *
-         * @return the name of the named property associated with the listener
-         */
-        getPropertyName(): string;
-    }
-}
-declare namespace java.beans {
-    class PropertyChangeEvent extends java.util.EventObject {
-        static serialVersionUID: number;
-        constructor(source: any, propertyName: string, oldValue: any, newValue: any);
-        getPropertyName(): string;
-        getNewValue(): any;
-        getOldValue(): any;
-        setPropagationId(propagationId: any): void;
-        getPropagationId(): any;
-        private propertyName;
-        private newValue;
-        private oldValue;
-        private propagationId;
-        toString(): string;
-        appendTo(sb: java.lang.StringBuilder): void;
     }
 }
 declare namespace java.util.logging {
@@ -5253,47 +5108,6 @@ declare namespace java.util {
         tailSet(fromElement?: any, inclusive?: any): any;
     }
 }
-declare namespace java.beans {
-    /**
-     * An "IndexedPropertyChange" event gets delivered whenever a component that
-     * conforms to the JavaBeans&trade; specification (a "bean") changes a bound
-     * indexed property. This class is an extension of <code>PropertyChangeEvent</code>
-     * but contains the index of the property that has changed.
-     * <P>
-     * Null values may be provided for the old and the new values if their
-     * true values are not known.
-     * <P>
-     * An event source may send a null object as the name to indicate that an
-     * arbitrary set of if its properties have changed.  In this case the
-     * old and new values should also be null.
-     *
-     * @since 1.5
-     * @author Mark Davidson
-     */
-    class IndexedPropertyChangeEvent extends java.beans.PropertyChangeEvent {
-        static serialVersionUID: number;
-        private index;
-        /**
-         * Constructs a new <code>IndexedPropertyChangeEvent</code> object.
-         *
-         * @param source  The bean that fired the event.
-         * @param propertyName  The programmatic name of the property that
-         * was changed.
-         * @param oldValue      The old value of the property.
-         * @param newValue      The new value of the property.
-         * @param index index of the property element that was changed.
-         */
-        constructor(source: any, propertyName: string, oldValue: any, newValue: any, index: number);
-        /**
-         * Gets the index of the property that was changed.
-         *
-         * @return The index specifying the property element that was
-         * changed.
-         */
-        getIndex(): number;
-        appendTo(sb: java.lang.StringBuilder): void;
-    }
-}
 declare namespace java.lang {
     /**
      * General-purpose low-level utility methods. GWT only supports a limited subset
@@ -5332,7 +5146,6 @@ declare namespace java.lang {
         static identityHashCode(o: any): number;
         static setErr(err: java.io.PrintStream): void;
         static setOut(out: java.io.PrintStream): void;
-        private static arrayTypeMatch(srcComp, destComp);
     }
 }
 declare namespace java.lang {

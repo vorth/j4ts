@@ -30,200 +30,6 @@ var java;
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
-    var beans;
-    (function (beans) {
-        var ChangeListenerMap = (function () {
-            function ChangeListenerMap() {
-            }
-            ChangeListenerMap.prototype.newProxy = function (name, listener) {
-                if (((typeof name === 'string') || name === null) && ((listener != null) || listener === null)) {
-                    return this.newProxy$java_lang_String$java_util_EventListener(name, listener);
-                }
-                else
-                    throw new Error('invalid overload');
-            };
-            ChangeListenerMap.prototype.newProxy$java_lang_String$java_util_EventListener = function (name, listener) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
-            ChangeListenerMap.prototype.add = function (name, listener) {
-                if (this.map == null) {
-                    this.map = new java.util.HashMap();
-                }
-                var array = this.map.get(name);
-                var size = (array != null) ? array.length : 0;
-                var clone = this.newArray(size + 1);
-                clone[size] = listener;
-                if (array != null) {
-                    java.lang.System.arraycopy(array, 0, clone, 0, size);
-                }
-                this.map.put(name, clone);
-            };
-            ChangeListenerMap.prototype.remove = function (name, listener) {
-                if (this.map != null) {
-                    var array = this.map.get(name);
-                    if (array != null) {
-                        for (var i = 0; i < array.length; i++) {
-                            if (listener.equals(array[i])) {
-                                var size = array.length - 1;
-                                if (size > 0) {
-                                    var clone = this.newArray(size);
-                                    java.lang.System.arraycopy(array, 0, clone, 0, i);
-                                    java.lang.System.arraycopy(array, i + 1, clone, i, size - i);
-                                    this.map.put(name, clone);
-                                }
-                                else {
-                                    this.map.remove(name);
-                                    if (this.map.isEmpty()) {
-                                        this.map = null;
-                                    }
-                                }
-                                break;
-                            }
-                        }
-                    }
-                }
-            };
-            /**
-             * Returns the list of listeners for the specified property.
-             *
-             * @param name
-             * the name of the property
-             * @return the corresponding list of listeners
-             */
-            ChangeListenerMap.prototype.get = function (name) {
-                return (this.map != null) ? this.map.get(name) : null;
-            };
-            /**
-             * Sets new list of listeners for the specified property.
-             *
-             * @param name
-             * the name of the property
-             * @param listeners
-             * new list of listeners
-             */
-            ChangeListenerMap.prototype.set = function (name, listeners) {
-                if (listeners != null) {
-                    if (this.map == null) {
-                        this.map = new java.util.HashMap();
-                    }
-                    this.map.put(name, listeners);
-                }
-                else if (this.map != null) {
-                    this.map.remove(name);
-                    if (this.map.isEmpty()) {
-                        this.map = null;
-                    }
-                }
-            };
-            /**
-             * Returns all listeners in the map.
-             *
-             * @return an array of all listeners
-             */
-            ChangeListenerMap.prototype.getListeners$ = function () {
-                if (this.map == null) {
-                    return this.newArray(0);
-                }
-                var list = new java.util.ArrayList();
-                var listeners = this.map.get(null);
-                if (listeners != null) {
-                    for (var index121 = 0; index121 < listeners.length; index121++) {
-                        var listener = listeners[index121];
-                        {
-                            list.add(listener);
-                        }
-                    }
-                }
-                for (var index122 = this.map.entrySet().iterator(); index122.hasNext();) {
-                    var entry = index122.next();
-                    {
-                        var name = entry.getKey();
-                        if (name != null) {
-                            {
-                                var array124 = entry.getValue();
-                                for (var index123 = 0; index123 < array124.length; index123++) {
-                                    var listener = array124[index123];
-                                    {
-                                        list.add(this.newProxy(name, listener));
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                return list.toArray(this.newArray(list.size()));
-            };
-            /**
-             * Returns listeners that have been associated with the named property.
-             *
-             * @param name
-             * the name of the property
-             * @return an array of listeners for the named property
-             */
-            ChangeListenerMap.prototype.getListeners = function (name) {
-                var _this = this;
-                if (((typeof name === 'string') || name === null)) {
-                    return (function () {
-                        if (name != null) {
-                            var listeners = _this.get(name);
-                            if (listeners != null) {
-                                return (listeners).slice(0);
-                            }
-                        }
-                        return _this.newArray(0);
-                    })();
-                }
-                else if (name === undefined) {
-                    return this.getListeners$();
-                }
-                else
-                    throw new Error('invalid overload');
-            };
-            /**
-             * Indicates whether the map contains at least one listener to be notified.
-             *
-             * @param name
-             * the name of the property
-             * @return {@code true} if at least one listener exists or {@code false}
-             * otherwise
-             */
-            ChangeListenerMap.prototype.hasListeners = function (name) {
-                if (this.map == null) {
-                    return false;
-                }
-                var array = this.map.get(null);
-                return (array != null) || ((name != null) && (null != this.map.get(name)));
-            };
-            /**
-             * Returns a set of entries from the map. Each entry is a pair consisted of
-             * the property name and the corresponding list of listeners.
-             *
-             * @return a set of entries from the map
-             */
-            ChangeListenerMap.prototype.getEntries = function () {
-                return (this.map != null) ? this.map.entrySet() : java.util.Collections.emptySet();
-            };
-            ChangeListenerMap.prototype.extract = function (listener) {
-                if (((listener != null) || listener === null)) {
-                    return this.extract$java_util_EventListener(listener);
-                }
-                else
-                    throw new Error('invalid overload');
-            };
-            /**
-             * Extracts a real listener from the proxy listener. It is necessary because
-             * default proxy class is not serializable.
-             *
-             * @return a real listener
-             */
-            ChangeListenerMap.prototype.extract$java_util_EventListener = function (listener) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
-            return ChangeListenerMap;
-        }());
-        beans.ChangeListenerMap = ChangeListenerMap;
-        ChangeListenerMap["__classname"] = "java.beans.ChangeListenerMap";
-    })(beans = java.beans || (java.beans = {}));
-})(java || (java = {}));
-/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
-var java;
-(function (java) {
     var io;
     (function (io) {
         /**
@@ -676,6 +482,7 @@ var java;
                  */
                 this.skipBuffer = null;
                 if (((lock != null) || lock === null)) {
+                    this.skipBuffer = null;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     (function () {
                         if (lock == null) {
@@ -685,6 +492,7 @@ var java;
                     })();
                 }
                 else if (lock === undefined) {
+                    this.skipBuffer = null;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     (function () {
                         _this.lock = _this;
@@ -1478,8 +1286,8 @@ var java;
             };
             Enum.createValueOfMap = function (enumConstants) {
                 var result = new Object();
-                for (var index125 = 0; index125 < enumConstants.length; index125++) {
-                    var value = enumConstants[index125];
+                for (var index121 = 0; index121 < enumConstants.length; index121++) {
+                    var value = enumConstants[index121];
                     {
                         Enum.put0(result, ":" + value.name(), value);
                     }
@@ -1902,8 +1710,8 @@ var java;
             }
             AbstractCollection.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index126 = this.iterator(); index126.hasNext();) {
-                    var t = index126.next();
+                for (var index122 = this.iterator(); index122.hasNext();) {
+                    var t = index122.next();
                     {
                         action(t);
                     }
@@ -1929,8 +1737,8 @@ var java;
             AbstractCollection.prototype.addAll$java_util_Collection = function (c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
                 var changed = false;
-                for (var index127 = c.iterator(); index127.hasNext();) {
-                    var e = index127.next();
+                for (var index123 = c.iterator(); index123.hasNext();) {
+                    var e = index123.next();
                     {
                         changed = changed || this.add(e);
                     }
@@ -1948,8 +1756,8 @@ var java;
             };
             AbstractCollection.prototype.containsAll = function (c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
-                for (var index128 = c.iterator(); index128.hasNext();) {
-                    var e = index128.next();
+                for (var index124 = c.iterator(); index124.hasNext();) {
+                    var e = index124.next();
                     {
                         if (!this.contains(e)) {
                             return false;
@@ -2025,8 +1833,8 @@ var java;
             };
             AbstractCollection.prototype.toString = function () {
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index129 = this.iterator(); index129.hasNext();) {
-                    var e = index129.next();
+                for (var index125 = this.iterator(); index125.hasNext();) {
+                    var e = index125.next();
                     {
                         joiner.add(e === this ? "(this Collection)" : new String(e).toString());
                     }
@@ -2475,8 +2283,8 @@ var java;
             }
             InternalHashCodeMap.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index130 = this.iterator(); index130.hasNext();) {
-                    var t = index130.next();
+                for (var index126 = this.iterator(); index126.hasNext();) {
+                    var t = index126.next();
                     {
                         action(t);
                     }
@@ -2523,8 +2331,8 @@ var java;
                 return this.findEntryInChain(key, this.getChainOrEmpty(this.hash(key)));
             };
             InternalHashCodeMap.prototype.findEntryInChain = function (key, chain) {
-                for (var index131 = 0; index131 < chain.length; index131++) {
-                    var entry = chain[index131];
+                for (var index127 = 0; index127 < chain.length; index127++) {
+                    var entry = chain[index127];
                     {
                         if (this.host._equals(key, entry.getKey())) {
                             return entry;
@@ -3227,6 +3035,8 @@ var java;
                     this.loggerName = "";
                     this.thrown = null;
                     if (((level != null && level instanceof java.util.logging.Level) || level === null) && ((typeof msg === 'string') || msg === null)) {
+                        this.loggerName = "";
+                        this.thrown = null;
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                         this.millis = 0;
                         (function () {
@@ -3236,6 +3046,8 @@ var java;
                         })();
                     }
                     else if (level === undefined && msg === undefined) {
+                        this.loggerName = "";
+                        this.thrown = null;
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                         this.millis = 0;
                         (function () {
@@ -3924,6 +3736,7 @@ var java;
                  */
                 this.haveNextNextGaussian = false;
                 if (((typeof seed === 'number') || seed === null)) {
+                    this.haveNextNextGaussian = false;
                     this.nextNextGaussian = 0;
                     this.seedhi = 0;
                     this.seedlo = 0;
@@ -3932,6 +3745,7 @@ var java;
                     })();
                 }
                 else if (seed === undefined) {
+                    this.haveNextNextGaussian = false;
                     this.nextNextGaussian = 0;
                     this.seedhi = 0;
                     this.seedlo = 0;
@@ -5948,8 +5762,8 @@ var test;
             Test.assertEquals(l.get(1), "c");
             Test.assertEquals(l.indexOf("a"), 0);
             var res = "";
-            for (var index132 = l.iterator(); index132.hasNext();) {
-                var s = index132.next();
+            for (var index128 = l.iterator(); index128.hasNext();) {
+                var s = index128.next();
                 {
                     res += s;
                 }
@@ -6024,234 +5838,6 @@ var test;
     test.Test = Test;
     Test["__classname"] = "test.Test";
 })(test || (test = {}));
-/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
-var java;
-(function (java) {
-    var beans;
-    (function (beans) {
-        var PropertyChangeSupport = (function () {
-            function PropertyChangeSupport(sourceBean) {
-                this.map = new PropertyChangeSupport.PropertyChangeListenerMap();
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                if (sourceBean == null) {
-                    throw new java.lang.NullPointerException();
-                }
-                this.source = sourceBean;
-            }
-            PropertyChangeSupport.prototype.addPropertyChangeListener$java_beans_PropertyChangeListener = function (listener) {
-                if (listener == null) {
-                    return;
-                }
-                if (listener != null && listener instanceof java.beans.PropertyChangeListenerProxy) {
-                    var proxy = listener;
-                    this.addPropertyChangeListener(proxy.getPropertyName(), proxy.getListener());
-                }
-                else {
-                    this.map.add(null, listener);
-                }
-            };
-            PropertyChangeSupport.prototype.removePropertyChangeListener$java_beans_PropertyChangeListener = function (listener) {
-                if (listener == null) {
-                    return;
-                }
-                if (listener != null && listener instanceof java.beans.PropertyChangeListenerProxy) {
-                    var proxy = listener;
-                    this.removePropertyChangeListener(proxy.getPropertyName(), proxy.getListener());
-                }
-                else {
-                    this.map.remove(null, listener);
-                }
-            };
-            PropertyChangeSupport.prototype.getPropertyChangeListeners$ = function () {
-                return this.map.getListeners();
-            };
-            PropertyChangeSupport.prototype.addPropertyChangeListener = function (propertyName, listener) {
-                var _this = this;
-                if (((typeof propertyName === 'string') || propertyName === null) && ((listener != null && listener["__interfaces"] != null && listener["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || listener === null)) {
-                    return (function () {
-                        if (listener == null || propertyName == null) {
-                            return;
-                        }
-                        listener = _this.map.extract(listener);
-                        if (listener != null) {
-                            _this.map.add(propertyName, listener);
-                        }
-                    })();
-                }
-                else if (((propertyName != null && propertyName["__interfaces"] != null && propertyName["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || propertyName === null) && listener === undefined) {
-                    return this.addPropertyChangeListener$java_beans_PropertyChangeListener(propertyName);
-                }
-                else
-                    throw new Error('invalid overload');
-            };
-            PropertyChangeSupport.prototype.removePropertyChangeListener = function (propertyName, listener) {
-                var _this = this;
-                if (((typeof propertyName === 'string') || propertyName === null) && ((listener != null && listener["__interfaces"] != null && listener["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || listener === null)) {
-                    return (function () {
-                        if (listener == null || propertyName == null) {
-                            return;
-                        }
-                        listener = _this.map.extract(listener);
-                        if (listener != null) {
-                            _this.map.remove(propertyName, listener);
-                        }
-                    })();
-                }
-                else if (((propertyName != null && propertyName["__interfaces"] != null && propertyName["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || propertyName === null) && listener === undefined) {
-                    return this.removePropertyChangeListener$java_beans_PropertyChangeListener(propertyName);
-                }
-                else
-                    throw new Error('invalid overload');
-            };
-            PropertyChangeSupport.prototype.getPropertyChangeListeners = function (propertyName) {
-                var _this = this;
-                if (((typeof propertyName === 'string') || propertyName === null)) {
-                    return (function () {
-                        return _this.map.getListeners(propertyName);
-                    })();
-                }
-                else if (propertyName === undefined) {
-                    return this.getPropertyChangeListeners$();
-                }
-                else
-                    throw new Error('invalid overload');
-            };
-            PropertyChangeSupport.prototype.firePropertyChange$java_lang_String$java_lang_Object$java_lang_Object = function (propertyName, oldValue, newValue) {
-                if (oldValue == null || newValue == null || !(oldValue === newValue)) {
-                    this.firePropertyChange(new java.beans.PropertyChangeEvent(this.source, propertyName, oldValue, newValue));
-                }
-            };
-            PropertyChangeSupport.prototype.firePropertyChange = function (propertyName, oldValue, newValue) {
-                var _this = this;
-                if (((typeof propertyName === 'string') || propertyName === null) && ((typeof oldValue === 'number') || oldValue === null) && ((typeof newValue === 'number') || newValue === null)) {
-                    return (function () {
-                        if (oldValue !== newValue) {
-                            _this.firePropertyChange(propertyName, javaemul.internal.IntegerHelper.valueOf(oldValue), javaemul.internal.IntegerHelper.valueOf(newValue));
-                        }
-                    })();
-                }
-                else if (((typeof propertyName === 'string') || propertyName === null) && ((typeof oldValue === 'boolean') || oldValue === null) && ((typeof newValue === 'boolean') || newValue === null)) {
-                    return this.firePropertyChange$java_lang_String$boolean$boolean(propertyName, oldValue, newValue);
-                }
-                else if (((typeof propertyName === 'string') || propertyName === null) && ((oldValue != null) || oldValue === null) && ((newValue != null) || newValue === null)) {
-                    return this.firePropertyChange$java_lang_String$java_lang_Object$java_lang_Object(propertyName, oldValue, newValue);
-                }
-                else if (((propertyName != null && propertyName instanceof java.beans.PropertyChangeEvent) || propertyName === null) && oldValue === undefined && newValue === undefined) {
-                    return this.firePropertyChange$java_beans_PropertyChangeEvent(propertyName);
-                }
-                else
-                    throw new Error('invalid overload');
-            };
-            PropertyChangeSupport.prototype.firePropertyChange$java_lang_String$boolean$boolean = function (propertyName, oldValue, newValue) {
-                if (oldValue !== newValue) {
-                    this.firePropertyChange(propertyName, javaemul.internal.BooleanHelper.valueOf(oldValue), javaemul.internal.BooleanHelper.valueOf(newValue));
-                }
-            };
-            PropertyChangeSupport.prototype.firePropertyChange$java_beans_PropertyChangeEvent = function (event) {
-                var oldValue = event.getOldValue();
-                var newValue = event.getNewValue();
-                if (oldValue == null || newValue == null || !(oldValue === newValue)) {
-                    var name = event.getPropertyName();
-                    var common = this.map.get(null);
-                    var named = (name != null) ? this.map.get(name) : null;
-                    PropertyChangeSupport.fire(common, event);
-                    PropertyChangeSupport.fire(named, event);
-                }
-            };
-            PropertyChangeSupport.fire = function (listeners, event) {
-                if (listeners != null) {
-                    for (var index133 = 0; index133 < listeners.length; index133++) {
-                        var listener = listeners[index133];
-                        {
-                            listener.propertyChange(event);
-                        }
-                    }
-                }
-            };
-            PropertyChangeSupport.prototype.fireIndexedPropertyChange$java_lang_String$int$java_lang_Object$java_lang_Object = function (propertyName, index, oldValue, newValue) {
-                if (oldValue == null || newValue == null || !(oldValue === newValue)) {
-                    this.firePropertyChange(new java.beans.IndexedPropertyChangeEvent(this.source, propertyName, oldValue, newValue, index));
-                }
-            };
-            PropertyChangeSupport.prototype.fireIndexedPropertyChange = function (propertyName, index, oldValue, newValue) {
-                var _this = this;
-                if (((typeof propertyName === 'string') || propertyName === null) && ((typeof index === 'number') || index === null) && ((typeof oldValue === 'number') || oldValue === null) && ((typeof newValue === 'number') || newValue === null)) {
-                    return (function () {
-                        if (oldValue !== newValue) {
-                            _this.fireIndexedPropertyChange(propertyName, index, javaemul.internal.IntegerHelper.valueOf(oldValue), javaemul.internal.IntegerHelper.valueOf(newValue));
-                        }
-                    })();
-                }
-                else if (((typeof propertyName === 'string') || propertyName === null) && ((typeof index === 'number') || index === null) && ((typeof oldValue === 'boolean') || oldValue === null) && ((typeof newValue === 'boolean') || newValue === null)) {
-                    return this.fireIndexedPropertyChange$java_lang_String$int$boolean$boolean(propertyName, index, oldValue, newValue);
-                }
-                else if (((typeof propertyName === 'string') || propertyName === null) && ((typeof index === 'number') || index === null) && ((oldValue != null) || oldValue === null) && ((newValue != null) || newValue === null)) {
-                    return this.fireIndexedPropertyChange$java_lang_String$int$java_lang_Object$java_lang_Object(propertyName, index, oldValue, newValue);
-                }
-                else
-                    throw new Error('invalid overload');
-            };
-            PropertyChangeSupport.prototype.fireIndexedPropertyChange$java_lang_String$int$boolean$boolean = function (propertyName, index, oldValue, newValue) {
-                if (oldValue !== newValue) {
-                    this.fireIndexedPropertyChange(propertyName, index, javaemul.internal.BooleanHelper.valueOf(oldValue), javaemul.internal.BooleanHelper.valueOf(newValue));
-                }
-            };
-            PropertyChangeSupport.prototype.hasListeners = function (propertyName) {
-                return this.map.hasListeners(propertyName);
-            };
-            PropertyChangeSupport.serialVersionUID = 6401253773779951803;
-            return PropertyChangeSupport;
-        }());
-        beans.PropertyChangeSupport = PropertyChangeSupport;
-        PropertyChangeSupport["__classname"] = "java.beans.PropertyChangeSupport";
-        var PropertyChangeSupport;
-        (function (PropertyChangeSupport) {
-            var PropertyChangeListenerMap = (function (_super) {
-                __extends(PropertyChangeListenerMap, _super);
-                function PropertyChangeListenerMap() {
-                    _super.apply(this, arguments);
-                }
-                PropertyChangeListenerMap.EMPTY_$LI$ = function () { if (PropertyChangeListenerMap.EMPTY == null)
-                    PropertyChangeListenerMap.EMPTY = []; return PropertyChangeListenerMap.EMPTY; };
-                ;
-                PropertyChangeListenerMap.prototype.newArray = function (length) {
-                    return (0 < length) ? new Array(length) : PropertyChangeListenerMap.EMPTY_$LI$();
-                };
-                PropertyChangeListenerMap.prototype.newProxy = function (name, listener) {
-                    if (((typeof name === 'string') || name === null) && ((listener != null && listener["__interfaces"] != null && listener["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || listener === null)) {
-                        return (function () {
-                            return new java.beans.PropertyChangeListenerProxy(name, listener);
-                        })();
-                    }
-                    else if (((typeof name === 'string') || name === null) && ((listener != null) || listener === null)) {
-                        return this.newProxy$java_lang_String$java_util_EventListener(name, listener);
-                    }
-                    else
-                        throw new Error('invalid overload');
-                };
-                PropertyChangeListenerMap.prototype.extract = function (listener) {
-                    if (((listener != null && listener["__interfaces"] != null && listener["__interfaces"].indexOf("java.beans.PropertyChangeListener") >= 0) || listener === null)) {
-                        return (function () {
-                            while ((listener != null && listener instanceof java.beans.PropertyChangeListenerProxy)) {
-                                listener = listener.getListener();
-                            }
-                            ;
-                            return listener;
-                        })();
-                    }
-                    else if (((listener != null) || listener === null)) {
-                        return this.extract$java_util_EventListener(listener);
-                    }
-                    else
-                        throw new Error('invalid overload');
-                };
-                return PropertyChangeListenerMap;
-            }(java.beans.ChangeListenerMap));
-            PropertyChangeSupport.PropertyChangeListenerMap = PropertyChangeListenerMap;
-            PropertyChangeListenerMap["__classname"] = "java.beans.PropertyChangeSupport.PropertyChangeListenerMap";
-        })(PropertyChangeSupport = beans.PropertyChangeSupport || (beans.PropertyChangeSupport = {}));
-    })(beans = java.beans || (java.beans = {}));
-})(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
@@ -8751,8 +8337,8 @@ var java;
             }
             AbstractList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index134 = this.iterator(); index134.hasNext();) {
-                    var t = index134.next();
+                for (var index129 = this.iterator(); index129.hasNext();) {
+                    var t = index129.next();
                     {
                         action(t);
                     }
@@ -8780,8 +8366,8 @@ var java;
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkNotNull(c);
                         var changed = false;
-                        for (var index135 = c.iterator(); index135.hasNext();) {
-                            var e = index135.next();
+                        for (var index130 = c.iterator(); index130.hasNext();) {
+                            var e = index130.next();
                             {
                                 _this.add(index++, e);
                                 changed = true;
@@ -8811,8 +8397,8 @@ var java;
                     return false;
                 }
                 var iterOther = other.iterator();
-                for (var index136 = this.iterator(); index136.hasNext();) {
-                    var elem = index136.next();
+                for (var index131 = this.iterator(); index131.hasNext();) {
+                    var elem = index131.next();
                     {
                         var elemOther = iterOther.next();
                         if (!java.util.Objects.equals(elem, elemOther)) {
@@ -9078,8 +8664,8 @@ var java;
             }
             AbstractQueue.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index137 = this.iterator(); index137.hasNext();) {
-                    var t = index137.next();
+                for (var index132 = this.iterator(); index132.hasNext();) {
+                    var t = index132.next();
                     {
                         action(t);
                     }
@@ -9159,8 +8745,8 @@ var java;
             }
             AbstractSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index138 = this.iterator(); index138.hasNext();) {
-                    var t = index138.next();
+                for (var index133 = this.iterator(); index133.hasNext();) {
+                    var t = index133.next();
                     {
                         action(t);
                     }
@@ -9194,8 +8780,8 @@ var java;
                     }
                 }
                 else {
-                    for (var index139 = c.iterator(); index139.hasNext();) {
-                        var o1 = index139.next();
+                    for (var index134 = c.iterator(); index134.hasNext();) {
+                        var o1 = index134.next();
                         {
                             this.remove(o1);
                         }
@@ -9227,8 +8813,8 @@ var java;
             }
             InternalStringMap.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index140 = this.iterator(); index140.hasNext();) {
-                    var t = index140.next();
+                for (var index135 = this.iterator(); index135.hasNext();) {
+                    var t = index135.next();
                     {
                         action(t);
                     }
@@ -9810,94 +9396,6 @@ var java;
         sql.Timestamp = Timestamp;
         Timestamp["__classname"] = "java.sql.Timestamp";
     })(sql = java.sql || (java.sql = {}));
-})(java || (java = {}));
-/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
-var java;
-(function (java) {
-    var beans;
-    (function (beans) {
-        var PropertyChangeListenerProxy = (function (_super) {
-            __extends(PropertyChangeListenerProxy, _super);
-            /**
-             * Constructor which binds the {@code PropertyChangeListener}
-             * to a specific property.
-             *
-             * @param propertyName  the name of the property to listen on
-             * @param listener      the listener object
-             */
-            function PropertyChangeListenerProxy(propertyName, listener) {
-                _super.call(this, listener);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.EventListener", "java.beans.PropertyChangeListener"] });
-                this.propertyName = propertyName;
-            }
-            /**
-             * Forwards the property change event to the listener delegate.
-             *
-             * @param event  the property change event
-             */
-            PropertyChangeListenerProxy.prototype.propertyChange = function (event) {
-                this.getListener().propertyChange(event);
-            };
-            /**
-             * Returns the name of the named property associated with the listener.
-             *
-             * @return the name of the named property associated with the listener
-             */
-            PropertyChangeListenerProxy.prototype.getPropertyName = function () {
-                return this.propertyName;
-            };
-            return PropertyChangeListenerProxy;
-        }(java.util.EventListenerProxy));
-        beans.PropertyChangeListenerProxy = PropertyChangeListenerProxy;
-        PropertyChangeListenerProxy["__classname"] = "java.beans.PropertyChangeListenerProxy";
-    })(beans = java.beans || (java.beans = {}));
-})(java || (java = {}));
-/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
-var java;
-(function (java) {
-    var beans;
-    (function (beans) {
-        var PropertyChangeEvent = (function (_super) {
-            __extends(PropertyChangeEvent, _super);
-            function PropertyChangeEvent(source, propertyName, oldValue, newValue) {
-                _super.call(this, source);
-                this.propertyName = propertyName;
-                this.newValue = newValue;
-                this.oldValue = oldValue;
-            }
-            PropertyChangeEvent.prototype.getPropertyName = function () {
-                return this.propertyName;
-            };
-            PropertyChangeEvent.prototype.getNewValue = function () {
-                return this.newValue;
-            };
-            PropertyChangeEvent.prototype.getOldValue = function () {
-                return this.oldValue;
-            };
-            PropertyChangeEvent.prototype.setPropagationId = function (propagationId) {
-                this.propagationId = propagationId;
-            };
-            PropertyChangeEvent.prototype.getPropagationId = function () {
-                return this.propagationId;
-            };
-            PropertyChangeEvent.prototype.toString = function () {
-                var sb = new java.lang.StringBuilder(/* getName */ this.constructor["__classname"]);
-                sb.append("[propertyName=").append(this.getPropertyName());
-                this.appendTo(sb);
-                sb.append("; oldValue=").append(this.getOldValue());
-                sb.append("; newValue=").append(this.getNewValue());
-                sb.append("; propagationId=").append(this.getPropagationId());
-                sb.append("; source=").append(this.getSource());
-                return sb.append("]").toString();
-            };
-            PropertyChangeEvent.prototype.appendTo = function (sb) {
-            };
-            PropertyChangeEvent.serialVersionUID = 7042693688939648123;
-            return PropertyChangeEvent;
-        }(java.util.EventObject));
-        beans.PropertyChangeEvent = PropertyChangeEvent;
-        PropertyChangeEvent["__classname"] = "java.beans.PropertyChangeEvent";
-    })(beans = java.beans || (java.beans = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
@@ -12261,8 +11759,8 @@ var java;
                         javaemul.internal.InternalPreconditions.checkNotNull(c);
                         var modified = false;
                         var iter = _this.listIterator(index);
-                        for (var index141 = c.iterator(); index141.hasNext();) {
-                            var e = index141.next();
+                        for (var index136 = c.iterator(); index136.hasNext();) {
+                            var e = index136.next();
                             {
                                 iter.add(e);
                                 modified = true;
@@ -12396,8 +11894,8 @@ var java;
             }
             ArrayList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index142 = this.iterator(); index142.hasNext();) {
-                    var t = index142.next();
+                for (var index137 = this.iterator(); index137.hasNext();) {
+                    var t = index137.next();
                     {
                         action(t);
                     }
@@ -13118,8 +12616,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index143 = 0; index143 < a.length; index143++) {
-                    var obj = a[index143];
+                for (var index138 = 0; index138 < a.length; index138++) {
+                    var obj = a[index138];
                     {
                         var hash;
                         if (obj != null && obj instanceof Array) {
@@ -13482,8 +12980,8 @@ var java;
                             return 0;
                         }
                         var hashCode = 1;
-                        for (var index144 = 0; index144 < a.length; index144++) {
-                            var e = a[index144];
+                        for (var index139 = 0; index139 < a.length; index139++) {
+                            var e = a[index139];
                             {
                                 hashCode = 31 * hashCode + javaemul.internal.BooleanHelper.hashCode(e);
                                 hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -13524,8 +13022,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index145 = 0; index145 < a.length; index145++) {
-                    var e = a[index145];
+                for (var index140 = 0; index140 < a.length; index140++) {
+                    var e = a[index140];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.ByteHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -13538,8 +13036,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index146 = 0; index146 < a.length; index146++) {
-                    var e = a[index146];
+                for (var index141 = 0; index141 < a.length; index141++) {
+                    var e = a[index141];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.CharacterHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -13552,8 +13050,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index147 = 0; index147 < a.length; index147++) {
-                    var e = a[index147];
+                for (var index142 = 0; index142 < a.length; index142++) {
+                    var e = a[index142];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.DoubleHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -13566,8 +13064,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index148 = 0; index148 < a.length; index148++) {
-                    var e = a[index148];
+                for (var index143 = 0; index143 < a.length; index143++) {
+                    var e = a[index143];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.FloatHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -13580,8 +13078,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index149 = 0; index149 < a.length; index149++) {
-                    var e = a[index149];
+                for (var index144 = 0; index144 < a.length; index144++) {
+                    var e = a[index144];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.IntegerHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -13594,8 +13092,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index150 = 0; index150 < a.length; index150++) {
-                    var e = a[index150];
+                for (var index145 = 0; index145 < a.length; index145++) {
+                    var e = a[index145];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.LongHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -13608,8 +13106,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index151 = 0; index151 < a.length; index151++) {
-                    var e = a[index151];
+                for (var index146 = 0; index146 < a.length; index146++) {
+                    var e = a[index146];
                     {
                         hashCode = 31 * hashCode + java.util.Objects.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -13622,8 +13120,8 @@ var java;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index152 = 0; index152 < a.length; index152++) {
-                    var e = a[index152];
+                for (var index147 = 0; index147 < a.length; index147++) {
+                    var e = a[index147];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.ShortHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -13757,8 +13255,8 @@ var java;
                             return "null";
                         }
                         var joiner = new java.util.StringJoiner(", ", "[", "]");
-                        for (var index153 = 0; index153 < a.length; index153++) {
-                            var element = a[index153];
+                        for (var index148 = 0; index148 < a.length; index148++) {
+                            var element = a[index148];
                             {
                                 joiner.add(/* valueOf */ new String(element).toString());
                             }
@@ -13798,8 +13296,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index154 = 0; index154 < a.length; index154++) {
-                    var element = a[index154];
+                for (var index149 = 0; index149 < a.length; index149++) {
+                    var element = a[index149];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -13811,8 +13309,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index155 = 0; index155 < a.length; index155++) {
-                    var element = a[index155];
+                for (var index150 = 0; index150 < a.length; index150++) {
+                    var element = a[index150];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -13824,8 +13322,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index156 = 0; index156 < a.length; index156++) {
-                    var element = a[index156];
+                for (var index151 = 0; index151 < a.length; index151++) {
+                    var element = a[index151];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -13837,8 +13335,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index157 = 0; index157 < a.length; index157++) {
-                    var element = a[index157];
+                for (var index152 = 0; index152 < a.length; index152++) {
+                    var element = a[index152];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -13850,8 +13348,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index158 = 0; index158 < a.length; index158++) {
-                    var element = a[index158];
+                for (var index153 = 0; index153 < a.length; index153++) {
+                    var element = a[index153];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -13863,8 +13361,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index159 = 0; index159 < a.length; index159++) {
-                    var element = a[index159];
+                for (var index154 = 0; index154 < a.length; index154++) {
+                    var element = a[index154];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -13882,8 +13380,8 @@ var java;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index160 = 0; index160 < a.length; index160++) {
-                    var element = a[index160];
+                for (var index155 = 0; index155 < a.length; index155++) {
+                    var element = a[index155];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -13903,8 +13401,8 @@ var java;
                             return "[...]";
                         }
                         var joiner = new java.util.StringJoiner(", ", "[", "]");
-                        for (var index161 = 0; index161 < a.length; index161++) {
-                            var obj = a[index161];
+                        for (var index156 = 0; index156 < a.length; index156++) {
+                            var obj = a[index156];
                             {
                                 if (obj != null && obj.constructor.isArray()) {
                                     if (obj != null && obj instanceof Array) {
@@ -14230,8 +13728,8 @@ var java;
             }
             Vector.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index162 = this.iterator(); index162.hasNext();) {
-                    var t = index162.next();
+                for (var index157 = this.iterator(); index157.hasNext();) {
+                    var t = index157.next();
                     {
                         action(t);
                     }
@@ -14789,8 +14287,8 @@ var java;
                 return this.implFindEntry(key, false) != null;
             };
             AbstractMap.prototype.containsValue = function (value) {
-                for (var index163 = this.entrySet().iterator(); index163.hasNext();) {
-                    var entry = index163.next();
+                for (var index158 = this.entrySet().iterator(); index158.hasNext();) {
+                    var entry = index158.next();
                     {
                         var v = entry.getValue();
                         if (java.util.Objects.equals(value, v)) {
@@ -14823,8 +14321,8 @@ var java;
                 if (this.size() !== otherMap.size()) {
                     return false;
                 }
-                for (var index164 = otherMap.entrySet().iterator(); index164.hasNext();) {
-                    var entry = index164.next();
+                for (var index159 = otherMap.entrySet().iterator(); index159.hasNext();) {
+                    var entry = index159.next();
                     {
                         if (!this.containsEntry(entry)) {
                             return false;
@@ -14857,8 +14355,8 @@ var java;
             };
             AbstractMap.prototype.putAll = function (map) {
                 javaemul.internal.InternalPreconditions.checkNotNull(map);
-                for (var index165 = map.entrySet().iterator(); index165.hasNext();) {
-                    var e = index165.next();
+                for (var index160 = map.entrySet().iterator(); index160.hasNext();) {
+                    var e = index160.next();
                     {
                         this.put(e.getKey(), e.getValue());
                     }
@@ -14872,8 +14370,8 @@ var java;
             };
             AbstractMap.prototype.toString$ = function () {
                 var joiner = new java.util.StringJoiner(", ", "{", "}");
-                for (var index166 = this.entrySet().iterator(); index166.hasNext();) {
-                    var entry = index166.next();
+                for (var index161 = this.entrySet().iterator(); index161.hasNext();) {
+                    var entry = index161.next();
                     {
                         joiner.add(this.toString(entry));
                     }
@@ -15441,8 +14939,8 @@ var java;
             }
             HashSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index167 = this.iterator(); index167.hasNext();) {
-                    var t = index167.next();
+                for (var index162 = this.iterator(); index162.hasNext();) {
+                    var t = index162.next();
                     {
                         action(t);
                     }
@@ -15565,8 +15063,8 @@ var java;
             }
             TreeSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index168 = this.iterator(); index168.hasNext();) {
-                    var t = index168.next();
+                for (var index163 = this.iterator(); index163.hasNext();) {
+                    var t = index163.next();
                     {
                         action(t);
                     }
@@ -15694,63 +15192,6 @@ var java;
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
-    var beans;
-    (function (beans) {
-        /**
-         * An "IndexedPropertyChange" event gets delivered whenever a component that
-         * conforms to the JavaBeans&trade; specification (a "bean") changes a bound
-         * indexed property. This class is an extension of <code>PropertyChangeEvent</code>
-         * but contains the index of the property that has changed.
-         * <P>
-         * Null values may be provided for the old and the new values if their
-         * true values are not known.
-         * <P>
-         * An event source may send a null object as the name to indicate that an
-         * arbitrary set of if its properties have changed.  In this case the
-         * old and new values should also be null.
-         *
-         * @since 1.5
-         * @author Mark Davidson
-         */
-        var IndexedPropertyChangeEvent = (function (_super) {
-            __extends(IndexedPropertyChangeEvent, _super);
-            /**
-             * Constructs a new <code>IndexedPropertyChangeEvent</code> object.
-             *
-             * @param source  The bean that fired the event.
-             * @param propertyName  The programmatic name of the property that
-             * was changed.
-             * @param oldValue      The old value of the property.
-             * @param newValue      The new value of the property.
-             * @param index index of the property element that was changed.
-             */
-            function IndexedPropertyChangeEvent(source, propertyName, oldValue, newValue, index) {
-                _super.call(this, source, propertyName, oldValue, newValue);
-                this.index = 0;
-                this.index = index;
-            }
-            /**
-             * Gets the index of the property that was changed.
-             *
-             * @return The index specifying the property element that was
-             * changed.
-             */
-            IndexedPropertyChangeEvent.prototype.getIndex = function () {
-                return this.index;
-            };
-            IndexedPropertyChangeEvent.prototype.appendTo = function (sb) {
-                sb.append("; index=").append(this.getIndex());
-            };
-            IndexedPropertyChangeEvent.serialVersionUID = -320227448495806870;
-            return IndexedPropertyChangeEvent;
-        }(java.beans.PropertyChangeEvent));
-        beans.IndexedPropertyChangeEvent = IndexedPropertyChangeEvent;
-        IndexedPropertyChangeEvent["__classname"] = "java.beans.IndexedPropertyChangeEvent";
-    })(beans = java.beans || (java.beans = {}));
-})(java || (java = {}));
-/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
-var java;
-(function (java) {
     var lang;
     (function (lang) {
         /**
@@ -15846,14 +15287,6 @@ var java;
             };
             System.setOut = function (out) {
                 java.lang.System.out = out;
-            };
-            System.arrayTypeMatch = function (srcComp, destComp) {
-                if (srcComp.isPrimitive()) {
-                    return srcComp.equals(destComp);
-                }
-                else {
-                    return !destComp.isPrimitive();
-                }
             };
             return System;
         }());
@@ -16086,8 +15519,8 @@ var java;
             }
             LinkedList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index169 = this.iterator(); index169.hasNext();) {
-                    var t = index169.next();
+                for (var index164 = this.iterator(); index164.hasNext();) {
+                    var t = index164.next();
                     {
                         action(t);
                     }
@@ -16492,8 +15925,8 @@ var java;
                 return this._containsValue(value, this.stringMap) || this._containsValue(value, this.hashCodeMap);
             };
             AbstractHashMap.prototype._containsValue = function (value, entries) {
-                for (var index170 = entries.iterator(); index170.hasNext();) {
-                    var entry = index170.next();
+                for (var index165 = entries.iterator(); index165.hasNext();) {
+                    var entry = index165.next();
                     {
                         if (this._equals(value, entry.getValue())) {
                             return true;
@@ -16962,8 +16395,8 @@ var java;
                 }
                 NavigableKeySet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index171 = this.iterator(); index171.hasNext();) {
-                        var t = index171.next();
+                    for (var index166 = this.iterator(); index166.hasNext();) {
+                        var t = index166.next();
                         {
                             action(t);
                         }
@@ -17141,8 +16574,8 @@ var java;
                     a[_i - 1] = arguments[_i];
                 }
                 var result = false;
-                for (var index172 = 0; index172 < a.length; index172++) {
-                    var e = a[index172];
+                for (var index167 = 0; index167 < a.length; index167++) {
+                    var e = a[index167];
                     {
                         result = result || c.add(e);
                     }
@@ -17203,8 +16636,8 @@ var java;
                     throw new java.lang.IndexOutOfBoundsException("src does not fit in dest");
                 }
                 var destIt = dest.listIterator();
-                for (var index173 = src.iterator(); index173.hasNext();) {
-                    var e = index173.next();
+                for (var index168 = src.iterator(); index168.hasNext();) {
+                    var e = index168.next();
                     {
                         destIt.next();
                         destIt.set(e);
@@ -17218,8 +16651,8 @@ var java;
                     iterating = c2;
                     testing = c1;
                 }
-                for (var index174 = iterating.iterator(); index174.hasNext();) {
-                    var o = index174.next();
+                for (var index169 = iterating.iterator(); index169.hasNext();) {
+                    var o = index169.next();
                     {
                         if (testing.contains(o)) {
                             return false;
@@ -17255,8 +16688,8 @@ var java;
             };
             Collections.frequency = function (c, o) {
                 var count = 0;
-                for (var index175 = c.iterator(); index175.hasNext();) {
-                    var e = index175.next();
+                for (var index170 = c.iterator(); index170.hasNext();) {
+                    var e = index170.next();
                     {
                         if (java.util.Objects.equals(o, e)) {
                             ++count;
@@ -17410,8 +16843,8 @@ var java;
                         Collections.swapImpl(arr, i, rnd.nextInt(i + 1));
                     }
                     var it = list.listIterator();
-                    for (var index176 = 0; index176 < arr.length; index176++) {
-                        var e = arr[index176];
+                    for (var index171 = 0; index171 < arr.length; index171++) {
+                        var e = arr[index171];
                         {
                             it.next();
                             it.set(e);
@@ -17464,8 +16897,8 @@ var java;
              */
             Collections.hashCode$java_lang_Iterable = function (collection) {
                 var hashCode = 0;
-                for (var index177 = collection.iterator(); index177.hasNext();) {
-                    var e = index177.next();
+                for (var index172 = collection.iterator(); index172.hasNext();) {
+                    var e = index172.next();
                     {
                         hashCode = hashCode + java.util.Objects.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -17480,8 +16913,8 @@ var java;
                 if (((list != null && list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.List") >= 0) || list === null)) {
                     return (function () {
                         var hashCode = 1;
-                        for (var index178 = list.iterator(); index178.hasNext();) {
-                            var e = index178.next();
+                        for (var index173 = list.iterator(); index173.hasNext();) {
+                            var e = index173.next();
                             {
                                 hashCode = 31 * hashCode + java.util.Objects.hashCode(e);
                                 hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -17790,8 +17223,8 @@ var java;
                 }
                 UnmodifiableCollection.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index179 = this.iterator(); index179.hasNext();) {
-                        var t = index179.next();
+                    for (var index174 = this.iterator(); index174.hasNext();) {
+                        var t = index174.next();
                         {
                             action(t);
                         }
@@ -17883,8 +17316,8 @@ var java;
                 }
                 UnmodifiableList.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index180 = this.iterator(); index180.hasNext();) {
-                        var t = index180.next();
+                    for (var index175 = this.iterator(); index175.hasNext();) {
+                        var t = index175.next();
                         {
                             action(t);
                         }
@@ -18002,8 +17435,8 @@ var java;
                 }
                 UnmodifiableSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index181 = this.iterator(); index181.hasNext();) {
-                        var t = index181.next();
+                    for (var index176 = this.iterator(); index176.hasNext();) {
+                        var t = index176.next();
                         {
                             action(t);
                         }
@@ -18256,8 +17689,8 @@ var java;
                 }
                 UnmodifiableSortedSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
-                    for (var index182 = this.iterator(); index182.hasNext();) {
-                        var t = index182.next();
+                    for (var index177 = this.iterator(); index177.hasNext();) {
+                        var t = index177.next();
                         {
                             action(t);
                         }
@@ -18472,8 +17905,8 @@ var java;
                 return this.__keySet.contains(key);
             };
             EnumMap.prototype.containsValue = function (value) {
-                for (var index183 = this.__keySet.iterator(); index183.hasNext();) {
-                    var key = index183.next();
+                for (var index178 = this.__keySet.iterator(); index178.hasNext();) {
+                    var key = index178.next();
                     {
                         if (java.util.Objects.equals(value, this.__values[key.ordinal()])) {
                             return true;
@@ -18690,8 +18123,8 @@ var java;
             }
             LinkedHashSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
-                for (var index184 = this.iterator(); index184.hasNext();) {
-                    var t = index184.next();
+                for (var index179 = this.iterator(); index179.hasNext();) {
+                    var t = index179.next();
                     {
                         action(t);
                     }
@@ -18990,9 +18423,9 @@ var java;
                 Logger.prototype.actuallyLog$java_util_logging_LogRecord = function (record) {
                     if (this.isLoggable(record.getLevel())) {
                         {
-                            var array186 = this.getHandlers();
-                            for (var index185 = 0; index185 < array186.length; index185++) {
-                                var handler = array186[index185];
+                            var array181 = this.getHandlers();
+                            for (var index180 = 0; index180 < array181.length; index180++) {
+                                var handler = array181[index180];
                                 {
                                     handler.publish(record);
                                 }
@@ -19001,9 +18434,9 @@ var java;
                         var logger = this.getUseParentHandlers() ? this.getParent() : null;
                         while ((logger != null)) {
                             {
-                                var array188 = logger.getHandlers();
-                                for (var index187 = 0; index187 < array188.length; index187++) {
-                                    var handler = array188[index187];
+                                var array183 = logger.getHandlers();
+                                for (var index182 = 0; index182 < array183.length; index182++) {
+                                    var handler = array183[index182];
                                     {
                                         handler.publish(record);
                                     }
@@ -19727,8 +19160,8 @@ var java;
                 if (this.size() !== otherMap.size()) {
                     return false;
                 }
-                for (var index189 = otherMap.entrySet().iterator(); index189.hasNext();) {
-                    var entry = index189.next();
+                for (var index184 = otherMap.entrySet().iterator(); index184.hasNext();) {
+                    var entry = index184.next();
                     {
                         var otherKey = entry.getKey();
                         var otherValue = entry.getValue();
@@ -19744,8 +19177,8 @@ var java;
             };
             IdentityHashMap.prototype.hashCode = function () {
                 var hashCode = 0;
-                for (var index190 = this.entrySet().iterator(); index190.hasNext();) {
-                    var entry = index190.next();
+                for (var index185 = this.entrySet().iterator(); index185.hasNext();) {
+                    var entry = index185.next();
                     {
                         hashCode += java.lang.System.identityHashCode(entry.getKey());
                         hashCode += java.lang.System.identityHashCode(entry.getValue());
@@ -21207,7 +20640,6 @@ java.security.MessageDigest.Md5Digest.padding_$LI$();
 javaemul.internal.EmulatedCharset.ISO_8859_1_$LI$();
 javaemul.internal.EmulatedCharset.ISO_LATIN_1_$LI$();
 javaemul.internal.EmulatedCharset.UTF_8_$LI$();
-java.beans.PropertyChangeSupport.PropertyChangeListenerMap.EMPTY_$LI$();
 javaemul.internal.StringHashCache.front_$LI$();
 javaemul.internal.StringHashCache.back_$LI$();
 javaemul.internal.NumberHelper.__ParseLong.maxValueForRadix_$LI$();
