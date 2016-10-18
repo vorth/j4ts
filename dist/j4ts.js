@@ -179,6 +179,7 @@ var java;
             InputStream.prototype.read = function (buffer, byteOffset, byteCount) {
                 var _this = this;
                 if (((buffer != null && buffer instanceof Array) || buffer === null) && ((typeof byteOffset === 'number') || byteOffset === null) && ((typeof byteCount === 'number') || byteCount === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         java.io.IOUtils.checkOffsetAndCount(buffer, byteOffset, byteCount);
                         for (var i = 0; i < byteCount; ++i) {
@@ -297,6 +298,7 @@ var java;
              */
             IOUtils.checkOffsetAndCount = function (buffer, byteOffset, byteCount) {
                 if (((buffer != null && buffer instanceof Array) || buffer === null) && ((typeof byteOffset === 'number') || byteOffset === null) && ((typeof byteCount === 'number') || byteCount === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkNotNull(buffer);
                         IOUtils.checkOffsetAndCount(buffer.length, byteOffset, byteCount);
@@ -434,6 +436,7 @@ var java;
             OutputStream.prototype.write = function (buffer, offset, count) {
                 var _this = this;
                 if (((buffer != null && buffer instanceof Array) || buffer === null) && ((typeof offset === 'number') || offset === null) && ((typeof count === 'number') || count === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         java.io.IOUtils.checkOffsetAndCount(buffer, offset, count);
                         for (var i = offset; i < offset + count; i++) {
@@ -482,6 +485,7 @@ var java;
                  */
                 this.skipBuffer = null;
                 if (((lock != null) || lock === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     this.skipBuffer = null;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     (function () {
@@ -492,6 +496,7 @@ var java;
                     })();
                 }
                 else if (lock === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     this.skipBuffer = null;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     (function () {
@@ -513,6 +518,7 @@ var java;
             };
             Reader.prototype.read = function (cbuf, off, len) {
                 if (((cbuf != null && cbuf instanceof Array) || cbuf === null) && ((typeof off === 'number') || off === null) && ((typeof len === 'number') || len === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return 0;
                 }
                 else if (((cbuf != null && cbuf instanceof Array) || cbuf === null) && off === undefined && len === undefined) {
@@ -574,6 +580,7 @@ var java;
             function Writer(lock) {
                 var _this = this;
                 if (((lock != null) || lock === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Appendable", "java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     (function () {
                         if (lock == null) {
@@ -583,6 +590,7 @@ var java;
                     })();
                 }
                 else if (lock === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Appendable", "java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     (function () {
                         _this.lock = _this;
@@ -611,6 +619,7 @@ var java;
             Writer.prototype.write = function (str, off, len) {
                 var _this = this;
                 if (((typeof str === 'string') || str === null) && ((typeof off === 'number') || off === null) && ((typeof len === 'number') || len === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         {
                             var cbuf;
@@ -654,6 +663,7 @@ var java;
             Writer.prototype.append = function (csq, start, end) {
                 var _this = this;
                 if (((csq != null && (csq["__interfaces"] != null && csq["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof csq === "string")) || csq === null) && ((typeof start === 'number') || start === null) && ((typeof end === 'number') || end === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var cs = (csq == null ? "null" : csq);
                         _this.write(/* subSequence */ cs.substring(start, end).toString());
@@ -741,6 +751,7 @@ var java;
             AbstractStringBuilder.prototype.substring = function (begin, end) {
                 var _this = this;
                 if (((typeof begin === 'number') || begin === null) && ((typeof end === 'number') || end === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return _this.string.substring(begin, end);
                     })();
@@ -757,6 +768,7 @@ var java;
             AbstractStringBuilder.prototype.indexOf = function (x, start) {
                 var _this = this;
                 if (((typeof x === 'string') || x === null) && ((typeof start === 'number') || start === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return _this.string.indexOf(x, start);
                     })();
@@ -773,6 +785,7 @@ var java;
             AbstractStringBuilder.prototype.lastIndexOf = function (s, start) {
                 var _this = this;
                 if (((typeof s === 'string') || s === null) && ((typeof start === 'number') || start === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return _this.string.lastIndexOf(s, start);
                     })();
@@ -909,6 +922,7 @@ var java;
             __extends(AssertionError, _super);
             function AssertionError(message, cause) {
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -916,6 +930,7 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -923,7 +938,9 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'boolean') || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var message = new String(message).toString();
                         _super.call(this, /* valueOf */ new String(message).toString());
                         this.message = new String(message).toString();
@@ -935,7 +952,9 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var message = new String(message).toString();
                         _super.call(this, /* valueOf */ new String(message).toString());
                         this.message = new String(message).toString();
@@ -947,7 +966,9 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var message = new String(message).toString();
                         _super.call(this, /* valueOf */ new String(message).toString());
                         this.message = new String(message).toString();
@@ -959,7 +980,9 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var message = new String(message).toString();
                         _super.call(this, /* valueOf */ new String(message).toString());
                         this.message = new String(message).toString();
@@ -971,7 +994,9 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var message = new String(message).toString();
                         _super.call(this, /* valueOf */ new String(message).toString());
                         this.message = new String(message).toString();
@@ -983,7 +1008,9 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var message = new String(message).toString();
                         _super.call(this, /* valueOf */ new String(message).toString());
                         this.message = new String(message).toString();
@@ -995,6 +1022,7 @@ var java;
                     })();
                 }
                 else if (((message != null) || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, /* valueOf */ new String(message).toString());
                     this.message = new String(message).toString();
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -1002,6 +1030,7 @@ var java;
                     })();
                 }
                 else if (message === undefined && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -1271,6 +1300,7 @@ var java;
             }
             Enum.valueOf = function (enumType, name) {
                 if (((enumType != null && enumType instanceof java.lang.Class) || enumType === null) && ((typeof name === 'string') || name === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var enumValueOfFunc = javaemul.internal.InternalPreconditions.checkNotNull(enumType).enumValueOfFunc;
                         javaemul.internal.InternalPreconditions.checkCriticalArgument(enumValueOfFunc != null);
@@ -1312,6 +1342,7 @@ var java;
             Enum.prototype.compareTo = function (other) {
                 var _this = this;
                 if (((other != null) || other === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return _this.__ordinal - other.__ordinal;
                     })();
@@ -1351,6 +1382,7 @@ var java;
             __extends(Exception, _super);
             function Exception(message, cause, enableSuppression, writableStackTrace) {
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null) && ((typeof enableSuppression === 'boolean') || enableSuppression === null) && ((typeof writableStackTrace === 'boolean') || writableStackTrace === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -1358,6 +1390,7 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null) && enableSuppression === undefined && writableStackTrace === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -1365,6 +1398,7 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -1372,7 +1406,8 @@ var java;
                     })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
-                    var cause = message;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var cause = __args[0];
                     _super.call(this, cause);
                     this.message = cause;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -1380,6 +1415,7 @@ var java;
                     })();
                 }
                 else if (message === undefined && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -1408,6 +1444,7 @@ var java;
             function StackTraceElement(className, methodName, fileName, lineNumber) {
                 var _this = this;
                 if (((typeof className === 'string') || className === null) && ((typeof methodName === 'string') || methodName === null) && ((typeof fileName === 'string') || fileName === null) && ((typeof lineNumber === 'number') || lineNumber === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     this.lineNumber = 0;
                     (function () {
@@ -1418,6 +1455,7 @@ var java;
                     })();
                 }
                 else if (className === undefined && methodName === undefined && fileName === undefined && lineNumber === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     this.lineNumber = 0;
                     (function () {
@@ -1488,6 +1526,7 @@ var java;
              */
             function VirtualMachineError(message, cause) {
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -1495,6 +1534,7 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -1502,7 +1542,8 @@ var java;
                     })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
-                    var cause = message;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var cause = __args[0];
                     _super.call(this, cause);
                     this.message = cause;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -1510,6 +1551,7 @@ var java;
                     })();
                 }
                 else if (message === undefined && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -1598,6 +1640,7 @@ var java;
                 Charset.prototype.compareTo = function (that) {
                     var _this = this;
                     if (((that != null && that instanceof java.nio.charset.Charset) || that === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             return _this.__name.toUpperCase().localeCompare(that.__name.toUpperCase());
                         })();
@@ -1655,6 +1698,7 @@ var java;
             MessageDigestSpi.prototype.engineDigest = function (buf, offset, len) {
                 var _this = this;
                 if (((buf != null && buf instanceof Array) || buf === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var digest = _this.engineDigest();
                         if (buf.length < digest.length + offset) {
@@ -1679,6 +1723,7 @@ var java;
             MessageDigestSpi.prototype.engineUpdate$byte = function (input) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
             MessageDigestSpi.prototype.engineUpdate = function (input, offset, len) {
                 if (((input != null && input instanceof Array) || input === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                 }
                 else if (((typeof input === 'number') || input === null) && offset === undefined && len === undefined) {
                     return this.engineUpdate$byte(input);
@@ -1809,6 +1854,7 @@ var java;
             AbstractCollection.prototype.toArray = function (a) {
                 var _this = this;
                 if (((a != null && a instanceof Array) || a === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var size = _this.size();
                         if (a.length < size) {
@@ -1910,6 +1956,7 @@ var java;
                 var _this = this;
                 this.bits = [];
                 if (((typeof nbits === 'number') || nbits === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     this.bits = [];
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.io.Serializable"] });
                     (function () {
@@ -1920,6 +1967,7 @@ var java;
                     })();
                 }
                 else if (nbits === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     this.bits = [];
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.io.Serializable"] });
                     (function () {
@@ -1942,6 +1990,7 @@ var java;
             BitSet.prototype.flip = function (fromIndex, toIndex) {
                 var _this = this;
                 if (((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         for (var i = fromIndex; i <= toIndex; i++) {
                             _this.flip(i);
@@ -1973,6 +2022,7 @@ var java;
             BitSet.prototype.set = function (fromIndex, toIndex, value) {
                 var _this = this;
                 if (((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null) && ((typeof value === 'boolean') || value === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (value) {
                             _this.set(fromIndex, toIndex);
@@ -2000,6 +2050,7 @@ var java;
             BitSet.prototype.clear = function (fromIndex, toIndex) {
                 var _this = this;
                 if (((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         for (var i = fromIndex; i <= toIndex; i++) {
                             _this.clear(i);
@@ -2024,6 +2075,7 @@ var java;
             BitSet.prototype.get = function (fromIndex, toIndex) {
                 var _this = this;
                 if (((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var bs = new BitSet();
                         for (var i = fromIndex; i <= toIndex; i++) {
@@ -2158,6 +2210,7 @@ var java;
             function Date(year, month, date, hrs, min, sec) {
                 var _this = this;
                 if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof date === 'number') || date === null) && ((typeof hrs === 'number') || hrs === null) && ((typeof min === 'number') || min === null) && ((typeof sec === 'number') || sec === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     (function () {
                         _this.jsdate = new (Date.jsdateClass())();
@@ -2167,7 +2220,9 @@ var java;
                     })();
                 }
                 else if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof date === 'number') || date === null) && ((typeof hrs === 'number') || hrs === null) && ((typeof min === 'number') || min === null) && sec === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var sec = 0;
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                         (function () {
@@ -2181,7 +2236,9 @@ var java;
                     })();
                 }
                 else if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof date === 'number') || date === null) && hrs === undefined && min === undefined && sec === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var hrs = 0;
                         var min = 0;
                         var sec = 0;
@@ -2197,8 +2254,10 @@ var java;
                     })();
                 }
                 else if (((typeof year === 'string') || year === null) && month === undefined && date === undefined && hrs === undefined && min === undefined && sec === undefined) {
-                    var date = year;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var date = __args[0];
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var date = Date.parse(date);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                         (function () {
@@ -2209,13 +2268,15 @@ var java;
                     })();
                 }
                 else if (((typeof year === 'number') || year === null) && month === undefined && date === undefined && hrs === undefined && min === undefined && sec === undefined) {
-                    var date = year;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var date = __args[0];
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     (function () {
                         _this.jsdate = new Date(date);
                     })();
                 }
                 else if (year === undefined && month === undefined && date === undefined && hrs === undefined && min === undefined && sec === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     (function () {
                         _this.jsdate = new (Date.jsdateClass())();
@@ -2276,6 +2337,7 @@ var java;
             Date.prototype.compareTo = function (other) {
                 var _this = this;
                 if (((other != null && other instanceof java.util.Date) || other === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return javaemul.internal.LongHelper.compare(_this.getTime(), other.getTime());
                     })();
@@ -2634,6 +2696,7 @@ var java;
             };
             InternalJsMap.prototype.get = function (key) {
                 if (((typeof key === 'string') || key === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return null;
                     })();
@@ -2648,6 +2711,7 @@ var java;
             };
             InternalJsMap.prototype.set = function (key, value) {
                 if (((typeof key === 'string') || key === null) && ((value != null) || value === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                     })();
                 }
@@ -2663,6 +2727,7 @@ var java;
             InternalJsMap.prototype.delete = function (key) {
                 var _this = this;
                 if (((typeof key === 'string') || key === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         InternalJsMap.JsHelper.delete(_this, key);
                     })();
@@ -2708,6 +2773,7 @@ var java;
                 };
                 JsHelper.delete = function (obj, key) {
                     if (((obj != null && obj instanceof java.util.InternalJsMap) || obj === null) && ((typeof key === 'string') || key === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             obj["delete"](key);
                         })();
@@ -3242,6 +3308,7 @@ var java;
                     this.loggerName = "";
                     this.thrown = null;
                     if (((level != null && level instanceof java.util.logging.Level) || level === null) && ((typeof msg === 'string') || msg === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         this.loggerName = "";
                         this.thrown = null;
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -3253,6 +3320,7 @@ var java;
                         })();
                     }
                     else if (level === undefined && msg === undefined) {
+                        var __args = Array.prototype.slice.call(arguments);
                         this.loggerName = "";
                         this.thrown = null;
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -3387,6 +3455,7 @@ var java;
             };
             Objects.requireNonNull = function (obj, message) {
                 if (((obj != null) || obj === null) && ((typeof message === 'string') || message === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (obj == null) {
                             throw new java.lang.NullPointerException(message);
@@ -3414,6 +3483,7 @@ var java;
             };
             Objects.toString = function (o, nullDefault) {
                 if (((o != null) || o === null) && ((typeof nullDefault === 'string') || nullDefault === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return o != null ? o.toString() : nullDefault;
                     })();
@@ -3566,11 +3636,13 @@ var java;
             function Optional(ref) {
                 var _this = this;
                 if (((ref != null) || ref === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     (function () {
                         _this.ref = javaemul.internal.InternalPreconditions.checkCriticalNotNull(ref);
                     })();
                 }
                 else if (ref === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     (function () {
                         _this.ref = null;
                     })();
@@ -3670,6 +3742,7 @@ var java;
             function OptionalDouble(value) {
                 var _this = this;
                 if (((typeof value === 'number') || value === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     this.ref = 0;
                     this.present = false;
                     (function () {
@@ -3678,6 +3751,7 @@ var java;
                     })();
                 }
                 else if (value === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     this.ref = 0;
                     this.present = false;
                     (function () {
@@ -3756,6 +3830,7 @@ var java;
             function OptionalInt(value) {
                 var _this = this;
                 if (((typeof value === 'number') || value === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     this.ref = 0;
                     this.present = false;
                     (function () {
@@ -3764,6 +3839,7 @@ var java;
                     })();
                 }
                 else if (value === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     this.ref = 0;
                     this.present = false;
                     (function () {
@@ -3842,6 +3918,7 @@ var java;
             function OptionalLong(value) {
                 var _this = this;
                 if (((typeof value === 'number') || value === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     this.ref = 0;
                     this.present = false;
                     (function () {
@@ -3850,6 +3927,7 @@ var java;
                     })();
                 }
                 else if (value === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     this.ref = 0;
                     this.present = false;
                     (function () {
@@ -3943,6 +4021,7 @@ var java;
                  */
                 this.haveNextNextGaussian = false;
                 if (((typeof seed === 'number') || seed === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     this.haveNextNextGaussian = false;
                     this.nextNextGaussian = 0;
                     this.seedhi = 0;
@@ -3952,6 +4031,7 @@ var java;
                     })();
                 }
                 else if (seed === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     this.haveNextNextGaussian = false;
                     this.nextNextGaussian = 0;
                     this.seedhi = 0;
@@ -4095,6 +4175,7 @@ var java;
             Random.prototype.nextInt = function (n) {
                 var _this = this;
                 if (((typeof n === 'number') || n === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkCriticalArgument(n > 0);
                         if ((n & -n) === n) {
@@ -4185,6 +4266,7 @@ var java;
             Random.prototype.setSeed = function (seedhi, seedlo) {
                 var _this = this;
                 if (((typeof seedhi === 'number') || seedhi === null) && ((typeof seedlo === 'number') || seedlo === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         _this.seedhi = seedhi ^ 1502;
                         _this.seedlo = seedlo ^ 15525485;
@@ -4332,6 +4414,7 @@ var javaemul;
             };
             ArrayHelper.insertTo = function (array, index, values) {
                 if (((array != null) || array === null) && ((typeof index === 'number') || index === null) && ((values != null && values instanceof Array) || values === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         ArrayHelper.copy(values, 0, array, index, values.length, false);
                     })();
@@ -4428,6 +4511,7 @@ var javaemul;
             };
             BooleanHelper.valueOf = function (s) {
                 if (((typeof s === 'string') || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return BooleanHelper.valueOf(BooleanHelper.parseBoolean(s));
                     })();
@@ -4447,6 +4531,7 @@ var javaemul;
             BooleanHelper.prototype.compareTo = function (b) {
                 var _this = this;
                 if (((b != null && b instanceof javaemul.internal.BooleanHelper) || b === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return BooleanHelper.compare(_this.booleanValue(), b.booleanValue());
                     })();
@@ -4536,6 +4621,7 @@ var javaemul;
             };
             CharacterHelper.codePointAt = function (a, index, limit) {
                 if (((a != null && a instanceof Array) || a === null) && ((typeof index === 'number') || index === null) && ((typeof limit === 'number') || limit === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return CharacterHelper.codePointAt(new String(a), index, limit);
                     })();
@@ -4560,6 +4646,7 @@ var javaemul;
             };
             CharacterHelper.codePointBefore = function (a, index, start) {
                 if (((a != null && a instanceof Array) || a === null) && ((typeof index === 'number') || index === null) && ((typeof start === 'number') || start === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return CharacterHelper.codePointBefore(new String(a), index, start);
                     })();
@@ -4581,6 +4668,7 @@ var javaemul;
             };
             CharacterHelper.codePointCount = function (a, offset, count) {
                 if (((a != null && a instanceof Array) || a === null) && ((typeof offset === 'number') || offset === null) && ((typeof count === 'number') || count === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return CharacterHelper.codePointCount(new String(a), offset, offset + count);
                     })();
@@ -4625,12 +4713,13 @@ var javaemul;
             };
             CharacterHelper.forDigit = function (digit, radix) {
                 if (((typeof digit === 'number') || digit === null) && ((typeof radix === 'number') || radix === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (radix < CharacterHelper.MIN_RADIX || radix > CharacterHelper.MAX_RADIX) {
-                            return 0;
+                            return String.fromCharCode(0);
                         }
                         if (digit < 0 || digit >= radix) {
-                            return 0;
+                            return String.fromCharCode(0);
                         }
                         return CharacterHelper.forDigit(digit);
                     })();
@@ -4698,6 +4787,7 @@ var javaemul;
             };
             CharacterHelper.isWhitespace = function (ch) {
                 if (((typeof ch === 'string') || ch === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return (new String(ch).toString()).match(CharacterHelper.whitespaceRegex()).length > 0;
                     })();
@@ -4728,6 +4818,7 @@ var javaemul;
             };
             CharacterHelper.offsetByCodePoints = function (a, start, count, index, codePointOffset) {
                 if (((a != null && a instanceof Array) || a === null) && ((typeof start === 'number') || start === null) && ((typeof count === 'number') || count === null) && ((typeof index === 'number') || index === null) && ((typeof codePointOffset === 'number') || codePointOffset === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return CharacterHelper.offsetByCodePoints((function (str, index, len) { return str.substring(index, index + len); })((a).join(''), start, count), index, codePointOffset);
                     })();
@@ -4772,6 +4863,7 @@ var javaemul;
             };
             CharacterHelper.toChars = function (codePoint, dst, dstIndex) {
                 if (((typeof codePoint === 'number') || codePoint === null) && ((dst != null && dst instanceof Array) || dst === null) && ((typeof dstIndex === 'number') || dstIndex === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkCriticalArgument(codePoint >= 0 && codePoint <= CharacterHelper.MAX_CODE_POINT);
                         if (codePoint >= CharacterHelper.MIN_SUPPLEMENTARY_CODE_POINT) {
@@ -4796,6 +4888,7 @@ var javaemul;
             };
             CharacterHelper.toLowerCase = function (c) {
                 if (((typeof c === 'string') || c === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return new String(c).toString().toLowerCase().charAt(0);
                     })();
@@ -4814,6 +4907,7 @@ var javaemul;
             };
             CharacterHelper.toUpperCase = function (c) {
                 if (((typeof c === 'string') || c === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return new String(c).toString().toUpperCase().charAt(0);
                     })();
@@ -4892,6 +4986,7 @@ var javaemul;
             CharacterHelper.prototype.compareTo = function (c) {
                 var _this = this;
                 if (((c != null && c instanceof javaemul.internal.CharacterHelper) || c === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return CharacterHelper.compare(_this.value, c.value);
                     })();
@@ -5196,6 +5291,7 @@ var javaemul;
             };
             MathHelper.abs = function (x) {
                 if (((typeof x === 'number') || x === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return x < 0 ? -x : x;
                     })();
@@ -5243,6 +5339,7 @@ var javaemul;
             };
             MathHelper.copySign = function (magnitude, sign) {
                 if (((typeof magnitude === 'number') || magnitude === null) && ((typeof sign === 'number') || sign === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return (MathHelper.copySign(magnitude, sign));
                     })();
@@ -5299,6 +5396,7 @@ var javaemul;
             };
             MathHelper.max = function (x, y) {
                 if (((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return x > y ? x : y;
                     })();
@@ -5326,6 +5424,7 @@ var javaemul;
             };
             MathHelper.min = function (x, y) {
                 if (((typeof x === 'number') || x === null) && ((typeof y === 'number') || y === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return x < y ? x : y;
                     })();
@@ -5370,6 +5469,7 @@ var javaemul;
             };
             MathHelper.round = function (x) {
                 if (((typeof x === 'number') || x === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var roundedValue = Math.round(x);
                         return MathHelper.unsafeCastToInt(roundedValue);
@@ -5400,6 +5500,7 @@ var javaemul;
             };
             MathHelper.scalb = function (f, scaleFactor) {
                 if (((typeof f === 'number') || f === null) && ((typeof scaleFactor === 'number') || scaleFactor === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (scaleFactor >= 31 || scaleFactor <= -31) {
                             return f * MathHelper.pow(2, scaleFactor);
@@ -5434,6 +5535,7 @@ var javaemul;
             };
             MathHelper.signum = function (f) {
                 if (((typeof f === 'number') || f === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (f > 0.0) {
                             return 1.0;
@@ -6151,6 +6253,7 @@ var java;
             ByteArrayInputStream.prototype.read = function (buffer, byteOffset, byteCount) {
                 var _this = this;
                 if (((buffer != null && buffer instanceof Array) || buffer === null) && ((typeof byteOffset === 'number') || byteOffset === null) && ((typeof byteCount === 'number') || byteCount === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (buffer == null) {
                             return _this.pos < _this.count ? _this.buf[_this.pos++] & 255 : -1;
@@ -6300,6 +6403,7 @@ var java;
             FilterInputStream.prototype.read = function (buffer, byteOffset, byteCount) {
                 var _this = this;
                 if (((buffer != null && buffer instanceof Array) || buffer === null) && ((typeof byteOffset === 'number') || byteOffset === null) && ((typeof byteCount === 'number') || byteCount === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return _this.in.read(buffer, byteOffset, byteCount);
                     })();
@@ -6377,6 +6481,7 @@ var java;
             function ByteArrayOutputStream(size) {
                 var _this = this;
                 if (((typeof size === 'number') || size === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     this.count = 0;
@@ -6390,6 +6495,7 @@ var java;
                     })();
                 }
                 else if (size === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     this.count = 0;
@@ -6490,6 +6596,7 @@ var java;
             ByteArrayOutputStream.prototype.toString = function (charsetName) {
                 var _this = this;
                 if (((typeof charsetName === 'string') || charsetName === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return (function (str, index, len) { return str.substring(index, index + len); })((_this.buf).map(function (s) { return String.fromCharCode(s); }).join(''), 0, _this.count);
                     })();
@@ -6523,6 +6630,7 @@ var java;
             ByteArrayOutputStream.prototype.write = function (buffer, offset, len) {
                 var _this = this;
                 if (((buffer != null && buffer instanceof Array) || buffer === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         java.io.IOUtils.checkOffsetAndCount(buffer, offset, len);
                         if (len === 0) {
@@ -6660,6 +6768,7 @@ var java;
             FilterOutputStream.prototype.write = function (buffer, offset, length) {
                 var _this = this;
                 if (((buffer != null && buffer instanceof Array) || buffer === null) && ((typeof offset === 'number') || offset === null) && ((typeof length === 'number') || length === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         java.io.IOUtils.checkOffsetAndCount(buffer, offset, length);
                         for (var i = 0; i < length; i++) {
@@ -6707,6 +6816,7 @@ var java;
             function BufferedReader(__in, sz) {
                 var _this = this;
                 if (((__in != null && __in instanceof java.io.Reader) || __in === null) && ((typeof sz === 'number') || sz === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, __in);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     this.nChars = 0;
@@ -6728,7 +6838,9 @@ var java;
                     })();
                 }
                 else if (((__in != null && __in instanceof java.io.Reader) || __in === null) && sz === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var sz = BufferedReader.defaultCharBufferSize;
                         _super.call(this, __in);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
@@ -6845,6 +6957,7 @@ var java;
             BufferedReader.prototype.read = function (cbuf, off, len) {
                 var _this = this;
                 if (((cbuf != null && cbuf instanceof Array) || cbuf === null) && ((typeof off === 'number') || off === null) && ((typeof len === 'number') || len === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         {
                             _this.ensureOpen();
@@ -7034,6 +7147,7 @@ var java;
             function InputStreamReader(__in, charsetName) {
                 var _this = this;
                 if (((__in != null && __in instanceof java.io.InputStream) || __in === null) && ((typeof charsetName === 'string') || charsetName === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, __in);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     (function () {
@@ -7041,7 +7155,8 @@ var java;
                     })();
                 }
                 else if (((__in != null && __in instanceof java.io.InputStream) || __in === null) && ((charsetName != null && charsetName instanceof java.nio.charset.Charset) || charsetName === null)) {
-                    var cs = charsetName;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var cs = __args[1];
                     _super.call(this, __in);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     (function () {
@@ -7051,6 +7166,7 @@ var java;
                     })();
                 }
                 else if (((__in != null && __in instanceof java.io.InputStream) || __in === null) && charsetName === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, __in);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     (function () {
@@ -7063,6 +7179,7 @@ var java;
             InputStreamReader.prototype.read = function (cbuf, offset, length) {
                 var _this = this;
                 if (((cbuf != null && cbuf instanceof Array) || cbuf === null) && ((typeof offset === 'number') || offset === null) && ((typeof length === 'number') || length === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var buf = cbuf;
                         return _this.in.read(buf, offset, length);
@@ -7104,6 +7221,7 @@ var java;
             function OutputStreamWriter(out, charsetName) {
                 var _this = this;
                 if (((out != null && out instanceof java.io.OutputStream) || out === null) && ((typeof charsetName === 'string') || charsetName === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, out);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Appendable", "java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     (function () {
@@ -7113,7 +7231,8 @@ var java;
                     })();
                 }
                 else if (((out != null && out instanceof java.io.OutputStream) || out === null) && ((charsetName != null && charsetName instanceof java.nio.charset.Charset) || charsetName === null)) {
-                    var cs = charsetName;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var cs = __args[1];
                     _super.call(this, out);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Appendable", "java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     (function () {
@@ -7123,6 +7242,7 @@ var java;
                     })();
                 }
                 else if (((out != null && out instanceof java.io.OutputStream) || out === null) && charsetName === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, out);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Appendable", "java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     (function () {
@@ -7141,6 +7261,7 @@ var java;
             OutputStreamWriter.prototype.write = function (cbuf, off, len) {
                 var _this = this;
                 if (((cbuf != null && cbuf instanceof Array) || cbuf === null) && ((typeof off === 'number') || off === null) && ((typeof len === 'number') || len === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var buf = cbuf;
                         _this.out.write(buf, off, len);
@@ -7191,25 +7312,29 @@ var java;
             __extends(StringBuffer, _super);
             function StringBuffer(s) {
                 if (((typeof s === 'string') || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, s);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                     (function () {
                     })();
                 }
                 else if (((s != null && (s["__interfaces"] != null && s["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof s === "string")) || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, /* valueOf */ new String(s).toString());
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                     (function () {
                     })();
                 }
                 else if (((typeof s === 'number') || s === null)) {
-                    var ignoredCapacity = s;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var ignoredCapacity = __args[0];
                     _super.call(this, "");
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                     (function () {
                     })();
                 }
                 else if (s === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, "");
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                     (function () {
@@ -7233,6 +7358,7 @@ var java;
             StringBuffer.prototype.append = function (x, start, len) {
                 var _this = this;
                 if (((x != null && x instanceof Array) || x === null) && ((typeof start === 'number') || start === null) && ((typeof len === 'number') || len === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         _this.string += (function (str, index, len) { return str.join('').substring(index, index + len); })(x, start, len);
                         return _this;
@@ -7337,6 +7463,7 @@ var java;
             StringBuffer.prototype.insert = function (index, x, offset, len) {
                 var _this = this;
                 if (((typeof index === 'number') || index === null) && ((x != null && x instanceof Array) || x === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return _this.insert(index, /* valueOf */ (function (str, index, len) { return str.join('').substring(index, index + len); })(x, offset, len));
                     })();
@@ -7431,25 +7558,29 @@ var java;
             __extends(StringBuilder, _super);
             function StringBuilder(s) {
                 if (((typeof s === 'string') || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, s);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                     (function () {
                     })();
                 }
                 else if (((s != null && (s["__interfaces"] != null && s["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof s === "string")) || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, /* valueOf */ new String(s).toString());
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                     (function () {
                     })();
                 }
                 else if (((typeof s === 'number') || s === null)) {
-                    var ignoredCapacity = s;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var ignoredCapacity = __args[0];
                     _super.call(this, "");
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                     (function () {
                     })();
                 }
                 else if (s === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, "");
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                     (function () {
@@ -7473,6 +7604,7 @@ var java;
             StringBuilder.prototype.append = function (x, start, len) {
                 var _this = this;
                 if (((x != null && x instanceof Array) || x === null) && ((typeof start === 'number') || start === null) && ((typeof len === 'number') || len === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         _this.string += (function (str, index, len) { return str.join('').substring(index, index + len); })(x, start, len);
                         return _this;
@@ -7578,6 +7710,7 @@ var java;
             StringBuilder.prototype.insert = function (index, x, offset, len) {
                 var _this = this;
                 if (((typeof index === 'number') || index === null) && ((x != null && x instanceof Array) || x === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return _this.insert(index, /* valueOf */ (function (str, index, len) { return str.join('').substring(index, index + len); })(x, offset, len));
                     })();
@@ -7671,6 +7804,7 @@ var java;
             __extends(IOException, _super);
             function IOException(message, throwable) {
                 if (((typeof message === 'string') || message === null) && ((throwable != null && throwable instanceof Error) || throwable === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -7678,6 +7812,7 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'string') || message === null) && throwable === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -7685,7 +7820,8 @@ var java;
                     })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && throwable === undefined) {
-                    var throwable = message;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var throwable = __args[0];
                     _super.call(this, throwable);
                     this.message = throwable;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -7693,6 +7829,7 @@ var java;
                     })();
                 }
                 else if (message === undefined && throwable === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -7721,6 +7858,7 @@ var java;
             __extends(CloneNotSupportedException, _super);
             function CloneNotSupportedException(msg) {
                 if (((typeof msg === 'string') || msg === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
                     this.message = msg;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -7728,6 +7866,7 @@ var java;
                     })();
                 }
                 else if (msg === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -7759,6 +7898,7 @@ var java;
             __extends(NoSuchMethodException, _super);
             function NoSuchMethodException(message) {
                 if (((typeof message === 'string') || message === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -7766,6 +7906,7 @@ var java;
                     })();
                 }
                 else if (message === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -7794,6 +7935,7 @@ var java;
             __extends(RuntimeException, _super);
             function RuntimeException(message, cause, enableSuppression, writableStackTrace) {
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null) && ((typeof enableSuppression === 'boolean') || enableSuppression === null) && ((typeof writableStackTrace === 'boolean') || writableStackTrace === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -7801,6 +7943,7 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null) && enableSuppression === undefined && writableStackTrace === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -7808,6 +7951,7 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -7815,7 +7959,8 @@ var java;
                     })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
-                    var cause = message;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var cause = __args[0];
                     _super.call(this, cause);
                     this.message = cause;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -7823,6 +7968,7 @@ var java;
                     })();
                 }
                 else if (message === undefined && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -7851,6 +7997,7 @@ var java;
             __extends(GeneralSecurityException, _super);
             function GeneralSecurityException(msg) {
                 if (((typeof msg === 'string') || msg === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
                     this.message = msg;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -7858,6 +8005,7 @@ var java;
                     })();
                 }
                 else if (msg === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -7911,6 +8059,7 @@ var java;
             __extends(TooManyListenersException, _super);
             function TooManyListenersException(message) {
                 if (((typeof message === 'string') || message === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -7918,6 +8067,7 @@ var java;
                     })();
                 }
                 else if (message === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -7962,25 +8112,29 @@ var java;
              */
             function InternalError(message, cause) {
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message, cause);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
-                    var cause = message;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var cause = __args[0];
                     _super.call(this, cause);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (message === undefined && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -8244,6 +8398,7 @@ var java;
             MessageDigest.prototype.digest = function (buf, offset, len) {
                 var _this = this;
                 if (((buf != null && buf instanceof Array) || buf === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return _this.engineDigest(buf, offset, len);
                     })();
@@ -8275,6 +8430,7 @@ var java;
             MessageDigest.prototype.update = function (input, offset, len) {
                 var _this = this;
                 if (((input != null && input instanceof Array) || input === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         _this.engineUpdate(input, offset, len);
                     })();
@@ -8423,6 +8579,7 @@ var java;
                 Md5Digest.prototype.engineUpdate = function (input, offset, len) {
                     var _this = this;
                     if (((input != null && input instanceof Array) || input === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             while ((true)) {
                                 if (len >= _this.remainder) {
@@ -8569,6 +8726,7 @@ var java;
             };
             AbstractList.prototype.add = function (index, element) {
                 if (((typeof index === 'number') || index === null) && ((element != null) || element === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         throw new java.lang.UnsupportedOperationException("Add not supported on this list");
                     })();
@@ -8582,6 +8740,7 @@ var java;
             AbstractList.prototype.addAll = function (index, c) {
                 var _this = this;
                 if (((typeof index === 'number') || index === null) && ((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkNotNull(c);
                         var changed = false;
@@ -8669,6 +8828,7 @@ var java;
             AbstractList.prototype.listIterator = function (from) {
                 var _this = this;
                 if (((typeof from === 'number') || from === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return new AbstractList.ListIteratorImpl(_this, from);
                     })();
@@ -8681,6 +8841,7 @@ var java;
             };
             AbstractList.prototype.remove = function (index) {
                 if (((typeof index === 'number') || index === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         throw new java.lang.UnsupportedOperationException("Remove not supported on this list");
                     })();
@@ -8751,6 +8912,7 @@ var java;
                 function ListIteratorImpl(__parent, start) {
                     var _this = this;
                     if (((typeof start === 'number') || start === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         _super.call(this, __parent);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator", "java.util.ListIterator"] });
                         this.__parent = __parent;
@@ -8760,6 +8922,7 @@ var java;
                         })();
                     }
                     else if (start === undefined) {
+                        var __args = Array.prototype.slice.call(arguments);
                         _super.call(this, __parent);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator", "java.util.ListIterator"] });
                         this.__parent = __parent;
@@ -8817,6 +8980,7 @@ var java;
                 SubList.prototype.add = function (index, element) {
                     var _this = this;
                     if (((typeof index === 'number') || index === null) && ((element != null) || element === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             javaemul.internal.InternalPreconditions.checkPositionIndex(index, _this.__size);
                             _this.wrapped.add(_this.fromIndex + index, element);
@@ -8836,6 +9000,7 @@ var java;
                 SubList.prototype.remove = function (index) {
                     var _this = this;
                     if (((typeof index === 'number') || index === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             javaemul.internal.InternalPreconditions.checkElementIndex(index, _this.__size);
                             var result = _this.wrapped.remove(_this.fromIndex + index);
@@ -9161,6 +9326,7 @@ var javaemul;
             };
             StringHelper.copyValueOf = function (v, offset, count) {
                 if (((v != null && v instanceof Array) || v === null) && ((typeof offset === 'number') || offset === null) && ((typeof count === 'number') || count === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return StringHelper.valueOf(v, offset, count);
                     })();
@@ -9179,6 +9345,7 @@ var javaemul;
             };
             StringHelper.valueOf = function (x, offset, count) {
                 if (((x != null && x instanceof Array) || x === null) && ((typeof offset === 'number') || offset === null) && ((typeof count === 'number') || count === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var end = offset + count;
                         javaemul.internal.InternalPreconditions.checkStringBounds(offset, end, x.length);
@@ -9325,13 +9492,15 @@ var java;
             __extends(Date, _super);
             function Date(year, month, day) {
                 if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof day === 'number') || day === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, year, month, day);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (((typeof year === 'number') || year === null) && month === undefined && day === undefined) {
-                    var date = year;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var date = __args[0];
                     _super.call(this, date);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     (function () {
@@ -9393,13 +9562,15 @@ var java;
             __extends(Time, _super);
             function Time(hour, minute, second) {
                 if (((typeof hour === 'number') || hour === null) && ((typeof minute === 'number') || minute === null) && ((typeof second === 'number') || second === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, 70, 0, 1, hour, minute, second);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (((typeof hour === 'number') || hour === null) && minute === undefined && second === undefined) {
-                    var time = hour;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var time = __args[0];
                     _super.call(this, time);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     (function () {
@@ -9466,6 +9637,7 @@ var java;
             function Timestamp(year, month, date, hour, minute, second, nano) {
                 var _this = this;
                 if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof date === 'number') || date === null) && ((typeof hour === 'number') || hour === null) && ((typeof minute === 'number') || minute === null) && ((typeof second === 'number') || second === null) && ((typeof nano === 'number') || nano === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, year, month, date, hour, minute, second);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     this.nanos = 0;
@@ -9474,7 +9646,8 @@ var java;
                     })();
                 }
                 else if (((typeof year === 'number') || year === null) && month === undefined && date === undefined && hour === undefined && minute === undefined && second === undefined && nano === undefined) {
-                    var time = year;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var time = __args[0];
                     _super.call(this, time);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     this.nanos = 0;
@@ -9529,6 +9702,7 @@ var java;
             Timestamp.prototype.after = function (ts) {
                 var _this = this;
                 if (((ts != null && ts instanceof java.sql.Timestamp) || ts === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return (_this.getTime() > ts.getTime()) || (_this.getTime() === ts.getTime() && _this.getNanos() > ts.getNanos());
                     })();
@@ -9542,6 +9716,7 @@ var java;
             Timestamp.prototype.before = function (ts) {
                 var _this = this;
                 if (((ts != null && ts instanceof java.sql.Timestamp) || ts === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return (_this.getTime() < ts.getTime()) || (_this.getTime() === ts.getTime() && _this.getNanos() < ts.getNanos());
                     })();
@@ -9563,6 +9738,7 @@ var java;
             Timestamp.prototype.compareTo = function (o) {
                 var _this = this;
                 if (((o != null && o instanceof java.sql.Timestamp) || o === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var cmp = javaemul.internal.LongHelper.compare(_this.getTime(), o.getTime());
                         return cmp === 0 ? javaemul.internal.IntegerHelper.compare(_this.getNanos(), o.getNanos()) : cmp;
@@ -9580,6 +9756,7 @@ var java;
             Timestamp.prototype.equals = function (ts) {
                 var _this = this;
                 if (((ts != null && ts instanceof java.sql.Timestamp) || ts === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return ts != null && _this.getTime() === ts.getTime() && _this.getNanos() === ts.getNanos();
                     })();
@@ -9680,6 +9857,7 @@ var javaemul;
             function ByteHelper(s) {
                 var _this = this;
                 if (((typeof s === 'string') || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
@@ -9688,7 +9866,8 @@ var javaemul;
                     })();
                 }
                 else if (((typeof s === 'number') || s === null)) {
-                    var value = s;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var value = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
@@ -9742,6 +9921,7 @@ var javaemul;
             };
             ByteHelper.valueOf = function (s, radix) {
                 if (((typeof s === 'string') || s === null) && ((typeof radix === 'number') || radix === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return ByteHelper.valueOf(ByteHelper.parseByte(s, radix));
                     })();
@@ -9761,6 +9941,7 @@ var javaemul;
             ByteHelper.prototype.compareTo = function (b) {
                 var _this = this;
                 if (((b != null && b instanceof javaemul.internal.ByteHelper) || b === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return ByteHelper.compare(_this.value, b.value);
                     })();
@@ -9827,13 +10008,15 @@ var javaemul;
             __extends(DoubleHelper, _super);
             function DoubleHelper(s) {
                 if (((typeof s === 'string') || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (((typeof s === 'number') || s === null)) {
-                    var value = s;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var value = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     (function () {
@@ -10009,6 +10192,7 @@ var javaemul;
             };
             DoubleHelper.valueOf = function (s) {
                 if (((typeof s === 'string') || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return new DoubleHelper(s);
                     })();
@@ -10025,6 +10209,7 @@ var javaemul;
             DoubleHelper.prototype.compareTo = function (b) {
                 var _this = this;
                 if (((b != null && b instanceof javaemul.internal.DoubleHelper) || b === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return DoubleHelper.compare(_this.doubleValue(), b.doubleValue());
                     })();
@@ -10141,6 +10326,7 @@ var javaemul;
             function FloatHelper(s) {
                 var _this = this;
                 if (((typeof s === 'string') || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
@@ -10149,7 +10335,8 @@ var javaemul;
                     })();
                 }
                 else if (((typeof s === 'number') || s === null)) {
-                    var value = s;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var value = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
@@ -10158,7 +10345,8 @@ var javaemul;
                     })();
                 }
                 else if (((typeof s === 'number') || s === null)) {
-                    var value = s;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var value = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
@@ -10281,6 +10469,7 @@ var javaemul;
             };
             FloatHelper.valueOf = function (s) {
                 if (((typeof s === 'string') || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return new FloatHelper(s);
                     })();
@@ -10297,6 +10486,7 @@ var javaemul;
             FloatHelper.prototype.compareTo = function (b) {
                 var _this = this;
                 if (((b != null && b instanceof javaemul.internal.FloatHelper) || b === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return FloatHelper.compare(_this.value, b.value);
                     })();
@@ -10369,6 +10559,7 @@ var javaemul;
             function IntegerHelper(s) {
                 var _this = this;
                 if (((typeof s === 'string') || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
@@ -10377,7 +10568,8 @@ var javaemul;
                     })();
                 }
                 else if (((typeof s === 'number') || s === null)) {
-                    var value = s;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var value = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
@@ -10536,6 +10728,7 @@ var javaemul;
             };
             IntegerHelper.toString = function (value, radix) {
                 if (((typeof value === 'number') || value === null) && ((typeof radix === 'number') || radix === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (radix === 10 || radix < javaemul.internal.CharacterHelper.MIN_RADIX || radix > javaemul.internal.CharacterHelper.MAX_RADIX) {
                             return new String(value).toString();
@@ -10565,6 +10758,7 @@ var javaemul;
             };
             IntegerHelper.valueOf = function (s, radix) {
                 if (((typeof s === 'string') || s === null) && ((typeof radix === 'number') || radix === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return IntegerHelper.valueOf(IntegerHelper.parseInt(s, radix));
                     })();
@@ -10591,6 +10785,7 @@ var javaemul;
             IntegerHelper.prototype.compareTo = function (b) {
                 var _this = this;
                 if (((b != null && b instanceof javaemul.internal.IntegerHelper) || b === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return IntegerHelper.compare(_this.value, b.value);
                     })();
@@ -10676,6 +10871,7 @@ var javaemul;
             function LongHelper(s) {
                 var _this = this;
                 if (((typeof s === 'string') || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
@@ -10684,7 +10880,8 @@ var javaemul;
                     })();
                 }
                 else if (((typeof s === 'number') || s === null)) {
-                    var value = s;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var value = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
@@ -10811,6 +11008,7 @@ var javaemul;
             };
             LongHelper.toString = function (value, intRadix) {
                 if (((typeof value === 'number') || value === null) && ((typeof intRadix === 'number') || intRadix === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (intRadix === 10 || intRadix < javaemul.internal.CharacterHelper.MIN_RADIX || intRadix > javaemul.internal.CharacterHelper.MAX_RADIX) {
                             return new String(value).toString();
@@ -10860,6 +11058,7 @@ var javaemul;
             };
             LongHelper.valueOf = function (s, radix) {
                 if (((typeof s === 'string') || s === null) && ((typeof radix === 'number') || radix === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return LongHelper.valueOf(LongHelper.parseLong(s, radix));
                     })();
@@ -10894,6 +11093,7 @@ var javaemul;
             LongHelper.prototype.compareTo = function (b) {
                 var _this = this;
                 if (((b != null && b instanceof javaemul.internal.LongHelper) || b === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return LongHelper.compare(_this.value, b.value);
                     })();
@@ -10963,6 +11163,7 @@ var javaemul;
             function ShortHelper(s) {
                 var _this = this;
                 if (((typeof s === 'string') || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
@@ -10971,7 +11172,8 @@ var javaemul;
                     })();
                 }
                 else if (((typeof s === 'number') || s === null)) {
-                    var value = s;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var value = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
@@ -11029,6 +11231,7 @@ var javaemul;
             };
             ShortHelper.valueOf = function (s, radix) {
                 if (((typeof s === 'string') || s === null) && ((typeof radix === 'number') || radix === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return ShortHelper.valueOf(ShortHelper.parseShort(s, radix));
                     })();
@@ -11048,6 +11251,7 @@ var javaemul;
             ShortHelper.prototype.compareTo = function (b) {
                 var _this = this;
                 if (((b != null && b instanceof javaemul.internal.ShortHelper) || b === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return ShortHelper.compare(_this.value, b.value);
                     })();
@@ -11122,6 +11326,7 @@ var java;
             };
             PrintStream.prototype.print = function (x) {
                 if (((x != null && x instanceof Array) || x === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                     })();
                 }
@@ -11172,6 +11377,7 @@ var java;
             };
             PrintStream.prototype.println = function (x) {
                 if (((x != null && x instanceof Array) || x === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                     })();
                 }
@@ -11237,12 +11443,14 @@ var java;
             __extends(UnsupportedEncodingException, _super);
             function UnsupportedEncodingException(msg) {
                 if (((typeof msg === 'string') || msg === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (msg === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -11271,6 +11479,7 @@ var java;
             __extends(UncheckedIOException, _super);
             function UncheckedIOException(message, cause) {
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof java.io.IOException) || cause === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11278,7 +11487,8 @@ var java;
                     })();
                 }
                 else if (((message != null && message instanceof java.io.IOException) || message === null) && cause === undefined) {
-                    var cause = message;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var cause = __args[0];
                     _super.call(this, javaemul.internal.InternalPreconditions.checkNotNull(cause));
                     this.message = javaemul.internal.InternalPreconditions.checkNotNull(cause);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11375,6 +11585,7 @@ var java;
             __extends(ArithmeticException, _super);
             function ArithmeticException(explanation) {
                 if (((typeof explanation === 'string') || explanation === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, explanation);
                     this.message = explanation;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11382,6 +11593,7 @@ var java;
                     })();
                 }
                 else if (explanation === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -11410,6 +11622,7 @@ var java;
             __extends(ArrayStoreException, _super);
             function ArrayStoreException(message) {
                 if (((typeof message === 'string') || message === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11417,6 +11630,7 @@ var java;
                     })();
                 }
                 else if (message === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -11443,6 +11657,7 @@ var java;
             __extends(ClassCastException, _super);
             function ClassCastException(message) {
                 if (((typeof message === 'string') || message === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11450,6 +11665,7 @@ var java;
                     })();
                 }
                 else if (message === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -11478,6 +11694,7 @@ var java;
             __extends(IllegalArgumentException, _super);
             function IllegalArgumentException(message, cause) {
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11485,6 +11702,7 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11492,7 +11710,8 @@ var java;
                     })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
-                    var cause = message;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var cause = __args[0];
                     _super.call(this, cause);
                     this.message = cause;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11500,6 +11719,7 @@ var java;
                     })();
                 }
                 else if (message === undefined && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -11527,6 +11747,7 @@ var java;
             __extends(IllegalStateException, _super);
             function IllegalStateException(message, cause) {
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11534,7 +11755,8 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
-                    var s = message;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var s = __args[0];
                     _super.call(this, s);
                     this.message = s;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11542,7 +11764,8 @@ var java;
                     })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
-                    var cause = message;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var cause = __args[0];
                     _super.call(this, cause);
                     this.message = cause;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11550,6 +11773,7 @@ var java;
                     })();
                 }
                 else if (message === undefined && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -11578,6 +11802,7 @@ var java;
             __extends(IndexOutOfBoundsException, _super);
             function IndexOutOfBoundsException(message) {
                 if (((typeof message === 'string') || message === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11585,6 +11810,7 @@ var java;
                     })();
                 }
                 else if (message === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -11613,6 +11839,7 @@ var java;
             __extends(NegativeArraySizeException, _super);
             function NegativeArraySizeException(message) {
                 if (((typeof message === 'string') || message === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11620,6 +11847,7 @@ var java;
                     })();
                 }
                 else if (message === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -11648,6 +11876,7 @@ var java;
             __extends(NullPointerException, _super);
             function NullPointerException(message) {
                 if (((typeof message === 'string') || message === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11655,6 +11884,7 @@ var java;
                     })();
                 }
                 else if (message === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -11686,6 +11916,7 @@ var java;
             __extends(UnsupportedOperationException, _super);
             function UnsupportedOperationException(message, cause) {
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11693,6 +11924,7 @@ var java;
                     })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11700,7 +11932,8 @@ var java;
                     })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
-                    var cause = message;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var cause = __args[0];
                     _super.call(this, cause);
                     this.message = cause;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11708,6 +11941,7 @@ var java;
                     })();
                 }
                 else if (message === undefined && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -11736,6 +11970,7 @@ var java;
             __extends(ConcurrentModificationException, _super);
             function ConcurrentModificationException(message) {
                 if (((typeof message === 'string') || message === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11743,6 +11978,7 @@ var java;
                     })();
                 }
                 else if (message === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -11824,6 +12060,7 @@ var java;
             __extends(NoSuchElementException, _super);
             function NoSuchElementException(s) {
                 if (((typeof s === 'string') || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, s);
                     this.message = s;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
@@ -11831,6 +12068,7 @@ var java;
                     })();
                 }
                 else if (s === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -11859,12 +12097,14 @@ var java;
             __extends(DigestException, _super);
             function DigestException(msg) {
                 if (((typeof msg === 'string') || msg === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (msg === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -11893,12 +12133,14 @@ var java;
             __extends(NoSuchAlgorithmException, _super);
             function NoSuchAlgorithmException(msg) {
                 if (((typeof msg === 'string') || msg === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (msg === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -11960,6 +12202,7 @@ var java;
             AbstractSequentialList.prototype.add = function (index, element) {
                 var _this = this;
                 if (((typeof index === 'number') || index === null) && ((element != null) || element === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var iter = _this.listIterator(index);
                         iter.add(element);
@@ -11974,6 +12217,7 @@ var java;
             AbstractSequentialList.prototype.addAll = function (index, c) {
                 var _this = this;
                 if (((typeof index === 'number') || index === null) && ((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkNotNull(c);
                         var modified = false;
@@ -12009,6 +12253,7 @@ var java;
             };
             AbstractSequentialList.prototype.listIterator = function (index) {
                 if (((typeof index === 'number') || index === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return null;
                 }
                 else if (index === undefined) {
@@ -12020,6 +12265,7 @@ var java;
             AbstractSequentialList.prototype.remove = function (index) {
                 var _this = this;
                 if (((typeof index === 'number') || index === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var iter = _this.listIterator(index);
                         try {
@@ -12085,6 +12331,7 @@ var java;
             function ArrayList(c) {
                 var _this = this;
                 if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -12093,7 +12340,8 @@ var java;
                     })();
                 }
                 else if (((typeof c === 'number') || c === null)) {
-                    var initialCapacity = c;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var initialCapacity = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -12102,6 +12350,7 @@ var java;
                     })();
                 }
                 else if (c === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -12127,6 +12376,7 @@ var java;
             ArrayList.prototype.add = function (index, o) {
                 var _this = this;
                 if (((typeof index === 'number') || index === null) && ((o != null) || o === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkPositionIndex(index, _this.array.length);
                         javaemul.internal.ArrayHelper.insertTo(_this.array, index, o);
@@ -12150,6 +12400,7 @@ var java;
             ArrayList.prototype.addAll = function (index, c) {
                 var _this = this;
                 if (((typeof index === 'number') || index === null) && ((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkPositionIndex(index, _this.array.length);
                         var cArray = c.toArray();
@@ -12197,6 +12448,7 @@ var java;
             ArrayList.prototype.remove = function (index) {
                 var _this = this;
                 if (((typeof index === 'number') || index === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var previous = _this.get(index);
                         javaemul.internal.ArrayHelper.removeFrom(_this.array, index, 1);
@@ -12231,6 +12483,7 @@ var java;
             ArrayList.prototype.toArray = function (out) {
                 var _this = this;
                 if (((out != null && out instanceof Array) || out === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var size = _this.array.length;
                         if (out.length < size) {
@@ -12264,6 +12517,7 @@ var java;
             ArrayList.prototype.indexOf = function (o, index) {
                 var _this = this;
                 if (((o != null) || o === null) && ((typeof index === 'number') || index === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         for (; index < _this.array.length; ++index) {
                             if (java.util.Objects.equals(o, _this.array[index])) {
@@ -12285,6 +12539,7 @@ var java;
             ArrayList.prototype.lastIndexOf = function (o, index) {
                 var _this = this;
                 if (((o != null) || o === null) && ((typeof index === 'number') || index === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         for (; index >= 0; --index) {
                             if (java.util.Objects.equals(o, _this.array[index])) {
@@ -12609,6 +12864,7 @@ var java;
              */
             Arrays.binarySearch = function (sortedArray, key, comparator) {
                 if (((sortedArray != null && sortedArray instanceof Array) || sortedArray === null) && ((key != null) || key === null) && ((comparator != null && comparator["__interfaces"] != null && comparator["__interfaces"].indexOf("java.util.Comparator") >= 0) || comparator === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (comparator == null) {
                             comparator = java.util.Comparators.natural();
@@ -12662,6 +12918,7 @@ var java;
             };
             Arrays.copyOf = function (original, newLength) {
                 if (((original != null && original instanceof Array) || original === null) && ((typeof newLength === 'number') || newLength === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkArraySize(newLength);
                         return Arrays.copyOfRange(original, 0, newLength);
@@ -12731,6 +12988,7 @@ var java;
             };
             Arrays.copyOfRange = function (original, from, to) {
                 if (((original != null && original instanceof Array) || original === null) && ((typeof from === 'number') || from === null) && ((typeof to === 'number') || to === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var len = Arrays.getCopyLength(original, from, to);
                         var copy = new Array(to - from);
@@ -12880,6 +13138,7 @@ var java;
             };
             Arrays.equals = function (array1, array2) {
                 if (((array1 != null && array1 instanceof Array) || array1 === null) && ((array2 != null && array2 instanceof Array) || array2 === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (array1 === array2) {
                             return true;
@@ -13068,6 +13327,7 @@ var java;
             };
             Arrays.fill = function (a, fromIndex, toIndex, val) {
                 if (((a != null && a instanceof Array) || a === null) && ((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null) && ((typeof val === 'boolean') || val === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         for (var i = fromIndex; i < toIndex; ++i) {
                             a[i] = val;
@@ -13194,6 +13454,7 @@ var java;
             };
             Arrays.hashCode = function (a) {
                 if (((a != null && a instanceof Array) || a === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (a == null) {
                             return 0;
@@ -13408,6 +13669,7 @@ var java;
             };
             Arrays.sort = function (x, fromIndex, toIndex, c) {
                 if (((x != null && x instanceof Array) || x === null) && ((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null) && ((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Comparator") >= 0) || c === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkPositionIndexes(fromIndex, toIndex, x.length);
                         Arrays.mergeSort(x, fromIndex, toIndex, c);
@@ -13469,6 +13731,7 @@ var java;
             };
             Arrays.toString = function (a) {
                 if (((a != null && a instanceof Array) || a === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (a == null) {
                             return "null";
@@ -13612,6 +13875,7 @@ var java;
              */
             Arrays.deepToString = function (a, arraysIveSeen) {
                 if (((a != null && a instanceof Array) || a === null) && ((arraysIveSeen != null && arraysIveSeen["__interfaces"] != null && arraysIveSeen["__interfaces"].indexOf("java.util.Set") >= 0) || arraysIveSeen === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (a == null) {
                             return "null";
@@ -13752,6 +14016,7 @@ var java;
              */
             Arrays.mergeSort = function (temp, array, low, high, ofs, comp) {
                 if (((temp != null && temp instanceof Array) || temp === null) && ((array != null && array instanceof Array) || array === null) && ((typeof low === 'number') || low === null) && ((typeof high === 'number') || high === null) && ((typeof ofs === 'number') || ofs === null) && ((comp != null && comp["__interfaces"] != null && comp["__interfaces"].indexOf("java.util.Comparator") >= 0) || comp === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var length = high - low;
                         if (length < 7) {
@@ -13790,6 +14055,7 @@ var java;
              */
             Arrays.nativeLongSort = function (array, fromIndex, toIndex) {
                 if (((array != null) || array === null) && ((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var temp = javaemul.internal.ArrayHelper.unsafeClone(array, fromIndex, toIndex);
                         Arrays.nativeLongSort(temp, javaemul.internal.LongCompareHolder.getLongComparator());
@@ -13815,6 +14081,7 @@ var java;
              */
             Arrays.nativeNumberSort = function (array, fromIndex, toIndex) {
                 if (((array != null) || array === null) && ((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var temp = javaemul.internal.ArrayHelper.unsafeClone(array, fromIndex, toIndex);
                         Arrays.nativeNumberSort(temp);
@@ -13861,6 +14128,7 @@ var java;
                 ArrayList.prototype.toArray = function (out) {
                     var _this = this;
                     if (((out != null && out instanceof Array) || out === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             var size = _this.size();
                             if (out.length < size) {
@@ -13909,7 +14177,9 @@ var java;
             function Vector(initialCapacity, ignoredCapacityIncrement) {
                 var _this = this;
                 if (((typeof initialCapacity === 'number') || initialCapacity === null) && ((typeof ignoredCapacityIncrement === 'number') || ignoredCapacityIncrement === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                         (function () {
@@ -13920,7 +14190,8 @@ var java;
                     })();
                 }
                 else if (((initialCapacity != null && initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0) || initialCapacity === null) && ignoredCapacityIncrement === undefined) {
-                    var c = initialCapacity;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var c = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -13929,6 +14200,7 @@ var java;
                     })();
                 }
                 else if (((typeof initialCapacity === 'number') || initialCapacity === null) && ignoredCapacityIncrement === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -13936,6 +14208,7 @@ var java;
                     })();
                 }
                 else if (initialCapacity === undefined && ignoredCapacityIncrement === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -13960,6 +14233,7 @@ var java;
             Vector.prototype.add = function (index, o) {
                 var _this = this;
                 if (((typeof index === 'number') || index === null) && ((o != null) || o === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         Vector.checkArrayElementIndex(index, _this.size() + 1);
                         _this.arrayList.add(index, o);
@@ -13977,6 +14251,7 @@ var java;
             Vector.prototype.addAll = function (index, c) {
                 var _this = this;
                 if (((typeof index === 'number') || index === null) && ((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return _this.arrayList.addAll(index, c);
                     })();
@@ -14036,6 +14311,7 @@ var java;
             Vector.prototype.indexOf = function (elem, index) {
                 var _this = this;
                 if (((elem != null) || elem === null) && ((typeof index === 'number') || index === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         Vector.checkArrayIndexOutOfBounds(index >= 0, index);
                         return _this.arrayList.indexOf(elem, index);
@@ -14066,6 +14342,7 @@ var java;
             Vector.prototype.lastIndexOf = function (o, index) {
                 var _this = this;
                 if (((o != null) || o === null) && ((typeof index === 'number') || index === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         Vector.checkArrayIndexOutOfBounds(index < _this.size(), index);
                         return _this.arrayList.lastIndexOf(o, index);
@@ -14080,6 +14357,7 @@ var java;
             Vector.prototype.remove = function (index) {
                 var _this = this;
                 if (((typeof index === 'number') || index === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         Vector.checkArrayElementIndex(index, _this.size());
                         return _this.arrayList.remove(index);
@@ -14126,6 +14404,7 @@ var java;
             Vector.prototype.toArray = function (a) {
                 var _this = this;
                 if (((a != null && a instanceof Array) || a === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return _this.arrayList.toArray(a);
                     })();
@@ -14178,6 +14457,7 @@ var java;
             function PriorityQueue(initialCapacity, cmp) {
                 var _this = this;
                 if (((typeof initialCapacity === 'number') || initialCapacity === null) && ((cmp != null && cmp["__interfaces"] != null && cmp["__interfaces"].indexOf("java.util.Comparator") >= 0) || cmp === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
                     (function () {
@@ -14189,8 +14469,10 @@ var java;
                     })();
                 }
                 else if (((initialCapacity != null && initialCapacity instanceof java.util.PriorityQueue) || initialCapacity === null) && cmp === undefined) {
-                    var c = initialCapacity;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var c = __args[0];
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var initialCapacity = c.size();
                         var cmp = c.comparator();
                         _super.call(this);
@@ -14208,8 +14490,10 @@ var java;
                     })();
                 }
                 else if (((initialCapacity != null && initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.SortedSet") >= 0) || initialCapacity === null) && cmp === undefined) {
-                    var c = initialCapacity;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var c = __args[0];
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var initialCapacity = c.size();
                         var cmp = c.comparator();
                         _super.call(this);
@@ -14227,10 +14511,13 @@ var java;
                     })();
                 }
                 else if (((initialCapacity != null && initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0) || initialCapacity === null) && cmp === undefined) {
-                    var c = initialCapacity;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var c = __args[0];
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var initialCapacity = c.size();
                         {
+                            var __args = Array.prototype.slice.call(arguments);
                             var cmp = null;
                             _super.call(this);
                             Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
@@ -14250,7 +14537,9 @@ var java;
                     })();
                 }
                 else if (((typeof initialCapacity === 'number') || initialCapacity === null) && cmp === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var cmp = null;
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
@@ -14266,9 +14555,12 @@ var java;
                     })();
                 }
                 else if (initialCapacity === undefined && cmp === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var initialCapacity = 11;
                         {
+                            var __args = Array.prototype.slice.call(arguments);
                             var cmp = null;
                             _super.call(this);
                             Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
@@ -14404,6 +14696,7 @@ var java;
             PriorityQueue.prototype.toArray = function (a) {
                 var _this = this;
                 if (((a != null && a instanceof Array) || a === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return _this.heap.toArray(a);
                     })();
@@ -14600,6 +14893,7 @@ var java;
             AbstractMap.prototype.toString = function (entry) {
                 var _this = this;
                 if (((entry != null && entry["__interfaces"] != null && entry["__interfaces"].indexOf("java.util.Map.Entry") >= 0) || entry === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return _this.toString(entry.getKey()) + "=" + _this.toString(entry.getValue());
                     })();
@@ -14694,13 +14988,15 @@ var java;
                 __extends(SimpleEntry, _super);
                 function SimpleEntry(key, value) {
                     if (((key != null) || key === null) && ((value != null) || value === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         _super.call(this, key, value);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
                         (function () {
                         })();
                     }
                     else if (((key != null && key["__interfaces"] != null && key["__interfaces"].indexOf("java.util.Map.Entry") >= 0) || key === null) && value === undefined) {
-                        var entry = key;
+                        var __args = Array.prototype.slice.call(arguments);
+                        var entry = __args[0];
                         _super.call(this, entry.getKey(), entry.getValue());
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
                         (function () {
@@ -14721,13 +15017,15 @@ var java;
                 __extends(SimpleImmutableEntry, _super);
                 function SimpleImmutableEntry(key, value) {
                     if (((key != null) || key === null) && ((value != null) || value === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         _super.call(this, key, value);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
                         (function () {
                         })();
                     }
                     else if (((key != null && key["__interfaces"] != null && key["__interfaces"].indexOf("java.util.Map.Entry") >= 0) || key === null) && value === undefined) {
-                        var entry = key;
+                        var __args = Array.prototype.slice.call(arguments);
+                        var entry = __args[0];
                         _super.call(this, entry.getKey(), entry.getValue());
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
                         (function () {
@@ -14912,6 +15210,7 @@ var java;
             };
             EnumSet.copyOf = function (s) {
                 if (((s != null && s instanceof java.util.EnumSet) || s === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return s.clone();
                     })();
@@ -14937,6 +15236,7 @@ var java;
                     rest[_i - 1] = arguments[_i];
                 }
                 if (((first != null) || first === null) && ((rest != null && rest instanceof Array) || rest === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var set = EnumSet.of(first);
                         java.util.Collections.addAll(set, rest);
@@ -15116,6 +15416,7 @@ var java;
             function HashSet(initialCapacity, loadFactor) {
                 var _this = this;
                 if (((typeof initialCapacity === 'number') || initialCapacity === null) && ((typeof loadFactor === 'number') || loadFactor === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -15123,7 +15424,8 @@ var java;
                     })();
                 }
                 else if (((initialCapacity != null && initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0) || initialCapacity === null) && loadFactor === undefined) {
-                    var c = initialCapacity;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var c = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -15132,7 +15434,8 @@ var java;
                     })();
                 }
                 else if (((initialCapacity != null && initialCapacity instanceof java.util.HashMap) || initialCapacity === null) && loadFactor === undefined) {
-                    var map = initialCapacity;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var map = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -15140,6 +15443,7 @@ var java;
                     })();
                 }
                 else if (((typeof initialCapacity === 'number') || initialCapacity === null) && loadFactor === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -15147,6 +15451,7 @@ var java;
                     })();
                 }
                 else if (initialCapacity === undefined && loadFactor === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -15230,7 +15535,9 @@ var java;
             function TreeSet(c) {
                 var _this = this;
                 if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable", "java.io.Serializable"] });
                         (function () {
@@ -15242,6 +15549,7 @@ var java;
                     })();
                 }
                 else if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Comparator") >= 0) || c === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -15249,8 +15557,10 @@ var java;
                     })();
                 }
                 else if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.SortedSet") >= 0) || c === null)) {
-                    var s = c;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var s = __args[0];
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var c = javaemul.internal.InternalPreconditions.checkNotNull(s).comparator();
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable", "java.io.Serializable"] });
@@ -15263,7 +15573,8 @@ var java;
                     })();
                 }
                 else if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.NavigableMap") >= 0) || c === null)) {
-                    var map = c;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var map = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -15271,6 +15582,7 @@ var java;
                     })();
                 }
                 else if (c === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -15329,6 +15641,7 @@ var java;
             TreeSet.prototype.headSet = function (toElement, inclusive) {
                 var _this = this;
                 if (((toElement != null) || toElement === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return new TreeSet(_this.map.headMap(toElement, inclusive));
                     })();
@@ -15373,6 +15686,7 @@ var java;
             TreeSet.prototype.subSet = function (fromElement, fromInclusive, toElement, toInclusive) {
                 var _this = this;
                 if (((fromElement != null) || fromElement === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null) && ((toElement != null) || toElement === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return new TreeSet(_this.map.subMap(fromElement, fromInclusive, toElement, toInclusive));
                     })();
@@ -15392,6 +15706,7 @@ var java;
             TreeSet.prototype.tailSet = function (fromElement, inclusive) {
                 var _this = this;
                 if (((fromElement != null) || fromElement === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return new TreeSet(_this.map.tailMap(fromElement, inclusive));
                     })();
@@ -15487,6 +15802,7 @@ var java;
              */
             System.getProperty = function (key, def) {
                 if (((typeof key === 'string') || key === null) && ((typeof def === 'string') || def === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var prop = System.getProperty(key);
                         return prop == null ? def : prop;
@@ -15527,12 +15843,14 @@ var java;
             __extends(NumberFormatException, _super);
             function NumberFormatException(message) {
                 if (((typeof message === 'string') || message === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (message === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -15627,19 +15945,22 @@ var java;
             __extends(ArrayIndexOutOfBoundsException, _super);
             function ArrayIndexOutOfBoundsException(msg) {
                 if (((typeof msg === 'string') || msg === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (((typeof msg === 'number') || msg === null)) {
-                    var index = msg;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var index = __args[0];
                     _super.call(this, "Array index " + index + " out of range");
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (msg === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -15668,19 +15989,22 @@ var java;
             __extends(StringIndexOutOfBoundsException, _super);
             function StringIndexOutOfBoundsException(message) {
                 if (((typeof message === 'string') || message === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (((typeof message === 'number') || message === null)) {
-                    var index = message;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var index = __args[0];
                     _super.call(this, "String index out of range: " + index);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (message === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     (function () {
@@ -15713,6 +16037,7 @@ var java;
             function LinkedList(c) {
                 var _this = this;
                 if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.List", "java.util.Collection", "java.util.Queue", "java.util.Deque", "java.lang.Iterable", "java.io.Serializable"] });
                     this.__size = 0;
@@ -15724,6 +16049,7 @@ var java;
                     })();
                 }
                 else if (c === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.List", "java.util.Collection", "java.util.Queue", "java.util.Deque", "java.lang.Iterable", "java.io.Serializable"] });
                     this.__size = 0;
@@ -15784,6 +16110,7 @@ var java;
             LinkedList.prototype.listIterator = function (index) {
                 var _this = this;
                 if (((typeof index === 'number') || index === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkPositionIndex(index, _this.__size);
                         var node;
@@ -16088,6 +16415,7 @@ var java;
             function AbstractHashMap(ignored, alsoIgnored) {
                 var _this = this;
                 if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
@@ -16097,7 +16425,8 @@ var java;
                     })();
                 }
                 else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0) || ignored === null) && alsoIgnored === undefined) {
-                    var toBeCopied = ignored;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var toBeCopied = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
@@ -16106,7 +16435,9 @@ var java;
                     })();
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var alsoIgnored = 0;
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
@@ -16120,6 +16451,7 @@ var java;
                     })();
                 }
                 else if (ignored === undefined && alsoIgnored === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
@@ -16489,6 +16821,7 @@ var java;
                 DescendingMap.prototype.headMap = function (toKey, inclusive) {
                     var _this = this;
                     if (((toKey != null) || toKey === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             return _this.ascendingMap().tailMap(toKey, inclusive).descendingMap();
                         })();
@@ -16511,6 +16844,7 @@ var java;
                 DescendingMap.prototype.subMap = function (fromKey, fromInclusive, toKey, toInclusive) {
                     var _this = this;
                     if (((fromKey != null) || fromKey === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null) && ((toKey != null) || toKey === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             return _this.ascendingMap().subMap(toKey, toInclusive, fromKey, fromInclusive).descendingMap();
                         })();
@@ -16524,6 +16858,7 @@ var java;
                 DescendingMap.prototype.tailMap = function (fromKey, inclusive) {
                     var _this = this;
                     if (((fromKey != null) || fromKey === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             return _this.ascendingMap().headMap(fromKey, inclusive).descendingMap();
                         })();
@@ -16651,6 +16986,7 @@ var java;
                 NavigableKeySet.prototype.headSet = function (toElement, inclusive) {
                     var _this = this;
                     if (((toElement != null) || toElement === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             return _this.map.headMap(toElement, inclusive).navigableKeySet();
                         })();
@@ -16700,6 +17036,7 @@ var java;
                 NavigableKeySet.prototype.subSet = function (fromElement, fromInclusive, toElement, toInclusive) {
                     var _this = this;
                     if (((fromElement != null) || fromElement === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null) && ((toElement != null) || toElement === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             return _this.map.subMap(fromElement, fromInclusive, toElement, toInclusive).navigableKeySet();
                         })();
@@ -16719,6 +17056,7 @@ var java;
                 NavigableKeySet.prototype.tailSet = function (fromElement, inclusive) {
                     var _this = this;
                     if (((fromElement != null) || fromElement === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             return _this.map.tailMap(fromElement, inclusive).navigableKeySet();
                         })();
@@ -16990,6 +17328,7 @@ var java;
             };
             Collections.reverseOrder = function (cmp) {
                 if (((cmp != null && cmp["__interfaces"] != null && cmp["__interfaces"].indexOf("java.util.Comparator") >= 0) || cmp === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (cmp == null) {
                             return Collections.reverseOrder();
@@ -17130,6 +17469,7 @@ var java;
              */
             Collections.hashCode = function (list) {
                 if (((list != null && list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.List") >= 0) || list === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var hashCode = 1;
                         for (var index173 = list.iterator(); index173.hasNext();) {
@@ -17163,6 +17503,7 @@ var java;
             };
             Collections.swapImpl = function (list, i, j) {
                 if (((list != null && list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.List") >= 0) || list === null) && ((typeof i === 'number') || i === null) && ((typeof j === 'number') || j === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var t = list.get(i);
                         list.set(i, list.get(j));
@@ -17342,6 +17683,7 @@ var java;
                 ;
                 ReverseComparator.prototype.compare = function (o1, o2) {
                     if (((o1 != null && o1["__interfaces"] != null && o1["__interfaces"].indexOf("java.lang.Comparable") >= 0) || o1 === null) && ((o2 != null && o2["__interfaces"] != null && o2["__interfaces"].indexOf("java.lang.Comparable") >= 0) || o2 === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             return o2.compareTo(o1);
                         })();
@@ -17509,6 +17851,7 @@ var java;
                 UnmodifiableCollection.prototype.toArray = function (a) {
                     var _this = this;
                     if (((a != null && a instanceof Array) || a === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             return _this.coll.toArray(a);
                         })();
@@ -17544,6 +17887,7 @@ var java;
                 };
                 UnmodifiableList.prototype.add = function (index, element) {
                     if (((typeof index === 'number') || index === null) && ((element != null) || element === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             throw new java.lang.UnsupportedOperationException();
                         })();
@@ -17556,6 +17900,7 @@ var java;
                 };
                 UnmodifiableList.prototype.addAll = function (index, c) {
                     if (((typeof index === 'number') || index === null) && ((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             throw new java.lang.UnsupportedOperationException();
                         })();
@@ -17604,6 +17949,7 @@ var java;
                 UnmodifiableList.prototype.listIterator = function (from) {
                     var _this = this;
                     if (((typeof from === 'number') || from === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             return new Collections.UnmodifiableListIterator(_this.list.listIterator(from));
                         })();
@@ -17616,6 +17962,7 @@ var java;
                 };
                 UnmodifiableList.prototype.remove = function (index) {
                     if (((typeof index === 'number') || index === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             throw new java.lang.UnsupportedOperationException();
                         })();
@@ -17760,6 +18107,7 @@ var java;
                     UnmodifiableEntrySet.prototype.toArray = function (a) {
                         var _this = this;
                         if (((a != null && a instanceof Array) || a === null)) {
+                            var __args = Array.prototype.slice.call(arguments);
                             return (function () {
                                 var result = _super.prototype.toArray.call(_this, a);
                                 _this.wrap(result, _this.coll.size());
@@ -18081,6 +18429,7 @@ var java;
             function EnumMap(type) {
                 var _this = this;
                 if (((type != null && type instanceof java.lang.Class) || type === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
@@ -18088,7 +18437,8 @@ var java;
                     })();
                 }
                 else if (((type != null && type instanceof java.util.EnumMap) || type === null)) {
-                    var m = type;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var m = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
@@ -18096,7 +18446,8 @@ var java;
                     })();
                 }
                 else if (((type != null && type["__interfaces"] != null && type["__interfaces"].indexOf("java.util.Map") >= 0) || type === null)) {
-                    var m = type;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var m = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
@@ -18143,6 +18494,7 @@ var java;
             EnumMap.prototype.put = function (key, value) {
                 var _this = this;
                 if (((key != null) || key === null) && ((value != null) || value === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         _this.__keySet.add(key);
                         return _this.set(key.ordinal(), value);
@@ -18174,6 +18526,7 @@ var java;
             EnumMap.prototype.init = function (type) {
                 var _this = this;
                 if (((type != null && type instanceof java.lang.Class) || type === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         _this.__keySet = java.util.EnumSet.noneOf(type);
                         _this.__values = new Array(_this.__keySet.capacity());
@@ -18312,13 +18665,15 @@ var java;
             function LinkedHashSet(ignored, alsoIgnored) {
                 var _this = this;
                 if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, new java.util.LinkedHashMap(ignored, alsoIgnored));
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Collection") >= 0) || ignored === null) && alsoIgnored === undefined) {
-                    var c = ignored;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var c = __args[0];
                     _super.call(this, new java.util.LinkedHashMap());
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -18326,12 +18681,14 @@ var java;
                     })();
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, new java.util.LinkedHashMap(ignored));
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (ignored === undefined && alsoIgnored === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, new java.util.LinkedHashMap());
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
@@ -18534,6 +18891,7 @@ var java;
                 Logger.prototype.log = function (level, msg, thrown) {
                     var _this = this;
                     if (((level != null && level instanceof java.util.logging.Level) || level === null) && ((typeof msg === 'string') || msg === null) && ((thrown != null && thrown instanceof Error) || thrown === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             if (Logger.LOGGING_FALSE_$LI$()) {
                                 return;
@@ -18624,6 +18982,7 @@ var java;
                 Logger.prototype.actuallyLog = function (level, msg, thrown) {
                     var _this = this;
                     if (((level != null && level instanceof java.util.logging.Level) || level === null) && ((typeof msg === 'string') || msg === null) && ((thrown != null && thrown instanceof Error) || thrown === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             if (_this.isLoggable(level)) {
                                 var record = new java.util.logging.LogRecord(level, msg);
@@ -18744,6 +19103,7 @@ var javaemul;
              */
             InternalPreconditions.checkArrayType = function (expression, errorMessage) {
                 if (((typeof expression === 'boolean') || expression === null) && ((errorMessage != null) || errorMessage === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (InternalPreconditions.TYPE_CHECK_$LI$()) {
                             InternalPreconditions.checkCriticalArrayType(expression, errorMessage);
@@ -18767,6 +19127,7 @@ var javaemul;
             };
             InternalPreconditions.checkCriticalArrayType = function (expression, errorMessage) {
                 if (((typeof expression === 'boolean') || expression === null) && ((errorMessage != null) || errorMessage === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (!expression) {
                             throw new java.lang.ArrayStoreException(/* valueOf */ new String(errorMessage).toString());
@@ -18812,6 +19173,7 @@ var javaemul;
              */
             InternalPreconditions.checkElement = function (expression, errorMessage) {
                 if (((typeof expression === 'boolean') || expression === null) && ((errorMessage != null) || errorMessage === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (InternalPreconditions.API_CHECK_$LI$()) {
                             InternalPreconditions.checkCriticalElement(expression, errorMessage);
@@ -18841,6 +19203,7 @@ var javaemul;
              */
             InternalPreconditions.checkCriticalElement = function (expression, errorMessage) {
                 if (((typeof expression === 'boolean') || expression === null) && ((errorMessage != null) || errorMessage === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (!expression) {
                             throw new java.util.NoSuchElementException(/* valueOf */ new String(errorMessage).toString());
@@ -18919,6 +19282,7 @@ var javaemul;
                     errorMessageArgs[_i - 2] = arguments[_i];
                 }
                 if (((typeof expression === 'boolean') || expression === null) && ((typeof errorMessageTemplate === 'string') || errorMessageTemplate === null) && ((errorMessageArgs != null && errorMessageArgs instanceof Array) || errorMessageArgs === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (InternalPreconditions.API_CHECK_$LI$()) {
                             InternalPreconditions.checkCriticalArgument.apply(_this, [expression, errorMessageTemplate].concat(errorMessageArgs));
@@ -18956,6 +19320,7 @@ var javaemul;
                     errorMessageArgs[_i - 2] = arguments[_i];
                 }
                 if (((typeof expression === 'boolean') || expression === null) && ((typeof errorMessageTemplate === 'string') || errorMessageTemplate === null) && ((errorMessageArgs != null && errorMessageArgs instanceof Array) || errorMessageArgs === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (!expression) {
                             throw new java.lang.IllegalArgumentException(InternalPreconditions.format.apply(_this, [errorMessageTemplate].concat(errorMessageArgs)));
@@ -19010,6 +19375,7 @@ var javaemul;
              */
             InternalPreconditions.checkState = function (expression, errorMessage) {
                 if (((typeof expression === 'boolean') || expression === null) && ((errorMessage != null) || errorMessage === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (InternalPreconditions.API_CHECK_$LI$()) {
                             InternalPreconditions.checkCriticalState(expression, errorMessage);
@@ -19069,6 +19435,7 @@ var javaemul;
              */
             InternalPreconditions.checkNotNull = function (reference, errorMessage) {
                 if (((reference != null) || reference === null) && ((errorMessage != null) || errorMessage === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (InternalPreconditions.API_CHECK_$LI$()) {
                             InternalPreconditions.checkCriticalNotNull(reference, errorMessage);
@@ -19092,6 +19459,7 @@ var javaemul;
             };
             InternalPreconditions.checkCriticalNotNull = function (reference, errorMessage) {
                 if (((reference != null) || reference === null) && ((errorMessage != null) || errorMessage === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (reference == null) {
                             throw new java.lang.NullPointerException(/* valueOf */ new String(errorMessage).toString());
@@ -19284,25 +19652,29 @@ var java;
             __extends(HashMap, _super);
             function HashMap(ignored, alsoIgnored) {
                 if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored, alsoIgnored);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0) || ignored === null) && alsoIgnored === undefined) {
-                    var toBeCopied = ignored;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var toBeCopied = __args[0];
                     _super.call(this, toBeCopied);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (ignored === undefined && alsoIgnored === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     (function () {
@@ -19344,19 +19716,22 @@ var java;
             __extends(IdentityHashMap, _super);
             function IdentityHashMap(toBeCopied) {
                 if (((toBeCopied != null && toBeCopied["__interfaces"] != null && toBeCopied["__interfaces"].indexOf("java.util.Map") >= 0) || toBeCopied === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, toBeCopied);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (((typeof toBeCopied === 'number') || toBeCopied === null)) {
-                    var ignored = toBeCopied;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var ignored = __args[0];
                     _super.call(this, ignored);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (toBeCopied === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     (function () {
@@ -19436,6 +19811,7 @@ var java;
             function TreeMap(c) {
                 var _this = this;
                 if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Comparator") >= 0) || c === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap", "java.io.Serializable"] });
                     this.__size = 0;
@@ -19448,8 +19824,10 @@ var java;
                     })();
                 }
                 else if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.SortedMap") >= 0) || c === null)) {
-                    var map = c;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var map = __args[0];
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var c = javaemul.internal.InternalPreconditions.checkNotNull(map).comparator();
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap", "java.io.Serializable"] });
@@ -19467,9 +19845,12 @@ var java;
                     })();
                 }
                 else if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Map") >= 0) || c === null)) {
-                    var map = c;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var map = __args[0];
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         {
+                            var __args = Array.prototype.slice.call(arguments);
                             var c = null;
                             _super.call(this);
                             Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap", "java.io.Serializable"] });
@@ -19490,7 +19871,9 @@ var java;
                     })();
                 }
                 else if (c === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var c = null;
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap", "java.io.Serializable"] });
@@ -19540,6 +19923,7 @@ var java;
             TreeMap.prototype.headMap = function (toKey, inclusive) {
                 var _this = this;
                 if (((toKey != null) || toKey === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return new TreeMap.SubMap(_this, TreeMap.SubMapType_Head_$LI$(), null, false, toKey, inclusive);
                     })();
@@ -19579,6 +19963,7 @@ var java;
             TreeMap.prototype.subMap = function (fromKey, fromInclusive, toKey, toInclusive) {
                 var _this = this;
                 if (((fromKey != null) || fromKey === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null) && ((toKey != null) || toKey === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return new TreeMap.SubMap(_this, TreeMap.SubMapType_Range_$LI$(), fromKey, fromInclusive, toKey, toInclusive);
                     })();
@@ -19592,6 +19977,7 @@ var java;
             TreeMap.prototype.tailMap = function (fromKey, inclusive) {
                 var _this = this;
                 if (((fromKey != null) || fromKey === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return new TreeMap.SubMap(_this, TreeMap.SubMapType_Tail_$LI$(), fromKey, inclusive, null, false);
                     })();
@@ -19684,6 +20070,7 @@ var java;
             TreeMap.prototype.assertCorrectness = function (tree, isRed) {
                 var _this = this;
                 if (((tree != null && tree instanceof java.util.TreeMap.Node) || tree === null) && ((typeof isRed === 'boolean') || isRed === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (tree == null) {
                             return 0;
@@ -20204,6 +20591,7 @@ var java;
                 SubMap.prototype.headMap = function (toKey, toInclusive) {
                     var _this = this;
                     if (((toKey != null) || toKey === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             if (_this.type.toKeyValid() && _this.__parent.cmp.compare(toKey, _this.toKey) > 0) {
                                 throw new java.lang.IllegalArgumentException("subMap: " + toKey + " greater than " + _this.toKey);
@@ -20255,6 +20643,7 @@ var java;
                 SubMap.prototype.subMap = function (newFromKey, newFromInclusive, newToKey, newToInclusive) {
                     var _this = this;
                     if (((newFromKey != null) || newFromKey === null) && ((typeof newFromInclusive === 'boolean') || newFromInclusive === null) && ((newToKey != null) || newToKey === null) && ((typeof newToInclusive === 'boolean') || newToInclusive === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             if (_this.type.fromKeyValid() && _this.__parent.cmp.compare(newFromKey, _this.fromKey) < 0) {
                                 throw new java.lang.IllegalArgumentException("subMap: " + newFromKey + " less than " + _this.fromKey);
@@ -20274,6 +20663,7 @@ var java;
                 SubMap.prototype.tailMap = function (fromKey, fromInclusive) {
                     var _this = this;
                     if (((fromKey != null) || fromKey === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null)) {
+                        var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             if (_this.type.fromKeyValid() && _this.__parent.cmp.compare(fromKey, _this.fromKey) < 0) {
                                 throw new java.lang.IllegalArgumentException("subMap: " + fromKey + " less than " + _this.fromKey);
@@ -20442,25 +20832,29 @@ var java;
             __extends(Hashtable, _super);
             function Hashtable(ignored, alsoIgnored) {
                 if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored, alsoIgnored);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.util.Dictionary", "java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0) || ignored === null) && alsoIgnored === undefined) {
-                    var toBeCopied = ignored;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var toBeCopied = __args[0];
                     _super.call(this, toBeCopied);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.util.Dictionary", "java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.util.Dictionary", "java.io.Serializable"] });
                     (function () {
                     })();
                 }
                 else if (ignored === undefined && alsoIgnored === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.util.Dictionary", "java.io.Serializable"] });
                     (function () {
@@ -20538,6 +20932,7 @@ var java;
             function LinkedHashMap(ignored, alsoIgnored, accessOrder) {
                 var _this = this;
                 if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null) && ((typeof accessOrder === 'boolean') || accessOrder === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored, alsoIgnored);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     this.accessOrder = false;
@@ -20549,6 +20944,7 @@ var java;
                     })();
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null) && accessOrder === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored, alsoIgnored);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     this.accessOrder = false;
@@ -20559,7 +20955,8 @@ var java;
                     })();
                 }
                 else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0) || ignored === null) && alsoIgnored === undefined && accessOrder === undefined) {
-                    var toBeCopied = ignored;
+                    var __args = Array.prototype.slice.call(arguments);
+                    var toBeCopied = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     this.accessOrder = false;
@@ -20571,7 +20968,9 @@ var java;
                     })();
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined && accessOrder === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     {
+                        var __args = Array.prototype.slice.call(arguments);
                         var alsoIgnored = 0;
                         _super.call(this, ignored, alsoIgnored);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
@@ -20586,6 +20985,7 @@ var java;
                     })();
                 }
                 else if (ignored === undefined && alsoIgnored === undefined && accessOrder === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     this.accessOrder = false;
