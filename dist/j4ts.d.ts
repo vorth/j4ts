@@ -730,6 +730,19 @@ declare namespace java.lang {
 }
 declare namespace java.lang {
 }
+declare namespace java.lang.ref {
+    /**
+     * This implements the reference API in a minimal way. In JavaScript, there is
+     * no control over the reference and the GC. So this implementation's only
+     * purpose is for compilation.
+     */
+    abstract class Reference<T> {
+        private referent;
+        constructor(referent: T);
+        get(): T;
+        clear(): void;
+    }
+}
 declare namespace java.lang.reflect {
     /**
      * This interface makes {@link java.lang.reflect.Type} available to GWT clients.
@@ -2458,7 +2471,7 @@ declare namespace javaemul.internal {
         static now(): number;
     }
 }
-declare var Map: Object;
+declare let Map: Object;
 declare namespace javaemul.internal {
     /**
      * Contains logics for calculating hash codes in JavaScript.
@@ -3343,6 +3356,16 @@ declare namespace java.util {
      */
     class TooManyListenersException extends Error {
         constructor(message?: any);
+    }
+}
+declare namespace java.lang.ref {
+    /**
+     * This implements the reference API in a minimal way. In JavaScript, there is
+     * no control over the reference and the GC. So this implementation's only
+     * purpose is for compilation.
+     */
+    class WeakReference<T> extends java.lang.ref.Reference<T> {
+        constructor(referent: T);
     }
 }
 declare namespace java.lang {

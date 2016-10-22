@@ -183,7 +183,7 @@ var java;
                     return (function () {
                         java.io.IOUtils.checkOffsetAndCount(buffer, byteOffset, byteCount);
                         for (var i = 0; i < byteCount; ++i) {
-                            var c;
+                            var c = void 0;
                             try {
                                 if ((c = _this.read()) === -1) {
                                     return i === 0 ? -1 : i;
@@ -622,7 +622,7 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         {
-                            var cbuf;
+                            var cbuf = void 0;
                             if (len <= Writer.WRITE_BUFFER_SIZE) {
                                 if (_this.writeBuffer == null) {
                                     _this.writeBuffer = new Array(Writer.WRITE_BUFFER_SIZE);
@@ -926,115 +926,83 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'boolean') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var message = new String(message).toString();
-                        _super.call(this, /* valueOf */ new String(message).toString());
-                        this.message = new String(message).toString();
+                        var __args_1 = Array.prototype.slice.call(arguments);
+                        var message_1 = new String(__args_1[0]).toString();
+                        _super.call(this, /* valueOf */ new String(message_1).toString());
+                        this.message = new String(message_1).toString();
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                        (function () {
-                        })();
                     }
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var message = new String(message).toString();
-                        _super.call(this, /* valueOf */ new String(message).toString());
-                        this.message = new String(message).toString();
+                        var __args_2 = Array.prototype.slice.call(arguments);
+                        var message_2 = new String(__args_2[0]).toString();
+                        _super.call(this, /* valueOf */ new String(message_2).toString());
+                        this.message = new String(message_2).toString();
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                        (function () {
-                        })();
                     }
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var message = new String(message).toString();
-                        _super.call(this, /* valueOf */ new String(message).toString());
-                        this.message = new String(message).toString();
+                        var __args_3 = Array.prototype.slice.call(arguments);
+                        var message_3 = new String(__args_3[0]).toString();
+                        _super.call(this, /* valueOf */ new String(message_3).toString());
+                        this.message = new String(message_3).toString();
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                        (function () {
-                        })();
                     }
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var message = new String(message).toString();
-                        _super.call(this, /* valueOf */ new String(message).toString());
-                        this.message = new String(message).toString();
+                        var __args_4 = Array.prototype.slice.call(arguments);
+                        var message_4 = new String(__args_4[0]).toString();
+                        _super.call(this, /* valueOf */ new String(message_4).toString());
+                        this.message = new String(message_4).toString();
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                        (function () {
-                        })();
                     }
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var message = new String(message).toString();
-                        _super.call(this, /* valueOf */ new String(message).toString());
-                        this.message = new String(message).toString();
+                        var __args_5 = Array.prototype.slice.call(arguments);
+                        var message_5 = new String(__args_5[0]).toString();
+                        _super.call(this, /* valueOf */ new String(message_5).toString());
+                        this.message = new String(message_5).toString();
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                        (function () {
-                        })();
                     }
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var message = new String(message).toString();
-                        _super.call(this, /* valueOf */ new String(message).toString());
-                        this.message = new String(message).toString();
+                        var __args_6 = Array.prototype.slice.call(arguments);
+                        var message_6 = new String(__args_6[0]).toString();
+                        _super.call(this, /* valueOf */ new String(message_6).toString());
+                        this.message = new String(message_6).toString();
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                        (function () {
-                        })();
                     }
-                    (function () {
-                    })();
                 }
                 else if (((message != null) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, /* valueOf */ new String(message).toString());
                     this.message = new String(message).toString();
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -1386,40 +1354,30 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null) && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause = __args[0];
-                    _super.call(this, cause);
-                    this.message = cause;
+                    var cause_1 = __args[0];
+                    _super.call(this, cause_1);
+                    this.message = cause_1;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -1428,6 +1386,35 @@ var java;
         }(Error));
         lang.Exception = Exception;
         Exception["__classname"] = "java.lang.Exception";
+    })(lang = java.lang || (java.lang = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var lang;
+    (function (lang) {
+        var ref;
+        (function (ref) {
+            /**
+             * This implements the reference API in a minimal way. In JavaScript, there is
+             * no control over the reference and the GC. So this implementation's only
+             * purpose is for compilation.
+             */
+            var Reference = (function () {
+                function Reference(referent) {
+                    this.referent = referent;
+                }
+                Reference.prototype.get = function () {
+                    return this.referent;
+                };
+                Reference.prototype.clear = function () {
+                    this.referent = null;
+                };
+                return Reference;
+            }());
+            ref.Reference = Reference;
+            Reference["__classname"] = "java.lang.ref.Reference";
+        })(ref = lang.ref || (lang.ref = {}));
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -1458,8 +1445,6 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     this.lineNumber = 0;
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -1530,32 +1515,24 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause = __args[0];
-                    _super.call(this, cause);
-                    this.message = cause;
+                    var cause_2 = __args[0];
+                    _super.call(this, cause_2);
+                    this.message = cause_2;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -1970,8 +1947,6 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     this.bits = [];
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -2222,57 +2197,51 @@ var java;
                 else if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof date === 'number') || date === null) && ((typeof hrs === 'number') || hrs === null) && ((typeof min === 'number') || min === null) && sec === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var sec = 0;
+                        var __args_7 = Array.prototype.slice.call(arguments);
+                        var sec_1 = 0;
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                         (function () {
                             _this.jsdate = new (Date.jsdateClass())();
                             _this.jsdate["setFullYear"](_this.jsdate, year + 1900, month, date);
-                            _this.jsdate["setHours"](_this.jsdate, hrs, min, sec, 0);
+                            _this.jsdate["setHours"](_this.jsdate, hrs, min, sec_1, 0);
                             _this.fixDaylightSavings(hrs);
                         })();
                     }
-                    (function () {
-                    })();
                 }
                 else if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof date === 'number') || date === null) && hrs === undefined && min === undefined && sec === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var hrs = 0;
-                        var min = 0;
-                        var sec = 0;
+                        var __args_8 = Array.prototype.slice.call(arguments);
+                        var hrs_1 = 0;
+                        var min_1 = 0;
+                        var sec_2 = 0;
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                         (function () {
                             _this.jsdate = new (Date.jsdateClass())();
                             _this.jsdate["setFullYear"](_this.jsdate, year + 1900, month, date);
-                            _this.jsdate["setHours"](_this.jsdate, hrs, min, sec, 0);
-                            _this.fixDaylightSavings(hrs);
+                            _this.jsdate["setHours"](_this.jsdate, hrs_1, min_1, sec_2, 0);
+                            _this.fixDaylightSavings(hrs_1);
                         })();
                     }
-                    (function () {
-                    })();
                 }
                 else if (((typeof year === 'string') || year === null) && month === undefined && date === undefined && hrs === undefined && min === undefined && sec === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var date = __args[0];
+                    var date_1 = __args[0];
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var date = Date.parse(date);
+                        var __args_9 = Array.prototype.slice.call(arguments);
+                        var date_2 = Date.parse(__args_9[0]);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                         (function () {
-                            _this.jsdate = new Date(date);
+                            _this.jsdate = new Date(date_2);
                         })();
                     }
-                    (function () {
-                    })();
                 }
                 else if (((typeof year === 'number') || year === null) && month === undefined && date === undefined && hrs === undefined && min === undefined && sec === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var date = __args[0];
+                    var date_3 = __args[0];
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     (function () {
-                        _this.jsdate = new Date(date);
+                        _this.jsdate = new Date(date_3);
                     })();
                 }
                 else if (year === undefined && month === undefined && date === undefined && hrs === undefined && min === undefined && sec === undefined) {
@@ -2287,7 +2256,7 @@ var java;
             }
             Date.parse = function (s) {
                 var parsed = Date.jsdateClass()["parse"](s);
-                if ((Number.NaN === parsed)) {
+                if (isNaN(parsed)) {
                     throw new java.lang.IllegalArgumentException();
                 }
                 return Math.round(parsed);
@@ -3325,8 +3294,6 @@ var java;
                         this.thrown = null;
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                         this.millis = 0;
-                        (function () {
-                        })();
                     }
                     else
                         throw new Error('invalid overload');
@@ -5360,7 +5327,7 @@ var javaemul;
                 return Math.exp(x);
             };
             MathHelper.expm1 = function (d) {
-                if (d === 0.0 || (Number.NaN === d)) {
+                if (d === 0.0 || isNaN(d)) {
                     return d;
                 }
                 else if (!(function (value) { return Number.NEGATIVE_INFINITY === value || Number.POSITIVE_INFINITY === value; })(d)) {
@@ -5451,7 +5418,7 @@ var javaemul;
                 return Math.random();
             };
             MathHelper.rint = function (d) {
-                if ((Number.NaN === d)) {
+                if (isNaN(d)) {
                     return d;
                 }
                 else if ((function (value) { return Number.NEGATIVE_INFINITY === value || Number.POSITIVE_INFINITY === value; })(d)) {
@@ -5584,7 +5551,7 @@ var javaemul;
             };
             MathHelper.IEEEremainder = function (f1, f2) {
                 var r = Math.abs(f1 % f2);
-                if ((Number.NaN === r) || r === f2 || r <= Math.abs(f2) / 2.0) {
+                if (isNaN(r) || r === f2 || r <= Math.abs(f2) / 2.0) {
                     return r;
                 }
                 else {
@@ -6840,8 +6807,8 @@ var java;
                 else if (((__in != null && __in instanceof java.io.Reader) || __in === null) && sz === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var sz = BufferedReader.defaultCharBufferSize;
+                        var __args_10 = Array.prototype.slice.call(arguments);
+                        var sz_1 = BufferedReader.defaultCharBufferSize;
                         _super.call(this, __in);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                         this.nChars = 0;
@@ -6855,15 +6822,13 @@ var java;
                             _this.readAheadLimit = 0;
                             _this.skipLF = false;
                             _this.markedSkipLF = false;
-                            if (sz <= 0)
+                            if (sz_1 <= 0)
                                 throw new java.lang.IllegalArgumentException("Buffer size <= 0");
                             _this.in = __in;
-                            _this.cb = new Array(sz);
+                            _this.cb = new Array(sz_1);
                             _this.nextChar = _this.nChars = 0;
                         })();
                     }
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -7009,7 +6974,7 @@ var java;
                         }
                         var eol = false;
                         var c = String.fromCharCode(0);
-                        var i;
+                        var i = void 0;
                         if (omitLF && (this.cb[this.nextChar] === '\n'))
                             this.nextChar++;
                         this.skipLF = false;
@@ -7024,7 +6989,7 @@ var java;
                         startChar = this.nextChar;
                         this.nextChar = i;
                         if (eol) {
-                            var str;
+                            var str = void 0;
                             if (s == null) {
                                 str = (function (str, index, len) { return str.substring(index, index + len); })((this.cb).join(''), startChar, i - startChar);
                             }
@@ -7156,12 +7121,12 @@ var java;
                 }
                 else if (((__in != null && __in instanceof java.io.InputStream) || __in === null) && ((charsetName != null && charsetName instanceof java.nio.charset.Charset) || charsetName === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cs = __args[1];
+                    var cs_1 = __args[1];
                     _super.call(this, __in);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     (function () {
                         _this.in = __in;
-                        if (cs == null)
+                        if (cs_1 == null)
                             throw new java.lang.NullPointerException("charset");
                     })();
                 }
@@ -7232,11 +7197,11 @@ var java;
                 }
                 else if (((out != null && out instanceof java.io.OutputStream) || out === null) && ((charsetName != null && charsetName instanceof java.nio.charset.Charset) || charsetName === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cs = __args[1];
+                    var cs_2 = __args[1];
                     _super.call(this, out);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Appendable", "java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     (function () {
-                        if (cs == null)
+                        if (cs_2 == null)
                             throw new java.lang.NullPointerException("charset");
                         _this.out = out;
                     })();
@@ -7315,30 +7280,22 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, s);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
-                    (function () {
-                    })();
                 }
                 else if (((s != null && (s["__interfaces"] != null && s["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof s === "string")) || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, /* valueOf */ new String(s).toString());
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var ignoredCapacity = __args[0];
                     _super.call(this, "");
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
-                    (function () {
-                    })();
                 }
                 else if (s === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, "");
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -7561,30 +7518,22 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, s);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
-                    (function () {
-                    })();
                 }
                 else if (((s != null && (s["__interfaces"] != null && s["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof s === "string")) || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, /* valueOf */ new String(s).toString());
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var ignoredCapacity = __args[0];
                     _super.call(this, "");
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
-                    (function () {
-                    })();
                 }
                 else if (s === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, "");
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -7808,32 +7757,24 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'string') || message === null) && throwable === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && throwable === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var throwable = __args[0];
-                    _super.call(this, throwable);
-                    this.message = throwable;
+                    var throwable_1 = __args[0];
+                    _super.call(this, throwable_1);
+                    this.message = throwable_1;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined && throwable === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -7862,15 +7803,11 @@ var java;
                     _super.call(this, msg);
                     this.message = msg;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -7902,15 +7839,11 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -7939,40 +7872,30 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null) && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause = __args[0];
-                    _super.call(this, cause);
-                    this.message = cause;
+                    var cause_3 = __args[0];
+                    _super.call(this, cause_3);
+                    this.message = cause_3;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -8001,15 +7924,11 @@ var java;
                     _super.call(this, msg);
                     this.message = msg;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -8063,15 +7982,11 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -8081,6 +7996,30 @@ var java;
         util.TooManyListenersException = TooManyListenersException;
         TooManyListenersException["__classname"] = "java.util.TooManyListenersException";
     })(util = java.util || (java.util = {}));
+})(java || (java = {}));
+/* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
+var java;
+(function (java) {
+    var lang;
+    (function (lang) {
+        var ref;
+        (function (ref) {
+            /**
+             * This implements the reference API in a minimal way. In JavaScript, there is
+             * no control over the reference and the GC. So this implementation's only
+             * purpose is for compilation.
+             */
+            var WeakReference = (function (_super) {
+                __extends(WeakReference, _super);
+                function WeakReference(referent) {
+                    _super.call(this, referent);
+                }
+                return WeakReference;
+            }(java.lang.ref.Reference));
+            ref.WeakReference = WeakReference;
+            WeakReference["__classname"] = "java.lang.ref.WeakReference";
+        })(ref = lang.ref || (lang.ref = {}));
+    })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
@@ -8115,30 +8054,22 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message, cause);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause = __args[0];
-                    _super.call(this, cause);
+                    var cause_4 = __args[0];
+                    _super.call(this, cause_4);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -8926,8 +8857,6 @@ var java;
                         _super.call(this, __parent);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator", "java.util.ListIterator"] });
                         this.__parent = __parent;
-                        (function () {
-                        })();
                     }
                     else
                         throw new Error('invalid overload');
@@ -9495,16 +9424,12 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, year, month, day);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof year === 'number') || year === null) && month === undefined && day === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var date = __args[0];
                     _super.call(this, date);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -9565,16 +9490,12 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, 70, 0, 1, hour, minute, second);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof hour === 'number') || hour === null) && minute === undefined && second === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var time = __args[0];
                     _super.call(this, time);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -9647,12 +9568,12 @@ var java;
                 }
                 else if (((typeof year === 'number') || year === null) && month === undefined && date === undefined && hour === undefined && minute === undefined && second === undefined && nano === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var time = __args[0];
-                    _super.call(this, time);
+                    var time_1 = __args[0];
+                    _super.call(this, time_1);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     this.nanos = 0;
                     (function () {
-                        _this.nanos = ((((time % 1000) | 0)) * 1000000);
+                        _this.nanos = ((((time_1 % 1000) | 0)) * 1000000);
                     })();
                 }
                 else
@@ -9867,12 +9788,12 @@ var javaemul;
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var value = __args[0];
+                    var value_1 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
-                        _this.value = value;
+                        _this.value = value_1;
                     })();
                 }
                 else
@@ -10011,16 +9932,12 @@ var javaemul;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var value = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -10144,9 +10061,9 @@ var javaemul;
                 var exp = (((ihi >> 20) & 2047) | 0);
                 ihi &= 1048575;
                 if (exp === 0) {
-                    var d = (ihi * DoubleHelper.POWER_MINUS_20) + (ilo * DoubleHelper.POWER_MINUS_52);
-                    d *= DoubleHelper.POWER_MINUS_1022;
-                    return negative ? (d === 0.0 ? -0.0 : -d) : d;
+                    var d_1 = (ihi * DoubleHelper.POWER_MINUS_20) + (ilo * DoubleHelper.POWER_MINUS_52);
+                    d_1 *= DoubleHelper.POWER_MINUS_1022;
+                    return negative ? (d_1 === 0.0 ? -0.0 : -d_1) : d_1;
                 }
                 else if (exp === 2047) {
                     if (ihi === 0 && ilo === 0) {
@@ -10336,22 +10253,22 @@ var javaemul;
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var value = __args[0];
+                    var value_2 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
-                        _this.value = value;
+                        _this.value = value_2;
                     })();
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var value = __args[0];
+                    var value_3 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
-                        _this.value = value;
+                        _this.value = value_3;
                     })();
                 }
                 else
@@ -10569,12 +10486,12 @@ var javaemul;
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var value = __args[0];
+                    var value_4 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
-                        _this.value = value;
+                        _this.value = value_4;
                     })();
                 }
                 else
@@ -10618,7 +10535,7 @@ var javaemul;
                     return 0;
                 }
                 else {
-                    var rtn;
+                    var rtn = void 0;
                     for (rtn = 1073741824; (rtn & i) === 0; rtn >>= 1) {
                     }
                     return rtn;
@@ -10635,9 +10552,9 @@ var javaemul;
                     return IntegerHelper.SIZE;
                 }
                 else {
-                    var y;
-                    var m;
-                    var n;
+                    var y = void 0;
+                    var m = void 0;
+                    var n = void 0;
                     y = -(i >> 16);
                     m = (y >> 16) & 16;
                     n = 16 - m;
@@ -10881,12 +10798,12 @@ var javaemul;
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var value = __args[0];
+                    var value_5 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
-                        _this.value = value;
+                        _this.value = value_5;
                     })();
                 }
                 else
@@ -11173,12 +11090,12 @@ var javaemul;
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var value = __args[0];
+                    var value_6 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
-                        _this.value = value;
+                        _this.value = value_6;
                     })();
                 }
                 else
@@ -11446,15 +11363,11 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -11483,17 +11396,13 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((message != null && message instanceof java.io.IOException) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause = __args[0];
-                    _super.call(this, javaemul.internal.InternalPreconditions.checkNotNull(cause));
-                    this.message = javaemul.internal.InternalPreconditions.checkNotNull(cause);
+                    var cause_5 = __args[0];
+                    _super.call(this, javaemul.internal.InternalPreconditions.checkNotNull(cause_5));
+                    this.message = javaemul.internal.InternalPreconditions.checkNotNull(cause_5);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -11589,15 +11498,11 @@ var java;
                     _super.call(this, explanation);
                     this.message = explanation;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (explanation === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -11626,15 +11531,11 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -11661,15 +11562,11 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -11698,32 +11595,24 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause = __args[0];
-                    _super.call(this, cause);
-                    this.message = cause;
+                    var cause_6 = __args[0];
+                    _super.call(this, cause_6);
+                    this.message = cause_6;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -11751,8 +11640,6 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -11760,24 +11647,18 @@ var java;
                     _super.call(this, s);
                     this.message = s;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause = __args[0];
-                    _super.call(this, cause);
-                    this.message = cause;
+                    var cause_7 = __args[0];
+                    _super.call(this, cause_7);
+                    this.message = cause_7;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -11806,15 +11687,11 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -11843,15 +11720,11 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -11880,15 +11753,11 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -11920,32 +11789,24 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause = __args[0];
-                    _super.call(this, cause);
-                    this.message = cause;
+                    var cause_8 = __args[0];
+                    _super.call(this, cause_8);
+                    this.message = cause_8;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -11974,15 +11835,11 @@ var java;
                     _super.call(this, message);
                     this.message = message;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -12064,15 +11921,11 @@ var java;
                     _super.call(this, s);
                     this.message = s;
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (s === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -12100,15 +11953,11 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -12136,15 +11985,11 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -12341,11 +12186,11 @@ var java;
                 }
                 else if (((typeof c === 'number') || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var initialCapacity = __args[0];
+                    var initialCapacity_1 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
-                        javaemul.internal.InternalPreconditions.checkArgument(initialCapacity >= 0, "Initial capacity must not be negative");
+                        javaemul.internal.InternalPreconditions.checkArgument(initialCapacity_1 >= 0, "Initial capacity must not be negative");
                         _this.array = new Array(0);
                     })();
                 }
@@ -13096,7 +12941,7 @@ var java;
                 for (var index138 = 0; index138 < a.length; index138++) {
                     var obj = a[index138];
                     {
-                        var hash;
+                        var hash = void 0;
                         if (obj != null && obj instanceof Array) {
                             hash = Arrays.deepHashCode(obj);
                         }
@@ -14179,24 +14024,22 @@ var java;
                 if (((typeof initialCapacity === 'number') || initialCapacity === null) && ((typeof ignoredCapacityIncrement === 'number') || ignoredCapacityIncrement === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
+                        var __args_11 = Array.prototype.slice.call(arguments);
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                         (function () {
                             _this.arrayList = new java.util.ArrayList(initialCapacity);
                         })();
                     }
-                    (function () {
-                    })();
                 }
                 else if (((initialCapacity != null && initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0) || initialCapacity === null) && ignoredCapacityIncrement === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var c = __args[0];
+                    var c_1 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
                         _this.arrayList = new java.util.ArrayList();
-                        _this.addAll(c);
+                        _this.addAll(c_1);
                     })();
                 }
                 else if (((typeof initialCapacity === 'number') || initialCapacity === null) && ignoredCapacityIncrement === undefined) {
@@ -14470,113 +14313,105 @@ var java;
                 }
                 else if (((initialCapacity != null && initialCapacity instanceof java.util.PriorityQueue) || initialCapacity === null) && cmp === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var c = __args[0];
+                    var c_2 = __args[0];
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var initialCapacity = c.size();
-                        var cmp = c.comparator();
+                        var __args_12 = Array.prototype.slice.call(arguments);
+                        var initialCapacity_2 = c_2.size();
+                        var cmp_1 = c_2.comparator();
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
                         (function () {
-                            _this.heap = new java.util.ArrayList(initialCapacity);
-                            if (cmp == null) {
-                                cmp = java.util.Comparators.natural();
+                            _this.heap = new java.util.ArrayList(initialCapacity_2);
+                            if (cmp_1 == null) {
+                                cmp_1 = java.util.Comparators.natural();
                             }
-                            _this.cmp = cmp;
+                            _this.cmp = cmp_1;
                         })();
                     }
                     (function () {
-                        _this.addAll(c);
+                        _this.addAll(c_2);
                     })();
                 }
                 else if (((initialCapacity != null && initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.SortedSet") >= 0) || initialCapacity === null) && cmp === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var c = __args[0];
+                    var c_3 = __args[0];
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var initialCapacity = c.size();
-                        var cmp = c.comparator();
+                        var __args_13 = Array.prototype.slice.call(arguments);
+                        var initialCapacity_3 = c_3.size();
+                        var cmp_2 = c_3.comparator();
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
                         (function () {
-                            _this.heap = new java.util.ArrayList(initialCapacity);
-                            if (cmp == null) {
-                                cmp = java.util.Comparators.natural();
+                            _this.heap = new java.util.ArrayList(initialCapacity_3);
+                            if (cmp_2 == null) {
+                                cmp_2 = java.util.Comparators.natural();
                             }
-                            _this.cmp = cmp;
+                            _this.cmp = cmp_2;
                         })();
                     }
                     (function () {
-                        _this.addAll(c);
+                        _this.addAll(c_3);
                     })();
                 }
                 else if (((initialCapacity != null && initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0) || initialCapacity === null) && cmp === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var c = __args[0];
+                    var c_4 = __args[0];
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var initialCapacity = c.size();
+                        var __args_14 = Array.prototype.slice.call(arguments);
+                        var initialCapacity_4 = c_4.size();
                         {
-                            var __args = Array.prototype.slice.call(arguments);
-                            var cmp = null;
+                            var __args_15 = Array.prototype.slice.call(arguments);
+                            var cmp_3 = null;
                             _super.call(this);
                             Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
                             (function () {
-                                _this.heap = new java.util.ArrayList(initialCapacity);
-                                if (cmp == null) {
-                                    cmp = java.util.Comparators.natural();
+                                _this.heap = new java.util.ArrayList(initialCapacity_4);
+                                if (cmp_3 == null) {
+                                    cmp_3 = java.util.Comparators.natural();
                                 }
-                                _this.cmp = cmp;
+                                _this.cmp = cmp_3;
                             })();
                         }
-                        (function () {
-                        })();
                     }
                     (function () {
-                        _this.addAll(c);
+                        _this.addAll(c_4);
                     })();
                 }
                 else if (((typeof initialCapacity === 'number') || initialCapacity === null) && cmp === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var cmp = null;
+                        var __args_16 = Array.prototype.slice.call(arguments);
+                        var cmp_4 = null;
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
                         (function () {
                             _this.heap = new java.util.ArrayList(initialCapacity);
-                            if (cmp == null) {
-                                cmp = java.util.Comparators.natural();
+                            if (cmp_4 == null) {
+                                cmp_4 = java.util.Comparators.natural();
                             }
-                            _this.cmp = cmp;
+                            _this.cmp = cmp_4;
                         })();
                     }
-                    (function () {
-                    })();
                 }
                 else if (initialCapacity === undefined && cmp === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var initialCapacity = 11;
+                        var __args_17 = Array.prototype.slice.call(arguments);
+                        var initialCapacity_5 = 11;
                         {
-                            var __args = Array.prototype.slice.call(arguments);
-                            var cmp = null;
+                            var __args_18 = Array.prototype.slice.call(arguments);
+                            var cmp_5 = null;
                             _super.call(this);
                             Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
                             (function () {
-                                _this.heap = new java.util.ArrayList(initialCapacity);
-                                if (cmp == null) {
-                                    cmp = java.util.Comparators.natural();
+                                _this.heap = new java.util.ArrayList(initialCapacity_5);
+                                if (cmp_5 == null) {
+                                    cmp_5 = java.util.Comparators.natural();
                                 }
-                                _this.cmp = cmp;
+                                _this.cmp = cmp_5;
                             })();
                         }
-                        (function () {
-                        })();
                     }
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -14991,16 +14826,12 @@ var java;
                         var __args = Array.prototype.slice.call(arguments);
                         _super.call(this, key, value);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
-                        (function () {
-                        })();
                     }
                     else if (((key != null && key["__interfaces"] != null && key["__interfaces"].indexOf("java.util.Map.Entry") >= 0) || key === null) && value === undefined) {
                         var __args = Array.prototype.slice.call(arguments);
                         var entry = __args[0];
                         _super.call(this, entry.getKey(), entry.getValue());
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
-                        (function () {
-                        })();
                     }
                     else
                         throw new Error('invalid overload');
@@ -15020,16 +14851,12 @@ var java;
                         var __args = Array.prototype.slice.call(arguments);
                         _super.call(this, key, value);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
-                        (function () {
-                        })();
                     }
                     else if (((key != null && key["__interfaces"] != null && key["__interfaces"].indexOf("java.util.Map.Entry") >= 0) || key === null) && value === undefined) {
                         var __args = Array.prototype.slice.call(arguments);
                         var entry = __args[0];
                         _super.call(this, entry.getKey(), entry.getValue());
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
-                        (function () {
-                        })();
                     }
                     else
                         throw new Error('invalid overload');
@@ -15425,21 +15252,21 @@ var java;
                 }
                 else if (((initialCapacity != null && initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0) || initialCapacity === null) && loadFactor === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var c = __args[0];
+                    var c_5 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
-                        _this.map = new java.util.HashMap(c.size());
-                        _this.addAll(c);
+                        _this.map = new java.util.HashMap(c_5.size());
+                        _this.addAll(c_5);
                     })();
                 }
                 else if (((initialCapacity != null && initialCapacity instanceof java.util.HashMap) || initialCapacity === null) && loadFactor === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var map = __args[0];
+                    var map_1 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
-                        _this.map = map;
+                        _this.map = map_1;
                     })();
                 }
                 else if (((typeof initialCapacity === 'number') || initialCapacity === null) && loadFactor === undefined) {
@@ -15537,7 +15364,7 @@ var java;
                 if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
+                        var __args_19 = Array.prototype.slice.call(arguments);
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable", "java.io.Serializable"] });
                         (function () {
@@ -15558,27 +15385,27 @@ var java;
                 }
                 else if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.SortedSet") >= 0) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var s = __args[0];
+                    var s_1 = __args[0];
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var c = javaemul.internal.InternalPreconditions.checkNotNull(s).comparator();
+                        var __args_20 = Array.prototype.slice.call(arguments);
+                        var c_6 = javaemul.internal.InternalPreconditions.checkNotNull(s_1).comparator();
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable", "java.io.Serializable"] });
                         (function () {
-                            _this.map = new java.util.TreeMap(c);
+                            _this.map = new java.util.TreeMap(c_6);
                         })();
                     }
                     (function () {
-                        _this.addAll(s);
+                        _this.addAll(s_1);
                     })();
                 }
                 else if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.NavigableMap") >= 0) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var map = __args[0];
+                    var map_2 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
-                        _this.map = map;
+                        _this.map = map_2;
                     })();
                 }
                 else if (c === undefined) {
@@ -15846,15 +15673,11 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -15948,23 +15771,17 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof msg === 'number') || msg === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var index = __args[0];
                     _super.call(this, "Array index " + index + " out of range");
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -15992,23 +15809,17 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof message === 'number') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var index = __args[0];
                     _super.call(this, "String index out of range: " + index);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -16426,29 +16237,27 @@ var java;
                 }
                 else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0) || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var toBeCopied = __args[0];
+                    var toBeCopied_1 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
                         _this.reset();
-                        _this.putAll(toBeCopied);
+                        _this.putAll(toBeCopied_1);
                     })();
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var alsoIgnored = 0;
+                        var __args_21 = Array.prototype.slice.call(arguments);
+                        var alsoIgnored_1 = 0;
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                         (function () {
                             javaemul.internal.InternalPreconditions.checkArgument(ignored >= 0, "Negative initial capacity");
-                            javaemul.internal.InternalPreconditions.checkArgument(alsoIgnored >= 0, "Non-positive load factor");
+                            javaemul.internal.InternalPreconditions.checkArgument(alsoIgnored_1 >= 0, "Non-positive load factor");
                             _this.reset();
                         })();
                     }
-                    (function () {
-                    })();
                 }
                 else if (ignored === undefined && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -18438,26 +18247,26 @@ var java;
                 }
                 else if (((type != null && type instanceof java.util.EnumMap) || type === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var m = __args[0];
+                    var m_1 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
-                        _this.init(m);
+                        _this.init(m_1);
                     })();
                 }
                 else if (((type != null && type["__interfaces"] != null && type["__interfaces"].indexOf("java.util.Map") >= 0) || type === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var m = __args[0];
+                    var m_2 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
-                        if (m != null && m instanceof java.util.EnumMap) {
-                            _this.init(m);
+                        if (m_2 != null && m_2 instanceof java.util.EnumMap) {
+                            _this.init(m_2);
                         }
                         else {
-                            javaemul.internal.InternalPreconditions.checkArgument(!m.isEmpty(), "Specified map is empty");
-                            _this.init(m.keySet().iterator().next().getDeclaringClass());
-                            _this.putAll(m);
+                            javaemul.internal.InternalPreconditions.checkArgument(!m_2.isEmpty(), "Specified map is empty");
+                            _this.init(m_2.keySet().iterator().next().getDeclaringClass());
+                            _this.putAll(m_2);
                         }
                     })();
                 }
@@ -18668,31 +18477,25 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, new java.util.LinkedHashMap(ignored, alsoIgnored));
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Collection") >= 0) || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var c = __args[0];
+                    var c_7 = __args[0];
                     _super.call(this, new java.util.LinkedHashMap());
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
-                        _this.addAll(c);
+                        _this.addAll(c_7);
                     })();
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, new java.util.LinkedHashMap(ignored));
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (ignored === undefined && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, new java.util.LinkedHashMap());
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -19655,30 +19458,22 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored, alsoIgnored);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0) || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var toBeCopied = __args[0];
                     _super.call(this, toBeCopied);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (ignored === undefined && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -19719,23 +19514,17 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, toBeCopied);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof toBeCopied === 'number') || toBeCopied === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var ignored = __args[0];
                     _super.call(this, ignored);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (toBeCopied === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -19825,69 +19614,65 @@ var java;
                 }
                 else if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.SortedMap") >= 0) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var map = __args[0];
+                    var map_3 = __args[0];
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var c = javaemul.internal.InternalPreconditions.checkNotNull(map).comparator();
+                        var __args_22 = Array.prototype.slice.call(arguments);
+                        var c_8 = javaemul.internal.InternalPreconditions.checkNotNull(map_3).comparator();
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap", "java.io.Serializable"] });
                         this.__size = 0;
                         (function () {
                             _this.root = null;
-                            if (c == null) {
-                                c = java.util.Comparators.natural();
+                            if (c_8 == null) {
+                                c_8 = java.util.Comparators.natural();
                             }
-                            _this.cmp = c;
+                            _this.cmp = c_8;
                         })();
                     }
                     (function () {
-                        _this.putAll(map);
+                        _this.putAll(map_3);
                     })();
                 }
                 else if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Map") >= 0) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var map = __args[0];
+                    var map_4 = __args[0];
                     {
-                        var __args = Array.prototype.slice.call(arguments);
+                        var __args_23 = Array.prototype.slice.call(arguments);
                         {
-                            var __args = Array.prototype.slice.call(arguments);
-                            var c = null;
+                            var __args_24 = Array.prototype.slice.call(arguments);
+                            var c_9 = null;
                             _super.call(this);
                             Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap", "java.io.Serializable"] });
                             this.__size = 0;
                             (function () {
                                 _this.root = null;
-                                if (c == null) {
-                                    c = java.util.Comparators.natural();
+                                if (c_9 == null) {
+                                    c_9 = java.util.Comparators.natural();
                                 }
-                                _this.cmp = c;
+                                _this.cmp = c_9;
                             })();
                         }
-                        (function () {
-                        })();
                     }
                     (function () {
-                        _this.putAll(map);
+                        _this.putAll(map_4);
                     })();
                 }
                 else if (c === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var c = null;
+                        var __args_25 = Array.prototype.slice.call(arguments);
+                        var c_10 = null;
                         _super.call(this);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap", "java.io.Serializable"] });
                         this.__size = 0;
                         (function () {
                             _this.root = null;
-                            if (c == null) {
-                                c = java.util.Comparators.natural();
+                            if (c_10 == null) {
+                                c_10 = java.util.Comparators.natural();
                             }
-                            _this.cmp = c;
+                            _this.cmp = c_10;
                         })();
                     }
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -20835,30 +20620,22 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored, alsoIgnored);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.util.Dictionary", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0) || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var toBeCopied = __args[0];
                     _super.call(this, toBeCopied);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.util.Dictionary", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.util.Dictionary", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else if (ignored === undefined && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.util.Dictionary", "java.io.Serializable"] });
-                    (function () {
-                    })();
                 }
                 else
                     throw new Error('invalid overload');
@@ -20956,7 +20733,7 @@ var java;
                 }
                 else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0) || ignored === null) && alsoIgnored === undefined && accessOrder === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var toBeCopied = __args[0];
+                    var toBeCopied_2 = __args[0];
                     _super.call(this);
                     Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     this.accessOrder = false;
@@ -20964,15 +20741,15 @@ var java;
                         _this.head = new LinkedHashMap.ChainEntry(_this);
                         _this.map = new java.util.HashMap();
                         _this.resetChainEntries();
-                        _this.putAll(toBeCopied);
+                        _this.putAll(toBeCopied_2);
                     })();
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined && accessOrder === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args = Array.prototype.slice.call(arguments);
-                        var alsoIgnored = 0;
-                        _super.call(this, ignored, alsoIgnored);
+                        var __args_26 = Array.prototype.slice.call(arguments);
+                        var alsoIgnored_2 = 0;
+                        _super.call(this, ignored, alsoIgnored_2);
                         Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                         this.accessOrder = false;
                         (function () {
@@ -20981,8 +20758,6 @@ var java;
                             _this.resetChainEntries();
                         })();
                     }
-                    (function () {
-                    })();
                 }
                 else if (ignored === undefined && alsoIgnored === undefined && accessOrder === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
