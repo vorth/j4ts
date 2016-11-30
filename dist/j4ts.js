@@ -24,7 +24,7 @@ var java;
             return Beans;
         }());
         beans.Beans = Beans;
-        Beans["__classname"] = "java.beans.Beans";
+        Beans["__class"] = "java.beans.Beans";
     })(beans = java.beans || (java.beans = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -69,7 +69,6 @@ var java;
              * compatibility.
              */
             function InputStream() {
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
             }
             /**
              * Returns an estimated number of bytes that can be read or skipped without blocking for more
@@ -270,7 +269,8 @@ var java;
             return InputStream;
         }());
         io.InputStream = InputStream;
-        InputStream["__classname"] = "java.io.InputStream";
+        InputStream["__class"] = "java.io.InputStream";
+        InputStream["__interfaces"] = ["java.io.Closeable", "java.lang.AutoCloseable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -344,7 +344,7 @@ var java;
             return IOUtils;
         }());
         io.IOUtils = IOUtils;
-        IOUtils["__classname"] = "java.io.IOUtils";
+        IOUtils["__class"] = "java.io.IOUtils";
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -388,7 +388,6 @@ var java;
              * Default constructor.
              */
             function OutputStream() {
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
             }
             /**
              * Closes this stream. Implementations of this method should free any
@@ -466,7 +465,8 @@ var java;
             return OutputStream;
         }());
         io.OutputStream = OutputStream;
-        OutputStream["__classname"] = "java.io.OutputStream";
+        OutputStream["__class"] = "java.io.OutputStream";
+        OutputStream["__interfaces"] = ["java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -487,7 +487,6 @@ var java;
                 if (((lock != null) || lock === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     this.skipBuffer = null;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     (function () {
                         if (lock == null) {
                             throw new java.lang.NullPointerException();
@@ -498,7 +497,6 @@ var java;
                 else if (lock === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     this.skipBuffer = null;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     (function () {
                         _this.lock = _this;
                     })();
@@ -565,7 +563,8 @@ var java;
             return Reader;
         }());
         io.Reader = Reader;
-        Reader["__classname"] = "java.io.Reader";
+        Reader["__class"] = "java.io.Reader";
+        Reader["__interfaces"] = ["java.io.Closeable", "java.lang.AutoCloseable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -581,7 +580,6 @@ var java;
                 var _this = this;
                 if (((lock != null) || lock === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Appendable", "java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     (function () {
                         if (lock == null) {
                             throw new java.lang.NullPointerException();
@@ -591,7 +589,6 @@ var java;
                 }
                 else if (lock === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Appendable", "java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     (function () {
                         _this.lock = _this;
                     })();
@@ -662,7 +659,7 @@ var java;
             };
             Writer.prototype.append = function (csq, start, end) {
                 var _this = this;
-                if (((csq != null && (csq["__interfaces"] != null && csq["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof csq === "string")) || csq === null) && ((typeof start === 'number') || start === null) && ((typeof end === 'number') || end === null)) {
+                if (((csq != null && (csq["__interfaces"] != null && csq["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || csq.constructor != null && csq.constructor["__interfaces"] != null && csq.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof csq === "string")) || csq === null) && ((typeof start === 'number') || start === null) && ((typeof end === 'number') || end === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var cs = (csq == null ? "null" : csq);
@@ -670,7 +667,7 @@ var java;
                         return _this;
                     })();
                 }
-                else if (((csq != null && (csq["__interfaces"] != null && csq["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof csq === "string")) || csq === null) && start === undefined && end === undefined) {
+                else if (((csq != null && (csq["__interfaces"] != null && csq["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || csq.constructor != null && csq.constructor["__interfaces"] != null && csq.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof csq === "string")) || csq === null) && start === undefined && end === undefined) {
                     return this.append$java_lang_CharSequence(csq);
                 }
                 else if (((typeof csq === 'string') || csq === null) && start === undefined && end === undefined) {
@@ -687,7 +684,8 @@ var java;
             return Writer;
         }());
         io.Writer = Writer;
-        Writer["__classname"] = "java.io.Writer";
+        Writer["__class"] = "java.io.Writer";
+        Writer["__interfaces"] = ["java.lang.Appendable", "java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -834,7 +832,7 @@ var java;
             return AbstractStringBuilder;
         }());
         lang.AbstractStringBuilder = AbstractStringBuilder;
-        AbstractStringBuilder["__classname"] = "java.lang.AbstractStringBuilder";
+        AbstractStringBuilder["__class"] = "java.lang.AbstractStringBuilder";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -854,12 +852,12 @@ var java;
                 __extends(AnnotationFormatError, _super);
                 function AnnotationFormatError() {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 return AnnotationFormatError;
             }(Error));
             annotation.AnnotationFormatError = AnnotationFormatError;
-            AnnotationFormatError["__classname"] = "java.lang.annotation.AnnotationFormatError";
+            AnnotationFormatError["__class"] = "java.lang.annotation.AnnotationFormatError";
+            AnnotationFormatError["__interfaces"] = ["java.io.Serializable"];
         })(annotation = lang.annotation || (lang.annotation = {}));
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
@@ -925,13 +923,11 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((typeof message === 'boolean') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -940,7 +936,6 @@ var java;
                         var message_1 = new String(__args_1[0]).toString();
                         _super.call(this, /* valueOf */ new String(message_1).toString());
                         this.message = new String(message_1).toString();
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
@@ -950,7 +945,6 @@ var java;
                         var message_2 = new String(__args_2[0]).toString();
                         _super.call(this, /* valueOf */ new String(message_2).toString());
                         this.message = new String(message_2).toString();
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
@@ -960,7 +954,6 @@ var java;
                         var message_3 = new String(__args_3[0]).toString();
                         _super.call(this, /* valueOf */ new String(message_3).toString());
                         this.message = new String(message_3).toString();
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
@@ -970,7 +963,6 @@ var java;
                         var message_4 = new String(__args_4[0]).toString();
                         _super.call(this, /* valueOf */ new String(message_4).toString());
                         this.message = new String(message_4).toString();
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
@@ -980,7 +972,6 @@ var java;
                         var message_5 = new String(__args_5[0]).toString();
                         _super.call(this, /* valueOf */ new String(message_5).toString());
                         this.message = new String(message_5).toString();
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
@@ -990,19 +981,16 @@ var java;
                         var message_6 = new String(__args_6[0]).toString();
                         _super.call(this, /* valueOf */ new String(message_6).toString());
                         this.message = new String(message_6).toString();
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                 }
                 else if (((message != null) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, /* valueOf */ new String(message).toString());
                     this.message = new String(message).toString();
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -1010,7 +998,8 @@ var java;
             return AssertionError;
         }(Error));
         lang.AssertionError = AssertionError;
-        AssertionError["__classname"] = "java.lang.AssertionError";
+        AssertionError["__class"] = "java.lang.AssertionError";
+        AssertionError["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -1036,7 +1025,6 @@ var java;
              */
             function Class() {
                 this.sequentialId = Class.nextSequentialId++;
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.reflect.Type"] });
                 this.modifiers = 0;
                 this.typeName = null;
                 this.simpleName = null;
@@ -1077,7 +1065,7 @@ var java;
                 return arrayLiterals[dimensions] != null ? arrayLiterals[dimensions] : (arrayLiterals[dimensions] = leafClass.createClassLiteralForArray(dimensions));
             };
             Class.prototype.createClassLiteralForArray = function (dimensions) {
-                var clazz = new java.lang.Class();
+                var clazz = (new java.lang.Class());
                 clazz.modifiers = Class.ARRAY;
                 clazz.superclass = Object;
                 if (dimensions > 1) {
@@ -1144,7 +1132,7 @@ var java;
              * Creates the class object for a type and initiliazes its fields.
              */
             Class.createClassObject = function (packageName, compoundClassName, typeId) {
-                var clazz = new java.lang.Class();
+                var clazz = (new java.lang.Class());
                 clazz.packageName = packageName;
                 clazz.compoundName = compoundClassName;
                 return clazz;
@@ -1161,13 +1149,13 @@ var java;
                         clazz.typeName = "[" + componentType.typeId;
                     }
                     else if (!componentType.isArray()) {
-                        clazz.typeName = "[L" + componentType["__classname"] + ";";
+                        clazz.typeName = "[L" + (function (c) { return c["__class"] ? c["__class"] : c.name; })(componentType) + ";";
                     }
                     else {
-                        clazz.typeName = "[" + componentType["__classname"];
+                        clazz.typeName = "[" + (function (c) { return c["__class"] ? c["__class"] : c.name; })(componentType);
                     }
                     clazz.canonicalName = componentType.getCanonicalName() + "[]";
-                    clazz.simpleName = (function (name) { return name.substring(name.lastIndexOf('.') + 1); })(componentType["__classname"]) + "[]";
+                    clazz.simpleName = (function (c) { return c["__class"] ? c["__class"].substring(c["__class"].lastIndexOf('.') + 1) : c.name.substring(c.name.lastIndexOf('.') + 1); })(componentType) + "[]";
                     return;
                 }
                 var packageName = clazz.packageName;
@@ -1246,7 +1234,8 @@ var java;
             return Class;
         }());
         lang.Class = Class;
-        Class["__classname"] = "java.lang.Class";
+        Class["__class"] = "java.lang.Class";
+        Class["__interfaces"] = ["java.lang.reflect.Type"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -1261,7 +1250,6 @@ var java;
          */
         var Enum = (function () {
             function Enum(name, ordinal) {
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                 this.__ordinal = 0;
                 this.__name = name;
                 this.__ordinal = ordinal;
@@ -1333,7 +1321,8 @@ var java;
             return Enum;
         }());
         lang.Enum = Enum;
-        Enum["__classname"] = "java.lang.Enum";
+        Enum["__class"] = "java.lang.Enum";
+        Enum["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -1353,31 +1342,26 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null) && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_1 = __args[0];
                     _super.call(this, cause_1);
                     this.message = cause_1;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -1385,7 +1369,8 @@ var java;
             return Exception;
         }(Error));
         lang.Exception = Exception;
-        Exception["__classname"] = "java.lang.Exception";
+        Exception["__class"] = "java.lang.Exception";
+        Exception["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -1413,7 +1398,7 @@ var java;
                 return Reference;
             }());
             ref.Reference = Reference;
-            Reference["__classname"] = "java.lang.ref.Reference";
+            Reference["__class"] = "java.lang.ref.Reference";
         })(ref = lang.ref || (lang.ref = {}));
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
@@ -1432,7 +1417,6 @@ var java;
                 var _this = this;
                 if (((typeof className === 'string') || className === null) && ((typeof methodName === 'string') || methodName === null) && ((typeof fileName === 'string') || fileName === null) && ((typeof lineNumber === 'number') || lineNumber === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     this.lineNumber = 0;
                     (function () {
                         _this.className = className;
@@ -1443,7 +1427,6 @@ var java;
                 }
                 else if (className === undefined && methodName === undefined && fileName === undefined && lineNumber === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     this.lineNumber = 0;
                 }
                 else
@@ -1477,7 +1460,8 @@ var java;
             return StackTraceElement;
         }());
         lang.StackTraceElement = StackTraceElement;
-        StackTraceElement["__classname"] = "java.lang.StackTraceElement";
+        StackTraceElement["__class"] = "java.lang.StackTraceElement";
+        StackTraceElement["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -1514,25 +1498,21 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_2 = __args[0];
                     _super.call(this, cause_2);
                     this.message = cause_2;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -1541,7 +1521,8 @@ var java;
             return VirtualMachineError;
         }(Error));
         lang.VirtualMachineError = VirtualMachineError;
-        VirtualMachineError["__classname"] = "java.lang.VirtualMachineError";
+        VirtualMachineError["__class"] = "java.lang.VirtualMachineError";
+        VirtualMachineError["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -1561,7 +1542,7 @@ var java;
             return Void;
         }());
         lang.Void = Void;
-        Void["__classname"] = "java.lang.Void";
+        Void["__class"] = "java.lang.Void";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -1576,12 +1557,11 @@ var java;
              */
             var Charset = (function () {
                 function Charset(name, aliasesIgnored) {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable"] });
                     this.__name = name;
                 }
                 Charset.availableCharsets = function () {
                     if (Charset.AvailableCharsets.CHARSETS == null) {
-                        var map = new java.util.TreeMap();
+                        var map = (new java.util.TreeMap());
                         map.put(javaemul.internal.EmulatedCharset.ISO_8859_1_$LI$().name(), javaemul.internal.EmulatedCharset.ISO_8859_1_$LI$());
                         map.put(javaemul.internal.EmulatedCharset.ISO_LATIN_1_$LI$().name(), javaemul.internal.EmulatedCharset.ISO_LATIN_1_$LI$());
                         map.put(javaemul.internal.EmulatedCharset.UTF_8_$LI$().name(), javaemul.internal.EmulatedCharset.UTF_8_$LI$());
@@ -1644,7 +1624,8 @@ var java;
                 return Charset;
             }());
             charset.Charset = Charset;
-            Charset["__classname"] = "java.nio.charset.Charset";
+            Charset["__class"] = "java.nio.charset.Charset";
+            Charset["__interfaces"] = ["java.lang.Comparable"];
             var Charset;
             (function (Charset) {
                 var AvailableCharsets = (function () {
@@ -1653,7 +1634,7 @@ var java;
                     return AvailableCharsets;
                 }());
                 Charset.AvailableCharsets = AvailableCharsets;
-                AvailableCharsets["__classname"] = "java.nio.charset.Charset.AvailableCharsets";
+                AvailableCharsets["__class"] = "java.nio.charset.Charset.AvailableCharsets";
             })(Charset = charset.Charset || (charset.Charset = {}));
         })(charset = nio.charset || (nio.charset = {}));
     })(nio = java.nio || (java.nio = {}));
@@ -1711,7 +1692,7 @@ var java;
             return MessageDigestSpi;
         }());
         security.MessageDigestSpi = MessageDigestSpi;
-        MessageDigestSpi["__classname"] = "java.security.MessageDigestSpi";
+        MessageDigestSpi["__class"] = "java.security.MessageDigestSpi";
     })(security = java.security || (java.security = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -1728,7 +1709,6 @@ var java;
          */
         var AbstractCollection = (function () {
             function AbstractCollection() {
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.lang.Iterable"] });
             }
             AbstractCollection.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
@@ -1750,7 +1730,7 @@ var java;
                 throw new java.lang.UnsupportedOperationException("Add not supported on this collection");
             };
             AbstractCollection.prototype.addAll = function (index, c) {
-                if (((index != null && index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0) || index === null) && c === undefined) {
+                if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                     return this.addAll$java_util_Collection(index);
                 }
                 else
@@ -1879,7 +1859,8 @@ var java;
             return AbstractCollection;
         }());
         util.AbstractCollection = AbstractCollection;
-        AbstractCollection["__classname"] = "java.util.AbstractCollection";
+        AbstractCollection["__class"] = "java.util.AbstractCollection";
+        AbstractCollection["__interfaces"] = ["java.util.Collection", "java.lang.Iterable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -1893,10 +1874,9 @@ var java;
          */
         var AbstractMapEntry = (function () {
             function AbstractMapEntry() {
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
             }
             AbstractMapEntry.prototype.equals = function (other) {
-                if (!(other != null && other["__interfaces"] != null && other["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
+                if (!(other != null && (other["__interfaces"] != null && other["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || other.constructor != null && other.constructor["__interfaces"] != null && other.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0))) {
                     return false;
                 }
                 var entry = other;
@@ -1914,7 +1894,8 @@ var java;
             return AbstractMapEntry;
         }());
         util.AbstractMapEntry = AbstractMapEntry;
-        AbstractMapEntry["__classname"] = "java.util.AbstractMapEntry";
+        AbstractMapEntry["__class"] = "java.util.AbstractMapEntry";
+        AbstractMapEntry["__interfaces"] = ["java.util.Map.Entry"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -1935,7 +1916,6 @@ var java;
                 if (((typeof nbits === 'number') || nbits === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     this.bits = [];
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.io.Serializable"] });
                     (function () {
                         while ((nbits > 0)) {
                             (_this.bits).push(false);
@@ -1946,7 +1926,6 @@ var java;
                 else if (nbits === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     this.bits = [];
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -2125,7 +2104,8 @@ var java;
             return BitSet;
         }());
         util.BitSet = BitSet;
-        BitSet["__classname"] = "java.util.BitSet";
+        BitSet["__class"] = "java.util.BitSet";
+        BitSet["__interfaces"] = ["java.lang.Cloneable", "java.io.Serializable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -2154,12 +2134,11 @@ var java;
             return Comparators;
         }());
         util.Comparators = Comparators;
-        Comparators["__classname"] = "java.util.Comparators";
+        Comparators["__class"] = "java.util.Comparators";
         var Comparators;
         (function (Comparators) {
             var NaturalComparator = (function () {
                 function NaturalComparator() {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Comparator"] });
                 }
                 NaturalComparator.prototype.compare = function (o1, o2) {
                     javaemul.internal.InternalPreconditions.checkNotNull(o1);
@@ -2169,7 +2148,8 @@ var java;
                 return NaturalComparator;
             }());
             Comparators.NaturalComparator = NaturalComparator;
-            NaturalComparator["__classname"] = "java.util.Comparators.NaturalComparator";
+            NaturalComparator["__class"] = "java.util.Comparators.NaturalComparator";
+            NaturalComparator["__interfaces"] = ["java.util.Comparator"];
         })(Comparators = util.Comparators || (util.Comparators = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -2186,7 +2166,6 @@ var java;
                 var _this = this;
                 if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof date === 'number') || date === null) && ((typeof hrs === 'number') || hrs === null) && ((typeof min === 'number') || min === null) && ((typeof sec === 'number') || sec === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     (function () {
                         _this.jsdate = new (Date.jsdateClass())();
                         _this.jsdate["setFullYear"](_this.jsdate, year + 1900, month, date);
@@ -2199,7 +2178,6 @@ var java;
                     {
                         var __args_7 = Array.prototype.slice.call(arguments);
                         var sec_1 = 0;
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                         (function () {
                             _this.jsdate = new (Date.jsdateClass())();
                             _this.jsdate["setFullYear"](_this.jsdate, year + 1900, month, date);
@@ -2215,7 +2193,6 @@ var java;
                         var hrs_1 = 0;
                         var min_1 = 0;
                         var sec_2 = 0;
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                         (function () {
                             _this.jsdate = new (Date.jsdateClass())();
                             _this.jsdate["setFullYear"](_this.jsdate, year + 1900, month, date);
@@ -2230,7 +2207,6 @@ var java;
                     {
                         var __args_9 = Array.prototype.slice.call(arguments);
                         var date_2 = Date.parse(__args_9[0]);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                         (function () {
                             _this.jsdate = new Date(date_2);
                         })();
@@ -2239,14 +2215,12 @@ var java;
                 else if (((typeof year === 'number') || year === null) && month === undefined && date === undefined && hrs === undefined && min === undefined && sec === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var date_3 = __args[0];
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     (function () {
                         _this.jsdate = new Date(date_3);
                     })();
                 }
                 else if (year === undefined && month === undefined && date === undefined && hrs === undefined && min === undefined && sec === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     (function () {
                         _this.jsdate = new (Date.jsdateClass())();
                     })();
@@ -2434,7 +2408,8 @@ var java;
             return Date;
         }());
         util.Date = Date;
-        Date["__classname"] = "java.util.Date";
+        Date["__class"] = "java.util.Date";
+        Date["__interfaces"] = ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"];
         var Date;
         (function (Date) {
             /**
@@ -2453,7 +2428,7 @@ var java;
                 return StringData;
             }());
             Date.StringData = StringData;
-            StringData["__classname"] = "java.util.Date.StringData";
+            StringData["__class"] = "java.util.Date.StringData";
         })(Date = util.Date || (util.Date = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -2464,7 +2439,6 @@ var java;
     (function (util) {
         var EventListenerProxy = (function () {
             function EventListenerProxy(listener) {
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.EventListener"] });
                 this.listener = listener;
             }
             EventListenerProxy.prototype.getListener = function () {
@@ -2473,7 +2447,8 @@ var java;
             return EventListenerProxy;
         }());
         util.EventListenerProxy = EventListenerProxy;
-        EventListenerProxy["__classname"] = "java.util.EventListenerProxy";
+        EventListenerProxy["__class"] = "java.util.EventListenerProxy";
+        EventListenerProxy["__interfaces"] = ["java.util.EventListener"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -2494,7 +2469,7 @@ var java;
             return EventObject;
         }());
         util.EventObject = EventObject;
-        EventObject["__classname"] = "java.util.EventObject";
+        EventObject["__class"] = "java.util.EventObject";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -2515,7 +2490,6 @@ var java;
         var InternalHashCodeMap = (function () {
             function InternalHashCodeMap(host) {
                 this.backingMap = java.util.InternalJsMapFactory.newJsMap();
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Iterable"] });
                 this.__size = 0;
                 this.host = host;
             }
@@ -2540,7 +2514,7 @@ var java;
                         return entry.setValue(value);
                     }
                 }
-                chain[chain.length] = new util.AbstractMap.SimpleEntry(key, value);
+                chain[chain.length] = (new java.util.AbstractMap.SimpleEntry(key, value));
                 this.__size++;
                 java.util.ConcurrentModificationDetector.structureChanged(this.host);
                 return null;
@@ -2605,12 +2579,12 @@ var java;
             return InternalHashCodeMap;
         }());
         util.InternalHashCodeMap = InternalHashCodeMap;
-        InternalHashCodeMap["__classname"] = "java.util.InternalHashCodeMap";
+        InternalHashCodeMap["__class"] = "java.util.InternalHashCodeMap";
+        InternalHashCodeMap["__interfaces"] = ["java.lang.Iterable"];
         var InternalHashCodeMap;
         (function (InternalHashCodeMap) {
             var InternalHashCodeMap$0 = (function () {
                 function InternalHashCodeMap$0(__parent) {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                     this.__parent = __parent;
                     this.chains = this.__parent.backingMap.entries();
                     this.itemIndex = 0;
@@ -2713,7 +2687,7 @@ var java;
             return InternalJsMap;
         }());
         util.InternalJsMap = InternalJsMap;
-        InternalJsMap["__classname"] = "java.util.InternalJsMap";
+        InternalJsMap["__class"] = "java.util.InternalJsMap";
         var InternalJsMap;
         (function (InternalJsMap) {
             var Iterator = (function () {
@@ -2725,7 +2699,7 @@ var java;
                 return Iterator;
             }());
             InternalJsMap.Iterator = Iterator;
-            Iterator["__classname"] = "java.util.InternalJsMap.Iterator";
+            Iterator["__class"] = "java.util.InternalJsMap.Iterator";
             var IteratorEntry = (function () {
                 function IteratorEntry() {
                     this.done = false;
@@ -2733,7 +2707,7 @@ var java;
                 return IteratorEntry;
             }());
             InternalJsMap.IteratorEntry = IteratorEntry;
-            IteratorEntry["__classname"] = "java.util.InternalJsMap.IteratorEntry";
+            IteratorEntry["__class"] = "java.util.InternalJsMap.IteratorEntry";
             var JsHelper = (function () {
                 function JsHelper() {
                 }
@@ -2756,7 +2730,7 @@ var java;
                 return JsHelper;
             }());
             InternalJsMap.JsHelper = JsHelper;
-            JsHelper["__classname"] = "java.util.InternalJsMap.JsHelper";
+            JsHelper["__class"] = "java.util.InternalJsMap.JsHelper";
         })(InternalJsMap = util.InternalJsMap || (util.InternalJsMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -2783,7 +2757,7 @@ var java;
             return InternalJsMapFactory;
         }());
         util.InternalJsMapFactory = InternalJsMapFactory;
-        InternalJsMapFactory["__classname"] = "java.util.InternalJsMapFactory";
+        InternalJsMapFactory["__class"] = "java.util.InternalJsMapFactory";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -2823,7 +2797,7 @@ var java;
             return Locale;
         }());
         util.Locale = Locale;
-        Locale["__classname"] = "java.util.Locale";
+        Locale["__class"] = "java.util.Locale";
         var Locale;
         (function (Locale) {
             var RootLocale = (function (_super) {
@@ -2837,7 +2811,7 @@ var java;
                 return RootLocale;
             }(java.util.Locale));
             Locale.RootLocale = RootLocale;
-            RootLocale["__classname"] = "java.util.Locale.RootLocale";
+            RootLocale["__class"] = "java.util.Locale.RootLocale";
             var EnglishLocale = (function (_super) {
                 __extends(EnglishLocale, _super);
                 function EnglishLocale() {
@@ -2849,7 +2823,7 @@ var java;
                 return EnglishLocale;
             }(java.util.Locale));
             Locale.EnglishLocale = EnglishLocale;
-            EnglishLocale["__classname"] = "java.util.Locale.EnglishLocale";
+            EnglishLocale["__class"] = "java.util.Locale.EnglishLocale";
             var USLocale = (function (_super) {
                 __extends(USLocale, _super);
                 function USLocale() {
@@ -2861,7 +2835,7 @@ var java;
                 return USLocale;
             }(java.util.Locale));
             Locale.USLocale = USLocale;
-            USLocale["__classname"] = "java.util.Locale.USLocale";
+            USLocale["__class"] = "java.util.Locale.USLocale";
             var DefaultLocale = (function (_super) {
                 __extends(DefaultLocale, _super);
                 function DefaultLocale() {
@@ -2873,7 +2847,7 @@ var java;
                 return DefaultLocale;
             }(java.util.Locale));
             Locale.DefaultLocale = DefaultLocale;
-            DefaultLocale["__classname"] = "java.util.Locale.DefaultLocale";
+            DefaultLocale["__class"] = "java.util.Locale.DefaultLocale";
         })(Locale = util.Locale || (util.Locale = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -2898,7 +2872,7 @@ var java;
                 return Formatter;
             }());
             logging.Formatter = Formatter;
-            Formatter["__classname"] = "java.util.logging.Formatter";
+            Formatter["__class"] = "java.util.logging.Formatter";
         })(logging = util.logging || (util.logging = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -2938,7 +2912,7 @@ var java;
                 return Handler;
             }());
             logging.Handler = Handler;
-            Handler["__classname"] = "java.util.logging.Handler";
+            Handler["__class"] = "java.util.logging.Handler";
         })(logging = util.logging || (util.logging = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -2956,7 +2930,6 @@ var java;
              */
             var Level = (function () {
                 function Level() {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 Level.ALL_$LI$ = function () { if (Level.ALL == null)
                     Level.ALL = new Level.LevelAll(); return Level.ALL; };
@@ -3027,14 +3000,14 @@ var java;
                 return Level;
             }());
             logging.Level = Level;
-            Level["__classname"] = "java.util.logging.Level";
+            Level["__class"] = "java.util.logging.Level";
+            Level["__interfaces"] = ["java.io.Serializable"];
             var Level;
             (function (Level) {
                 var LevelAll = (function (_super) {
                     __extends(LevelAll, _super);
                     function LevelAll() {
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                     LevelAll.prototype.getName = function () {
                         return "ALL";
@@ -3045,12 +3018,12 @@ var java;
                     return LevelAll;
                 }(java.util.logging.Level));
                 Level.LevelAll = LevelAll;
-                LevelAll["__classname"] = "java.util.logging.Level.LevelAll";
+                LevelAll["__class"] = "java.util.logging.Level.LevelAll";
+                LevelAll["__interfaces"] = ["java.io.Serializable"];
                 var LevelConfig = (function (_super) {
                     __extends(LevelConfig, _super);
                     function LevelConfig() {
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                     LevelConfig.prototype.getName = function () {
                         return "CONFIG";
@@ -3061,12 +3034,12 @@ var java;
                     return LevelConfig;
                 }(java.util.logging.Level));
                 Level.LevelConfig = LevelConfig;
-                LevelConfig["__classname"] = "java.util.logging.Level.LevelConfig";
+                LevelConfig["__class"] = "java.util.logging.Level.LevelConfig";
+                LevelConfig["__interfaces"] = ["java.io.Serializable"];
                 var LevelFine = (function (_super) {
                     __extends(LevelFine, _super);
                     function LevelFine() {
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                     LevelFine.prototype.getName = function () {
                         return "FINE";
@@ -3077,12 +3050,12 @@ var java;
                     return LevelFine;
                 }(java.util.logging.Level));
                 Level.LevelFine = LevelFine;
-                LevelFine["__classname"] = "java.util.logging.Level.LevelFine";
+                LevelFine["__class"] = "java.util.logging.Level.LevelFine";
+                LevelFine["__interfaces"] = ["java.io.Serializable"];
                 var LevelFiner = (function (_super) {
                     __extends(LevelFiner, _super);
                     function LevelFiner() {
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                     LevelFiner.prototype.getName = function () {
                         return "FINER";
@@ -3093,12 +3066,12 @@ var java;
                     return LevelFiner;
                 }(java.util.logging.Level));
                 Level.LevelFiner = LevelFiner;
-                LevelFiner["__classname"] = "java.util.logging.Level.LevelFiner";
+                LevelFiner["__class"] = "java.util.logging.Level.LevelFiner";
+                LevelFiner["__interfaces"] = ["java.io.Serializable"];
                 var LevelFinest = (function (_super) {
                     __extends(LevelFinest, _super);
                     function LevelFinest() {
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                     LevelFinest.prototype.getName = function () {
                         return "FINEST";
@@ -3109,12 +3082,12 @@ var java;
                     return LevelFinest;
                 }(java.util.logging.Level));
                 Level.LevelFinest = LevelFinest;
-                LevelFinest["__classname"] = "java.util.logging.Level.LevelFinest";
+                LevelFinest["__class"] = "java.util.logging.Level.LevelFinest";
+                LevelFinest["__interfaces"] = ["java.io.Serializable"];
                 var LevelInfo = (function (_super) {
                     __extends(LevelInfo, _super);
                     function LevelInfo() {
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                     LevelInfo.prototype.getName = function () {
                         return "INFO";
@@ -3125,12 +3098,12 @@ var java;
                     return LevelInfo;
                 }(java.util.logging.Level));
                 Level.LevelInfo = LevelInfo;
-                LevelInfo["__classname"] = "java.util.logging.Level.LevelInfo";
+                LevelInfo["__class"] = "java.util.logging.Level.LevelInfo";
+                LevelInfo["__interfaces"] = ["java.io.Serializable"];
                 var LevelOff = (function (_super) {
                     __extends(LevelOff, _super);
                     function LevelOff() {
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                     LevelOff.prototype.getName = function () {
                         return "OFF";
@@ -3141,12 +3114,12 @@ var java;
                     return LevelOff;
                 }(java.util.logging.Level));
                 Level.LevelOff = LevelOff;
-                LevelOff["__classname"] = "java.util.logging.Level.LevelOff";
+                LevelOff["__class"] = "java.util.logging.Level.LevelOff";
+                LevelOff["__interfaces"] = ["java.io.Serializable"];
                 var LevelSevere = (function (_super) {
                     __extends(LevelSevere, _super);
                     function LevelSevere() {
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                     LevelSevere.prototype.getName = function () {
                         return "SEVERE";
@@ -3157,12 +3130,12 @@ var java;
                     return LevelSevere;
                 }(java.util.logging.Level));
                 Level.LevelSevere = LevelSevere;
-                LevelSevere["__classname"] = "java.util.logging.Level.LevelSevere";
+                LevelSevere["__class"] = "java.util.logging.Level.LevelSevere";
+                LevelSevere["__interfaces"] = ["java.io.Serializable"];
                 var LevelWarning = (function (_super) {
                     __extends(LevelWarning, _super);
                     function LevelWarning() {
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     }
                     LevelWarning.prototype.getName = function () {
                         return "WARNING";
@@ -3173,7 +3146,8 @@ var java;
                     return LevelWarning;
                 }(java.util.logging.Level));
                 Level.LevelWarning = LevelWarning;
-                LevelWarning["__classname"] = "java.util.logging.Level.LevelWarning";
+                LevelWarning["__class"] = "java.util.logging.Level.LevelWarning";
+                LevelWarning["__interfaces"] = ["java.io.Serializable"];
             })(Level = logging.Level || (logging.Level = {}));
         })(logging = util.logging || (util.logging = {}));
     })(util = java.util || (java.util = {}));
@@ -3192,7 +3166,7 @@ var java;
              */
             var LogManager = (function () {
                 function LogManager() {
-                    this.loggerMap = new java.util.HashMap();
+                    this.loggerMap = (new java.util.HashMap());
                 }
                 LogManager.getLogManager = function () {
                     if (LogManager.singleton == null) {
@@ -3255,7 +3229,7 @@ var java;
                 return LogManager;
             }());
             logging.LogManager = LogManager;
-            LogManager["__classname"] = "java.util.logging.LogManager";
+            LogManager["__class"] = "java.util.logging.LogManager";
         })(logging = util.logging || (util.logging = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -3280,7 +3254,6 @@ var java;
                         var __args = Array.prototype.slice.call(arguments);
                         this.loggerName = "";
                         this.thrown = null;
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                         this.millis = 0;
                         (function () {
                             _this.level = level;
@@ -3292,7 +3265,6 @@ var java;
                         var __args = Array.prototype.slice.call(arguments);
                         this.loggerName = "";
                         this.thrown = null;
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                         this.millis = 0;
                     }
                     else
@@ -3331,7 +3303,8 @@ var java;
                 return LogRecord;
             }());
             logging.LogRecord = LogRecord;
-            LogRecord["__classname"] = "java.util.logging.LogRecord";
+            LogRecord["__class"] = "java.util.logging.LogRecord";
+            LogRecord["__interfaces"] = ["java.io.Serializable"];
         })(logging = util.logging || (util.logging = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -3464,7 +3437,7 @@ var java;
             return Objects;
         }());
         util.Objects = Objects;
-        Objects["__classname"] = "java.util.Objects";
+        Objects["__class"] = "java.util.Objects";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -3481,7 +3454,7 @@ var java;
              */
             function Observable() {
                 this.changed = false;
-                this.obs = new java.util.Vector();
+                this.obs = (new java.util.Vector());
             }
             /**
              * Adds an observer to the set of observers for this object, provided that
@@ -3585,7 +3558,7 @@ var java;
             return Observable;
         }());
         util.Observable = Observable;
-        Observable["__classname"] = "java.util.Observable";
+        Observable["__class"] = "java.util.Observable";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -3621,7 +3594,7 @@ var java;
                 return Optional.EMPTY_$LI$();
             };
             Optional.of = function (value) {
-                return new Optional(value);
+                return (new Optional(value));
             };
             Optional.ofNullable = function (value) {
                 return value == null ? Optional.empty() : Optional.of(value);
@@ -3693,7 +3666,7 @@ var java;
             return Optional;
         }());
         util.Optional = Optional;
-        Optional["__classname"] = "java.util.Optional";
+        Optional["__class"] = "java.util.Optional";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -3781,7 +3754,7 @@ var java;
             return OptionalDouble;
         }());
         util.OptionalDouble = OptionalDouble;
-        OptionalDouble["__classname"] = "java.util.OptionalDouble";
+        OptionalDouble["__class"] = "java.util.OptionalDouble";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -3869,7 +3842,7 @@ var java;
             return OptionalInt;
         }());
         util.OptionalInt = OptionalInt;
-        OptionalInt["__classname"] = "java.util.OptionalInt";
+        OptionalInt["__class"] = "java.util.OptionalInt";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -3957,7 +3930,7 @@ var java;
             return OptionalLong;
         }());
         util.OptionalLong = OptionalLong;
-        OptionalLong["__classname"] = "java.util.OptionalLong";
+        OptionalLong["__class"] = "java.util.OptionalLong";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -4264,7 +4237,7 @@ var java;
             return Random;
         }());
         util.Random = Random;
-        Random["__classname"] = "java.util.Random";
+        Random["__class"] = "java.util.Random";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -4334,7 +4307,7 @@ var java;
             return StringJoiner;
         }());
         util.StringJoiner = StringJoiner;
-        StringJoiner["__classname"] = "java.util.StringJoiner";
+        StringJoiner["__class"] = "java.util.StringJoiner";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -4365,7 +4338,7 @@ var javaemul;
                 return javaemul.internal.ArrayStamper.stampJavaTypeInfo(result, array);
             };
             ArrayHelper.createNativeArray = function (length) {
-                return new Array(length);
+                return (new Array(length));
             };
             ArrayHelper.getLength = function (array) {
                 return (array.length | 0);
@@ -4413,7 +4386,7 @@ var javaemul;
             return ArrayHelper;
         }());
         internal.ArrayHelper = ArrayHelper;
-        ArrayHelper["__classname"] = "javaemul.internal.ArrayHelper";
+        ArrayHelper["__class"] = "javaemul.internal.ArrayHelper";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -4434,7 +4407,7 @@ var javaemul;
             return ArrayStamper;
         }());
         internal.ArrayStamper = ArrayStamper;
-        ArrayStamper["__classname"] = "javaemul.internal.ArrayStamper";
+        ArrayStamper["__class"] = "javaemul.internal.ArrayStamper";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -4447,7 +4420,6 @@ var javaemul;
          */
         var BooleanHelper = (function () {
             function BooleanHelper() {
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
             }
             BooleanHelper.TYPE_$LI$ = function () { if (BooleanHelper.TYPE == null)
                 BooleanHelper.TYPE = Boolean; return BooleanHelper.TYPE; };
@@ -4520,7 +4492,8 @@ var javaemul;
             return BooleanHelper;
         }());
         internal.BooleanHelper = BooleanHelper;
-        BooleanHelper["__classname"] = "javaemul.internal.BooleanHelper";
+        BooleanHelper["__class"] = "javaemul.internal.BooleanHelper";
+        BooleanHelper["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -4573,7 +4546,6 @@ var javaemul;
          */
         var CharacterHelper = (function () {
             function CharacterHelper(value) {
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                 this.value = null;
                 this.value = value;
             }
@@ -4593,13 +4565,13 @@ var javaemul;
                         return CharacterHelper.codePointAt(new String(a), index, limit);
                     })();
                 }
-                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && ((typeof limit === 'number') || limit === null)) {
+                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && ((typeof limit === 'number') || limit === null)) {
                     return javaemul.internal.CharacterHelper.codePointAt$java_lang_CharSequence$int$int(a, index, limit);
                 }
                 else if (((a != null && a instanceof Array) || a === null) && ((typeof index === 'number') || index === null) && limit === undefined) {
                     return javaemul.internal.CharacterHelper.codePointAt$char_A$int(a, index);
                 }
-                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && limit === undefined) {
+                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && limit === undefined) {
                     return javaemul.internal.CharacterHelper.codePointAt$java_lang_CharSequence$int(a, index);
                 }
                 else
@@ -4618,13 +4590,13 @@ var javaemul;
                         return CharacterHelper.codePointBefore(new String(a), index, start);
                     })();
                 }
-                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && ((typeof start === 'number') || start === null)) {
+                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && ((typeof start === 'number') || start === null)) {
                     return javaemul.internal.CharacterHelper.codePointBefore$java_lang_CharSequence$int$int(a, index, start);
                 }
                 else if (((a != null && a instanceof Array) || a === null) && ((typeof index === 'number') || index === null) && start === undefined) {
                     return javaemul.internal.CharacterHelper.codePointBefore$char_A$int(a, index);
                 }
-                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && start === undefined) {
+                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && start === undefined) {
                     return javaemul.internal.CharacterHelper.codePointBefore$java_lang_CharSequence$int(a, index);
                 }
                 else
@@ -4640,7 +4612,7 @@ var javaemul;
                         return CharacterHelper.codePointCount(new String(a), offset, offset + count);
                     })();
                 }
-                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof offset === 'number') || offset === null) && ((typeof count === 'number') || count === null)) {
+                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof offset === 'number') || offset === null) && ((typeof count === 'number') || count === null)) {
                     return javaemul.internal.CharacterHelper.codePointCount$java_lang_CharSequence$int$int(a, offset, count);
                 }
                 else
@@ -4790,7 +4762,7 @@ var javaemul;
                         return CharacterHelper.offsetByCodePoints((function (str, index, len) { return str.substring(index, index + len); })((a).join(''), start, count), index, codePointOffset);
                     })();
                 }
-                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof start === 'number') || start === null) && ((typeof count === 'number') || count === null) && index === undefined && codePointOffset === undefined) {
+                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof start === 'number') || start === null) && ((typeof count === 'number') || count === null) && index === undefined && codePointOffset === undefined) {
                     return javaemul.internal.CharacterHelper.offsetByCodePoints$java_lang_CharSequence$int$int(a, start, count);
                 }
                 else
@@ -4987,7 +4959,8 @@ var javaemul;
             return CharacterHelper;
         }());
         internal.CharacterHelper = CharacterHelper;
-        CharacterHelper["__classname"] = "javaemul.internal.CharacterHelper";
+        CharacterHelper["__class"] = "javaemul.internal.CharacterHelper";
+        CharacterHelper["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
         var CharacterHelper;
         (function (CharacterHelper) {
             /**
@@ -5002,7 +4975,7 @@ var javaemul;
                 return BoxedValues;
             }());
             CharacterHelper.BoxedValues = BoxedValues;
-            BoxedValues["__classname"] = "javaemul.internal.CharacterHelper.BoxedValues";
+            BoxedValues["__class"] = "javaemul.internal.CharacterHelper.BoxedValues";
         })(CharacterHelper = internal.CharacterHelper || (internal.CharacterHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
@@ -5029,7 +5002,7 @@ var javaemul;
             return Coercions;
         }());
         internal.Coercions = Coercions;
-        Coercions["__classname"] = "javaemul.internal.Coercions";
+        Coercions["__class"] = "javaemul.internal.Coercions";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -5060,7 +5033,7 @@ var javaemul;
             return DateUtil;
         }());
         internal.DateUtil = DateUtil;
-        DateUtil["__classname"] = "javaemul.internal.DateUtil";
+        DateUtil["__class"] = "javaemul.internal.DateUtil";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -5105,7 +5078,7 @@ var javaemul;
             return HashCodes;
         }());
         internal.HashCodes = HashCodes;
-        HashCodes["__classname"] = "javaemul.internal.HashCodes";
+        HashCodes["__class"] = "javaemul.internal.HashCodes";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -5122,7 +5095,7 @@ var javaemul;
             return JreHelper;
         }());
         internal.JreHelper = JreHelper;
-        JreHelper["__classname"] = "javaemul.internal.JreHelper";
+        JreHelper["__class"] = "javaemul.internal.JreHelper";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -5165,7 +5138,7 @@ var javaemul;
             return JsUtils;
         }());
         internal.JsUtils = JsUtils;
-        JsUtils["__classname"] = "javaemul.internal.JsUtils";
+        JsUtils["__class"] = "javaemul.internal.JsUtils";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -5185,7 +5158,7 @@ var javaemul;
             return LongCompareHolder;
         }());
         internal.LongCompareHolder = LongCompareHolder;
-        LongCompareHolder["__classname"] = "javaemul.internal.LongCompareHolder";
+        LongCompareHolder["__class"] = "javaemul.internal.LongCompareHolder";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -5571,7 +5544,7 @@ var javaemul;
             return MathHelper;
         }());
         internal.MathHelper = MathHelper;
-        MathHelper["__classname"] = "javaemul.internal.MathHelper";
+        MathHelper["__class"] = "javaemul.internal.MathHelper";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -5584,7 +5557,6 @@ var javaemul;
          */
         var NumberHelper = (function () {
             function NumberHelper() {
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
             }
             /**
              * @skip
@@ -5793,7 +5765,8 @@ var javaemul;
             return NumberHelper;
         }());
         internal.NumberHelper = NumberHelper;
-        NumberHelper["__classname"] = "javaemul.internal.NumberHelper";
+        NumberHelper["__class"] = "javaemul.internal.NumberHelper";
+        NumberHelper["__interfaces"] = ["java.io.Serializable"];
         var NumberHelper;
         (function (NumberHelper) {
             var __Decode = (function () {
@@ -5805,7 +5778,7 @@ var javaemul;
                 return __Decode;
             }());
             NumberHelper.__Decode = __Decode;
-            __Decode["__classname"] = "javaemul.internal.NumberHelper.__Decode";
+            __Decode["__class"] = "javaemul.internal.NumberHelper.__Decode";
             /**
              * Use nested class to avoid clinit on outer.
              */
@@ -5838,7 +5811,7 @@ var javaemul;
                 return __ParseLong;
             }());
             NumberHelper.__ParseLong = __ParseLong;
-            __ParseLong["__classname"] = "javaemul.internal.NumberHelper.__ParseLong";
+            __ParseLong["__class"] = "javaemul.internal.NumberHelper.__ParseLong";
         })(NumberHelper = internal.NumberHelper || (internal.NumberHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
@@ -5883,7 +5856,7 @@ var javaemul;
             return ObjectHelper;
         }());
         internal.ObjectHelper = ObjectHelper;
-        ObjectHelper["__classname"] = "javaemul.internal.ObjectHelper";
+        ObjectHelper["__class"] = "javaemul.internal.ObjectHelper";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -5961,7 +5934,7 @@ var javaemul;
             return StringHashCache;
         }());
         internal.StringHashCache = StringHashCache;
-        StringHashCache["__classname"] = "javaemul.internal.StringHashCache";
+        StringHashCache["__class"] = "javaemul.internal.StringHashCache";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -6023,7 +5996,7 @@ var test;
         };
         Test.testList = function () {
             console.info("testing lists");
-            var l = new java.util.ArrayList();
+            var l = (new java.util.ArrayList());
             l.add("a");
             l.add("b");
             l.add("c");
@@ -6055,7 +6028,7 @@ var test;
         };
         Test.testSet = function () {
             console.info("testing sets");
-            var s = new java.util.HashSet();
+            var s = (new java.util.HashSet());
             s.add("a");
             s.add("a");
             s.add("b");
@@ -6083,7 +6056,7 @@ var test;
         };
         Test.testMap = function () {
             console.info("testing maps");
-            var m = new java.util.HashMap();
+            var m = (new java.util.HashMap());
             m.put("a", "aa");
             m.put("b", "bb");
             m.put("c", "cc");
@@ -6124,7 +6097,7 @@ var test;
         return Test;
     }());
     test.Test = Test;
-    Test["__classname"] = "test.Test";
+    Test["__class"] = "test.Test";
 })(test || (test = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
 var java;
@@ -6154,7 +6127,6 @@ var java;
                 if (offset === void 0) { offset = 0; }
                 if (length === void 0) { length = -1; }
                 _super.call(this);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                 this.pos = 0;
                 this._mark = 0;
                 this.count = 0;
@@ -6276,7 +6248,8 @@ var java;
             return ByteArrayInputStream;
         }(java.io.InputStream));
         io.ByteArrayInputStream = ByteArrayInputStream;
-        ByteArrayInputStream["__classname"] = "java.io.ByteArrayInputStream";
+        ByteArrayInputStream["__class"] = "java.io.ByteArrayInputStream";
+        ByteArrayInputStream["__interfaces"] = ["java.io.Closeable", "java.lang.AutoCloseable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -6308,7 +6281,6 @@ var java;
              */
             function FilterInputStream(__in) {
                 _super.call(this);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                 this.in = __in;
             }
             FilterInputStream.prototype.available = function () {
@@ -6416,7 +6388,8 @@ var java;
             return FilterInputStream;
         }(java.io.InputStream));
         io.FilterInputStream = FilterInputStream;
-        FilterInputStream["__classname"] = "java.io.FilterInputStream";
+        FilterInputStream["__class"] = "java.io.FilterInputStream";
+        FilterInputStream["__interfaces"] = ["java.io.Closeable", "java.lang.AutoCloseable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -6450,7 +6423,6 @@ var java;
                 if (((typeof size === 'number') || size === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     this.count = 0;
                     (function () {
                         if (size >= 0) {
@@ -6464,7 +6436,6 @@ var java;
                 else if (size === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     this.count = 0;
                     (function () {
                         _this.buf = new Array(32);
@@ -6645,7 +6616,8 @@ var java;
             return ByteArrayOutputStream;
         }(java.io.OutputStream));
         io.ByteArrayOutputStream = ByteArrayOutputStream;
-        ByteArrayOutputStream["__classname"] = "java.io.ByteArrayOutputStream";
+        ByteArrayOutputStream["__class"] = "java.io.ByteArrayOutputStream";
+        ByteArrayOutputStream["__interfaces"] = ["java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -6674,7 +6646,6 @@ var java;
              */
             function FilterOutputStream(out) {
                 _super.call(this);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                 this.out = out;
             }
             /**
@@ -6767,7 +6738,8 @@ var java;
             return FilterOutputStream;
         }(java.io.OutputStream));
         io.FilterOutputStream = FilterOutputStream;
-        FilterOutputStream["__classname"] = "java.io.FilterOutputStream";
+        FilterOutputStream["__class"] = "java.io.FilterOutputStream";
+        FilterOutputStream["__interfaces"] = ["java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -6785,7 +6757,6 @@ var java;
                 if (((__in != null && __in instanceof java.io.Reader) || __in === null) && ((typeof sz === 'number') || sz === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, __in);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     this.nChars = 0;
                     this.nextChar = 0;
                     this.markedChar = 0;
@@ -6810,7 +6781,6 @@ var java;
                         var __args_10 = Array.prototype.slice.call(arguments);
                         var sz_1 = BufferedReader.defaultCharBufferSize;
                         _super.call(this, __in);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                         this.nChars = 0;
                         this.nextChar = 0;
                         this.markedChar = 0;
@@ -7096,7 +7066,8 @@ var java;
             return BufferedReader;
         }(java.io.Reader));
         io.BufferedReader = BufferedReader;
-        BufferedReader["__classname"] = "java.io.BufferedReader";
+        BufferedReader["__class"] = "java.io.BufferedReader";
+        BufferedReader["__interfaces"] = ["java.io.Closeable", "java.lang.AutoCloseable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -7114,7 +7085,6 @@ var java;
                 if (((__in != null && __in instanceof java.io.InputStream) || __in === null) && ((typeof charsetName === 'string') || charsetName === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, __in);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     (function () {
                         _this.in = __in;
                     })();
@@ -7123,7 +7093,6 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     var cs_1 = __args[1];
                     _super.call(this, __in);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     (function () {
                         _this.in = __in;
                         if (cs_1 == null)
@@ -7133,7 +7102,6 @@ var java;
                 else if (((__in != null && __in instanceof java.io.InputStream) || __in === null) && charsetName === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, __in);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable"] });
                     (function () {
                         _this.in = __in;
                     })();
@@ -7168,7 +7136,8 @@ var java;
             return InputStreamReader;
         }(java.io.Reader));
         io.InputStreamReader = InputStreamReader;
-        InputStreamReader["__classname"] = "java.io.InputStreamReader";
+        InputStreamReader["__class"] = "java.io.InputStreamReader";
+        InputStreamReader["__interfaces"] = ["java.io.Closeable", "java.lang.AutoCloseable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -7188,7 +7157,6 @@ var java;
                 if (((out != null && out instanceof java.io.OutputStream) || out === null) && ((typeof charsetName === 'string') || charsetName === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, out);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Appendable", "java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     (function () {
                         if (charsetName == null)
                             throw new java.lang.NullPointerException("charsetName");
@@ -7199,7 +7167,6 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     var cs_2 = __args[1];
                     _super.call(this, out);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Appendable", "java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     (function () {
                         if (cs_2 == null)
                             throw new java.lang.NullPointerException("charset");
@@ -7209,7 +7176,6 @@ var java;
                 else if (((out != null && out instanceof java.io.OutputStream) || out === null) && charsetName === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, out);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Appendable", "java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
                     (function () {
                         _this.out = out;
                     })();
@@ -7259,7 +7225,8 @@ var java;
             return OutputStreamWriter;
         }(java.io.Writer));
         io.OutputStreamWriter = OutputStreamWriter;
-        OutputStreamWriter["__classname"] = "java.io.OutputStreamWriter";
+        OutputStreamWriter["__class"] = "java.io.OutputStreamWriter";
+        OutputStreamWriter["__interfaces"] = ["java.lang.Appendable", "java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -7279,23 +7246,19 @@ var java;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, s);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                 }
-                else if (((s != null && (s["__interfaces"] != null && s["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof s === "string")) || s === null)) {
+                else if (((s != null && (s["__interfaces"] != null && s["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || s.constructor != null && s.constructor["__interfaces"] != null && s.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof s === "string")) || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, /* valueOf */ new String(s).toString());
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var ignoredCapacity = __args[0];
                     _super.call(this, "");
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                 }
                 else if (s === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, "");
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -7321,7 +7284,7 @@ var java;
                         return _this;
                     })();
                 }
-                else if (((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof start === 'number') || start === null) && ((typeof len === 'number') || len === null)) {
+                else if (((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof start === 'number') || start === null) && ((typeof len === 'number') || len === null)) {
                     return this.append$java_lang_CharSequence$int$int(x, start, len);
                 }
                 else if (((x != null && x instanceof Array) || x === null) && start === undefined && len === undefined) {
@@ -7333,7 +7296,7 @@ var java;
                 else if (((x != null && x instanceof java.lang.StringBuffer) || x === null) && start === undefined && len === undefined) {
                     return this.append$java_lang_StringBuffer(x);
                 }
-                else if (((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && start === undefined && len === undefined) {
+                else if (((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && start === undefined && len === undefined) {
                     return this.append$java_lang_CharSequence(x);
                 }
                 else if (((typeof x === 'boolean') || x === null) && start === undefined && len === undefined) {
@@ -7425,7 +7388,7 @@ var java;
                         return _this.insert(index, /* valueOf */ (function (str, index, len) { return str.join('').substring(index, index + len); })(x, offset, len));
                     })();
                 }
-                else if (((typeof index === 'number') || index === null) && ((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
+                else if (((typeof index === 'number') || index === null) && ((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
                     return this.insert$int$java_lang_CharSequence$int$int(index, x, offset, len);
                 }
                 else if (((typeof index === 'number') || index === null) && ((x != null && x instanceof Array) || x === null) && offset === undefined && len === undefined) {
@@ -7434,7 +7397,7 @@ var java;
                 else if (((typeof index === 'number') || index === null) && ((typeof x === 'string') || x === null) && offset === undefined && len === undefined) {
                     return this.insert$int$java_lang_String(index, x);
                 }
-                else if (((typeof index === 'number') || index === null) && ((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && offset === undefined && len === undefined) {
+                else if (((typeof index === 'number') || index === null) && ((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && offset === undefined && len === undefined) {
                     return this.insert$int$java_lang_CharSequence(index, x);
                 }
                 else if (((typeof index === 'number') || index === null) && ((typeof x === 'boolean') || x === null) && offset === undefined && len === undefined) {
@@ -7497,7 +7460,8 @@ var java;
             return StringBuffer;
         }(java.lang.AbstractStringBuilder));
         lang.StringBuffer = StringBuffer;
-        StringBuffer["__classname"] = "java.lang.StringBuffer";
+        StringBuffer["__class"] = "java.lang.StringBuffer";
+        StringBuffer["__interfaces"] = ["java.lang.CharSequence", "java.lang.Appendable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -7517,23 +7481,19 @@ var java;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, s);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                 }
-                else if (((s != null && (s["__interfaces"] != null && s["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof s === "string")) || s === null)) {
+                else if (((s != null && (s["__interfaces"] != null && s["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || s.constructor != null && s.constructor["__interfaces"] != null && s.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof s === "string")) || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, /* valueOf */ new String(s).toString());
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var ignoredCapacity = __args[0];
                     _super.call(this, "");
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                 }
                 else if (s === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, "");
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.CharSequence", "java.lang.Appendable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -7559,7 +7519,7 @@ var java;
                         return _this;
                     })();
                 }
-                else if (((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof start === 'number') || start === null) && ((typeof len === 'number') || len === null)) {
+                else if (((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof start === 'number') || start === null) && ((typeof len === 'number') || len === null)) {
                     return this.append$java_lang_CharSequence$int$int(x, start, len);
                 }
                 else if (((x != null && x instanceof Array) || x === null) && start === undefined && len === undefined) {
@@ -7571,7 +7531,7 @@ var java;
                 else if (((x != null && x instanceof java.lang.StringBuffer) || x === null) && start === undefined && len === undefined) {
                     return this.append$java_lang_StringBuffer(x);
                 }
-                else if (((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && start === undefined && len === undefined) {
+                else if (((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && start === undefined && len === undefined) {
                     return this.append$java_lang_CharSequence(x);
                 }
                 else if (((typeof x === 'boolean') || x === null) && start === undefined && len === undefined) {
@@ -7664,7 +7624,7 @@ var java;
                         return _this.insert(index, /* valueOf */ (function (str, index, len) { return str.join('').substring(index, index + len); })(x, offset, len));
                     })();
                 }
-                else if (((typeof index === 'number') || index === null) && ((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
+                else if (((typeof index === 'number') || index === null) && ((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
                     return this.insert$int$java_lang_CharSequence$int$int(index, x, offset, len);
                 }
                 else if (((typeof index === 'number') || index === null) && ((x != null && x instanceof Array) || x === null) && offset === undefined && len === undefined) {
@@ -7673,7 +7633,7 @@ var java;
                 else if (((typeof index === 'number') || index === null) && ((typeof x === 'string') || x === null) && offset === undefined && len === undefined) {
                     return this.insert$int$java_lang_String(index, x);
                 }
-                else if (((typeof index === 'number') || index === null) && ((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && offset === undefined && len === undefined) {
+                else if (((typeof index === 'number') || index === null) && ((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && offset === undefined && len === undefined) {
                     return this.insert$int$java_lang_CharSequence(index, x);
                 }
                 else if (((typeof index === 'number') || index === null) && ((typeof x === 'boolean') || x === null) && offset === undefined && len === undefined) {
@@ -7736,7 +7696,8 @@ var java;
             return StringBuilder;
         }(java.lang.AbstractStringBuilder));
         lang.StringBuilder = StringBuilder;
-        StringBuilder["__classname"] = "java.lang.StringBuilder";
+        StringBuilder["__class"] = "java.lang.StringBuilder";
+        StringBuilder["__interfaces"] = ["java.lang.CharSequence", "java.lang.Appendable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -7756,25 +7717,21 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((typeof message === 'string') || message === null) && throwable === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((message != null && message instanceof Error) || message === null) && throwable === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var throwable_1 = __args[0];
                     _super.call(this, throwable_1);
                     this.message = throwable_1;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined && throwable === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -7782,7 +7739,8 @@ var java;
             return IOException;
         }(Error));
         io.IOException = IOException;
-        IOException["__classname"] = "java.io.IOException";
+        IOException["__class"] = "java.io.IOException";
+        IOException["__interfaces"] = ["java.io.Serializable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -7802,12 +7760,10 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
                     this.message = msg;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -7815,7 +7771,8 @@ var java;
             return CloneNotSupportedException;
         }(Error));
         lang.CloneNotSupportedException = CloneNotSupportedException;
-        CloneNotSupportedException["__classname"] = "java.lang.CloneNotSupportedException";
+        CloneNotSupportedException["__class"] = "java.lang.CloneNotSupportedException";
+        CloneNotSupportedException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -7838,12 +7795,10 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -7851,7 +7806,8 @@ var java;
             return NoSuchMethodException;
         }(Error));
         lang.NoSuchMethodException = NoSuchMethodException;
-        NoSuchMethodException["__classname"] = "java.lang.NoSuchMethodException";
+        NoSuchMethodException["__class"] = "java.lang.NoSuchMethodException";
+        NoSuchMethodException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -7871,31 +7827,26 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null) && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_3 = __args[0];
                     _super.call(this, cause_3);
                     this.message = cause_3;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -7903,7 +7854,8 @@ var java;
             return RuntimeException;
         }(Error));
         lang.RuntimeException = RuntimeException;
-        RuntimeException["__classname"] = "java.lang.RuntimeException";
+        RuntimeException["__class"] = "java.lang.RuntimeException";
+        RuntimeException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -7923,12 +7875,10 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
                     this.message = msg;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -7936,7 +7886,8 @@ var java;
             return GeneralSecurityException;
         }(Error));
         security.GeneralSecurityException = GeneralSecurityException;
-        GeneralSecurityException["__classname"] = "java.security.GeneralSecurityException";
+        GeneralSecurityException["__class"] = "java.security.GeneralSecurityException";
+        GeneralSecurityException["__interfaces"] = ["java.io.Serializable"];
     })(security = java.security || (java.security = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -7952,7 +7903,6 @@ var java;
             function ParseException(s, errorOffset) {
                 _super.call(this, s);
                 this.message = s;
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 this.errorOffset = 0;
                 this.errorOffset = errorOffset;
             }
@@ -7962,7 +7912,8 @@ var java;
             return ParseException;
         }(Error));
         text.ParseException = ParseException;
-        ParseException["__classname"] = "java.text.ParseException";
+        ParseException["__class"] = "java.text.ParseException";
+        ParseException["__interfaces"] = ["java.io.Serializable"];
     })(text = java.text || (java.text = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -7981,12 +7932,10 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -7994,7 +7943,8 @@ var java;
             return TooManyListenersException;
         }(Error));
         util.TooManyListenersException = TooManyListenersException;
-        TooManyListenersException["__classname"] = "java.util.TooManyListenersException";
+        TooManyListenersException["__class"] = "java.util.TooManyListenersException";
+        TooManyListenersException["__interfaces"] = ["java.io.Serializable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -8017,7 +7967,7 @@ var java;
                 return WeakReference;
             }(java.lang.ref.Reference));
             ref.WeakReference = WeakReference;
-            WeakReference["__classname"] = "java.lang.ref.WeakReference";
+            WeakReference["__class"] = "java.lang.ref.WeakReference";
         })(ref = lang.ref || (lang.ref = {}));
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
@@ -8053,23 +8003,19 @@ var java;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message, cause);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_4 = __args[0];
                     _super.call(this, cause_4);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -8078,7 +8024,8 @@ var java;
             return InternalError;
         }(java.lang.VirtualMachineError));
         lang.InternalError = InternalError;
-        InternalError["__classname"] = "java.lang.InternalError";
+        InternalError["__class"] = "java.lang.InternalError";
+        InternalError["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -8093,7 +8040,6 @@ var javaemul;
             __extends(EmulatedCharset, _super);
             function EmulatedCharset(name) {
                 _super.call(this, name, null);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable"] });
             }
             EmulatedCharset.UTF_8_$LI$ = function () { if (EmulatedCharset.UTF_8 == null)
                 EmulatedCharset.UTF_8 = new EmulatedCharset.UtfCharset("UTF-8"); return EmulatedCharset.UTF_8; };
@@ -8107,14 +8053,14 @@ var javaemul;
             return EmulatedCharset;
         }(java.nio.charset.Charset));
         internal.EmulatedCharset = EmulatedCharset;
-        EmulatedCharset["__classname"] = "javaemul.internal.EmulatedCharset";
+        EmulatedCharset["__class"] = "javaemul.internal.EmulatedCharset";
+        EmulatedCharset["__interfaces"] = ["java.lang.Comparable"];
         var EmulatedCharset;
         (function (EmulatedCharset) {
             var LatinCharset = (function (_super) {
                 __extends(LatinCharset, _super);
                 function LatinCharset(name) {
                     _super.call(this, name);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable"] });
                 }
                 LatinCharset.prototype.getBytes = function (str) {
                     var n = str.length;
@@ -8134,12 +8080,12 @@ var javaemul;
                 return LatinCharset;
             }(javaemul.internal.EmulatedCharset));
             EmulatedCharset.LatinCharset = LatinCharset;
-            LatinCharset["__classname"] = "javaemul.internal.EmulatedCharset.LatinCharset";
+            LatinCharset["__class"] = "javaemul.internal.EmulatedCharset.LatinCharset";
+            LatinCharset["__interfaces"] = ["java.lang.Comparable"];
             var UtfCharset = (function (_super) {
                 __extends(UtfCharset, _super);
                 function UtfCharset(name) {
                     _super.call(this, name);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable"] });
                 }
                 UtfCharset.prototype.decodeString = function (bytes, ofs, len) {
                     var charCount = 0;
@@ -8281,7 +8227,8 @@ var javaemul;
                 return UtfCharset;
             }(javaemul.internal.EmulatedCharset));
             EmulatedCharset.UtfCharset = UtfCharset;
-            UtfCharset["__classname"] = "javaemul.internal.EmulatedCharset.UtfCharset";
+            UtfCharset["__class"] = "javaemul.internal.EmulatedCharset.UtfCharset";
+            UtfCharset["__interfaces"] = ["java.lang.Comparable"];
         })(EmulatedCharset = internal.EmulatedCharset || (internal.EmulatedCharset = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
@@ -8378,7 +8325,7 @@ var java;
             return MessageDigest;
         }(java.security.MessageDigestSpi));
         security.MessageDigest = MessageDigest;
-        MessageDigest["__classname"] = "java.security.MessageDigest";
+        MessageDigest["__class"] = "java.security.MessageDigest";
         var MessageDigest;
         (function (MessageDigest) {
             var Md5Digest = (function (_super) {
@@ -8619,7 +8566,7 @@ var java;
                 return Md5Digest;
             }(java.security.MessageDigest));
             MessageDigest.Md5Digest = Md5Digest;
-            Md5Digest["__classname"] = "java.security.MessageDigest.Md5Digest";
+            Md5Digest["__class"] = "java.security.MessageDigest.Md5Digest";
         })(MessageDigest = security.MessageDigest || (security.MessageDigest = {}));
     })(security = java.security || (java.security = {}));
 })(java || (java = {}));
@@ -8639,7 +8586,6 @@ var java;
             __extends(AbstractList, _super);
             function AbstractList() {
                 _super.call(this);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.List", "java.util.Collection", "java.lang.Iterable"] });
                 this.modCount = 0;
             }
             AbstractList.prototype.forEach = function (action) {
@@ -8670,7 +8616,7 @@ var java;
             };
             AbstractList.prototype.addAll = function (index, c) {
                 var _this = this;
-                if (((typeof index === 'number') || index === null) && ((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkNotNull(c);
@@ -8685,7 +8631,7 @@ var java;
                         return changed;
                     })();
                 }
-                else if (((index != null && index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0) || index === null) && c === undefined) {
+                else if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                     return this.addAll$java_util_Collection(index);
                 }
                 else
@@ -8698,7 +8644,7 @@ var java;
                 if (o === this) {
                     return true;
                 }
-                if (!(o != null && o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.List") >= 0)) {
+                if (!(o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.List") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.List") >= 0))) {
                     return false;
                 }
                 var other = o;
@@ -8787,7 +8733,7 @@ var java;
                 throw new java.lang.UnsupportedOperationException("Set not supported on this list");
             };
             AbstractList.prototype.subList = function (fromIndex, toIndex) {
-                return new AbstractList.SubList(this, fromIndex, toIndex);
+                return (new AbstractList.SubList(this, fromIndex, toIndex));
             };
             AbstractList.prototype.removeRange = function (fromIndex, endIndex) {
                 var iter = this.listIterator(fromIndex);
@@ -8799,12 +8745,12 @@ var java;
             return AbstractList;
         }(java.util.AbstractCollection));
         util.AbstractList = AbstractList;
-        AbstractList["__classname"] = "java.util.AbstractList";
+        AbstractList["__class"] = "java.util.AbstractList";
+        AbstractList["__interfaces"] = ["java.util.List", "java.util.Collection", "java.lang.Iterable"];
         var AbstractList;
         (function (AbstractList) {
             var IteratorImpl = (function () {
                 function IteratorImpl(__parent) {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                     this.__parent = __parent;
                     this.i = 0;
                     this.last = 0;
@@ -8834,7 +8780,8 @@ var java;
                 return IteratorImpl;
             }());
             AbstractList.IteratorImpl = IteratorImpl;
-            IteratorImpl["__classname"] = "java.util.AbstractList.IteratorImpl";
+            IteratorImpl["__class"] = "java.util.AbstractList.IteratorImpl";
+            IteratorImpl["__interfaces"] = ["java.util.Iterator"];
             /**
              * Implementation of <code>ListIterator</code> for abstract lists.
              */
@@ -8845,7 +8792,6 @@ var java;
                     if (((typeof start === 'number') || start === null)) {
                         var __args = Array.prototype.slice.call(arguments);
                         _super.call(this, __parent);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator", "java.util.ListIterator"] });
                         this.__parent = __parent;
                         (function () {
                             javaemul.internal.InternalPreconditions.checkPositionIndex(start, _this.__parent.size());
@@ -8855,7 +8801,6 @@ var java;
                     else if (start === undefined) {
                         var __args = Array.prototype.slice.call(arguments);
                         _super.call(this, __parent);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator", "java.util.ListIterator"] });
                         this.__parent = __parent;
                     }
                     else
@@ -8893,12 +8838,12 @@ var java;
                 return ListIteratorImpl;
             }(AbstractList.IteratorImpl));
             AbstractList.ListIteratorImpl = ListIteratorImpl;
-            ListIteratorImpl["__classname"] = "java.util.AbstractList.ListIteratorImpl";
+            ListIteratorImpl["__class"] = "java.util.AbstractList.ListIteratorImpl";
+            ListIteratorImpl["__interfaces"] = ["java.util.Iterator", "java.util.ListIterator"];
             var SubList = (function (_super) {
                 __extends(SubList, _super);
                 function SubList(wrapped, fromIndex, toIndex) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.List", "java.util.Collection", "java.lang.Iterable"] });
                     this.fromIndex = 0;
                     this.__size = 0;
                     javaemul.internal.InternalPreconditions.checkCriticalPositionIndexes(fromIndex, toIndex, wrapped.size());
@@ -8953,7 +8898,8 @@ var java;
                 return SubList;
             }(java.util.AbstractList));
             AbstractList.SubList = SubList;
-            SubList["__classname"] = "java.util.AbstractList.SubList";
+            SubList["__class"] = "java.util.AbstractList.SubList";
+            SubList["__interfaces"] = ["java.util.List", "java.util.Collection", "java.lang.Iterable"];
         })(AbstractList = util.AbstractList || (util.AbstractList = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -8973,7 +8919,6 @@ var java;
             __extends(AbstractQueue, _super);
             function AbstractQueue() {
                 _super.call(this);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
             }
             AbstractQueue.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
@@ -8996,7 +8941,7 @@ var java;
                 return true;
             };
             AbstractQueue.prototype.addAll = function (index, c) {
-                if (((index != null && index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0) || index === null) && c === undefined) {
+                if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                     return this.addAll$java_util_Collection(index);
                 }
                 else
@@ -9035,7 +8980,8 @@ var java;
             return AbstractQueue;
         }(java.util.AbstractCollection));
         util.AbstractQueue = AbstractQueue;
-        AbstractQueue["__classname"] = "java.util.AbstractQueue";
+        AbstractQueue["__class"] = "java.util.AbstractQueue";
+        AbstractQueue["__interfaces"] = ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -9054,7 +9000,6 @@ var java;
             __extends(AbstractSet, _super);
             function AbstractSet() {
                 _super.call(this);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Set", "java.lang.Iterable"] });
             }
             AbstractSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(action);
@@ -9069,7 +9014,7 @@ var java;
                 if (o === this) {
                     return true;
                 }
-                if (!(o != null && o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Set") >= 0)) {
+                if (!(o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Set") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Set") >= 0))) {
                     return false;
                 }
                 var other = o;
@@ -9105,7 +9050,8 @@ var java;
             return AbstractSet;
         }(java.util.AbstractCollection));
         util.AbstractSet = AbstractSet;
-        AbstractSet["__classname"] = "java.util.AbstractSet";
+        AbstractSet["__class"] = "java.util.AbstractSet";
+        AbstractSet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -9119,7 +9065,6 @@ var java;
         var InternalStringMap = (function () {
             function InternalStringMap(host) {
                 this.backingMap = java.util.InternalJsMapFactory.newJsMap();
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Iterable"] });
                 this.size = 0;
                 this.valueMod = 0;
                 this.host = host;
@@ -9178,12 +9123,12 @@ var java;
             return InternalStringMap;
         }());
         util.InternalStringMap = InternalStringMap;
-        InternalStringMap["__classname"] = "java.util.InternalStringMap";
+        InternalStringMap["__class"] = "java.util.InternalStringMap";
+        InternalStringMap["__interfaces"] = ["java.lang.Iterable"];
         var InternalStringMap;
         (function (InternalStringMap) {
             var InternalStringMap$0 = (function () {
                 function InternalStringMap$0(__parent) {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                     this.__parent = __parent;
                     this.entries = this.__parent.backingMap.entries();
                     this.current = this.entries.next();
@@ -9215,7 +9160,6 @@ var java;
                     _super.call(this);
                     this.entry = entry;
                     this.lastValueMod = lastValueMod;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
                     this.__parent = __parent;
                 }
                 InternalStringMap$1.prototype.getKey = function () {
@@ -9392,12 +9336,11 @@ var javaemul;
             return StringHelper;
         }());
         internal.StringHelper = StringHelper;
-        StringHelper["__classname"] = "javaemul.internal.StringHelper";
+        StringHelper["__class"] = "javaemul.internal.StringHelper";
         var StringHelper;
         (function (StringHelper) {
             var StringHelper$0 = (function () {
                 function StringHelper$0() {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Comparator"] });
                 }
                 StringHelper$0.prototype.compare = function (a, b) {
                     return a.toUpperCase().localeCompare(b.toUpperCase());
@@ -9423,13 +9366,11 @@ var java;
                 if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof day === 'number') || day === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, year, month, day);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                 }
                 else if (((typeof year === 'number') || year === null) && month === undefined && day === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var date = __args[0];
                     _super.call(this, date);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -9471,7 +9412,8 @@ var java;
             return Date;
         }(java.util.Date));
         sql.Date = Date;
-        Date["__classname"] = "java.sql.Date";
+        Date["__class"] = "java.sql.Date";
+        Date["__interfaces"] = ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"];
     })(sql = java.sql || (java.sql = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -9489,13 +9431,11 @@ var java;
                 if (((typeof hour === 'number') || hour === null) && ((typeof minute === 'number') || minute === null) && ((typeof second === 'number') || second === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, 70, 0, 1, hour, minute, second);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                 }
                 else if (((typeof hour === 'number') || hour === null) && minute === undefined && second === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var time = __args[0];
                     _super.call(this, time);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -9540,7 +9480,8 @@ var java;
             return Time;
         }(java.util.Date));
         sql.Time = Time;
-        Time["__classname"] = "java.sql.Time";
+        Time["__class"] = "java.sql.Time";
+        Time["__interfaces"] = ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"];
     })(sql = java.sql || (java.sql = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -9560,7 +9501,6 @@ var java;
                 if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof date === 'number') || date === null) && ((typeof hour === 'number') || hour === null) && ((typeof minute === 'number') || minute === null) && ((typeof second === 'number') || second === null) && ((typeof nano === 'number') || nano === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, year, month, date, hour, minute, second);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     this.nanos = 0;
                     (function () {
                         _this.setNanos(nano);
@@ -9570,7 +9510,6 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     var time_1 = __args[0];
                     _super.call(this, time_1);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"] });
                     this.nanos = 0;
                     (function () {
                         _this.nanos = ((((time_1 % 1000) | 0)) * 1000000);
@@ -9711,7 +9650,8 @@ var java;
             return Timestamp;
         }(java.util.Date));
         sql.Timestamp = Timestamp;
-        Timestamp["__classname"] = "java.sql.Timestamp";
+        Timestamp["__class"] = "java.sql.Timestamp";
+        Timestamp["__interfaces"] = ["java.lang.Cloneable", "java.lang.Comparable", "java.io.Serializable"];
     })(sql = java.sql || (java.sql = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -9761,7 +9701,7 @@ var java;
                 return SimpleConsoleLogHandler;
             }(java.util.logging.Handler));
             logging.SimpleConsoleLogHandler = SimpleConsoleLogHandler;
-            SimpleConsoleLogHandler["__classname"] = "java.util.logging.SimpleConsoleLogHandler";
+            SimpleConsoleLogHandler["__class"] = "java.util.logging.SimpleConsoleLogHandler";
         })(logging = util.logging || (util.logging = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -9780,7 +9720,6 @@ var javaemul;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
                         _this.value = ByteHelper.parseByte(s);
@@ -9790,7 +9729,6 @@ var javaemul;
                     var __args = Array.prototype.slice.call(arguments);
                     var value_1 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
                         _this.value = value_1;
@@ -9898,7 +9836,8 @@ var javaemul;
             return ByteHelper;
         }(javaemul.internal.NumberHelper));
         internal.ByteHelper = ByteHelper;
-        ByteHelper["__classname"] = "javaemul.internal.ByteHelper";
+        ByteHelper["__class"] = "javaemul.internal.ByteHelper";
+        ByteHelper["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
         var ByteHelper;
         (function (ByteHelper) {
             /**
@@ -9913,7 +9852,7 @@ var javaemul;
                 return BoxedValues;
             }());
             ByteHelper.BoxedValues = BoxedValues;
-            BoxedValues["__classname"] = "javaemul.internal.ByteHelper.BoxedValues";
+            BoxedValues["__class"] = "javaemul.internal.ByteHelper.BoxedValues";
         })(ByteHelper = internal.ByteHelper || (internal.ByteHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
@@ -9931,13 +9870,11 @@ var javaemul;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var value = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -10211,7 +10148,8 @@ var javaemul;
             return DoubleHelper;
         }(javaemul.internal.NumberHelper));
         internal.DoubleHelper = DoubleHelper;
-        DoubleHelper["__classname"] = "javaemul.internal.DoubleHelper";
+        DoubleHelper["__class"] = "javaemul.internal.DoubleHelper";
+        DoubleHelper["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
         var DoubleHelper;
         (function (DoubleHelper) {
             var PowersTable = (function () {
@@ -10226,7 +10164,7 @@ var javaemul;
                 return PowersTable;
             }());
             DoubleHelper.PowersTable = PowersTable;
-            PowersTable["__classname"] = "javaemul.internal.DoubleHelper.PowersTable";
+            PowersTable["__class"] = "javaemul.internal.DoubleHelper.PowersTable";
         })(DoubleHelper = internal.DoubleHelper || (internal.DoubleHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
@@ -10245,7 +10183,6 @@ var javaemul;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
                         _this.value = FloatHelper.parseFloat(s);
@@ -10255,7 +10192,6 @@ var javaemul;
                     var __args = Array.prototype.slice.call(arguments);
                     var value_2 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
                         _this.value = value_2;
@@ -10265,7 +10201,6 @@ var javaemul;
                     var __args = Array.prototype.slice.call(arguments);
                     var value_3 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
                         _this.value = value_3;
@@ -10460,7 +10395,8 @@ var javaemul;
             return FloatHelper;
         }(javaemul.internal.NumberHelper));
         internal.FloatHelper = FloatHelper;
-        FloatHelper["__classname"] = "javaemul.internal.FloatHelper";
+        FloatHelper["__class"] = "javaemul.internal.FloatHelper";
+        FloatHelper["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -10478,7 +10414,6 @@ var javaemul;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
                         _this.value = IntegerHelper.parseInt(s);
@@ -10488,7 +10423,6 @@ var javaemul;
                     var __args = Array.prototype.slice.call(arguments);
                     var value_4 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
                         _this.value = value_4;
@@ -10743,7 +10677,8 @@ var javaemul;
             return IntegerHelper;
         }(javaemul.internal.NumberHelper));
         internal.IntegerHelper = IntegerHelper;
-        IntegerHelper["__classname"] = "javaemul.internal.IntegerHelper";
+        IntegerHelper["__class"] = "javaemul.internal.IntegerHelper";
+        IntegerHelper["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
         var IntegerHelper;
         (function (IntegerHelper) {
             /**
@@ -10758,7 +10693,7 @@ var javaemul;
                 return BoxedValues;
             }());
             IntegerHelper.BoxedValues = BoxedValues;
-            BoxedValues["__classname"] = "javaemul.internal.IntegerHelper.BoxedValues";
+            BoxedValues["__class"] = "javaemul.internal.IntegerHelper.BoxedValues";
             /**
              * Use nested class to avoid clinit on outer.
              */
@@ -10771,7 +10706,7 @@ var javaemul;
                 return ReverseNibbles;
             }());
             IntegerHelper.ReverseNibbles = ReverseNibbles;
-            ReverseNibbles["__classname"] = "javaemul.internal.IntegerHelper.ReverseNibbles";
+            ReverseNibbles["__class"] = "javaemul.internal.IntegerHelper.ReverseNibbles";
         })(IntegerHelper = internal.IntegerHelper || (internal.IntegerHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
@@ -10790,7 +10725,6 @@ var javaemul;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
                         _this.value = LongHelper.parseLong(s);
@@ -10800,7 +10734,6 @@ var javaemul;
                     var __args = Array.prototype.slice.call(arguments);
                     var value_5 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
                         _this.value = value_5;
@@ -11048,7 +10981,8 @@ var javaemul;
             return LongHelper;
         }(javaemul.internal.NumberHelper));
         internal.LongHelper = LongHelper;
-        LongHelper["__classname"] = "javaemul.internal.LongHelper";
+        LongHelper["__class"] = "javaemul.internal.LongHelper";
+        LongHelper["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
         var LongHelper;
         (function (LongHelper) {
             /**
@@ -11063,7 +10997,7 @@ var javaemul;
                 return BoxedValues;
             }());
             LongHelper.BoxedValues = BoxedValues;
-            BoxedValues["__classname"] = "javaemul.internal.LongHelper.BoxedValues";
+            BoxedValues["__class"] = "javaemul.internal.LongHelper.BoxedValues";
         })(LongHelper = internal.LongHelper || (internal.LongHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
@@ -11082,7 +11016,6 @@ var javaemul;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
                         _this.value = ShortHelper.parseShort(s);
@@ -11092,7 +11025,6 @@ var javaemul;
                     var __args = Array.prototype.slice.call(arguments);
                     var value_6 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Comparable", "java.io.Serializable"] });
                     this.value = 0;
                     (function () {
                         _this.value = value_6;
@@ -11204,7 +11136,8 @@ var javaemul;
             return ShortHelper;
         }(javaemul.internal.NumberHelper));
         internal.ShortHelper = ShortHelper;
-        ShortHelper["__classname"] = "javaemul.internal.ShortHelper";
+        ShortHelper["__class"] = "javaemul.internal.ShortHelper";
+        ShortHelper["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
         var ShortHelper;
         (function (ShortHelper) {
             /**
@@ -11219,7 +11152,7 @@ var javaemul;
                 return BoxedValues;
             }());
             ShortHelper.BoxedValues = BoxedValues;
-            BoxedValues["__classname"] = "javaemul.internal.ShortHelper.BoxedValues";
+            BoxedValues["__class"] = "javaemul.internal.ShortHelper.BoxedValues";
         })(ShortHelper = internal.ShortHelper || (internal.ShortHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
@@ -11235,7 +11168,6 @@ var java;
             __extends(PrintStream, _super);
             function PrintStream(out) {
                 _super.call(this, out);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"] });
             }
             PrintStream.prototype.print$boolean = function (x) {
             };
@@ -11343,7 +11275,8 @@ var java;
             return PrintStream;
         }(java.io.FilterOutputStream));
         io.PrintStream = PrintStream;
-        PrintStream["__classname"] = "java.io.PrintStream";
+        PrintStream["__class"] = "java.io.PrintStream";
+        PrintStream["__interfaces"] = ["java.io.Closeable", "java.lang.AutoCloseable", "java.io.Flushable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11362,12 +11295,10 @@ var java;
                 if (((typeof msg === 'string') || msg === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11375,7 +11306,8 @@ var java;
             return UnsupportedEncodingException;
         }(java.io.IOException));
         io.UnsupportedEncodingException = UnsupportedEncodingException;
-        UnsupportedEncodingException["__classname"] = "java.io.UnsupportedEncodingException";
+        UnsupportedEncodingException["__class"] = "java.io.UnsupportedEncodingException";
+        UnsupportedEncodingException["__interfaces"] = ["java.io.Serializable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11395,14 +11327,12 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((message != null && message instanceof java.io.IOException) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_5 = __args[0];
                     _super.call(this, javaemul.internal.InternalPreconditions.checkNotNull(cause_5));
                     this.message = javaemul.internal.InternalPreconditions.checkNotNull(cause_5);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11413,7 +11343,8 @@ var java;
             return UncheckedIOException;
         }(Error));
         io.UncheckedIOException = UncheckedIOException;
-        UncheckedIOException["__classname"] = "java.io.UncheckedIOException";
+        UncheckedIOException["__class"] = "java.io.UncheckedIOException";
+        UncheckedIOException["__interfaces"] = ["java.io.Serializable"];
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11433,12 +11364,12 @@ var java;
                 __extends(AnnotationTypeMismatchException, _super);
                 function AnnotationTypeMismatchException() {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 return AnnotationTypeMismatchException;
             }(Error));
             annotation.AnnotationTypeMismatchException = AnnotationTypeMismatchException;
-            AnnotationTypeMismatchException["__classname"] = "java.lang.annotation.AnnotationTypeMismatchException";
+            AnnotationTypeMismatchException["__class"] = "java.lang.annotation.AnnotationTypeMismatchException";
+            AnnotationTypeMismatchException["__interfaces"] = ["java.io.Serializable"];
         })(annotation = lang.annotation || (lang.annotation = {}));
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
@@ -11460,7 +11391,6 @@ var java;
                 function IncompleteAnnotationException(annotationType, elementName) {
                     _super.call(this, "Incomplete annotation: trying to access " + elementName + " on " + annotationType);
                     this.message = "Incomplete annotation: trying to access " + elementName + " on " + annotationType;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     this.__annotationType = annotationType;
                     this.__elementName = elementName;
                 }
@@ -11473,7 +11403,8 @@ var java;
                 return IncompleteAnnotationException;
             }(Error));
             annotation.IncompleteAnnotationException = IncompleteAnnotationException;
-            IncompleteAnnotationException["__classname"] = "java.lang.annotation.IncompleteAnnotationException";
+            IncompleteAnnotationException["__class"] = "java.lang.annotation.IncompleteAnnotationException";
+            IncompleteAnnotationException["__interfaces"] = ["java.io.Serializable"];
         })(annotation = lang.annotation || (lang.annotation = {}));
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
@@ -11497,12 +11428,10 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, explanation);
                     this.message = explanation;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (explanation === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11510,7 +11439,8 @@ var java;
             return ArithmeticException;
         }(Error));
         lang.ArithmeticException = ArithmeticException;
-        ArithmeticException["__classname"] = "java.lang.ArithmeticException";
+        ArithmeticException["__class"] = "java.lang.ArithmeticException";
+        ArithmeticException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11530,12 +11460,10 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11543,7 +11471,8 @@ var java;
             return ArrayStoreException;
         }(Error));
         lang.ArrayStoreException = ArrayStoreException;
-        ArrayStoreException["__classname"] = "java.lang.ArrayStoreException";
+        ArrayStoreException["__class"] = "java.lang.ArrayStoreException";
+        ArrayStoreException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11561,12 +11490,10 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11574,7 +11501,8 @@ var java;
             return ClassCastException;
         }(Error));
         lang.ClassCastException = ClassCastException;
-        ClassCastException["__classname"] = "java.lang.ClassCastException";
+        ClassCastException["__class"] = "java.lang.ClassCastException";
+        ClassCastException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11594,25 +11522,21 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_6 = __args[0];
                     _super.call(this, cause_6);
                     this.message = cause_6;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11620,7 +11544,8 @@ var java;
             return IllegalArgumentException;
         }(Error));
         lang.IllegalArgumentException = IllegalArgumentException;
-        IllegalArgumentException["__classname"] = "java.lang.IllegalArgumentException";
+        IllegalArgumentException["__class"] = "java.lang.IllegalArgumentException";
+        IllegalArgumentException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11639,26 +11564,22 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var s = __args[0];
                     _super.call(this, s);
                     this.message = s;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_7 = __args[0];
                     _super.call(this, cause_7);
                     this.message = cause_7;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11666,7 +11587,8 @@ var java;
             return IllegalStateException;
         }(Error));
         lang.IllegalStateException = IllegalStateException;
-        IllegalStateException["__classname"] = "java.lang.IllegalStateException";
+        IllegalStateException["__class"] = "java.lang.IllegalStateException";
+        IllegalStateException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11686,12 +11608,10 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11699,7 +11619,8 @@ var java;
             return IndexOutOfBoundsException;
         }(Error));
         lang.IndexOutOfBoundsException = IndexOutOfBoundsException;
-        IndexOutOfBoundsException["__classname"] = "java.lang.IndexOutOfBoundsException";
+        IndexOutOfBoundsException["__class"] = "java.lang.IndexOutOfBoundsException";
+        IndexOutOfBoundsException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11719,12 +11640,10 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11732,7 +11651,8 @@ var java;
             return NegativeArraySizeException;
         }(Error));
         lang.NegativeArraySizeException = NegativeArraySizeException;
-        NegativeArraySizeException["__classname"] = "java.lang.NegativeArraySizeException";
+        NegativeArraySizeException["__class"] = "java.lang.NegativeArraySizeException";
+        NegativeArraySizeException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11752,12 +11672,10 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11768,7 +11686,8 @@ var java;
             return NullPointerException;
         }(Error));
         lang.NullPointerException = NullPointerException;
-        NullPointerException["__classname"] = "java.lang.NullPointerException";
+        NullPointerException["__class"] = "java.lang.NullPointerException";
+        NullPointerException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11788,25 +11707,21 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_8 = __args[0];
                     _super.call(this, cause_8);
                     this.message = cause_8;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11814,7 +11729,8 @@ var java;
             return UnsupportedOperationException;
         }(Error));
         lang.UnsupportedOperationException = UnsupportedOperationException;
-        UnsupportedOperationException["__classname"] = "java.lang.UnsupportedOperationException";
+        UnsupportedOperationException["__class"] = "java.lang.UnsupportedOperationException";
+        UnsupportedOperationException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11834,12 +11750,10 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
                     this.message = message;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11847,7 +11761,8 @@ var java;
             return ConcurrentModificationException;
         }(Error));
         util.ConcurrentModificationException = ConcurrentModificationException;
-        ConcurrentModificationException["__classname"] = "java.util.ConcurrentModificationException";
+        ConcurrentModificationException["__class"] = "java.util.ConcurrentModificationException";
+        ConcurrentModificationException["__interfaces"] = ["java.io.Serializable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11864,12 +11779,12 @@ var java;
             __extends(EmptyStackException, _super);
             function EmptyStackException() {
                 _super.call(this);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
             }
             return EmptyStackException;
         }(Error));
         util.EmptyStackException = EmptyStackException;
-        EmptyStackException["__classname"] = "java.util.EmptyStackException";
+        EmptyStackException["__class"] = "java.util.EmptyStackException";
+        EmptyStackException["__interfaces"] = ["java.io.Serializable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11887,7 +11802,6 @@ var java;
             function MissingResourceException(s, className, key) {
                 _super.call(this, s);
                 this.message = s;
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 this.key = key;
                 this.className = className;
             }
@@ -11900,7 +11814,8 @@ var java;
             return MissingResourceException;
         }(Error));
         util.MissingResourceException = MissingResourceException;
-        MissingResourceException["__classname"] = "java.util.MissingResourceException";
+        MissingResourceException["__class"] = "java.util.MissingResourceException";
+        MissingResourceException["__interfaces"] = ["java.io.Serializable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11920,12 +11835,10 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, s);
                     this.message = s;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (s === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11933,7 +11846,8 @@ var java;
             return NoSuchElementException;
         }(Error));
         util.NoSuchElementException = NoSuchElementException;
-        NoSuchElementException["__classname"] = "java.util.NoSuchElementException";
+        NoSuchElementException["__class"] = "java.util.NoSuchElementException";
+        NoSuchElementException["__interfaces"] = ["java.io.Serializable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11952,12 +11866,10 @@ var java;
                 if (((typeof msg === 'string') || msg === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11965,7 +11877,8 @@ var java;
             return DigestException;
         }(java.security.GeneralSecurityException));
         security.DigestException = DigestException;
-        DigestException["__classname"] = "java.security.DigestException";
+        DigestException["__class"] = "java.security.DigestException";
+        DigestException["__interfaces"] = ["java.io.Serializable"];
     })(security = java.security || (java.security = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -11984,12 +11897,10 @@ var java;
                 if (((typeof msg === 'string') || msg === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -11997,7 +11908,8 @@ var java;
             return NoSuchAlgorithmException;
         }(java.security.GeneralSecurityException));
         security.NoSuchAlgorithmException = NoSuchAlgorithmException;
-        NoSuchAlgorithmException["__classname"] = "java.security.NoSuchAlgorithmException";
+        NoSuchAlgorithmException["__class"] = "java.security.NoSuchAlgorithmException";
+        NoSuchAlgorithmException["__interfaces"] = ["java.io.Serializable"];
     })(security = java.security || (java.security = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -12022,7 +11934,7 @@ var java;
                 return StandardCharsets;
             }());
             charset.StandardCharsets = StandardCharsets;
-            StandardCharsets["__classname"] = "java.nio.charset.StandardCharsets";
+            StandardCharsets["__class"] = "java.nio.charset.StandardCharsets";
         })(charset = nio.charset || (nio.charset = {}));
     })(nio = java.nio || (java.nio = {}));
 })(java || (java = {}));
@@ -12042,7 +11954,6 @@ var java;
             __extends(AbstractSequentialList, _super);
             function AbstractSequentialList() {
                 _super.call(this);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.List", "java.util.Collection", "java.lang.Iterable"] });
             }
             AbstractSequentialList.prototype.add = function (index, element) {
                 var _this = this;
@@ -12061,7 +11972,7 @@ var java;
             };
             AbstractSequentialList.prototype.addAll = function (index, c) {
                 var _this = this;
-                if (((typeof index === 'number') || index === null) && ((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkNotNull(c);
@@ -12077,7 +11988,7 @@ var java;
                         return modified;
                     })();
                 }
-                else if (((index != null && index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0) || index === null) && c === undefined) {
+                else if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                     return this.addAll$java_util_Collection(index);
                 }
                 else
@@ -12145,7 +12056,8 @@ var java;
             return AbstractSequentialList;
         }(java.util.AbstractList));
         util.AbstractSequentialList = AbstractSequentialList;
-        AbstractSequentialList["__classname"] = "java.util.AbstractSequentialList";
+        AbstractSequentialList["__class"] = "java.util.AbstractSequentialList";
+        AbstractSequentialList["__interfaces"] = ["java.util.List", "java.util.Collection", "java.lang.Iterable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -12175,10 +12087,9 @@ var java;
             __extends(ArrayList, _super);
             function ArrayList(c) {
                 var _this = this;
-                if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
                         _this.array = new Array(0);
                         javaemul.internal.ArrayHelper.insertTo(_this.array, 0, c.toArray());
@@ -12188,7 +12099,6 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     var initialCapacity_1 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
                         javaemul.internal.InternalPreconditions.checkArgument(initialCapacity_1 >= 0, "Initial capacity must not be negative");
                         _this.array = new Array(0);
@@ -12197,7 +12107,6 @@ var java;
                 else if (c === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
                         _this.array = new Array(0);
                     })();
@@ -12244,7 +12153,7 @@ var java;
             };
             ArrayList.prototype.addAll = function (index, c) {
                 var _this = this;
-                if (((typeof index === 'number') || index === null) && ((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkPositionIndex(index, _this.array.length);
@@ -12257,7 +12166,7 @@ var java;
                         return true;
                     })();
                 }
-                else if (((index != null && index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0) || index === null) && c === undefined) {
+                else if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                     return this.addAll$java_util_Collection(index);
                 }
                 else
@@ -12267,7 +12176,7 @@ var java;
                 this.array = new Array(0);
             };
             ArrayList.prototype.clone = function () {
-                return new ArrayList(this);
+                return (new ArrayList(this));
             };
             ArrayList.prototype.contains = function (o) {
                 return (this.indexOf(o) !== -1);
@@ -12406,12 +12315,12 @@ var java;
             return ArrayList;
         }(java.util.AbstractList));
         util.ArrayList = ArrayList;
-        ArrayList["__classname"] = "java.util.ArrayList";
+        ArrayList["__class"] = "java.util.ArrayList";
+        ArrayList["__interfaces"] = ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"];
         var ArrayList;
         (function (ArrayList) {
             var ArrayList$0 = (function () {
                 function ArrayList$0(__parent) {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                     this.__parent = __parent;
                     this.i = 0;
                     this.last = -1;
@@ -12460,7 +12369,7 @@ var java;
                 for (var _i = 0; _i < arguments.length; _i++) {
                     array[_i - 0] = arguments[_i];
                 }
-                return new Arrays.ArrayList(array);
+                return (new Arrays.ArrayList(array));
             };
             /**
              * Perform a binary search on a sorted byte array.
@@ -12708,7 +12617,7 @@ var java;
              * <code>comparator</code>.
              */
             Arrays.binarySearch = function (sortedArray, key, comparator) {
-                if (((sortedArray != null && sortedArray instanceof Array) || sortedArray === null) && ((key != null) || key === null) && ((comparator != null && comparator["__interfaces"] != null && comparator["__interfaces"].indexOf("java.util.Comparator") >= 0) || comparator === null)) {
+                if (((sortedArray != null && sortedArray instanceof Array) || sortedArray === null) && ((key != null) || key === null) && ((comparator != null && (comparator["__interfaces"] != null && comparator["__interfaces"].indexOf("java.util.Comparator") >= 0 || comparator.constructor != null && comparator.constructor["__interfaces"] != null && comparator.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || comparator === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (comparator == null) {
@@ -12979,7 +12888,7 @@ var java;
                 return hashCode;
             };
             Arrays.deepToString$java_lang_Object_A = function (a) {
-                return Arrays.deepToString(a, new java.util.HashSet());
+                return Arrays.deepToString(a, (new java.util.HashSet()));
             };
             Arrays.equals = function (array1, array2) {
                 if (((array1 != null && array1 instanceof Array) || array1 === null) && ((array2 != null && array2 instanceof Array) || array2 === null)) {
@@ -13513,7 +13422,7 @@ var java;
                 Arrays.mergeSort(x, 0, x.length, c);
             };
             Arrays.sort = function (x, fromIndex, toIndex, c) {
-                if (((x != null && x instanceof Array) || x === null) && ((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null) && ((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Comparator") >= 0) || c === null)) {
+                if (((x != null && x instanceof Array) || x === null) && ((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Comparator") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         javaemul.internal.InternalPreconditions.checkPositionIndexes(fromIndex, toIndex, x.length);
@@ -13544,7 +13453,7 @@ var java;
                 else if (((x != null && x instanceof Array) || x === null) && ((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null) && c === undefined) {
                     return java.util.Arrays.sort$short_A$int$int(x, fromIndex, toIndex);
                 }
-                else if (((x != null && x instanceof Array) || x === null) && ((fromIndex != null && fromIndex["__interfaces"] != null && fromIndex["__interfaces"].indexOf("java.util.Comparator") >= 0) || fromIndex === null) && toIndex === undefined && c === undefined) {
+                else if (((x != null && x instanceof Array) || x === null) && ((fromIndex != null && (fromIndex["__interfaces"] != null && fromIndex["__interfaces"].indexOf("java.util.Comparator") >= 0 || fromIndex.constructor != null && fromIndex.constructor["__interfaces"] != null && fromIndex.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || fromIndex === null) && toIndex === undefined && c === undefined) {
                     return java.util.Arrays.sort$java_lang_Object_A$java_util_Comparator(x, fromIndex);
                 }
                 else if (((x != null && x instanceof Array) || x === null) && fromIndex === undefined && toIndex === undefined && c === undefined) {
@@ -13719,7 +13628,7 @@ var java;
              * Recursive helper function for {@link Arrays#deepToString(Object[])}.
              */
             Arrays.deepToString = function (a, arraysIveSeen) {
-                if (((a != null && a instanceof Array) || a === null) && ((arraysIveSeen != null && arraysIveSeen["__interfaces"] != null && arraysIveSeen["__interfaces"].indexOf("java.util.Set") >= 0) || arraysIveSeen === null)) {
+                if (((a != null && a instanceof Array) || a === null) && ((arraysIveSeen != null && (arraysIveSeen["__interfaces"] != null && arraysIveSeen["__interfaces"].indexOf("java.util.Set") >= 0 || arraysIveSeen.constructor != null && arraysIveSeen.constructor["__interfaces"] != null && arraysIveSeen.constructor["__interfaces"].indexOf("java.util.Set") >= 0)) || arraysIveSeen === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (a == null) {
@@ -13739,7 +13648,7 @@ var java;
                                         }
                                         else {
                                             var objArray = obj;
-                                            var tempSet = new java.util.HashSet(arraysIveSeen);
+                                            var tempSet = (new java.util.HashSet(arraysIveSeen));
                                             joiner.add(Arrays.deepToString(objArray, tempSet));
                                         }
                                     }
@@ -13860,7 +13769,7 @@ var java;
              * @param comp comparison function
              */
             Arrays.mergeSort = function (temp, array, low, high, ofs, comp) {
-                if (((temp != null && temp instanceof Array) || temp === null) && ((array != null && array instanceof Array) || array === null) && ((typeof low === 'number') || low === null) && ((typeof high === 'number') || high === null) && ((typeof ofs === 'number') || ofs === null) && ((comp != null && comp["__interfaces"] != null && comp["__interfaces"].indexOf("java.util.Comparator") >= 0) || comp === null)) {
+                if (((temp != null && temp instanceof Array) || temp === null) && ((array != null && array instanceof Array) || array === null) && ((typeof low === 'number') || low === null) && ((typeof high === 'number') || high === null) && ((typeof ofs === 'number') || ofs === null) && ((comp != null && (comp["__interfaces"] != null && comp["__interfaces"].indexOf("java.util.Comparator") >= 0 || comp.constructor != null && comp.constructor["__interfaces"] != null && comp.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || comp === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var length = high - low;
@@ -13883,7 +13792,7 @@ var java;
                         Arrays.merge(temp, tempLow, tempMid, tempHigh, array, low, high, comp);
                     })();
                 }
-                else if (((temp != null && temp instanceof Array) || temp === null) && ((typeof array === 'number') || array === null) && ((typeof low === 'number') || low === null) && ((high != null && high["__interfaces"] != null && high["__interfaces"].indexOf("java.util.Comparator") >= 0) || high === null) && ofs === undefined && comp === undefined) {
+                else if (((temp != null && temp instanceof Array) || temp === null) && ((typeof array === 'number') || array === null) && ((typeof low === 'number') || low === null) && ((high != null && (high["__interfaces"] != null && high["__interfaces"].indexOf("java.util.Comparator") >= 0 || high.constructor != null && high.constructor["__interfaces"] != null && high.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || high === null) && ofs === undefined && comp === undefined) {
                     return java.util.Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(temp, array, low, high);
                 }
                 else
@@ -13942,14 +13851,13 @@ var java;
             return Arrays;
         }());
         util.Arrays = Arrays;
-        Arrays["__classname"] = "java.util.Arrays";
+        Arrays["__class"] = "java.util.Arrays";
         var Arrays;
         (function (Arrays) {
             var ArrayList = (function (_super) {
                 __extends(ArrayList, _super);
                 function ArrayList(array) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     this.array = array;
                 }
                 ArrayList.prototype.contains = function (o) {
@@ -13997,7 +13905,8 @@ var java;
                 return ArrayList;
             }(java.util.AbstractList));
             Arrays.ArrayList = ArrayList;
-            ArrayList["__classname"] = "java.util.Arrays.ArrayList";
+            ArrayList["__class"] = "java.util.Arrays.ArrayList";
+            ArrayList["__interfaces"] = ["java.util.RandomAccess", "java.util.List", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"];
         })(Arrays = util.Arrays || (util.Arrays = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -14026,36 +13935,32 @@ var java;
                     {
                         var __args_11 = Array.prototype.slice.call(arguments);
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                         (function () {
-                            _this.arrayList = new java.util.ArrayList(initialCapacity);
+                            _this.arrayList = (new java.util.ArrayList(initialCapacity));
                         })();
                     }
                 }
-                else if (((initialCapacity != null && initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0) || initialCapacity === null) && ignoredCapacityIncrement === undefined) {
+                else if (((initialCapacity != null && (initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0 || initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || initialCapacity === null) && ignoredCapacityIncrement === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var c_1 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
-                        _this.arrayList = new java.util.ArrayList();
+                        _this.arrayList = (new java.util.ArrayList());
                         _this.addAll(c_1);
                     })();
                 }
                 else if (((typeof initialCapacity === 'number') || initialCapacity === null) && ignoredCapacityIncrement === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
-                        _this.arrayList = new java.util.ArrayList(initialCapacity);
+                        _this.arrayList = (new java.util.ArrayList(initialCapacity));
                     })();
                 }
                 else if (initialCapacity === undefined && ignoredCapacityIncrement === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
-                        _this.arrayList = new java.util.ArrayList();
+                        _this.arrayList = (new java.util.ArrayList());
                     })();
                 }
                 else
@@ -14093,13 +13998,13 @@ var java;
             };
             Vector.prototype.addAll = function (index, c) {
                 var _this = this;
-                if (((typeof index === 'number') || index === null) && ((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return _this.arrayList.addAll(index, c);
                     })();
                 }
-                else if (((index != null && index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0) || index === null) && c === undefined) {
+                else if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                     return this.addAll$java_util_Collection(index);
                 }
                 else
@@ -14115,7 +14020,7 @@ var java;
                 this.arrayList.clear();
             };
             Vector.prototype.clone = function () {
-                return new Vector(this);
+                return (new Vector(this));
             };
             Vector.prototype.contains = function (elem) {
                 return this.arrayList.contains(elem);
@@ -14280,7 +14185,8 @@ var java;
             return Vector;
         }(java.util.AbstractList));
         util.Vector = Vector;
-        Vector["__classname"] = "java.util.Vector";
+        Vector["__class"] = "java.util.Vector";
+        Vector["__interfaces"] = ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -14299,12 +14205,11 @@ var java;
             __extends(PriorityQueue, _super);
             function PriorityQueue(initialCapacity, cmp) {
                 var _this = this;
-                if (((typeof initialCapacity === 'number') || initialCapacity === null) && ((cmp != null && cmp["__interfaces"] != null && cmp["__interfaces"].indexOf("java.util.Comparator") >= 0) || cmp === null)) {
+                if (((typeof initialCapacity === 'number') || initialCapacity === null) && ((cmp != null && (cmp["__interfaces"] != null && cmp["__interfaces"].indexOf("java.util.Comparator") >= 0 || cmp.constructor != null && cmp.constructor["__interfaces"] != null && cmp.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || cmp === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
                     (function () {
-                        _this.heap = new java.util.ArrayList(initialCapacity);
+                        _this.heap = (new java.util.ArrayList(initialCapacity));
                         if (cmp == null) {
                             cmp = java.util.Comparators.natural();
                         }
@@ -14319,9 +14224,8 @@ var java;
                         var initialCapacity_2 = c_2.size();
                         var cmp_1 = c_2.comparator();
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
                         (function () {
-                            _this.heap = new java.util.ArrayList(initialCapacity_2);
+                            _this.heap = (new java.util.ArrayList(initialCapacity_2));
                             if (cmp_1 == null) {
                                 cmp_1 = java.util.Comparators.natural();
                             }
@@ -14332,7 +14236,7 @@ var java;
                         _this.addAll(c_2);
                     })();
                 }
-                else if (((initialCapacity != null && initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.SortedSet") >= 0) || initialCapacity === null) && cmp === undefined) {
+                else if (((initialCapacity != null && (initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.SortedSet") >= 0 || initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.SortedSet") >= 0)) || initialCapacity === null) && cmp === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var c_3 = __args[0];
                     {
@@ -14340,9 +14244,8 @@ var java;
                         var initialCapacity_3 = c_3.size();
                         var cmp_2 = c_3.comparator();
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
                         (function () {
-                            _this.heap = new java.util.ArrayList(initialCapacity_3);
+                            _this.heap = (new java.util.ArrayList(initialCapacity_3));
                             if (cmp_2 == null) {
                                 cmp_2 = java.util.Comparators.natural();
                             }
@@ -14353,7 +14256,7 @@ var java;
                         _this.addAll(c_3);
                     })();
                 }
-                else if (((initialCapacity != null && initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0) || initialCapacity === null) && cmp === undefined) {
+                else if (((initialCapacity != null && (initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0 || initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || initialCapacity === null) && cmp === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var c_4 = __args[0];
                     {
@@ -14363,9 +14266,8 @@ var java;
                             var __args_15 = Array.prototype.slice.call(arguments);
                             var cmp_3 = null;
                             _super.call(this);
-                            Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
                             (function () {
-                                _this.heap = new java.util.ArrayList(initialCapacity_4);
+                                _this.heap = (new java.util.ArrayList(initialCapacity_4));
                                 if (cmp_3 == null) {
                                     cmp_3 = java.util.Comparators.natural();
                                 }
@@ -14383,9 +14285,8 @@ var java;
                         var __args_16 = Array.prototype.slice.call(arguments);
                         var cmp_4 = null;
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
                         (function () {
-                            _this.heap = new java.util.ArrayList(initialCapacity);
+                            _this.heap = (new java.util.ArrayList(initialCapacity));
                             if (cmp_4 == null) {
                                 cmp_4 = java.util.Comparators.natural();
                             }
@@ -14402,9 +14303,8 @@ var java;
                             var __args_18 = Array.prototype.slice.call(arguments);
                             var cmp_5 = null;
                             _super.call(this);
-                            Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"] });
                             (function () {
-                                _this.heap = new java.util.ArrayList(initialCapacity_5);
+                                _this.heap = (new java.util.ArrayList(initialCapacity_5));
                                 if (cmp_5 == null) {
                                     cmp_5 = java.util.Comparators.natural();
                                 }
@@ -14429,7 +14329,7 @@ var java;
                 return node * 2 + 1 >= size;
             };
             PriorityQueue.prototype.addAll = function (index, c) {
-                if (((index != null && index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0) || index === null) && c === undefined) {
+                if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                     return this.addAll$java_util_Collection(index);
                 }
                 else
@@ -14605,7 +14505,8 @@ var java;
             return PriorityQueue;
         }(java.util.AbstractQueue));
         util.PriorityQueue = PriorityQueue;
-        PriorityQueue["__classname"] = "java.util.PriorityQueue";
+        PriorityQueue["__class"] = "java.util.PriorityQueue";
+        PriorityQueue["__interfaces"] = ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -14625,7 +14526,6 @@ var java;
          */
         var AbstractMap = (function () {
             function AbstractMap() {
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
             }
             AbstractMap.prototype.clear = function () {
                 this.entrySet().clear();
@@ -14661,7 +14561,7 @@ var java;
                 if (obj === this) {
                     return true;
                 }
-                if (!(obj != null && obj["__interfaces"] != null && obj["__interfaces"].indexOf("java.util.Map") >= 0)) {
+                if (!(obj != null && (obj["__interfaces"] != null && obj["__interfaces"].indexOf("java.util.Map") >= 0 || obj.constructor != null && obj.constructor["__interfaces"] != null && obj.constructor["__interfaces"].indexOf("java.util.Map") >= 0))) {
                     return false;
                 }
                 var otherMap = obj;
@@ -14727,7 +14627,7 @@ var java;
             };
             AbstractMap.prototype.toString = function (entry) {
                 var _this = this;
-                if (((entry != null && entry["__interfaces"] != null && entry["__interfaces"].indexOf("java.util.Map.Entry") >= 0) || entry === null)) {
+                if (((entry != null && (entry["__interfaces"] != null && entry["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || entry.constructor != null && entry.constructor["__interfaces"] != null && entry.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) || entry === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         return _this.toString(entry.getKey()) + "=" + _this.toString(entry.getValue());
@@ -14760,7 +14660,7 @@ var java;
                     var k = entry.getKey();
                     if (java.util.Objects.equals(key, k)) {
                         if (remove) {
-                            entry = new AbstractMap.SimpleEntry(entry.getKey(), entry.getValue());
+                            entry = (new AbstractMap.SimpleEntry(entry.getKey(), entry.getValue()));
                             iter.remove();
                         }
                         return entry;
@@ -14771,7 +14671,8 @@ var java;
             return AbstractMap;
         }());
         util.AbstractMap = AbstractMap;
-        AbstractMap["__classname"] = "java.util.AbstractMap";
+        AbstractMap["__class"] = "java.util.AbstractMap";
+        AbstractMap["__interfaces"] = ["java.util.Map"];
         var AbstractMap;
         (function (AbstractMap) {
             /**
@@ -14780,7 +14681,6 @@ var java;
              */
             var AbstractEntry = (function () {
                 function AbstractEntry(key, value) {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
                     this.key = key;
                     this.value = value;
                 }
@@ -14796,7 +14696,7 @@ var java;
                     return oldValue;
                 };
                 AbstractEntry.prototype.equals = function (other) {
-                    if (!(other != null && other["__interfaces"] != null && other["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
+                    if (!(other != null && (other["__interfaces"] != null && other["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || other.constructor != null && other.constructor["__interfaces"] != null && other.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0))) {
                         return false;
                     }
                     var entry = other;
@@ -14814,7 +14714,8 @@ var java;
                 return AbstractEntry;
             }());
             AbstractMap.AbstractEntry = AbstractEntry;
-            AbstractEntry["__classname"] = "java.util.AbstractMap.AbstractEntry";
+            AbstractEntry["__class"] = "java.util.AbstractMap.AbstractEntry";
+            AbstractEntry["__interfaces"] = ["java.util.Map.Entry"];
             /**
              * A mutable {@link Map.Entry} shared by several {@link Map}
              * implementations.
@@ -14825,13 +14726,11 @@ var java;
                     if (((key != null) || key === null) && ((value != null) || value === null)) {
                         var __args = Array.prototype.slice.call(arguments);
                         _super.call(this, key, value);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
                     }
-                    else if (((key != null && key["__interfaces"] != null && key["__interfaces"].indexOf("java.util.Map.Entry") >= 0) || key === null) && value === undefined) {
+                    else if (((key != null && (key["__interfaces"] != null && key["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || key.constructor != null && key.constructor["__interfaces"] != null && key.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) || key === null) && value === undefined) {
                         var __args = Array.prototype.slice.call(arguments);
                         var entry = __args[0];
                         _super.call(this, entry.getKey(), entry.getValue());
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
                     }
                     else
                         throw new Error('invalid overload');
@@ -14839,7 +14738,8 @@ var java;
                 return SimpleEntry;
             }(AbstractMap.AbstractEntry));
             AbstractMap.SimpleEntry = SimpleEntry;
-            SimpleEntry["__classname"] = "java.util.AbstractMap.SimpleEntry";
+            SimpleEntry["__class"] = "java.util.AbstractMap.SimpleEntry";
+            SimpleEntry["__interfaces"] = ["java.util.Map.Entry"];
             /**
              * An immutable {@link Map.Entry} shared by several {@link Map}
              * implementations.
@@ -14850,13 +14750,11 @@ var java;
                     if (((key != null) || key === null) && ((value != null) || value === null)) {
                         var __args = Array.prototype.slice.call(arguments);
                         _super.call(this, key, value);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
                     }
-                    else if (((key != null && key["__interfaces"] != null && key["__interfaces"].indexOf("java.util.Map.Entry") >= 0) || key === null) && value === undefined) {
+                    else if (((key != null && (key["__interfaces"] != null && key["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || key.constructor != null && key.constructor["__interfaces"] != null && key.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) || key === null) && value === undefined) {
                         var __args = Array.prototype.slice.call(arguments);
                         var entry = __args[0];
                         _super.call(this, entry.getKey(), entry.getValue());
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
                     }
                     else
                         throw new Error('invalid overload');
@@ -14867,12 +14765,12 @@ var java;
                 return SimpleImmutableEntry;
             }(AbstractMap.AbstractEntry));
             AbstractMap.SimpleImmutableEntry = SimpleImmutableEntry;
-            SimpleImmutableEntry["__classname"] = "java.util.AbstractMap.SimpleImmutableEntry";
+            SimpleImmutableEntry["__class"] = "java.util.AbstractMap.SimpleImmutableEntry";
+            SimpleImmutableEntry["__interfaces"] = ["java.util.Map.Entry"];
             var AbstractMap$0 = (function (_super) {
                 __extends(AbstractMap$0, _super);
                 function AbstractMap$0(__parent) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Set", "java.lang.Iterable"] });
                     this.__parent = __parent;
                 }
                 AbstractMap$0.prototype.clear = function () {
@@ -14903,7 +14801,6 @@ var java;
                 var AbstractMap$0$0 = (function () {
                     function AbstractMap$0$0(__parent, outerIter) {
                         this.outerIter = outerIter;
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                         this.__parent = __parent;
                     }
                     AbstractMap$0$0.prototype.forEachRemaining = function (consumer) {
@@ -14931,7 +14828,6 @@ var java;
                 __extends(AbstractMap$1, _super);
                 function AbstractMap$1(__parent) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.lang.Iterable"] });
                     this.__parent = __parent;
                 }
                 AbstractMap$1.prototype.clear = function () {
@@ -14955,7 +14851,6 @@ var java;
                 var AbstractMap$1$0 = (function () {
                     function AbstractMap$1$0(__parent, outerIter) {
                         this.outerIter = outerIter;
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                         this.__parent = __parent;
                     }
                     AbstractMap$1$0.prototype.forEachRemaining = function (consumer) {
@@ -15001,12 +14896,11 @@ var java;
              */
             function EnumSet() {
                 _super.call(this);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Set", "java.lang.Iterable"] });
             }
             EnumSet.allOf = function (elementType) {
                 var all = elementType.getEnumConstants();
                 var set = javaemul.internal.ArrayHelper.clone(all, 0, all.length);
-                return new EnumSet.EnumSetImpl(all, set, all.length);
+                return (new EnumSet.EnumSetImpl(all, set, all.length));
             };
             EnumSet.complementOf = function (other) {
                 var s = other;
@@ -15018,7 +14912,7 @@ var java;
                         newSet[i] = all[i];
                     }
                 }
-                return new EnumSet.EnumSetImpl(all, newSet, all.length - s.__size);
+                return (new EnumSet.EnumSetImpl(all, newSet, all.length - s.__size));
             };
             EnumSet.copyOf$java_util_Collection = function (c) {
                 if (c != null && c instanceof java.util.EnumSet) {
@@ -15042,7 +14936,7 @@ var java;
                         return s.clone();
                     })();
                 }
-                else if (((s != null && s["__interfaces"] != null && s["__interfaces"].indexOf("java.util.Collection") >= 0) || s === null)) {
+                else if (((s != null && (s["__interfaces"] != null && s["__interfaces"].indexOf("java.util.Collection") >= 0 || s.constructor != null && s.constructor["__interfaces"] != null && s.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || s === null)) {
                     return java.util.EnumSet.copyOf$java_util_Collection(s);
                 }
                 else
@@ -15050,7 +14944,7 @@ var java;
             };
             EnumSet.noneOf = function (elementType) {
                 var all = elementType.getEnumConstants();
-                return new EnumSet.EnumSetImpl(all, javaemul.internal.ArrayHelper.createFrom(all, all.length), 0);
+                return (new EnumSet.EnumSetImpl(all, javaemul.internal.ArrayHelper.createFrom(all, all.length), 0));
             };
             EnumSet.of$java_lang_Enum = function (first) {
                 var set = EnumSet.noneOf(first.getDeclaringClass());
@@ -15085,12 +14979,13 @@ var java;
                 for (var i = start; i < end; ++i) {
                     set[i] = all[i];
                 }
-                return new EnumSet.EnumSetImpl(all, set, end - start);
+                return (new EnumSet.EnumSetImpl(all, set, end - start));
             };
             return EnumSet;
         }(java.util.AbstractSet));
         util.EnumSet = EnumSet;
-        EnumSet["__classname"] = "java.util.EnumSet";
+        EnumSet["__class"] = "java.util.EnumSet";
+        EnumSet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
         var EnumSet;
         (function (EnumSet) {
             /**
@@ -15111,7 +15006,6 @@ var java;
                  */
                 function EnumSetImpl(all, set, size) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Set", "java.lang.Iterable"] });
                     this.__size = 0;
                     this.all = all;
                     this.set = set;
@@ -15139,7 +15033,7 @@ var java;
                 };
                 EnumSetImpl.prototype.clone = function () {
                     var clonedSet = javaemul.internal.ArrayHelper.clone(this.set, 0, this.set.length);
-                    return new EnumSet.EnumSetImpl(this.all, clonedSet, this.__size);
+                    return (new EnumSet.EnumSetImpl(this.all, clonedSet, this.__size));
                 };
                 EnumSetImpl.prototype.contains = function (o) {
                     return (o != null && o instanceof java.lang.Enum) && this.containsEnum(o);
@@ -15177,12 +15071,12 @@ var java;
                 return EnumSetImpl;
             }(java.util.EnumSet));
             EnumSet.EnumSetImpl = EnumSetImpl;
-            EnumSetImpl["__classname"] = "java.util.EnumSet.EnumSetImpl";
+            EnumSetImpl["__class"] = "java.util.EnumSet.EnumSetImpl";
+            EnumSetImpl["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
             var EnumSetImpl;
             (function (EnumSetImpl) {
                 var IteratorImpl = (function () {
                     function IteratorImpl(__parent) {
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                         this.__parent = __parent;
                         this.i = -1;
                         this.last = -1;
@@ -15221,7 +15115,8 @@ var java;
                     return IteratorImpl;
                 }());
                 EnumSetImpl.IteratorImpl = IteratorImpl;
-                IteratorImpl["__classname"] = "java.util.EnumSet.EnumSetImpl.IteratorImpl";
+                IteratorImpl["__class"] = "java.util.EnumSet.EnumSetImpl.IteratorImpl";
+                IteratorImpl["__interfaces"] = ["java.util.Iterator"];
             })(EnumSetImpl = EnumSet.EnumSetImpl || (EnumSet.EnumSetImpl = {}));
         })(EnumSet = util.EnumSet || (util.EnumSet = {}));
     })(util = java.util || (java.util = {}));
@@ -15245,18 +15140,16 @@ var java;
                 if (((typeof initialCapacity === 'number') || initialCapacity === null) && ((typeof loadFactor === 'number') || loadFactor === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
-                        _this.map = new java.util.HashMap(initialCapacity, loadFactor);
+                        _this.map = (new java.util.HashMap(initialCapacity, loadFactor));
                     })();
                 }
-                else if (((initialCapacity != null && initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0) || initialCapacity === null) && loadFactor === undefined) {
+                else if (((initialCapacity != null && (initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0 || initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || initialCapacity === null) && loadFactor === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var c_5 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
-                        _this.map = new java.util.HashMap(c_5.size());
+                        _this.map = (new java.util.HashMap(c_5.size()));
                         _this.addAll(c_5);
                     })();
                 }
@@ -15264,7 +15157,6 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     var map_1 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
                         _this.map = map_1;
                     })();
@@ -15272,17 +15164,15 @@ var java;
                 else if (((typeof initialCapacity === 'number') || initialCapacity === null) && loadFactor === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
-                        _this.map = new java.util.HashMap(initialCapacity);
+                        _this.map = (new java.util.HashMap(initialCapacity));
                     })();
                 }
                 else if (initialCapacity === undefined && loadFactor === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
-                        _this.map = new java.util.HashMap();
+                        _this.map = (new java.util.HashMap());
                     })();
                 }
                 else
@@ -15312,7 +15202,7 @@ var java;
                 this.map.clear();
             };
             HashSet.prototype.clone = function () {
-                return new HashSet(this);
+                return (new HashSet(this));
             };
             HashSet.prototype.contains = function (o) {
                 return this.map.containsKey(o);
@@ -15342,7 +15232,8 @@ var java;
             return HashSet;
         }(java.util.AbstractSet));
         util.HashSet = HashSet;
-        HashSet["__classname"] = "java.util.HashSet";
+        HashSet["__class"] = "java.util.HashSet";
+        HashSet["__interfaces"] = ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -15361,49 +15252,45 @@ var java;
             __extends(TreeSet, _super);
             function TreeSet(c) {
                 var _this = this;
-                if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
                         var __args_19 = Array.prototype.slice.call(arguments);
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable", "java.io.Serializable"] });
                         (function () {
-                            _this.map = new java.util.TreeMap();
+                            _this.map = (new java.util.TreeMap());
                         })();
                     }
                     (function () {
                         _this.addAll(c);
                     })();
                 }
-                else if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Comparator") >= 0) || c === null)) {
+                else if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Comparator") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
-                        _this.map = new java.util.TreeMap(c);
+                        _this.map = (new java.util.TreeMap(c));
                     })();
                 }
-                else if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.SortedSet") >= 0) || c === null)) {
+                else if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.SortedSet") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.SortedSet") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var s_1 = __args[0];
                     {
                         var __args_20 = Array.prototype.slice.call(arguments);
                         var c_6 = javaemul.internal.InternalPreconditions.checkNotNull(s_1).comparator();
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable", "java.io.Serializable"] });
                         (function () {
-                            _this.map = new java.util.TreeMap(c_6);
+                            _this.map = (new java.util.TreeMap(c_6));
                         })();
                     }
                     (function () {
                         _this.addAll(s_1);
                     })();
                 }
-                else if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.NavigableMap") >= 0) || c === null)) {
+                else if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.NavigableMap") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.NavigableMap") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var map_2 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
                         _this.map = map_2;
                     })();
@@ -15411,9 +15298,8 @@ var java;
                 else if (c === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable", "java.io.Serializable"] });
                     (function () {
-                        _this.map = new java.util.TreeMap();
+                        _this.map = (new java.util.TreeMap());
                     })();
                 }
                 else
@@ -15454,7 +15340,7 @@ var java;
                 return this.descendingSet().iterator();
             };
             TreeSet.prototype.descendingSet = function () {
-                return new TreeSet(this.map.descendingMap());
+                return (new TreeSet(this.map.descendingMap()));
             };
             TreeSet.prototype.first = function () {
                 return this.map.firstKey();
@@ -15470,7 +15356,7 @@ var java;
                 if (((toElement != null) || toElement === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
-                        return new TreeSet(_this.map.headMap(toElement, inclusive));
+                        return (new TreeSet(_this.map.headMap(toElement, inclusive)));
                     })();
                 }
                 else if (((toElement != null) || toElement === null) && inclusive === undefined) {
@@ -15515,7 +15401,7 @@ var java;
                 if (((fromElement != null) || fromElement === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null) && ((toElement != null) || toElement === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
-                        return new TreeSet(_this.map.subMap(fromElement, fromInclusive, toElement, toInclusive));
+                        return (new TreeSet(_this.map.subMap(fromElement, fromInclusive, toElement, toInclusive)));
                     })();
                 }
                 else if (((fromElement != null) || fromElement === null) && ((fromInclusive != null) || fromInclusive === null) && toElement === undefined && toInclusive === undefined) {
@@ -15535,7 +15421,7 @@ var java;
                 if (((fromElement != null) || fromElement === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
-                        return new TreeSet(_this.map.tailMap(fromElement, inclusive));
+                        return (new TreeSet(_this.map.tailMap(fromElement, inclusive)));
                     })();
                 }
                 else if (((fromElement != null) || fromElement === null) && inclusive === undefined) {
@@ -15547,7 +15433,8 @@ var java;
             return TreeSet;
         }(java.util.AbstractSet));
         util.TreeSet = TreeSet;
-        TreeSet["__classname"] = "java.util.TreeSet";
+        TreeSet["__class"] = "java.util.TreeSet";
+        TreeSet["__interfaces"] = ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable", "java.io.Serializable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -15653,7 +15540,7 @@ var java;
             return System;
         }());
         lang.System = System;
-        System["__classname"] = "java.lang.System";
+        System["__class"] = "java.lang.System";
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -15672,12 +15559,10 @@ var java;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -15694,7 +15579,8 @@ var java;
             return NumberFormatException;
         }(java.lang.IllegalArgumentException));
         lang.NumberFormatException = NumberFormatException;
-        NumberFormatException["__classname"] = "java.lang.NumberFormatException";
+        NumberFormatException["__class"] = "java.lang.NumberFormatException";
+        NumberFormatException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -15711,7 +15597,6 @@ var java;
                 __extends(IllegalCharsetNameException, _super);
                 function IllegalCharsetNameException(charsetName) {
                     _super.call(this, /* valueOf */ new String(charsetName).toString());
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     this.charsetName = charsetName;
                 }
                 IllegalCharsetNameException.prototype.getCharsetName = function () {
@@ -15720,7 +15605,8 @@ var java;
                 return IllegalCharsetNameException;
             }(java.lang.IllegalArgumentException));
             charset.IllegalCharsetNameException = IllegalCharsetNameException;
-            IllegalCharsetNameException["__classname"] = "java.nio.charset.IllegalCharsetNameException";
+            IllegalCharsetNameException["__class"] = "java.nio.charset.IllegalCharsetNameException";
+            IllegalCharsetNameException["__interfaces"] = ["java.io.Serializable"];
         })(charset = nio.charset || (nio.charset = {}));
     })(nio = java.nio || (java.nio = {}));
 })(java || (java = {}));
@@ -15738,7 +15624,6 @@ var java;
                 __extends(UnsupportedCharsetException, _super);
                 function UnsupportedCharsetException(charsetName) {
                     _super.call(this, /* valueOf */ new String(charsetName).toString());
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                     this.charsetName = charsetName;
                 }
                 UnsupportedCharsetException.prototype.getCharsetName = function () {
@@ -15747,7 +15632,8 @@ var java;
                 return UnsupportedCharsetException;
             }(java.lang.IllegalArgumentException));
             charset.UnsupportedCharsetException = UnsupportedCharsetException;
-            UnsupportedCharsetException["__classname"] = "java.nio.charset.UnsupportedCharsetException";
+            UnsupportedCharsetException["__class"] = "java.nio.charset.UnsupportedCharsetException";
+            UnsupportedCharsetException["__interfaces"] = ["java.io.Serializable"];
         })(charset = nio.charset || (nio.charset = {}));
     })(nio = java.nio || (java.nio = {}));
 })(java || (java = {}));
@@ -15770,18 +15656,15 @@ var java;
                 if (((typeof msg === 'string') || msg === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, msg);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((typeof msg === 'number') || msg === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var index = __args[0];
                     _super.call(this, "Array index " + index + " out of range");
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -15789,7 +15672,8 @@ var java;
             return ArrayIndexOutOfBoundsException;
         }(java.lang.IndexOutOfBoundsException));
         lang.ArrayIndexOutOfBoundsException = ArrayIndexOutOfBoundsException;
-        ArrayIndexOutOfBoundsException["__classname"] = "java.lang.ArrayIndexOutOfBoundsException";
+        ArrayIndexOutOfBoundsException["__class"] = "java.lang.ArrayIndexOutOfBoundsException";
+        ArrayIndexOutOfBoundsException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -15808,18 +15692,15 @@ var java;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, message);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (((typeof message === 'number') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var index = __args[0];
                     _super.call(this, "String index out of range: " + index);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -15827,7 +15708,8 @@ var java;
             return StringIndexOutOfBoundsException;
         }(java.lang.IndexOutOfBoundsException));
         lang.StringIndexOutOfBoundsException = StringIndexOutOfBoundsException;
-        StringIndexOutOfBoundsException["__classname"] = "java.lang.StringIndexOutOfBoundsException";
+        StringIndexOutOfBoundsException["__class"] = "java.lang.StringIndexOutOfBoundsException";
+        StringIndexOutOfBoundsException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -15847,14 +15729,13 @@ var java;
             __extends(LinkedList, _super);
             function LinkedList(c) {
                 var _this = this;
-                if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.List", "java.util.Collection", "java.util.Queue", "java.util.Deque", "java.lang.Iterable", "java.io.Serializable"] });
                     this.__size = 0;
                     (function () {
-                        _this.header = new LinkedList.Node();
-                        _this.tail = new LinkedList.Node();
+                        _this.header = (new LinkedList.Node());
+                        _this.tail = (new LinkedList.Node());
                         _this.reset();
                         _this.addAll(c);
                     })();
@@ -15862,11 +15743,10 @@ var java;
                 else if (c === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.List", "java.util.Collection", "java.util.Queue", "java.util.Deque", "java.lang.Iterable", "java.io.Serializable"] });
                     this.__size = 0;
                     (function () {
-                        _this.header = new LinkedList.Node();
-                        _this.tail = new LinkedList.Node();
+                        _this.header = (new LinkedList.Node());
+                        _this.tail = (new LinkedList.Node());
                         _this.reset();
                     })();
                 }
@@ -15902,7 +15782,7 @@ var java;
                 this.__size = 0;
             };
             LinkedList.prototype.clone = function () {
-                return new LinkedList(this);
+                return (new LinkedList(this));
             };
             LinkedList.prototype.descendingIterator = function () {
                 return new LinkedList.DescendingIteratorImpl(this);
@@ -16008,7 +15888,7 @@ var java;
                 return this.__size;
             };
             LinkedList.prototype.addNode = function (o, prev, next) {
-                var node = new LinkedList.Node();
+                var node = (new LinkedList.Node());
                 node.value = o;
                 node.prev = prev;
                 node.next = next;
@@ -16027,12 +15907,12 @@ var java;
             return LinkedList;
         }(java.util.AbstractSequentialList));
         util.LinkedList = LinkedList;
-        LinkedList["__classname"] = "java.util.LinkedList";
+        LinkedList["__class"] = "java.util.LinkedList";
+        LinkedList["__interfaces"] = ["java.lang.Cloneable", "java.util.List", "java.util.Collection", "java.util.Queue", "java.util.Deque", "java.lang.Iterable", "java.io.Serializable"];
         var LinkedList;
         (function (LinkedList) {
             var DescendingIteratorImpl = (function () {
                 function DescendingIteratorImpl(__parent) {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                     this.__parent = __parent;
                     this.itr = new LinkedList.ListIteratorImpl2(this.__parent, this.__parent.__size, this.__parent.tail);
                 }
@@ -16055,7 +15935,8 @@ var java;
                 return DescendingIteratorImpl;
             }());
             LinkedList.DescendingIteratorImpl = DescendingIteratorImpl;
-            DescendingIteratorImpl["__classname"] = "java.util.LinkedList.DescendingIteratorImpl";
+            DescendingIteratorImpl["__class"] = "java.util.LinkedList.DescendingIteratorImpl";
+            DescendingIteratorImpl["__interfaces"] = ["java.util.Iterator"];
             /**
              * Implementation of ListIterator for linked lists.
              */
@@ -16067,7 +15948,6 @@ var java;
                  * the initial current node
                  */
                 function ListIteratorImpl2(__parent, index, startNode) {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator", "java.util.ListIterator"] });
                     this.__parent = __parent;
                     this.currentIndex = 0;
                     this.lastNode = null;
@@ -16130,7 +16010,8 @@ var java;
                 return ListIteratorImpl2;
             }());
             LinkedList.ListIteratorImpl2 = ListIteratorImpl2;
-            ListIteratorImpl2["__classname"] = "java.util.LinkedList.ListIteratorImpl2";
+            ListIteratorImpl2["__class"] = "java.util.LinkedList.ListIteratorImpl2";
+            ListIteratorImpl2["__interfaces"] = ["java.util.Iterator", "java.util.ListIterator"];
             /**
              * Internal class representing a doubly-linked list node.
              *
@@ -16143,7 +16024,7 @@ var java;
                 return Node;
             }());
             LinkedList.Node = Node;
-            Node["__classname"] = "java.util.LinkedList.Node";
+            Node["__class"] = "java.util.LinkedList.Node";
         })(LinkedList = util.LinkedList || (util.LinkedList = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -16163,10 +16044,9 @@ var java;
             __extends(Stack, _super);
             function Stack() {
                 _super.call(this);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
             }
             Stack.prototype.clone = function () {
-                var s = new Stack();
+                var s = (new Stack());
                 s.addAll(this);
                 return s;
             };
@@ -16205,7 +16085,8 @@ var java;
             return Stack;
         }(java.util.Vector));
         util.Stack = Stack;
-        Stack["__classname"] = "java.util.Stack";
+        Stack["__class"] = "java.util.Stack";
+        Stack["__interfaces"] = ["java.util.RandomAccess", "java.util.List", "java.lang.Cloneable", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -16228,18 +16109,16 @@ var java;
                 if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
                         javaemul.internal.InternalPreconditions.checkArgument(ignored >= 0, "Negative initial capacity");
                         javaemul.internal.InternalPreconditions.checkArgument(alsoIgnored >= 0, "Non-positive load factor");
                         _this.reset();
                     })();
                 }
-                else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0) || ignored === null) && alsoIgnored === undefined) {
+                else if (((ignored != null && (ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0 || ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var toBeCopied_1 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
                         _this.reset();
                         _this.putAll(toBeCopied_1);
@@ -16251,7 +16130,6 @@ var java;
                         var __args_21 = Array.prototype.slice.call(arguments);
                         var alsoIgnored_1 = 0;
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                         (function () {
                             javaemul.internal.InternalPreconditions.checkArgument(ignored >= 0, "Negative initial capacity");
                             javaemul.internal.InternalPreconditions.checkArgument(alsoIgnored_1 >= 0, "Non-positive load factor");
@@ -16262,7 +16140,6 @@ var java;
                 else if (ignored === undefined && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
                         _this.reset();
                     })();
@@ -16274,8 +16151,8 @@ var java;
                 this.reset();
             };
             AbstractHashMap.prototype.reset = function () {
-                this.hashCodeMap = new java.util.InternalHashCodeMap(this);
-                this.stringMap = new java.util.InternalStringMap(this);
+                this.hashCodeMap = (new java.util.InternalHashCodeMap(this));
+                this.stringMap = (new java.util.InternalStringMap(this));
                 java.util.ConcurrentModificationDetector.structureChanged(this);
             };
             AbstractHashMap.prototype.containsKey = function (key) {
@@ -16376,21 +16253,21 @@ var java;
             return AbstractHashMap;
         }(java.util.AbstractMap));
         util.AbstractHashMap = AbstractHashMap;
-        AbstractHashMap["__classname"] = "java.util.AbstractHashMap";
+        AbstractHashMap["__class"] = "java.util.AbstractHashMap";
+        AbstractHashMap["__interfaces"] = ["java.util.Map"];
         var AbstractHashMap;
         (function (AbstractHashMap) {
             var EntrySet = (function (_super) {
                 __extends(EntrySet, _super);
                 function EntrySet(__parent) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Set", "java.lang.Iterable"] });
                     this.__parent = __parent;
                 }
                 EntrySet.prototype.clear = function () {
                     this.__parent.clear();
                 };
                 EntrySet.prototype.contains = function (o) {
-                    if (o != null && o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0) {
+                    if (o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
                         return this.__parent.containsEntry(o);
                     }
                     return false;
@@ -16419,13 +16296,13 @@ var java;
                 return EntrySet;
             }(java.util.AbstractSet));
             AbstractHashMap.EntrySet = EntrySet;
-            EntrySet["__classname"] = "java.util.AbstractHashMap.EntrySet";
+            EntrySet["__class"] = "java.util.AbstractHashMap.EntrySet";
+            EntrySet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
             /**
              * Iterator for <code>EntrySet</code>.
              */
             var EntrySetIterator = (function () {
                 function EntrySetIterator(__parent) {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                     this.__parent = __parent;
                     this.__hasNext = false;
                     this.stringMapEntries = this.__parent.stringMap.iterator();
@@ -16472,7 +16349,8 @@ var java;
                 return EntrySetIterator;
             }());
             AbstractHashMap.EntrySetIterator = EntrySetIterator;
-            EntrySetIterator["__classname"] = "java.util.AbstractHashMap.EntrySetIterator";
+            EntrySetIterator["__class"] = "java.util.AbstractHashMap.EntrySetIterator";
+            EntrySetIterator["__interfaces"] = ["java.util.Iterator"];
         })(AbstractHashMap = util.AbstractHashMap || (util.AbstractHashMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -16488,7 +16366,6 @@ var java;
             __extends(AbstractNavigableMap, _super);
             function AbstractNavigableMap() {
                 _super.call(this);
-                Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap"] });
             }
             AbstractNavigableMap.copyOf = function (entry) {
                 return entry == null ? null : new util.AbstractMap.SimpleImmutableEntry(entry);
@@ -16566,7 +16443,7 @@ var java;
                 return util.AbstractMap.getEntryKeyOrNull(this.getLowerEntry(key));
             };
             AbstractNavigableMap.prototype.navigableKeySet = function () {
-                return new AbstractNavigableMap.NavigableKeySet(this);
+                return (new AbstractNavigableMap.NavigableKeySet(this));
             };
             AbstractNavigableMap.prototype.pollFirstEntry = function () {
                 return this.pollEntry(this.getFirstEntry());
@@ -16608,14 +16485,14 @@ var java;
             return AbstractNavigableMap;
         }(java.util.AbstractMap));
         util.AbstractNavigableMap = AbstractNavigableMap;
-        AbstractNavigableMap["__classname"] = "java.util.AbstractNavigableMap";
+        AbstractNavigableMap["__class"] = "java.util.AbstractNavigableMap";
+        AbstractNavigableMap["__interfaces"] = ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap"];
         var AbstractNavigableMap;
         (function (AbstractNavigableMap) {
             var DescendingMap = (function (_super) {
                 __extends(DescendingMap, _super);
                 function DescendingMap(__parent) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap"] });
                     this.__parent = __parent;
                 }
                 DescendingMap.prototype.clear = function () {
@@ -16714,16 +16591,16 @@ var java;
                 return DescendingMap;
             }(java.util.AbstractNavigableMap));
             AbstractNavigableMap.DescendingMap = DescendingMap;
-            DescendingMap["__classname"] = "java.util.AbstractNavigableMap.DescendingMap";
+            DescendingMap["__class"] = "java.util.AbstractNavigableMap.DescendingMap";
+            DescendingMap["__interfaces"] = ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap"];
             var EntrySet = (function (_super) {
                 __extends(EntrySet, _super);
                 function EntrySet(__parent) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Set", "java.lang.Iterable"] });
                     this.__parent = __parent;
                 }
                 EntrySet.prototype.contains = function (o) {
-                    return (o != null && o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0) && this.__parent.containsEntry(o);
+                    return (o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) && this.__parent.containsEntry(o);
                 };
                 EntrySet.prototype.iterator = function () {
                     return this.__parent.entryIterator();
@@ -16736,7 +16613,7 @@ var java;
                         throw new Error('invalid overload');
                 };
                 EntrySet.prototype.remove$java_lang_Object = function (o) {
-                    if (o != null && o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0) {
+                    if (o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
                         var entry = o;
                         return this.__parent.removeEntry(entry);
                     }
@@ -16748,12 +16625,12 @@ var java;
                 return EntrySet;
             }(java.util.AbstractSet));
             AbstractNavigableMap.EntrySet = EntrySet;
-            EntrySet["__classname"] = "java.util.AbstractNavigableMap.EntrySet";
+            EntrySet["__class"] = "java.util.AbstractNavigableMap.EntrySet";
+            EntrySet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
             var NavigableKeySet = (function (_super) {
                 __extends(NavigableKeySet, _super);
                 function NavigableKeySet(map) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable"] });
                     this.map = map;
                 }
                 NavigableKeySet.prototype.forEach = function (action) {
@@ -16879,13 +16756,13 @@ var java;
                 return NavigableKeySet;
             }(java.util.AbstractSet));
             AbstractNavigableMap.NavigableKeySet = NavigableKeySet;
-            NavigableKeySet["__classname"] = "java.util.AbstractNavigableMap.NavigableKeySet";
+            NavigableKeySet["__class"] = "java.util.AbstractNavigableMap.NavigableKeySet";
+            NavigableKeySet["__interfaces"] = ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.util.NavigableSet", "java.lang.Iterable"];
             var NavigableKeySet;
             (function (NavigableKeySet) {
                 var NavigableKeySet$0 = (function () {
                     function NavigableKeySet$0(__parent, entryIterator) {
                         this.entryIterator = entryIterator;
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                         this.__parent = __parent;
                     }
                     NavigableKeySet$0.prototype.forEachRemaining = function (consumer) {
@@ -16949,7 +16826,7 @@ var java;
                 return result;
             };
             Collections.asLifoQueue = function (deque) {
-                return new Collections.LifoQueue(deque);
+                return (new Collections.LifoQueue(deque));
             };
             /**
              * Perform a binary search on a sorted List, using a user-specified comparison
@@ -17013,7 +16890,7 @@ var java;
             Collections.disjoint = function (c1, c2) {
                 var iterating = c1;
                 var testing = c2;
-                if ((c1 != null && c1["__interfaces"] != null && c1["__interfaces"].indexOf("java.util.Set") >= 0) && !(c2 != null && c2["__interfaces"] != null && c2["__interfaces"].indexOf("java.util.Set") >= 0)) {
+                if ((c1 != null && (c1["__interfaces"] != null && c1["__interfaces"].indexOf("java.util.Set") >= 0 || c1.constructor != null && c1.constructor["__interfaces"] != null && c1.constructor["__interfaces"].indexOf("java.util.Set") >= 0)) && !(c2 != null && (c2["__interfaces"] != null && c2["__interfaces"].indexOf("java.util.Set") >= 0 || c2.constructor != null && c2.constructor["__interfaces"] != null && c2.constructor["__interfaces"].indexOf("java.util.Set") >= 0))) {
                     iterating = c2;
                     testing = c1;
                 }
@@ -17065,7 +16942,7 @@ var java;
                 return count;
             };
             Collections.list = function (e) {
-                var arrayList = new java.util.ArrayList();
+                var arrayList = (new java.util.ArrayList());
                 while ((e.hasMoreElements())) {
                     arrayList.add(e.nextElement());
                 }
@@ -17094,10 +16971,10 @@ var java;
             };
             Collections.newSetFromMap = function (map) {
                 javaemul.internal.InternalPreconditions.checkArgument(map.isEmpty(), "map is not empty");
-                return new Collections.SetFromMap(map);
+                return (new Collections.SetFromMap(map));
             };
             Collections.nCopies = function (n, o) {
-                var list = new java.util.ArrayList();
+                var list = (new java.util.ArrayList());
                 for (var i = 0; i < n; ++i) {
                     list.add(o);
                 }
@@ -17115,7 +16992,7 @@ var java;
                 return modified;
             };
             Collections.reverse = function (l) {
-                if (l != null && l["__interfaces"] != null && l["__interfaces"].indexOf("java.util.RandomAccess") >= 0) {
+                if (l != null && (l["__interfaces"] != null && l["__interfaces"].indexOf("java.util.RandomAccess") >= 0 || l.constructor != null && l.constructor["__interfaces"] != null && l.constructor["__interfaces"].indexOf("java.util.RandomAccess") >= 0)) {
                     for (var iFront = 0, iBack = l.size() - 1; iFront < iBack; ++iFront, --iBack) {
                         Collections.swap(l, iFront, iBack);
                     }
@@ -17136,7 +17013,7 @@ var java;
                 return Collections.ReverseComparator.INSTANCE_$LI$();
             };
             Collections.reverseOrder = function (cmp) {
-                if (((cmp != null && cmp["__interfaces"] != null && cmp["__interfaces"].indexOf("java.util.Comparator") >= 0) || cmp === null)) {
+                if (((cmp != null && (cmp["__interfaces"] != null && cmp["__interfaces"].indexOf("java.util.Comparator") >= 0 || cmp.constructor != null && cmp.constructor["__interfaces"] != null && cmp.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || cmp === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         if (cmp == null) {
@@ -17174,7 +17051,7 @@ var java;
                 if (normdist < 0) {
                     normdist += size;
                 }
-                if (lst != null && lst["__interfaces"] != null && lst["__interfaces"].indexOf("java.util.RandomAccess") >= 0) {
+                if (lst != null && (lst["__interfaces"] != null && lst["__interfaces"].indexOf("java.util.RandomAccess") >= 0 || lst.constructor != null && lst.constructor["__interfaces"] != null && lst.constructor["__interfaces"].indexOf("java.util.RandomAccess") >= 0)) {
                     var list = lst;
                     var temp = list.get(0);
                     var index = 0;
@@ -17199,7 +17076,7 @@ var java;
             };
             Collections.shuffle = function (list, rnd) {
                 if (rnd === void 0) { rnd = Collections.RandomHolder.rnd_$LI$(); }
-                if (list != null && list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.RandomAccess") >= 0) {
+                if (list != null && (list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.RandomAccess") >= 0 || list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.util.RandomAccess") >= 0)) {
                     for (var i = list.size() - 1; i >= 1; i--) {
                         Collections.swapImpl(list, i, rnd.nextInt(i + 1));
                     }
@@ -17220,15 +17097,15 @@ var java;
                 }
             };
             Collections.singleton = function (o) {
-                var set = new java.util.HashSet(1);
+                var set = (new java.util.HashSet(1));
                 set.add(o);
                 return Collections.unmodifiableSet(set);
             };
             Collections.singletonList = function (o) {
-                return new Collections.SingletonList(o);
+                return (new Collections.SingletonList(o));
             };
             Collections.singletonMap = function (key, value) {
-                var map = new java.util.HashMap(1);
+                var map = (new java.util.HashMap(1));
                 map.put(key, value);
                 return Collections.unmodifiableMap(map);
             };
@@ -17242,22 +17119,22 @@ var java;
                 Collections.swapImpl(list, i, j);
             };
             Collections.unmodifiableCollection = function (coll) {
-                return new Collections.UnmodifiableCollection(coll);
+                return (new Collections.UnmodifiableCollection(coll));
             };
             Collections.unmodifiableList = function (list) {
-                return (list != null && list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.RandomAccess") >= 0) ? new Collections.UnmodifiableRandomAccessList(list) : new Collections.UnmodifiableList(list);
+                return (list != null && (list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.RandomAccess") >= 0 || list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.util.RandomAccess") >= 0)) ? new Collections.UnmodifiableRandomAccessList(list) : new Collections.UnmodifiableList(list);
             };
             Collections.unmodifiableMap = function (map) {
-                return new Collections.UnmodifiableMap(map);
+                return (new Collections.UnmodifiableMap(map));
             };
             Collections.unmodifiableSet = function (set) {
-                return new Collections.UnmodifiableSet(set);
+                return (new Collections.UnmodifiableSet(set));
             };
             Collections.unmodifiableSortedMap = function (map) {
-                return new Collections.UnmodifiableSortedMap(map);
+                return (new Collections.UnmodifiableSortedMap(map));
             };
             Collections.unmodifiableSortedSet = function (set) {
-                return new Collections.UnmodifiableSortedSet(set);
+                return (new Collections.UnmodifiableSortedSet(set));
             };
             /**
              * Computes hash code without preserving elements order (e.g. HashSet).
@@ -17277,7 +17154,7 @@ var java;
              * Computes hash code preserving collection order (e.g. ArrayList).
              */
             Collections.hashCode = function (list) {
-                if (((list != null && list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.List") >= 0) || list === null)) {
+                if (((list != null && (list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.List") >= 0 || list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || list === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var hashCode = 1;
@@ -17291,7 +17168,7 @@ var java;
                         return hashCode;
                     })();
                 }
-                else if (((list != null && list["__interfaces"] != null && list["__interfaces"].indexOf("java.lang.Iterable") >= 0) || list === null)) {
+                else if (((list != null && (list["__interfaces"] != null && list["__interfaces"].indexOf("java.lang.Iterable") >= 0 || list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.lang.Iterable") >= 0)) || list === null)) {
                     return java.util.Collections.hashCode$java_lang_Iterable(list);
                 }
                 else
@@ -17311,7 +17188,7 @@ var java;
                 }
             };
             Collections.swapImpl = function (list, i, j) {
-                if (((list != null && list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.List") >= 0) || list === null) && ((typeof i === 'number') || i === null) && ((typeof j === 'number') || j === null)) {
+                if (((list != null && (list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.List") >= 0 || list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || list === null) && ((typeof i === 'number') || i === null) && ((typeof j === 'number') || j === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     return (function () {
                         var t = list.get(i);
@@ -17333,14 +17210,13 @@ var java;
             return Collections;
         }());
         util.Collections = Collections;
-        Collections["__classname"] = "java.util.Collections";
+        Collections["__class"] = "java.util.Collections";
         var Collections;
         (function (Collections) {
             var LifoQueue = (function (_super) {
                 __extends(LifoQueue, _super);
                 function LifoQueue(deque) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Queue", "java.lang.Iterable", "java.io.Serializable"] });
                     this.deque = deque;
                 }
                 LifoQueue.prototype.iterator = function () {
@@ -17361,12 +17237,12 @@ var java;
                 return LifoQueue;
             }(java.util.AbstractQueue));
             Collections.LifoQueue = LifoQueue;
-            LifoQueue["__classname"] = "java.util.Collections.LifoQueue";
+            LifoQueue["__class"] = "java.util.Collections.LifoQueue";
+            LifoQueue["__interfaces"] = ["java.util.Collection", "java.util.Queue", "java.lang.Iterable", "java.io.Serializable"];
             var EmptyList = (function (_super) {
                 __extends(EmptyList, _super);
                 function EmptyList() {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                 }
                 EmptyList.prototype.contains = function (object) {
                     return false;
@@ -17387,10 +17263,10 @@ var java;
                 return EmptyList;
             }(java.util.AbstractList));
             Collections.EmptyList = EmptyList;
-            EmptyList["__classname"] = "java.util.Collections.EmptyList";
+            EmptyList["__class"] = "java.util.Collections.EmptyList";
+            EmptyList["__interfaces"] = ["java.util.RandomAccess", "java.util.List", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"];
             var EmptyListIterator = (function () {
                 function EmptyListIterator() {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator", "java.util.ListIterator"] });
                 }
                 EmptyListIterator.prototype.forEachRemaining = function (consumer) {
                     javaemul.internal.InternalPreconditions.checkNotNull(consumer);
@@ -17432,12 +17308,12 @@ var java;
                 return EmptyListIterator;
             }());
             Collections.EmptyListIterator = EmptyListIterator;
-            EmptyListIterator["__classname"] = "java.util.Collections.EmptyListIterator";
+            EmptyListIterator["__class"] = "java.util.Collections.EmptyListIterator";
+            EmptyListIterator["__interfaces"] = ["java.util.Iterator", "java.util.ListIterator"];
             var EmptySet = (function (_super) {
                 __extends(EmptySet, _super);
                 function EmptySet() {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                 }
                 EmptySet.prototype.contains = function (object) {
                     return false;
@@ -17451,12 +17327,12 @@ var java;
                 return EmptySet;
             }(java.util.AbstractSet));
             Collections.EmptySet = EmptySet;
-            EmptySet["__classname"] = "java.util.Collections.EmptySet";
+            EmptySet["__class"] = "java.util.Collections.EmptySet";
+            EmptySet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"];
             var EmptyMap = (function (_super) {
                 __extends(EmptyMap, _super);
                 function EmptyMap() {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.io.Serializable"] });
                 }
                 EmptyMap.prototype.containsKey = function (key) {
                     return false;
@@ -17482,16 +17358,16 @@ var java;
                 return EmptyMap;
             }(java.util.AbstractMap));
             Collections.EmptyMap = EmptyMap;
-            EmptyMap["__classname"] = "java.util.Collections.EmptyMap";
+            EmptyMap["__class"] = "java.util.Collections.EmptyMap";
+            EmptyMap["__interfaces"] = ["java.util.Map", "java.io.Serializable"];
             var ReverseComparator = (function () {
                 function ReverseComparator() {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Comparator"] });
                 }
                 ReverseComparator.INSTANCE_$LI$ = function () { if (ReverseComparator.INSTANCE == null)
                     ReverseComparator.INSTANCE = new Collections.ReverseComparator(); return ReverseComparator.INSTANCE; };
                 ;
                 ReverseComparator.prototype.compare = function (o1, o2) {
-                    if (((o1 != null && o1["__interfaces"] != null && o1["__interfaces"].indexOf("java.lang.Comparable") >= 0) || o1 === null) && ((o2 != null && o2["__interfaces"] != null && o2["__interfaces"].indexOf("java.lang.Comparable") >= 0) || o2 === null)) {
+                    if (((o1 != null && (o1["__interfaces"] != null && o1["__interfaces"].indexOf("java.lang.Comparable") >= 0 || o1.constructor != null && o1.constructor["__interfaces"] != null && o1.constructor["__interfaces"].indexOf("java.lang.Comparable") >= 0)) || o1 === null) && ((o2 != null && (o2["__interfaces"] != null && o2["__interfaces"].indexOf("java.lang.Comparable") >= 0 || o2.constructor != null && o2.constructor["__interfaces"] != null && o2.constructor["__interfaces"].indexOf("java.lang.Comparable") >= 0)) || o2 === null)) {
                         var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             return o2.compareTo(o1);
@@ -17503,12 +17379,12 @@ var java;
                 return ReverseComparator;
             }());
             Collections.ReverseComparator = ReverseComparator;
-            ReverseComparator["__classname"] = "java.util.Collections.ReverseComparator";
+            ReverseComparator["__class"] = "java.util.Collections.ReverseComparator";
+            ReverseComparator["__interfaces"] = ["java.util.Comparator"];
             var SetFromMap = (function (_super) {
                 __extends(SetFromMap, _super);
                 function SetFromMap(map) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
                     this.backingMap = map;
                 }
                 SetFromMap.prototype.add = function (index, element) {
@@ -17564,12 +17440,12 @@ var java;
                 return SetFromMap;
             }(java.util.AbstractSet));
             Collections.SetFromMap = SetFromMap;
-            SetFromMap["__classname"] = "java.util.Collections.SetFromMap";
+            SetFromMap["__class"] = "java.util.Collections.SetFromMap";
+            SetFromMap["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"];
             var SingletonList = (function (_super) {
                 __extends(SingletonList, _super);
                 function SingletonList(element) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.List", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"] });
                     this.element = element;
                 }
                 SingletonList.prototype.contains = function (item) {
@@ -17585,10 +17461,10 @@ var java;
                 return SingletonList;
             }(java.util.AbstractList));
             Collections.SingletonList = SingletonList;
-            SingletonList["__classname"] = "java.util.Collections.SingletonList";
+            SingletonList["__class"] = "java.util.Collections.SingletonList";
+            SingletonList["__interfaces"] = ["java.util.List", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"];
             var UnmodifiableCollection = (function () {
                 function UnmodifiableCollection(coll) {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.lang.Iterable"] });
                     this.coll = coll;
                 }
                 UnmodifiableCollection.prototype.forEach = function (action) {
@@ -17611,7 +17487,7 @@ var java;
                     throw new java.lang.UnsupportedOperationException();
                 };
                 UnmodifiableCollection.prototype.addAll = function (index, c) {
-                    if (((index != null && index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0) || index === null) && c === undefined) {
+                    if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                         return this.addAll$java_util_Collection(index);
                     }
                     else
@@ -17633,7 +17509,7 @@ var java;
                     return this.coll.isEmpty();
                 };
                 UnmodifiableCollection.prototype.iterator = function () {
-                    return new Collections.UnmodifiableCollectionIterator(this.coll.iterator());
+                    return (new Collections.UnmodifiableCollectionIterator(this.coll.iterator()));
                 };
                 UnmodifiableCollection.prototype.remove = function (index) {
                     if (((index != null) || index === null)) {
@@ -17677,12 +17553,12 @@ var java;
                 return UnmodifiableCollection;
             }());
             Collections.UnmodifiableCollection = UnmodifiableCollection;
-            UnmodifiableCollection["__classname"] = "java.util.Collections.UnmodifiableCollection";
+            UnmodifiableCollection["__class"] = "java.util.Collections.UnmodifiableCollection";
+            UnmodifiableCollection["__interfaces"] = ["java.util.Collection", "java.lang.Iterable"];
             var UnmodifiableList = (function (_super) {
                 __extends(UnmodifiableList, _super);
                 function UnmodifiableList(list) {
                     _super.call(this, list);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.List", "java.util.Collection", "java.lang.Iterable"] });
                     this.list = list;
                 }
                 UnmodifiableList.prototype.forEach = function (action) {
@@ -17708,13 +17584,13 @@ var java;
                         throw new Error('invalid overload');
                 };
                 UnmodifiableList.prototype.addAll = function (index, c) {
-                    if (((typeof index === 'number') || index === null) && ((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0) || c === null)) {
+                    if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                         var __args = Array.prototype.slice.call(arguments);
                         return (function () {
                             throw new java.lang.UnsupportedOperationException();
                         })();
                     }
-                    else if (((index != null && index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0) || index === null) && c === undefined) {
+                    else if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                         return this.addAll$java_util_Collection(index);
                     }
                     else
@@ -17760,7 +17636,7 @@ var java;
                     if (((typeof from === 'number') || from === null)) {
                         var __args = Array.prototype.slice.call(arguments);
                         return (function () {
-                            return new Collections.UnmodifiableListIterator(_this.list.listIterator(from));
+                            return (new Collections.UnmodifiableListIterator(_this.list.listIterator(from)));
                         })();
                     }
                     else if (from === undefined) {
@@ -17786,27 +17662,27 @@ var java;
                     throw new java.lang.UnsupportedOperationException();
                 };
                 UnmodifiableList.prototype.subList = function (fromIndex, toIndex) {
-                    return new Collections.UnmodifiableList(this.list.subList(fromIndex, toIndex));
+                    return (new Collections.UnmodifiableList(this.list.subList(fromIndex, toIndex)));
                 };
                 return UnmodifiableList;
             }(Collections.UnmodifiableCollection));
             Collections.UnmodifiableList = UnmodifiableList;
-            UnmodifiableList["__classname"] = "java.util.Collections.UnmodifiableList";
+            UnmodifiableList["__class"] = "java.util.Collections.UnmodifiableList";
+            UnmodifiableList["__interfaces"] = ["java.util.List", "java.util.Collection", "java.lang.Iterable"];
             var UnmodifiableRandomAccessList = (function (_super) {
                 __extends(UnmodifiableRandomAccessList, _super);
                 function UnmodifiableRandomAccessList(list) {
                     _super.call(this, list);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.RandomAccess", "java.util.List", "java.util.Collection", "java.lang.Iterable"] });
                 }
                 return UnmodifiableRandomAccessList;
             }(Collections.UnmodifiableList));
             Collections.UnmodifiableRandomAccessList = UnmodifiableRandomAccessList;
-            UnmodifiableRandomAccessList["__classname"] = "java.util.Collections.UnmodifiableRandomAccessList";
+            UnmodifiableRandomAccessList["__class"] = "java.util.Collections.UnmodifiableRandomAccessList";
+            UnmodifiableRandomAccessList["__interfaces"] = ["java.util.RandomAccess", "java.util.List", "java.util.Collection", "java.lang.Iterable"];
             var UnmodifiableSet = (function (_super) {
                 __extends(UnmodifiableSet, _super);
                 function UnmodifiableSet(set) {
                     _super.call(this, set);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Set", "java.lang.Iterable"] });
                 }
                 UnmodifiableSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(action);
@@ -17826,10 +17702,10 @@ var java;
                 return UnmodifiableSet;
             }(Collections.UnmodifiableCollection));
             Collections.UnmodifiableSet = UnmodifiableSet;
-            UnmodifiableSet["__classname"] = "java.util.Collections.UnmodifiableSet";
+            UnmodifiableSet["__class"] = "java.util.Collections.UnmodifiableSet";
+            UnmodifiableSet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
             var UnmodifiableMap = (function () {
                 function UnmodifiableMap(map) {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     this.map = map;
                 }
                 UnmodifiableMap.prototype.clear = function () {
@@ -17843,7 +17719,7 @@ var java;
                 };
                 UnmodifiableMap.prototype.entrySet = function () {
                     if (this.__entrySet == null) {
-                        this.__entrySet = new UnmodifiableMap.UnmodifiableEntrySet(this.map.entrySet());
+                        this.__entrySet = (new UnmodifiableMap.UnmodifiableEntrySet(this.map.entrySet()));
                     }
                     return this.__entrySet;
                 };
@@ -17861,7 +17737,7 @@ var java;
                 };
                 UnmodifiableMap.prototype.keySet = function () {
                     if (this.__keySet == null) {
-                        this.__keySet = new Collections.UnmodifiableSet(this.map.keySet());
+                        this.__keySet = (new Collections.UnmodifiableSet(this.map.keySet()));
                     }
                     return this.__keySet;
                 };
@@ -17882,21 +17758,21 @@ var java;
                 };
                 UnmodifiableMap.prototype.values = function () {
                     if (this.__values == null) {
-                        this.__values = new Collections.UnmodifiableCollection(this.map.values());
+                        this.__values = (new Collections.UnmodifiableCollection(this.map.values()));
                     }
                     return this.__values;
                 };
                 return UnmodifiableMap;
             }());
             Collections.UnmodifiableMap = UnmodifiableMap;
-            UnmodifiableMap["__classname"] = "java.util.Collections.UnmodifiableMap";
+            UnmodifiableMap["__class"] = "java.util.Collections.UnmodifiableMap";
+            UnmodifiableMap["__interfaces"] = ["java.util.Map"];
             var UnmodifiableMap;
             (function (UnmodifiableMap) {
                 var UnmodifiableEntrySet = (function (_super) {
                     __extends(UnmodifiableEntrySet, _super);
                     function UnmodifiableEntrySet(s) {
                         _super.call(this, s);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Set", "java.lang.Iterable"] });
                     }
                     UnmodifiableEntrySet.prototype.contains = function (o) {
                         return this.coll.contains(o);
@@ -17937,18 +17813,18 @@ var java;
                      */
                     UnmodifiableEntrySet.prototype.wrap = function (array, size) {
                         for (var i = 0; i < size; ++i) {
-                            array[i] = new UnmodifiableEntrySet.UnmodifiableEntry(array[i]);
+                            array[i] = (new UnmodifiableEntrySet.UnmodifiableEntry(array[i]));
                         }
                     };
                     return UnmodifiableEntrySet;
                 }(Collections.UnmodifiableSet));
                 UnmodifiableMap.UnmodifiableEntrySet = UnmodifiableEntrySet;
-                UnmodifiableEntrySet["__classname"] = "java.util.Collections.UnmodifiableMap.UnmodifiableEntrySet";
+                UnmodifiableEntrySet["__class"] = "java.util.Collections.UnmodifiableMap.UnmodifiableEntrySet";
+                UnmodifiableEntrySet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
                 var UnmodifiableEntrySet;
                 (function (UnmodifiableEntrySet) {
                     var UnmodifiableEntry = (function () {
                         function UnmodifiableEntry(entry) {
-                            Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
                             this.entry = entry;
                         }
                         UnmodifiableEntry.prototype.equals = function (o) {
@@ -17972,11 +17848,11 @@ var java;
                         return UnmodifiableEntry;
                     }());
                     UnmodifiableEntrySet.UnmodifiableEntry = UnmodifiableEntry;
-                    UnmodifiableEntry["__classname"] = "java.util.Collections.UnmodifiableMap.UnmodifiableEntrySet.UnmodifiableEntry";
+                    UnmodifiableEntry["__class"] = "java.util.Collections.UnmodifiableMap.UnmodifiableEntrySet.UnmodifiableEntry";
+                    UnmodifiableEntry["__interfaces"] = ["java.util.Map.Entry"];
                     var UnmodifiableEntrySet$0 = (function () {
                         function UnmodifiableEntrySet$0(__parent, it) {
                             this.it = it;
-                            Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                             this.__parent = __parent;
                         }
                         UnmodifiableEntrySet$0.prototype.forEachRemaining = function (consumer) {
@@ -17990,7 +17866,7 @@ var java;
                             return this.it.hasNext();
                         };
                         UnmodifiableEntrySet$0.prototype.next = function () {
-                            return new UnmodifiableEntrySet.UnmodifiableEntry(this.it.next());
+                            return (new UnmodifiableEntrySet.UnmodifiableEntry(this.it.next()));
                         };
                         UnmodifiableEntrySet$0.prototype.remove = function () {
                             throw new java.lang.UnsupportedOperationException();
@@ -18004,7 +17880,6 @@ var java;
                 __extends(UnmodifiableSortedMap, _super);
                 function UnmodifiableSortedMap(sortedMap) {
                     _super.call(this, sortedMap);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.SortedMap"] });
                     this.sortedMap = sortedMap;
                 }
                 UnmodifiableSortedMap.prototype.comparator = function () {
@@ -18027,7 +17902,7 @@ var java;
                         throw new Error('invalid overload');
                 };
                 UnmodifiableSortedMap.prototype.headMap$java_lang_Object = function (toKey) {
-                    return new Collections.UnmodifiableSortedMap(this.sortedMap.headMap(toKey));
+                    return (new Collections.UnmodifiableSortedMap(this.sortedMap.headMap(toKey)));
                 };
                 UnmodifiableSortedMap.prototype.lastKey = function () {
                     return this.sortedMap.lastKey();
@@ -18040,7 +17915,7 @@ var java;
                         throw new Error('invalid overload');
                 };
                 UnmodifiableSortedMap.prototype.subMap$java_lang_Object$java_lang_Object = function (fromKey, toKey) {
-                    return new Collections.UnmodifiableSortedMap(this.sortedMap.subMap(fromKey, toKey));
+                    return (new Collections.UnmodifiableSortedMap(this.sortedMap.subMap(fromKey, toKey)));
                 };
                 UnmodifiableSortedMap.prototype.tailMap = function (fromKey, inclusive) {
                     if (((fromKey != null) || fromKey === null) && inclusive === undefined) {
@@ -18050,17 +17925,17 @@ var java;
                         throw new Error('invalid overload');
                 };
                 UnmodifiableSortedMap.prototype.tailMap$java_lang_Object = function (fromKey) {
-                    return new Collections.UnmodifiableSortedMap(this.sortedMap.tailMap(fromKey));
+                    return (new Collections.UnmodifiableSortedMap(this.sortedMap.tailMap(fromKey)));
                 };
                 return UnmodifiableSortedMap;
             }(Collections.UnmodifiableMap));
             Collections.UnmodifiableSortedMap = UnmodifiableSortedMap;
-            UnmodifiableSortedMap["__classname"] = "java.util.Collections.UnmodifiableSortedMap";
+            UnmodifiableSortedMap["__class"] = "java.util.Collections.UnmodifiableSortedMap";
+            UnmodifiableSortedMap["__interfaces"] = ["java.util.Map", "java.util.SortedMap"];
             var UnmodifiableSortedSet = (function (_super) {
                 __extends(UnmodifiableSortedSet, _super);
                 function UnmodifiableSortedSet(sortedSet) {
                     _super.call(this, sortedSet);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.lang.Iterable"] });
                     this.sortedSet = sortedSet;
                 }
                 UnmodifiableSortedSet.prototype.forEach = function (action) {
@@ -18092,7 +17967,7 @@ var java;
                         throw new Error('invalid overload');
                 };
                 UnmodifiableSortedSet.prototype.headSet$java_lang_Object = function (toElement) {
-                    return new Collections.UnmodifiableSortedSet(this.sortedSet.headSet(toElement));
+                    return (new Collections.UnmodifiableSortedSet(this.sortedSet.headSet(toElement)));
                 };
                 UnmodifiableSortedSet.prototype.last = function () {
                     return this.sortedSet.last();
@@ -18105,7 +17980,7 @@ var java;
                         throw new Error('invalid overload');
                 };
                 UnmodifiableSortedSet.prototype.subSet$java_lang_Object$java_lang_Object = function (fromElement, toElement) {
-                    return new Collections.UnmodifiableSortedSet(this.sortedSet.subSet(fromElement, toElement));
+                    return (new Collections.UnmodifiableSortedSet(this.sortedSet.subSet(fromElement, toElement)));
                 };
                 UnmodifiableSortedSet.prototype.tailSet = function (fromElement, inclusive) {
                     if (((fromElement != null) || fromElement === null) && inclusive === undefined) {
@@ -18115,15 +17990,15 @@ var java;
                         throw new Error('invalid overload');
                 };
                 UnmodifiableSortedSet.prototype.tailSet$java_lang_Object = function (fromElement) {
-                    return new Collections.UnmodifiableSortedSet(this.sortedSet.tailSet(fromElement));
+                    return (new Collections.UnmodifiableSortedSet(this.sortedSet.tailSet(fromElement)));
                 };
                 return UnmodifiableSortedSet;
             }(Collections.UnmodifiableSet));
             Collections.UnmodifiableSortedSet = UnmodifiableSortedSet;
-            UnmodifiableSortedSet["__classname"] = "java.util.Collections.UnmodifiableSortedSet";
+            UnmodifiableSortedSet["__class"] = "java.util.Collections.UnmodifiableSortedSet";
+            UnmodifiableSortedSet["__interfaces"] = ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.lang.Iterable"];
             var UnmodifiableCollectionIterator = (function () {
                 function UnmodifiableCollectionIterator(it) {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                     this.it = it;
                 }
                 UnmodifiableCollectionIterator.prototype.forEachRemaining = function (consumer) {
@@ -18145,12 +18020,12 @@ var java;
                 return UnmodifiableCollectionIterator;
             }());
             Collections.UnmodifiableCollectionIterator = UnmodifiableCollectionIterator;
-            UnmodifiableCollectionIterator["__classname"] = "java.util.Collections.UnmodifiableCollectionIterator";
+            UnmodifiableCollectionIterator["__class"] = "java.util.Collections.UnmodifiableCollectionIterator";
+            UnmodifiableCollectionIterator["__interfaces"] = ["java.util.Iterator"];
             var UnmodifiableListIterator = (function (_super) {
                 __extends(UnmodifiableListIterator, _super);
                 function UnmodifiableListIterator(lit) {
                     _super.call(this, lit);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator", "java.util.ListIterator"] });
                     this.lit = lit;
                 }
                 UnmodifiableListIterator.prototype.forEachRemaining = function (consumer) {
@@ -18181,7 +18056,8 @@ var java;
                 return UnmodifiableListIterator;
             }(Collections.UnmodifiableCollectionIterator));
             Collections.UnmodifiableListIterator = UnmodifiableListIterator;
-            UnmodifiableListIterator["__classname"] = "java.util.Collections.UnmodifiableListIterator";
+            UnmodifiableListIterator["__class"] = "java.util.Collections.UnmodifiableListIterator";
+            UnmodifiableListIterator["__interfaces"] = ["java.util.Iterator", "java.util.ListIterator"];
             var RandomHolder = (function () {
                 function RandomHolder() {
                 }
@@ -18191,11 +18067,10 @@ var java;
                 return RandomHolder;
             }());
             Collections.RandomHolder = RandomHolder;
-            RandomHolder["__classname"] = "java.util.Collections.RandomHolder";
+            RandomHolder["__class"] = "java.util.Collections.RandomHolder";
             var Collections$0 = (function () {
                 function Collections$0(it) {
                     this.it = it;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Enumeration"] });
                 }
                 Collections$0.prototype.hasMoreElements = function () {
                     return this.it.hasNext();
@@ -18209,7 +18084,6 @@ var java;
             var Collections$1 = (function () {
                 function Collections$1(cmp) {
                     this.cmp = cmp;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Comparator"] });
                 }
                 Collections$1.prototype.compare = function (t1, t2) {
                     return this.cmp.compare(t2, t1);
@@ -18240,7 +18114,6 @@ var java;
                 if (((type != null && type instanceof java.lang.Class) || type === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
                         _this.init(type);
                     })();
@@ -18249,16 +18122,14 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     var m_1 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
                         _this.init(m_1);
                     })();
                 }
-                else if (((type != null && type["__interfaces"] != null && type["__interfaces"].indexOf("java.util.Map") >= 0) || type === null)) {
+                else if (((type != null && (type["__interfaces"] != null && type["__interfaces"].indexOf("java.util.Map") >= 0 || type.constructor != null && type.constructor["__interfaces"] != null && type.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || type === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var m_2 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map"] });
                     (function () {
                         if (m_2 != null && m_2 instanceof java.util.EnumMap) {
                             _this.init(m_2);
@@ -18278,7 +18149,7 @@ var java;
                 this.__values = new Array(this.__values.length);
             };
             EnumMap.prototype.clone = function () {
-                return new EnumMap(this);
+                return (new EnumMap(this));
             };
             EnumMap.prototype.containsKey = function (key) {
                 return this.__keySet.contains(key);
@@ -18359,21 +18230,21 @@ var java;
             return EnumMap;
         }(java.util.AbstractMap));
         util.EnumMap = EnumMap;
-        EnumMap["__classname"] = "java.util.EnumMap";
+        EnumMap["__class"] = "java.util.EnumMap";
+        EnumMap["__interfaces"] = ["java.util.Map"];
         var EnumMap;
         (function (EnumMap) {
             var EntrySet = (function (_super) {
                 __extends(EntrySet, _super);
                 function EntrySet(__parent) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Set", "java.lang.Iterable"] });
                     this.__parent = __parent;
                 }
                 EntrySet.prototype.clear = function () {
                     this.__parent.clear();
                 };
                 EntrySet.prototype.contains = function (o) {
-                    if (o != null && o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0) {
+                    if (o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
                         return this.__parent.containsEntry(o);
                     }
                     return false;
@@ -18402,10 +18273,10 @@ var java;
                 return EntrySet;
             }(java.util.AbstractSet));
             EnumMap.EntrySet = EntrySet;
-            EntrySet["__classname"] = "java.util.EnumMap.EntrySet";
+            EntrySet["__class"] = "java.util.EnumMap.EntrySet";
+            EntrySet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
             var EntrySetIterator = (function () {
                 function EntrySetIterator(__parent) {
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                     this.__parent = __parent;
                     this.it = this.__parent.__keySet.iterator();
                 }
@@ -18431,12 +18302,12 @@ var java;
                 return EntrySetIterator;
             }());
             EnumMap.EntrySetIterator = EntrySetIterator;
-            EntrySetIterator["__classname"] = "java.util.EnumMap.EntrySetIterator";
+            EntrySetIterator["__class"] = "java.util.EnumMap.EntrySetIterator";
+            EntrySetIterator["__interfaces"] = ["java.util.Iterator"];
             var MapEntry = (function (_super) {
                 __extends(MapEntry, _super);
                 function MapEntry(__parent, key) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
                     this.__parent = __parent;
                     this.key = key;
                 }
@@ -18452,7 +18323,8 @@ var java;
                 return MapEntry;
             }(java.util.AbstractMapEntry));
             EnumMap.MapEntry = MapEntry;
-            MapEntry["__classname"] = "java.util.EnumMap.MapEntry";
+            MapEntry["__class"] = "java.util.EnumMap.MapEntry";
+            MapEntry["__interfaces"] = ["java.util.Map.Entry"];
         })(EnumMap = util.EnumMap || (util.EnumMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -18475,27 +18347,23 @@ var java;
                 var _this = this;
                 if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    _super.call(this, new java.util.LinkedHashMap(ignored, alsoIgnored));
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
+                    _super.call(this, (new java.util.LinkedHashMap(ignored, alsoIgnored)));
                 }
-                else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Collection") >= 0) || ignored === null) && alsoIgnored === undefined) {
+                else if (((ignored != null && (ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Collection") >= 0 || ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var c_7 = __args[0];
-                    _super.call(this, new java.util.LinkedHashMap());
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
+                    _super.call(this, (new java.util.LinkedHashMap()));
                     (function () {
                         _this.addAll(c_7);
                     })();
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    _super.call(this, new java.util.LinkedHashMap(ignored));
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
+                    _super.call(this, (new java.util.LinkedHashMap(ignored)));
                 }
                 else if (ignored === undefined && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    _super.call(this, new java.util.LinkedHashMap());
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"] });
+                    _super.call(this, (new java.util.LinkedHashMap()));
                 }
                 else
                     throw new Error('invalid overload');
@@ -18510,12 +18378,13 @@ var java;
                 }
             };
             LinkedHashSet.prototype.clone = function () {
-                return new LinkedHashSet(this);
+                return (new LinkedHashSet(this));
             };
             return LinkedHashSet;
         }(java.util.HashSet));
         util.LinkedHashSet = LinkedHashSet;
-        LinkedHashSet["__classname"] = "java.util.LinkedHashSet";
+        LinkedHashSet["__class"] = "java.util.LinkedHashSet";
+        LinkedHashSet["__interfaces"] = ["java.lang.Cloneable", "java.util.Collection", "java.util.Set", "java.lang.Iterable", "java.io.Serializable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -18559,7 +18428,7 @@ var java;
             return ConcurrentModificationDetector;
         }());
         util.ConcurrentModificationDetector = ConcurrentModificationDetector;
-        ConcurrentModificationDetector["__classname"] = "java.util.ConcurrentModificationDetector";
+        ConcurrentModificationDetector["__class"] = "java.util.ConcurrentModificationDetector";
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -18583,7 +18452,7 @@ var java;
                     }
                     this.name = name;
                     this.useParentHandlers = true;
-                    this.handlers = new java.util.ArrayList();
+                    this.handlers = (new java.util.ArrayList());
                 }
                 Logger.__static_initialize = function () { if (!Logger.__static_initialized) {
                     Logger.__static_initialized = true;
@@ -18833,7 +18702,7 @@ var java;
                 return Logger;
             }());
             logging.Logger = Logger;
-            Logger["__classname"] = "java.util.logging.Logger";
+            Logger["__class"] = "java.util.logging.Logger";
         })(logging = util.logging || (util.logging = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -19435,7 +19304,7 @@ var javaemul;
             return InternalPreconditions;
         }());
         internal.InternalPreconditions = InternalPreconditions;
-        InternalPreconditions["__classname"] = "javaemul.internal.InternalPreconditions";
+        InternalPreconditions["__class"] = "javaemul.internal.InternalPreconditions";
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -19457,29 +19326,25 @@ var java;
                 if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored, alsoIgnored);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                 }
-                else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0) || ignored === null) && alsoIgnored === undefined) {
+                else if (((ignored != null && (ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0 || ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var toBeCopied = __args[0];
                     _super.call(this, toBeCopied);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                 }
                 else if (ignored === undefined && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
             }
             HashMap.prototype.clone = function () {
-                return new HashMap(this);
+                return (new HashMap(this));
             };
             HashMap.prototype._equals = function (value1, value2) {
                 return java.util.Objects.equals(value1, value2);
@@ -19491,7 +19356,8 @@ var java;
             return HashMap;
         }(java.util.AbstractHashMap));
         util.HashMap = HashMap;
-        HashMap["__classname"] = "java.util.HashMap";
+        HashMap["__class"] = "java.util.HashMap";
+        HashMap["__interfaces"] = ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -19510,33 +19376,30 @@ var java;
         var IdentityHashMap = (function (_super) {
             __extends(IdentityHashMap, _super);
             function IdentityHashMap(toBeCopied) {
-                if (((toBeCopied != null && toBeCopied["__interfaces"] != null && toBeCopied["__interfaces"].indexOf("java.util.Map") >= 0) || toBeCopied === null)) {
+                if (((toBeCopied != null && (toBeCopied["__interfaces"] != null && toBeCopied["__interfaces"].indexOf("java.util.Map") >= 0 || toBeCopied.constructor != null && toBeCopied.constructor["__interfaces"] != null && toBeCopied.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || toBeCopied === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, toBeCopied);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                 }
                 else if (((typeof toBeCopied === 'number') || toBeCopied === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var ignored = __args[0];
                     _super.call(this, ignored);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                 }
                 else if (toBeCopied === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
             }
             IdentityHashMap.prototype.clone = function () {
-                return new IdentityHashMap(this);
+                return (new IdentityHashMap(this));
             };
             IdentityHashMap.prototype.equals = function (obj) {
                 if (obj === this) {
                     return true;
                 }
-                if (!(obj != null && obj["__interfaces"] != null && obj["__interfaces"].indexOf("java.util.Map") >= 0)) {
+                if (!(obj != null && (obj["__interfaces"] != null && obj["__interfaces"].indexOf("java.util.Map") >= 0 || obj.constructor != null && obj.constructor["__interfaces"] != null && obj.constructor["__interfaces"].indexOf("java.util.Map") >= 0))) {
                     return false;
                 }
                 var otherMap = obj;
@@ -19578,7 +19441,8 @@ var java;
             return IdentityHashMap;
         }(java.util.AbstractHashMap));
         util.IdentityHashMap = IdentityHashMap;
-        IdentityHashMap["__classname"] = "java.util.IdentityHashMap";
+        IdentityHashMap["__class"] = "java.util.IdentityHashMap";
+        IdentityHashMap["__interfaces"] = ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 /* Generated from Java with JSweet 1.2.0-SNAPSHOT - http://www.jsweet.org */
@@ -19599,10 +19463,9 @@ var java;
             __extends(TreeMap, _super);
             function TreeMap(c) {
                 var _this = this;
-                if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Comparator") >= 0) || c === null)) {
+                if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Comparator") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap", "java.io.Serializable"] });
                     this.__size = 0;
                     (function () {
                         _this.root = null;
@@ -19612,14 +19475,13 @@ var java;
                         _this.cmp = c;
                     })();
                 }
-                else if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.SortedMap") >= 0) || c === null)) {
+                else if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.SortedMap") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.SortedMap") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var map_3 = __args[0];
                     {
                         var __args_22 = Array.prototype.slice.call(arguments);
                         var c_8 = javaemul.internal.InternalPreconditions.checkNotNull(map_3).comparator();
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap", "java.io.Serializable"] });
                         this.__size = 0;
                         (function () {
                             _this.root = null;
@@ -19633,7 +19495,7 @@ var java;
                         _this.putAll(map_3);
                     })();
                 }
-                else if (((c != null && c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Map") >= 0) || c === null)) {
+                else if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Map") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var map_4 = __args[0];
                     {
@@ -19642,7 +19504,6 @@ var java;
                             var __args_24 = Array.prototype.slice.call(arguments);
                             var c_9 = null;
                             _super.call(this);
-                            Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap", "java.io.Serializable"] });
                             this.__size = 0;
                             (function () {
                                 _this.root = null;
@@ -19663,7 +19524,6 @@ var java;
                         var __args_25 = Array.prototype.slice.call(arguments);
                         var c_10 = null;
                         _super.call(this);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap", "java.io.Serializable"] });
                         this.__size = 0;
                         (function () {
                             _this.root = null;
@@ -19727,8 +19587,8 @@ var java;
                     throw new Error('invalid overload');
             };
             TreeMap.prototype.put$java_lang_Object$java_lang_Object = function (key, value) {
-                var node = new TreeMap.Node(key, value);
-                var state = new TreeMap.State();
+                var node = (new TreeMap.Node(key, value));
+                var state = (new TreeMap.State());
                 this.root = this.insert(this.root, node, state);
                 if (!state.found) {
                     ++this.__size;
@@ -19738,7 +19598,7 @@ var java;
             };
             TreeMap.prototype.remove = function (k) {
                 var key = k;
-                var state = new TreeMap.State();
+                var state = (new TreeMap.State());
                 this.removeWithState(key, state);
                 return state.value;
             };
@@ -19947,7 +19807,7 @@ var java;
                 return this.getNodeBefore(key, false);
             };
             TreeMap.prototype.removeEntry = function (entry) {
-                var state = new TreeMap.State();
+                var state = (new TreeMap.State());
                 state.matchValue = true;
                 state.value = entry.getValue();
                 return this.removeWithState(entry.getKey(), state);
@@ -20054,7 +19914,7 @@ var java;
                 }
                 var found = null;
                 var parent = null;
-                var head = new TreeMap.Node(null, null);
+                var head = (new TreeMap.Node(null, null));
                 var dir = TreeMap.RIGHT;
                 head.child[TreeMap.RIGHT] = this.root;
                 var node = head;
@@ -20101,7 +19961,7 @@ var java;
                     state.found = true;
                     state.value = found.getValue();
                     if (node !== found) {
-                        var newNode = new TreeMap.Node(node.getKey(), node.getValue());
+                        var newNode = (new TreeMap.Node(node.getKey(), node.getValue()));
                         this.replaceNode(head, found, newNode);
                         if (parent === found) {
                             parent = newNode;
@@ -20184,7 +20044,8 @@ var java;
             return TreeMap;
         }(java.util.AbstractNavigableMap));
         util.TreeMap = TreeMap;
-        TreeMap["__classname"] = "java.util.TreeMap";
+        TreeMap["__class"] = "java.util.TreeMap";
+        TreeMap["__interfaces"] = ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap", "java.io.Serializable"];
         var TreeMap;
         (function (TreeMap) {
             /**
@@ -20203,9 +20064,8 @@ var java;
                     if (fromInclusive === void 0) { fromInclusive = false; }
                     if (toKey === void 0) { toKey = null; }
                     if (toInclusive === void 0) { toInclusive = false; }
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                     this.__parent = __parent;
-                    var list = new java.util.ArrayList();
+                    var list = (new java.util.ArrayList());
                     this.__parent.inOrderAdd(list, type, this.__parent.root, fromKey, fromInclusive, toKey, toInclusive);
                     this.iter = list.listIterator(list.size());
                 }
@@ -20230,7 +20090,8 @@ var java;
                 return DescendingEntryIterator;
             }());
             TreeMap.DescendingEntryIterator = DescendingEntryIterator;
-            DescendingEntryIterator["__classname"] = "java.util.TreeMap.DescendingEntryIterator";
+            DescendingEntryIterator["__class"] = "java.util.TreeMap.DescendingEntryIterator";
+            DescendingEntryIterator["__interfaces"] = ["java.util.Iterator"];
             /**
              * Iterator for <code>EntrySet</code>.
              */
@@ -20247,9 +20108,8 @@ var java;
                     if (fromInclusive === void 0) { fromInclusive = false; }
                     if (toKey === void 0) { toKey = null; }
                     if (toInclusive === void 0) { toInclusive = false; }
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                     this.__parent = __parent;
-                    var list = new java.util.ArrayList();
+                    var list = (new java.util.ArrayList());
                     this.__parent.inOrderAdd(list, type, this.__parent.root, fromKey, fromInclusive, toKey, toInclusive);
                     this.iter = list.listIterator();
                 }
@@ -20274,12 +20134,12 @@ var java;
                 return EntryIterator;
             }());
             TreeMap.EntryIterator = EntryIterator;
-            EntryIterator["__classname"] = "java.util.TreeMap.EntryIterator";
+            EntryIterator["__class"] = "java.util.TreeMap.EntryIterator";
+            EntryIterator["__interfaces"] = ["java.util.Iterator"];
             var EntrySet = (function (_super) {
                 __extends(EntrySet, _super);
                 function EntrySet(__parent) {
                     _super.call(this, __parent);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Set", "java.lang.Iterable"] });
                     this.__parent = __parent;
                 }
                 EntrySet.prototype.clear = function () {
@@ -20288,7 +20148,8 @@ var java;
                 return EntrySet;
             }(java.util.AbstractNavigableMap.EntrySet));
             TreeMap.EntrySet = EntrySet;
-            EntrySet["__classname"] = "java.util.TreeMap.EntrySet";
+            EntrySet["__class"] = "java.util.TreeMap.EntrySet";
+            EntrySet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
             /**
              * Tree node.
              *
@@ -20308,14 +20169,14 @@ var java;
                     if (isRed === void 0) { isRed = true; }
                     _super.call(this, key, value);
                     this.child = new Array(2);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
                     this.isRed = false;
                     this.isRed = isRed;
                 }
                 return Node;
             }(util.AbstractMap.SimpleEntry));
             TreeMap.Node = Node;
-            Node["__classname"] = "java.util.TreeMap.Node";
+            Node["__class"] = "java.util.TreeMap.Node";
+            Node["__interfaces"] = ["java.util.Map.Entry"];
             /**
              * A state object which is passed down the tree for both insert and remove.
              * All uses make use of the done flag to indicate when no further rebalancing
@@ -20339,12 +20200,11 @@ var java;
                 return State;
             }());
             TreeMap.State = State;
-            State["__classname"] = "java.util.TreeMap.State";
+            State["__class"] = "java.util.TreeMap.State";
             var SubMap = (function (_super) {
                 __extends(SubMap, _super);
                 function SubMap(__parent, type, fromKey, fromInclusive, toKey, toInclusive) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap"] });
                     this.__parent = __parent;
                     this.fromInclusive = false;
                     this.toInclusive = false;
@@ -20530,14 +20390,14 @@ var java;
                 return SubMap;
             }(java.util.AbstractNavigableMap));
             TreeMap.SubMap = SubMap;
-            SubMap["__classname"] = "java.util.TreeMap.SubMap";
+            SubMap["__class"] = "java.util.TreeMap.SubMap";
+            SubMap["__interfaces"] = ["java.util.Map", "java.util.NavigableMap", "java.util.SortedMap"];
             var SubMap;
             (function (SubMap) {
                 var SubMap$0 = (function (_super) {
                     __extends(SubMap$0, _super);
                     function SubMap$0(__parent) {
                         _super.call(this, __parent);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Set", "java.lang.Iterable"] });
                         this.__parent = __parent;
                     }
                     SubMap$0.prototype.isEmpty = function () {
@@ -20565,7 +20425,7 @@ var java;
                 return SubMapType;
             }());
             TreeMap.SubMapType = SubMapType;
-            SubMapType["__classname"] = "java.util.TreeMap.SubMapType";
+            SubMapType["__class"] = "java.util.TreeMap.SubMapType";
             var SubMapTypeHead = (function (_super) {
                 __extends(SubMapTypeHead, _super);
                 function SubMapTypeHead() {
@@ -20577,7 +20437,7 @@ var java;
                 return SubMapTypeHead;
             }(TreeMap.SubMapType));
             TreeMap.SubMapTypeHead = SubMapTypeHead;
-            SubMapTypeHead["__classname"] = "java.util.TreeMap.SubMapTypeHead";
+            SubMapTypeHead["__class"] = "java.util.TreeMap.SubMapTypeHead";
             var SubMapTypeRange = (function (_super) {
                 __extends(SubMapTypeRange, _super);
                 function SubMapTypeRange() {
@@ -20592,7 +20452,7 @@ var java;
                 return SubMapTypeRange;
             }(TreeMap.SubMapType));
             TreeMap.SubMapTypeRange = SubMapTypeRange;
-            SubMapTypeRange["__classname"] = "java.util.TreeMap.SubMapTypeRange";
+            SubMapTypeRange["__class"] = "java.util.TreeMap.SubMapTypeRange";
             var SubMapTypeTail = (function (_super) {
                 __extends(SubMapTypeTail, _super);
                 function SubMapTypeTail() {
@@ -20604,7 +20464,7 @@ var java;
                 return SubMapTypeTail;
             }(TreeMap.SubMapType));
             TreeMap.SubMapTypeTail = SubMapTypeTail;
-            SubMapTypeTail["__classname"] = "java.util.TreeMap.SubMapTypeTail";
+            SubMapTypeTail["__class"] = "java.util.TreeMap.SubMapTypeTail";
         })(TreeMap = util.TreeMap || (util.TreeMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -20619,23 +20479,19 @@ var java;
                 if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored, alsoIgnored);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.util.Dictionary", "java.io.Serializable"] });
                 }
-                else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0) || ignored === null) && alsoIgnored === undefined) {
+                else if (((ignored != null && (ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0 || ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var toBeCopied = __args[0];
                     _super.call(this, toBeCopied);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.util.Dictionary", "java.io.Serializable"] });
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.util.Dictionary", "java.io.Serializable"] });
                 }
                 else if (ignored === undefined && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.util.Dictionary", "java.io.Serializable"] });
                 }
                 else
                     throw new Error('invalid overload');
@@ -20652,13 +20508,13 @@ var java;
             return Hashtable;
         }(java.util.HashMap));
         util.Hashtable = Hashtable;
-        Hashtable["__classname"] = "java.util.Hashtable";
+        Hashtable["__class"] = "java.util.Hashtable";
+        Hashtable["__interfaces"] = ["java.lang.Cloneable", "java.util.Map", "java.util.Dictionary", "java.io.Serializable"];
         var Hashtable;
         (function (Hashtable) {
             var Hashtable$0 = (function () {
                 function Hashtable$0(__parent, it) {
                     this.it = it;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Enumeration"] });
                     this.__parent = __parent;
                 }
                 Hashtable$0.prototype.hasMoreElements = function () {
@@ -20673,7 +20529,6 @@ var java;
             var Hashtable$1 = (function () {
                 function Hashtable$1(__parent, it) {
                     this.it = it;
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Enumeration"] });
                     this.__parent = __parent;
                 }
                 Hashtable$1.prototype.hasMoreElements = function () {
@@ -20711,11 +20566,10 @@ var java;
                 if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null) && ((typeof accessOrder === 'boolean') || accessOrder === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored, alsoIgnored);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     this.accessOrder = false;
                     (function () {
                         _this.head = new LinkedHashMap.ChainEntry(_this);
-                        _this.map = new java.util.HashMap();
+                        _this.map = (new java.util.HashMap());
                         _this.accessOrder = accessOrder;
                         _this.resetChainEntries();
                     })();
@@ -20723,23 +20577,21 @@ var java;
                 else if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null) && accessOrder === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this, ignored, alsoIgnored);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     this.accessOrder = false;
                     (function () {
                         _this.head = new LinkedHashMap.ChainEntry(_this);
-                        _this.map = new java.util.HashMap();
+                        _this.map = (new java.util.HashMap());
                         _this.resetChainEntries();
                     })();
                 }
-                else if (((ignored != null && ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0) || ignored === null) && alsoIgnored === undefined && accessOrder === undefined) {
+                else if (((ignored != null && (ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0 || ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || ignored === null) && alsoIgnored === undefined && accessOrder === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var toBeCopied_2 = __args[0];
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     this.accessOrder = false;
                     (function () {
                         _this.head = new LinkedHashMap.ChainEntry(_this);
-                        _this.map = new java.util.HashMap();
+                        _this.map = (new java.util.HashMap());
                         _this.resetChainEntries();
                         _this.putAll(toBeCopied_2);
                     })();
@@ -20750,11 +20602,10 @@ var java;
                         var __args_26 = Array.prototype.slice.call(arguments);
                         var alsoIgnored_2 = 0;
                         _super.call(this, ignored, alsoIgnored_2);
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                         this.accessOrder = false;
                         (function () {
                             _this.head = new LinkedHashMap.ChainEntry(_this);
-                            _this.map = new java.util.HashMap();
+                            _this.map = (new java.util.HashMap());
                             _this.resetChainEntries();
                         })();
                     }
@@ -20762,11 +20613,10 @@ var java;
                 else if (ignored === undefined && alsoIgnored === undefined && accessOrder === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"] });
                     this.accessOrder = false;
                     (function () {
                         _this.head = new LinkedHashMap.ChainEntry(_this);
-                        _this.map = new java.util.HashMap();
+                        _this.map = (new java.util.HashMap());
                         _this.resetChainEntries();
                     })();
                 }
@@ -20782,7 +20632,7 @@ var java;
                 this.head.next = this.head;
             };
             LinkedHashMap.prototype.clone = function () {
-                return new LinkedHashMap(this);
+                return (new LinkedHashMap(this));
             };
             LinkedHashMap.prototype.containsKey = function (key) {
                 return this.map.containsKey(key);
@@ -20858,7 +20708,8 @@ var java;
             return LinkedHashMap;
         }(java.util.HashMap));
         util.LinkedHashMap = LinkedHashMap;
-        LinkedHashMap["__classname"] = "java.util.LinkedHashMap";
+        LinkedHashMap["__class"] = "java.util.LinkedHashMap";
+        LinkedHashMap["__interfaces"] = ["java.lang.Cloneable", "java.util.Map", "java.io.Serializable"];
         var LinkedHashMap;
         (function (LinkedHashMap) {
             /**
@@ -20879,7 +20730,6 @@ var java;
                     if (key === void 0) { key = null; }
                     if (value === void 0) { value = null; }
                     _super.call(this, key, value);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Map.Entry"] });
                     this.__parent = __parent;
                 }
                 /**
@@ -20902,19 +20752,19 @@ var java;
                 return ChainEntry;
             }(util.AbstractMap.SimpleEntry));
             LinkedHashMap.ChainEntry = ChainEntry;
-            ChainEntry["__classname"] = "java.util.LinkedHashMap.ChainEntry";
+            ChainEntry["__class"] = "java.util.LinkedHashMap.ChainEntry";
+            ChainEntry["__interfaces"] = ["java.util.Map.Entry"];
             var EntrySet = (function (_super) {
                 __extends(EntrySet, _super);
                 function EntrySet(__parent) {
                     _super.call(this);
-                    Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Collection", "java.util.Set", "java.lang.Iterable"] });
                     this.__parent = __parent;
                 }
                 EntrySet.prototype.clear = function () {
                     this.__parent.clear();
                 };
                 EntrySet.prototype.contains = function (o) {
-                    if (o != null && o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0) {
+                    if (o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
                         return this.__parent.containsEntry(o);
                     }
                     return false;
@@ -20943,12 +20793,12 @@ var java;
                 return EntrySet;
             }(java.util.AbstractSet));
             LinkedHashMap.EntrySet = EntrySet;
-            EntrySet["__classname"] = "java.util.LinkedHashMap.EntrySet";
+            EntrySet["__class"] = "java.util.LinkedHashMap.EntrySet";
+            EntrySet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
             var EntrySet;
             (function (EntrySet) {
                 var EntryIterator = (function () {
                     function EntryIterator(__parent) {
-                        Object.defineProperty(this, '__interfaces', { configurable: true, value: ["java.util.Iterator"] });
                         this.__parent = __parent;
                         this.__next = this.__parent.__parent.head.next;
                         java.util.ConcurrentModificationDetector.recordLastKnownStructure(this.__parent.__parent.map, this);
@@ -20981,7 +20831,8 @@ var java;
                     return EntryIterator;
                 }());
                 EntrySet.EntryIterator = EntryIterator;
-                EntryIterator["__classname"] = "java.util.LinkedHashMap.EntrySet.EntryIterator";
+                EntryIterator["__class"] = "java.util.LinkedHashMap.EntrySet.EntryIterator";
+                EntryIterator["__interfaces"] = ["java.util.Iterator"];
             })(EntrySet = LinkedHashMap.EntrySet || (LinkedHashMap.EntrySet = {}));
         })(LinkedHashMap = util.LinkedHashMap || (util.LinkedHashMap = {}));
     })(util = java.util || (java.util = {}));

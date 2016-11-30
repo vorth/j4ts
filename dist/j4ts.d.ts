@@ -1256,7 +1256,7 @@ declare namespace java.util {
      * have the same hash, each value in hashCodeMap is actually an array containing all entries whose
      * keys share the same hash.
      */
-    class InternalHashCodeMap<K, V> implements java.lang.Iterable<Map.Entry<K, V>> {
+    class InternalHashCodeMap<K, V> implements java.lang.Iterable<java.util.Map.Entry<K, V>> {
         forEach(action: (p1: any) => void): void;
         private backingMap;
         private host;
@@ -1267,7 +1267,7 @@ declare namespace java.util {
         getEntry(key: any): java.util.Map.Entry<K, V>;
         private findEntryInChain(key, chain);
         size(): number;
-        iterator(): java.util.Iterator<Map.Entry<K, V>>;
+        iterator(): java.util.Iterator<java.util.Map.Entry<K, V>>;
         private getChainOrEmpty(hashCode);
         private newEntryChain();
         private unsafeCastToArray(arr);
@@ -1283,10 +1283,10 @@ declare namespace java.util {
             forEachRemaining(consumer: (p1: any) => void): void;
             chains: java.util.InternalJsMap.Iterator<any>;
             itemIndex: number;
-            chain: Map.Entry<any, any>[];
-            lastEntry: Map.Entry<any, any>;
+            chain: java.util.Map.Entry<any, any>[];
+            lastEntry: java.util.Map.Entry<any, any>;
             hasNext(): boolean;
-            next(): Map.Entry<any, any>;
+            next(): java.util.Map.Entry<any, any>;
             remove(): void;
             constructor(__parent: any);
         }
@@ -1854,9 +1854,9 @@ declare namespace java.util {
         constructor(value?: any);
         isPresent(): boolean;
         getAsDouble(): number;
-        ifPresent(consumer: (number) => void): void;
+        ifPresent(consumer: any): void;
         orElse(other: number): number;
-        orElseGet(other: () => number): number;
+        orElseGet(other: any): number;
         orElseThrow<X extends Error>(exceptionSupplier: () => X): number;
         equals(obj: any): boolean;
         hashCode(): number;
@@ -1878,9 +1878,9 @@ declare namespace java.util {
         constructor(value?: any);
         isPresent(): boolean;
         getAsInt(): number;
-        ifPresent(consumer: (number) => void): void;
+        ifPresent(consumer: any): void;
         orElse(other: number): number;
-        orElseGet(other: () => number): number;
+        orElseGet(other: any): number;
         orElseThrow<X extends Error>(exceptionSupplier: () => X): number;
         equals(obj: any): boolean;
         hashCode(): number;
@@ -1902,9 +1902,9 @@ declare namespace java.util {
         constructor(value?: any);
         isPresent(): boolean;
         getAsLong(): number;
-        ifPresent(consumer: (number) => void): void;
+        ifPresent(consumer: any): void;
         orElse(other: number): number;
-        orElseGet(other: () => number): number;
+        orElseGet(other: any): number;
         orElseThrow<X extends Error>(exceptionSupplier: () => X): number;
         equals(obj: any): boolean;
         hashCode(): number;
@@ -1926,7 +1926,7 @@ declare namespace java.util {
          * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/PrimitiveIterator.OfDouble.html">
          * the official Java API doc</a> for details.
          */
-        interface OfDouble extends java.util.PrimitiveIterator<number, (number) => void> {
+        interface OfDouble extends java.util.PrimitiveIterator<number, any> {
             nextDouble(): number;
             next(): number;
             forEachRemaining(consumer?: any): any;
@@ -1935,7 +1935,7 @@ declare namespace java.util {
          * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/PrimitiveIterator.OfInt.html">
          * the official Java API doc</a> for details.
          */
-        interface OfInt extends java.util.PrimitiveIterator<number, (number) => void> {
+        interface OfInt extends java.util.PrimitiveIterator<number, any> {
             nextInt(): number;
             next(): number;
             forEachRemaining(consumer?: any): any;
@@ -1944,7 +1944,7 @@ declare namespace java.util {
          * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/PrimitiveIterator.OfLong.html">
          * the official Java API doc</a> for details.
          */
-        interface OfLong extends java.util.PrimitiveIterator<number, (number) => void> {
+        interface OfLong extends java.util.PrimitiveIterator<number, any> {
             nextLong(): number;
             next(): number;
             forEachRemaining(consumer?: any): any;
@@ -2267,8 +2267,8 @@ declare namespace javaemul.internal {
     class BooleanHelper implements java.lang.Comparable<BooleanHelper>, java.io.Serializable {
         static FALSE: boolean;
         static TRUE: boolean;
-        static TYPE: typeof Boolean;
-        static TYPE_$LI$(): typeof Boolean;
+        static TYPE: any;
+        static TYPE_$LI$(): any;
         static compare(x: boolean, y: boolean): number;
         static hashCode(value: boolean): number;
         static logicalAnd(a: boolean, b: boolean): boolean;
@@ -2332,8 +2332,8 @@ declare namespace javaemul.internal {
      * </pre>
      */
     class CharacterHelper implements java.lang.Comparable<CharacterHelper>, java.io.Serializable {
-        static TYPE: typeof String;
-        static TYPE_$LI$(): typeof String;
+        static TYPE: any;
+        static TYPE_$LI$(): any;
         static MIN_RADIX: number;
         static MAX_RADIX: number;
         static MIN_VALUE: string;
@@ -3621,7 +3621,7 @@ declare namespace java.util {
     /**
      * A simple wrapper around JavaScript Map for key type is string.
      */
-    class InternalStringMap<K, V> implements java.lang.Iterable<Map.Entry<K, V>> {
+    class InternalStringMap<K, V> implements java.lang.Iterable<java.util.Map.Entry<K, V>> {
         forEach(action: (p1: any) => void): void;
         private backingMap;
         private host;
@@ -3639,7 +3639,7 @@ declare namespace java.util {
         put(key: string, value: V): V;
         remove(key: string): V;
         getSize(): number;
-        iterator(): java.util.Iterator<Map.Entry<K, V>>;
+        iterator(): java.util.Iterator<java.util.Map.Entry<K, V>>;
         private newMapEntry(entry, lastValueMod);
         private static toNullIfUndefined<T>(value);
     }
@@ -3651,7 +3651,7 @@ declare namespace java.util {
             current: java.util.InternalJsMap.IteratorEntry<any>;
             last: java.util.InternalJsMap.IteratorEntry<any>;
             hasNext(): boolean;
-            next(): Map.Entry<any, any>;
+            next(): java.util.Map.Entry<any, any>;
             remove(): void;
             constructor(__parent: any);
         }
@@ -3789,8 +3789,8 @@ declare namespace javaemul.internal {
         static MAX_VALUE: number;
         static MAX_VALUE_$LI$(): number;
         static SIZE: number;
-        static TYPE: typeof Number;
-        static TYPE_$LI$(): typeof Number;
+        static TYPE: any;
+        static TYPE_$LI$(): any;
         static compare(x: number, y: number): number;
         static decode(s: string): ByteHelper;
         /**
@@ -4113,8 +4113,8 @@ declare namespace javaemul.internal {
         static MAX_VALUE: number;
         static MAX_VALUE_$LI$(): number;
         static SIZE: number;
-        static TYPE: typeof Number;
-        static TYPE_$LI$(): typeof Number;
+        static TYPE: any;
+        static TYPE_$LI$(): any;
         static compare(x: number, y: number): number;
         static decode(s: string): ShortHelper;
         /**
