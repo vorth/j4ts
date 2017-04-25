@@ -27,7 +27,7 @@ class InternalJsMapFactory {
 
 	private static final Object jsMapCtor = getJsMapConstructor();
 
-	private static jsweet.lang.Object getJsMapConstructor() { 
+	private static def.js.Object getJsMapConstructor() { 
 		return Map; 
 	};
 

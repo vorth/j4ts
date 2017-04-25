@@ -15,13 +15,13 @@
  */
 package javaemul.internal;
 
-import static jsweet.lang.Globals.parseFloat;
+import static def.js.Globals.parseFloat;
 
 import java.io.Serializable;
 
 import jsweet.lang.Erased;
-import jsweet.lang.Globals;
-import jsweet.lang.RegExp;
+import def.js.Globals;
+import def.js.RegExp;
 
 /**
  * Abstract base class for numeric wrapper classes.

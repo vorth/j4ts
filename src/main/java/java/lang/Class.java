@@ -19,9 +19,9 @@ import static jsweet.util.Globals.array;
 
 import java.lang.reflect.Type;
 
+import def.js.Array;
+import def.js.Function;
 import javaemul.internal.annotations.DoNotInline;
-import jsweet.lang.Array;
-import jsweet.lang.Function;
 
 /**
  * Generally unsupported. This class is provided so that the GWT compiler can
@@ -107,7 +107,7 @@ public final class Class<T> implements Type {
 	 */
 	@DoNotInline
 	static <T> Class<T> createForEnum(String packageName, String compoundClassName, String typeId,
-			Class<? super T> superclass, jsweet.lang.Function enumConstantsFunc, jsweet.lang.Function enumValueOfFunc) {
+			Class<? super T> superclass, def.js.Function enumConstantsFunc, def.js.Function enumValueOfFunc) {
 		Class<T> clazz = createClassObject(packageName, compoundClassName, typeId);
 		// maybeSetClassLiteral(typeId, clazz);
 		clazz.modifiers = (enumConstantsFunc != null) ? ENUM : 0;
@@ -233,19 +233,19 @@ public final class Class<T> implements Type {
 	 * <p>
 	 * Written in JSNI to minimize dependencies (on (String)+).
 	 */
-	static void synthesizePrimitiveNamesFromTypeId(Class<?> clazz, jsweet.lang.Object primitiveTypeId) {
+	static void synthesizePrimitiveNamesFromTypeId(Class<?> clazz, def.js.Object primitiveTypeId) {
 		clazz.typeName = "Class$" + primitiveTypeId;
 		clazz.canonicalName = clazz.typeName;
 		clazz.simpleName = clazz.typeName;
 	}
 
-	jsweet.lang.Function enumValueOfFunc;
+	def.js.Function enumValueOfFunc;
 
 	int modifiers;
 
 	private Class<?> componentType;
 
-	private jsweet.lang.Function enumConstantsFunc;
+	private def.js.Function enumConstantsFunc;
 
 	private Class<? super T> enumSuperclass;
 

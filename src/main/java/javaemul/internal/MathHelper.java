@@ -106,19 +106,19 @@ public final class MathHelper {
 	}
 
 	public static double acos(double x) {
-		return jsweet.lang.Math.acos(x);
+		return def.js.Math.acos(x);
 	}
 
 	public static double asin(double x) {
-		return jsweet.lang.Math.asin(x);
+		return def.js.Math.asin(x);
 	}
 
 	public static double atan(double x) {
-		return jsweet.lang.Math.atan(x);
+		return def.js.Math.atan(x);
 	}
 
 	public static double atan2(double y, double x) {
-		return jsweet.lang.Math.atan2(y, x);
+		return def.js.Math.atan2(y, x);
 	}
 
 	public static double cbrt(double x) {
@@ -126,7 +126,7 @@ public final class MathHelper {
 	}
 
 	public static double ceil(double x) {
-		return jsweet.lang.Math.ceil(x);
+		return def.js.Math.ceil(x);
 	}
 
 	public static double copySign(double magnitude, double sign) {
@@ -142,7 +142,7 @@ public final class MathHelper {
 	}
 
 	public static double cos(double x) {
-		return jsweet.lang.Math.cos(x);
+		return def.js.Math.cos(x);
 	}
 
 	public static double cosh(double x) {
@@ -150,7 +150,7 @@ public final class MathHelper {
 	}
 
 	public static double exp(double x) {
-		return jsweet.lang.Math.exp(x);
+		return def.js.Math.exp(x);
 	}
 
 	public static double expm1(double d) {
@@ -167,7 +167,7 @@ public final class MathHelper {
 	}
 
 	public static double floor(double x) {
-		return jsweet.lang.Math.floor(x);
+		return def.js.Math.floor(x);
 	}
 
 	public static double hypot(double x, double y) {
@@ -175,11 +175,11 @@ public final class MathHelper {
 	}
 
 	public static double log(double x) {
-		return jsweet.lang.Math.log(x);
+		return def.js.Math.log(x);
 	}
 
 	public static double log10(double x) {
-		return jsweet.lang.Math.log(x) * jsweet.lang.Math.LOG10E;
+		return def.js.Math.log(x) * def.js.Math.LOG10E;
 	}
 
 	public static double log1p(double x) {
@@ -187,11 +187,11 @@ public final class MathHelper {
 	}
 
 	public static double max(double x, double y) {
-		return jsweet.lang.Math.max(x, y);
+		return def.js.Math.max(x, y);
 	}
 
 	public static float max(float x, float y) {
-		return (float) jsweet.lang.Math.max(x, y);
+		return (float) def.js.Math.max(x, y);
 	}
 
 	public static int max(int x, int y) {
@@ -203,11 +203,11 @@ public final class MathHelper {
 	}
 
 	public static double min(double x, double y) {
-		return jsweet.lang.Math.min(x, y);
+		return def.js.Math.min(x, y);
 	}
 
 	public static float min(float x, float y) {
-		return (float) jsweet.lang.Math.min(x, y);
+		return (float) def.js.Math.min(x, y);
 	}
 
 	public static int min(int x, int y) {
@@ -219,11 +219,11 @@ public final class MathHelper {
 	}
 
 	public static double pow(double x, double exp) {
-		return jsweet.lang.Math.pow(x, exp);
+		return def.js.Math.pow(x, exp);
 	}
 
 	public static double random() {
-		return jsweet.lang.Math.random();
+		return def.js.Math.random();
 	}
 
 	public static double rint(double d) {
@@ -239,11 +239,11 @@ public final class MathHelper {
 	}
 
 	public static long round(double x) {
-		return (long) jsweet.lang.Math.round(x);
+		return (long) def.js.Math.round(x);
 	}
 
 	public static int round(float x) {
-		double roundedValue = jsweet.lang.Math.round(x);
+		double roundedValue = def.js.Math.round(x);
 		return unsafeCastToInt(roundedValue);
 	}
 
@@ -296,7 +296,7 @@ public final class MathHelper {
 	}
 
 	public static double sin(double x) {
-		return jsweet.lang.Math.sin(x);
+		return def.js.Math.sin(x);
 	}
 
 	public static double sinh(double x) {
@@ -304,11 +304,11 @@ public final class MathHelper {
 	}
 
 	public static double sqrt(double x) {
-		return jsweet.lang.Math.sqrt(x);
+		return def.js.Math.sqrt(x);
 	}
 
 	public static double tan(double x) {
-		return jsweet.lang.Math.tan(x);
+		return def.js.Math.tan(x);
 	}
 
 	public static double tanh(double x) {

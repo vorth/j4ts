@@ -1,6 +1,6 @@
 package javaemul.internal;
 
-import jsweet.lang.Math;
+import def.js.Math;
 
 public class JreHelper {
 

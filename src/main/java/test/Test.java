@@ -1,7 +1,7 @@
 package test;
 
-import static jsweet.dom.Globals.console;
-import static jsweet.dom.Globals.document;
+import static def.dom.Globals.console;
+import static def.dom.Globals.document;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import jsweet.dom.HTMLElement;
+import def.dom.HTMLElement;
 import jsweet.util.Globals;
 
 public class Test {

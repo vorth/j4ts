@@ -15,7 +15,7 @@
  */
 package javaemul.internal;
 
-import static jsweet.lang.Globals.Infinity;
+import static def.js.Globals.Infinity;
 import static jsweet.util.Globals.$get;
 import static jsweet.util.Globals.$set;
 import static jsweet.util.Globals.typeof;

@@ -15,7 +15,7 @@
  */
 package java.util;
 
-import static jsweet.dom.Globals.window;
+import static def.dom.Globals.window;
 import static jsweet.util.Globals.$apply;
 import static jsweet.util.Globals.$new;
 
@@ -68,10 +68,10 @@ public class Date implements Cloneable, Comparable<Date>, Serializable {
 	/**
 	 * JavaScript Date instance.
 	 */
-	private final jsweet.lang.Object jsdate;
+	private final def.js.Object jsdate;
 
-	static private jsweet.lang.Object jsdateClass() {
-		return (jsweet.lang.Object) window.$get("Date");
+	static private def.js.Object jsdateClass() {
+		return (def.js.Object) window.$get("Date");
 	}
 
 	public Date() {
@@ -94,7 +94,7 @@ public class Date implements Cloneable, Comparable<Date>, Serializable {
 	}
 
 	public Date(long date) {
-		jsdate = new jsweet.lang.Date(date);
+		jsdate = new def.js.Date(date);
 	}
 
 	public Date(String date) {
@@ -267,7 +267,7 @@ public class Date implements Cloneable, Comparable<Date>, Serializable {
 			// was overflow from
 			// minutes:secs:millis or because we are in the situation GAP and
 			// has to be fixed.
-			jsweet.lang.Object copy = $new(jsdateClass(), getTime());
+			def.js.Object copy = $new(jsdateClass(), getTime());
 			$apply(copy.$get("setDate"), ((int) $apply(copy.$get("getDate"), copy) + 1));
 			int timeDiff = (int) $apply(jsdate.$get("getTimezoneOffset"), jsdate)
 					- (int) $apply(copy.$get("getTimezoneOffset"), copy);
@@ -287,7 +287,7 @@ public class Date implements Cloneable, Comparable<Date>, Serializable {
 				if (badHours + timeDiffHours >= 24) {
 					day++;
 				}
-				jsweet.lang.Object newTime = $new(jsdateClass(), (int) $apply(jsdate.$get("getFullYear"), jsdate),
+				def.js.Object newTime = $new(jsdateClass(), (int) $apply(jsdate.$get("getFullYear"), jsdate),
 						getMonth(), day, requestedHours + timeDiffHours, getMinutes() + timeDiffMinutes, getSeconds(),
 						(long) $apply(jsdate.$get("getMilliseconds"), jsdate));
 				setTime($apply(newTime.$get("getMilliseconds"), newTime));

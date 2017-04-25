@@ -9,7 +9,7 @@ package java.util;
 import static jsweet.util.Globals.array;
 import static jsweet.util.Globals.equalsLoose;
 
-import jsweet.lang.Array;
+import def.js.Array;
 
 /**
  * Incomplete and naive implementation of the BitSet utility (mainly for
@@ -28,6 +28,7 @@ public class BitSet implements Cloneable, java.io.Serializable {
 	public BitSet(int nbits) {
 		while (nbits > 0) {
 			array(bits).push(false);
+			nbits--;
 		}
 	}
 

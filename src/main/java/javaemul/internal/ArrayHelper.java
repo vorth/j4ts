@@ -15,7 +15,7 @@
  */
 package javaemul.internal;
 
-import jsweet.lang.Array;
+import def.js.Array;
 
 /**
  * Provides utilities to perform operations on Arrays.

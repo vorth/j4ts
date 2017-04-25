@@ -23,7 +23,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.Comparator;
 
-import def.sprintf_js.Globals;
+//import def.sprintf_js.Globals;
 
 /**
  * Intrinsic string class.
@@ -107,7 +107,7 @@ public final class StringHelper {
 	}
 
 	private static String fromCharCode(Object[] array) {
-		return jsweet.lang.String.fromCharCode((double) (Object) array);
+		return def.js.String.fromCharCode((double) (Object) array);
 	}
 
 	public static String valueOf(char[] x) {
@@ -183,7 +183,9 @@ public final class StringHelper {
 	}
 
 	public static String format(String formatString, Object... args) {
-		return Globals.sprintf(formatString, args);
+		return "";
+		// TODO: reactivate
+		//return Globals.sprintf(formatString, args);
 	}
 
 	private StringHelper() {

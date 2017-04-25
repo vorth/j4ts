@@ -15,7 +15,7 @@
  */
 package java.util.logging;
 
-import static jsweet.dom.Globals.console;
+import static def.dom.Globals.console;
 
 /**
  * A simple console logger used in super dev mode.

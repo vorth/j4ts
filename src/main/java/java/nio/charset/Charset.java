@@ -23,7 +23,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import javaemul.internal.EmulatedCharset;
-import jsweet.lang.RegExp;
+import def.js.RegExp;
 
 /**
  * A minimal emulation of {@link Charset}.
