@@ -6,8 +6,8 @@
 
 package java.util;
 
-import static jsweet.util.Globals.array;
-import static jsweet.util.Globals.equalsLoose;
+import static jsweet.util.Lang.$loose;
+import static jsweet.util.Lang.array;
 
 import def.js.Array;
 
@@ -160,7 +160,7 @@ public class BitSet implements Cloneable, java.io.Serializable {
 		}
 
 		for (int i = 0; i < set.bits.length; i++) {
-			if (!equalsLoose(set.bits[i], bits[i])) {
+			if (!$loose(set.bits[i] == bits[i])) {
 				return false;
 			}
 		}
@@ -170,7 +170,7 @@ public class BitSet implements Cloneable, java.io.Serializable {
 
 	public Object clone() {
 		BitSet bs = new BitSet();
-		bs.bits = array(bits).slice(0, bits.length);
+		bs.bits = array(array(bits).slice(0, bits.length));
 		return bs;
 	}
 

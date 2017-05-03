@@ -16,8 +16,8 @@
 package javaemul.internal;
 
 import static javaemul.internal.InternalPreconditions.checkCriticalArgument;
-import static jsweet.util.Globals.any;
-import static jsweet.util.Globals.string;
+import static jsweet.util.Lang.any;
+import static jsweet.util.Lang.string;
 
 import java.io.Serializable;
 
@@ -276,7 +276,7 @@ public final class CharacterHelper implements Comparable<CharacterHelper>, Seria
 	}
 
 	public static boolean isWhitespace(int codePoint) {
-		return string(def.js.String.fromCharCode(codePoint)).match(whitespaceRegex()).length > 0;
+		return def.js.String.fromCharCode(codePoint).match(whitespaceRegex()).length > 0;
 	}
 
 	// The regex would just be /\s/, but browsers handle non-breaking spaces

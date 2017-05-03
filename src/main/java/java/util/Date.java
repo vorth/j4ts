@@ -16,14 +16,16 @@
 package java.util;
 
 import static def.dom.Globals.window;
-import static jsweet.util.Globals.$apply;
-import static jsweet.util.Globals.$new;
+import static jsweet.util.Lang.$apply;
+import static jsweet.util.Lang.$new;
+import static jsweet.util.Lang.string;
 
 import java.io.Serializable;
 
 /**
  * Represents a date and time.
  */
+@SuppressWarnings("serial")
 public class Date implements Cloneable, Comparable<Date>, Serializable {
 
 	/**
@@ -214,7 +216,7 @@ public class Date implements Cloneable, Comparable<Date>, Serializable {
 	}
 
 	public String toLocaleString() {
-		return jsdate.toLocaleString();
+		return string(jsdate.toLocaleString());
 	}
 
 	@Override

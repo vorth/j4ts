@@ -17,6 +17,7 @@
 package javaemul.internal;
 
 import static javaemul.internal.InternalPreconditions.checkStringBounds;
+import static jsweet.util.Lang.string;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
@@ -107,7 +108,7 @@ public final class StringHelper {
 	}
 
 	private static String fromCharCode(Object[] array) {
-		return def.js.String.fromCharCode((double) (Object) array);
+		return string(def.js.String.fromCharCode((int) (Object) array));
 	}
 
 	public static String valueOf(char[] x) {

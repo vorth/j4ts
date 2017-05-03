@@ -15,7 +15,7 @@
  */
 package java.lang;
 
-import static jsweet.util.Globals.array;
+import static jsweet.util.Lang.*;
 
 import java.lang.reflect.Type;
 
@@ -223,8 +223,8 @@ public final class Class<T> implements Type {
 
 		String packageName = clazz.packageName;
 		String[] compoundName = clazz.compoundName.split("/");
-		clazz.typeName = array(new String[] { packageName, array(compoundName).join("$") }).join(".");
-		clazz.canonicalName = array(new String[] { packageName, array(compoundName).join(".") }).join(".");
+		clazz.typeName = string($array(packageName, array(compoundName).join("$")).join("."));
+		clazz.canonicalName = string($array(packageName, array(compoundName).join(".")).join("."));
 		clazz.simpleName = compoundName[compoundName.length - 1];
 	}
 
