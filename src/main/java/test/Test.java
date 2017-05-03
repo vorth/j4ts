@@ -2,6 +2,7 @@ package test;
 
 import static def.dom.Globals.console;
 import static def.dom.Globals.document;
+import static def.js.Globals.undefined;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -16,12 +17,11 @@ import java.util.Map;
 import java.util.Set;
 
 import def.dom.HTMLElement;
-import jsweet.util.Globals;
 
 public class Test {
 
 	public static void assertEquals(Object o1, Object o2) {
-		if (!Globals.equalsStrict(o1, o2)) {
+		if (!(o1 == o2)) {
 			throw new Error("invalid assertion: " + o1 + "!=" + o2);
 		}
 	}
@@ -149,6 +149,8 @@ public class Test {
 		assertEquals(m.size(), 3);
 		m.remove("a");
 		assertEquals(m.size(), 2);
+		assertEquals(null, m.get("undefinedKey"));
+		assertFalse(m.get("undefinedKey") == undefined);
 		console.info("end testing maps");
 	}
 
