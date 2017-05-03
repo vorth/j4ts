@@ -63,13 +63,12 @@
 				<version>2.0.0-SNAPSHOT</version>
 				<configuration>
 					<verbose>true</verbose>
-					<!-- <sourceMap>true</sourceMap> -->
 					<bundle>true</bundle>
 					<declaration>true</declaration>
 					<outDir>src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}</outDir>
 					<dtsOut>src/main/resources/META-INF/resources/typings/${project.artifactId}/${project.version}</dtsOut>
 					<targetVersion>ES3</targetVersion>
-					<sourceMap>true</sourceMap>
+                    <!-- <sourceMap>true</sourceMap> -->
 				</configuration>
 				<executions>
 					<execution>
