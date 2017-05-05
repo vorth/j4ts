@@ -1181,8 +1181,8 @@ var java;
                 }
                 var packageName = clazz.packageName;
                 var compoundName = clazz.compoundName.split("/");
-                clazz.typeName = ([packageName, (compoundName).join("$")]).join(".");
-                clazz.canonicalName = ([packageName, (compoundName).join(".")]).join(".");
+                clazz.typeName = [packageName, (compoundName).join("$")].join(".");
+                clazz.canonicalName = [packageName, (compoundName).join(".")].join(".");
                 clazz.simpleName = compoundName[compoundName.length - 1];
             };
             /**
@@ -1310,7 +1310,7 @@ var java;
                 return result;
             };
             Enum.get0 = function (map, name) {
-                return map[name];
+                return (map[name]);
             };
             Enum.invokeValueOf = function (enumValueOfFunc, name) {
                 return (enumValueOfFunc(name));
@@ -1394,6 +1394,82 @@ var java;
         lang.Exception = Exception;
         Exception["__class"] = "java.lang.Exception";
         Exception["__interfaces"] = ["java.io.Serializable"];
+    })(lang = java.lang || (java.lang = {}));
+})(java || (java = {}));
+(function (java) {
+    var lang;
+    (function (lang) {
+        var IllegalAccessError = (function (_super) {
+            __extends(IllegalAccessError, _super);
+            function IllegalAccessError(message, cause) {
+                var _this = this;
+                if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
+                    _this = _super.call(this, message) || this;
+                    _this.message = message;
+                }
+                else if (((typeof message === 'string') || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
+                    _this = _super.call(this, message) || this;
+                    _this.message = message;
+                }
+                else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
+                    var cause_2 = __args[0];
+                    _this = _super.call(this, cause_2) || this;
+                    _this.message = cause_2;
+                }
+                else if (message === undefined && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
+                    _this = _super.call(this) || this;
+                }
+                else
+                    throw new Error('invalid overload');
+                return _this;
+            }
+            return IllegalAccessError;
+        }(Error));
+        lang.IllegalAccessError = IllegalAccessError;
+        IllegalAccessError["__class"] = "java.lang.IllegalAccessError";
+        IllegalAccessError["__interfaces"] = ["java.io.Serializable"];
+    })(lang = java.lang || (java.lang = {}));
+})(java || (java = {}));
+(function (java) {
+    var lang;
+    (function (lang) {
+        var NoSuchMethodError = (function (_super) {
+            __extends(NoSuchMethodError, _super);
+            function NoSuchMethodError(message, cause) {
+                var _this = this;
+                if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
+                    _this = _super.call(this, message) || this;
+                    _this.message = message;
+                }
+                else if (((typeof message === 'string') || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
+                    _this = _super.call(this, message) || this;
+                    _this.message = message;
+                }
+                else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
+                    var cause_3 = __args[0];
+                    _this = _super.call(this, cause_3) || this;
+                    _this.message = cause_3;
+                }
+                else if (message === undefined && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
+                    _this = _super.call(this) || this;
+                }
+                else
+                    throw new Error('invalid overload');
+                return _this;
+            }
+            return NoSuchMethodError;
+        }(Error));
+        lang.NoSuchMethodError = NoSuchMethodError;
+        NoSuchMethodError["__class"] = "java.lang.NoSuchMethodError";
+        NoSuchMethodError["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 (function (java) {
@@ -1532,9 +1608,9 @@ var java;
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause_2 = __args[0];
-                    _this = _super.call(this, cause_2) || this;
-                    _this.message = cause_2;
+                    var cause_4 = __args[0];
+                    _this = _super.call(this, cause_4) || this;
+                    _this.message = cause_4;
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -1595,13 +1671,28 @@ var java;
                 Charset.forName = function (charsetName) {
                     javaemul.internal.InternalPreconditions.checkArgument(charsetName != null, "Null charset name");
                     charsetName = charsetName.toUpperCase();
-                    if ((javaemul.internal.EmulatedCharset.ISO_8859_1_$LI$().name() === charsetName)) {
+                    if ((function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(javaemul.internal.EmulatedCharset.ISO_8859_1_$LI$().name(), charsetName)) {
                         return javaemul.internal.EmulatedCharset.ISO_8859_1_$LI$();
                     }
-                    else if ((javaemul.internal.EmulatedCharset.ISO_LATIN_1_$LI$().name() === charsetName)) {
+                    else if ((function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(javaemul.internal.EmulatedCharset.ISO_LATIN_1_$LI$().name(), charsetName)) {
                         return javaemul.internal.EmulatedCharset.ISO_LATIN_1_$LI$();
                     }
-                    else if ((javaemul.internal.EmulatedCharset.UTF_8_$LI$().name() === charsetName)) {
+                    else if ((function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(javaemul.internal.EmulatedCharset.UTF_8_$LI$().name(), charsetName)) {
                         return javaemul.internal.EmulatedCharset.UTF_8_$LI$();
                     }
                     if (!Charset.createLegalCharsetNameRegex().test(charsetName)) {
@@ -1643,7 +1734,12 @@ var java;
                         return false;
                     }
                     var that = o;
-                    return (this.__name === that.__name);
+                    return (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(this.__name, that.__name);
                 };
                 Charset.prototype.toString = function () {
                     return this.__name;
@@ -1719,6 +1815,34 @@ var java;
         security.MessageDigestSpi = MessageDigestSpi;
         MessageDigestSpi["__class"] = "java.security.MessageDigestSpi";
     })(security = java.security || (java.security = {}));
+})(java || (java = {}));
+(function (java) {
+    var text;
+    (function (text) {
+        /**
+         * A basic implementation for Java collators.
+         *
+         * @author Renaud Pawlak
+         */
+        var Collator = (function () {
+            function Collator() {
+            }
+            Collator.getInstance = function () {
+                if (Collator.collator == null) {
+                    Collator.collator = new Collator();
+                }
+                return Collator.collator;
+            };
+            Collator.prototype.compare = function (a, b) {
+                return a.localeCompare(b);
+            };
+            return Collator;
+        }());
+        Collator.collator = null;
+        text.Collator = Collator;
+        Collator["__class"] = "java.text.Collator";
+        Collator["__interfaces"] = ["java.util.Comparator"];
+    })(text = java.text || (java.text = {}));
 })(java || (java = {}));
 (function (java) {
     var util;
@@ -2119,7 +2243,7 @@ var java;
                     return false;
                 }
                 for (var i = 0; i < set.bits.length; i++) {
-                    if (!(set.bits[i] == this.bits[i])) {
+                    if (!set.bits[i] == this.bits[i]) {
                         return false;
                     }
                 }
@@ -2289,7 +2413,7 @@ var java;
                 }
             };
             Date.jsdateClass = function () {
-                return window["Date"];
+                return (window["Date"]);
             };
             Date.prototype.after = function (ts) {
                 if (((ts != null && ts instanceof java.util.Date) || ts === null)) {
@@ -2564,7 +2688,7 @@ var java;
                     if (this.host._equals(key, entry.getKey())) {
                         if (chain.length === 1) {
                             javaemul.internal.ArrayHelper.setLength(chain, 0);
-                            this.backingMap.delete$int(hashCode);
+                            this.backingMap["delete"](hashCode);
                         }
                         else {
                             javaemul.internal.ArrayHelper.removeFrom(chain, i, 1);
@@ -2597,7 +2721,7 @@ var java;
                 return new InternalHashCodeMap.InternalHashCodeMap$0(this);
             };
             InternalHashCodeMap.prototype.getChainOrEmpty = function (hashCode) {
-                var chain = this.unsafeCastToArray(this.backingMap.get$int(hashCode));
+                var chain = this.unsafeCastToArray(this.backingMap.get(hashCode));
                 return chain == null ? this.newEntryChain() : chain;
             };
             InternalHashCodeMap.prototype.newEntryChain = function () {
@@ -2663,111 +2787,15 @@ var java;
                 return InternalHashCodeMap$0;
             }());
             InternalHashCodeMap.InternalHashCodeMap$0 = InternalHashCodeMap$0;
+            InternalHashCodeMap$0["__interfaces"] = ["java.util.Iterator"];
         })(InternalHashCodeMap = util.InternalHashCodeMap || (util.InternalHashCodeMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 (function (java) {
     var util;
     (function (util) {
-        var InternalJsMap = (function () {
-            function InternalJsMap() {
-            }
-            InternalJsMap.prototype.get$int = function (key) {
-                return null;
-            };
-            InternalJsMap.prototype.get$java_lang_String = function (key) {
-                return null;
-            };
-            InternalJsMap.prototype.get = function (key) {
-                if (((typeof key === 'string') || key === null)) {
-                    return this.get$java_lang_String(key);
-                }
-                else if (((typeof key === 'number') || key === null)) {
-                    return this.get$int(key);
-                }
-                else
-                    throw new Error('invalid overload');
-            };
-            InternalJsMap.prototype.set$int$java_lang_Object = function (key, value) {
-            };
-            InternalJsMap.prototype.set$java_lang_String$java_lang_Object = function (key, value) {
-            };
-            InternalJsMap.prototype.set = function (key, value) {
-                if (((typeof key === 'string') || key === null) && ((value != null) || value === null)) {
-                    return this.set$java_lang_String$java_lang_Object(key, value);
-                }
-                else if (((typeof key === 'number') || key === null) && ((value != null) || value === null)) {
-                    return this.set$int$java_lang_Object(key, value);
-                }
-                else
-                    throw new Error('invalid overload');
-            };
-            InternalJsMap.prototype.delete$int = function (key) {
-                InternalJsMap.JsHelper.delete$java_util_InternalJsMap$int(this, key);
-            };
-            InternalJsMap.prototype.delete$java_lang_String = function (key) {
-                InternalJsMap.JsHelper.delete$java_util_InternalJsMap$java_lang_String(this, key);
-            };
-            InternalJsMap.prototype["delete"] = function (key) {
-                if (((typeof key === 'string') || key === null)) {
-                    return this.delete$java_lang_String(key);
-                }
-                else if (((typeof key === 'number') || key === null)) {
-                    return this.delete$int(key);
-                }
-                else
-                    throw new Error('invalid overload');
-            };
-            InternalJsMap.prototype.entries = function () {
-                return null;
-            };
-            return InternalJsMap;
-        }());
-        util.InternalJsMap = InternalJsMap;
-        InternalJsMap["__class"] = "java.util.InternalJsMap";
+        var InternalJsMap;
         (function (InternalJsMap) {
-            var Iterator = (function () {
-                function Iterator() {
-                }
-                Iterator.prototype.next = function () {
-                    return null;
-                };
-                return Iterator;
-            }());
-            InternalJsMap.Iterator = Iterator;
-            Iterator["__class"] = "java.util.InternalJsMap.Iterator";
-            var IteratorEntry = (function () {
-                function IteratorEntry() {
-                    this.value = null;
-                    this.done = false;
-                }
-                return IteratorEntry;
-            }());
-            InternalJsMap.IteratorEntry = IteratorEntry;
-            IteratorEntry["__class"] = "java.util.InternalJsMap.IteratorEntry";
-            var JsHelper = (function () {
-                function JsHelper() {
-                }
-                JsHelper.delete$java_util_InternalJsMap$int = function (obj, key) {
-                    obj["delete"](key);
-                };
-                JsHelper.delete$java_util_InternalJsMap$java_lang_String = function (obj, key) {
-                    obj["delete"](key);
-                };
-                JsHelper["delete"] = function (obj, key) {
-                    if (((obj != null && obj instanceof java.util.InternalJsMap) || obj === null) && ((typeof key === 'string') || key === null)) {
-                        return java.util.InternalJsMap.JsHelper.delete$java_util_InternalJsMap$java_lang_String(obj, key);
-                    }
-                    else if (((obj != null && obj instanceof java.util.InternalJsMap) || obj === null) && ((typeof key === 'number') || key === null)) {
-                        return java.util.InternalJsMap.JsHelper.delete$java_util_InternalJsMap$int(obj, key);
-                    }
-                    else
-                        throw new Error('invalid overload');
-                };
-                return JsHelper;
-            }());
-            InternalJsMap.JsHelper = JsHelper;
-            JsHelper["__class"] = "java.util.InternalJsMap.JsHelper";
         })(InternalJsMap = util.InternalJsMap || (util.InternalJsMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -2989,7 +3017,12 @@ var java;
                 ;
                 Level.parse = function (name) {
                     java.util.logging.Logger.assertLoggingValues();
-                    var loggingDisabled = (java.lang.System.getProperty$java_lang_String$java_lang_String("gwt.logging.enabled", "FALSE") === "FALSE");
+                    var loggingDisabled = (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(java.lang.System.getProperty$java_lang_String$java_lang_String("gwt.logging.enabled", "FALSE"), "FALSE");
                     if (loggingDisabled) {
                         return null;
                     }
@@ -3233,7 +3266,12 @@ var java;
                     this.addLoggerImpl(logger);
                 };
                 LogManager.prototype.addLoggerImpl = function (logger) {
-                    if ((java.lang.System.getProperty$java_lang_String$java_lang_String("gwt.logging.simpleConsoleHandler", "ENABLED") === "ENABLED")) {
+                    if ((function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(java.lang.System.getProperty$java_lang_String$java_lang_String("gwt.logging.simpleConsoleHandler", "ENABLED"), "ENABLED")) {
                         if ((logger.getName().length === 0)) {
                             logger.addHandler(new java.util.logging.SimpleConsoleLogHandler());
                         }
@@ -3368,12 +3406,22 @@ var java;
                 if (a == null || b == null) {
                     return false;
                 }
-                if ((a === b)) {
+                if ((function (o1, o2) { if (o1 && o1.equals) {
+                    return o1.equals(o2);
+                }
+                else {
+                    return o1 === o2;
+                } })(a, b)) {
                     return true;
                 }
                 var class1 = a.constructor;
                 var class2 = b.constructor;
-                if (!class1.isArray() || !(class1 === class2)) {
+                if (!class1.isArray() || !(function (o1, o2) { if (o1 && o1.equals) {
+                    return o1.equals(o2);
+                }
+                else {
+                    return o1 === o2;
+                } })(class1, class2)) {
                     return false;
                 }
                 if (a != null && a instanceof Array && (a.length == 0 || a[0] == null || a[0] != null)) {
@@ -3406,7 +3454,12 @@ var java;
                 return true;
             };
             Objects.equals = function (a, b) {
-                return (a === b) || (a != null && (a === b));
+                return (a === b) || (a != null && (function (o1, o2) { if (o1 && o1.equals) {
+                    return o1.equals(o2);
+                }
+                else {
+                    return o1 === o2;
+                } })(a, b));
             };
             Objects.hashCode = function (o) {
                 return o != null ? (function (o) { if (o.hashCode) {
@@ -4166,7 +4219,7 @@ var java;
              * @see #nextDouble
              */
             Random.prototype.nextFloat = function () {
-                return (Math.fround ? Math.fround((this.nextInternal(24) * Random.twoToTheMinus24)) : ((this.nextInternal(24) * Random.twoToTheMinus24)));
+                return (this.nextInternal(24) * Random.twoToTheMinus24);
             };
             /**
              * Pseudo-randomly generates (approximately) a normally distributed {@code
@@ -4908,7 +4961,7 @@ var javaemul;
                     throw new Error('invalid overload');
             };
             CharacterHelper.isWhitespace$int = function (codePoint) {
-                return (String.fromCharCode(codePoint)).match(CharacterHelper.whitespaceRegex()).length > 0;
+                return String.fromCharCode(codePoint).match(CharacterHelper.whitespaceRegex()).length > 0;
             };
             CharacterHelper.whitespaceRegex = function () {
                 return new RegExp("[\\t-\\r \\u1680\\u180E\\u2000-\\u2006\\u2008-\\u200A\\u2028\\u2029\\u205F\\u3000\\uFEFF]|[\\x1C-\\x1F]");
@@ -5393,7 +5446,7 @@ var javaemul;
                 return x <= 0 ? 0.0 - x : x;
             };
             MathHelper.abs$float = function (x) {
-                return (Math.fround ? Math.fround(MathHelper.abs$double(x)) : (MathHelper.abs$double(x)));
+                return MathHelper.abs$double(x);
             };
             MathHelper.abs$int = function (x) {
                 return x < 0 ? -x : x;
@@ -5444,7 +5497,7 @@ var javaemul;
                 }
             };
             MathHelper.copySign$float$float = function (magnitude, sign) {
-                return (Math.fround ? Math.fround((MathHelper.copySign$double$double(magnitude, sign))) : ((MathHelper.copySign$double$double(magnitude, sign))));
+                return (MathHelper.copySign$double$double(magnitude, sign));
             };
             MathHelper.copySign = function (magnitude, sign) {
                 if (((typeof magnitude === 'number') || magnitude === null) && ((typeof sign === 'number') || sign === null)) {
@@ -5498,7 +5551,7 @@ var javaemul;
                 return Math.max(x, y);
             };
             MathHelper.max$float$float = function (x, y) {
-                return (Math.fround ? Math.fround(Math.max(x, y)) : (Math.max(x, y)));
+                return Math.max(x, y);
             };
             MathHelper.max$int$int = function (x, y) {
                 return x > y ? x : y;
@@ -5526,7 +5579,7 @@ var javaemul;
                 return Math.min(x, y);
             };
             MathHelper.min$float$float = function (x, y) {
-                return (Math.fround ? Math.fround(Math.min(x, y)) : (Math.min(x, y)));
+                return Math.min(x, y);
             };
             MathHelper.min$int$int = function (x, y) {
                 return x < y ? x : y;
@@ -5606,16 +5659,16 @@ var javaemul;
             };
             MathHelper.scalb$float$int = function (f, scaleFactor) {
                 if (scaleFactor >= 31 || scaleFactor <= -31) {
-                    return f * (Math.fround ? Math.fround(MathHelper.pow(2, scaleFactor)) : (MathHelper.pow(2, scaleFactor)));
+                    return Math.fround(f * MathHelper.pow(2, scaleFactor));
                 }
                 else if (scaleFactor > 0) {
-                    return f * (1 << scaleFactor);
+                    return Math.fround(f * (1 << scaleFactor));
                 }
                 else if (scaleFactor === 0) {
                     return f;
                 }
                 else {
-                    return f * 1.0 / (1 << -scaleFactor);
+                    return Math.fround(Math.fround(f * 1.0) / (1 << -scaleFactor));
                 }
             };
             MathHelper.scalb = function (f, scaleFactor) {
@@ -6123,6 +6176,9 @@ var test;
     var Test = (function () {
         function Test() {
         }
+        Test.main = function (args) {
+            console.info(java.util.Arrays.asList("a", "b", "c"));
+        };
         Test.assertEquals = function (o1, o2) {
             if (!(o1 === o2)) {
                 throw new Error("invalid assertion: " + o1 + "!=" + o2);
@@ -6172,6 +6228,13 @@ var test;
             Test.assertEquals(3, myArray[0]);
             java.util.Arrays.sort$int_A(myArray);
             Test.assertEquals(1, myArray[0]);
+            var l = java.util.Arrays.asList("a", "b", "c", "d");
+            Test.assertEquals(4, l.size());
+            var a = (java.util.Arrays.copyOf$java_lang_Object_A$int(l['toArray$java_lang_Object_A'](new Array(0)), 3));
+            Test.assertEquals(3, a.length);
+            var reverse = new Test.Test$0();
+            java.util.Arrays.sort$java_lang_Object_A$java_util_Comparator(a, reverse);
+            Test.assertEquals("[c, b, a]", java.util.Arrays.asList(a[0], a[1], a[2]).toString());
             console.info("end testing arrays");
         };
         Test.testList = function () {
@@ -6204,6 +6267,12 @@ var test;
             Test.assertTrue(it.hasNext());
             Test.assertEquals("c", it.next());
             Test.assertFalse(it.hasNext());
+            l.clear();
+            l.add("bb");
+            l.add("aa");
+            Test.assertEquals(l.toString(), "[bb, aa]");
+            java.util.Collections.sort$java_util_List$java_util_Comparator(l, java.text.Collator.getInstance());
+            Test.assertEquals(l.toString(), "[aa, bb]");
             console.info("end testing lists");
         };
         Test.testSet = function () {
@@ -6246,6 +6315,22 @@ var test;
             Test.assertEquals(m.size(), 3);
             m.remove("a");
             Test.assertEquals(m.size(), 2);
+            Test.assertEquals(null, m.get("undefinedKey"));
+            Test.assertFalse(m.get("undefinedKey") === undefined);
+            var m2 = (new java.util.HashMap());
+            m2.put(Test.key1(), "a");
+            m2.put(new test.MyKey("2"), "b");
+            Test.assertEquals(2, m2.size());
+            Test.assertEquals("a", m2.get(new test.MyKey("1")));
+            Test.assertTrue(m2.containsKey(new test.MyKey("2")));
+            Test.assertEquals("[1, 2]", m2.keySet().toString());
+            Test.assertEquals("[a, b]", m2.values().toString());
+            m2.remove(new test.MyKey("1"));
+            Test.assertEquals(1, m2.size());
+            Test.assertEquals(null, m2.get(new test.MyKey("1")));
+            Test.assertEquals(null, java.util.Collections.singletonMap(Test.key1(), "1").get(new test.MyKey("a")));
+            Test.assertEquals("1", java.util.Collections.singletonMap(Test.key2(), "1").get(new test.MyKey("a")));
+            Test.assertEquals("2", java.util.Collections.singletonMap(new test.MyKey("b"), "2").get(new test.MyKey("b")));
             console.info("end testing maps");
         };
         Test.testString = function () {
@@ -6274,10 +6359,56 @@ var test;
             Test.assertEquals(javaemul.internal.CharacterHelper.getNumericValue('a'), s.read());
             console.info("end testing io");
         };
+        Test.key1 = function () {
+            return new test.MyKey("1");
+        };
+        Test.key2 = function () {
+            return new test.MyKey("a");
+        };
         return Test;
     }());
     test.Test = Test;
     Test["__class"] = "test.Test";
+    (function (Test) {
+        var Test$0 = (function () {
+            function Test$0() {
+            }
+            Test$0.prototype.compare = function (o1, o2) {
+                return o2.localeCompare(o1);
+            };
+            return Test$0;
+        }());
+        Test.Test$0 = Test$0;
+        Test$0["__interfaces"] = ["java.util.Comparator"];
+    })(Test = test.Test || (test.Test = {}));
+    var MyKey = (function () {
+        function MyKey(data) {
+            this.data = null;
+            this.data = data;
+        }
+        MyKey.prototype.toString = function () {
+            return this.data;
+        };
+        MyKey.prototype.equals = function (obj) {
+            return (function (o1, o2) { if (o1 && o1.equals) {
+                return o1.equals(o2);
+            }
+            else {
+                return o1 === o2;
+            } })(this.data, obj.data);
+        };
+        MyKey.prototype.hashCode = function () {
+            return (function (o) { if (o.hashCode) {
+                return o.hashCode();
+            }
+            else {
+                return o.toString();
+            } })(this.data);
+        };
+        return MyKey;
+    }());
+    test.MyKey = MyKey;
+    MyKey["__class"] = "test.MyKey";
 })(test || (test = {}));
 (function (java) {
     var io;
@@ -8120,9 +8251,9 @@ var test;
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause_3 = __args[0];
-                    _this = _super.call(this, cause_3) || this;
-                    _this.message = cause_3;
+                    var cause_5 = __args[0];
+                    _this = _super.call(this, cause_5) || this;
+                    _this.message = cause_5;
                 }
                 else if (message === undefined && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -8285,8 +8416,8 @@ var test;
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause_4 = __args[0];
-                    _this = _super.call(this, cause_4) || this;
+                    var cause_6 = __args[0];
+                    _this = _super.call(this, cause_6) || this;
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -8527,7 +8658,12 @@ var test;
                 return _this;
             }
             MessageDigest.getInstance = function (algorithm) {
-                if (("MD5" === algorithm)) {
+                if ((function (o1, o2) { if (o1 && o1.equals) {
+                    return o1.equals(o2);
+                }
+                else {
+                    return o1 === o2;
+                } })("MD5", algorithm)) {
                     return new MessageDigest.Md5Digest();
                 }
                 throw new java.security.NoSuchAlgorithmException(algorithm + " not supported");
@@ -9392,13 +9528,13 @@ var test;
                 }
             };
             InternalStringMap.prototype.contains = function (key) {
-                return !javaemul.internal.JsUtils.isUndefined(this.backingMap.get$java_lang_String(key));
+                return !javaemul.internal.JsUtils.isUndefined(this.backingMap.get(key));
             };
             InternalStringMap.prototype.get = function (key) {
-                return this.backingMap.get$java_lang_String(key);
+                return this.backingMap.get(key);
             };
             InternalStringMap.prototype.put = function (key, value) {
-                var oldValue = this.backingMap.get$java_lang_String(key);
+                var oldValue = this.backingMap.get(key);
                 this.backingMap.set(key, (InternalStringMap.toNullIfUndefined(value)));
                 if (javaemul.internal.JsUtils.isUndefined(oldValue)) {
                     this.size++;
@@ -9410,9 +9546,9 @@ var test;
                 return oldValue;
             };
             InternalStringMap.prototype.remove = function (key) {
-                var value = this.backingMap.get$java_lang_String(key);
+                var value = this.backingMap.get(key);
                 if (!javaemul.internal.JsUtils.isUndefined(value)) {
-                    this.backingMap.delete$java_lang_String(key);
+                    this.backingMap["delete"](key);
                     this.size--;
                     java.util.ConcurrentModificationDetector.structureChanged(this.host);
                 }
@@ -9468,6 +9604,7 @@ var test;
                 return InternalStringMap$0;
             }());
             InternalStringMap.InternalStringMap$0 = InternalStringMap$0;
+            InternalStringMap$0["__interfaces"] = ["java.util.Iterator"];
             var InternalStringMap$1 = (function (_super) {
                 __extends(InternalStringMap$1, _super);
                 function InternalStringMap$1(__parent, entry, lastValueMod) {
@@ -9492,6 +9629,7 @@ var test;
                 return InternalStringMap$1;
             }(java.util.AbstractMapEntry));
             InternalStringMap.InternalStringMap$1 = InternalStringMap$1;
+            InternalStringMap$1["__interfaces"] = ["java.util.Map.Entry"];
         })(InternalStringMap = util.InternalStringMap || (util.InternalStringMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -9573,7 +9711,7 @@ var test;
                     throw new Error('invalid overload');
             };
             StringHelper.fromCharCode = function (array) {
-                return String.fromCharCode(array);
+                return String.fromCharCode((array | 0));
             };
             StringHelper.valueOf$char_A = function (x) {
                 return StringHelper.valueOf$char_A$int$int(x, 0, x.length);
@@ -9663,6 +9801,7 @@ var test;
                 return StringHelper$0;
             }());
             StringHelper.StringHelper$0 = StringHelper$0;
+            StringHelper$0["__interfaces"] = ["java.util.Comparator"];
         })(StringHelper = internal.StringHelper || (internal.StringHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
@@ -10409,7 +10548,7 @@ var test;
                 return javaemul.internal.InternalPreconditions.checkNotNull(this) === o;
             };
             DoubleHelper.prototype.floatValue = function () {
-                return (Math.fround ? Math.fround(this.doubleValue()) : (this.doubleValue()));
+                return this.doubleValue();
             };
             /**
              * Performance caution: using Double objects as map keys is not recommended.
@@ -10538,7 +10677,7 @@ var test;
                     _this.value = 0;
                     _this.value = 0;
                     (function () {
-                        _this.value = (Math.fround ? Math.fround(value_3) : (value_3));
+                        _this.value = value_3;
                     })();
                 }
                 else
@@ -10546,13 +10685,13 @@ var test;
                 return _this;
             }
             FloatHelper.NaN_$LI$ = function () { if (FloatHelper.NaN == null)
-                FloatHelper.NaN = 0.0 / 0.0; return FloatHelper.NaN; };
+                FloatHelper.NaN = Math.fround(0.0 / 0.0); return FloatHelper.NaN; };
             ;
             FloatHelper.NEGATIVE_INFINITY_$LI$ = function () { if (FloatHelper.NEGATIVE_INFINITY == null)
-                FloatHelper.NEGATIVE_INFINITY = -1.0 / 0.0; return FloatHelper.NEGATIVE_INFINITY; };
+                FloatHelper.NEGATIVE_INFINITY = Math.fround(-1.0 / 0.0); return FloatHelper.NEGATIVE_INFINITY; };
             ;
             FloatHelper.POSITIVE_INFINITY_$LI$ = function () { if (FloatHelper.POSITIVE_INFINITY == null)
-                FloatHelper.POSITIVE_INFINITY = 1.0 / 0.0; return FloatHelper.POSITIVE_INFINITY; };
+                FloatHelper.POSITIVE_INFINITY = Math.fround(1.0 / 0.0); return FloatHelper.POSITIVE_INFINITY; };
             ;
             FloatHelper.compare = function (x, y) {
                 return javaemul.internal.DoubleHelper.compare(x, y);
@@ -10631,7 +10770,7 @@ var test;
                 var bits64 = negative ? -9223372036854775808 : 0;
                 bits64 |= (Math.floor((exp + 896))) << 52;
                 bits64 |= (Math.floor(bits)) << 29;
-                return (Math.fround ? Math.fround(javaemul.internal.DoubleHelper.longBitsToDouble(bits64)) : (javaemul.internal.DoubleHelper.longBitsToDouble(bits64)));
+                return javaemul.internal.DoubleHelper.longBitsToDouble(bits64);
             };
             FloatHelper.isInfinite = function (x) {
                 return javaemul.internal.DoubleHelper.isInfinite(x);
@@ -10647,7 +10786,7 @@ var test;
                 else if (doubleValue < -FloatHelper.MAX_VALUE) {
                     return FloatHelper.NEGATIVE_INFINITY_$LI$();
                 }
-                return (Math.fround ? Math.fround(doubleValue) : (doubleValue));
+                return doubleValue;
             };
             FloatHelper.toString = function (b) {
                 return new String(b).toString();
@@ -11687,14 +11826,12 @@ var test;
                 var _this = this;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof java.io.IOException) || cause === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    _this = _super.call(this, message) || this;
-                    _this.message = message;
+                    _this = _super.call(this, message, (javaemul.internal.InternalPreconditions.checkNotNull(cause))) || this;
                 }
                 else if (((message != null && message instanceof java.io.IOException) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause_5 = __args[0];
-                    _this = _super.call(this, javaemul.internal.InternalPreconditions.checkNotNull(cause_5)) || this;
-                    _this.message = javaemul.internal.InternalPreconditions.checkNotNull(cause_5);
+                    var cause_7 = __args[0];
+                    _this = _super.call(this, (javaemul.internal.InternalPreconditions.checkNotNull(cause_7))) || this;
                 }
                 else
                     throw new Error('invalid overload');
@@ -11704,7 +11841,7 @@ var test;
                 return null;
             };
             return UncheckedIOException;
-        }(Error));
+        }(java.lang.RuntimeException));
         io.UncheckedIOException = UncheckedIOException;
         UncheckedIOException["__class"] = "java.io.UncheckedIOException";
         UncheckedIOException["__interfaces"] = ["java.io.Serializable"];
@@ -11728,7 +11865,7 @@ var test;
                     return _super.call(this) || this;
                 }
                 return AnnotationTypeMismatchException;
-            }(Error));
+            }(java.lang.RuntimeException));
             annotation.AnnotationTypeMismatchException = AnnotationTypeMismatchException;
             AnnotationTypeMismatchException["__class"] = "java.lang.annotation.AnnotationTypeMismatchException";
             AnnotationTypeMismatchException["__interfaces"] = ["java.io.Serializable"];
@@ -11751,7 +11888,6 @@ var test;
                 __extends(IncompleteAnnotationException, _super);
                 function IncompleteAnnotationException(annotationType, elementName) {
                     var _this = _super.call(this, "Incomplete annotation: trying to access " + elementName + " on " + annotationType) || this;
-                    _this.message = "Incomplete annotation: trying to access " + elementName + " on " + annotationType;
                     _this.__annotationType = null;
                     _this.__elementName = null;
                     _this.__annotationType = annotationType;
@@ -11765,7 +11901,7 @@ var test;
                     return this.__elementName;
                 };
                 return IncompleteAnnotationException;
-            }(Error));
+            }(java.lang.RuntimeException));
             annotation.IncompleteAnnotationException = IncompleteAnnotationException;
             IncompleteAnnotationException["__class"] = "java.lang.annotation.IncompleteAnnotationException";
             IncompleteAnnotationException["__interfaces"] = ["java.io.Serializable"];
@@ -11791,7 +11927,6 @@ var test;
                 if (((typeof explanation === 'string') || explanation === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, explanation) || this;
-                    _this.message = explanation;
                 }
                 else if (explanation === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -11802,7 +11937,7 @@ var test;
                 return _this;
             }
             return ArithmeticException;
-        }(Error));
+        }(java.lang.RuntimeException));
         lang.ArithmeticException = ArithmeticException;
         ArithmeticException["__class"] = "java.lang.ArithmeticException";
         ArithmeticException["__interfaces"] = ["java.io.Serializable"];
@@ -11824,7 +11959,6 @@ var test;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
-                    _this.message = message;
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -11835,7 +11969,7 @@ var test;
                 return _this;
             }
             return ArrayStoreException;
-        }(Error));
+        }(java.lang.RuntimeException));
         lang.ArrayStoreException = ArrayStoreException;
         ArrayStoreException["__class"] = "java.lang.ArrayStoreException";
         ArrayStoreException["__interfaces"] = ["java.io.Serializable"];
@@ -11855,7 +11989,6 @@ var test;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
-                    _this.message = message;
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -11866,10 +11999,46 @@ var test;
                 return _this;
             }
             return ClassCastException;
-        }(Error));
+        }(java.lang.RuntimeException));
         lang.ClassCastException = ClassCastException;
         ClassCastException["__class"] = "java.lang.ClassCastException";
         ClassCastException["__interfaces"] = ["java.io.Serializable"];
+    })(lang = java.lang || (java.lang = {}));
+})(java || (java = {}));
+(function (java) {
+    var lang;
+    (function (lang) {
+        var IllegalAccessException = (function (_super) {
+            __extends(IllegalAccessException, _super);
+            function IllegalAccessException(message, cause) {
+                var _this = this;
+                if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
+                    var __args = Array.prototype.slice.call(arguments);
+                    _this = _super.call(this, message, cause) || this;
+                }
+                else if (((typeof message === 'string') || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
+                    var s = __args[0];
+                    _this = _super.call(this, s) || this;
+                }
+                else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
+                    var cause_8 = __args[0];
+                    _this = _super.call(this, cause_8) || this;
+                }
+                else if (message === undefined && cause === undefined) {
+                    var __args = Array.prototype.slice.call(arguments);
+                    _this = _super.call(this) || this;
+                }
+                else
+                    throw new Error('invalid overload');
+                return _this;
+            }
+            return IllegalAccessException;
+        }(java.lang.RuntimeException));
+        lang.IllegalAccessException = IllegalAccessException;
+        IllegalAccessException["__class"] = "java.lang.IllegalAccessException";
+        IllegalAccessException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
 (function (java) {
@@ -11887,19 +12056,16 @@ var test;
                 var _this = this;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    _this = _super.call(this, message) || this;
-                    _this.message = message;
+                    _this = _super.call(this, message, cause) || this;
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
-                    _this.message = message;
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause_6 = __args[0];
-                    _this = _super.call(this, cause_6) || this;
-                    _this.message = cause_6;
+                    var cause_9 = __args[0];
+                    _this = _super.call(this, cause_9) || this;
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -11910,7 +12076,7 @@ var test;
                 return _this;
             }
             return IllegalArgumentException;
-        }(Error));
+        }(java.lang.RuntimeException));
         lang.IllegalArgumentException = IllegalArgumentException;
         IllegalArgumentException["__class"] = "java.lang.IllegalArgumentException";
         IllegalArgumentException["__interfaces"] = ["java.io.Serializable"];
@@ -11930,20 +12096,17 @@ var test;
                 var _this = this;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    _this = _super.call(this, message) || this;
-                    _this.message = message;
+                    _this = _super.call(this, message, cause) || this;
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var s = __args[0];
                     _this = _super.call(this, s) || this;
-                    _this.message = s;
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause_7 = __args[0];
-                    _this = _super.call(this, cause_7) || this;
-                    _this.message = cause_7;
+                    var cause_10 = __args[0];
+                    _this = _super.call(this, cause_10) || this;
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -11954,7 +12117,7 @@ var test;
                 return _this;
             }
             return IllegalStateException;
-        }(Error));
+        }(java.lang.RuntimeException));
         lang.IllegalStateException = IllegalStateException;
         IllegalStateException["__class"] = "java.lang.IllegalStateException";
         IllegalStateException["__interfaces"] = ["java.io.Serializable"];
@@ -11976,7 +12139,6 @@ var test;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
-                    _this.message = message;
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -11987,7 +12149,7 @@ var test;
                 return _this;
             }
             return IndexOutOfBoundsException;
-        }(Error));
+        }(java.lang.RuntimeException));
         lang.IndexOutOfBoundsException = IndexOutOfBoundsException;
         IndexOutOfBoundsException["__class"] = "java.lang.IndexOutOfBoundsException";
         IndexOutOfBoundsException["__interfaces"] = ["java.io.Serializable"];
@@ -12009,7 +12171,6 @@ var test;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
-                    _this.message = message;
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -12020,7 +12181,7 @@ var test;
                 return _this;
             }
             return NegativeArraySizeException;
-        }(Error));
+        }(java.lang.RuntimeException));
         lang.NegativeArraySizeException = NegativeArraySizeException;
         NegativeArraySizeException["__class"] = "java.lang.NegativeArraySizeException";
         NegativeArraySizeException["__interfaces"] = ["java.io.Serializable"];
@@ -12042,7 +12203,6 @@ var test;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
-                    _this.message = message;
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -12056,7 +12216,7 @@ var test;
                 return new TypeError(msg);
             };
             return NullPointerException;
-        }(Error));
+        }(java.lang.RuntimeException));
         lang.NullPointerException = NullPointerException;
         NullPointerException["__class"] = "java.lang.NullPointerException";
         NullPointerException["__interfaces"] = ["java.io.Serializable"];
@@ -12077,19 +12237,16 @@ var test;
                 var _this = this;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    _this = _super.call(this, message) || this;
-                    _this.message = message;
+                    _this = _super.call(this, message, cause) || this;
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
-                    _this.message = message;
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cause_8 = __args[0];
-                    _this = _super.call(this, cause_8) || this;
-                    _this.message = cause_8;
+                    var cause_11 = __args[0];
+                    _this = _super.call(this, cause_11) || this;
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -12100,7 +12257,7 @@ var test;
                 return _this;
             }
             return UnsupportedOperationException;
-        }(Error));
+        }(java.lang.RuntimeException));
         lang.UnsupportedOperationException = UnsupportedOperationException;
         UnsupportedOperationException["__class"] = "java.lang.UnsupportedOperationException";
         UnsupportedOperationException["__interfaces"] = ["java.io.Serializable"];
@@ -12122,7 +12279,6 @@ var test;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
-                    _this.message = message;
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -12133,7 +12289,7 @@ var test;
                 return _this;
             }
             return ConcurrentModificationException;
-        }(Error));
+        }(java.lang.RuntimeException));
         util.ConcurrentModificationException = ConcurrentModificationException;
         ConcurrentModificationException["__class"] = "java.util.ConcurrentModificationException";
         ConcurrentModificationException["__interfaces"] = ["java.io.Serializable"];
@@ -12154,7 +12310,7 @@ var test;
                 return _super.call(this) || this;
             }
             return EmptyStackException;
-        }(Error));
+        }(java.lang.RuntimeException));
         util.EmptyStackException = EmptyStackException;
         EmptyStackException["__class"] = "java.util.EmptyStackException";
         EmptyStackException["__interfaces"] = ["java.io.Serializable"];
@@ -12173,7 +12329,6 @@ var test;
             __extends(MissingResourceException, _super);
             function MissingResourceException(s, className, key) {
                 var _this = _super.call(this, s) || this;
-                _this.message = s;
                 _this.className = null;
                 _this.key = null;
                 _this.key = key;
@@ -12187,7 +12342,7 @@ var test;
                 return this.key;
             };
             return MissingResourceException;
-        }(Error));
+        }(java.lang.RuntimeException));
         util.MissingResourceException = MissingResourceException;
         MissingResourceException["__class"] = "java.util.MissingResourceException";
         MissingResourceException["__interfaces"] = ["java.io.Serializable"];
@@ -12209,7 +12364,6 @@ var test;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, s) || this;
-                    _this.message = s;
                 }
                 else if (s === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -12220,7 +12374,7 @@ var test;
                 return _this;
             }
             return NoSuchElementException;
-        }(Error));
+        }(java.lang.RuntimeException));
         util.NoSuchElementException = NoSuchElementException;
         NoSuchElementException["__class"] = "java.util.NoSuchElementException";
         NoSuchElementException["__interfaces"] = ["java.io.Serializable"];
@@ -12747,6 +12901,7 @@ var test;
                 return ArrayList$0;
             }());
             ArrayList.ArrayList$0 = ArrayList$0;
+            ArrayList$0["__interfaces"] = ["java.util.Iterator"];
         })(ArrayList = util.ArrayList || (util.ArrayList = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -15376,6 +15531,7 @@ var test;
                 return AbstractMap$0;
             }(java.util.AbstractSet));
             AbstractMap.AbstractMap$0 = AbstractMap$0;
+            AbstractMap$0["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
             (function (AbstractMap$0) {
                 var AbstractMap$0$0 = (function () {
                     function AbstractMap$0$0(__parent, outerIter) {
@@ -15403,6 +15559,7 @@ var test;
                     return AbstractMap$0$0;
                 }());
                 AbstractMap$0.AbstractMap$0$0 = AbstractMap$0$0;
+                AbstractMap$0$0["__interfaces"] = ["java.util.Iterator"];
             })(AbstractMap$0 = AbstractMap.AbstractMap$0 || (AbstractMap.AbstractMap$0 = {}));
             var AbstractMap$1 = (function (_super) {
                 __extends(AbstractMap$1, _super);
@@ -15427,6 +15584,7 @@ var test;
                 return AbstractMap$1;
             }(java.util.AbstractCollection));
             AbstractMap.AbstractMap$1 = AbstractMap$1;
+            AbstractMap$1["__interfaces"] = ["java.util.Collection", "java.lang.Iterable"];
             (function (AbstractMap$1) {
                 var AbstractMap$1$0 = (function () {
                     function AbstractMap$1$0(__parent, outerIter) {
@@ -15454,6 +15612,7 @@ var test;
                     return AbstractMap$1$0;
                 }());
                 AbstractMap$1.AbstractMap$1$0 = AbstractMap$1$0;
+                AbstractMap$1$0["__interfaces"] = ["java.util.Iterator"];
             })(AbstractMap$1 = AbstractMap.AbstractMap$1 || (AbstractMap.AbstractMap$1 = {}));
         })(AbstractMap = util.AbstractMap || (util.AbstractMap = {}));
     })(util = java.util || (java.util = {}));
@@ -16764,12 +16923,14 @@ var test;
     var util;
     (function (util) {
         /**
-         * Implementation of Map interface based on a hash table. <a
-         * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/HashMap.html">[Sun
+         * Implementation of Map interface based on a hash table.
+         * <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/HashMap.html">[Sun
          * docs]</a>
          *
-         * @param <K> key type
-         * @param <V> value type
+         * @param <K>
+         * key type
+         * @param <V>
+         * value type
          * @extends java.util.AbstractMap
          */
         var AbstractHashMap = (function (_super) {
@@ -16863,7 +17024,8 @@ var test;
                 return new AbstractHashMap.EntrySet(this);
             };
             AbstractHashMap.prototype.get = function (key) {
-                return (typeof key === 'string') ? this.getStringValue(javaemul.internal.JsUtils.unsafeCastToString(key)) : this.getHashValue(key);
+                var v = (typeof key === 'string') ? this.getStringValue(javaemul.internal.JsUtils.unsafeCastToString(key)) : this.getHashValue(key);
+                return v === undefined ? null : v;
             };
             AbstractHashMap.prototype.put = function (key, value) {
                 return (typeof key === 'string') ? this.putStringValue(javaemul.internal.JsUtils.unsafeCastToString(key), value) : this.putHashValue(key, value);
@@ -16876,9 +17038,8 @@ var test;
             };
             /**
              * Returns the Map.Entry whose key is Object equal to <code>key</code>,
-             * provided that <code>key</code>'s hash code is <code>hashCode</code>;
-             * or <code>null</code> if no such Map.Entry exists at the specified
-             * hashCode.
+             * provided that <code>key</code>'s hash code is <code>hashCode</code>; or
+             * <code>null</code> if no such Map.Entry exists at the specified hashCode.
              * @param {*} key
              * @return {*}
              * @private
@@ -16897,8 +17058,8 @@ var test;
                 return key == null ? this.getHashValue(null) : this.stringMap.get(key);
             };
             /**
-             * Returns true if the a key exists in the hashCodeMap that is Object equal to
-             * <code>key</code>, provided that <code>key</code>'s hash code is
+             * Returns true if the a key exists in the hashCodeMap that is Object equal
+             * to <code>key</code>, provided that <code>key</code>'s hash code is
              * <code>hashCode</code>.
              * @param {*} key
              * @return {boolean}
@@ -16929,9 +17090,9 @@ var test;
                 return this.hashCodeMap.put(key, value);
             };
             /**
-             * Sets the specified key to the specified value in the stringMap. Returns the
-             * value previously at that key. Returns <code>null</code> if the specified
-             * key did not exist.
+             * Sets the specified key to the specified value in the stringMap. Returns
+             * the value previously at that key. Returns <code>null</code> if the
+             * specified key did not exist.
              * @param {string} key
              * @param {*} value
              * @return {*}
@@ -16942,8 +17103,8 @@ var test;
             };
             /**
              * Removes the pair whose key is Object equal to <code>key</code> from
-             * <code>hashCodeMap</code>, provided that <code>key</code>'s hash code
-             * is <code>hashCode</code>. Returns the value that was associated with the
+             * <code>hashCodeMap</code>, provided that <code>key</code>'s hash code is
+             * <code>hashCode</code>. Returns the value that was associated with the
              * removed key, or null if no such key existed.
              * @param {*} key
              * @return {*}
@@ -16953,9 +17114,9 @@ var test;
                 return this.hashCodeMap.remove(key);
             };
             /**
-             * Removes the specified key from the stringMap and returns the value that was
-             * previously there. Returns <code>null</code> if the specified key does not
-             * exist.
+             * Removes the specified key from the stringMap and returns the value that
+             * was previously there. Returns <code>null</code> if the specified key does
+             * not exist.
              * @param {string} key
              * @return {*}
              * @private
@@ -17501,6 +17662,7 @@ var test;
                     return NavigableKeySet$0;
                 }());
                 NavigableKeySet.NavigableKeySet$0 = NavigableKeySet$0;
+                NavigableKeySet$0["__interfaces"] = ["java.util.Iterator"];
             })(NavigableKeySet = AbstractNavigableMap.NavigableKeySet || (AbstractNavigableMap.NavigableKeySet = {}));
         })(AbstractNavigableMap = util.AbstractNavigableMap || (util.AbstractNavigableMap = {}));
     })(util = java.util || (java.util = {}));
@@ -18229,7 +18391,12 @@ var test;
                     return this.backingMap.containsKey(o);
                 };
                 SetFromMap.prototype.equals = function (o) {
-                    return o === this || (this.keySet() === o);
+                    return o === this || (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(this.keySet(), o);
                 };
                 SetFromMap.prototype.hashCode = function () {
                     return (function (o) { if (o.hashCode) {
@@ -18439,7 +18606,12 @@ var test;
                         throw new Error('invalid overload');
                 };
                 UnmodifiableList.prototype.equals = function (o) {
-                    return (this.list === o);
+                    return (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(this.list, o);
                 };
                 UnmodifiableList.prototype.get = function (index) {
                     return this.list.get(index);
@@ -18543,7 +18715,12 @@ var test;
                     }
                 };
                 UnmodifiableSet.prototype.equals = function (o) {
-                    return (this.coll === o);
+                    return (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(this.coll, o);
                 };
                 UnmodifiableSet.prototype.hashCode = function () {
                     return (function (o) { if (o.hashCode) {
@@ -18582,7 +18759,12 @@ var test;
                     return this.__entrySet;
                 };
                 UnmodifiableMap.prototype.equals = function (o) {
-                    return (this.map === o);
+                    return (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(this.map, o);
                 };
                 UnmodifiableMap.prototype.get = function (key) {
                     return this.map.get(key);
@@ -18690,7 +18872,12 @@ var test;
                             this.entry = entry;
                         }
                         UnmodifiableEntry.prototype.equals = function (o) {
-                            return (this.entry === o);
+                            return (function (o1, o2) { if (o1 && o1.equals) {
+                                return o1.equals(o2);
+                            }
+                            else {
+                                return o1 === o2;
+                            } })(this.entry, o);
                         };
                         UnmodifiableEntry.prototype.getKey = function () {
                             return this.entry.getKey();
@@ -18742,6 +18929,7 @@ var test;
                         return UnmodifiableEntrySet$0;
                     }());
                     UnmodifiableEntrySet.UnmodifiableEntrySet$0 = UnmodifiableEntrySet$0;
+                    UnmodifiableEntrySet$0["__interfaces"] = ["java.util.Iterator"];
                 })(UnmodifiableEntrySet = UnmodifiableMap.UnmodifiableEntrySet || (UnmodifiableMap.UnmodifiableEntrySet = {}));
             })(UnmodifiableMap = Collections.UnmodifiableMap || (Collections.UnmodifiableMap = {}));
             var UnmodifiableSortedMap = (function (_super) {
@@ -18756,7 +18944,12 @@ var test;
                     return this.sortedMap.comparator();
                 };
                 UnmodifiableSortedMap.prototype.equals = function (o) {
-                    return (this.sortedMap === o);
+                    return (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(this.sortedMap, o);
                 };
                 UnmodifiableSortedMap.prototype.firstKey = function () {
                     return this.sortedMap.firstKey();
@@ -18831,7 +19024,12 @@ var test;
                     return this.sortedSet.comparator();
                 };
                 UnmodifiableSortedSet.prototype.equals = function (o) {
-                    return (this.sortedSet === o);
+                    return (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(this.sortedSet, o);
                 };
                 UnmodifiableSortedSet.prototype.first = function () {
                     return this.sortedSet.first();
@@ -18971,6 +19169,7 @@ var test;
                 return Collections$0;
             }());
             Collections.Collections$0 = Collections$0;
+            Collections$0["__interfaces"] = ["java.util.Enumeration"];
             var Collections$1 = (function () {
                 function Collections$1(cmp) {
                     this.cmp = cmp;
@@ -18981,6 +19180,7 @@ var test;
                 return Collections$1;
             }());
             Collections.Collections$1 = Collections$1;
+            Collections$1["__interfaces"] = ["java.util.Comparator"];
         })(Collections = util.Collections || (util.Collections = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -19318,7 +19518,12 @@ var test;
             function ConcurrentModificationDetector() {
             }
             ConcurrentModificationDetector.API_CHECK_$LI$ = function () { if (ConcurrentModificationDetector.API_CHECK == null)
-                ConcurrentModificationDetector.API_CHECK = (java.lang.System.getProperty("jre.checks.api", "ENABLED") === "ENABLED"); return ConcurrentModificationDetector.API_CHECK; };
+                ConcurrentModificationDetector.API_CHECK = (function (o1, o2) { if (o1 && o1.equals) {
+                    return o1.equals(o2);
+                }
+                else {
+                    return o1 === o2;
+                } })(java.lang.System.getProperty("jre.checks.api", "ENABLED"), "ENABLED"); return ConcurrentModificationDetector.API_CHECK; };
             ;
             ConcurrentModificationDetector.structureChanged = function (map) {
                 if (!ConcurrentModificationDetector.API_CHECK_$LI$()) {
@@ -19381,13 +19586,28 @@ var test;
                     Logger.LOGGING_ENABLED = java.lang.System.getProperty("gwt.logging.enabled", "TRUE"); return Logger.LOGGING_ENABLED; };
                 ;
                 Logger.LOGGING_WARNING_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_WARNING == null)
-                    Logger.LOGGING_WARNING = (Logger.LOGGING_ENABLED_$LI$() === "WARNING"); return Logger.LOGGING_WARNING; };
+                    Logger.LOGGING_WARNING = (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(Logger.LOGGING_ENABLED_$LI$(), "WARNING"); return Logger.LOGGING_WARNING; };
                 ;
                 Logger.LOGGING_SEVERE_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_SEVERE == null)
-                    Logger.LOGGING_SEVERE = (Logger.LOGGING_ENABLED_$LI$() === "SEVERE"); return Logger.LOGGING_SEVERE; };
+                    Logger.LOGGING_SEVERE = (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(Logger.LOGGING_ENABLED_$LI$(), "SEVERE"); return Logger.LOGGING_SEVERE; };
                 ;
                 Logger.LOGGING_FALSE_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_FALSE == null)
-                    Logger.LOGGING_FALSE = (Logger.LOGGING_ENABLED_$LI$() === "FALSE"); return Logger.LOGGING_FALSE; };
+                    Logger.LOGGING_FALSE = (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(Logger.LOGGING_ENABLED_$LI$(), "FALSE"); return Logger.LOGGING_FALSE; };
                 ;
                 Logger.__static_initializer_0 = function () {
                     Logger.assertLoggingValues();
@@ -19402,10 +19622,30 @@ var test;
                     return java.util.logging.LogManager.getLogManager().ensureLogger(name);
                 };
                 Logger.assertLoggingValues = function () {
-                    if ((Logger.LOGGING_ENABLED_$LI$() === "FALSE") || (Logger.LOGGING_ENABLED_$LI$() === "TRUE") || (Logger.LOGGING_ENABLED_$LI$() === "SEVERE") || (Logger.LOGGING_ENABLED_$LI$() === "WARNING")) {
+                    if ((function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(Logger.LOGGING_ENABLED_$LI$(), "FALSE") || (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(Logger.LOGGING_ENABLED_$LI$(), "TRUE") || (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(Logger.LOGGING_ENABLED_$LI$(), "SEVERE") || (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
+                    }
+                    else {
+                        return o1 === o2;
+                    } })(Logger.LOGGING_ENABLED_$LI$(), "WARNING")) {
                         return;
                     }
-                    throw new Error("Undefined value for gwt.logging.enabled: \'" + Logger.LOGGING_ENABLED_$LI$() + "\'. Allowed values are TRUE, FALSE, SEVERE, WARNING");
+                    throw new java.lang.RuntimeException("Undefined value for gwt.logging.enabled: \'" + Logger.LOGGING_ENABLED_$LI$() + "\'. Allowed values are TRUE, FALSE, SEVERE, WARNING");
                 };
                 Logger.prototype.addHandler = function (handler) {
                     if (Logger.LOGGING_FALSE_$LI$()) {
@@ -19633,16 +19873,36 @@ var test;
             function InternalPreconditions() {
             }
             InternalPreconditions.CHECKED_MODE_$LI$ = function () { if (InternalPreconditions.CHECKED_MODE == null)
-                InternalPreconditions.CHECKED_MODE = (java.lang.System.getProperty("jre.checkedMode", "ENABLED") === "ENABLED"); return InternalPreconditions.CHECKED_MODE; };
+                InternalPreconditions.CHECKED_MODE = (function (o1, o2) { if (o1 && o1.equals) {
+                    return o1.equals(o2);
+                }
+                else {
+                    return o1 === o2;
+                } })(java.lang.System.getProperty("jre.checkedMode", "ENABLED"), "ENABLED"); return InternalPreconditions.CHECKED_MODE; };
             ;
             InternalPreconditions.TYPE_CHECK_$LI$ = function () { if (InternalPreconditions.TYPE_CHECK == null)
-                InternalPreconditions.TYPE_CHECK = (java.lang.System.getProperty("jre.checks.type", "ENABLED") === "ENABLED"); return InternalPreconditions.TYPE_CHECK; };
+                InternalPreconditions.TYPE_CHECK = (function (o1, o2) { if (o1 && o1.equals) {
+                    return o1.equals(o2);
+                }
+                else {
+                    return o1 === o2;
+                } })(java.lang.System.getProperty("jre.checks.type", "ENABLED"), "ENABLED"); return InternalPreconditions.TYPE_CHECK; };
             ;
             InternalPreconditions.API_CHECK_$LI$ = function () { if (InternalPreconditions.API_CHECK == null)
-                InternalPreconditions.API_CHECK = (java.lang.System.getProperty("jre.checks.api", "ENABLED") === "ENABLED"); return InternalPreconditions.API_CHECK; };
+                InternalPreconditions.API_CHECK = (function (o1, o2) { if (o1 && o1.equals) {
+                    return o1.equals(o2);
+                }
+                else {
+                    return o1 === o2;
+                } })(java.lang.System.getProperty("jre.checks.api", "ENABLED"), "ENABLED"); return InternalPreconditions.API_CHECK; };
             ;
             InternalPreconditions.BOUND_CHECK_$LI$ = function () { if (InternalPreconditions.BOUND_CHECK == null)
-                InternalPreconditions.BOUND_CHECK = (java.lang.System.getProperty("jre.checks.bounds", "ENABLED") === "ENABLED"); return InternalPreconditions.BOUND_CHECK; };
+                InternalPreconditions.BOUND_CHECK = (function (o1, o2) { if (o1 && o1.equals) {
+                    return o1.equals(o2);
+                }
+                else {
+                    return o1 === o2;
+                } })(java.lang.System.getProperty("jre.checks.bounds", "ENABLED"), "ENABLED"); return InternalPreconditions.BOUND_CHECK; };
             ;
             InternalPreconditions.checkType = function (expression) {
                 if (InternalPreconditions.TYPE_CHECK_$LI$()) {
@@ -20803,20 +21063,20 @@ var test;
                     return 0;
                 }
                 if (isRed && tree.isRed) {
-                    throw new Error("Two red nodes adjacent");
+                    throw new java.lang.RuntimeException("Two red nodes adjacent");
                 }
                 var leftNode = tree.child[TreeMap.LEFT];
                 if (leftNode != null && this.cmp.compare(leftNode.getKey(), tree.getKey()) > 0) {
-                    throw new Error("Left child " + leftNode + " larger than " + tree);
+                    throw new java.lang.RuntimeException("Left child " + leftNode + " larger than " + tree);
                 }
                 var rightNode = tree.child[TreeMap.RIGHT];
                 if (rightNode != null && this.cmp.compare(rightNode.getKey(), tree.getKey()) < 0) {
-                    throw new Error("Right child " + rightNode + " smaller than " + tree);
+                    throw new java.lang.RuntimeException("Right child " + rightNode + " smaller than " + tree);
                 }
                 var leftHeight = this.assertCorrectness$java_util_TreeMap_Node$boolean(leftNode, tree.isRed);
                 var rightHeight = this.assertCorrectness$java_util_TreeMap_Node$boolean(rightNode, tree.isRed);
                 if (leftHeight !== 0 && rightHeight !== 0 && leftHeight !== rightHeight) {
-                    throw new Error("Black heights don\'t match");
+                    throw new java.lang.RuntimeException("Black heights don\'t match");
                 }
                 return tree.isRed ? leftHeight : leftHeight + 1;
             };
@@ -21603,6 +21863,7 @@ var test;
                     return SubMap$0;
                 }(TreeMap.SubMap.EntrySet));
                 SubMap.SubMap$0 = SubMap$0;
+                SubMap$0["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
             })(SubMap = TreeMap.SubMap || (TreeMap.SubMap = {}));
             var SubMapType = (function () {
                 function SubMapType() {
@@ -21724,6 +21985,7 @@ var test;
                 return Hashtable$0;
             }());
             Hashtable.Hashtable$0 = Hashtable$0;
+            Hashtable$0["__interfaces"] = ["java.util.Enumeration"];
             var Hashtable$1 = (function () {
                 function Hashtable$1(__parent, it) {
                     this.it = it;
@@ -21738,6 +22000,7 @@ var test;
                 return Hashtable$1;
             }());
             Hashtable.Hashtable$1 = Hashtable$1;
+            Hashtable$1["__interfaces"] = ["java.util.Enumeration"];
         })(Hashtable = util.Hashtable || (util.Hashtable = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -22157,4 +22420,4 @@ java.util.Date.ONE_HOUR_IN_MILLISECONDS_$LI$();
 java.util.Comparators.NATURAL_$LI$();
 java.lang.Class.classes_$LI$();
 java.lang.Class.constructors_$LI$();
-//# sourceMappingURL=bundle.js.map
+test.Test.main(null);
