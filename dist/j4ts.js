@@ -2416,7 +2416,7 @@ var java;
                 return (window["Date"]);
             };
             Date.prototype.after = function (ts) {
-                if (((ts != null && ts instanceof java.util.Date) || ts === null)) {
+                if (((ts != null && ts instanceof Date) || ts === null)) {
                     return this.after$java_util_Date(ts);
                 }
                 else
@@ -2426,7 +2426,7 @@ var java;
                 return this.getTime() > when.getTime();
             };
             Date.prototype.before = function (ts) {
-                if (((ts != null && ts instanceof java.util.Date) || ts === null)) {
+                if (((ts != null && ts instanceof Date) || ts === null)) {
                     return this.before$java_util_Date(ts);
                 }
                 else
@@ -2442,7 +2442,7 @@ var java;
                 return (this.getTime() - other.getTime());
             };
             Date.prototype.compareTo = function (other) {
-                if (((other != null && other instanceof java.util.Date) || other === null)) {
+                if (((other != null && other instanceof Date) || other === null)) {
                     return this.compareTo$java_util_Date(other);
                 }
                 else
@@ -2456,7 +2456,7 @@ var java;
                     throw new Error('invalid overload');
             };
             Date.prototype.equals$java_lang_Object = function (obj) {
-                return ((obj != null && obj instanceof java.util.Date) && (this.getTime() === obj.getTime()));
+                return ((obj != null && obj instanceof Date) && (this.getTime() === obj.getTime()));
             };
             Date.prototype.getDate = function () {
                 return (this.jsdate["getDate"](this.jsdate));
@@ -5086,7 +5086,7 @@ var javaemul;
             CharacterHelper.valueOf = function (c) {
                 if ((function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(c) < 128) {
                     var result = CharacterHelper.BoxedValues.boxedValues_$LI$()[c];
-                    if (result == null) {
+                    if ((function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(result) == null) {
                         result = CharacterHelper.BoxedValues.boxedValues_$LI$()[c] = new String(c);
                     }
                     return result;
@@ -5659,16 +5659,16 @@ var javaemul;
             };
             MathHelper.scalb$float$int = function (f, scaleFactor) {
                 if (scaleFactor >= 31 || scaleFactor <= -31) {
-                    return Math.fround(f * MathHelper.pow(2, scaleFactor));
+                    return f * MathHelper.pow(2, scaleFactor);
                 }
                 else if (scaleFactor > 0) {
-                    return Math.fround(f * (1 << scaleFactor));
+                    return f * (1 << scaleFactor);
                 }
                 else if (scaleFactor === 0) {
                     return f;
                 }
                 else {
-                    return Math.fround(Math.fround(f * 1.0) / (1 << -scaleFactor));
+                    return f * 1.0 / (1 << -scaleFactor);
                 }
             };
             MathHelper.scalb = function (f, scaleFactor) {
@@ -10024,7 +10024,7 @@ var test;
                 if (((ts != null && ts instanceof java.sql.Timestamp) || ts === null)) {
                     return this.after$java_sql_Timestamp(ts);
                 }
-                else if (((ts != null && ts instanceof java.util.Date) || ts === null)) {
+                else if (((ts != null && ts instanceof sql.Date) || ts === null)) {
                     return this.after$java_util_Date(ts);
                 }
                 else
@@ -10037,7 +10037,7 @@ var test;
                 if (((ts != null && ts instanceof java.sql.Timestamp) || ts === null)) {
                     return this.before$java_sql_Timestamp(ts);
                 }
-                else if (((ts != null && ts instanceof java.util.Date) || ts === null)) {
+                else if (((ts != null && ts instanceof sql.Date) || ts === null)) {
                     return this.before$java_util_Date(ts);
                 }
                 else
@@ -10059,7 +10059,7 @@ var test;
                 if (((o != null && o instanceof java.sql.Timestamp) || o === null)) {
                     return this.compareTo$java_sql_Timestamp(o);
                 }
-                else if (((o != null && o instanceof java.util.Date) || o === null)) {
+                else if (((o != null && o instanceof sql.Date) || o === null)) {
                     return this.compareTo$java_util_Date(o);
                 }
                 else
@@ -10685,13 +10685,13 @@ var test;
                 return _this;
             }
             FloatHelper.NaN_$LI$ = function () { if (FloatHelper.NaN == null)
-                FloatHelper.NaN = Math.fround(0.0 / 0.0); return FloatHelper.NaN; };
+                FloatHelper.NaN = 0.0 / 0.0; return FloatHelper.NaN; };
             ;
             FloatHelper.NEGATIVE_INFINITY_$LI$ = function () { if (FloatHelper.NEGATIVE_INFINITY == null)
-                FloatHelper.NEGATIVE_INFINITY = Math.fround(-1.0 / 0.0); return FloatHelper.NEGATIVE_INFINITY; };
+                FloatHelper.NEGATIVE_INFINITY = -1.0 / 0.0; return FloatHelper.NEGATIVE_INFINITY; };
             ;
             FloatHelper.POSITIVE_INFINITY_$LI$ = function () { if (FloatHelper.POSITIVE_INFINITY == null)
-                FloatHelper.POSITIVE_INFINITY = Math.fround(1.0 / 0.0); return FloatHelper.POSITIVE_INFINITY; };
+                FloatHelper.POSITIVE_INFINITY = 1.0 / 0.0; return FloatHelper.POSITIVE_INFINITY; };
             ;
             FloatHelper.compare = function (x, y) {
                 return javaemul.internal.DoubleHelper.compare(x, y);
