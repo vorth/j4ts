@@ -152,16 +152,12 @@
 			<groupId>org.jsweet.candies</groupId>
 			<artifactId>jsweet-core</artifactId>
 			<version>1.2.0-SNAPSHOT</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jsweet.candies</groupId>
 			<artifactId>sprintf-js</artifactId>
-			<version>0.0.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jsweet.candies</groupId>
-			<artifactId>jquery</artifactId>
-			<version>1.10.0-SNAPSHOT</version>
+			<version>0.0.0-1.1.0-20160525</version>
 		</dependency>
 	</dependencies>
 

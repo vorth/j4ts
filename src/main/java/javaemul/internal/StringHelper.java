@@ -183,7 +183,7 @@ public final class StringHelper {
 	}
 
 	public static String format(String formatString, Object... args) {
-		return Globals.sprintf(formatString, args);
+		return (String)Globals.sprintf(formatString, args);
 	}
 
 	private StringHelper() {
