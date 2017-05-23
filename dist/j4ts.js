@@ -1919,6 +1919,7 @@ var java;
                     (function () {
                         while ((nbits > 0)) {
                             (_this.bits).push(false);
+                            --nbits;
                         }
                         ;
                     })();
