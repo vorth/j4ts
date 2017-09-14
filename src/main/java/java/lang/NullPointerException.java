@@ -15,6 +15,8 @@
  */
 package java.lang;
 
+import static jsweet.util.Lang.$insert;
+
 /**
  * See <a
  * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/NullPointerException.html">the
@@ -29,7 +31,7 @@ public class NullPointerException extends RuntimeException {
     super(message);
   }
 
-  native Object createError(String msg) /*-{
-    return new TypeError(msg);
-  }-*/;
+  Object createError(String msg) {
+    return $insert("new TypeError(msg)");
+  }
 }

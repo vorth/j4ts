@@ -19,7 +19,7 @@ import static javaemul.internal.Coercions.ensureInt;
 import static javaemul.internal.InternalPreconditions.checkArgument;
 import static javaemul.internal.InternalPreconditions.checkElementIndex;
 import static javaemul.internal.InternalPreconditions.checkNotNull;
-import static jsweet.util.Globals.any;
+import static jsweet.util.Lang.any;
 
 import java.io.Serializable;
 

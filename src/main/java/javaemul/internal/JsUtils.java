@@ -16,9 +16,8 @@
 package javaemul.internal;
 
 import static def.js.Globals.Infinity;
-import static jsweet.util.Globals.$get;
-import static jsweet.util.Globals.$set;
-import static jsweet.util.Globals.typeof;
+import static jsweet.util.Lang.object;
+import static jsweet.util.Lang.typeof;
 
 /**
  * Provides an interface for simple JavaScript idioms that can not be expressed in Java.
@@ -41,16 +40,16 @@ public class JsUtils {
   public static void setPropertySafe(Object map, String key, Object value) {
     try {
       // This may throw exception in strict mode.
-      $set(map, key, value);
+      object(map).$set(key, value);
     } catch(Throwable e) { }
   };
 
   public static int getIntProperty(Object map, String key) {
-    return (int)$get(map, key);
+    return (int)object(map).$get(key);
   };
 
   public static void setIntProperty(Object map, String key, int value) {
-    $set(map, key, value);
+	  object(map).$set(key, value);
   };
 
   public static String typeOf(Object o) {

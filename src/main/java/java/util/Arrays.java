@@ -23,7 +23,8 @@ import static javaemul.internal.InternalPreconditions.checkCriticalPositionIndex
 import static javaemul.internal.InternalPreconditions.checkElementIndex;
 import static javaemul.internal.InternalPreconditions.checkNotNull;
 import static javaemul.internal.InternalPreconditions.checkPositionIndexes;
-import static jsweet.util.Globals.any;
+import static jsweet.util.Lang.any;
+import static jsweet.util.Lang.$insert;
 
 import java.io.Serializable;
 
@@ -1305,9 +1306,9 @@ public class Arrays {
   /**
    * Sort an entire array of number primitives.
    */
-  private static native void nativeLongSort(Object array, Object compareFunction) /*-{
-    array.sort(compareFunction);
-  }-*/;
+  private static void nativeLongSort(Object array, Object compareFunction) {
+    $insert("array.sort(compareFunction)");
+  };
 
   /**
    * Sort a subset of an array of number primitives.
@@ -1321,11 +1322,9 @@ public class Arrays {
   /**
    * Sort an entire array of number primitives.
    */
-  private static native void nativeNumberSort(Object array) /*-{
-    array.sort(function(a, b) {
-      return a - b;
-    });
-  }-*/;
+  private static void nativeNumberSort(Object array) {
+    $insert("array.sort(function(a, b) { return a - b; })");
+  };
 
   /**
    * Sort a subset of an array of number primitives.

@@ -11,6 +11,7 @@ var java;
         /**
          * General-purpose beans control methods. GWT only supports a limited subset of these methods. Only
          * the documented methods are available.
+         * @class
          */
         var Beans = (function () {
             function Beans() {
@@ -34,6 +35,7 @@ var java;
          * This constructor does nothing. It is provided for signature
          * compatibility.
          * @class
+         * @extends *
          */
         var InputStream = (function () {
             function InputStream() {
@@ -115,41 +117,11 @@ var java;
             InputStream.prototype.markSupported = function () {
                 return false;
             };
-            /**
-             * Reads a single byte from this stream and returns it as an integer in the
-             * range from 0 to 255. Returns -1 if the end of the stream has been
-             * reached. Blocks until one byte has been read, the end of the source
-             * stream is detected or an exception is thrown.
-             *
-             * @throws IOException
-             * if the stream is closed or another IOException occurs.
-             * @return {number}
-             */
             InputStream.prototype.read$ = function () { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
-            /**
-             * Equivalent to {@code read(buffer, 0, buffer.length)}.
-             * @param {Array} buffer
-             * @return {number}
-             */
             InputStream.prototype.read$byte_A = function (buffer) {
                 javaemul.internal.InternalPreconditions.checkNotNull(buffer);
                 return this.read$byte_A$int$int(buffer, 0, buffer.length);
             };
-            /**
-             * Reads up to {@code byteCount} bytes from this stream and stores them in
-             * the byte array {@code buffer} starting at {@code byteOffset}.
-             * Returns the number of bytes actually read or -1 if the end of the stream
-             * has been reached.
-             *
-             * @throws IndexOutOfBoundsException
-             * if {@code byteOffset < 0 || byteCount < 0 || byteOffset + byteCount > buffer.length}.
-             * @throws IOException
-             * if the stream is closed or another IOException occurs.
-             * @param {Array} buffer
-             * @param {number} byteOffset
-             * @param {number} byteCount
-             * @return {number}
-             */
             InputStream.prototype.read$byte_A$int$int = function (buffer, byteOffset, byteCount) {
                 java.io.IOUtils.checkOffsetAndCount$byte_A$int$int(buffer, byteOffset, byteCount);
                 for (var i = 0; i < byteCount; ++i) {
@@ -168,6 +140,7 @@ var java;
                     ;
                     buffer[byteOffset + i] = (c | 0);
                 }
+                ;
                 return byteCount;
             };
             /**
@@ -271,20 +244,11 @@ var java;
          * Provides a series of utilities to be reused between IO classes.
          *
          * TODO(chehayeb): move these checks to InternalPreconditions.
+         * @class
          */
         var IOUtils = (function () {
             function IOUtils() {
             }
-            /**
-             * Validates the offset and the byte count for the given array of bytes.
-             *
-             * @param {Array} buffer Array of bytes to be checked.
-             * @param {number} byteOffset Starting offset in the array.
-             * @param {number} byteCount Total number of bytes to be accessed.
-             * @throws NullPointerException if the given reference to the buffer is null.
-             * @throws IndexOutOfBoundsException if {@code byteOffset} is negative, {@code byteCount} is
-             * negative or their sum exceeds the buffer length.
-             */
             IOUtils.checkOffsetAndCount$byte_A$int$int = function (buffer, byteOffset, byteCount) {
                 javaemul.internal.InternalPreconditions.checkNotNull(buffer);
                 IOUtils.checkOffsetAndCount$int$int$int(buffer.length, byteOffset, byteCount);
@@ -312,31 +276,11 @@ var java;
                 else
                     throw new Error('invalid overload');
             };
-            /**
-             * Validates the offset and the byte count for the given array of characters.
-             *
-             * @param {Array} buffer Array of characters to be checked.
-             * @param {number} charOffset Starting offset in the array.
-             * @param {number} charCount Total number of characters to be accessed.
-             * @throws NullPointerException if the given reference to the buffer is null.
-             * @throws IndexOutOfBoundsException if {@code charOffset} is negative, {@code charCount} is
-             * negative or their sum exceeds the buffer length.
-             */
             IOUtils.checkOffsetAndCount$char_A$int$int = function (buffer, charOffset, charCount) {
                 javaemul.internal.InternalPreconditions.checkNotNull(buffer);
                 IOUtils.checkOffsetAndCount$int$int$int(buffer.length, charOffset, charCount);
             };
-            /**
-             * Validates the offset and the byte count for the given array length.
-             *
-             * @param {number} length Length of the array to be checked.
-             * @param {number} offset Starting offset in the array.
-             * @param {number} count Total number of elements to be accessed.
-             * @throws IndexOutOfBoundsException if {@code offset} is negative, {@code count} is negative or
-             * their sum exceeds the given {@code length}.
-             * @private
-             */
-            IOUtils.checkOffsetAndCount$int$int$int = function (length, offset, count) {
+            /*private*/ IOUtils.checkOffsetAndCount$int$int$int = function (length, offset, count) {
                 if ((offset < 0) || (count < 0) || ((offset + count) > length)) {
                     throw new java.lang.IndexOutOfBoundsException();
                 }
@@ -375,37 +319,16 @@ var java;
              */
             OutputStream.prototype.flush = function () {
             };
-            /**
-             * Equivalent to {@code write(buffer, 0, buffer.length)}.
-             * @param {Array} buffer
-             */
             OutputStream.prototype.write$byte_A = function (buffer) {
                 javaemul.internal.InternalPreconditions.checkNotNull(buffer);
                 this.write$byte_A$int$int(buffer, 0, buffer.length);
             };
-            /**
-             * Writes {@code count} bytes from the byte array {@code buffer} starting at
-             * position {@code offset} to this stream.
-             *
-             * @param {Array} buffer
-             * the buffer to be written.
-             * @param {number} offset
-             * the start position in {@code buffer} from where to get bytes.
-             * @param {number} count
-             * the number of bytes from {@code buffer} to write to this
-             * stream.
-             * @throws IOException
-             * if an error occurs while writing to this stream.
-             * @throws IndexOutOfBoundsException
-             * if {@code offset < 0} or {@code count < 0}, or if
-             * {@code offset + count} is bigger than the length of
-             * {@code buffer}.
-             */
             OutputStream.prototype.write$byte_A$int$int = function (buffer, offset, count) {
                 java.io.IOUtils.checkOffsetAndCount$byte_A$int$int(buffer, offset, count);
                 for (var i = offset; i < offset + count; i++) {
                     this.write$int(buffer[i]);
                 }
+                ;
             };
             /**
              * Writes {@code count} bytes from the byte array {@code buffer} starting at
@@ -438,15 +361,6 @@ var java;
                 else
                     throw new Error('invalid overload');
             };
-            /**
-             * Writes a single byte to this stream. Only the least significant byte of
-             * the integer {@code oneByte} is written to the stream.
-             *
-             * @param {number} oneByte
-             * the byte to be written.
-             * @throws IOException
-             * if an error occurs while writing to this stream.
-             */
             OutputStream.prototype.write$int = function (oneByte) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
             return OutputStream;
         }());
@@ -460,6 +374,7 @@ var java;
     (function (io) {
         /**
          * JSweet implementation.
+         * @class
          */
         var Reader = (function () {
             function Reader(lock) {
@@ -560,6 +475,7 @@ var java;
     (function (io) {
         /**
          * JSweet implementation.
+         * @class
          */
         var Writer = (function () {
             function Writer(lock) {
@@ -688,6 +604,8 @@ var java;
          * <p>
          * Most methods will give expected performance results. Exception is {@link #setCharAt(int, char)},
          * which is O(n), and thus should not be used many times on the same <code>StringBuffer</code>.
+         * @param {string} string
+         * @class
          */
         var AbstractStringBuilder = (function () {
             function AbstractStringBuilder(string) {
@@ -784,6 +702,10 @@ var java;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @return {string}
+             */
             AbstractStringBuilder.prototype.toString = function () {
                 return this.string;
             };
@@ -812,9 +734,10 @@ var java;
                         AbstractStringBuilder.swap(buffer, i - 1, i);
                     }
                 }
+                ;
                 this.string = new String(buffer);
             };
-            AbstractStringBuilder.swap = function (buffer, f, s) {
+            /*private*/ AbstractStringBuilder.swap = function (buffer, f, s) {
                 var tmp = buffer[f];
                 buffer[f] = buffer[s];
                 buffer[s] = tmp;
@@ -835,12 +758,15 @@ var java;
              * reading from the class file <a
              * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/AnnotationFormatError.html">[Sun
              * docs]</a>.
+             * @class
              * @extends java.lang.Error
              */
             var AnnotationFormatError = (function (_super) {
                 __extends(AnnotationFormatError, _super);
                 function AnnotationFormatError() {
-                    return _super.call(this) || this;
+                    var _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, AnnotationFormatError.prototype);
+                    return _this;
                 }
                 return AnnotationFormatError;
             }(Error));
@@ -860,6 +786,15 @@ var java;
              * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/ElementType.html">[Sun
              * docs]</a>.
              * @enum
+             * @property {java.lang.annotation.ElementType} ANNOTATION_TYPE
+             * @property {java.lang.annotation.ElementType} CONSTRUCTOR
+             * @property {java.lang.annotation.ElementType} FIELD
+             * @property {java.lang.annotation.ElementType} LOCAL_VARIABLE
+             * @property {java.lang.annotation.ElementType} METHOD
+             * @property {java.lang.annotation.ElementType} PACKAGE
+             * @property {java.lang.annotation.ElementType} PARAMETER
+             * @property {java.lang.annotation.ElementType} TYPE
+             * @class
              */
             var ElementType;
             (function (ElementType) {
@@ -885,6 +820,10 @@ var java;
              * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/RetentionPolicy.html">[Sun
              * docs]</a>.
              * @enum
+             * @property {java.lang.annotation.RetentionPolicy} CLASS
+             * @property {java.lang.annotation.RetentionPolicy} RUNTIME
+             * @property {java.lang.annotation.RetentionPolicy} SOURCE
+             * @class
              */
             var RetentionPolicy;
             (function (RetentionPolicy) {
@@ -900,6 +839,9 @@ var java;
     (function (lang) {
         /**
          * Represents an error caused by an assertion failure.
+         * @param {string} message
+         * @param {java.lang.Throwable} cause
+         * @class
          * @extends java.lang.Error
          */
         var AssertionError = (function (_super) {
@@ -910,11 +852,13 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, AssertionError.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, AssertionError.prototype);
                 }
                 else if (((typeof message === 'boolean') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
@@ -923,6 +867,7 @@ var java;
                         var message_1 = new String(__args_1[0]).toString();
                         _this = _super.call(this, /* valueOf */ new String(message_1).toString()) || this;
                         _this.message = new String(message_1).toString();
+                        Object.setPrototypeOf(_this, AssertionError.prototype);
                     }
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
@@ -932,6 +877,7 @@ var java;
                         var message_2 = new String(__args_2[0]).toString();
                         _this = _super.call(this, /* valueOf */ new String(message_2).toString()) || this;
                         _this.message = new String(message_2).toString();
+                        Object.setPrototypeOf(_this, AssertionError.prototype);
                     }
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
@@ -941,6 +887,7 @@ var java;
                         var message_3 = new String(__args_3[0]).toString();
                         _this = _super.call(this, /* valueOf */ new String(message_3).toString()) || this;
                         _this.message = new String(message_3).toString();
+                        Object.setPrototypeOf(_this, AssertionError.prototype);
                     }
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
@@ -950,6 +897,7 @@ var java;
                         var message_4 = new String(__args_4[0]).toString();
                         _this = _super.call(this, /* valueOf */ new String(message_4).toString()) || this;
                         _this.message = new String(message_4).toString();
+                        Object.setPrototypeOf(_this, AssertionError.prototype);
                     }
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
@@ -959,6 +907,7 @@ var java;
                         var message_5 = new String(__args_5[0]).toString();
                         _this = _super.call(this, /* valueOf */ new String(message_5).toString()) || this;
                         _this.message = new String(message_5).toString();
+                        Object.setPrototypeOf(_this, AssertionError.prototype);
                     }
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
@@ -968,16 +917,19 @@ var java;
                         var message_6 = new String(__args_6[0]).toString();
                         _this = _super.call(this, /* valueOf */ new String(message_6).toString()) || this;
                         _this.message = new String(message_6).toString();
+                        Object.setPrototypeOf(_this, AssertionError.prototype);
                     }
                 }
                 else if (((message != null) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, /* valueOf */ new String(message).toString()) || this;
                     _this.message = new String(message).toString();
+                    Object.setPrototypeOf(_this, AssertionError.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, AssertionError.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -994,10 +946,14 @@ var java;
     var lang;
     (function (lang) {
         /**
-         * Not publicly instantiable.
+         * Generally unsupported. This class is provided so that the GWT compiler can
+         * choke down class literal references.
+         * <p>
+         * NOTE: The code in this class is very sensitive and should keep its
+         * dependencies upon other classes to a minimum.
          *
-         * @skip
-         * @private
+         * @param <T>
+         * the type of the object
          * @class
          */
         var Class = (function () {
@@ -1054,11 +1010,11 @@ var java;
              * @return {java.lang.Class}
              * @private
              */
-            Class.getClassLiteralForArray = function (leafClass, dimensions) {
+            /*private*/ Class.getClassLiteralForArray = function (leafClass, dimensions) {
                 var arrayLiterals = leafClass.arrayLiterals = leafClass.arrayLiterals == null ? new Array(0) : leafClass.arrayLiterals;
                 return arrayLiterals[dimensions] != null ? arrayLiterals[dimensions] : (arrayLiterals[dimensions] = leafClass.createClassLiteralForArray(dimensions));
             };
-            Class.prototype.createClassLiteralForArray = function (dimensions) {
+            /*private*/ Class.prototype.createClassLiteralForArray = function (dimensions) {
                 var clazz = (new java.lang.Class());
                 clazz.modifiers = Class.ARRAY;
                 clazz.superclass = Object;
@@ -1150,7 +1106,7 @@ var java;
              * @return {java.lang.Class}
              * @private
              */
-            Class.createClassObject = function (packageName, compoundClassName, typeId) {
+            /*private*/ Class.createClassObject = function (packageName, compoundClassName, typeId) {
                 var clazz = (new java.lang.Class());
                 clazz.packageName = packageName;
                 clazz.compoundName = compoundClassName;
@@ -1163,7 +1119,7 @@ var java;
              * @param {java.lang.Class} clazz
              * @private
              */
-            Class.initializeNames = function (clazz) {
+            /*private*/ Class.initializeNames = function (clazz) {
                 if (clazz.isArray()) {
                     var componentType = clazz.componentType;
                     if (componentType.isPrimitive()) {
@@ -1200,7 +1156,7 @@ var java;
             Class.prototype.desiredAssertionStatus = function () {
                 return false;
             };
-            Class.prototype.ensureNamesAreInitialized = function () {
+            /*private*/ Class.prototype.ensureNamesAreInitialized = function () {
                 if (this.typeName != null) {
                     return;
                 }
@@ -1214,8 +1170,7 @@ var java;
                 return this.componentType;
             };
             Class.prototype.getEnumConstants = function () {
-                return this.enumConstantsFunc
-                    && (this.enumConstantsFunc)();
+                return (this.enumConstantsFunc && (this.enumConstantsFunc)());
             };
             Class.prototype.getName = function () {
                 this.ensureNamesAreInitialized();
@@ -1240,6 +1195,10 @@ var java;
             Class.prototype.isPrimitive = function () {
                 return (this.modifiers & Class.PRIMITIVE) !== 0;
             };
+            /**
+             *
+             * @return {string}
+             */
             Class.prototype.toString = function () {
                 return (this.isInterface() ? "interface " : (this.isPrimitive() ? "" : "class ")) + (function (c) { return c["__class"] ? c["__class"] : c["name"]; })(this);
             };
@@ -1269,6 +1228,7 @@ var java;
          * The first-class representation of an enumeration.
          *
          * @param <E>
+         * @class
          */
         var Enum = (function () {
             function Enum(name, ordinal) {
@@ -1309,18 +1269,23 @@ var java;
                 javaemul.internal.InternalPreconditions.checkCriticalArgument(result != null, "Enum constant undefined: %s", name);
                 return result;
             };
-            Enum.get0 = function (map, name) {
+            /*private*/ Enum.get0 = function (map, name) {
                 return (map[name]);
             };
-            Enum.invokeValueOf = function (enumValueOfFunc, name) {
+            /*private*/ Enum.invokeValueOf = function (enumValueOfFunc, name) {
                 return (enumValueOfFunc(name));
             };
-            Enum.put0 = function (map, name, value) {
+            /*private*/ Enum.put0 = function (map, name, value) {
                 map[name] = value;
             };
             Enum.prototype.compareTo$java_lang_Enum = function (other) {
                 return this.__ordinal - other.__ordinal;
             };
+            /**
+             *
+             * @param {java.lang.Enum} other
+             * @return {number}
+             */
             Enum.prototype.compareTo = function (other) {
                 if (((other != null) || other === null)) {
                     return this.compareTo$java_lang_Enum(other);
@@ -1337,6 +1302,10 @@ var java;
             Enum.prototype.ordinal = function () {
                 return this.__ordinal;
             };
+            /**
+             *
+             * @return {string}
+             */
             Enum.prototype.toString = function () {
                 return this.name();
             };
@@ -1354,6 +1323,9 @@ var java;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Exception.html">the
          * official Java API doc</a> for details.
+         * @param {string} message
+         * @param {java.lang.Throwable} cause
+         * @class
          * @extends java.lang.Throwable
          */
         var Exception = (function (_super) {
@@ -1364,26 +1336,31 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, Exception.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null) && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, Exception.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, Exception.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_1 = __args[0];
                     _this = _super.call(this, cause_1) || this;
                     _this.message = cause_1;
+                    Object.setPrototypeOf(_this, Exception.prototype);
                 }
                 else if (message === undefined && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, Exception.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -1407,21 +1384,25 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, IllegalAccessError.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, IllegalAccessError.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_2 = __args[0];
                     _this = _super.call(this, cause_2) || this;
                     _this.message = cause_2;
+                    Object.setPrototypeOf(_this, IllegalAccessError.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, IllegalAccessError.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -1445,21 +1426,25 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, NoSuchMethodError.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, NoSuchMethodError.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_3 = __args[0];
                     _this = _super.call(this, cause_3) || this;
                     _this.message = cause_3;
+                    Object.setPrototypeOf(_this, NoSuchMethodError.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, NoSuchMethodError.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -1481,6 +1466,7 @@ var java;
              * This implements the reference API in a minimal way. In JavaScript, there is
              * no control over the reference and the GC. So this implementation's only
              * purpose is for compilation.
+             * @class
              */
             var Reference = (function () {
                 function Reference(referent) {
@@ -1507,6 +1493,11 @@ var java;
          * Included for hosted mode source compatibility. Partially implemented
          *
          * @skip
+         * @param {string} className
+         * @param {string} methodName
+         * @param {string} fileName
+         * @param {number} lineNumber
+         * @class
          */
         var StackTraceElement = (function () {
             function StackTraceElement(className, methodName, fileName, lineNumber) {
@@ -1554,6 +1545,11 @@ var java;
             StackTraceElement.prototype.getMethodName = function () {
                 return this.methodName;
             };
+            /**
+             *
+             * @param {*} other
+             * @return {boolean}
+             */
             StackTraceElement.prototype.equals = function (other) {
                 if (other != null && other instanceof java.lang.StackTraceElement) {
                     var st = other;
@@ -1561,9 +1557,17 @@ var java;
                 }
                 return false;
             };
+            /**
+             *
+             * @return {number}
+             */
             StackTraceElement.prototype.hashCode = function () {
                 return java.util.Objects.hash(this.lineNumber, this.className, this.methodName, this.fileName);
             };
+            /**
+             *
+             * @return {string}
+             */
             StackTraceElement.prototype.toString = function () {
                 return this.className + "." + this.methodName + "(" + (this.fileName != null ? this.fileName : "Unknown Source") + (this.lineNumber >= 0 ? ":" + this.lineNumber : "") + ")";
             };
@@ -1591,6 +1595,8 @@ var java;
          * unknown.)
          * @since  1.8
          * @class
+         * @extends java.lang.Error
+         * @author  Frank Yellin
          */
         var VirtualMachineError = (function (_super) {
             __extends(VirtualMachineError, _super);
@@ -1600,21 +1606,25 @@ var java;
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, VirtualMachineError.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, VirtualMachineError.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_4 = __args[0];
                     _this = _super.call(this, cause_4) || this;
                     _this.message = cause_4;
+                    Object.setPrototypeOf(_this, VirtualMachineError.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, VirtualMachineError.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -1632,8 +1642,7 @@ var java;
     var lang;
     (function (lang) {
         /**
-         * Not instantiable.
-         * @private
+         * For JRE compatibility.
          * @class
          */
         var Void = (function () {
@@ -1652,6 +1661,7 @@ var java;
         (function (charset) {
             /**
              * A minimal emulation of {@link Charset}.
+             * @class
              */
             var Charset = (function () {
                 function Charset(name, aliasesIgnored) {
@@ -1711,6 +1721,11 @@ var java;
                 Charset.prototype.compareTo$java_nio_charset_Charset = function (that) {
                     return this.__name.toUpperCase().localeCompare(that.__name.toUpperCase());
                 };
+                /**
+                 *
+                 * @param {java.nio.charset.Charset} that
+                 * @return {number}
+                 */
                 Charset.prototype.compareTo = function (that) {
                     if (((that != null && that instanceof java.nio.charset.Charset) || that === null)) {
                         return this.compareTo$java_nio_charset_Charset(that);
@@ -1718,6 +1733,10 @@ var java;
                     else
                         throw new Error('invalid overload');
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 Charset.prototype.hashCode = function () {
                     return (function (o) { if (o.hashCode) {
                         return o.hashCode();
@@ -1726,6 +1745,11 @@ var java;
                         return o.toString();
                     } })(this.__name);
                 };
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
                 Charset.prototype.equals = function (o) {
                     if (o === this) {
                         return true;
@@ -1741,6 +1765,10 @@ var java;
                         return o1 === o2;
                     } })(this.__name, that.__name);
                 };
+                /**
+                 *
+                 * @return {string}
+                 */
                 Charset.prototype.toString = function () {
                     return this.__name;
                 };
@@ -1769,6 +1797,7 @@ var java;
          * Message Digest Service Provider Interface - <a
          * href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/MessageDigestSpi.html">[Sun's
          * docs]</a>.
+         * @class
          */
         var MessageDigestSpi = (function () {
             function MessageDigestSpi() {
@@ -1823,6 +1852,7 @@ var java;
          * A basic implementation for Java collators.
          *
          * @author Renaud Pawlak
+         * @class
          */
         var Collator = (function () {
             function Collator() {
@@ -1833,6 +1863,12 @@ var java;
                 }
                 return Collator.collator;
             };
+            /**
+             *
+             * @param {*} a
+             * @param {*} b
+             * @return {number}
+             */
             Collator.prototype.compare = function (a, b) {
                 return a.localeCompare(b);
             };
@@ -1853,6 +1889,7 @@ var java;
          * docs]</a>
          *
          * @param <E> the element type.
+         * @class
          */
         var AbstractCollection = (function () {
             function AbstractCollection() {
@@ -1869,6 +1906,11 @@ var java;
                     _loop_1(index122);
                 }
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} element
+             */
             AbstractCollection.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
                     return this.add$java_lang_Object(index);
@@ -1879,6 +1921,12 @@ var java;
             AbstractCollection.prototype.add$java_lang_Object = function (o) {
                 throw new java.lang.UnsupportedOperationException("Add not supported on this collection");
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} c
+             * @return {boolean}
+             */
             AbstractCollection.prototype.addAll = function (index, c) {
                 if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                     return this.addAll$java_util_Collection(index);
@@ -1892,20 +1940,34 @@ var java;
                 for (var index123 = c.iterator(); index123.hasNext();) {
                     var e = index123.next();
                     {
-                        changed = changed || this.add(e);
+                        changed = this.add(e) || changed;
                     }
                 }
                 return changed;
             };
+            /**
+             *
+             */
             AbstractCollection.prototype.clear = function () {
                 for (var iter = this.iterator(); iter.hasNext();) {
                     iter.next();
                     iter.remove();
                 }
+                ;
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             AbstractCollection.prototype.contains = function (o) {
                 return this.advanceToFind(o, false);
             };
+            /**
+             *
+             * @param {*} c
+             * @return {boolean}
+             */
             AbstractCollection.prototype.containsAll = function (c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
                 for (var index124 = c.iterator(); index124.hasNext();) {
@@ -1918,9 +1980,18 @@ var java;
                 }
                 return true;
             };
+            /**
+             *
+             * @return {boolean}
+             */
             AbstractCollection.prototype.isEmpty = function () {
                 return this.size() === 0;
             };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             AbstractCollection.prototype.remove = function (index) {
                 if (((index != null) || index === null)) {
                     return this.remove$java_lang_Object(index);
@@ -1931,6 +2002,11 @@ var java;
             AbstractCollection.prototype.remove$java_lang_Object = function (o) {
                 return this.advanceToFind(o, true);
             };
+            /**
+             *
+             * @param {*} c
+             * @return {boolean}
+             */
             AbstractCollection.prototype.removeAll = function (c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
                 var changed = false;
@@ -1941,8 +2017,14 @@ var java;
                         changed = true;
                     }
                 }
+                ;
                 return changed;
             };
+            /**
+             *
+             * @param {*} c
+             * @return {boolean}
+             */
             AbstractCollection.prototype.retainAll = function (c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
                 var changed = false;
@@ -1953,6 +2035,7 @@ var java;
                         changed = true;
                     }
                 }
+                ;
                 return changed;
             };
             AbstractCollection.prototype.toArray$ = function () {
@@ -1968,11 +2051,17 @@ var java;
                 for (var i = 0; i < size; ++i) {
                     result[i] = it.next();
                 }
+                ;
                 if (a.length > size) {
                     a[size] = null;
                 }
                 return a;
             };
+            /**
+             *
+             * @param {Array} a
+             * @return {Array}
+             */
             AbstractCollection.prototype.toArray = function (a) {
                 if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (a[0] != null))) || a === null)) {
                     return this.toArray$java_lang_Object_A(a);
@@ -1983,6 +2072,10 @@ var java;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @return {string}
+             */
             AbstractCollection.prototype.toString = function () {
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
                 for (var index125 = this.iterator(); index125.hasNext();) {
@@ -1993,7 +2086,7 @@ var java;
                 }
                 return joiner.toString();
             };
-            AbstractCollection.prototype.advanceToFind = function (o, remove) {
+            /*private*/ AbstractCollection.prototype.advanceToFind = function (o, remove) {
                 for (var iter = this.iterator(); iter.hasNext();) {
                     var e = iter.next();
                     if (java.util.Objects.equals(o, e)) {
@@ -2003,6 +2096,7 @@ var java;
                         return true;
                     }
                 }
+                ;
                 return false;
             };
             return AbstractCollection;
@@ -2018,10 +2112,16 @@ var java;
         /**
          * Basic {@link Map.Entry} implementation that implements hashCode, equals, and
          * toString.
+         * @class
          */
         var AbstractMapEntry = (function () {
             function AbstractMapEntry() {
             }
+            /**
+             *
+             * @param {*} other
+             * @return {boolean}
+             */
             AbstractMapEntry.prototype.equals = function (other) {
                 if (!(other != null && (other["__interfaces"] != null && other["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || other.constructor != null && other.constructor["__interfaces"] != null && other.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0))) {
                     return false;
@@ -2046,6 +2146,10 @@ var java;
                     return o.toString();
                 } })(java.util.Objects);
             };
+            /**
+             *
+             * @return {string}
+             */
             AbstractMapEntry.prototype.toString = function () {
                 return this.getKey() + "=" + this.getValue();
             };
@@ -2064,6 +2168,8 @@ var java;
          * compatibility/compilation purpose).
          *
          * @author Renaud Pawlak
+         * @param {number} nbits
+         * @class
          */
         var BitSet = (function () {
             function BitSet(nbits) {
@@ -2093,6 +2199,7 @@ var java;
                 for (var n = 0; n < longs.length * 64; n++) {
                     bs.bits[n] = ((longs[(n / 64 | 0)] & (1 << (n % 64))) !== 0);
                 }
+                ;
                 return bs;
             };
             BitSet.prototype.flip$int = function (bitIndex) {
@@ -2102,6 +2209,7 @@ var java;
                 for (var i = fromIndex; i <= toIndex; i++) {
                     this.flip$int(i);
                 }
+                ;
             };
             BitSet.prototype.flip = function (fromIndex, toIndex) {
                 if (((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null)) {
@@ -2128,6 +2236,7 @@ var java;
                 for (var i = fromIndex; i <= toIndex; i++) {
                     this.set$int(i);
                 }
+                ;
             };
             BitSet.prototype.set$int$int$boolean = function (fromIndex, toIndex, value) {
                 if (value) {
@@ -2160,6 +2269,7 @@ var java;
                 for (var i = fromIndex; i <= toIndex; i++) {
                     this.clear$int(i);
                 }
+                ;
             };
             BitSet.prototype.clear = function (fromIndex, toIndex) {
                 if (((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null)) {
@@ -2185,6 +2295,7 @@ var java;
                 for (var i = fromIndex; i <= toIndex; i++) {
                     (bs.bits).push(this.bits[i]);
                 }
+                ;
                 return bs;
             };
             BitSet.prototype.get = function (fromIndex, toIndex) {
@@ -2208,27 +2319,32 @@ var java;
                 for (var i = 0; i < this.bits.length; i++) {
                     sum += this.bits[i] ? 1 : 0;
                 }
+                ;
                 return sum;
             };
             BitSet.prototype.and = function (set) {
                 for (var i = 0; i < this.bits.length; i++) {
                     this.bits[i] = this.bits[i] && set.get$int(i);
                 }
+                ;
             };
             BitSet.prototype.or = function (set) {
                 for (var i = 0; i < this.bits.length; i++) {
                     this.bits[i] = this.bits[i] || set.get$int(i);
                 }
+                ;
             };
             BitSet.prototype.xor = function (set) {
                 for (var i = 0; i < this.bits.length; i++) {
                     this.bits[i] = (this.bits[i] && !set.get$int(i)) || (!this.bits[i] && set.get$int(i));
                 }
+                ;
             };
             BitSet.prototype.andNot = function (set) {
                 for (var i = 0; i < this.bits.length; i++) {
                     this.bits[i] = this.bits[i] && !set.get$int(i);
                 }
+                ;
             };
             BitSet.prototype.size = function () {
                 return this.bits.length;
@@ -2247,6 +2363,7 @@ var java;
                         return false;
                     }
                 }
+                ;
                 return true;
             };
             BitSet.prototype.clone = function () {
@@ -2277,7 +2394,7 @@ var java;
              *
              * <pre>Comparator&lt;String&gt; compareString = Comparators.natural()</pre>
              *
-             * @return {java.util.Comparator} the natural Comparator
+             * @return {*} the natural Comparator
              */
             Comparators.natural = function () {
                 return Comparators.NATURAL_$LI$();
@@ -2290,6 +2407,12 @@ var java;
             var NaturalComparator = (function () {
                 function NaturalComparator() {
                 }
+                /**
+                 *
+                 * @param {*} o1
+                 * @param {*} o2
+                 * @return {number}
+                 */
                 NaturalComparator.prototype.compare = function (o1, o2) {
                     javaemul.internal.InternalPreconditions.checkNotNull(o1);
                     javaemul.internal.InternalPreconditions.checkNotNull(o2);
@@ -2308,6 +2431,13 @@ var java;
     (function (util) {
         /**
          * Represents a date and time.
+         * @param {number} year
+         * @param {number} month
+         * @param {number} date
+         * @param {number} hrs
+         * @param {number} min
+         * @param {number} sec
+         * @class
          */
         var Date = (function () {
             function Date(year, month, date, hrs, min, sec) {
@@ -2441,6 +2571,11 @@ var java;
             Date.prototype.compareTo$java_util_Date = function (other) {
                 return (this.getTime() - other.getTime());
             };
+            /**
+             *
+             * @param {java.util.Date} other
+             * @return {number}
+             */
             Date.prototype.compareTo = function (other) {
                 if (((other != null && other instanceof Date) || other === null)) {
                     return this.compareTo$java_util_Date(other);
@@ -2485,6 +2620,10 @@ var java;
             Date.prototype.getYear = function () {
                 return (this.jsdate["getFullYear"](this.jsdate)) - 1900;
             };
+            /**
+             *
+             * @return {number}
+             */
             Date.prototype.hashCode = function () {
                 var time = this.getTime();
                 return ((time ^ (time >>> 32)) | 0);
@@ -2527,6 +2666,10 @@ var java;
             Date.prototype.toLocaleString = function () {
                 return this.jsdate.toLocaleString();
             };
+            /**
+             *
+             * @return {string}
+             */
             Date.prototype.toString = function () {
                 var offset = -(this.getTimezoneOffset() | 0);
                 var hourOffset = ((offset >= 0) ? "+" : "") + ((offset / 60 | 0));
@@ -2576,6 +2719,7 @@ var java;
             /**
              * Encapsulates static data to avoid Date itself having a static
              * initializer.
+             * @class
              */
             var StringData = (function () {
                 function StringData() {
@@ -2616,6 +2760,8 @@ var java;
     (function (util) {
         /**
          * Available as a superclass of event objects.
+         * @param {*} source
+         * @class
          */
         var EventObject = (function () {
             function EventObject(source) {
@@ -2643,6 +2789,8 @@ var java;
          * A key's hashCode is the index in backingMap which should contain that key. Since several keys may
          * have the same hash, each value in hashCodeMap is actually an array containing all entries whose
          * keys share the same hash.
+         * @param {java.util.AbstractHashMap} host
+         * @class
          */
         var InternalHashCodeMap = (function () {
             function InternalHashCodeMap(host) {
@@ -2698,12 +2846,13 @@ var java;
                         return entry.getValue();
                     }
                 }
+                ;
                 return null;
             };
             InternalHashCodeMap.prototype.getEntry = function (key) {
                 return this.findEntryInChain(key, this.getChainOrEmpty(this.hash(key)));
             };
-            InternalHashCodeMap.prototype.findEntryInChain = function (key, chain) {
+            /*private*/ InternalHashCodeMap.prototype.findEntryInChain = function (key, chain) {
                 for (var index127 = 0; index127 < chain.length; index127++) {
                     var entry = chain[index127];
                     {
@@ -2717,18 +2866,22 @@ var java;
             InternalHashCodeMap.prototype.size = function () {
                 return this.__size;
             };
+            /**
+             *
+             * @return {*}
+             */
             InternalHashCodeMap.prototype.iterator = function () {
                 return new InternalHashCodeMap.InternalHashCodeMap$0(this);
             };
-            InternalHashCodeMap.prototype.getChainOrEmpty = function (hashCode) {
+            /*private*/ InternalHashCodeMap.prototype.getChainOrEmpty = function (hashCode) {
                 var chain = this.unsafeCastToArray(this.backingMap.get(hashCode));
                 return chain == null ? this.newEntryChain() : chain;
             };
-            InternalHashCodeMap.prototype.newEntryChain = function () {
-                return [];
+            /*private*/ InternalHashCodeMap.prototype.newEntryChain = function () {
+                return ([]);
             };
-            InternalHashCodeMap.prototype.unsafeCastToArray = function (arr) {
-                return arr;
+            /*private*/ InternalHashCodeMap.prototype.unsafeCastToArray = function (arr) {
+                return (arr);
             };
             /**
              * Returns hash code of the key as calculated by {@link AbstractHashMap#getHashCode(Object)} but
@@ -2737,7 +2890,7 @@ var java;
              * @return {number}
              * @private
              */
-            InternalHashCodeMap.prototype.hash = function (key) {
+            /*private*/ InternalHashCodeMap.prototype.hash = function (key) {
                 return key == null ? 0 : this.host.getHashCode(key);
             };
             return InternalHashCodeMap;
@@ -2762,6 +2915,10 @@ var java;
                     }
                     ;
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 InternalHashCodeMap$0.prototype.hasNext = function () {
                     if (this.itemIndex < this.chain.length) {
                         return true;
@@ -2774,10 +2931,17 @@ var java;
                     }
                     return false;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 InternalHashCodeMap$0.prototype.next = function () {
                     this.lastEntry = this.chain[this.itemIndex++];
                     return this.lastEntry;
                 };
+                /**
+                 *
+                 */
                 InternalHashCodeMap$0.prototype.remove = function () {
                     this.__parent.remove(this.lastEntry.getKey());
                     if (this.itemIndex !== 0) {
@@ -2804,6 +2968,7 @@ var java;
     (function (util) {
         /**
          * A factory to create JavaScript Map instances.
+         * @class
          */
         var InternalJsMapFactory = (function () {
             function InternalJsMapFactory() {
@@ -2811,7 +2976,7 @@ var java;
             InternalJsMapFactory.jsMapCtor_$LI$ = function () { if (InternalJsMapFactory.jsMapCtor == null)
                 InternalJsMapFactory.jsMapCtor = InternalJsMapFactory.getJsMapConstructor(); return InternalJsMapFactory.jsMapCtor; };
             ;
-            InternalJsMapFactory.getJsMapConstructor = function () {
+            /*private*/ InternalJsMapFactory.getJsMapConstructor = function () {
                 return Map;
             };
             InternalJsMapFactory.newJsMap = function () {
@@ -2832,6 +2997,7 @@ var java;
          * <p>
          * Note: Any changes to this class should put into account the assumption that
          * was made in rest of the JRE emulation.
+         * @class
          */
         var Locale = (function () {
             function Locale() {
@@ -2864,8 +3030,12 @@ var java;
             var RootLocale = (function (_super) {
                 __extends(RootLocale, _super);
                 function RootLocale() {
-                    return _super !== null && _super.apply(this, arguments) || this;
+                    return _super.call(this) || this;
                 }
+                /**
+                 *
+                 * @return {string}
+                 */
                 RootLocale.prototype.toString = function () {
                     return "";
                 };
@@ -2876,8 +3046,12 @@ var java;
             var EnglishLocale = (function (_super) {
                 __extends(EnglishLocale, _super);
                 function EnglishLocale() {
-                    return _super !== null && _super.apply(this, arguments) || this;
+                    return _super.call(this) || this;
                 }
+                /**
+                 *
+                 * @return {string}
+                 */
                 EnglishLocale.prototype.toString = function () {
                     return "en";
                 };
@@ -2888,8 +3062,12 @@ var java;
             var USLocale = (function (_super) {
                 __extends(USLocale, _super);
                 function USLocale() {
-                    return _super !== null && _super.apply(this, arguments) || this;
+                    return _super.call(this) || this;
                 }
+                /**
+                 *
+                 * @return {string}
+                 */
                 USLocale.prototype.toString = function () {
                     return "en_US";
                 };
@@ -2900,8 +3078,12 @@ var java;
             var DefaultLocale = (function (_super) {
                 __extends(DefaultLocale, _super);
                 function DefaultLocale() {
-                    return _super !== null && _super.apply(this, arguments) || this;
+                    return _super.call(this) || this;
                 }
+                /**
+                 *
+                 * @return {string}
+                 */
                 DefaultLocale.prototype.toString = function () {
                     return "unknown";
                 };
@@ -2921,6 +3103,7 @@ var java;
              * An emulation of the java.util.logging.Formatter class. See
              * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/Formatter.html">
              * The Java API doc for details</a>
+             * @class
              */
             var Formatter = (function () {
                 function Formatter() {
@@ -2944,6 +3127,7 @@ var java;
              * An emulation of the java.util.logging.Handler class. See
              * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/Handler.html">
              * The Java API doc for details</a>
+             * @class
              */
             var Handler = (function () {
                 function Handler() {
@@ -2984,6 +3168,7 @@ var java;
              * An emulation of the java.util.logging.Level class. See
              * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/Level.html">
              * The Java API doc for details</a>
+             * @class
              */
             var Level = (function () {
                 function Level() {
@@ -3056,6 +3241,10 @@ var java;
                 Level.prototype.intValue = function () {
                     return -1;
                 };
+                /**
+                 *
+                 * @return {string}
+                 */
                 Level.prototype.toString = function () {
                     return this.getName();
                 };
@@ -3070,9 +3259,17 @@ var java;
                     function LevelAll() {
                         return _super.call(this) || this;
                     }
+                    /**
+                     *
+                     * @return {string}
+                     */
                     LevelAll.prototype.getName = function () {
                         return "ALL";
                     };
+                    /**
+                     *
+                     * @return {number}
+                     */
                     LevelAll.prototype.intValue = function () {
                         return javaemul.internal.IntegerHelper.MIN_VALUE;
                     };
@@ -3086,9 +3283,17 @@ var java;
                     function LevelConfig() {
                         return _super.call(this) || this;
                     }
+                    /**
+                     *
+                     * @return {string}
+                     */
                     LevelConfig.prototype.getName = function () {
                         return "CONFIG";
                     };
+                    /**
+                     *
+                     * @return {number}
+                     */
                     LevelConfig.prototype.intValue = function () {
                         return 700;
                     };
@@ -3102,9 +3307,17 @@ var java;
                     function LevelFine() {
                         return _super.call(this) || this;
                     }
+                    /**
+                     *
+                     * @return {string}
+                     */
                     LevelFine.prototype.getName = function () {
                         return "FINE";
                     };
+                    /**
+                     *
+                     * @return {number}
+                     */
                     LevelFine.prototype.intValue = function () {
                         return 500;
                     };
@@ -3118,9 +3331,17 @@ var java;
                     function LevelFiner() {
                         return _super.call(this) || this;
                     }
+                    /**
+                     *
+                     * @return {string}
+                     */
                     LevelFiner.prototype.getName = function () {
                         return "FINER";
                     };
+                    /**
+                     *
+                     * @return {number}
+                     */
                     LevelFiner.prototype.intValue = function () {
                         return 400;
                     };
@@ -3134,9 +3355,17 @@ var java;
                     function LevelFinest() {
                         return _super.call(this) || this;
                     }
+                    /**
+                     *
+                     * @return {string}
+                     */
                     LevelFinest.prototype.getName = function () {
                         return "FINEST";
                     };
+                    /**
+                     *
+                     * @return {number}
+                     */
                     LevelFinest.prototype.intValue = function () {
                         return 300;
                     };
@@ -3150,9 +3379,17 @@ var java;
                     function LevelInfo() {
                         return _super.call(this) || this;
                     }
+                    /**
+                     *
+                     * @return {string}
+                     */
                     LevelInfo.prototype.getName = function () {
                         return "INFO";
                     };
+                    /**
+                     *
+                     * @return {number}
+                     */
                     LevelInfo.prototype.intValue = function () {
                         return 800;
                     };
@@ -3166,9 +3403,17 @@ var java;
                     function LevelOff() {
                         return _super.call(this) || this;
                     }
+                    /**
+                     *
+                     * @return {string}
+                     */
                     LevelOff.prototype.getName = function () {
                         return "OFF";
                     };
+                    /**
+                     *
+                     * @return {number}
+                     */
                     LevelOff.prototype.intValue = function () {
                         return javaemul.internal.IntegerHelper.MAX_VALUE;
                     };
@@ -3182,9 +3427,17 @@ var java;
                     function LevelSevere() {
                         return _super.call(this) || this;
                     }
+                    /**
+                     *
+                     * @return {string}
+                     */
                     LevelSevere.prototype.getName = function () {
                         return "SEVERE";
                     };
+                    /**
+                     *
+                     * @return {number}
+                     */
                     LevelSevere.prototype.intValue = function () {
                         return 1000;
                     };
@@ -3198,9 +3451,17 @@ var java;
                     function LevelWarning() {
                         return _super.call(this) || this;
                     }
+                    /**
+                     *
+                     * @return {string}
+                     */
                     LevelWarning.prototype.getName = function () {
                         return "WARNING";
                     };
+                    /**
+                     *
+                     * @return {number}
+                     */
                     LevelWarning.prototype.intValue = function () {
                         return 900;
                     };
@@ -3222,6 +3483,7 @@ var java;
              * An emulation of the java.util.logging.LogManager class. See
              * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/LogManger.html">
              * The Java API doc for details</a>
+             * @class
              */
             var LogManager = (function () {
                 function LogManager() {
@@ -3259,13 +3521,13 @@ var java;
                  * @param {java.util.logging.Logger} logger
                  * @private
                  */
-                LogManager.prototype.addLoggerAndEnsureParents = function (logger) {
+                /*private*/ LogManager.prototype.addLoggerAndEnsureParents = function (logger) {
                     var name = logger.getName();
                     var parentName = name.substring(0, Math.max(0, name.lastIndexOf('.')));
                     logger.setParent(this.ensureLogger(parentName));
                     this.addLoggerImpl(logger);
                 };
-                LogManager.prototype.addLoggerImpl = function (logger) {
+                /*private*/ LogManager.prototype.addLoggerImpl = function (logger) {
                     if ((function (o1, o2) { if (o1 && o1.equals) {
                         return o1.equals(o2);
                     }
@@ -3311,6 +3573,9 @@ var java;
              * An emulation of the java.util.logging.LogRecord class. See
              * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/LogRecord.html">
              * The Java API doc for details</a>
+             * @param {java.util.logging.Level} level
+             * @param {string} msg
+             * @class
              */
             var LogRecord = (function () {
                 function LogRecord(level, msg) {
@@ -3392,6 +3657,7 @@ var java;
          * See <a
          * href="http://docs.oracle.com/javase/7/docs/api/java/util/Objects.html">the
          * official Java API doc</a> for details.
+         * @class
          */
         var Objects = (function () {
             function Objects() {
@@ -3559,7 +3825,7 @@ var java;
              * which notifications will be delivered to multiple observers is not
              * specified. See the class comment.
              *
-             * @param {java.util.Observer} o
+             * @param {*} o
              * an observer to be added.
              * @throws NullPointerException
              * if the parameter o is null.
@@ -3575,45 +3841,15 @@ var java;
              * Deletes an observer from the set of observers of this object. Passing
              * <CODE>null</CODE> to this method will have no effect.
              *
-             * @param {java.util.Observer} o
+             * @param {*} o
              * the observer to be deleted.
              */
             Observable.prototype.deleteObserver = function (o) {
                 this.obs.removeElement(o);
             };
-            /**
-             * If this object has changed, as indicated by the <code>hasChanged</code>
-             * method, then notify all of its observers and then call the
-             * <code>clearChanged</code> method to indicate that this object has no
-             * longer changed.
-             * <p>
-             * Each observer has its <code>update</code> method called with two
-             * arguments: this observable object and <code>null</code>. In other words,
-             * this method is equivalent to: <blockquote><tt>
-             * notifyObservers(null)</tt></blockquote>
-             *
-             * @see java.util.Observable#clearChanged()
-             * @see java.util.Observable#hasChanged()
-             * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
-             */
             Observable.prototype.notifyObservers$ = function () {
                 this.notifyObservers$java_lang_Object(null);
             };
-            /**
-             * If this object has changed, as indicated by the <code>hasChanged</code>
-             * method, then notify all of its observers and then call the
-             * <code>clearChanged</code> method to indicate that this object has no
-             * longer changed.
-             * <p>
-             * Each observer has its <code>update</code> method called with two
-             * arguments: this observable object and the <code>arg</code> argument.
-             *
-             * @param {*} arg
-             * any object.
-             * @see java.util.Observable#clearChanged()
-             * @see java.util.Observable#hasChanged()
-             * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
-             */
             Observable.prototype.notifyObservers$java_lang_Object = function (arg) {
                 var arrLocal;
                 if (!this.changed)
@@ -3708,6 +3944,7 @@ var java;
          * the official Java API doc</a> for details.
          *
          * @param <T> type of the wrapped reference
+         * @class
          */
         var Optional = (function () {
             function Optional(ref) {
@@ -3792,6 +4029,11 @@ var java;
                 }
                 throw (function (target) { return (typeof target === 'function') ? target() : target.get(); })(exceptionSupplier);
             };
+            /**
+             *
+             * @param {*} obj
+             * @return {boolean}
+             */
             Optional.prototype.equals = function (obj) {
                 if (obj === this) {
                     return true;
@@ -3802,6 +4044,10 @@ var java;
                 var other = obj;
                 return java.util.Objects.equals(this.ref, other.ref);
             };
+            /**
+             *
+             * @return {number}
+             */
             Optional.prototype.hashCode = function () {
                 return (function (o) { if (o.hashCode) {
                     return o.hashCode();
@@ -3810,6 +4056,10 @@ var java;
                     return o.toString();
                 } })(java.util.Objects);
             };
+            /**
+             *
+             * @return {string}
+             */
             Optional.prototype.toString = function () {
                 return this.isPresent() ? "Optional.of(" + new String(this.ref).toString() + ")" : "Optional.empty()";
             };
@@ -3825,6 +4075,7 @@ var java;
         /**
          * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/OptionalDouble.html">
          * the official Java API doc</a> for details.
+         * @class
          */
         var OptionalDouble = (function () {
             function OptionalDouble(value) {
@@ -3888,6 +4139,11 @@ var java;
                 }
                 throw (function (target) { return (typeof target === 'function') ? target() : target.get(); })(exceptionSupplier);
             };
+            /**
+             *
+             * @param {*} obj
+             * @return {boolean}
+             */
             OptionalDouble.prototype.equals = function (obj) {
                 if (obj === this) {
                     return true;
@@ -3898,9 +4154,17 @@ var java;
                 var other = obj;
                 return this.present === other.present && (this.ref - other.ref) === 0;
             };
+            /**
+             *
+             * @return {number}
+             */
             OptionalDouble.prototype.hashCode = function () {
                 return this.present ? javaemul.internal.DoubleHelper.hashCode(this.ref) : 0;
             };
+            /**
+             *
+             * @return {string}
+             */
             OptionalDouble.prototype.toString = function () {
                 return this.present ? "OptionalDouble.of(" + ('' + (this.ref)) + ")" : "OptionalDouble.empty()";
             };
@@ -3916,6 +4180,7 @@ var java;
         /**
          * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/OptionalInt.html">
          * the official Java API doc</a> for details.
+         * @class
          */
         var OptionalInt = (function () {
             function OptionalInt(value) {
@@ -3979,6 +4244,11 @@ var java;
                 }
                 throw (function (target) { return (typeof target === 'function') ? target() : target.get(); })(exceptionSupplier);
             };
+            /**
+             *
+             * @param {*} obj
+             * @return {boolean}
+             */
             OptionalInt.prototype.equals = function (obj) {
                 if (obj === this) {
                     return true;
@@ -3989,9 +4259,17 @@ var java;
                 var other = obj;
                 return this.present === other.present && (this.ref - other.ref) === 0;
             };
+            /**
+             *
+             * @return {number}
+             */
             OptionalInt.prototype.hashCode = function () {
                 return this.present ? javaemul.internal.IntegerHelper.hashCode(this.ref) : 0;
             };
+            /**
+             *
+             * @return {string}
+             */
             OptionalInt.prototype.toString = function () {
                 return this.present ? "OptionalInt.of(" + ('' + (this.ref)) + ")" : "OptionalInt.empty()";
             };
@@ -4007,6 +4285,7 @@ var java;
         /**
          * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/OptionalLong.html">
          * the official Java API doc</a> for details.
+         * @class
          */
         var OptionalLong = (function () {
             function OptionalLong(value) {
@@ -4070,6 +4349,11 @@ var java;
                 }
                 throw (function (target) { return (typeof target === 'function') ? target() : target.get(); })(exceptionSupplier);
             };
+            /**
+             *
+             * @param {*} obj
+             * @return {boolean}
+             */
             OptionalLong.prototype.equals = function (obj) {
                 if (obj === this) {
                     return true;
@@ -4080,9 +4364,17 @@ var java;
                 var other = obj;
                 return this.present === other.present && (this.ref - other.ref) === 0;
             };
+            /**
+             *
+             * @return {number}
+             */
             OptionalLong.prototype.hashCode = function () {
                 return this.present ? javaemul.internal.LongHelper.hashCode(this.ref) : 0;
             };
+            /**
+             *
+             * @return {string}
+             */
             OptionalLong.prototype.toString = function () {
                 return this.present ? "OptionalLong.of(" + ('' + (this.ref)) + ")" : "OptionalLong.empty()";
             };
@@ -4161,11 +4453,13 @@ var java;
                     Random.twoToTheXMinus48_$LI$()[i] = twoToTheXMinus48Tmp;
                     twoToTheXMinus48Tmp *= 0.5;
                 }
+                ;
                 var twoToTheXMinus24Tmp = 1.0;
                 for (var i = 24; i >= 0; i--) {
                     Random.twoToTheXMinus24_$LI$()[i] = twoToTheXMinus24Tmp;
                     twoToTheXMinus24Tmp *= 0.5;
                 }
+                ;
             };
             /**
              * Returns the next pseudo-random, uniformly distributed {@code boolean} value
@@ -4250,27 +4544,9 @@ var java;
                 this.haveNextNextGaussian = true;
                 return v1 * norm;
             };
-            /**
-             * Generates a uniformly distributed 32-bit {@code int} value from the random
-             * number sequence.
-             *
-             * @return {number} a uniformly distributed {@code int} value.
-             * @see java.lang.Integer#MAX_VALUE
-             * @see java.lang.Integer#MIN_VALUE
-             * @see #next
-             * @see #nextLong
-             */
             Random.prototype.nextInt$ = function () {
                 return (this.nextInternal(32) | 0);
             };
-            /**
-             * Returns a new pseudo-random {@code int} value which is uniformly
-             * distributed between 0 (inclusively) and the value of {@code n}
-             * (exclusively).
-             *
-             * @param {number} n the exclusive upper border of the range [0 - n).
-             * @return {number} a random {@code int}.
-             */
             Random.prototype.nextInt$int = function (n) {
                 javaemul.internal.InternalPreconditions.checkCriticalArgument(n > 0);
                 if ((n & -n) === n) {
@@ -4316,15 +4592,6 @@ var java;
             Random.prototype.nextLong = function () {
                 return (Math.floor(this.nextInternal(32)) << 32) + Math.floor(this.nextInternal(32));
             };
-            /**
-             * Modifies the seed a using linear congruential formula presented in <i>The
-             * Art of Computer Programming, Volume 2</i>, Section 3.2.1.
-             *
-             * @param {number} seed the seed that alters the state of the random number generator.
-             * @see #next
-             * @see #Random()
-             * @see #Random(long)
-             */
             Random.prototype.setSeed$long = function (seed) {
                 this.setSeed$int$int((((seed >> 24) & 16777215) | 0), ((seed & 16777215) | 0));
             };
@@ -4347,7 +4614,7 @@ var java;
             Random.prototype.next = function (bits) {
                 return (this.nextInternal(bits) | 0);
             };
-            Random.prototype.nextInternal = function (bits) {
+            /*private*/ Random.prototype.nextInternal = function (bits) {
                 var hi = this.seedhi * Random.multiplierLo + this.seedlo * Random.multiplierHi;
                 var lo = this.seedlo * Random.multiplierLo + 11;
                 var carry = Math.floor(lo * Random.twoToTheMinus24);
@@ -4411,6 +4678,10 @@ var java;
         /**
          * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/StringJoiner.html">
          * the official Java API doc</a> for details.
+         * @param {*} delimiter
+         * @param {*} prefix
+         * @param {*} suffix
+         * @class
          */
         var StringJoiner = (function () {
             function StringJoiner(delimiter, prefix, suffix) {
@@ -4491,6 +4762,10 @@ var java;
                 this.emptyValue = emptyValue.toString();
                 return this;
             };
+            /**
+             *
+             * @return {string}
+             */
             StringJoiner.prototype.toString = function () {
                 if (this.builder == null) {
                     return this.emptyValue;
@@ -4502,7 +4777,7 @@ var java;
                     return this.builder.toString() + this.suffix;
                 }
             };
-            StringJoiner.prototype.initBuilderOrAddDelimiter = function () {
+            /*private*/ StringJoiner.prototype.initBuilderOrAddDelimiter = function () {
                 if (this.builder == null) {
                     this.builder = new java.lang.StringBuilder(this.prefix);
                 }
@@ -4522,6 +4797,7 @@ var javaemul;
     (function (internal) {
         /**
          * Provides utilities to perform operations on Arrays.
+         * @class
          */
         var ArrayHelper = (function () {
             function ArrayHelper() {
@@ -4546,7 +4822,7 @@ var javaemul;
                 var result = ArrayHelper.createNativeArray(length);
                 return javaemul.internal.ArrayStamper.stampJavaTypeInfo(result, array);
             };
-            ArrayHelper.createNativeArray = function (length) {
+            /*private*/ ArrayHelper.createNativeArray = function (length) {
                 return (new Array(length));
             };
             ArrayHelper.getLength = function (array) {
@@ -4589,6 +4865,7 @@ var javaemul;
                     batchStart = batchEnd;
                     destOfs += len;
                 }
+                ;
             };
             ArrayHelper.copy = function (src, srcOfs, dest, destOfs, len, overwrite) {
                 if (((src != null) || src === null) && ((typeof srcOfs === 'number') || srcOfs === null) && ((dest != null) || dest === null) && ((typeof destOfs === 'number') || destOfs === null) && ((typeof len === 'number') || len === null) && ((typeof overwrite === 'boolean') || overwrite === null)) {
@@ -4600,7 +4877,7 @@ var javaemul;
                 else
                     throw new Error('invalid overload');
             };
-            ArrayHelper.applySplice = function (arrayObject, index, deleteCount, arrayToAdd) {
+            /*private*/ ArrayHelper.applySplice = function (arrayObject, index, deleteCount, arrayToAdd) {
                 Array.prototype.splice.apply(arrayObject, [index, deleteCount].concat(arrayToAdd));
             };
             return ArrayHelper;
@@ -4616,6 +4893,7 @@ var javaemul;
         /**
          * A utility to provide array stamping. Provided as a separate class to simplify
          * super-source.
+         * @class
          */
         var ArrayStamper = (function () {
             function ArrayStamper() {
@@ -4634,6 +4912,8 @@ var javaemul;
     (function (internal) {
         /**
          * Wraps native <code>boolean</code> as an object.
+         * @param {boolean} value
+         * @class
          */
         var BooleanHelper = (function () {
             function BooleanHelper() {
@@ -4654,7 +4934,7 @@ var javaemul;
                 return a || b;
             };
             BooleanHelper.logicalXor = function (a, b) {
-                return a !== b;
+                return (a) !== (b);
             };
             BooleanHelper.parseBoolean = function (s) {
                 return (function (o1, o2) { return o1.toUpperCase() === (o2 === null ? o2 : o2.toUpperCase()); })("true", s);
@@ -4681,12 +4961,17 @@ var javaemul;
             BooleanHelper.prototype.booleanValue = function () {
                 return BooleanHelper.unsafeCast((javaemul.internal.InternalPreconditions.checkNotNull(this)));
             };
-            BooleanHelper.unsafeCast = function (value) {
+            /*private*/ BooleanHelper.unsafeCast = function (value) {
                 return value;
             };
             BooleanHelper.prototype.compareTo$javaemul_internal_BooleanHelper = function (b) {
                 return BooleanHelper.compare(this.booleanValue(), b.booleanValue());
             };
+            /**
+             *
+             * @param {javaemul.internal.BooleanHelper} b
+             * @return {number}
+             */
             BooleanHelper.prototype.compareTo = function (b) {
                 if (((b != null && b instanceof javaemul.internal.BooleanHelper) || b === null)) {
                     return this.compareTo$javaemul_internal_BooleanHelper(b);
@@ -4694,9 +4979,18 @@ var javaemul;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             BooleanHelper.prototype.equals = function (o) {
                 return javaemul.internal.InternalPreconditions.checkNotNull(this) === o;
             };
+            /**
+             *
+             * @return {number}
+             */
             BooleanHelper.prototype.hashCode = function () {
                 return (function (o) { if (o.hashCode) {
                     return o.hashCode();
@@ -4705,6 +4999,10 @@ var javaemul;
                     return o.toString();
                 } })(this);
             };
+            /**
+             *
+             * @return {string}
+             */
             BooleanHelper.prototype.toString = function () {
                 return BooleanHelper.toString(this.booleanValue());
             };
@@ -4762,6 +5060,8 @@ var javaemul;
          * - isLowerCase(char c)
          * - isUpperCase(char c)
          * </pre>
+         * @param {string} value
+         * @class
          */
         var CharacterHelper = (function () {
             function CharacterHelper(value) {
@@ -4846,6 +5146,7 @@ var javaemul;
                     }
                     ++count;
                 }
+                ;
                 return count;
             };
             CharacterHelper.compare = function (x, y) {
@@ -5085,9 +5386,9 @@ var javaemul;
             };
             CharacterHelper.valueOf = function (c) {
                 if ((function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(c) < 128) {
-                    var result = CharacterHelper.BoxedValues.boxedValues_$LI$()[c];
+                    var result = CharacterHelper.BoxedValues.boxedValues_$LI$()[(c).charCodeAt(0)];
                     if ((function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(result) == null) {
-                        result = CharacterHelper.BoxedValues.boxedValues_$LI$()[c] = new String(c);
+                        result = CharacterHelper.BoxedValues.boxedValues_$LI$()[(c).charCodeAt(0)] = new String(c);
                     }
                     return result;
                 }
@@ -5109,13 +5410,6 @@ var javaemul;
                 }
                 return (loSurrogate).charCodeAt(0);
             };
-            /**
-             * Shared implementation with {@link LongHelper#toString}.
-             *
-             * @skip
-             * @param {number} digit
-             * @return {string}
-             */
             CharacterHelper.forDigit$int = function (digit) {
                 var overBaseTen = digit - 10;
                 return String.fromCharCode((overBaseTen < 0 ? '0'.charCodeAt(0) + digit : 'a'.charCodeAt(0) + overBaseTen));
@@ -5150,6 +5444,11 @@ var javaemul;
             CharacterHelper.prototype.compareTo$javaemul_internal_CharacterHelper = function (c) {
                 return CharacterHelper.compare(this.value, c.value);
             };
+            /**
+             *
+             * @param {javaemul.internal.CharacterHelper} c
+             * @return {number}
+             */
             CharacterHelper.prototype.compareTo = function (c) {
                 if (((c != null && c instanceof javaemul.internal.CharacterHelper) || c === null)) {
                     return this.compareTo$javaemul_internal_CharacterHelper(c);
@@ -5157,9 +5456,18 @@ var javaemul;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             CharacterHelper.prototype.equals = function (o) {
                 return (o != null && o instanceof javaemul.internal.CharacterHelper) && ((function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(o.value) == (function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(this.value));
             };
+            /**
+             *
+             * @return {number}
+             */
             CharacterHelper.prototype.hashCode = function () {
                 return (function (o) { if (o.hashCode) {
                     return o.hashCode();
@@ -5168,6 +5476,10 @@ var javaemul;
                     return o.toString();
                 } })(this);
             };
+            /**
+             *
+             * @return {string}
+             */
             CharacterHelper.prototype.toString = function () {
                 return new String(this.value).toString();
             };
@@ -5193,6 +5505,7 @@ var javaemul;
         (function (CharacterHelper) {
             /**
              * Use nested class to avoid clinit on outer.
+             * @class
              */
             var BoxedValues = (function () {
                 function BoxedValues() {
@@ -5213,6 +5526,7 @@ var javaemul;
         /**
          * Private implementation class for GWT. This API should not be
          * considered public or stable.
+         * @class
          */
         var Coercions = (function () {
             function Coercions() {
@@ -5238,24 +5552,22 @@ var javaemul;
     (function (internal) {
         /**
          * Simple Helper class to return Date.now.
+         * @class
          */
         var DateUtil = (function () {
             function DateUtil() {
             }
             /**
-             * Returns the numeric value corresponding to the current time -
-             * the number of milliseconds elapsed since 1 January 1970 00:00:00 UTC.
+             * Returns the numeric value corresponding to the current time - the number
+             * of milliseconds elapsed since 1 January 1970 00:00:00 UTC.
              * @return {number}
              */
             DateUtil.now = function () {
-                // IE8 does not have Date.now
-                // when removing IE8 support we change this to Date.now()
                 if (Date.now) {
-                    // Date.now vs Date.getTime() performance comparison:
-                    // http://jsperf.com/date-now-vs-new-date/8
                     return Date.now();
                 }
-                return (new Date()).getTime();
+                ;
+                return ((new Date()).getTime());
             };
             return DateUtil;
         }());
@@ -5268,6 +5580,7 @@ var javaemul;
     (function (internal) {
         /**
          * Contains logics for calculating hash codes in JavaScript.
+         * @class
          */
         var HashCodes = (function () {
             function HashCodes() {
@@ -5282,11 +5595,11 @@ var javaemul;
                 return (typeof o === 'string') ? HashCodes.hashCodeForString(javaemul.internal.JsUtils.unsafeCastToString(o)) : HashCodes.getObjectIdentityHashCode(o);
             };
             HashCodes.getObjectIdentityHashCode = function (o) {
-                if (o[HashCodes.HASH_CODE_PROPERTY] != null) {
-                    return (o[HashCodes.HASH_CODE_PROPERTY]);
+                if ((o)[HashCodes.HASH_CODE_PROPERTY] != null) {
+                    return ((o)[HashCodes.HASH_CODE_PROPERTY]);
                 }
                 else {
-                    return (o[HashCodes.HASH_CODE_PROPERTY] = HashCodes.getNextHashId());
+                    return ((o)[HashCodes.HASH_CODE_PROPERTY] = HashCodes.getNextHashId());
                 }
             };
             /**
@@ -5297,7 +5610,7 @@ var javaemul;
              * @return {number}
              * @private
              */
-            HashCodes.getNextHashId = function () {
+            /*private*/ HashCodes.getNextHashId = function () {
                 return ++HashCodes.sNextHashId;
             };
             return HashCodes;
@@ -5328,6 +5641,7 @@ var javaemul;
     (function (internal) {
         /**
          * Provides an interface for simple JavaScript idioms that can not be expressed in Java.
+         * @class
          */
         var JsUtils = (function () {
             function JsUtils() {
@@ -5343,17 +5657,17 @@ var javaemul;
             };
             JsUtils.setPropertySafe = function (map, key, value) {
                 try {
-                    map[key] = value;
+                    (map)[key] = value;
                 }
                 catch (e) {
                 }
                 ;
             };
             JsUtils.getIntProperty = function (map, key) {
-                return (map[key]);
+                return ((map)[key]);
             };
             JsUtils.setIntProperty = function (map, key, value) {
-                map[key] = value;
+                (map)[key] = value;
             };
             JsUtils.typeOf = function (o) {
                 return typeof o;
@@ -5369,6 +5683,7 @@ var javaemul;
     (function (internal) {
         /**
          * A helper class for long comparison.
+         * @class
          */
         var LongCompareHolder = (function () {
             function LongCompareHolder() {
@@ -5387,6 +5702,7 @@ var javaemul;
     (function (internal) {
         /**
          * Math utility methods and constants.
+         * @class
          */
         var MathHelper = (function () {
             function MathHelper() {
@@ -5640,8 +5956,8 @@ var javaemul;
                 else
                     throw new Error('invalid overload');
             };
-            MathHelper.unsafeCastToInt = function (d) {
-                return d;
+            /*private*/ MathHelper.unsafeCastToInt = function (d) {
+                return (d);
             };
             MathHelper.scalb$double$int = function (d, scaleFactor) {
                 if (scaleFactor >= 31 || scaleFactor <= -31) {
@@ -5771,6 +6087,7 @@ var javaemul;
     (function (internal) {
         /**
          * Abstract base class for numeric wrapper classes.
+         * @class
          */
         var NumberHelper = (function () {
             function NumberHelper() {
@@ -5879,6 +6196,7 @@ var javaemul;
                         throw java.lang.NumberFormatException.forInputString(s);
                     }
                 }
+                ;
                 var toReturn = (parseInt(s, radix) | 0);
                 var isTooLow = toReturn < lowerBound;
                 if (javaemul.internal.DoubleHelper.isNaN(toReturn)) {
@@ -5932,6 +6250,7 @@ var javaemul;
                         throw java.lang.NumberFormatException.forInputString(orig);
                     }
                 }
+                ;
                 var toReturn = 0;
                 var maxDigits = NumberHelper.__ParseLong.maxDigitsForRadix_$LI$()[radix];
                 var radixPower = NumberHelper.__ParseLong.maxDigitsRadixPower_$LI$()[radix];
@@ -5986,7 +6305,7 @@ var javaemul;
                 return NumberHelper.floatRegex.test(str);
             };
             NumberHelper.createFloatRegex = function () {
-                return /^\s*[+-]?(NaN|Infinity|((\d+\.?\d*)|(\.\d+))([eE][+-]?\d+)?[dDfF]?)\s*$/;
+                return (/^\s*[+-]?(NaN|Infinity|((\d+\.?\d*)|(\.\d+))([eE][+-]?\d+)?[dDfF]?)\s*$/);
             };
             NumberHelper.prototype.byteValue = function () {
                 return (this.intValue() | 0);
@@ -6017,6 +6336,7 @@ var javaemul;
             __Decode["__class"] = "javaemul.internal.NumberHelper.__Decode";
             /**
              * Use nested class to avoid clinit on outer.
+             * @class
              */
             var __ParseLong = (function () {
                 function __ParseLong() {
@@ -6044,6 +6364,7 @@ var javaemul;
                         __ParseLong.maxDigitsRadixPower_$LI$()[i] = (Math.pow(i, __ParseLong.maxDigitsForRadix_$LI$()[i]) | 0);
                         __ParseLong.maxValueForRadix_$LI$()[i] = Math.floor(9223372036854775807 / __ParseLong.maxDigitsRadixPower_$LI$()[i]);
                     }
+                    ;
                 };
                 return __ParseLong;
             }());
@@ -6061,16 +6382,14 @@ var javaemul;
             }
             ObjectHelper.clone = function (obj) {
                 var copy;
-                // Handle the 3 simple types, and null or undefined
                 if (null == obj || "object" != typeof obj)
                     return obj;
-                // Handle Date
                 if (obj instanceof Date) {
                     copy = new Date();
                     copy.setTime(obj.getTime());
                     return copy;
                 }
-                // Handle Array
+                ;
                 if (obj instanceof Array) {
                     copy = [];
                     for (var i = 0, len = obj.length; i < len; i++) {
@@ -6078,7 +6397,7 @@ var javaemul;
                     }
                     return copy;
                 }
-                // Handle Object
+                ;
                 if (obj instanceof Object) {
                     copy = {};
                     for (var attr in obj) {
@@ -6087,7 +6406,8 @@ var javaemul;
                     }
                     return copy;
                 }
-                throw new Error("Unable to copy obj! Its type isn't supported.");
+                ;
+                throw new Error("Unable to copy obj! Its type isn\'t supported.");
             };
             return ObjectHelper;
         }());
@@ -6100,6 +6420,7 @@ var javaemul;
     (function (internal) {
         /**
          * Hashcode caching for strings.
+         * @class
          */
         var StringHashCache = (function () {
             function StringHashCache() {
@@ -6122,7 +6443,7 @@ var javaemul;
                 javaemul.internal.JsUtils.setIntProperty(StringHashCache.front_$LI$(), key, hashCode);
                 return hashCode;
             };
-            StringHashCache.compute = function (str) {
+            /*private*/ StringHashCache.compute = function (str) {
                 var hashCode = 0;
                 var n = str.length;
                 var nBatch = n - 4;
@@ -6140,7 +6461,7 @@ var javaemul;
                 hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
                 return hashCode;
             };
-            StringHashCache.increment = function () {
+            /*private*/ StringHashCache.increment = function () {
                 if (StringHashCache.count === StringHashCache.MAX_CACHE) {
                     StringHashCache.back = StringHashCache.front;
                     StringHashCache.front = StringHashCache.createNativeObject();
@@ -6148,14 +6469,14 @@ var javaemul;
                 }
                 ++StringHashCache.count;
             };
-            StringHashCache.getProperty = function (map, key) {
-                return map[key];
+            /*private*/ StringHashCache.getProperty = function (map, key) {
+                return (map[key]);
             };
-            StringHashCache.createNativeObject = function () {
-                return {};
+            /*private*/ StringHashCache.createNativeObject = function () {
+                return ({});
             };
-            StringHashCache.unsafeCastToInt = function (o) {
-                return o;
+            /*private*/ StringHashCache.unsafeCastToInt = function (o) {
+                return (o);
             };
             return StringHashCache;
         }());
@@ -6373,8 +6694,21 @@ var test;
         var Test$0 = (function () {
             function Test$0() {
             }
-            Test$0.prototype.compare = function (o1, o2) {
+            Test$0.prototype.compare$java_lang_String$java_lang_String = function (o1, o2) {
                 return o2.localeCompare(o1);
+            };
+            /**
+             *
+             * @param {string} o1
+             * @param {string} o2
+             * @return {number}
+             */
+            Test$0.prototype.compare = function (o1, o2) {
+                if (((typeof o1 === 'string') || o1 === null) && ((typeof o2 === 'string') || o2 === null)) {
+                    return this.compare$java_lang_String$java_lang_String(o1, o2);
+                }
+                else
+                    throw new Error('invalid overload');
             };
             return Test$0;
         }());
@@ -6389,6 +6723,11 @@ var test;
         MyKey.prototype.toString = function () {
             return this.data;
         };
+        /**
+         *
+         * @param {*} obj
+         * @return {boolean}
+         */
         MyKey.prototype.equals = function (obj) {
             return (function (o1, o2) { if (o1 && o1.equals) {
                 return o1.equals(o2);
@@ -6397,6 +6736,10 @@ var test;
                 return o1 === o2;
             } })(this.data, obj.data);
         };
+        /**
+         *
+         * @return {number}
+         */
         MyKey.prototype.hashCode = function () {
             return (function (o) { if (o.hashCode) {
                 return o.hashCode();
@@ -6425,6 +6768,7 @@ var test;
          * @param {number} length
          * the number of bytes available for streaming.
          * @class
+         * @extends java.io.InputStream
          */
         var ByteArrayInputStream = (function (_super) {
             __extends(ByteArrayInputStream, _super);
@@ -6522,13 +6866,6 @@ var test;
             ByteArrayInputStream.prototype.markSupported = function () {
                 return true;
             };
-            /**
-             * Reads a single byte from the source byte array and returns it as an
-             * integer in the range from 0 to 255. Returns -1 if the end of the source
-             * array has been reached.
-             *
-             * @return {number} the byte read or -1 if the end of this stream has been reached.
-             */
             ByteArrayInputStream.prototype.read$ = function () {
                 return this.read$byte_A$int$int(null, 0, 0);
             };
@@ -6548,6 +6885,13 @@ var test;
                 this.pos += copylen;
                 return copylen;
             };
+            /**
+             *
+             * @param {Array} buffer
+             * @param {number} byteOffset
+             * @param {number} byteCount
+             * @return {number}
+             */
             ByteArrayInputStream.prototype.read = function (buffer, byteOffset, byteCount) {
                 if (((buffer != null && buffer instanceof Array && (buffer.length == 0 || buffer[0] == null || (typeof buffer[0] === 'number'))) || buffer === null) && ((typeof byteOffset === 'number') || byteOffset === null) && ((typeof byteCount === 'number') || byteCount === null)) {
                     return this.read$byte_A$int$int(buffer, byteOffset, byteCount);
@@ -6599,14 +6943,15 @@ var test;
     var io;
     (function (io) {
         /**
-         * Constructs a new {@code FilterInputStream} with the specified input
-         * stream as source.
+         * Wraps an existing {@link InputStream} and performs some transformation on
+         * the input data while it is being read. Transformations can be anything from a
+         * simple byte-wise filtering input data to an on-the-fly compression or
+         * decompression of the underlying stream. Input streams that wrap another input
+         * stream and provide some additional functionality on top of it usually inherit
+         * from this class.
          *
-         * <p><strong>Warning:</strong> passing a null source creates an invalid
-         * {@code FilterInputStream}, that fails on every method that is not
-         * overridden. Subclasses should check for null in their constructors.
-         *
-         * @param {java.io.InputStream} in the input stream to filter reads on.
+         * @see FilterOutputStream
+         * @extends java.io.InputStream
          * @class
          */
         var FilterInputStream = (function (_super) {
@@ -6617,6 +6962,10 @@ var test;
                 _this["in"] = __in;
                 return _this;
             }
+            /**
+             *
+             * @return {number}
+             */
             FilterInputStream.prototype.available = function () {
                 return this["in"].available();
             };
@@ -6660,22 +7009,19 @@ var test;
             FilterInputStream.prototype.markSupported = function () {
                 return this["in"].markSupported();
             };
-            /**
-             * Reads a single byte from the filtered stream and returns it as an integer
-             * in the range from 0 to 255. Returns -1 if the end of this stream has been
-             * reached.
-             *
-             * @return {number} the byte read or -1 if the end of the filtered stream has been
-             * reached.
-             * @throws IOException
-             * if the stream is closed or another IOException occurs.
-             */
             FilterInputStream.prototype.read$ = function () {
                 return this["in"].read();
             };
             FilterInputStream.prototype.read$byte_A$int$int = function (buffer, byteOffset, byteCount) {
                 return this["in"].read$byte_A$int$int(buffer, byteOffset, byteCount);
             };
+            /**
+             *
+             * @param {Array} buffer
+             * @param {number} byteOffset
+             * @param {number} byteCount
+             * @return {number}
+             */
             FilterInputStream.prototype.read = function (buffer, byteOffset, byteCount) {
                 if (((buffer != null && buffer instanceof Array && (buffer.length == 0 || buffer[0] == null || (typeof buffer[0] === 'number'))) || buffer === null) && ((typeof byteOffset === 'number') || byteOffset === null) && ((typeof byteCount === 'number') || byteCount === null)) {
                     return this.read$byte_A$int$int(buffer, byteOffset, byteCount);
@@ -6740,6 +7086,7 @@ var test;
          * @throws IllegalArgumentException
          * if {@code size} < 0.
          * @class
+         * @extends java.io.OutputStream
          */
         var ByteArrayOutputStream = (function (_super) {
             __extends(ByteArrayOutputStream, _super);
@@ -6787,7 +7134,7 @@ var test;
             ByteArrayOutputStream.prototype.close = function () {
                 _super.prototype.close.call(this);
             };
-            ByteArrayOutputStream.prototype.expand = function (i) {
+            /*private*/ ByteArrayOutputStream.prototype.expand = function (i) {
                 if (this.count + i <= this.buf.length) {
                     return;
                 }
@@ -6825,48 +7172,17 @@ var test;
                 java.lang.System.arraycopy(this.buf, 0, newArray, 0, this.count);
                 return newArray;
             };
-            /**
-             * Returns the contents of this ByteArrayOutputStream as a string. Any
-             * changes made to the receiver after returning will not be reflected in the
-             * string returned to the caller.
-             *
-             * @return {string} this stream's current contents as a string.
-             */
             ByteArrayOutputStream.prototype.toString$ = function () {
                 return (function (str, index, len) { return str.substring(index, index + len); })((this.buf).map(function (s) { return String.fromCharCode(s); }).join(''), 0, this.count);
             };
-            /**
-             * Returns the contents of this ByteArrayOutputStream as a string. Each byte
-             * {@code b} in this stream is converted to a character {@code c} using the
-             * following function:
-             * {@code c == (char)(((hibyte & 0xff) << 8) | (b & 0xff))}. This method is
-             * deprecated and either {@link #toString()} or {@link #toString(String)}
-             * should be used.
-             *
-             * @param {number} hibyte
-             * the high byte of each resulting Unicode character.
-             * @return {string} this stream's current contents as a string with the high byte set
-             * to {@code hibyte}.
-             * @deprecated Use {@link #toString()} instead.
-             */
             ByteArrayOutputStream.prototype.toString$int = function (hibyte) {
                 var newBuf = new Array(this.size());
                 for (var i = 0; i < newBuf.length; i++) {
                     newBuf[i] = String.fromCharCode((((hibyte & 255) << 8) | (this.buf[i] & 255)));
                 }
+                ;
                 return new String(newBuf);
             };
-            /**
-             * Returns the contents of this ByteArrayOutputStream as a string converted
-             * according to the encoding declared in {@code charsetName}.
-             *
-             * @param {string} charsetName
-             * a string representing the encoding to use when translating
-             * this stream to a string.
-             * @return {string} this stream's current contents as an encoded string.
-             * @throws UnsupportedEncodingException
-             * if the provided encoding is not supported.
-             */
             ByteArrayOutputStream.prototype.toString$java_lang_String = function (charsetName) {
                 return (function (str, index, len) { return str.substring(index, index + len); })((this.buf).map(function (s) { return String.fromCharCode(s); }).join(''), 0, this.count);
             };
@@ -6894,23 +7210,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
-            /**
-             * Writes {@code count} bytes from the byte array {@code buffer} starting at
-             * offset {@code index} to this stream.
-             *
-             * @param {Array} buffer
-             * the buffer to be written.
-             * @param {number} offset
-             * the initial position in {@code buffer} to retrieve bytes.
-             * @param {number} len
-             * the number of bytes of {@code buffer} to write.
-             * @throws NullPointerException
-             * if {@code buffer} is {@code null}.
-             * @throws IndexOutOfBoundsException
-             * if {@code offset < 0} or {@code len < 0}, or if
-             * {@code offset + len} is greater than the length of
-             * {@code buffer}.
-             */
             ByteArrayOutputStream.prototype.write$byte_A$int$int = function (buffer, offset, len) {
                 java.io.IOUtils.checkOffsetAndCount$byte_A$int$int(buffer, offset, len);
                 if (len === 0) {
@@ -6950,13 +7249,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
-            /**
-             * Writes the specified byte {@code oneByte} to the OutputStream. Only the
-             * low order byte of {@code oneByte} is written.
-             *
-             * @param {number} oneByte
-             * the byte to be written.
-             */
             ByteArrayOutputStream.prototype.write$int = function (oneByte) {
                 if (this.count === this.buf.length) {
                     this.expand(1);
@@ -6992,6 +7284,7 @@ var test;
          * @param {java.io.OutputStream} out
          * the target stream that this stream writes to.
          * @class
+         * @extends java.io.OutputStream
          */
         var FilterOutputStream = (function (_super) {
             __extends(FilterOutputStream, _super);
@@ -7039,28 +7332,12 @@ var test;
             FilterOutputStream.prototype.flush = function () {
                 this.out.flush();
             };
-            /**
-             * Writes {@code count} bytes from the byte array {@code buffer} starting at
-             * {@code offset} to the target stream.
-             *
-             * @param {Array} buffer
-             * the buffer to write.
-             * @param {number} offset
-             * the index of the first byte in {@code buffer} to write.
-             * @param {number} length
-             * the number of bytes in {@code buffer} to write.
-             * @throws IndexOutOfBoundsException
-             * if {@code offset < 0} or {@code count < 0}, or if
-             * {@code offset + count} is bigger than the length of
-             * {@code buffer}.
-             * @throws IOException
-             * if an I/O error occurs while writing to this stream.
-             */
             FilterOutputStream.prototype.write$byte_A$int$int = function (buffer, offset, length) {
                 java.io.IOUtils.checkOffsetAndCount$byte_A$int$int(buffer, offset, length);
                 for (var i = 0; i < length; i++) {
                     this.write$int(buffer[offset + i]);
                 }
+                ;
             };
             /**
              * Writes {@code count} bytes from the byte array {@code buffer} starting at
@@ -7092,15 +7369,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
-            /**
-             * Writes one byte to the target stream. Only the low order byte of the
-             * integer {@code oneByte} is written.
-             *
-             * @param {number} oneByte
-             * the byte to be written.
-             * @throws IOException
-             * if an I/O error occurs while writing to this stream.
-             */
             FilterOutputStream.prototype.write$int = function (oneByte) {
                 this.out.write$int(oneByte);
             };
@@ -7116,6 +7384,9 @@ var test;
     (function (io) {
         /**
          * JSweet implementation.
+         * @param {java.io.Reader} in
+         * @param {number} sz
+         * @class
          * @extends java.io.Reader
          */
         var BufferedReader = (function (_super) {
@@ -7192,11 +7463,11 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
-            BufferedReader.prototype.ensureOpen = function () {
+            /*private*/ BufferedReader.prototype.ensureOpen = function () {
                 if (this["in"] == null)
                     throw new java.io.IOException("Stream closed");
             };
-            BufferedReader.prototype.fill = function () {
+            /*private*/ BufferedReader.prototype.fill = function () {
                 var dst;
                 if (this.markedChar <= BufferedReader.UNMARKED) {
                     dst = 0;
@@ -7251,10 +7522,11 @@ var test;
                         }
                         return (this.cb[this.nextChar++]).charCodeAt(0);
                     }
+                    ;
                 }
                 ;
             };
-            BufferedReader.prototype.read1 = function (cbuf, off, len) {
+            /*private*/ BufferedReader.prototype.read1 = function (cbuf, off, len) {
                 if (this.nextChar >= this.nChars) {
                     if (len >= this.cb.length && this.markedChar <= BufferedReader.UNMARKED && !this.skipLF) {
                         return this["in"].read$char_A$int$int(cbuf, off, len);
@@ -7343,6 +7615,7 @@ var test;
                                 break charLoop;
                             }
                         }
+                        ;
                         startChar = this.nextChar;
                         this.nextChar = i;
                         if (eol) {
@@ -7364,6 +7637,7 @@ var test;
                             s = new java.lang.StringBuffer(BufferedReader.defaultExpectedLineLength);
                         s.append$char_A$int$int(this.cb, startChar, i - startChar);
                     }
+                    ;
                 }
                 ;
             };
@@ -7475,6 +7749,9 @@ var test;
     (function (io) {
         /**
          * JSweet implementation.
+         * @param {java.io.InputStream} in
+         * @param {string} charsetName
+         * @class
          * @extends java.io.Reader
          */
         var InputStreamReader = (function (_super) {
@@ -7552,6 +7829,9 @@ var test;
          * JSweet implementation (partial).
          *
          * TODO: actual support of charsets.
+         * @param {java.io.OutputStream} out
+         * @param {string} charsetName
+         * @class
          * @extends java.io.Writer
          */
         var OutputStreamWriter = (function (_super) {
@@ -7647,6 +7927,8 @@ var test;
          *
          * This class is an exact clone of {@link StringBuilder} except for the name.
          * Any change made to one should be mirrored in the other.
+         * @param {*} s
+         * @class
          * @extends java.lang.AbstractStringBuilder
          */
         var StringBuffer = (function (_super) {
@@ -7881,6 +8163,8 @@ var test;
          *
          * This class is an exact clone of {@link StringBuffer} except for the name. Any
          * change made to one should be mirrored in the other.
+         * @param {*} s
+         * @class
          * @extends java.lang.AbstractStringBuilder
          */
         var StringBuilder = (function (_super) {
@@ -8115,6 +8399,9 @@ var test;
          * See <a
          * href="http://java.sun.com/javase/6/docs/api/java/io/IOException.html">the
          * official Java API doc</a> for details.
+         * @param {string} message
+         * @param {java.lang.Throwable} throwable
+         * @class
          * @extends java.lang.Exception
          */
         var IOException = (function (_super) {
@@ -8125,21 +8412,25 @@ var test;
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, IOException.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && throwable === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, IOException.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && throwable === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var throwable_1 = __args[0];
                     _this = _super.call(this, throwable_1) || this;
                     _this.message = throwable_1;
+                    Object.setPrototypeOf(_this, IOException.prototype);
                 }
                 else if (message === undefined && throwable === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, IOException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -8159,6 +8450,8 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/CloneNotSupportedException.html">
          * the official Java API doc</a> for details.
+         * @param {string} msg
+         * @class
          * @extends java.lang.Exception
          */
         var CloneNotSupportedException = (function (_super) {
@@ -8169,10 +8462,12 @@ var test;
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, msg) || this;
                     _this.message = msg;
+                    Object.setPrototypeOf(_this, CloneNotSupportedException.prototype);
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, CloneNotSupportedException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -8195,6 +8490,8 @@ var test;
          * This exception is never thrown by GWT or GWT's libraries, as GWT does not support reflection. It
          * is provided in GWT only for compatibility with user code that explicitly throws or catches it for
          * non-reflection purposes.
+         * @param {string} message
+         * @class
          * @extends java.lang.Exception
          */
         var NoSuchMethodException = (function (_super) {
@@ -8205,10 +8502,12 @@ var test;
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, NoSuchMethodException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, NoSuchMethodException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -8228,6 +8527,9 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/RuntimeException.html">the
          * official Java API doc</a> for details.
+         * @param {string} message
+         * @param {java.lang.Throwable} cause
+         * @class
          * @extends java.lang.Exception
          */
         var RuntimeException = (function (_super) {
@@ -8238,26 +8540,31 @@ var test;
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, RuntimeException.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null) && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, RuntimeException.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, RuntimeException.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_5 = __args[0];
                     _this = _super.call(this, cause_5) || this;
                     _this.message = cause_5;
+                    Object.setPrototypeOf(_this, RuntimeException.prototype);
                 }
                 else if (message === undefined && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, RuntimeException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -8277,6 +8584,8 @@ var test;
          * A generic security exception type - <a
          * href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/GeneralSecurityException.html">[Sun's
          * docs]</a>.
+         * @param {string} msg
+         * @class
          * @extends java.lang.Exception
          */
         var GeneralSecurityException = (function (_super) {
@@ -8287,10 +8596,12 @@ var test;
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, msg) || this;
                     _this.message = msg;
+                    Object.setPrototypeOf(_this, GeneralSecurityException.prototype);
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, GeneralSecurityException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -8308,6 +8619,9 @@ var test;
     (function (text) {
         /**
          * Emulation of {@code java.text.ParseException}.
+         * @param {string} s
+         * @param {number} errorOffset
+         * @class
          * @extends java.lang.Exception
          */
         var ParseException = (function (_super) {
@@ -8315,6 +8629,7 @@ var test;
             function ParseException(s, errorOffset) {
                 var _this = _super.call(this, s) || this;
                 _this.message = s;
+                Object.setPrototypeOf(_this, ParseException.prototype);
                 _this.errorOffset = 0;
                 _this.errorOffset = errorOffset;
                 return _this;
@@ -8335,6 +8650,8 @@ var test;
         /**
          * Thrown when the subject of an observer cannot support additional observers.
          *
+         * @param {string} message
+         * @class
          * @extends java.lang.Exception
          */
         var TooManyListenersException = (function (_super) {
@@ -8345,10 +8662,12 @@ var test;
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
                     _this.message = message;
+                    Object.setPrototypeOf(_this, TooManyListenersException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, TooManyListenersException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -8370,6 +8689,8 @@ var test;
              * This implements the reference API in a minimal way. In JavaScript, there is
              * no control over the reference and the GC. So this implementation's only
              * purpose is for compilation.
+             * @param {*} referent
+             * @class
              * @extends java.lang.ref.Reference
              */
             var WeakReference = (function (_super) {
@@ -8401,6 +8722,8 @@ var test;
          * unknown.)
          * @since  1.8
          * @class
+         * @extends java.lang.VirtualMachineError
+         * @author  unascribed
          */
         var InternalError = (function (_super) {
             __extends(InternalError, _super);
@@ -8409,19 +8732,23 @@ var test;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message, cause) || this;
+                    Object.setPrototypeOf(_this, InternalError.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
+                    Object.setPrototypeOf(_this, InternalError.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_6 = __args[0];
                     _this = _super.call(this, cause_6) || this;
+                    Object.setPrototypeOf(_this, InternalError.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, InternalError.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -8429,7 +8756,7 @@ var test;
             }
             return InternalError;
         }(java.lang.VirtualMachineError));
-        InternalError.serialVersionUID = -9062593416125562365;
+        InternalError.__java_lang_InternalError_serialVersionUID = -9062593416125562365;
         lang.InternalError = InternalError;
         InternalError["__class"] = "java.lang.InternalError";
         InternalError["__interfaces"] = ["java.io.Serializable"];
@@ -8440,6 +8767,8 @@ var test;
     (function (internal) {
         /**
          * Provides Charset implementations.
+         * @param {string} name
+         * @class
          * @extends java.nio.charset.Charset
          */
         var EmulatedCharset = (function (_super) {
@@ -8467,6 +8796,11 @@ var test;
                 function LatinCharset(name) {
                     return _super.call(this, name) || this;
                 }
+                /**
+                 *
+                 * @param {string} str
+                 * @return {Array}
+                 */
                 LatinCharset.prototype.getBytes = function (str) {
                     var n = str.length;
                     var bytes = (function (s) { var a = []; while (s-- > 0)
@@ -8474,13 +8808,22 @@ var test;
                     for (var i = 0; i < n; ++i) {
                         bytes[i] = (((function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(str.charAt(i)) & 255) | 0);
                     }
+                    ;
                     return bytes;
                 };
+                /**
+                 *
+                 * @param {Array} bytes
+                 * @param {number} ofs
+                 * @param {number} len
+                 * @return {Array}
+                 */
                 LatinCharset.prototype.decodeString = function (bytes, ofs, len) {
                     var chars = new Array(len);
                     for (var i = 0; i < len; ++i) {
                         chars[i] = String.fromCharCode((bytes[ofs + i] & 255));
                     }
+                    ;
                     return chars;
                 };
                 return LatinCharset;
@@ -8493,6 +8836,13 @@ var test;
                 function UtfCharset(name) {
                     return _super.call(this, name) || this;
                 }
+                /**
+                 *
+                 * @param {Array} bytes
+                 * @param {number} ofs
+                 * @param {number} len
+                 * @return {Array}
+                 */
                 UtfCharset.prototype.decodeString = function (bytes, ofs, len) {
                     var charCount = 0;
                     for (var i = 0; i < len;) {
@@ -8520,6 +8870,7 @@ var test;
                             throw new java.lang.IndexOutOfBoundsException("Invalid UTF8 sequence");
                         }
                     }
+                    ;
                     var chars = new Array(charCount);
                     var outIdx = 0;
                     var count = 0;
@@ -8555,8 +8906,14 @@ var test;
                         ;
                         outIdx += javaemul.internal.CharacterHelper.toChars$int$char_A$int(ch, chars, outIdx);
                     }
+                    ;
                     return chars;
                 };
+                /**
+                 *
+                 * @param {string} str
+                 * @return {Array}
+                 */
                 UtfCharset.prototype.getBytes = function (str) {
                     var n = str.length;
                     var byteCount = 0;
@@ -8579,6 +8936,7 @@ var test;
                             byteCount += 5;
                         }
                     }
+                    ;
                     var bytes = (function (s) { var a = []; while (s-- > 0)
                         a.push(0); return a; })(byteCount);
                     var out = 0;
@@ -8587,6 +8945,7 @@ var test;
                         i += javaemul.internal.CharacterHelper.charCount(ch);
                         out += this.encodeUtf8(bytes, out, ch);
                     }
+                    ;
                     return bytes;
                 };
                 /**
@@ -8648,6 +9007,7 @@ var test;
          * "http://java.sun.com/j2se/1.4.2/docs/api/java/security/MessageDigest.html"
          * >[Sun's docs]</a>.
          * @extends java.security.MessageDigestSpi
+         * @class
          */
         var MessageDigest = (function (_super) {
             __extends(MessageDigest, _super);
@@ -8678,6 +9038,7 @@ var test;
                         return false;
                     }
                 }
+                ;
                 return true;
             };
             MessageDigest.prototype.digest$ = function () {
@@ -8791,6 +9152,7 @@ var test;
                     for (var inpos = 0, outpos = 0; outpos < 16; outpos++) {
                         out[outpos] = ((__in[inpos++] & 255) | ((__in[inpos++] & 255) << 8) | ((__in[inpos++] & 255) << 16) | ((__in[inpos++] & 255) << 24));
                     }
+                    ;
                 };
                 Md5Digest.f = function (x, y, z) {
                     return (z ^ (x & (y ^ z)));
@@ -8838,6 +9200,7 @@ var test;
                         out[outpos++] = (((__in[inpos] >>> 16) & 255) | 0);
                         out[outpos++] = (((__in[inpos] >>> 24) & 255) | 0);
                     }
+                    ;
                 };
                 Md5Digest.prototype.engineDigest = function (buf, offset, len) {
                     if (((buf != null && buf instanceof Array && (buf.length == 0 || buf[0] == null || (typeof buf[0] === 'number'))) || buf === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
@@ -8864,9 +9227,16 @@ var test;
                     this.reset();
                     return digest;
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 Md5Digest.prototype.engineGetDigestLength = function () {
                     return 16;
                 };
+                /**
+                 *
+                 */
                 Md5Digest.prototype.engineReset = function () {
                     this.buffer = (function (s) { var a = []; while (s-- > 0)
                         a.push(0); return a; })(64);
@@ -8903,6 +9273,12 @@ var test;
                     }
                     ;
                 };
+                /**
+                 *
+                 * @param {Array} input
+                 * @param {number} offset
+                 * @param {number} len
+                 */
                 Md5Digest.prototype.engineUpdate = function (input, offset, len) {
                     if (((input != null && input instanceof Array && (input.length == 0 || input[0] == null || (typeof input[0] === 'number'))) || input === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
                         return this.engineUpdate$byte_A$int$int(input, offset, len);
@@ -9009,6 +9385,7 @@ var test;
          *
          * @param <E> the element type.
          * @extends java.util.AbstractCollection
+         * @class
          */
         var AbstractList = (function (_super) {
             __extends(AbstractList, _super);
@@ -9036,6 +9413,11 @@ var test;
             AbstractList.prototype.add$int$java_lang_Object = function (index, element) {
                 throw new java.lang.UnsupportedOperationException("Add not supported on this list");
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} element
+             */
             AbstractList.prototype.add = function (index, element) {
                 if (((typeof index === 'number') || index === null) && ((element != null) || element === null)) {
                     return this.add$int$java_lang_Object(index, element);
@@ -9058,6 +9440,12 @@ var test;
                 }
                 return changed;
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} c
+             * @return {boolean}
+             */
             AbstractList.prototype.addAll = function (index, c) {
                 if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     return this.addAll$int$java_util_Collection(index, c);
@@ -9068,9 +9456,17 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             */
             AbstractList.prototype.clear = function () {
                 this.removeRange(0, this.size());
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             AbstractList.prototype.equals = function (o) {
                 if (o === this) {
                     return true;
@@ -9094,6 +9490,10 @@ var test;
                 }
                 return true;
             };
+            /**
+             *
+             * @return {number}
+             */
             AbstractList.prototype.hashCode = function () {
                 return (function (o) { if (o.hashCode) {
                     return o.hashCode();
@@ -9115,8 +9515,13 @@ var test;
                         return i;
                     }
                 }
+                ;
                 return -1;
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractList.prototype.iterator = function () {
                 return new AbstractList.IteratorImpl(this);
             };
@@ -9133,6 +9538,7 @@ var test;
                         return i;
                     }
                 }
+                ;
                 return -1;
             };
             AbstractList.prototype.listIterator$ = function () {
@@ -9141,6 +9547,11 @@ var test;
             AbstractList.prototype.listIterator$int = function (from) {
                 return new AbstractList.ListIteratorImpl(this, from);
             };
+            /**
+             *
+             * @param {number} from
+             * @return {*}
+             */
             AbstractList.prototype.listIterator = function (from) {
                 if (((typeof from === 'number') || from === null)) {
                     return this.listIterator$int(from);
@@ -9154,6 +9565,11 @@ var test;
             AbstractList.prototype.remove$int = function (index) {
                 throw new java.lang.UnsupportedOperationException("Remove not supported on this list");
             };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             AbstractList.prototype.remove = function (index) {
                 if (((typeof index === 'number') || index === null)) {
                     return this.remove$int(index);
@@ -9164,9 +9580,21 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} o
+             * @return {*}
+             */
             AbstractList.prototype.set = function (index, o) {
                 throw new java.lang.UnsupportedOperationException("Set not supported on this list");
             };
+            /**
+             *
+             * @param {number} fromIndex
+             * @param {number} toIndex
+             * @return {*}
+             */
             AbstractList.prototype.subList = function (fromIndex, toIndex) {
                 return (new AbstractList.SubList(this, fromIndex, toIndex));
             };
@@ -9176,6 +9604,7 @@ var test;
                     iter.next();
                     iter.remove();
                 }
+                ;
             };
             return AbstractList;
         }(java.util.AbstractCollection));
@@ -9199,13 +9628,24 @@ var test;
                     }
                     ;
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 IteratorImpl.prototype.hasNext = function () {
                     return this.i < this.__parent.size();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 IteratorImpl.prototype.next = function () {
                     javaemul.internal.InternalPreconditions.checkElement(this.hasNext());
                     return this.__parent.get(this.last = this.i++);
                 };
+                /**
+                 *
+                 */
                 IteratorImpl.prototype.remove = function () {
                     javaemul.internal.InternalPreconditions.checkState(this.last !== -1);
                     this.__parent.remove$int(this.last);
@@ -9217,67 +9657,6 @@ var test;
             AbstractList.IteratorImpl = IteratorImpl;
             IteratorImpl["__class"] = "java.util.AbstractList.IteratorImpl";
             IteratorImpl["__interfaces"] = ["java.util.Iterator"];
-            /**
-             * Implementation of <code>ListIterator</code> for abstract lists.
-             * @extends java.util.AbstractList.IteratorImpl
-             */
-            var ListIteratorImpl = (function (_super) {
-                __extends(ListIteratorImpl, _super);
-                function ListIteratorImpl(__parent, start) {
-                    var _this = this;
-                    if (((typeof start === 'number') || start === null)) {
-                        var __args = Array.prototype.slice.call(arguments);
-                        _this = _super.call(this, __parent) || this;
-                        _this.__parent = __parent;
-                        (function () {
-                            javaemul.internal.InternalPreconditions.checkPositionIndex(start, _this.__parent.size());
-                            _this.i = start;
-                        })();
-                    }
-                    else if (start === undefined) {
-                        var __args = Array.prototype.slice.call(arguments);
-                        _this = _super.call(this, __parent) || this;
-                        _this.__parent = __parent;
-                    }
-                    else
-                        throw new Error('invalid overload');
-                    return _this;
-                }
-                ListIteratorImpl.prototype.forEachRemaining = function (consumer) {
-                    var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
-                    while ((this.hasNext())) {
-                        (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
-                    }
-                    ;
-                };
-                ListIteratorImpl.prototype.add = function (o) {
-                    this.__parent.add(this.i, o);
-                    this.i++;
-                    this.last = -1;
-                };
-                ListIteratorImpl.prototype.hasPrevious = function () {
-                    return this.i > 0;
-                };
-                ListIteratorImpl.prototype.nextIndex = function () {
-                    return this.i;
-                };
-                ListIteratorImpl.prototype.previous = function () {
-                    javaemul.internal.InternalPreconditions.checkElement(this.hasPrevious());
-                    return this.__parent.get(this.last = --this.i);
-                };
-                ListIteratorImpl.prototype.previousIndex = function () {
-                    return this.i - 1;
-                };
-                ListIteratorImpl.prototype.set = function (o) {
-                    javaemul.internal.InternalPreconditions.checkState(this.last !== -1);
-                    this.__parent.set(this.last, o);
-                };
-                return ListIteratorImpl;
-            }(AbstractList.IteratorImpl));
-            AbstractList.ListIteratorImpl = ListIteratorImpl;
-            ListIteratorImpl["__class"] = "java.util.AbstractList.ListIteratorImpl";
-            ListIteratorImpl["__interfaces"] = ["java.util.Iterator", "java.util.ListIterator"];
             var SubList = (function (_super) {
                 __extends(SubList, _super);
                 function SubList(wrapped, fromIndex, toIndex) {
@@ -9296,6 +9675,11 @@ var test;
                     this.wrapped.add(this.fromIndex + index, element);
                     this.__size++;
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @param {*} element
+                 */
                 SubList.prototype.add = function (index, element) {
                     if (((typeof index === 'number') || index === null) && ((element != null) || element === null)) {
                         return this.add$int$java_lang_Object(index, element);
@@ -9306,6 +9690,11 @@ var test;
                     else
                         throw new Error('invalid overload');
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @return {*}
+                 */
                 SubList.prototype.get = function (index) {
                     javaemul.internal.InternalPreconditions.checkElementIndex(index, this.__size);
                     return this.wrapped.get(this.fromIndex + index);
@@ -9316,6 +9705,11 @@ var test;
                     this.__size--;
                     return result;
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @return {*}
+                 */
                 SubList.prototype.remove = function (index) {
                     if (((typeof index === 'number') || index === null)) {
                         return this.remove$int(index);
@@ -9326,10 +9720,20 @@ var test;
                     else
                         throw new Error('invalid overload');
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @param {*} element
+                 * @return {*}
+                 */
                 SubList.prototype.set = function (index, element) {
                     javaemul.internal.InternalPreconditions.checkElementIndex(index, this.__size);
                     return this.wrapped.set(this.fromIndex + index, element);
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 SubList.prototype.size = function () {
                     return this.__size;
                 };
@@ -9338,6 +9742,92 @@ var test;
             AbstractList.SubList = SubList;
             SubList["__class"] = "java.util.AbstractList.SubList";
             SubList["__interfaces"] = ["java.util.List", "java.util.Collection", "java.lang.Iterable"];
+            /**
+             * Implementation of <code>ListIterator</code> for abstract lists.
+             * @extends java.util.AbstractList.IteratorImpl
+             * @class
+             */
+            var ListIteratorImpl = (function (_super) {
+                __extends(ListIteratorImpl, _super);
+                function ListIteratorImpl(__parent, start) {
+                    var _this = this;
+                    if (((typeof start === 'number') || start === null)) {
+                        var __args = Array.prototype.slice.call(arguments, [1]);
+                        _this = _super.call(this, __parent) || this;
+                        _this.__parent = __parent;
+                        (function () {
+                            javaemul.internal.InternalPreconditions.checkPositionIndex(start, __parent.size());
+                            _this.i = start;
+                        })();
+                    }
+                    else if (start === undefined) {
+                        var __args = Array.prototype.slice.call(arguments, [1]);
+                        _this = _super.call(this, __parent) || this;
+                        _this.__parent = __parent;
+                    }
+                    else
+                        throw new Error('invalid overload');
+                    return _this;
+                }
+                ListIteratorImpl.prototype.forEachRemaining = function (consumer) {
+                    var _this = this;
+                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    while ((this.hasNext())) {
+                        (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
+                    }
+                    ;
+                };
+                /**
+                 *
+                 * @param {*} o
+                 */
+                ListIteratorImpl.prototype.add = function (o) {
+                    this.__parent.add(this.i, o);
+                    this.i++;
+                    this.last = -1;
+                };
+                /**
+                 *
+                 * @return {boolean}
+                 */
+                ListIteratorImpl.prototype.hasPrevious = function () {
+                    return this.i > 0;
+                };
+                /**
+                 *
+                 * @return {number}
+                 */
+                ListIteratorImpl.prototype.nextIndex = function () {
+                    return this.i;
+                };
+                /**
+                 *
+                 * @return {*}
+                 */
+                ListIteratorImpl.prototype.previous = function () {
+                    javaemul.internal.InternalPreconditions.checkElement(this.hasPrevious());
+                    return this.__parent.get(this.last = --this.i);
+                };
+                /**
+                 *
+                 * @return {number}
+                 */
+                ListIteratorImpl.prototype.previousIndex = function () {
+                    return this.i - 1;
+                };
+                /**
+                 *
+                 * @param {*} o
+                 */
+                ListIteratorImpl.prototype.set = function (o) {
+                    javaemul.internal.InternalPreconditions.checkState(this.last !== -1);
+                    this.__parent.set(this.last, o);
+                };
+                return ListIteratorImpl;
+            }(AbstractList.IteratorImpl));
+            AbstractList.ListIteratorImpl = ListIteratorImpl;
+            ListIteratorImpl["__class"] = "java.util.AbstractList.ListIteratorImpl";
+            ListIteratorImpl["__interfaces"] = ["java.util.Iterator", "java.util.ListIterator"];
         })(AbstractList = util.AbstractList || (util.AbstractList = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -9351,6 +9841,7 @@ var test;
          *
          * @param <E> element type.
          * @extends java.util.AbstractCollection
+         * @class
          */
         var AbstractQueue = (function (_super) {
             __extends(AbstractQueue, _super);
@@ -9369,6 +9860,11 @@ var test;
                     _loop_4(index132);
                 }
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} element
+             */
             AbstractQueue.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
                     return this.add$java_lang_Object(index);
@@ -9380,6 +9876,12 @@ var test;
                 javaemul.internal.InternalPreconditions.checkState(this.offer(o), "Unable to add element to queue");
                 return true;
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} c
+             * @return {boolean}
+             */
             AbstractQueue.prototype.addAll = function (index, c) {
                 if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                     return this.addAll$java_util_Collection(index);
@@ -9392,16 +9894,28 @@ var test;
                 javaemul.internal.InternalPreconditions.checkArgument(c !== this, "Can\'t add a queue to itself");
                 return _super.prototype.addAll$java_util_Collection.call(this, c);
             };
+            /**
+             *
+             */
             AbstractQueue.prototype.clear = function () {
                 while ((this.poll() != null)) {
                 }
                 ;
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractQueue.prototype.element = function () {
                 var e = this.peek();
                 javaemul.internal.InternalPreconditions.checkElement(e != null, "Queue is empty");
                 return e;
             };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             AbstractQueue.prototype.remove = function (index) {
                 if (((index != null) || index === null)) {
                     return this.remove$java_lang_Object(index);
@@ -9433,6 +9947,7 @@ var test;
          * docs]</a>
          *
          * @param <E> the element type.
+         * @class
          * @extends java.util.AbstractCollection
          */
         var AbstractSet = (function (_super) {
@@ -9452,6 +9967,11 @@ var test;
                     _loop_5(index133);
                 }
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             AbstractSet.prototype.equals = function (o) {
                 if (o === this) {
                     return true;
@@ -9465,6 +9985,10 @@ var test;
                 }
                 return this.containsAll(other);
             };
+            /**
+             *
+             * @return {number}
+             */
             AbstractSet.prototype.hashCode = function () {
                 return (function (o) { if (o.hashCode) {
                     return o.hashCode();
@@ -9473,6 +9997,11 @@ var test;
                     return o.toString();
                 } })(java.util.Collections);
             };
+            /**
+             *
+             * @param {*} c
+             * @return {boolean}
+             */
             AbstractSet.prototype.removeAll = function (c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
                 var size = this.size();
@@ -9483,6 +10012,7 @@ var test;
                             iter.remove();
                         }
                     }
+                    ;
                 }
                 else {
                     for (var index134 = c.iterator(); index134.hasNext();) {
@@ -9506,6 +10036,8 @@ var test;
     (function (util) {
         /**
          * A simple wrapper around JavaScript Map for key type is string.
+         * @param {java.util.AbstractHashMap} host
+         * @class
          */
         var InternalStringMap = (function () {
             function InternalStringMap(host) {
@@ -9560,13 +10092,17 @@ var test;
             InternalStringMap.prototype.getSize = function () {
                 return this.size;
             };
+            /**
+             *
+             * @return {*}
+             */
             InternalStringMap.prototype.iterator = function () {
                 return new InternalStringMap.InternalStringMap$0(this);
             };
-            InternalStringMap.prototype.newMapEntry = function (entry, lastValueMod) {
+            /*private*/ InternalStringMap.prototype.newMapEntry = function (entry, lastValueMod) {
                 return new InternalStringMap.InternalStringMap$1(this, entry, lastValueMod);
             };
-            InternalStringMap.toNullIfUndefined = function (value) {
+            /*private*/ InternalStringMap.toNullIfUndefined = function (value) {
                 return javaemul.internal.JsUtils.isUndefined(value) ? null : value;
             };
             return InternalStringMap;
@@ -9590,14 +10126,25 @@ var test;
                     }
                     ;
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 InternalStringMap$0.prototype.hasNext = function () {
                     return !this.current.done;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 InternalStringMap$0.prototype.next = function () {
                     this.last = this.current;
                     this.current = this.entries.next();
                     return this.__parent.newMapEntry(this.last, this.__parent.valueMod);
                 };
+                /**
+                 *
+                 */
                 InternalStringMap$0.prototype.remove = function () {
                     this.__parent.remove(this.last.value[0]);
                 };
@@ -9614,15 +10161,28 @@ var test;
                     _this.__parent = __parent;
                     return _this;
                 }
+                /**
+                 *
+                 * @return {*}
+                 */
                 InternalStringMap$1.prototype.getKey = function () {
                     return this.entry.value[0];
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 InternalStringMap$1.prototype.getValue = function () {
                     if (this.__parent.valueMod !== this.lastValueMod) {
                         return this.__parent.get(this.entry.value[0]);
                     }
                     return this.entry.value[1];
                 };
+                /**
+                 *
+                 * @param {*} object
+                 * @return {*}
+                 */
                 InternalStringMap$1.prototype.setValue = function (object) {
                     return this.__parent.put(this.entry.value[0], object);
                 };
@@ -9638,6 +10198,7 @@ var test;
     (function (internal) {
         /**
          * Intrinsic string class.
+         * @class
          */
         var StringHelper = (function () {
             function StringHelper() {
@@ -9677,6 +10238,7 @@ var test;
                     s += StringHelper.fromCharCode(javaemul.internal.ArrayHelper.unsafeClone(x, batchStart, batchEnd));
                     batchStart = batchEnd;
                 }
+                ;
                 return s;
             };
             StringHelper.valueOf = function (x, offset, count) {
@@ -9710,7 +10272,7 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
-            StringHelper.fromCharCode = function (array) {
+            /*private*/ StringHelper.fromCharCode = function (array) {
                 return String.fromCharCode((array | 0));
             };
             StringHelper.valueOf$char_A = function (x) {
@@ -9742,7 +10304,7 @@ var test;
              * @return {string}
              * @private
              */
-            StringHelper.translateReplaceString = function (replaceStr) {
+            /*private*/ StringHelper.translateReplaceString = function (replaceStr) {
                 var pos = 0;
                 while ((0 <= (pos = replaceStr.indexOf("\\", pos)))) {
                     if ((function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(replaceStr.charAt(pos + 1)) == '$'.charCodeAt(0)) {
@@ -9755,13 +10317,14 @@ var test;
                 ;
                 return replaceStr;
             };
-            StringHelper.compareTo = function (thisStr, otherStr) {
+            /*private*/ StringHelper.compareTo = function (thisStr, otherStr) {
                 if (thisStr == otherStr) {
                     return 0;
                 }
-                return thisStr < otherStr ? -1 : 1;
+                ;
+                return (thisStr < otherStr ? -1 : 1);
             };
-            StringHelper.getCharset = function (charsetName) {
+            /*private*/ StringHelper.getCharset = function (charsetName) {
                 try {
                     return java.nio.charset.Charset.forName(charsetName);
                 }
@@ -9795,8 +10358,21 @@ var test;
             var StringHelper$0 = (function () {
                 function StringHelper$0() {
                 }
-                StringHelper$0.prototype.compare = function (a, b) {
+                StringHelper$0.prototype.compare$java_lang_String$java_lang_String = function (a, b) {
                     return a.toUpperCase().localeCompare(b.toUpperCase());
+                };
+                /**
+                 *
+                 * @param {string} a
+                 * @param {string} b
+                 * @return {number}
+                 */
+                StringHelper$0.prototype.compare = function (a, b) {
+                    if (((typeof a === 'string') || a === null) && ((typeof b === 'string') || b === null)) {
+                        return this.compare$java_lang_String$java_lang_String(a, b);
+                    }
+                    else
+                        throw new Error('invalid overload');
                 };
                 return StringHelper$0;
             }());
@@ -9811,6 +10387,10 @@ var test;
         /**
          * An implementation of java.sql.Date. Derived from
          * http://java.sun.com/j2se/1.5.0/docs/api/java/sql/Date.html
+         * @param {number} year
+         * @param {number} month
+         * @param {number} day
+         * @class
          * @extends java.util.Date
          */
         var Date = (function (_super) {
@@ -9846,21 +10426,45 @@ var test;
                 }
                 ;
             };
+            /**
+             *
+             * @return {number}
+             */
             Date.prototype.getHours = function () {
                 throw new java.lang.IllegalArgumentException();
             };
+            /**
+             *
+             * @return {number}
+             */
             Date.prototype.getMinutes = function () {
                 throw new java.lang.IllegalArgumentException();
             };
+            /**
+             *
+             * @return {number}
+             */
             Date.prototype.getSeconds = function () {
                 throw new java.lang.IllegalArgumentException();
             };
+            /**
+             *
+             * @param {number} i
+             */
             Date.prototype.setHours = function (i) {
                 throw new java.lang.IllegalArgumentException();
             };
+            /**
+             *
+             * @param {number} i
+             */
             Date.prototype.setMinutes = function (i) {
                 throw new java.lang.IllegalArgumentException();
             };
+            /**
+             *
+             * @param {number} i
+             */
             Date.prototype.setSeconds = function (i) {
                 throw new java.lang.IllegalArgumentException();
             };
@@ -9877,6 +10481,10 @@ var test;
         /**
          * An implementation of java.sql.Time. Derived from
          * http://java.sun.com/j2se/1.5.0/docs/api/java/sql/Time.html
+         * @param {number} hour
+         * @param {number} minute
+         * @param {number} second
+         * @class
          * @extends java.util.Date
          */
         var Time = (function (_super) {
@@ -9912,24 +10520,52 @@ var test;
                 }
                 ;
             };
+            /**
+             *
+             * @return {number}
+             */
             Time.prototype.getDate = function () {
                 throw new java.lang.IllegalArgumentException();
             };
+            /**
+             *
+             * @return {number}
+             */
             Time.prototype.getDay = function () {
                 throw new java.lang.IllegalArgumentException();
             };
+            /**
+             *
+             * @return {number}
+             */
             Time.prototype.getMonth = function () {
                 throw new java.lang.IllegalArgumentException();
             };
+            /**
+             *
+             * @return {number}
+             */
             Time.prototype.getYear = function () {
                 throw new java.lang.IllegalArgumentException();
             };
+            /**
+             *
+             * @param {number} i
+             */
             Time.prototype.setDate = function (i) {
                 throw new java.lang.IllegalArgumentException();
             };
+            /**
+             *
+             * @param {number} i
+             */
             Time.prototype.setMonth = function (i) {
                 throw new java.lang.IllegalArgumentException();
             };
+            /**
+             *
+             * @param {number} i
+             */
             Time.prototype.setYear = function (i) {
                 throw new java.lang.IllegalArgumentException();
             };
@@ -9947,6 +10583,14 @@ var test;
          * An implementation of java.sql.Timestame. Derived from
          * http://java.sun.com/j2se/1.5.0/docs/api/java/sql/Timestamp.html. This is
          * basically just regular Date decorated with a nanoseconds field.
+         * @param {number} year
+         * @param {number} month
+         * @param {number} date
+         * @param {number} hour
+         * @param {number} minute
+         * @param {number} second
+         * @param {number} nano
+         * @class
          * @extends java.util.Date
          */
         var Timestamp = (function (_super) {
@@ -10011,7 +10655,7 @@ var test;
                 }
                 return new Timestamp(d.getYear(), d.getMonth(), d.getDate(), t.getHours(), t.getMinutes(), t.getSeconds(), nanos);
             };
-            Timestamp.padNine = function (value) {
+            /*private*/ Timestamp.padNine = function (value) {
                 var toReturn = new java.lang.StringBuilder("000000000");
                 var asString = new String(value).toString();
                 toReturn = toReturn.replace(9 - asString.length, 9, asString);
@@ -10084,9 +10728,17 @@ var test;
             Timestamp.prototype.getNanos = function () {
                 return this.nanos;
             };
+            /**
+             *
+             * @return {number}
+             */
             Timestamp.prototype.getTime = function () {
                 return _super.prototype.getTime.call(this);
             };
+            /**
+             *
+             * @return {number}
+             */
             Timestamp.prototype.hashCode = function () {
                 return (function (o) { if (o.hashCode) {
                     return o.hashCode();
@@ -10102,6 +10754,10 @@ var test;
                 this.nanos = n;
                 _super.prototype.setTime.call(this, (Math.floor(this.getTime() / 1000)) * 1000 + ((this.nanos / 1000000 | 0)));
             };
+            /**
+             *
+             * @param {number} time
+             */
             Timestamp.prototype.setTime = function (time) {
                 _super.prototype.setTime.call(this, time);
                 this.nanos = ((((time % 1000) | 0)) * 1000000);
@@ -10121,12 +10777,17 @@ var test;
             /**
              * A simple console logger used in super dev mode.
              * @extends java.util.logging.Handler
+             * @class
              */
             var SimpleConsoleLogHandler = (function (_super) {
                 __extends(SimpleConsoleLogHandler, _super);
                 function SimpleConsoleLogHandler() {
                     return _super !== null && _super.apply(this, arguments) || this;
                 }
+                /**
+                 *
+                 * @param {java.util.logging.LogRecord} record
+                 */
                 SimpleConsoleLogHandler.prototype.publish = function (record) {
                     if (!this.isLoggable(record)) {
                         return;
@@ -10137,7 +10798,7 @@ var test;
                         console.log(level, record.getThrown());
                     }
                 };
-                SimpleConsoleLogHandler.prototype.toConsoleLogLevel = function (level) {
+                /*private*/ SimpleConsoleLogHandler.prototype.toConsoleLogLevel = function (level) {
                     var val = level.intValue();
                     if (val >= java.util.logging.Level.SEVERE_$LI$().intValue()) {
                         return "error";
@@ -10152,8 +10813,14 @@ var test;
                         return "log";
                     }
                 };
+                /**
+                 *
+                 */
                 SimpleConsoleLogHandler.prototype.close = function () {
                 };
+                /**
+                 *
+                 */
                 SimpleConsoleLogHandler.prototype.flush = function () {
                 };
                 return SimpleConsoleLogHandler;
@@ -10168,6 +10835,8 @@ var test;
     (function (internal) {
         /**
          * Wraps native <code>byte</code> as an object.
+         * @param {number} value
+         * @class
          * @extends javaemul.internal.NumberHelper
          */
         var ByteHelper = (function (_super) {
@@ -10256,12 +10925,21 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @return {number}
+             */
             ByteHelper.prototype.byteValue = function () {
                 return this.value;
             };
             ByteHelper.prototype.compareTo$javaemul_internal_ByteHelper = function (b) {
                 return ByteHelper.compare(this.value, b.value);
             };
+            /**
+             *
+             * @param {javaemul.internal.ByteHelper} b
+             * @return {number}
+             */
             ByteHelper.prototype.compareTo = function (b) {
                 if (((b != null && b instanceof javaemul.internal.ByteHelper) || b === null)) {
                     return this.compareTo$javaemul_internal_ByteHelper(b);
@@ -10269,15 +10947,32 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @return {number}
+             */
             ByteHelper.prototype.doubleValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             ByteHelper.prototype.equals = function (o) {
                 return (o != null && o instanceof javaemul.internal.ByteHelper) && (o.value === this.value);
             };
+            /**
+             *
+             * @return {number}
+             */
             ByteHelper.prototype.floatValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @return {number}
+             */
             ByteHelper.prototype.hashCode = function () {
                 return (function (o) { if (o.hashCode) {
                     return o.hashCode();
@@ -10286,15 +10981,31 @@ var test;
                     return o.toString();
                 } })(this);
             };
+            /**
+             *
+             * @return {number}
+             */
             ByteHelper.prototype.intValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @return {number}
+             */
             ByteHelper.prototype.longValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @return {number}
+             */
             ByteHelper.prototype.shortValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @return {string}
+             */
             ByteHelper.prototype.toString = function () {
                 return ByteHelper.toString(this.value);
             };
@@ -10307,6 +11018,7 @@ var test;
         (function (ByteHelper) {
             /**
              * Use nested class to avoid clinit on outer.
+             * @class
              */
             var BoxedValues = (function () {
                 function BoxedValues() {
@@ -10326,6 +11038,8 @@ var test;
     (function (internal) {
         /**
          * Wraps a primitive <code>double</code> as an object.
+         * @param {number} value
+         * @class
          * @extends javaemul.internal.NumberHelper
          */
         var DoubleHelper = (function (_super) {
@@ -10410,6 +11124,7 @@ var test;
                             exp -= bit;
                         }
                     }
+                    ;
                     if (value < 1.0 && exp - 1 >= -1023) {
                         value *= 2.0;
                         exp--;
@@ -10423,6 +11138,7 @@ var test;
                             exp += bit;
                         }
                     }
+                    ;
                 }
                 if (exp > -1023) {
                     value -= 1.0;
@@ -10451,7 +11167,7 @@ var test;
                 return x === javaemul.internal.JsUtils.getInfinity() || x === -javaemul.internal.JsUtils.getInfinity();
             };
             DoubleHelper.isNaN = function (x) {
-                return isNaN(x);
+                return (isNaN(x));
             };
             DoubleHelper.longBitsToDouble = function (bits) {
                 var ihi = Math.floor((bits >> 32));
@@ -10488,6 +11204,7 @@ var test;
                             exp -= bit;
                         }
                     }
+                    ;
                 }
                 else if (exp < 0) {
                     while ((exp < 0)) {
@@ -10498,6 +11215,7 @@ var test;
                                 exp += bit;
                             }
                         }
+                        ;
                     }
                     ;
                 }
@@ -10525,12 +11243,21 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @return {number}
+             */
             DoubleHelper.prototype.byteValue = function () {
                 return (this.doubleValue() | 0);
             };
             DoubleHelper.prototype.compareTo$javaemul_internal_DoubleHelper = function (b) {
                 return DoubleHelper.compare(this.doubleValue(), b.doubleValue());
             };
+            /**
+             *
+             * @param {javaemul.internal.DoubleHelper} b
+             * @return {number}
+             */
             DoubleHelper.prototype.compareTo = function (b) {
                 if (((b != null && b instanceof javaemul.internal.DoubleHelper) || b === null)) {
                     return this.compareTo$javaemul_internal_DoubleHelper(b);
@@ -10538,15 +11265,28 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @return {number}
+             */
             DoubleHelper.prototype.doubleValue = function () {
                 return DoubleHelper.unsafeCast((javaemul.internal.InternalPreconditions.checkNotNull(this)));
             };
             DoubleHelper.unsafeCast = function (instance) {
-                return instance;
+                return (instance);
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             DoubleHelper.prototype.equals = function (o) {
                 return javaemul.internal.InternalPreconditions.checkNotNull(this) === o;
             };
+            /**
+             *
+             * @return {number}
+             */
             DoubleHelper.prototype.floatValue = function () {
                 return this.doubleValue();
             };
@@ -10568,6 +11308,10 @@ var test;
                     return o.toString();
                 } })(this);
             };
+            /**
+             *
+             * @return {number}
+             */
             DoubleHelper.prototype.intValue = function () {
                 return (this.doubleValue() | 0);
             };
@@ -10577,12 +11321,24 @@ var test;
             DoubleHelper.prototype.isNaN = function () {
                 return DoubleHelper.isNaN(this.doubleValue());
             };
+            /**
+             *
+             * @return {number}
+             */
             DoubleHelper.prototype.longValue = function () {
                 return Math.floor(this.doubleValue());
             };
+            /**
+             *
+             * @return {number}
+             */
             DoubleHelper.prototype.shortValue = function () {
                 return (this.doubleValue() | 0);
             };
+            /**
+             *
+             * @return {string}
+             */
             DoubleHelper.prototype.toString = function () {
                 return DoubleHelper.toString(this.doubleValue());
             };
@@ -10645,6 +11401,8 @@ var test;
     (function (internal) {
         /**
          * Wraps a primitive <code>float</code> as an object.
+         * @param {number} value
+         * @class
          * @extends javaemul.internal.NumberHelper
          */
         var FloatHelper = (function (_super) {
@@ -10807,12 +11565,21 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @return {number}
+             */
             FloatHelper.prototype.byteValue = function () {
                 return (this.value | 0);
             };
             FloatHelper.prototype.compareTo$javaemul_internal_FloatHelper = function (b) {
                 return FloatHelper.compare(this.value, b.value);
             };
+            /**
+             *
+             * @param {javaemul.internal.FloatHelper} b
+             * @return {number}
+             */
             FloatHelper.prototype.compareTo = function (b) {
                 if (((b != null && b instanceof javaemul.internal.FloatHelper) || b === null)) {
                     return this.compareTo$javaemul_internal_FloatHelper(b);
@@ -10820,12 +11587,25 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @return {number}
+             */
             FloatHelper.prototype.doubleValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             FloatHelper.prototype.equals = function (o) {
                 return (o != null && o instanceof javaemul.internal.FloatHelper) && (o.value === this.value);
             };
+            /**
+             *
+             * @return {number}
+             */
             FloatHelper.prototype.floatValue = function () {
                 return this.value;
             };
@@ -10847,6 +11627,10 @@ var test;
                     return o.toString();
                 } })(this);
             };
+            /**
+             *
+             * @return {number}
+             */
             FloatHelper.prototype.intValue = function () {
                 return (this.value | 0);
             };
@@ -10856,12 +11640,24 @@ var test;
             FloatHelper.prototype.isNaN = function () {
                 return FloatHelper.isNaN(this.value);
             };
+            /**
+             *
+             * @return {number}
+             */
             FloatHelper.prototype.longValue = function () {
                 return Math.floor(this.value);
             };
+            /**
+             *
+             * @return {number}
+             */
             FloatHelper.prototype.shortValue = function () {
                 return (this.value | 0);
             };
+            /**
+             *
+             * @return {string}
+             */
             FloatHelper.prototype.toString = function () {
                 return FloatHelper.toString(this.value);
             };
@@ -10884,6 +11680,8 @@ var test;
     (function (internal) {
         /**
          * Wraps a primitive <code>int</code> as an object.
+         * @param {number} value
+         * @class
          * @extends javaemul.internal.NumberHelper
          */
         var IntegerHelper = (function (_super) {
@@ -10956,6 +11754,7 @@ var test;
                     var rtn = void 0;
                     for (rtn = 1073741824; (rtn & i) === 0; rtn >>= 1) {
                     }
+                    ;
                     return rtn;
                 }
             };
@@ -11003,6 +11802,7 @@ var test;
                     for (var r = 1; (r & i) === 0; r <<= 1) {
                         rtn++;
                     }
+                    ;
                     return rtn;
                 }
             };
@@ -11108,18 +11908,26 @@ var test;
                     throw new Error('invalid overload');
             };
             IntegerHelper.toRadixString = function (value, radix) {
-                return value.toString(radix);
+                return (value.toString(radix));
             };
             IntegerHelper.toUnsignedRadixString = function (value, radix) {
-                // ">>> 0" converts the value to unsigned number.
-                return (value >>> 0).toString(radix);
+                return ((value >>> 0).toString(radix));
             };
+            /**
+             *
+             * @return {number}
+             */
             IntegerHelper.prototype.byteValue = function () {
                 return (this.value | 0);
             };
             IntegerHelper.prototype.compareTo$javaemul_internal_IntegerHelper = function (b) {
                 return IntegerHelper.compare(this.value, b.value);
             };
+            /**
+             *
+             * @param {javaemul.internal.IntegerHelper} b
+             * @return {number}
+             */
             IntegerHelper.prototype.compareTo = function (b) {
                 if (((b != null && b instanceof javaemul.internal.IntegerHelper) || b === null)) {
                     return this.compareTo$javaemul_internal_IntegerHelper(b);
@@ -11127,15 +11935,32 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @return {number}
+             */
             IntegerHelper.prototype.doubleValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             IntegerHelper.prototype.equals = function (o) {
                 return (o != null && o instanceof javaemul.internal.IntegerHelper) && (o.value === this.value);
             };
+            /**
+             *
+             * @return {number}
+             */
             IntegerHelper.prototype.floatValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @return {number}
+             */
             IntegerHelper.prototype.hashCode = function () {
                 return (function (o) { if (o.hashCode) {
                     return o.hashCode();
@@ -11144,15 +11969,31 @@ var test;
                     return o.toString();
                 } })(this);
             };
+            /**
+             *
+             * @return {number}
+             */
             IntegerHelper.prototype.intValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @return {number}
+             */
             IntegerHelper.prototype.longValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @return {number}
+             */
             IntegerHelper.prototype.shortValue = function () {
                 return (this.value | 0);
             };
+            /**
+             *
+             * @return {string}
+             */
             IntegerHelper.prototype.toString = function () {
                 return IntegerHelper.toString$int(this.value);
             };
@@ -11170,6 +12011,7 @@ var test;
         (function (IntegerHelper) {
             /**
              * Use nested class to avoid clinit on outer.
+             * @class
              */
             var BoxedValues = (function () {
                 function BoxedValues() {
@@ -11183,6 +12025,7 @@ var test;
             BoxedValues["__class"] = "javaemul.internal.IntegerHelper.BoxedValues";
             /**
              * Use nested class to avoid clinit on outer.
+             * @class
              */
             var ReverseNibbles = (function () {
                 function ReverseNibbles() {
@@ -11202,6 +12045,8 @@ var test;
     (function (internal) {
         /**
          * Wraps a primitive <code>long</code> as an object.
+         * @param {number} value
+         * @class
          * @extends javaemul.internal.NumberHelper
          */
         var LongHelper = (function (_super) {
@@ -11428,12 +12273,21 @@ var test;
                 } while ((value !== 0));
                 return (function (str, index, len) { return str.join('').substring(index, index + len); })(buf, pos, bufSize - pos);
             };
+            /**
+             *
+             * @return {number}
+             */
             LongHelper.prototype.byteValue = function () {
                 return (this.value | 0);
             };
             LongHelper.prototype.compareTo$javaemul_internal_LongHelper = function (b) {
                 return LongHelper.compare(this.value, b.value);
             };
+            /**
+             *
+             * @param {javaemul.internal.LongHelper} b
+             * @return {number}
+             */
             LongHelper.prototype.compareTo = function (b) {
                 if (((b != null && b instanceof javaemul.internal.LongHelper) || b === null)) {
                     return this.compareTo$javaemul_internal_LongHelper(b);
@@ -11441,15 +12295,32 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @return {number}
+             */
             LongHelper.prototype.doubleValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             LongHelper.prototype.equals = function (o) {
                 return (o != null && o instanceof javaemul.internal.LongHelper) && (o.value === this.value);
             };
+            /**
+             *
+             * @return {number}
+             */
             LongHelper.prototype.floatValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @return {number}
+             */
             LongHelper.prototype.hashCode = function () {
                 return (function (o) { if (o.hashCode) {
                     return o.hashCode();
@@ -11458,15 +12329,31 @@ var test;
                     return o.toString();
                 } })(this);
             };
+            /**
+             *
+             * @return {number}
+             */
             LongHelper.prototype.intValue = function () {
                 return (this.value | 0);
             };
+            /**
+             *
+             * @return {number}
+             */
             LongHelper.prototype.longValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @return {number}
+             */
             LongHelper.prototype.shortValue = function () {
                 return (this.value | 0);
             };
+            /**
+             *
+             * @return {string}
+             */
             LongHelper.prototype.toString = function () {
                 return LongHelper.toString$long(this.value);
             };
@@ -11481,6 +12368,7 @@ var test;
         (function (LongHelper) {
             /**
              * Use nested class to avoid clinit on outer.
+             * @class
              */
             var BoxedValues = (function () {
                 function BoxedValues() {
@@ -11500,6 +12388,8 @@ var test;
     (function (internal) {
         /**
          * Wraps a primitive <code>short</code> as an object.
+         * @param {number} value
+         * @class
          * @extends javaemul.internal.NumberHelper
          */
         var ShortHelper = (function (_super) {
@@ -11592,12 +12482,21 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @return {number}
+             */
             ShortHelper.prototype.byteValue = function () {
                 return (this.value | 0);
             };
             ShortHelper.prototype.compareTo$javaemul_internal_ShortHelper = function (b) {
                 return ShortHelper.compare(this.value, b.value);
             };
+            /**
+             *
+             * @param {javaemul.internal.ShortHelper} b
+             * @return {number}
+             */
             ShortHelper.prototype.compareTo = function (b) {
                 if (((b != null && b instanceof javaemul.internal.ShortHelper) || b === null)) {
                     return this.compareTo$javaemul_internal_ShortHelper(b);
@@ -11605,15 +12504,32 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @return {number}
+             */
             ShortHelper.prototype.doubleValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             ShortHelper.prototype.equals = function (o) {
                 return (o != null && o instanceof javaemul.internal.ShortHelper) && (o.value === this.value);
             };
+            /**
+             *
+             * @return {number}
+             */
             ShortHelper.prototype.floatValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @return {number}
+             */
             ShortHelper.prototype.hashCode = function () {
                 return (function (o) { if (o.hashCode) {
                     return o.hashCode();
@@ -11622,15 +12538,31 @@ var test;
                     return o.toString();
                 } })(this);
             };
+            /**
+             *
+             * @return {number}
+             */
             ShortHelper.prototype.intValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @return {number}
+             */
             ShortHelper.prototype.longValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @return {number}
+             */
             ShortHelper.prototype.shortValue = function () {
                 return this.value;
             };
+            /**
+             *
+             * @return {string}
+             */
             ShortHelper.prototype.toString = function () {
                 return ShortHelper.toString(this.value);
             };
@@ -11643,6 +12575,7 @@ var test;
         (function (ShortHelper) {
             /**
              * Use nested class to avoid clinit on outer.
+             * @class
              */
             var BoxedValues = (function () {
                 function BoxedValues() {
@@ -11662,6 +12595,8 @@ var test;
     (function (io) {
         /**
          * @skip
+         * @param {java.io.OutputStream} out
+         * @class
          * @extends java.io.FilterOutputStream
          */
         var PrintStream = (function (_super) {
@@ -11786,6 +12721,8 @@ var test;
          * A character encoding is not supported - <a
          * href="http://java.sun.com/javase/6/docs/api/java/io/UnsupportedEncodingException.html">[Sun's
          * docs]</a>.
+         * @param {string} msg
+         * @class
          * @extends java.io.IOException
          */
         var UnsupportedEncodingException = (function (_super) {
@@ -11795,10 +12732,12 @@ var test;
                 if (((typeof msg === 'string') || msg === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, msg) || this;
+                    Object.setPrototypeOf(_this, UnsupportedEncodingException.prototype);
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, UnsupportedEncodingException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -11818,6 +12757,9 @@ var test;
          * See <a
          * href="https://docs.oracle.com/javase/8/docs/api/java/io/UncheckedIOException.html">the
          * official Java API doc</a> for details.
+         * @param {string} message
+         * @param {java.io.IOException} cause
+         * @class
          * @extends java.lang.RuntimeException
          */
         var UncheckedIOException = (function (_super) {
@@ -11827,16 +12769,22 @@ var test;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof java.io.IOException) || cause === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message, (javaemul.internal.InternalPreconditions.checkNotNull(cause))) || this;
+                    Object.setPrototypeOf(_this, UncheckedIOException.prototype);
                 }
                 else if (((message != null && message instanceof java.io.IOException) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_7 = __args[0];
                     _this = _super.call(this, (javaemul.internal.InternalPreconditions.checkNotNull(cause_7))) || this;
+                    Object.setPrototypeOf(_this, UncheckedIOException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
                 return _this;
             }
+            /**
+             *
+             * @return {java.io.IOException}
+             */
             UncheckedIOException.prototype.getCause = function () {
                 return null;
             };
@@ -11857,12 +12805,15 @@ var test;
              * since it was compiled or serialized <a
              * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/AnnotationTypeMismatchException.html">[Sun
              * docs]</a>.
+             * @class
              * @extends java.lang.RuntimeException
              */
             var AnnotationTypeMismatchException = (function (_super) {
                 __extends(AnnotationTypeMismatchException, _super);
                 function AnnotationTypeMismatchException() {
-                    return _super.call(this) || this;
+                    var _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, AnnotationTypeMismatchException.prototype);
+                    return _this;
                 }
                 return AnnotationTypeMismatchException;
             }(java.lang.RuntimeException));
@@ -11882,12 +12833,16 @@ var test;
              * since it was compiled or serialized <a
              * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/annotation/IncompleteAnnotationException.html">[Sun
              * docs]</a>.
+             * @param {java.lang.Class} annotationType
+             * @param {string} elementName
+             * @class
              * @extends java.lang.RuntimeException
              */
             var IncompleteAnnotationException = (function (_super) {
                 __extends(IncompleteAnnotationException, _super);
                 function IncompleteAnnotationException(annotationType, elementName) {
                     var _this = _super.call(this, "Incomplete annotation: trying to access " + elementName + " on " + annotationType) || this;
+                    Object.setPrototypeOf(_this, IncompleteAnnotationException.prototype);
                     _this.__annotationType = null;
                     _this.__elementName = null;
                     _this.__annotationType = annotationType;
@@ -11918,6 +12873,8 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ArithmeticException.html">the
          * official Java API doc</a> for details.
+         * @param {string} explanation
+         * @class
          * @extends java.lang.RuntimeException
          */
         var ArithmeticException = (function (_super) {
@@ -11927,10 +12884,12 @@ var test;
                 if (((typeof explanation === 'string') || explanation === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, explanation) || this;
+                    Object.setPrototypeOf(_this, ArithmeticException.prototype);
                 }
                 else if (explanation === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, ArithmeticException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -11950,6 +12909,8 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ArrayStoreException.html">the
          * official Java API doc</a> for details.
+         * @param {string} message
+         * @class
          * @extends java.lang.RuntimeException
          */
         var ArrayStoreException = (function (_super) {
@@ -11959,10 +12920,12 @@ var test;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
+                    Object.setPrototypeOf(_this, ArrayStoreException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, ArrayStoreException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -11980,6 +12943,8 @@ var test;
     (function (lang) {
         /**
          * Indicates failure to cast one type into another.
+         * @param {string} message
+         * @class
          * @extends java.lang.RuntimeException
          */
         var ClassCastException = (function (_super) {
@@ -11989,10 +12954,12 @@ var test;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
+                    Object.setPrototypeOf(_this, ClassCastException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, ClassCastException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -12015,20 +12982,24 @@ var test;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message, cause) || this;
+                    Object.setPrototypeOf(_this, IllegalAccessException.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var s = __args[0];
                     _this = _super.call(this, s) || this;
+                    Object.setPrototypeOf(_this, IllegalAccessException.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_8 = __args[0];
                     _this = _super.call(this, cause_8) || this;
+                    Object.setPrototypeOf(_this, IllegalAccessException.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, IllegalAccessException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -12048,6 +13019,9 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/IllegalArgumentException.html">the
          * official Java API doc</a> for details.
+         * @param {string} message
+         * @param {java.lang.Throwable} cause
+         * @class
          * @extends java.lang.RuntimeException
          */
         var IllegalArgumentException = (function (_super) {
@@ -12057,19 +13031,23 @@ var test;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message, cause) || this;
+                    Object.setPrototypeOf(_this, IllegalArgumentException.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
+                    Object.setPrototypeOf(_this, IllegalArgumentException.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_9 = __args[0];
                     _this = _super.call(this, cause_9) || this;
+                    Object.setPrototypeOf(_this, IllegalArgumentException.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, IllegalArgumentException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -12088,6 +13066,9 @@ var test;
         /**
          * Indicates that an objet was in an invalid state during an attempted
          * operation.
+         * @param {string} message
+         * @param {java.lang.Throwable} cause
+         * @class
          * @extends java.lang.RuntimeException
          */
         var IllegalStateException = (function (_super) {
@@ -12097,20 +13078,24 @@ var test;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message, cause) || this;
+                    Object.setPrototypeOf(_this, IllegalStateException.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var s = __args[0];
                     _this = _super.call(this, s) || this;
+                    Object.setPrototypeOf(_this, IllegalStateException.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_10 = __args[0];
                     _this = _super.call(this, cause_10) || this;
+                    Object.setPrototypeOf(_this, IllegalStateException.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, IllegalStateException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -12130,6 +13115,8 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/IndexOutOfBoundsException.html">the
          * official Java API doc</a> for details.
+         * @param {string} message
+         * @class
          * @extends java.lang.RuntimeException
          */
         var IndexOutOfBoundsException = (function (_super) {
@@ -12139,10 +13126,12 @@ var test;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
+                    Object.setPrototypeOf(_this, IndexOutOfBoundsException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, IndexOutOfBoundsException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -12162,6 +13151,8 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/NegativeArraySizeException.html">the
          * official Java API doc</a> for details.
+         * @param {string} message
+         * @class
          * @extends java.lang.RuntimeException
          */
         var NegativeArraySizeException = (function (_super) {
@@ -12171,10 +13162,12 @@ var test;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
+                    Object.setPrototypeOf(_this, NegativeArraySizeException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, NegativeArraySizeException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -12194,6 +13187,8 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/NullPointerException.html">the
          * official Java API doc</a> for details.
+         * @param {string} message
+         * @class
          * @extends java.lang.RuntimeException
          */
         var NullPointerException = (function (_super) {
@@ -12203,17 +13198,19 @@ var test;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
+                    Object.setPrototypeOf(_this, NullPointerException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, NullPointerException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
                 return _this;
             }
             NullPointerException.prototype.createError = function (msg) {
-                return new TypeError(msg);
+                return (new TypeError(msg));
             };
             return NullPointerException;
         }(java.lang.RuntimeException));
@@ -12229,6 +13226,9 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/UnsupportedOperationException.html">the
          * official Java API doc</a> for details.
+         * @param {string} message
+         * @param {java.lang.Throwable} cause
+         * @class
          * @extends java.lang.RuntimeException
          */
         var UnsupportedOperationException = (function (_super) {
@@ -12238,19 +13238,23 @@ var test;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message, cause) || this;
+                    Object.setPrototypeOf(_this, UnsupportedOperationException.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
+                    Object.setPrototypeOf(_this, UnsupportedOperationException.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     var cause_11 = __args[0];
                     _this = _super.call(this, cause_11) || this;
+                    Object.setPrototypeOf(_this, UnsupportedOperationException.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, UnsupportedOperationException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -12270,6 +13274,8 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/ConcurrentModificationException.html">the
          * official Java API doc</a> for details.
+         * @param {string} message
+         * @class
          * @extends java.lang.RuntimeException
          */
         var ConcurrentModificationException = (function (_super) {
@@ -12279,10 +13285,12 @@ var test;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
+                    Object.setPrototypeOf(_this, ConcurrentModificationException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, ConcurrentModificationException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -12302,12 +13310,15 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/EmptyStackException.html">the
          * official Java API doc</a> for details.
+         * @class
          * @extends java.lang.RuntimeException
          */
         var EmptyStackException = (function (_super) {
             __extends(EmptyStackException, _super);
             function EmptyStackException() {
-                return _super.call(this) || this;
+                var _this = _super.call(this) || this;
+                Object.setPrototypeOf(_this, EmptyStackException.prototype);
+                return _this;
             }
             return EmptyStackException;
         }(java.lang.RuntimeException));
@@ -12323,12 +13334,17 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/MissingResourceException.html">the
          * official Java API doc</a> for details.
+         * @param {string} s
+         * @param {string} className
+         * @param {string} key
+         * @class
          * @extends java.lang.RuntimeException
          */
         var MissingResourceException = (function (_super) {
             __extends(MissingResourceException, _super);
             function MissingResourceException(s, className, key) {
                 var _this = _super.call(this, s) || this;
+                Object.setPrototypeOf(_this, MissingResourceException.prototype);
                 _this.className = null;
                 _this.key = null;
                 _this.key = key;
@@ -12355,6 +13371,8 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/NoSuchElementException.html">the
          * official Java API doc</a> for details.
+         * @param {string} s
+         * @class
          * @extends java.lang.RuntimeException
          */
         var NoSuchElementException = (function (_super) {
@@ -12364,10 +13382,12 @@ var test;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, s) || this;
+                    Object.setPrototypeOf(_this, NoSuchElementException.prototype);
                 }
                 else if (s === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, NoSuchElementException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -12387,6 +13407,8 @@ var test;
          * A generic security exception type - <a
          * href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/DigestException.html">[Sun's
          * docs]</a>.
+         * @param {string} msg
+         * @class
          * @extends java.security.GeneralSecurityException
          */
         var DigestException = (function (_super) {
@@ -12396,10 +13418,12 @@ var test;
                 if (((typeof msg === 'string') || msg === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, msg) || this;
+                    Object.setPrototypeOf(_this, DigestException.prototype);
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, DigestException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -12419,6 +13443,8 @@ var test;
          * A generic security exception type - <a
          * href="http://java.sun.com/j2se/1.4.2/docs/api/java/security/NoSuchAlgorithmException.html">[Sun's
          * docs]</a>.
+         * @param {string} msg
+         * @class
          * @extends java.security.GeneralSecurityException
          */
         var NoSuchAlgorithmException = (function (_super) {
@@ -12428,10 +13454,12 @@ var test;
                 if (((typeof msg === 'string') || msg === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, msg) || this;
+                    Object.setPrototypeOf(_this, NoSuchAlgorithmException.prototype);
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, NoSuchAlgorithmException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -12451,6 +13479,7 @@ var test;
         (function (charset) {
             /**
              * Constant definitions for the standard Charsets.
+             * @class
              */
             var StandardCharsets = (function () {
                 function StandardCharsets() {
@@ -12478,6 +13507,7 @@ var test;
          *
          * @param <E> element type.
          * @extends java.util.AbstractList
+         * @class
          */
         var AbstractSequentialList = (function (_super) {
             __extends(AbstractSequentialList, _super);
@@ -12488,6 +13518,11 @@ var test;
                 var iter = this.listIterator$int(index);
                 iter.add(element);
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} element
+             */
             AbstractSequentialList.prototype.add = function (index, element) {
                 if (((typeof index === 'number') || index === null) && ((element != null) || element === null)) {
                     return this.add$int$java_lang_Object(index, element);
@@ -12511,6 +13546,12 @@ var test;
                 }
                 return modified;
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} c
+             * @return {boolean}
+             */
             AbstractSequentialList.prototype.addAll = function (index, c) {
                 if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     return this.addAll$int$java_util_Collection(index, c);
@@ -12521,6 +13562,11 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             AbstractSequentialList.prototype.get = function (index) {
                 var iter = this.listIterator$int(index);
                 try {
@@ -12531,10 +13577,19 @@ var test;
                 }
                 ;
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractSequentialList.prototype.iterator = function () {
                 return this.listIterator();
             };
             AbstractSequentialList.prototype.listIterator$int = function (index) { throw new Error('cannot invoke abstract overloaded method... check your argument(s) type(s)'); };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             AbstractSequentialList.prototype.listIterator = function (index) {
                 if (((typeof index === 'number') || index === null)) {
                     return this.listIterator$int(index);
@@ -12557,6 +13612,11 @@ var test;
                 }
                 ;
             };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             AbstractSequentialList.prototype.remove = function (index) {
                 if (((typeof index === 'number') || index === null)) {
                     return this.remove$int(index);
@@ -12567,6 +13627,12 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} element
+             * @return {*}
+             */
             AbstractSequentialList.prototype.set = function (index, element) {
                 var iter = this.listIterator$int(index);
                 try {
@@ -12606,6 +13672,8 @@ var test;
          * </p>
          *
          * @param <E> the element type.
+         * @param {*} c
+         * @class
          * @extends java.util.AbstractList
          */
         var ArrayList = (function (_super) {
@@ -12672,6 +13740,11 @@ var test;
                 javaemul.internal.InternalPreconditions.checkPositionIndex(index, this.array.length);
                 javaemul.internal.ArrayHelper.insertTo$java_lang_Object$int$java_lang_Object(this.array, index, o);
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} o
+             */
             ArrayList.prototype.add = function (index, o) {
                 if (((typeof index === 'number') || index === null) && ((o != null) || o === null)) {
                     return this.add$int$java_lang_Object(index, o);
@@ -12701,6 +13774,12 @@ var test;
                 javaemul.internal.ArrayHelper.insertTo$java_lang_Object$int$java_lang_Object(this.array, index, cArray);
                 return true;
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} c
+             * @return {boolean}
+             */
             ArrayList.prototype.addAll = function (index, c) {
                 if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     return this.addAll$int$java_util_Collection(index, c);
@@ -12711,17 +13790,30 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             */
             ArrayList.prototype.clear = function () {
                 this.array = new Array(0);
             };
             ArrayList.prototype.clone = function () {
                 return (new ArrayList(this));
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             ArrayList.prototype.contains = function (o) {
                 return (this.indexOf$java_lang_Object(o) !== -1);
             };
             ArrayList.prototype.ensureCapacity = function (ignored) {
             };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             ArrayList.prototype.get = function (index) {
                 javaemul.internal.InternalPreconditions.checkElementIndex(index, this.array.length);
                 return this.array[index];
@@ -12729,9 +13821,17 @@ var test;
             ArrayList.prototype.indexOf$java_lang_Object = function (o) {
                 return this.indexOf$java_lang_Object$int(o, 0);
             };
+            /**
+             *
+             * @return {*}
+             */
             ArrayList.prototype.iterator = function () {
                 return new ArrayList.ArrayList$0(this);
             };
+            /**
+             *
+             * @return {boolean}
+             */
             ArrayList.prototype.isEmpty = function () {
                 return this.array.length === 0;
             };
@@ -12743,6 +13843,11 @@ var test;
                 javaemul.internal.ArrayHelper.removeFrom(this.array, index, 1);
                 return previous;
             };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             ArrayList.prototype.remove = function (index) {
                 if (((typeof index === 'number') || index === null)) {
                     return this.remove$int(index);
@@ -12761,11 +13866,21 @@ var test;
                 this.remove$int(i);
                 return true;
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} o
+             * @return {*}
+             */
             ArrayList.prototype.set = function (index, o) {
                 var previous = this.get(index);
                 this.array[index] = o;
                 return previous;
             };
+            /**
+             *
+             * @return {number}
+             */
             ArrayList.prototype.size = function () {
                 return this.array.length;
             };
@@ -12780,11 +13895,17 @@ var test;
                 for (var i = 0; i < size; ++i) {
                     out[i] = (this.array[i]);
                 }
+                ;
                 if (out.length > size) {
                     out[size] = null;
                 }
                 return out;
             };
+            /**
+             *
+             * @param {Array} out
+             * @return {Array}
+             */
             ArrayList.prototype.toArray = function (out) {
                 if (((out != null && out instanceof Array && (out.length == 0 || out[0] == null || (out[0] != null))) || out === null)) {
                     return this.toArray$java_lang_Object_A(out);
@@ -12797,23 +13918,23 @@ var test;
             };
             ArrayList.prototype.trimToSize = function () {
             };
+            /**
+             *
+             * @param {number} fromIndex
+             * @param {number} endIndex
+             */
             ArrayList.prototype.removeRange = function (fromIndex, endIndex) {
                 javaemul.internal.InternalPreconditions.checkPositionIndexes(fromIndex, endIndex, this.array.length);
                 var count = endIndex - fromIndex;
                 javaemul.internal.ArrayHelper.removeFrom(this.array, fromIndex, count);
             };
-            /**
-             * Used by Vector.
-             * @param {*} o
-             * @param {number} index
-             * @return {number}
-             */
             ArrayList.prototype.indexOf$java_lang_Object$int = function (o, index) {
                 for (; index < this.array.length; ++index) {
                     if (java.util.Objects.equals(o, this.array[index])) {
                         return index;
                     }
                 }
+                ;
                 return -1;
             };
             /**
@@ -12832,18 +13953,13 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
-            /**
-             * Used by Vector.
-             * @param {*} o
-             * @param {number} index
-             * @return {number}
-             */
             ArrayList.prototype.lastIndexOf$java_lang_Object$int = function (o, index) {
                 for (; index >= 0; --index) {
                     if (java.util.Objects.equals(o, this.array[index])) {
                         return index;
                     }
                 }
+                ;
                 return -1;
             };
             /**
@@ -12885,14 +14001,25 @@ var test;
                     }
                     ;
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 ArrayList$0.prototype.hasNext = function () {
                     return this.i < this.__parent.array.length;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 ArrayList$0.prototype.next = function () {
                     javaemul.internal.InternalPreconditions.checkElement(this.hasNext());
                     this.last = this.i++;
                     return this.__parent.array[this.last];
                 };
+                /**
+                 *
+                 */
                 ArrayList$0.prototype.remove = function () {
                     javaemul.internal.InternalPreconditions.checkState(this.last !== -1);
                     this.__parent.remove$int(this.i = this.last);
@@ -12912,6 +14039,7 @@ var test;
          * Utility methods related to native arrays. <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Arrays.html">[Sun
          * docs]</a>
+         * @class
          */
         var Arrays = (function () {
             function Arrays() {
@@ -12923,16 +14051,6 @@ var test;
                 }
                 return (new Arrays.ArrayList(array));
             };
-            /**
-             * Perform a binary search on a sorted byte array.
-             *
-             * @param {Array} sortedArray byte array to search
-             * @param {number} key value to search for
-             * @return {number} the index of an element with a matching value, or a negative number
-             * which is the index of the next larger value (or just past the end
-             * of the array if the searched value is larger than all elements in
-             * the array) minus 1 (to ensure error returns are negative)
-             */
             Arrays.binarySearch$byte_A$byte = function (sortedArray, key) {
                 var low = 0;
                 var high = sortedArray.length - 1;
@@ -12952,16 +14070,6 @@ var test;
                 ;
                 return -low - 1;
             };
-            /**
-             * Perform a binary search on a sorted char array.
-             *
-             * @param {Array} a char array to search
-             * @param {string} key value to search for
-             * @return {number} the index of an element with a matching value, or a negative number
-             * which is the index of the next larger value (or just past the end
-             * of the array if the searched value is larger than all elements in
-             * the array) minus 1 (to ensure error returns are negative)
-             */
             Arrays.binarySearch$char_A$char = function (a, key) {
                 var low = 0;
                 var high = a.length - 1;
@@ -12981,16 +14089,6 @@ var test;
                 ;
                 return -low - 1;
             };
-            /**
-             * Perform a binary search on a sorted double array.
-             *
-             * @param {Array} sortedArray double array to search
-             * @param {number} key value to search for
-             * @return {number} the index of an element with a matching value, or a negative number
-             * which is the index of the next larger value (or just past the end
-             * of the array if the searched value is larger than all elements in
-             * the array) minus 1 (to ensure error returns are negative)
-             */
             Arrays.binarySearch$double_A$double = function (sortedArray, key) {
                 var low = 0;
                 var high = sortedArray.length - 1;
@@ -13010,21 +14108,6 @@ var test;
                 ;
                 return -low - 1;
             };
-            /**
-             * Perform a binary search on a sorted float array.
-             *
-             * Note that some underlying JavaScript interpreters do not actually implement
-             * floats (using double instead), so you may get slightly different behavior
-             * regarding values that are very close (or equal) since conversion errors
-             * to/from double may change the values slightly.
-             *
-             * @param {Array} sortedArray float array to search
-             * @param {number} key value to search for
-             * @return {number} the index of an element with a matching value, or a negative number
-             * which is the index of the next larger value (or just past the end
-             * of the array if the searched value is larger than all elements in
-             * the array) minus 1 (to ensure error returns are negative)
-             */
             Arrays.binarySearch$float_A$float = function (sortedArray, key) {
                 var low = 0;
                 var high = sortedArray.length - 1;
@@ -13044,16 +14127,6 @@ var test;
                 ;
                 return -low - 1;
             };
-            /**
-             * Perform a binary search on a sorted int array.
-             *
-             * @param {Array} sortedArray int array to search
-             * @param {number} key value to search for
-             * @return {number} the index of an element with a matching value, or a negative number
-             * which is the index of the next larger value (or just past the end
-             * of the array if the searched value is larger than all elements in
-             * the array) minus 1 (to ensure error returns are negative)
-             */
             Arrays.binarySearch$int_A$int = function (sortedArray, key) {
                 var low = 0;
                 var high = sortedArray.length - 1;
@@ -13073,22 +14146,6 @@ var test;
                 ;
                 return -low - 1;
             };
-            /**
-             * Perform a binary search on a sorted long array.
-             *
-             * Note that most underlying JavaScript interpreters do not actually implement
-             * longs, so the values must be stored in doubles instead. This means that
-             * certain legal values cannot be represented, and comparison of two unequal
-             * long values may result in unexpected results if they are not also
-             * representable as doubles.
-             *
-             * @param {Array} sortedArray long array to search
-             * @param {number} key value to search for
-             * @return {number} the index of an element with a matching value, or a negative number
-             * which is the index of the next larger value (or just past the end
-             * of the array if the searched value is larger than all elements in
-             * the array) minus 1 (to ensure error returns are negative)
-             */
             Arrays.binarySearch$long_A$long = function (sortedArray, key) {
                 var low = 0;
                 var high = sortedArray.length - 1;
@@ -13108,31 +14165,9 @@ var test;
                 ;
                 return -low - 1;
             };
-            /**
-             * Perform a binary search on a sorted object array, using natural ordering.
-             *
-             * @param {Array} sortedArray object array to search
-             * @param {*} key value to search for
-             * @return {number} the index of an element with a matching value, or a negative number
-             * which is the index of the next larger value (or just past the end
-             * of the array if the searched value is larger than all elements in
-             * the array) minus 1 (to ensure error returns are negative)
-             * @throws ClassCastException if <code>key</code> is not comparable to
-             * <code>sortedArray</code>'s elements.
-             */
             Arrays.binarySearch$java_lang_Object_A$java_lang_Object = function (sortedArray, key) {
                 return Arrays.binarySearch(sortedArray, key, java.util.Comparators.natural());
             };
-            /**
-             * Perform a binary search on a sorted short array.
-             *
-             * @param {Array} sortedArray short array to search
-             * @param {number} key value to search for
-             * @return {number} the index of an element with a matching value, or a negative number
-             * which is the index of the next larger value (or just past the end
-             * of the array if the searched value is larger than all elements in
-             * the array) minus 1 (to ensure error returns are negative)
-             */
             Arrays.binarySearch$short_A$short = function (sortedArray, key) {
                 var low = 0;
                 var high = sortedArray.length - 1;
@@ -13152,22 +14187,6 @@ var test;
                 ;
                 return -low - 1;
             };
-            /**
-             * Perform a binary search on a sorted object array, using a user-specified
-             * comparison function.
-             *
-             * @param {Array} sortedArray object array to search
-             * @param {*} key value to search for
-             * @param {java.util.Comparator} comparator comparision function, <code>null</code> indicates
-             * <i>natural ordering</i> should be used.
-             * @return {number} the index of an element with a matching value, or a negative number
-             * which is the index of the next larger value (or just past the end
-             * of the array if the searched value is larger than all elements in
-             * the array) minus 1 (to ensure error returns are negative)
-             * @throws ClassCastException if <code>key</code> and
-             * <code>sortedArray</code>'s elements cannot be compared by
-             * <code>comparator</code>.
-             */
             Arrays.binarySearch$java_lang_Object_A$java_lang_Object$java_util_Comparator = function (sortedArray, key, comparator) {
                 if (comparator == null) {
                     comparator = java.util.Comparators.natural();
@@ -13197,7 +14216,7 @@ var test;
              *
              * @param {Array} sortedArray object array to search
              * @param {*} key value to search for
-             * @param {java.util.Comparator} comparator comparision function, <code>null</code> indicates
+             * @param {*} comparator comparision function, <code>null</code> indicates
              * <i>natural ordering</i> should be used.
              * @return {number} the index of an element with a matching value, or a negative number
              * which is the index of the next larger value (or just past the end
@@ -13414,6 +14433,7 @@ var test;
                         return false;
                     }
                 }
+                ;
                 return true;
             };
             Arrays.deepHashCode = function (a) {
@@ -13524,6 +14544,7 @@ var test;
                         return false;
                     }
                 }
+                ;
                 return true;
             };
             Arrays.equals = function (array1, array2) {
@@ -13572,6 +14593,7 @@ var test;
                         return false;
                     }
                 }
+                ;
                 return true;
             };
             Arrays.equals$char_A$char_A = function (array1, array2) {
@@ -13589,6 +14611,7 @@ var test;
                         return false;
                     }
                 }
+                ;
                 return true;
             };
             Arrays.equals$double_A$double_A = function (array1, array2) {
@@ -13606,6 +14629,7 @@ var test;
                         return false;
                     }
                 }
+                ;
                 return true;
             };
             Arrays.equals$float_A$float_A = function (array1, array2) {
@@ -13623,6 +14647,7 @@ var test;
                         return false;
                     }
                 }
+                ;
                 return true;
             };
             Arrays.equals$int_A$int_A = function (array1, array2) {
@@ -13640,6 +14665,7 @@ var test;
                         return false;
                     }
                 }
+                ;
                 return true;
             };
             Arrays.equals$long_A$long_A = function (array1, array2) {
@@ -13657,6 +14683,7 @@ var test;
                         return false;
                     }
                 }
+                ;
                 return true;
             };
             Arrays.equals$java_lang_Object_A$java_lang_Object_A = function (array1, array2) {
@@ -13676,6 +14703,7 @@ var test;
                         return false;
                     }
                 }
+                ;
                 return true;
             };
             Arrays.equals$short_A$short_A = function (array1, array2) {
@@ -13693,6 +14721,7 @@ var test;
                         return false;
                     }
                 }
+                ;
                 return true;
             };
             Arrays.fill$boolean_A$boolean = function (a, val) {
@@ -13702,6 +14731,7 @@ var test;
                 for (var i = fromIndex; i < toIndex; ++i) {
                     a[i] = val;
                 }
+                ;
             };
             Arrays.fill = function (a, fromIndex, toIndex, val) {
                 if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (typeof a[0] === 'boolean'))) || a === null) && ((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null) && ((typeof val === 'boolean') || val === null)) {
@@ -13768,6 +14798,7 @@ var test;
                 for (var i = fromIndex; i < toIndex; ++i) {
                     a[i] = val;
                 }
+                ;
             };
             Arrays.fill$char_A$char = function (a, val) {
                 Arrays.fill$char_A$int$int$char(a, 0, a.length, val);
@@ -13776,6 +14807,7 @@ var test;
                 for (var i = fromIndex; i < toIndex; ++i) {
                     a[i] = val;
                 }
+                ;
             };
             Arrays.fill$double_A$double = function (a, val) {
                 Arrays.fill$double_A$int$int$double(a, 0, a.length, val);
@@ -13784,6 +14816,7 @@ var test;
                 for (var i = fromIndex; i < toIndex; ++i) {
                     a[i] = val;
                 }
+                ;
             };
             Arrays.fill$float_A$float = function (a, val) {
                 Arrays.fill$float_A$int$int$float(a, 0, a.length, val);
@@ -13792,6 +14825,7 @@ var test;
                 for (var i = fromIndex; i < toIndex; ++i) {
                     a[i] = val;
                 }
+                ;
             };
             Arrays.fill$int_A$int = function (a, val) {
                 Arrays.fill$int_A$int$int$int(a, 0, a.length, val);
@@ -13800,11 +14834,13 @@ var test;
                 for (var i = fromIndex; i < toIndex; ++i) {
                     a[i] = val;
                 }
+                ;
             };
             Arrays.fill$long_A$int$int$long = function (a, fromIndex, toIndex, val) {
                 for (var i = fromIndex; i < toIndex; ++i) {
                     a[i] = val;
                 }
+                ;
             };
             Arrays.fill$long_A$long = function (a, val) {
                 Arrays.fill$long_A$int$int$long(a, 0, a.length, val);
@@ -13813,6 +14849,7 @@ var test;
                 for (var i = fromIndex; i < toIndex; ++i) {
                     a[i] = val;
                 }
+                ;
             };
             Arrays.fill$java_lang_Object_A$java_lang_Object = function (a, val) {
                 Arrays.fill$java_lang_Object_A$int$int$java_lang_Object(a, 0, a.length, val);
@@ -13821,6 +14858,7 @@ var test;
                 for (var i = fromIndex; i < toIndex; ++i) {
                     a[i] = val;
                 }
+                ;
             };
             Arrays.fill$short_A$short = function (a, val) {
                 Arrays.fill$short_A$int$int$short(a, 0, a.length, val);
@@ -14248,13 +15286,6 @@ var test;
                 }
                 return joiner.toString();
             };
-            /**
-             * Recursive helper function for {@link Arrays#deepToString(Object[])}.
-             * @param {Array} a
-             * @param {java.util.Set} arraysIveSeen
-             * @return {string}
-             * @private
-             */
             Arrays.deepToString$java_lang_Object_A$java_util_Set = function (a, arraysIveSeen) {
                 if (a == null) {
                     return "null";
@@ -14314,7 +15345,7 @@ var test;
             /**
              * Recursive helper function for {@link Arrays#deepToString(Object[])}.
              * @param {Array} a
-             * @param {java.util.Set} arraysIveSeen
+             * @param {*} arraysIveSeen
              * @return {string}
              * @private
              */
@@ -14341,7 +15372,7 @@ var test;
              * @param {Array} array array to sort
              * @param {number} low lower bound of range to sort
              * @param {number} high upper bound of range to sort
-             * @param {java.util.Comparator} comp comparator to use
+             * @param {*} comp comparator to use
              * @private
              */
             Arrays.insertionSort = function (array, low, high, comp) {
@@ -14351,7 +15382,9 @@ var test;
                         array[j] = array[j - 1];
                         array[j - 1] = t;
                     }
+                    ;
                 }
+                ;
             };
             /**
              * Merge the two sorted subarrays (srcLow,srcMid] and (srcMid,srcHigh] into
@@ -14365,7 +15398,7 @@ var test;
              * @param {Array} dest destination array for merge
              * @param {number} destLow lower bound of destination
              * @param {number} destHigh upper bound of destination
-             * @param {java.util.Comparator} comp comparator to use
+             * @param {*} comp comparator to use
              * @private
              */
             Arrays.merge = function (src, srcLow, srcMid, srcHigh, dest, destLow, destHigh, comp) {
@@ -14380,16 +15413,6 @@ var test;
                 }
                 ;
             };
-            /**
-             * Performs a merge sort on the specified portion of an object array.
-             *
-             * Uses O(n) temporary space to perform the merge, but is stable.
-             * @param {Array} x
-             * @param {number} fromIndex
-             * @param {number} toIndex
-             * @param {java.util.Comparator} comp
-             * @private
-             */
             Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator = function (x, fromIndex, toIndex, comp) {
                 if (comp == null) {
                     comp = java.util.Comparators.natural();
@@ -14397,20 +15420,6 @@ var test;
                 var temp = Arrays.copyOfRange$java_lang_Object_A$int$int(x, fromIndex, toIndex);
                 Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(temp, x, fromIndex, toIndex, -fromIndex, comp);
             };
-            /**
-             * Recursive helper function for
-             * {@link Arrays#mergeSort(Object[], int, int, Comparator)}.
-             *
-             * @param {Array} temp temporary space, as large as the range of elements being
-             * sorted. On entry, temp should contain a copy of the sort range
-             * from array.
-             * @param {Array} array array to sort
-             * @param {number} low lower bound of range to sort
-             * @param {number} high upper bound of range to sort
-             * @param {number} ofs offset to convert an array index into a temp index
-             * @param {java.util.Comparator} comp comparison function
-             * @private
-             */
             Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator = function (temp, array, low, high, ofs, comp) {
                 var length = high - low;
                 if (length < 7) {
@@ -14442,7 +15451,7 @@ var test;
              * @param {number} low lower bound of range to sort
              * @param {number} high upper bound of range to sort
              * @param {number} ofs offset to convert an array index into a temp index
-             * @param {java.util.Comparator} comp comparison function
+             * @param {*} comp comparison function
              * @private
              */
             Arrays.mergeSort = function (temp, array, low, high, ofs, comp) {
@@ -14455,22 +15464,9 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
-            /**
-             * Sort an entire array of number primitives.
-             * @param {*} array
-             * @param {*} compareFunction
-             * @private
-             */
             Arrays.nativeLongSort$java_lang_Object$java_lang_Object = function (array, compareFunction) {
                 array.sort(compareFunction);
             };
-            /**
-             * Sort a subset of an array of number primitives.
-             * @param {*} array
-             * @param {number} fromIndex
-             * @param {number} toIndex
-             * @private
-             */
             Arrays.nativeLongSort$java_lang_Object$int$int = function (array, fromIndex, toIndex) {
                 var temp = javaemul.internal.ArrayHelper.unsafeClone(array, fromIndex, toIndex);
                 Arrays.nativeLongSort$java_lang_Object$java_lang_Object(temp, javaemul.internal.LongCompareHolder.getLongComparator());
@@ -14493,23 +15489,9 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
-            /**
-             * Sort an entire array of number primitives.
-             * @param {*} array
-             * @private
-             */
             Arrays.nativeNumberSort$java_lang_Object = function (array) {
-                array.sort(function (a, b) {
-                    return a - b;
-                });
+                array.sort(function (a, b) { return a - b; });
             };
-            /**
-             * Sort a subset of an array of number primitives.
-             * @param {*} array
-             * @param {number} fromIndex
-             * @param {number} toIndex
-             * @private
-             */
             Arrays.nativeNumberSort$java_lang_Object$int$int = function (array, fromIndex, toIndex) {
                 var temp = javaemul.internal.ArrayHelper.unsafeClone(array, fromIndex, toIndex);
                 Arrays.nativeNumberSort$java_lang_Object(temp);
@@ -14545,18 +15527,38 @@ var test;
                     _this.array = array;
                     return _this;
                 }
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
                 ArrayList.prototype.contains = function (o) {
                     return (this.indexOf$java_lang_Object(o) !== -1);
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @return {*}
+                 */
                 ArrayList.prototype.get = function (index) {
                     javaemul.internal.InternalPreconditions.checkElementIndex(index, this.size());
                     return this.array[index];
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @param {*} value
+                 * @return {*}
+                 */
                 ArrayList.prototype.set = function (index, value) {
                     var was = this.get(index);
                     this.array[index] = value;
                     return was;
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 ArrayList.prototype.size = function () {
                     return this.array.length;
                 };
@@ -14571,11 +15573,17 @@ var test;
                     for (var i = 0; i < size; ++i) {
                         out[i] = (this.array[i]);
                     }
+                    ;
                     if (out.length > size) {
                         out[size] = null;
                     }
                     return out;
                 };
+                /**
+                 *
+                 * @param {Array} out
+                 * @return {Array}
+                 */
                 ArrayList.prototype.toArray = function (out) {
                     if (((out != null && out instanceof Array && (out.length == 0 || out[0] == null || (out[0] != null))) || out === null)) {
                         return this.toArray$java_lang_Object_A(out);
@@ -14602,6 +15610,7 @@ var test;
          * @param {number} initialCapacity
          * @param {number} ignoredCapacityIncrement
          * @class
+         * @extends java.util.AbstractList
          */
         var Vector = (function (_super) {
             __extends(Vector, _super);
@@ -14679,6 +15688,11 @@ var test;
                 Vector.checkArrayElementIndex(index, this.size() + 1);
                 this.arrayList.add(index, o);
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} o
+             */
             Vector.prototype.add = function (index, o) {
                 if (((typeof index === 'number') || index === null) && ((o != null) || o === null)) {
                     return this.add$int$java_lang_Object(index, o);
@@ -14695,6 +15709,12 @@ var test;
             Vector.prototype.addAll$int$java_util_Collection = function (index, c) {
                 return this.arrayList.addAll$int$java_util_Collection(index, c);
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} c
+             * @return {boolean}
+             */
             Vector.prototype.addAll = function (index, c) {
                 if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     return this.addAll$int$java_util_Collection(index, c);
@@ -14711,15 +15731,28 @@ var test;
             Vector.prototype.capacity = function () {
                 return this.arrayList.size();
             };
+            /**
+             *
+             */
             Vector.prototype.clear = function () {
                 this.arrayList.clear();
             };
             Vector.prototype.clone = function () {
                 return (new Vector(this));
             };
+            /**
+             *
+             * @param {*} elem
+             * @return {boolean}
+             */
             Vector.prototype.contains = function (elem) {
                 return this.arrayList.contains(elem);
             };
+            /**
+             *
+             * @param {*} c
+             * @return {boolean}
+             */
             Vector.prototype.containsAll = function (c) {
                 return this.arrayList.containsAll(c);
             };
@@ -14744,6 +15777,11 @@ var test;
                 javaemul.internal.InternalPreconditions.checkElement(!this.isEmpty());
                 return this.get(0);
             };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             Vector.prototype.get = function (index) {
                 Vector.checkArrayElementIndex(index, this.size());
                 return this.arrayList.get(index);
@@ -14768,9 +15806,17 @@ var test;
             Vector.prototype.insertElementAt = function (o, index) {
                 this.add(index, o);
             };
+            /**
+             *
+             * @return {boolean}
+             */
             Vector.prototype.isEmpty = function () {
                 return (this.arrayList.size() === 0);
             };
+            /**
+             *
+             * @return {*}
+             */
             Vector.prototype.iterator = function () {
                 return this.arrayList.iterator();
             };
@@ -14799,6 +15845,11 @@ var test;
                 Vector.checkArrayElementIndex(index, this.size());
                 return this.arrayList.remove$int(index);
             };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             Vector.prototype.remove = function (index) {
                 if (((typeof index === 'number') || index === null)) {
                     return this.remove$int(index);
@@ -14809,6 +15860,11 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @param {*} c
+             * @return {boolean}
+             */
             Vector.prototype.removeAll = function (c) {
                 return this.arrayList.removeAll(c);
             };
@@ -14821,6 +15877,12 @@ var test;
             Vector.prototype.removeElementAt = function (index) {
                 this.remove$int(index);
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} elem
+             * @return {*}
+             */
             Vector.prototype.set = function (index, elem) {
                 Vector.checkArrayElementIndex(index, this.size());
                 return this.arrayList.set(index, elem);
@@ -14832,9 +15894,19 @@ var test;
                 Vector.checkArrayIndexOutOfBounds(size >= 0, size);
                 this.arrayList.setSize(size);
             };
+            /**
+             *
+             * @return {number}
+             */
             Vector.prototype.size = function () {
                 return this.arrayList.size();
             };
+            /**
+             *
+             * @param {number} fromIndex
+             * @param {number} toIndex
+             * @return {*}
+             */
             Vector.prototype.subList = function (fromIndex, toIndex) {
                 return this.arrayList.subList(fromIndex, toIndex);
             };
@@ -14844,6 +15916,11 @@ var test;
             Vector.prototype.toArray$java_lang_Object_A = function (a) {
                 return this.arrayList.toArray$java_lang_Object_A(a);
             };
+            /**
+             *
+             * @param {Array} a
+             * @return {Array}
+             */
             Vector.prototype.toArray = function (a) {
                 if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (a[0] != null))) || a === null)) {
                     return this.toArray$java_lang_Object_A(a);
@@ -14854,21 +15931,30 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @return {string}
+             */
             Vector.prototype.toString = function () {
                 return this.arrayList.toString();
             };
             Vector.prototype.trimToSize = function () {
                 this.arrayList.trimToSize();
             };
+            /**
+             *
+             * @param {number} fromIndex
+             * @param {number} endIndex
+             */
             Vector.prototype.removeRange = function (fromIndex, endIndex) {
                 this.arrayList.removeRange(fromIndex, endIndex);
             };
-            Vector.checkArrayElementIndex = function (index, size) {
+            /*private*/ Vector.checkArrayElementIndex = function (index, size) {
                 if (index < 0 || index >= size) {
                     throw new java.lang.ArrayIndexOutOfBoundsException();
                 }
             };
-            Vector.checkArrayIndexOutOfBounds = function (expression, index) {
+            /*private*/ Vector.checkArrayIndexOutOfBounds = function (expression, index) {
                 if (!expression) {
                     throw new java.lang.ArrayIndexOutOfBoundsException(/* valueOf */ new String(index).toString());
                 }
@@ -14889,6 +15975,9 @@ var test;
          * docs]</a>
          *
          * @param <E> element type.
+         * @param {number} initialCapacity
+         * @param {*} cmp
+         * @class
          * @extends java.util.AbstractQueue
          */
         var PriorityQueue = (function (_super) {
@@ -15031,18 +16120,24 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
-            PriorityQueue.getLeftChild = function (node) {
+            /*private*/ PriorityQueue.getLeftChild = function (node) {
                 return 2 * node + 1;
             };
-            PriorityQueue.getParent = function (node) {
+            /*private*/ PriorityQueue.getParent = function (node) {
                 return ((node - 1) / 2 | 0);
             };
-            PriorityQueue.getRightChild = function (node) {
+            /*private*/ PriorityQueue.getRightChild = function (node) {
                 return 2 * node + 2;
             };
-            PriorityQueue.isLeaf = function (node, size) {
+            /*private*/ PriorityQueue.isLeaf = function (node, size) {
                 return node * 2 + 1 >= size;
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} c
+             * @return {boolean}
+             */
             PriorityQueue.prototype.addAll = function (index, c) {
                 if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                     return this.addAll$java_util_Collection(index);
@@ -15057,24 +16152,50 @@ var test;
                 }
                 return false;
             };
+            /**
+             *
+             */
             PriorityQueue.prototype.clear = function () {
                 this.heap.clear();
             };
             PriorityQueue.prototype.comparator = function () {
                 return this.cmp === java.util.Comparators.natural() ? null : this.cmp;
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             PriorityQueue.prototype.contains = function (o) {
                 return this.heap.contains(o);
             };
+            /**
+             *
+             * @param {*} c
+             * @return {boolean}
+             */
             PriorityQueue.prototype.containsAll = function (c) {
                 return this.heap.containsAll(c);
             };
+            /**
+             *
+             * @return {boolean}
+             */
             PriorityQueue.prototype.isEmpty = function () {
                 return this.heap.isEmpty();
             };
+            /**
+             *
+             * @return {*}
+             */
             PriorityQueue.prototype.iterator = function () {
                 return java.util.Collections.unmodifiableList(this.heap).iterator();
             };
+            /**
+             *
+             * @param {*} e
+             * @return {boolean}
+             */
             PriorityQueue.prototype.offer = function (e) {
                 var node = this.heap.size();
                 this.heap.add(e);
@@ -15091,12 +16212,20 @@ var test;
                 this.heap.set(node, e);
                 return true;
             };
+            /**
+             *
+             * @return {*}
+             */
             PriorityQueue.prototype.peek = function () {
                 if (this.heap.size() === 0) {
                     return null;
                 }
                 return this.heap.get(0);
             };
+            /**
+             *
+             * @return {*}
+             */
             PriorityQueue.prototype.poll = function () {
                 if (this.heap.size() === 0) {
                     return null;
@@ -15105,6 +16234,11 @@ var test;
                 this.removeAtIndex(0);
                 return value;
             };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             PriorityQueue.prototype.remove = function (index) {
                 if (((index != null) || index === null)) {
                     return this.remove$java_lang_Object(index);
@@ -15123,6 +16257,11 @@ var test;
                 this.removeAtIndex(index);
                 return true;
             };
+            /**
+             *
+             * @param {*} c
+             * @return {boolean}
+             */
             PriorityQueue.prototype.removeAll = function (c) {
                 if (this.heap.removeAll(c)) {
                     this.makeHeap(0);
@@ -15130,6 +16269,11 @@ var test;
                 }
                 return false;
             };
+            /**
+             *
+             * @param {*} c
+             * @return {boolean}
+             */
             PriorityQueue.prototype.retainAll = function (c) {
                 if (this.heap.retainAll(c)) {
                     this.makeHeap(0);
@@ -15137,6 +16281,10 @@ var test;
                 }
                 return false;
             };
+            /**
+             *
+             * @return {number}
+             */
             PriorityQueue.prototype.size = function () {
                 return this.heap.size();
             };
@@ -15146,6 +16294,11 @@ var test;
             PriorityQueue.prototype.toArray$java_lang_Object_A = function (a) {
                 return this.heap.toArray$java_lang_Object_A(a);
             };
+            /**
+             *
+             * @param {Array} a
+             * @return {Array}
+             */
             PriorityQueue.prototype.toArray = function (a) {
                 if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (a[0] != null))) || a === null)) {
                     return this.toArray$java_lang_Object_A(a);
@@ -15156,6 +16309,10 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @return {string}
+             */
             PriorityQueue.prototype.toString = function () {
                 return this.heap.toString();
             };
@@ -15196,7 +16353,7 @@ var test;
                 ;
                 this.heap.set(node, value);
             };
-            PriorityQueue.prototype.getSmallestChild = function (node, heapSize) {
+            /*private*/ PriorityQueue.prototype.getSmallestChild = function (node, heapSize) {
                 var smallestChild;
                 var leftChild = PriorityQueue.getLeftChild(node);
                 var rightChild = leftChild + 1;
@@ -15206,10 +16363,10 @@ var test;
                 }
                 return smallestChild;
             };
-            PriorityQueue.prototype.isLeaf = function (node) {
+            /*private*/ PriorityQueue.prototype.isLeaf = function (node) {
                 return PriorityQueue.isLeaf(node, this.heap.size());
             };
-            PriorityQueue.prototype.removeAtIndex = function (index) {
+            /*private*/ PriorityQueue.prototype.removeAtIndex = function (index) {
                 var lastValue = this.heap.remove$int(this.heap.size() - 1);
                 if (index < this.heap.size()) {
                     this.heap.set(index, lastValue);
@@ -15235,16 +16392,30 @@ var test;
          * the key type.
          * @param <V>
          * the value type.
+         * @class
          */
         var AbstractMap = (function () {
             function AbstractMap() {
             }
+            /**
+             *
+             */
             AbstractMap.prototype.clear = function () {
                 this.entrySet().clear();
             };
+            /**
+             *
+             * @param {*} key
+             * @return {boolean}
+             */
             AbstractMap.prototype.containsKey = function (key) {
                 return this.implFindEntry(key, false) != null;
             };
+            /**
+             *
+             * @param {*} value
+             * @return {boolean}
+             */
             AbstractMap.prototype.containsValue = function (value) {
                 for (var index158 = this.entrySet().iterator(); index158.hasNext();) {
                     var entry = index158.next();
@@ -15269,6 +16440,11 @@ var test;
                 }
                 return true;
             };
+            /**
+             *
+             * @param {*} obj
+             * @return {boolean}
+             */
             AbstractMap.prototype.equals = function (obj) {
                 if (obj === this) {
                     return true;
@@ -15290,9 +16466,18 @@ var test;
                 }
                 return true;
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             AbstractMap.prototype.get = function (key) {
                 return (AbstractMap.getEntryValueOrNull(this.implFindEntry(key, false)));
             };
+            /**
+             *
+             * @return {number}
+             */
             AbstractMap.prototype.hashCode = function () {
                 return (function (o) { if (o.hashCode) {
                     return o.hashCode();
@@ -15301,12 +16486,26 @@ var test;
                     return o.toString();
                 } })(java.util.Collections);
             };
+            /**
+             *
+             * @return {boolean}
+             */
             AbstractMap.prototype.isEmpty = function () {
                 return this.size() === 0;
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractMap.prototype.keySet = function () {
                 return new AbstractMap.AbstractMap$0(this);
             };
+            /**
+             *
+             * @param {java.lang.Enum} key
+             * @param {*} value
+             * @return {*}
+             */
             AbstractMap.prototype.put = function (key, value) {
                 if (((key != null) || key === null) && ((value != null) || value === null)) {
                     return this.put$java_lang_Object$java_lang_Object(key, value);
@@ -15317,6 +16516,10 @@ var test;
             AbstractMap.prototype.put$java_lang_Object$java_lang_Object = function (key, value) {
                 throw new java.lang.UnsupportedOperationException("Put not supported on this map");
             };
+            /**
+             *
+             * @param {*} map
+             */
             AbstractMap.prototype.putAll = function (map) {
                 javaemul.internal.InternalPreconditions.checkNotNull(map);
                 for (var index160 = map.entrySet().iterator(); index160.hasNext();) {
@@ -15326,9 +16529,18 @@ var test;
                     }
                 }
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             AbstractMap.prototype.remove = function (key) {
                 return (AbstractMap.getEntryValueOrNull(this.implFindEntry(key, true)));
             };
+            /**
+             *
+             * @return {number}
+             */
             AbstractMap.prototype.size = function () {
                 return this.entrySet().size();
             };
@@ -15361,6 +16573,10 @@ var test;
             AbstractMap.prototype.toString$java_lang_Object = function (o) {
                 return o === this ? "(this Map)" : new String(o).toString();
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractMap.prototype.values = function () {
                 return new AbstractMap.AbstractMap$1(this);
             };
@@ -15382,6 +16598,7 @@ var test;
                         return entry;
                     }
                 }
+                ;
                 return null;
             };
             return AbstractMap;
@@ -15393,6 +16610,7 @@ var test;
             /**
              * Basic {@link Map.Entry} implementation used by {@link SimpleEntry} and
              * {@link SimpleImmutableEntry}.
+             * @class
              */
             var AbstractEntry = (function () {
                 function AbstractEntry(key, value) {
@@ -15401,17 +16619,35 @@ var test;
                     this.key = key;
                     this.value = value;
                 }
+                /**
+                 *
+                 * @return {*}
+                 */
                 AbstractEntry.prototype.getKey = function () {
                     return this.key;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 AbstractEntry.prototype.getValue = function () {
                     return this.value;
                 };
+                /**
+                 *
+                 * @param {*} value
+                 * @return {*}
+                 */
                 AbstractEntry.prototype.setValue = function (value) {
                     var oldValue = this.value;
                     this.value = value;
                     return oldValue;
                 };
+                /**
+                 *
+                 * @param {*} other
+                 * @return {boolean}
+                 */
                 AbstractEntry.prototype.equals = function (other) {
                     if (!(other != null && (other["__interfaces"] != null && other["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || other.constructor != null && other.constructor["__interfaces"] != null && other.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0))) {
                         return false;
@@ -15436,6 +16672,10 @@ var test;
                         return o.toString();
                     } })(java.util.Objects);
                 };
+                /**
+                 *
+                 * @return {string}
+                 */
                 AbstractEntry.prototype.toString = function () {
                     return this.key + "=" + this.value;
                 };
@@ -15447,6 +16687,9 @@ var test;
             /**
              * A mutable {@link Map.Entry} shared by several {@link Map}
              * implementations.
+             * @param {*} key
+             * @param {*} value
+             * @class
              * @extends java.util.AbstractMap.AbstractEntry
              */
             var SimpleEntry = (function (_super) {
@@ -15474,6 +16717,9 @@ var test;
             /**
              * An immutable {@link Map.Entry} shared by several {@link Map}
              * implementations.
+             * @param {*} key
+             * @param {*} value
+             * @class
              * @extends java.util.AbstractMap.AbstractEntry
              */
             var SimpleImmutableEntry = (function (_super) {
@@ -15493,6 +16739,11 @@ var test;
                         throw new Error('invalid overload');
                     return _this;
                 }
+                /**
+                 *
+                 * @param {*} value
+                 * @return {*}
+                 */
                 SimpleImmutableEntry.prototype.setValue = function (value) {
                     throw new java.lang.UnsupportedOperationException();
                 };
@@ -15508,23 +16759,51 @@ var test;
                     _this.__parent = __parent;
                     return _this;
                 }
+                /**
+                 *
+                 */
                 AbstractMap$0.prototype.clear = function () {
                     this.__parent.clear();
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {boolean}
+                 */
                 AbstractMap$0.prototype.contains = function (key) {
                     return this.__parent.containsKey(key);
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 AbstractMap$0.prototype.iterator = function () {
                     var outerIter = this.__parent.entrySet().iterator();
                     return new AbstractMap$0.AbstractMap$0$0(this, outerIter);
                 };
-                AbstractMap$0.prototype.remove = function (key) {
+                /**
+                 *
+                 * @param {number} index
+                 * @return {*}
+                 */
+                AbstractMap$0.prototype.remove = function (index) {
+                    if (((index != null) || index === null)) {
+                        return this.remove$java_lang_Object(index);
+                    }
+                    else
+                        throw new Error('invalid overload');
+                };
+                AbstractMap$0.prototype.remove$java_lang_Object = function (key) {
                     if (this.__parent.containsKey(key)) {
                         this.__parent.remove(key);
                         return true;
                     }
                     return false;
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 AbstractMap$0.prototype.size = function () {
                     return this.__parent.size();
                 };
@@ -15546,13 +16825,24 @@ var test;
                         }
                         ;
                     };
+                    /**
+                     *
+                     * @return {boolean}
+                     */
                     AbstractMap$0$0.prototype.hasNext = function () {
                         return this.outerIter.hasNext();
                     };
+                    /**
+                     *
+                     * @return {*}
+                     */
                     AbstractMap$0$0.prototype.next = function () {
                         var entry = this.outerIter.next();
                         return entry.getKey();
                     };
+                    /**
+                     *
+                     */
                     AbstractMap$0$0.prototype.remove = function () {
                         this.outerIter.remove();
                     };
@@ -15568,16 +16858,32 @@ var test;
                     _this.__parent = __parent;
                     return _this;
                 }
+                /**
+                 *
+                 */
                 AbstractMap$1.prototype.clear = function () {
                     this.__parent.clear();
                 };
+                /**
+                 *
+                 * @param {*} value
+                 * @return {boolean}
+                 */
                 AbstractMap$1.prototype.contains = function (value) {
                     return this.__parent.containsValue(value);
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 AbstractMap$1.prototype.iterator = function () {
                     var outerIter = this.__parent.entrySet().iterator();
                     return new AbstractMap$1.AbstractMap$1$0(this, outerIter);
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 AbstractMap$1.prototype.size = function () {
                     return this.__parent.size();
                 };
@@ -15599,13 +16905,24 @@ var test;
                         }
                         ;
                     };
+                    /**
+                     *
+                     * @return {boolean}
+                     */
                     AbstractMap$1$0.prototype.hasNext = function () {
                         return this.outerIter.hasNext();
                     };
+                    /**
+                     *
+                     * @return {*}
+                     */
                     AbstractMap$1$0.prototype.next = function () {
                         var entry = this.outerIter.next();
                         return entry.getValue();
                     };
+                    /**
+                     *
+                     */
                     AbstractMap$1$0.prototype.remove = function () {
                         this.outerIter.remove();
                     };
@@ -15621,7 +16938,12 @@ var test;
     var util;
     (function (util) {
         /**
-         * Single implementation only.
+         * A {@link java.util.Set} of {@link Enum}s. <a
+         * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/EnumSet.html">[Sun
+         * docs]</a>
+         *
+         * @param <E> enumeration type
+         * @extends java.util.AbstractSet
          * @class
          */
         var EnumSet = (function (_super) {
@@ -15644,6 +16966,7 @@ var test;
                         newSet[i] = all[i];
                     }
                 }
+                ;
                 return (new EnumSet.EnumSetImpl(all, newSet, all.length - s.__size));
             };
             EnumSet.copyOf$java_util_Collection = function (c) {
@@ -15699,8 +17022,9 @@ var test;
                     rest[_i - 1] = arguments[_i];
                 }
                 var set = EnumSet.of(first);
-                java.util.Collections.addAll(set, rest);
+                (_a = java.util.Collections).addAll.apply(_a, [set].concat(rest));
                 return set;
+                var _a;
             };
             EnumSet.of = function (first) {
                 var rest = [];
@@ -15725,6 +17049,7 @@ var test;
                 for (var i = start; i < end; ++i) {
                     set[i] = all[i];
                 }
+                ;
                 return (new EnumSet.EnumSetImpl(all, set, end - start));
             };
             return EnumSet;
@@ -15740,6 +17065,7 @@ var test;
              * @param {Array} set
              * @param {number} size
              * @class
+             * @extends java.util.EnumSet
              */
             var EnumSetImpl = (function (_super) {
                 __extends(EnumSetImpl, _super);
@@ -15753,6 +17079,11 @@ var test;
                     _this.__size = size;
                     return _this;
                 }
+                /**
+                 *
+                 * @param {number} index
+                 * @param {*} element
+                 */
                 EnumSetImpl.prototype.add = function (index, element) {
                     if (((index != null) || index === null) && element === undefined) {
                         return this.add$java_lang_Enum(index);
@@ -15773,19 +17104,37 @@ var test;
                     }
                     return false;
                 };
+                /**
+                 *
+                 * @return {java.util.EnumSet}
+                 */
                 EnumSetImpl.prototype.clone = function () {
                     var clonedSet = javaemul.internal.ArrayHelper.clone(this.set, 0, this.set.length);
                     return (new EnumSet.EnumSetImpl(this.all, clonedSet, this.__size));
                 };
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
                 EnumSetImpl.prototype.contains = function (o) {
                     return (o != null && o instanceof java.lang.Enum) && this.containsEnum(o);
                 };
                 EnumSetImpl.prototype.containsEnum = function (e) {
                     return e != null && this.set[e.ordinal()] === e;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 EnumSetImpl.prototype.iterator = function () {
                     return new EnumSetImpl.IteratorImpl(this);
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @return {*}
+                 */
                 EnumSetImpl.prototype.remove = function (index) {
                     if (((index != null) || index === null)) {
                         return this.remove$java_lang_Object(index);
@@ -15804,9 +17153,17 @@ var test;
                     }
                     return false;
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 EnumSetImpl.prototype.size = function () {
                     return this.__size;
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 EnumSetImpl.prototype.capacity = function () {
                     return this.all.length;
                 };
@@ -15831,15 +17188,26 @@ var test;
                         }
                         ;
                     };
+                    /**
+                     *
+                     * @return {boolean}
+                     */
                     IteratorImpl.prototype.hasNext = function () {
                         return this.i < this.__parent.capacity();
                     };
+                    /**
+                     *
+                     * @return {java.lang.Enum}
+                     */
                     IteratorImpl.prototype.next = function () {
                         javaemul.internal.InternalPreconditions.checkElement(this.hasNext());
                         this.last = this.i;
                         this.findNext();
                         return this.__parent.set[this.last];
                     };
+                    /**
+                     *
+                     */
                     IteratorImpl.prototype.remove = function () {
                         javaemul.internal.InternalPreconditions.checkState(this.last !== -1);
                         this.__parent.set[this.last] = null;
@@ -15853,6 +17221,7 @@ var test;
                                 return;
                             }
                         }
+                        ;
                     };
                     return IteratorImpl;
                 }());
@@ -15872,6 +17241,9 @@ var test;
          * docs]</a>
          *
          * @param <E> element type.
+         * @param {number} initialCapacity
+         * @param {number} loadFactor
+         * @class
          * @extends java.util.AbstractSet
          */
         var HashSet = (function (_super) {
@@ -15952,6 +17324,11 @@ var test;
                     _loop_9(index162);
                 }
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} element
+             */
             HashSet.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
                     return this.add$java_lang_Object(index);
@@ -15963,21 +17340,42 @@ var test;
                 var old = this.map.put(o, this);
                 return (old == null);
             };
+            /**
+             *
+             */
             HashSet.prototype.clear = function () {
                 this.map.clear();
             };
             HashSet.prototype.clone = function () {
                 return (new HashSet(this));
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             HashSet.prototype.contains = function (o) {
                 return this.map.containsKey(o);
             };
+            /**
+             *
+             * @return {boolean}
+             */
             HashSet.prototype.isEmpty = function () {
                 return this.map.isEmpty();
             };
+            /**
+             *
+             * @return {*}
+             */
             HashSet.prototype.iterator = function () {
                 return this.map.keySet().iterator();
             };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             HashSet.prototype.remove = function (index) {
                 if (((index != null) || index === null)) {
                     return this.remove$java_lang_Object(index);
@@ -15988,9 +17386,17 @@ var test;
             HashSet.prototype.remove$java_lang_Object = function (o) {
                 return (this.map.remove(o) != null);
             };
+            /**
+             *
+             * @return {number}
+             */
             HashSet.prototype.size = function () {
                 return this.map.size();
             };
+            /**
+             *
+             * @return {string}
+             */
             HashSet.prototype.toString = function () {
                 return this.map.keySet().toString();
             };
@@ -16010,6 +17416,8 @@ var test;
          * docs]</a>
          *
          * @param <E> element type.
+         * @param {*} c
+         * @class
          * @extends java.util.AbstractSet
          */
         var TreeSet = (function (_super) {
@@ -16092,6 +17500,11 @@ var test;
                     _loop_10(index163);
                 }
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} element
+             */
             TreeSet.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
                     return this.add$java_lang_Object(index);
@@ -16102,27 +17515,61 @@ var test;
             TreeSet.prototype.add$java_lang_Object = function (o) {
                 return this.map.put(o, javaemul.internal.BooleanHelper.FALSE) == null;
             };
+            /**
+             *
+             * @param {*} e
+             * @return {*}
+             */
             TreeSet.prototype.ceiling = function (e) {
                 return this.map.ceilingKey(e);
             };
+            /**
+             *
+             */
             TreeSet.prototype.clear = function () {
                 this.map.clear();
             };
+            /**
+             *
+             * @return {*}
+             */
             TreeSet.prototype.comparator = function () {
                 return this.map.comparator();
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             TreeSet.prototype.contains = function (o) {
                 return this.map.containsKey(o);
             };
+            /**
+             *
+             * @return {*}
+             */
             TreeSet.prototype.descendingIterator = function () {
                 return this.descendingSet().iterator();
             };
+            /**
+             *
+             * @return {*}
+             */
             TreeSet.prototype.descendingSet = function () {
                 return (new TreeSet(this.map.descendingMap()));
             };
+            /**
+             *
+             * @return {*}
+             */
             TreeSet.prototype.first = function () {
                 return this.map.firstKey();
             };
+            /**
+             *
+             * @param {*} e
+             * @return {*}
+             */
             TreeSet.prototype.floor = function (e) {
                 return this.map.floorKey(e);
             };
@@ -16132,6 +17579,12 @@ var test;
             TreeSet.prototype.headSet$java_lang_Object$boolean = function (toElement, inclusive) {
                 return (new TreeSet(this.map.headMap(toElement, inclusive)));
             };
+            /**
+             *
+             * @param {*} toElement
+             * @param {boolean} inclusive
+             * @return {*}
+             */
             TreeSet.prototype.headSet = function (toElement, inclusive) {
                 if (((toElement != null) || toElement === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
                     return this.headSet$java_lang_Object$boolean(toElement, inclusive);
@@ -16142,24 +17595,55 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @param {*} e
+             * @return {*}
+             */
             TreeSet.prototype.higher = function (e) {
                 return this.map.higherKey(e);
             };
+            /**
+             *
+             * @return {*}
+             */
             TreeSet.prototype.iterator = function () {
                 return this.map.keySet().iterator();
             };
+            /**
+             *
+             * @return {*}
+             */
             TreeSet.prototype.last = function () {
                 return this.map.lastKey();
             };
+            /**
+             *
+             * @param {*} e
+             * @return {*}
+             */
             TreeSet.prototype.lower = function (e) {
                 return this.map.lowerKey(e);
             };
+            /**
+             *
+             * @return {*}
+             */
             TreeSet.prototype.pollFirst = function () {
                 return (java.util.AbstractMap.getEntryKeyOrNull(this.map.pollFirstEntry()));
             };
+            /**
+             *
+             * @return {*}
+             */
             TreeSet.prototype.pollLast = function () {
                 return (java.util.AbstractMap.getEntryKeyOrNull(this.map.pollLastEntry()));
             };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             TreeSet.prototype.remove = function (index) {
                 if (((index != null) || index === null)) {
                     return this.remove$java_lang_Object(index);
@@ -16170,12 +17654,24 @@ var test;
             TreeSet.prototype.remove$java_lang_Object = function (o) {
                 return this.map.remove(o) != null;
             };
+            /**
+             *
+             * @return {number}
+             */
             TreeSet.prototype.size = function () {
                 return this.map.size();
             };
             TreeSet.prototype.subSet$java_lang_Object$boolean$java_lang_Object$boolean = function (fromElement, fromInclusive, toElement, toInclusive) {
                 return (new TreeSet(this.map.subMap(fromElement, fromInclusive, toElement, toInclusive)));
             };
+            /**
+             *
+             * @param {*} fromElement
+             * @param {boolean} fromInclusive
+             * @param {*} toElement
+             * @param {boolean} toInclusive
+             * @return {*}
+             */
             TreeSet.prototype.subSet = function (fromElement, fromInclusive, toElement, toInclusive) {
                 if (((fromElement != null) || fromElement === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null) && ((toElement != null) || toElement === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
                     return this.subSet$java_lang_Object$boolean$java_lang_Object$boolean(fromElement, fromInclusive, toElement, toInclusive);
@@ -16195,6 +17691,12 @@ var test;
             TreeSet.prototype.tailSet$java_lang_Object$boolean = function (fromElement, inclusive) {
                 return (new TreeSet(this.map.tailMap(fromElement, inclusive)));
             };
+            /**
+             *
+             * @param {*} fromElement
+             * @param {boolean} inclusive
+             * @return {*}
+             */
             TreeSet.prototype.tailSet = function (fromElement, inclusive) {
                 if (((fromElement != null) || fromElement === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
                     return this.tailSet$java_lang_Object$boolean(fromElement, inclusive);
@@ -16219,6 +17721,7 @@ var test;
          * General-purpose low-level utility methods. GWT only supports a limited subset
          * of these methods due to browser limitations. Only the documented methods are
          * available.
+         * @class
          */
         var System = (function () {
             function System() {
@@ -16251,11 +17754,6 @@ var test;
              */
             System.gc = function () {
             };
-            /**
-             * The compiler replaces getProperty by the actual value of the property.
-             * @param {string} key
-             * @return {string}
-             */
             System.getProperty$java_lang_String = function (key) {
                 switch ((key)) {
                     case "user.dir":
@@ -16286,12 +17784,6 @@ var test;
                         return null;
                 }
             };
-            /**
-             * The compiler replaces getProperty by the actual value of the property.
-             * @param {string} key
-             * @param {string} def
-             * @return {string}
-             */
             System.getProperty$java_lang_String$java_lang_String = function (key, def) {
                 var prop = System.getProperty$java_lang_String(key);
                 return prop == null ? def : prop;
@@ -16334,6 +17826,8 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/NumberFormatException.html">the
          * official Java API doc</a> for details.
+         * @param {string} message
+         * @class
          * @extends java.lang.IllegalArgumentException
          */
         var NumberFormatException = (function (_super) {
@@ -16343,10 +17837,12 @@ var test;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
+                    Object.setPrototypeOf(_this, NumberFormatException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, NumberFormatException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -16375,12 +17871,15 @@ var test;
         (function (charset) {
             /**
              * GWT emulation of {@link IllegalCharsetNameException}.
+             * @param {string} charsetName
+             * @class
              * @extends java.lang.IllegalArgumentException
              */
             var IllegalCharsetNameException = (function (_super) {
                 __extends(IllegalCharsetNameException, _super);
                 function IllegalCharsetNameException(charsetName) {
                     var _this = _super.call(this, /* valueOf */ new String(charsetName).toString()) || this;
+                    Object.setPrototypeOf(_this, IllegalCharsetNameException.prototype);
                     _this.charsetName = null;
                     _this.charsetName = charsetName;
                     return _this;
@@ -16403,12 +17902,15 @@ var test;
         (function (charset) {
             /**
              * GWT emulation of {@link UnsupportedCharsetException}.
+             * @param {string} charsetName
+             * @class
              * @extends java.lang.IllegalArgumentException
              */
             var UnsupportedCharsetException = (function (_super) {
                 __extends(UnsupportedCharsetException, _super);
                 function UnsupportedCharsetException(charsetName) {
                     var _this = _super.call(this, /* valueOf */ new String(charsetName).toString()) || this;
+                    Object.setPrototypeOf(_this, UnsupportedCharsetException.prototype);
                     _this.charsetName = null;
                     _this.charsetName = charsetName;
                     return _this;
@@ -16434,6 +17936,8 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/ArrayIndexOutOfBoundsException.html">the
          * official Java API doc</a> for details.
+         * @param {number} index
+         * @class
          * @extends java.lang.IndexOutOfBoundsException
          */
         var ArrayIndexOutOfBoundsException = (function (_super) {
@@ -16443,15 +17947,18 @@ var test;
                 if (((typeof msg === 'string') || msg === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, msg) || this;
+                    Object.setPrototypeOf(_this, ArrayIndexOutOfBoundsException.prototype);
                 }
                 else if (((typeof msg === 'number') || msg === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var index = __args[0];
                     _this = _super.call(this, "Array index " + index + " out of range") || this;
+                    Object.setPrototypeOf(_this, ArrayIndexOutOfBoundsException.prototype);
                 }
                 else if (msg === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, ArrayIndexOutOfBoundsException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -16471,6 +17978,8 @@ var test;
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/StringIndexOfBoundsException.html">the
          * official Java API doc</a> for details.
+         * @param {string} message
+         * @class
          * @extends java.lang.IndexOutOfBoundsException
          */
         var StringIndexOutOfBoundsException = (function (_super) {
@@ -16480,15 +17989,18 @@ var test;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this, message) || this;
+                    Object.setPrototypeOf(_this, StringIndexOutOfBoundsException.prototype);
                 }
                 else if (((typeof message === 'number') || message === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     var index = __args[0];
                     _this = _super.call(this, "String index out of range: " + index) || this;
+                    Object.setPrototypeOf(_this, StringIndexOutOfBoundsException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     _this = _super.call(this) || this;
+                    Object.setPrototypeOf(_this, StringIndexOutOfBoundsException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -16511,6 +18023,8 @@ var test;
          *
          * @param <E>
          * element type.
+         * @param {*} c
+         * @class
          * @extends java.util.AbstractSequentialList
          */
         var LinkedList = (function (_super) {
@@ -16568,6 +18082,11 @@ var test;
                     _loop_11(index164);
                 }
             };
+            /**
+             *
+             * @param {number} index
+             * @param {*} element
+             */
             LinkedList.prototype.add = function (index, element) {
                 if (((typeof index === 'number') || index === null) && ((element != null) || element === null)) {
                     _super.prototype.add.call(this, index, element);
@@ -16582,12 +18101,23 @@ var test;
                 this.addLast(o);
                 return true;
             };
+            /**
+             *
+             * @param {*} o
+             */
             LinkedList.prototype.addFirst = function (o) {
                 this.addNode(o, this.header, this.header.next);
             };
+            /**
+             *
+             * @param {*} o
+             */
             LinkedList.prototype.addLast = function (o) {
                 this.addNode(o, this.tail.prev, this.tail);
             };
+            /**
+             *
+             */
             LinkedList.prototype.clear = function () {
                 this.reset();
             };
@@ -16600,16 +18130,32 @@ var test;
             LinkedList.prototype.clone = function () {
                 return (new LinkedList(this));
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedList.prototype.descendingIterator = function () {
                 return new LinkedList.DescendingIteratorImpl(this);
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedList.prototype.element = function () {
                 return this.getFirst();
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedList.prototype.getFirst = function () {
                 javaemul.internal.InternalPreconditions.checkElement(this.__size !== 0);
                 return this.header.next.value;
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedList.prototype.getLast = function () {
                 javaemul.internal.InternalPreconditions.checkElement(this.__size !== 0);
                 return this.tail.prev.value;
@@ -16622,15 +18168,22 @@ var test;
                     for (var i = this.__size; i > index; --i) {
                         node = node.prev;
                     }
+                    ;
                 }
                 else {
                     node = this.header.next;
                     for (var i = 0; i < index; ++i) {
                         node = node.next;
                     }
+                    ;
                 }
                 return new LinkedList.ListIteratorImpl2(this, index, node);
             };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             LinkedList.prototype.listIterator = function (index) {
                 if (((typeof index === 'number') || index === null)) {
                     return this.listIterator$int(index);
@@ -16641,41 +18194,93 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             LinkedList.prototype.offer = function (o) {
                 return this.offerLast(o);
             };
+            /**
+             *
+             * @param {*} e
+             * @return {boolean}
+             */
             LinkedList.prototype.offerFirst = function (e) {
                 this.addFirst(e);
                 return true;
             };
+            /**
+             *
+             * @param {*} e
+             * @return {boolean}
+             */
             LinkedList.prototype.offerLast = function (e) {
                 this.addLast(e);
                 return true;
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedList.prototype.peek = function () {
                 return this.peekFirst();
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedList.prototype.peekFirst = function () {
                 return this.__size === 0 ? null : this.getFirst();
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedList.prototype.peekLast = function () {
                 return this.__size === 0 ? null : this.getLast();
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedList.prototype.poll = function () {
                 return this.pollFirst();
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedList.prototype.pollFirst = function () {
                 return this.__size === 0 ? null : this.removeFirst();
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedList.prototype.pollLast = function () {
                 return this.__size === 0 ? null : this.removeLast();
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedList.prototype.pop = function () {
                 return this.removeFirst();
             };
+            /**
+             *
+             * @param {*} e
+             */
             LinkedList.prototype.push = function (e) {
                 this.addFirst(e);
             };
+            /**
+             *
+             * @param {number} index
+             * @return {*}
+             */
             LinkedList.prototype.remove = function (index) {
                 if (((typeof index === 'number') || index === null)) {
                     _super.prototype.remove.call(this, index);
@@ -16692,17 +18297,35 @@ var test;
             LinkedList.prototype.remove$ = function () {
                 return this.removeFirst();
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedList.prototype.removeFirst = function () {
                 javaemul.internal.InternalPreconditions.checkElement(this.__size !== 0);
                 return this.removeNode(this.header.next);
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             LinkedList.prototype.removeFirstOccurrence = function (o) {
                 return this.remove$java_lang_Object(o);
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedList.prototype.removeLast = function () {
                 javaemul.internal.InternalPreconditions.checkElement(this.__size !== 0);
                 return this.removeNode(this.tail.prev);
             };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
             LinkedList.prototype.removeLastOccurrence = function (o) {
                 for (var e = this.tail.prev; e !== this.header; e = e.prev) {
                     if (java.util.Objects.equals(e.value, o)) {
@@ -16710,8 +18333,13 @@ var test;
                         return true;
                     }
                 }
+                ;
                 return false;
             };
+            /**
+             *
+             * @return {number}
+             */
             LinkedList.prototype.size = function () {
                 return this.__size;
             };
@@ -16751,12 +18379,23 @@ var test;
                     }
                     ;
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 DescendingIteratorImpl.prototype.hasNext = function () {
                     return this.itr.hasPrevious();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 DescendingIteratorImpl.prototype.next = function () {
                     return this.itr.previous();
                 };
+                /**
+                 *
+                 */
                 DescendingIteratorImpl.prototype.remove = function () {
                     this.itr.remove();
                 };
@@ -16789,17 +18428,33 @@ var test;
                     }
                     ;
                 };
+                /**
+                 *
+                 * @param {*} o
+                 */
                 ListIteratorImpl2.prototype.add = function (o) {
                     this.__parent.addNode(o, this.currentNode.prev, this.currentNode);
                     ++this.currentIndex;
                     this.lastNode = null;
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 ListIteratorImpl2.prototype.hasNext = function () {
                     return this.currentNode !== this.__parent.tail;
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 ListIteratorImpl2.prototype.hasPrevious = function () {
                     return this.currentNode.prev !== this.__parent.header;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 ListIteratorImpl2.prototype.next = function () {
                     javaemul.internal.InternalPreconditions.checkElement(this.hasNext());
                     this.lastNode = this.currentNode;
@@ -16807,18 +18462,33 @@ var test;
                     ++this.currentIndex;
                     return this.lastNode.value;
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 ListIteratorImpl2.prototype.nextIndex = function () {
                     return this.currentIndex;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 ListIteratorImpl2.prototype.previous = function () {
                     javaemul.internal.InternalPreconditions.checkElement(this.hasPrevious());
                     this.lastNode = this.currentNode = this.currentNode.prev;
                     --this.currentIndex;
                     return this.lastNode.value;
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 ListIteratorImpl2.prototype.previousIndex = function () {
                     return this.currentIndex - 1;
                 };
+                /**
+                 *
+                 */
                 ListIteratorImpl2.prototype.remove = function () {
                     javaemul.internal.InternalPreconditions.checkState(this.lastNode != null);
                     var nextNode = this.lastNode.next;
@@ -16831,6 +18501,10 @@ var test;
                     }
                     this.lastNode = null;
                 };
+                /**
+                 *
+                 * @param {*} o
+                 */
                 ListIteratorImpl2.prototype.set = function (o) {
                     javaemul.internal.InternalPreconditions.checkState(this.lastNode != null);
                     this.lastNode.value = o;
@@ -16845,6 +18519,7 @@ var test;
              *
              * @param <E>
              * element type
+             * @class
              */
             var Node = (function () {
                 function Node() {
@@ -16868,6 +18543,7 @@ var test;
          * docs]</a>
          *
          * @param <E> element type.
+         * @class
          * @extends java.util.Vector
          */
         var Stack = (function (_super) {
@@ -16875,6 +18551,10 @@ var test;
             function Stack() {
                 return _super.call(this) || this;
             }
+            /**
+             *
+             * @return {*}
+             */
             Stack.prototype.clone = function () {
                 var s = (new Stack());
                 s.addAll$java_util_Collection(this);
@@ -16931,6 +18611,9 @@ var test;
          * key type
          * @param <V>
          * value type
+         * @param {number} ignored
+         * @param {number} alsoIgnored
+         * @class
          * @extends java.util.AbstractMap
          */
         var AbstractHashMap = (function (_super) {
@@ -16995,6 +18678,9 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
+            /**
+             *
+             */
             AbstractHashMap.prototype.clear = function () {
                 this.reset();
             };
@@ -17003,9 +18689,19 @@ var test;
                 this.stringMap = (new java.util.InternalStringMap(this));
                 java.util.ConcurrentModificationDetector.structureChanged(this);
             };
+            /**
+             *
+             * @param {*} key
+             * @return {boolean}
+             */
             AbstractHashMap.prototype.containsKey = function (key) {
                 return (typeof key === 'string') ? this.hasStringValue(javaemul.internal.JsUtils.unsafeCastToString(key)) : this.hasHashValue(key);
             };
+            /**
+             *
+             * @param {*} value
+             * @return {boolean}
+             */
             AbstractHashMap.prototype.containsValue = function (value) {
                 return this._containsValue(value, this.stringMap) || this._containsValue(value, this.hashCodeMap);
             };
@@ -17020,19 +18716,43 @@ var test;
                 }
                 return false;
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractHashMap.prototype.entrySet = function () {
                 return new AbstractHashMap.EntrySet(this);
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             AbstractHashMap.prototype.get = function (key) {
                 var v = (typeof key === 'string') ? this.getStringValue(javaemul.internal.JsUtils.unsafeCastToString(key)) : this.getHashValue(key);
                 return v === undefined ? null : v;
             };
+            /**
+             *
+             * @param {*} key
+             * @param {*} value
+             * @return {*}
+             */
             AbstractHashMap.prototype.put = function (key, value) {
                 return (typeof key === 'string') ? this.putStringValue(javaemul.internal.JsUtils.unsafeCastToString(key), value) : this.putHashValue(key, value);
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             AbstractHashMap.prototype.remove = function (key) {
                 return (typeof key === 'string') ? this.removeStringValue(javaemul.internal.JsUtils.unsafeCastToString(key)) : this.removeHashValue(key);
             };
+            /**
+             *
+             * @return {number}
+             */
             AbstractHashMap.prototype.size = function () {
                 return this.hashCodeMap.size() + this.stringMap.getSize();
             };
@@ -17137,18 +18857,35 @@ var test;
                     _this.__parent = __parent;
                     return _this;
                 }
+                /**
+                 *
+                 */
                 EntrySet.prototype.clear = function () {
                     this.__parent.clear();
                 };
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
                 EntrySet.prototype.contains = function (o) {
                     if (o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
                         return this.__parent.containsEntry(o);
                     }
                     return false;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 EntrySet.prototype.iterator = function () {
                     return new AbstractHashMap.EntrySetIterator(this.__parent);
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @return {*}
+                 */
                 EntrySet.prototype.remove = function (index) {
                     if (((index != null) || index === null)) {
                         return this.remove$java_lang_Object(index);
@@ -17164,6 +18901,10 @@ var test;
                     }
                     return false;
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 EntrySet.prototype.size = function () {
                     return this.__parent.size();
                 };
@@ -17174,6 +18915,7 @@ var test;
             EntrySet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
             /**
              * Iterator for <code>EntrySet</code>.
+             * @class
              */
             var EntrySetIterator = (function () {
                 function EntrySetIterator(__parent) {
@@ -17182,10 +18924,10 @@ var test;
                     this.current = null;
                     this.last = null;
                     this.__hasNext = false;
-                    this.stringMapEntries = this.__parent.stringMap.iterator();
+                    this.stringMapEntries = __parent.stringMap.iterator();
                     this.current = this.stringMapEntries;
                     this.__hasNext = this.computeHasNext();
-                    java.util.ConcurrentModificationDetector.recordLastKnownStructure(this.__parent, this);
+                    java.util.ConcurrentModificationDetector.recordLastKnownStructure(__parent, this);
                 }
                 EntrySetIterator.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
@@ -17195,6 +18937,10 @@ var test;
                     }
                     ;
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 EntrySetIterator.prototype.hasNext = function () {
                     return this.__hasNext;
                 };
@@ -17208,6 +18954,10 @@ var test;
                     this.current = this.__parent.hashCodeMap.iterator();
                     return this.current.hasNext();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 EntrySetIterator.prototype.next = function () {
                     java.util.ConcurrentModificationDetector.checkStructuralChange(this.__parent, this);
                     javaemul.internal.InternalPreconditions.checkElement(this.hasNext());
@@ -17216,6 +18966,9 @@ var test;
                     this.__hasNext = this.computeHasNext();
                     return rv;
                 };
+                /**
+                 *
+                 */
                 EntrySetIterator.prototype.remove = function () {
                     javaemul.internal.InternalPreconditions.checkState(this.last != null);
                     java.util.ConcurrentModificationDetector.checkStructuralChange(this.__parent, this);
@@ -17238,6 +18991,7 @@ var test;
         /**
          * Skeletal implementation of a NavigableMap.
          * @extends java.util.AbstractMap
+         * @class
          */
         var AbstractNavigableMap = (function (_super) {
             __extends(AbstractNavigableMap, _super);
@@ -17253,37 +19007,87 @@ var test;
                 }
                 return entry.getKey();
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.ceilingEntry = function (key) {
                 return AbstractNavigableMap.copyOf(this.getCeilingEntry(key));
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.ceilingKey = function (key) {
                 return (util.AbstractMap.getEntryKeyOrNull(this.getCeilingEntry(key)));
             };
+            /**
+             *
+             * @param {*} k
+             * @return {boolean}
+             */
             AbstractNavigableMap.prototype.containsKey = function (k) {
                 var key = k;
                 return this.getEntry(key) != null;
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.descendingKeySet = function () {
                 return this.descendingMap().navigableKeySet();
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.descendingMap = function () {
                 return new AbstractNavigableMap.DescendingMap(this);
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.entrySet = function () {
                 return new AbstractNavigableMap.EntrySet(this);
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.firstEntry = function () {
                 return AbstractNavigableMap.copyOf(this.getFirstEntry());
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.firstKey = function () {
                 return (AbstractNavigableMap.getKeyOrNSE(this.getFirstEntry()));
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.floorEntry = function (key) {
                 return AbstractNavigableMap.copyOf(this.getFloorEntry(key));
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.floorKey = function (key) {
                 return (util.AbstractMap.getEntryKeyOrNull(this.getFloorEntry(key)));
             };
+            /**
+             *
+             * @param {*} k
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.get = function (k) {
                 var key = k;
                 return (util.AbstractMap.getEntryValueOrNull(this.getEntry(key)));
@@ -17298,33 +19102,77 @@ var test;
             AbstractNavigableMap.prototype.headMap$java_lang_Object = function (toKey) {
                 return this.headMap(toKey, false);
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.higherEntry = function (key) {
                 return AbstractNavigableMap.copyOf(this.getHigherEntry(key));
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.higherKey = function (key) {
                 return (util.AbstractMap.getEntryKeyOrNull(this.getHigherEntry(key)));
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.keySet = function () {
                 return this.navigableKeySet();
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.lastEntry = function () {
                 return AbstractNavigableMap.copyOf(this.getLastEntry());
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.lastKey = function () {
                 return (AbstractNavigableMap.getKeyOrNSE(this.getLastEntry()));
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.lowerEntry = function (key) {
                 return AbstractNavigableMap.copyOf(this.getLowerEntry(key));
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.lowerKey = function (key) {
                 return (util.AbstractMap.getEntryKeyOrNull(this.getLowerEntry(key)));
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.navigableKeySet = function () {
                 return (new AbstractNavigableMap.NavigableKeySet(this));
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.pollFirstEntry = function () {
                 return this.pollEntry(this.getFirstEntry());
             };
+            /**
+             *
+             * @return {*}
+             */
             AbstractNavigableMap.prototype.pollLastEntry = function () {
                 return this.pollEntry(this.getLastEntry());
             };
@@ -17348,6 +19196,11 @@ var test;
             AbstractNavigableMap.prototype.tailMap$java_lang_Object = function (fromKey) {
                 return this.tailMap(fromKey, true);
             };
+            /**
+             *
+             * @param {*} entry
+             * @return {boolean}
+             */
             AbstractNavigableMap.prototype.containsEntry = function (entry) {
                 var key = entry.getKey();
                 var lookupEntry = this.getEntry(key);
@@ -17372,18 +19225,35 @@ var test;
                     _this.__parent = __parent;
                     return _this;
                 }
+                /**
+                 *
+                 */
                 DescendingMap.prototype.clear = function () {
                     this.ascendingMap().clear();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 DescendingMap.prototype.comparator = function () {
                     return java.util.Collections.reverseOrder$java_util_Comparator(this.ascendingMap().comparator());
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 DescendingMap.prototype.descendingMap = function () {
                     return this.ascendingMap();
                 };
                 DescendingMap.prototype.headMap$java_lang_Object$boolean = function (toKey, inclusive) {
                     return this.ascendingMap().tailMap(toKey, inclusive).descendingMap();
                 };
+                /**
+                 *
+                 * @param {*} toKey
+                 * @param {boolean} inclusive
+                 * @return {*}
+                 */
                 DescendingMap.prototype.headMap = function (toKey, inclusive) {
                     if (((toKey != null) || toKey === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
                         return this.headMap$java_lang_Object$boolean(toKey, inclusive);
@@ -17394,18 +19264,41 @@ var test;
                     else
                         throw new Error('invalid overload');
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @param {*} value
+                 * @return {*}
+                 */
                 DescendingMap.prototype.put = function (key, value) {
                     return this.ascendingMap().put(key, value);
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {*}
+                 */
                 DescendingMap.prototype.remove = function (key) {
                     return this.ascendingMap().remove(key);
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 DescendingMap.prototype.size = function () {
                     return this.ascendingMap().size();
                 };
                 DescendingMap.prototype.subMap$java_lang_Object$boolean$java_lang_Object$boolean = function (fromKey, fromInclusive, toKey, toInclusive) {
                     return this.ascendingMap().subMap(toKey, toInclusive, fromKey, fromInclusive).descendingMap();
                 };
+                /**
+                 *
+                 * @param {*} fromKey
+                 * @param {boolean} fromInclusive
+                 * @param {*} toKey
+                 * @param {boolean} toInclusive
+                 * @return {*}
+                 */
                 DescendingMap.prototype.subMap = function (fromKey, fromInclusive, toKey, toInclusive) {
                     if (((fromKey != null) || fromKey === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null) && ((toKey != null) || toKey === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
                         return this.subMap$java_lang_Object$boolean$java_lang_Object$boolean(fromKey, fromInclusive, toKey, toInclusive);
@@ -17419,6 +19312,12 @@ var test;
                 DescendingMap.prototype.tailMap$java_lang_Object$boolean = function (fromKey, inclusive) {
                     return this.ascendingMap().headMap(fromKey, inclusive).descendingMap();
                 };
+                /**
+                 *
+                 * @param {*} fromKey
+                 * @param {boolean} inclusive
+                 * @return {*}
+                 */
                 DescendingMap.prototype.tailMap = function (fromKey, inclusive) {
                     if (((fromKey != null) || fromKey === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
                         return this.tailMap$java_lang_Object$boolean(fromKey, inclusive);
@@ -17432,33 +19331,79 @@ var test;
                 DescendingMap.prototype.ascendingMap = function () {
                     return this.__parent;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 DescendingMap.prototype.descendingEntryIterator = function () {
                     return this.ascendingMap().entryIterator();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 DescendingMap.prototype.entryIterator = function () {
                     return this.ascendingMap().descendingEntryIterator();
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {*}
+                 */
                 DescendingMap.prototype.getEntry = function (key) {
                     return this.ascendingMap().getEntry(key);
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 DescendingMap.prototype.getFirstEntry = function () {
                     return this.ascendingMap().getLastEntry();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 DescendingMap.prototype.getLastEntry = function () {
                     return this.ascendingMap().getFirstEntry();
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {*}
+                 */
                 DescendingMap.prototype.getCeilingEntry = function (key) {
                     return this.ascendingMap().getFloorEntry(key);
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {*}
+                 */
                 DescendingMap.prototype.getFloorEntry = function (key) {
                     return this.ascendingMap().getCeilingEntry(key);
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {*}
+                 */
                 DescendingMap.prototype.getHigherEntry = function (key) {
                     return this.ascendingMap().getLowerEntry(key);
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {*}
+                 */
                 DescendingMap.prototype.getLowerEntry = function (key) {
                     return this.ascendingMap().getHigherEntry(key);
                 };
+                /**
+                 *
+                 * @param {*} entry
+                 * @return {boolean}
+                 */
                 DescendingMap.prototype.removeEntry = function (entry) {
                     return this.ascendingMap().removeEntry(entry);
                 };
@@ -17474,12 +19419,26 @@ var test;
                     _this.__parent = __parent;
                     return _this;
                 }
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
                 EntrySet.prototype.contains = function (o) {
                     return (o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) && this.__parent.containsEntry(o);
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 EntrySet.prototype.iterator = function () {
                     return this.__parent.entryIterator();
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @return {*}
+                 */
                 EntrySet.prototype.remove = function (index) {
                     if (((index != null) || index === null)) {
                         return this.remove$java_lang_Object(index);
@@ -17494,6 +19453,10 @@ var test;
                     }
                     return false;
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 EntrySet.prototype.size = function () {
                     return this.__parent.size();
                 };
@@ -17522,27 +19485,61 @@ var test;
                         _loop_12(index166);
                     }
                 };
+                /**
+                 *
+                 * @param {*} k
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.ceiling = function (k) {
                     return this.map.ceilingKey(k);
                 };
+                /**
+                 *
+                 */
                 NavigableKeySet.prototype.clear = function () {
                     this.map.clear();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.comparator = function () {
                     return this.map.comparator();
                 };
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
                 NavigableKeySet.prototype.contains = function (o) {
                     return this.map.containsKey(o);
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.descendingIterator = function () {
                     return this.descendingSet().iterator();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.descendingSet = function () {
                     return this.map.descendingMap().navigableKeySet();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.first = function () {
                     return this.map.firstKey();
                 };
+                /**
+                 *
+                 * @param {*} k
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.floor = function (k) {
                     return this.map.floorKey(k);
                 };
@@ -17552,6 +19549,12 @@ var test;
                 NavigableKeySet.prototype.headSet$java_lang_Object$boolean = function (toElement, inclusive) {
                     return this.map.headMap(toElement, inclusive).navigableKeySet();
                 };
+                /**
+                 *
+                 * @param {*} toElement
+                 * @param {boolean} inclusive
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.headSet = function (toElement, inclusive) {
                     if (((toElement != null) || toElement === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
                         return this.headSet$java_lang_Object$boolean(toElement, inclusive);
@@ -17562,25 +19565,56 @@ var test;
                     else
                         throw new Error('invalid overload');
                 };
+                /**
+                 *
+                 * @param {*} k
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.higher = function (k) {
                     return this.map.higherKey(k);
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.iterator = function () {
                     var entryIterator = this.map.entrySet().iterator();
                     return new NavigableKeySet.NavigableKeySet$0(this, entryIterator);
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.last = function () {
                     return this.map.lastKey();
                 };
+                /**
+                 *
+                 * @param {*} k
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.lower = function (k) {
                     return this.map.lowerKey(k);
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.pollFirst = function () {
                     return (util.AbstractMap.getEntryKeyOrNull(this.map.pollFirstEntry()));
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.pollLast = function () {
                     return (util.AbstractMap.getEntryKeyOrNull(this.map.pollLastEntry()));
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.remove = function (index) {
                     if (((index != null) || index === null)) {
                         return this.remove$java_lang_Object(index);
@@ -17595,12 +19629,24 @@ var test;
                     }
                     return false;
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 NavigableKeySet.prototype.size = function () {
                     return this.map.size();
                 };
                 NavigableKeySet.prototype.subSet$java_lang_Object$boolean$java_lang_Object$boolean = function (fromElement, fromInclusive, toElement, toInclusive) {
                     return this.map.subMap(fromElement, fromInclusive, toElement, toInclusive).navigableKeySet();
                 };
+                /**
+                 *
+                 * @param {*} fromElement
+                 * @param {boolean} fromInclusive
+                 * @param {*} toElement
+                 * @param {boolean} toInclusive
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.subSet = function (fromElement, fromInclusive, toElement, toInclusive) {
                     if (((fromElement != null) || fromElement === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null) && ((toElement != null) || toElement === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
                         return this.subSet$java_lang_Object$boolean$java_lang_Object$boolean(fromElement, fromInclusive, toElement, toInclusive);
@@ -17620,6 +19666,12 @@ var test;
                 NavigableKeySet.prototype.tailSet$java_lang_Object$boolean = function (fromElement, inclusive) {
                     return this.map.tailMap(fromElement, inclusive).navigableKeySet();
                 };
+                /**
+                 *
+                 * @param {*} fromElement
+                 * @param {boolean} inclusive
+                 * @return {*}
+                 */
                 NavigableKeySet.prototype.tailSet = function (fromElement, inclusive) {
                     if (((fromElement != null) || fromElement === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
                         return this.tailSet$java_lang_Object$boolean(fromElement, inclusive);
@@ -17649,13 +19701,24 @@ var test;
                         }
                         ;
                     };
+                    /**
+                     *
+                     * @return {boolean}
+                     */
                     NavigableKeySet$0.prototype.hasNext = function () {
                         return this.entryIterator.hasNext();
                     };
+                    /**
+                     *
+                     * @return {*}
+                     */
                     NavigableKeySet$0.prototype.next = function () {
                         var entry = this.entryIterator.next();
                         return entry.getKey();
                     };
+                    /**
+                     *
+                     */
                     NavigableKeySet$0.prototype.remove = function () {
                         this.entryIterator.remove();
                     };
@@ -17674,6 +19737,7 @@ var test;
          * Utility methods that operate on collections. <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collections.html">[Sun
          * docs]</a>
+         * @class
          */
         var Collections = (function () {
             function Collections() {
@@ -17696,7 +19760,7 @@ var test;
                 for (var index167 = 0; index167 < a.length; index167++) {
                     var e = a[index167];
                     {
-                        result = result || c.add(e);
+                        result = c.add(e) || result;
                     }
                 }
                 return result;
@@ -17704,49 +19768,9 @@ var test;
             Collections.asLifoQueue = function (deque) {
                 return (new Collections.LifoQueue(deque));
             };
-            /**
-             * Perform a binary search on a sorted List, using natural ordering.
-             *
-             * <p>
-             * Note: The GWT implementation differs from the JDK implementation in that it
-             * does not do an iterator-based binary search for Lists that do not implement
-             * RandomAccess.
-             * </p>
-             *
-             * @param {java.util.List} sortedList object array to search
-             * @param {*} key value to search for
-             * @return {number} the index of an element with a matching value, or a negative number
-             * which is the index of the next larger value (or just past the end
-             * of the array if the searched value is larger than all elements in
-             * the array) minus 1 (to ensure error returns are negative)
-             * @throws ClassCastException if <code>key</code> is not comparable to
-             * <code>sortedList</code>'s elements.
-             */
             Collections.binarySearch$java_util_List$java_lang_Object = function (sortedList, key) {
                 return Collections.binarySearch(sortedList, key, null);
             };
-            /**
-             * Perform a binary search on a sorted List, using a user-specified comparison
-             * function.
-             *
-             * <p>
-             * Note: The GWT implementation differs from the JDK implementation in that it
-             * does not do an iterator-based binary search for Lists that do not implement
-             * RandomAccess.
-             * </p>
-             *
-             * @param {java.util.List} sortedList List to search
-             * @param {*} key value to search for
-             * @param {java.util.Comparator} comparator comparision function, <code>null</code> indicates
-             * <i>natural ordering</i> should be used.
-             * @return {number} the index of an element with a matching value, or a negative number
-             * which is the index of the next larger value (or just past the end
-             * of the array if the searched value is larger than all elements in
-             * the array) minus 1 (to ensure error returns are negative)
-             * @throws ClassCastException if <code>key</code> and
-             * <code>sortedList</code>'s elements cannot be compared by
-             * <code>comparator</code>.
-             */
             Collections.binarySearch$java_util_List$java_lang_Object$java_util_Comparator = function (sortedList, key, comparator) {
                 if (comparator == null) {
                     comparator = java.util.Comparators.natural();
@@ -17780,9 +19804,9 @@ var test;
              * RandomAccess.
              * </p>
              *
-             * @param {java.util.List} sortedList List to search
+             * @param {*} sortedList List to search
              * @param {*} key value to search for
-             * @param {java.util.Comparator} comparator comparision function, <code>null</code> indicates
+             * @param {*} comparator comparision function, <code>null</code> indicates
              * <i>natural ordering</i> should be used.
              * @return {number} the index of an element with a matching value, or a negative number
              * which is the index of the next larger value (or just past the end
@@ -17856,6 +19880,7 @@ var test;
                     it.next();
                     it.set(obj);
                 }
+                ;
             };
             Collections.frequency = function (c, o) {
                 var count = 0;
@@ -17918,6 +19943,7 @@ var test;
                 for (var i = 0; i < n; ++i) {
                     list.add(o);
                 }
+                ;
                 return Collections.unmodifiableList(list);
             };
             Collections.replaceAll = function (list, oldVal, newVal) {
@@ -17929,6 +19955,7 @@ var test;
                         modified = true;
                     }
                 }
+                ;
                 return modified;
             };
             Collections.reverse = function (l) {
@@ -17936,6 +19963,7 @@ var test;
                     for (var iFront = 0, iBack = l.size() - 1; iFront < iBack; ++iFront, --iBack) {
                         Collections.swap(l, iFront, iBack);
                     }
+                    ;
                 }
                 else {
                     var head = l.listIterator();
@@ -17974,7 +20002,7 @@ var test;
              * e.g. for a given list with elements [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], calling rotate(list, 3) or
              * rotate(list, -7) would modify the list to look like this: [8, 9, 0, 1, 2, 3, 4, 5, 6, 7]
              *
-             * @param {java.util.List} lst the list whose elements are to be rotated.
+             * @param {*} lst the list whose elements are to be rotated.
              * @param {number} dist is the distance the list is rotated. This can be any valid integer. Negative values
              * rotate the list backwards.
              */
@@ -18004,6 +20032,7 @@ var test;
                             temp = list.get(beginIndex);
                         }
                     }
+                    ;
                 }
                 else {
                     var divideIndex = size - normdist;
@@ -18020,12 +20049,14 @@ var test;
                     for (var i = list.size() - 1; i >= 1; i--) {
                         Collections.swapImpl$java_util_List$int$int(list, i, rnd.nextInt$int(i + 1));
                     }
+                    ;
                 }
                 else {
                     var arr = list.toArray();
                     for (var i = arr.length - 1; i >= 1; i--) {
                         Collections.swapImpl$java_lang_Object_A$int$int(arr, i, rnd.nextInt$int(i + 1));
                     }
+                    ;
                     var it = list.listIterator();
                     for (var index171 = 0; index171 < arr.length; index171++) {
                         var e = arr[index171];
@@ -18088,11 +20119,6 @@ var test;
             Collections.unmodifiableSortedSet = function (set) {
                 return (new Collections.UnmodifiableSortedSet(set));
             };
-            /**
-             * Computes hash code without preserving elements order (e.g. HashSet).
-             * @param {java.lang.Iterable} collection
-             * @return {number}
-             */
             Collections.hashCode$java_lang_Iterable = function (collection) {
                 var hashCode = 0;
                 for (var index172 = collection.iterator(); index172.hasNext();) {
@@ -18109,11 +20135,6 @@ var test;
                 }
                 return hashCode;
             };
-            /**
-             * Computes hash code preserving collection order (e.g. ArrayList).
-             * @param {java.util.List} list
-             * @return {number}
-             */
             Collections.hashCode$java_util_List = function (list) {
                 var hashCode = 1;
                 for (var index173 = list.iterator(); index173.hasNext();) {
@@ -18132,7 +20153,7 @@ var test;
             };
             /**
              * Computes hash code preserving collection order (e.g. ArrayList).
-             * @param {java.util.List} list
+             * @param {*} list
              * @return {number}
              */
             Collections.hashCode = function (list) {
@@ -18149,7 +20170,7 @@ var test;
              * Replace contents of a list from an array.
              *
              * @param <T> element type
-             * @param {java.util.List} target list to replace contents from an array
+             * @param {*} target list to replace contents from an array
              * @param {Array} x an Object array which can contain only T instances
              * @private
              */
@@ -18158,6 +20179,7 @@ var test;
                 for (var i = 0; i < size; i++) {
                     target.set(i, x[i]);
                 }
+                ;
             };
             Collections.swapImpl$java_util_List$int$int = function (list, i, j) {
                 var t = list.get(i);
@@ -18192,18 +20214,39 @@ var test;
                     _this.deque = deque;
                     return _this;
                 }
+                /**
+                 *
+                 * @return {*}
+                 */
                 LifoQueue.prototype.iterator = function () {
                     return this.deque.iterator();
                 };
+                /**
+                 *
+                 * @param {*} e
+                 * @return {boolean}
+                 */
                 LifoQueue.prototype.offer = function (e) {
                     return this.deque.offerFirst(e);
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 LifoQueue.prototype.peek = function () {
                     return this.deque.peekFirst();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 LifoQueue.prototype.poll = function () {
                     return this.deque.pollFirst();
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 LifoQueue.prototype.size = function () {
                     return this.deque.size();
                 };
@@ -18217,16 +20260,35 @@ var test;
                 function EmptyList() {
                     return _super.call(this) || this;
                 }
+                /**
+                 *
+                 * @param {*} object
+                 * @return {boolean}
+                 */
                 EmptyList.prototype.contains = function (object) {
                     return false;
                 };
+                /**
+                 *
+                 * @param {number} location
+                 * @return {*}
+                 */
                 EmptyList.prototype.get = function (location) {
                     javaemul.internal.InternalPreconditions.checkElementIndex(location, 0);
                     return null;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 EmptyList.prototype.iterator = function () {
                     return Collections.emptyIterator();
                 };
+                /**
+                 *
+                 * @param {number} from
+                 * @return {*}
+                 */
                 EmptyList.prototype.listIterator = function (from) {
                     if (((typeof from === 'number') || from === null)) {
                         _super.prototype.listIterator.call(this, from);
@@ -18240,6 +20302,10 @@ var test;
                 EmptyList.prototype.listIterator$ = function () {
                     return Collections.emptyListIterator();
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 EmptyList.prototype.size = function () {
                     return 0;
                 };
@@ -18262,30 +20328,65 @@ var test;
                 EmptyListIterator.INSTANCE_$LI$ = function () { if (EmptyListIterator.INSTANCE == null)
                     EmptyListIterator.INSTANCE = new Collections.EmptyListIterator(); return EmptyListIterator.INSTANCE; };
                 ;
+                /**
+                 *
+                 * @param {*} o
+                 */
                 EmptyListIterator.prototype.add = function (o) {
                     throw new java.lang.UnsupportedOperationException();
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 EmptyListIterator.prototype.hasNext = function () {
                     return false;
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 EmptyListIterator.prototype.hasPrevious = function () {
                     return false;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 EmptyListIterator.prototype.next = function () {
                     throw new java.util.NoSuchElementException();
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 EmptyListIterator.prototype.nextIndex = function () {
                     return 0;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 EmptyListIterator.prototype.previous = function () {
                     throw new java.util.NoSuchElementException();
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 EmptyListIterator.prototype.previousIndex = function () {
                     return -1;
                 };
+                /**
+                 *
+                 */
                 EmptyListIterator.prototype.remove = function () {
                     throw new java.lang.IllegalStateException();
                 };
+                /**
+                 *
+                 * @param {*} o
+                 */
                 EmptyListIterator.prototype.set = function (o) {
                     throw new java.lang.IllegalStateException();
                 };
@@ -18299,12 +20400,25 @@ var test;
                 function EmptySet() {
                     return _super.call(this) || this;
                 }
+                /**
+                 *
+                 * @param {*} object
+                 * @return {boolean}
+                 */
                 EmptySet.prototype.contains = function (object) {
                     return false;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 EmptySet.prototype.iterator = function () {
                     return Collections.emptyIterator();
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 EmptySet.prototype.size = function () {
                     return 0;
                 };
@@ -18318,24 +20432,55 @@ var test;
                 function EmptyMap() {
                     return _super.call(this) || this;
                 }
+                /**
+                 *
+                 * @param {*} key
+                 * @return {boolean}
+                 */
                 EmptyMap.prototype.containsKey = function (key) {
                     return false;
                 };
+                /**
+                 *
+                 * @param {*} value
+                 * @return {boolean}
+                 */
                 EmptyMap.prototype.containsValue = function (value) {
                     return false;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 EmptyMap.prototype.entrySet = function () {
                     return java.util.Collections.EMPTY_SET_$LI$();
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {*}
+                 */
                 EmptyMap.prototype.get = function (key) {
                     return null;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 EmptyMap.prototype.keySet = function () {
                     return java.util.Collections.EMPTY_SET_$LI$();
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 EmptyMap.prototype.size = function () {
                     return 0;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 EmptyMap.prototype.values = function () {
                     return java.util.Collections.EMPTY_LIST_$LI$();
                 };
@@ -18350,15 +20495,21 @@ var test;
                 ReverseComparator.INSTANCE_$LI$ = function () { if (ReverseComparator.INSTANCE == null)
                     ReverseComparator.INSTANCE = new Collections.ReverseComparator(); return ReverseComparator.INSTANCE; };
                 ;
-                ReverseComparator.prototype.compare$java_lang_Comparable$java_lang_Comparable = function (o1, o2) {
-                    return o2.compareTo(o1);
-                };
+                /**
+                 *
+                 * @param {string} o1
+                 * @param {string} o2
+                 * @return {number}
+                 */
                 ReverseComparator.prototype.compare = function (o1, o2) {
                     if (((o1 != null && (o1["__interfaces"] != null && o1["__interfaces"].indexOf("java.lang.Comparable") >= 0 || o1.constructor != null && o1.constructor["__interfaces"] != null && o1.constructor["__interfaces"].indexOf("java.lang.Comparable") >= 0)) || o1 === null) && ((o2 != null && (o2["__interfaces"] != null && o2["__interfaces"].indexOf("java.lang.Comparable") >= 0 || o2.constructor != null && o2.constructor["__interfaces"] != null && o2.constructor["__interfaces"].indexOf("java.lang.Comparable") >= 0)) || o2 === null)) {
                         return this.compare$java_lang_Comparable$java_lang_Comparable(o1, o2);
                     }
                     else
                         throw new Error('invalid overload');
+                };
+                ReverseComparator.prototype.compare$java_lang_Comparable$java_lang_Comparable = function (o1, o2) {
+                    return o2.compareTo(o1);
                 };
                 return ReverseComparator;
             }());
@@ -18374,6 +20525,11 @@ var test;
                     _this.backingMap = map;
                     return _this;
                 }
+                /**
+                 *
+                 * @param {number} index
+                 * @param {*} element
+                 */
                 SetFromMap.prototype.add = function (index, element) {
                     if (((index != null) || index === null) && element === undefined) {
                         return this.add$java_lang_Object(index);
@@ -18384,12 +20540,25 @@ var test;
                 SetFromMap.prototype.add$java_lang_Object = function (e) {
                     return this.backingMap.put(e, javaemul.internal.BooleanHelper.TRUE) == null;
                 };
+                /**
+                 *
+                 */
                 SetFromMap.prototype.clear = function () {
                     this.backingMap.clear();
                 };
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
                 SetFromMap.prototype.contains = function (o) {
                     return this.backingMap.containsKey(o);
                 };
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
                 SetFromMap.prototype.equals = function (o) {
                     return o === this || (function (o1, o2) { if (o1 && o1.equals) {
                         return o1.equals(o2);
@@ -18398,6 +20567,10 @@ var test;
                         return o1 === o2;
                     } })(this.keySet(), o);
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 SetFromMap.prototype.hashCode = function () {
                     return (function (o) { if (o.hashCode) {
                         return o.hashCode();
@@ -18406,9 +20579,18 @@ var test;
                         return o.toString();
                     } })(this.keySet());
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 SetFromMap.prototype.iterator = function () {
                     return this.keySet().iterator();
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @return {*}
+                 */
                 SetFromMap.prototype.remove = function (index) {
                     if (((index != null) || index === null)) {
                         return this.remove$java_lang_Object(index);
@@ -18419,15 +20601,23 @@ var test;
                 SetFromMap.prototype.remove$java_lang_Object = function (o) {
                     return this.backingMap.remove(o) != null;
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 SetFromMap.prototype.size = function () {
                     return this.keySet().size();
                 };
+                /**
+                 *
+                 * @return {string}
+                 */
                 SetFromMap.prototype.toString = function () {
                     return this.keySet().toString();
                 };
                 /**
                  * Lazy initialize keySet to avoid NPE after deserialization.
-                 * @return {java.util.Set}
+                 * @return {*}
                  * @private
                  */
                 SetFromMap.prototype.keySet = function () {
@@ -18449,13 +20639,27 @@ var test;
                     _this.element = element;
                     return _this;
                 }
+                /**
+                 *
+                 * @param {*} item
+                 * @return {boolean}
+                 */
                 SingletonList.prototype.contains = function (item) {
                     return java.util.Objects.equals(this.element, item);
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @return {*}
+                 */
                 SingletonList.prototype.get = function (index) {
                     javaemul.internal.InternalPreconditions.checkElementIndex(index, 1);
                     return this.element;
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 SingletonList.prototype.size = function () {
                     return 1;
                 };
@@ -18501,18 +20705,39 @@ var test;
                 UnmodifiableCollection.prototype.addAll$java_util_Collection = function (c) {
                     throw new java.lang.UnsupportedOperationException();
                 };
+                /**
+                 *
+                 */
                 UnmodifiableCollection.prototype.clear = function () {
                     throw new java.lang.UnsupportedOperationException();
                 };
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
                 UnmodifiableCollection.prototype.contains = function (o) {
                     return this.coll.contains(o);
                 };
+                /**
+                 *
+                 * @param {*} c
+                 * @return {boolean}
+                 */
                 UnmodifiableCollection.prototype.containsAll = function (c) {
                     return this.coll.containsAll(c);
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 UnmodifiableCollection.prototype.isEmpty = function () {
                     return this.coll.isEmpty();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 UnmodifiableCollection.prototype.iterator = function () {
                     return (new Collections.UnmodifiableCollectionIterator(this.coll.iterator()));
                 };
@@ -18526,12 +20751,26 @@ var test;
                 UnmodifiableCollection.prototype.remove$java_lang_Object = function (o) {
                     throw new java.lang.UnsupportedOperationException();
                 };
+                /**
+                 *
+                 * @param {*} c
+                 * @return {boolean}
+                 */
                 UnmodifiableCollection.prototype.removeAll = function (c) {
                     throw new java.lang.UnsupportedOperationException();
                 };
+                /**
+                 *
+                 * @param {*} c
+                 * @return {boolean}
+                 */
                 UnmodifiableCollection.prototype.retainAll = function (c) {
                     throw new java.lang.UnsupportedOperationException();
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 UnmodifiableCollection.prototype.size = function () {
                     return this.coll.size();
                 };
@@ -18541,6 +20780,11 @@ var test;
                 UnmodifiableCollection.prototype.toArray$java_lang_Object_A = function (a) {
                     return this.coll['toArray$java_lang_Object_A'](a);
                 };
+                /**
+                 *
+                 * @param {Array} a
+                 * @return {Array}
+                 */
                 UnmodifiableCollection.prototype.toArray = function (a) {
                     if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (a[0] != null))) || a === null)) {
                         return this.toArray$java_lang_Object_A(a);
@@ -18551,6 +20795,10 @@ var test;
                     else
                         throw new Error('invalid overload');
                 };
+                /**
+                 *
+                 * @return {string}
+                 */
                 UnmodifiableCollection.prototype.toString = function () {
                     return this.coll.toString();
                 };
@@ -18559,6 +20807,54 @@ var test;
             Collections.UnmodifiableCollection = UnmodifiableCollection;
             UnmodifiableCollection["__class"] = "java.util.Collections.UnmodifiableCollection";
             UnmodifiableCollection["__interfaces"] = ["java.util.Collection", "java.lang.Iterable"];
+            var UnmodifiableCollectionIterator = (function () {
+                function UnmodifiableCollectionIterator(it) {
+                    this.it = null;
+                    this.it = it;
+                }
+                UnmodifiableCollectionIterator.prototype.forEachRemaining = function (consumer) {
+                    var _this = this;
+                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    while ((this.hasNext())) {
+                        (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
+                    }
+                    ;
+                };
+                /**
+                 *
+                 * @return {boolean}
+                 */
+                UnmodifiableCollectionIterator.prototype.hasNext = function () {
+                    return this.it.hasNext();
+                };
+                /**
+                 *
+                 * @return {*}
+                 */
+                UnmodifiableCollectionIterator.prototype.next = function () {
+                    return this.it.next();
+                };
+                /**
+                 *
+                 */
+                UnmodifiableCollectionIterator.prototype.remove = function () {
+                    throw new java.lang.UnsupportedOperationException();
+                };
+                return UnmodifiableCollectionIterator;
+            }());
+            Collections.UnmodifiableCollectionIterator = UnmodifiableCollectionIterator;
+            UnmodifiableCollectionIterator["__class"] = "java.util.Collections.UnmodifiableCollectionIterator";
+            UnmodifiableCollectionIterator["__interfaces"] = ["java.util.Iterator"];
+            var RandomHolder = (function () {
+                function RandomHolder() {
+                }
+                RandomHolder.rnd_$LI$ = function () { if (RandomHolder.rnd == null)
+                    RandomHolder.rnd = new java.util.Random(); return RandomHolder.rnd; };
+                ;
+                return RandomHolder;
+            }());
+            Collections.RandomHolder = RandomHolder;
+            RandomHolder["__class"] = "java.util.Collections.RandomHolder";
             var UnmodifiableList = (function (_super) {
                 __extends(UnmodifiableList, _super);
                 function UnmodifiableList(list) {
@@ -18582,6 +20878,11 @@ var test;
                 UnmodifiableList.prototype.add$int$java_lang_Object = function (index, element) {
                     throw new java.lang.UnsupportedOperationException();
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @param {*} element
+                 */
                 UnmodifiableList.prototype.add = function (index, element) {
                     if (((typeof index === 'number') || index === null) && ((element != null) || element === null)) {
                         return this.add$int$java_lang_Object(index, element);
@@ -18595,6 +20896,12 @@ var test;
                 UnmodifiableList.prototype.addAll$int$java_util_Collection = function (index, c) {
                     throw new java.lang.UnsupportedOperationException();
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @param {*} c
+                 * @return {boolean}
+                 */
                 UnmodifiableList.prototype.addAll = function (index, c) {
                     if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                         return this.addAll$int$java_util_Collection(index, c);
@@ -18605,6 +20912,11 @@ var test;
                     else
                         throw new Error('invalid overload');
                 };
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
                 UnmodifiableList.prototype.equals = function (o) {
                     return (function (o1, o2) { if (o1 && o1.equals) {
                         return o1.equals(o2);
@@ -18613,9 +20925,18 @@ var test;
                         return o1 === o2;
                     } })(this.list, o);
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @return {*}
+                 */
                 UnmodifiableList.prototype.get = function (index) {
                     return this.list.get(index);
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 UnmodifiableList.prototype.hashCode = function () {
                     return (function (o) { if (o.hashCode) {
                         return o.hashCode();
@@ -18634,6 +20955,10 @@ var test;
                 UnmodifiableList.prototype.indexOf$java_lang_Object = function (o) {
                     return this.list['indexOf$java_lang_Object'](o);
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 UnmodifiableList.prototype.isEmpty = function () {
                     return this.list.isEmpty();
                 };
@@ -18653,6 +20978,11 @@ var test;
                 UnmodifiableList.prototype.listIterator$int = function (from) {
                     return (new Collections.UnmodifiableListIterator(this.list['listIterator$int'](from)));
                 };
+                /**
+                 *
+                 * @param {number} from
+                 * @return {*}
+                 */
                 UnmodifiableList.prototype.listIterator = function (from) {
                     if (((typeof from === 'number') || from === null)) {
                         return this.listIterator$int(from);
@@ -18666,6 +20996,11 @@ var test;
                 UnmodifiableList.prototype.remove$int = function (index) {
                     throw new java.lang.UnsupportedOperationException();
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @return {*}
+                 */
                 UnmodifiableList.prototype.remove = function (index) {
                     if (((typeof index === 'number') || index === null)) {
                         return this.remove$int(index);
@@ -18676,9 +21011,21 @@ var test;
                     else
                         throw new Error('invalid overload');
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @param {*} element
+                 * @return {*}
+                 */
                 UnmodifiableList.prototype.set = function (index, element) {
                     throw new java.lang.UnsupportedOperationException();
                 };
+                /**
+                 *
+                 * @param {number} fromIndex
+                 * @param {number} toIndex
+                 * @return {*}
+                 */
                 UnmodifiableList.prototype.subList = function (fromIndex, toIndex) {
                     return (new Collections.UnmodifiableList(this.list.subList(fromIndex, toIndex)));
                 };
@@ -18687,16 +21034,6 @@ var test;
             Collections.UnmodifiableList = UnmodifiableList;
             UnmodifiableList["__class"] = "java.util.Collections.UnmodifiableList";
             UnmodifiableList["__interfaces"] = ["java.util.List", "java.util.Collection", "java.lang.Iterable"];
-            var UnmodifiableRandomAccessList = (function (_super) {
-                __extends(UnmodifiableRandomAccessList, _super);
-                function UnmodifiableRandomAccessList(list) {
-                    return _super.call(this, list) || this;
-                }
-                return UnmodifiableRandomAccessList;
-            }(Collections.UnmodifiableList));
-            Collections.UnmodifiableRandomAccessList = UnmodifiableRandomAccessList;
-            UnmodifiableRandomAccessList["__class"] = "java.util.Collections.UnmodifiableRandomAccessList";
-            UnmodifiableRandomAccessList["__interfaces"] = ["java.util.RandomAccess", "java.util.List", "java.util.Collection", "java.lang.Iterable"];
             var UnmodifiableSet = (function (_super) {
                 __extends(UnmodifiableSet, _super);
                 function UnmodifiableSet(set) {
@@ -18714,6 +21051,11 @@ var test;
                         _loop_15(index176);
                     }
                 };
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
                 UnmodifiableSet.prototype.equals = function (o) {
                     return (function (o1, o2) { if (o1 && o1.equals) {
                         return o1.equals(o2);
@@ -18722,6 +21064,10 @@ var test;
                         return o1 === o2;
                     } })(this.coll, o);
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 UnmodifiableSet.prototype.hashCode = function () {
                     return (function (o) { if (o.hashCode) {
                         return o.hashCode();
@@ -18735,6 +21081,79 @@ var test;
             Collections.UnmodifiableSet = UnmodifiableSet;
             UnmodifiableSet["__class"] = "java.util.Collections.UnmodifiableSet";
             UnmodifiableSet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
+            var UnmodifiableListIterator = (function (_super) {
+                __extends(UnmodifiableListIterator, _super);
+                function UnmodifiableListIterator(lit) {
+                    var _this = _super.call(this, lit) || this;
+                    _this.lit = null;
+                    _this.lit = lit;
+                    return _this;
+                }
+                UnmodifiableListIterator.prototype.forEachRemaining = function (consumer) {
+                    var _this = this;
+                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    while ((this.hasNext())) {
+                        (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
+                    }
+                    ;
+                };
+                /**
+                 *
+                 * @param {*} o
+                 */
+                UnmodifiableListIterator.prototype.add = function (o) {
+                    throw new java.lang.UnsupportedOperationException();
+                };
+                /**
+                 *
+                 * @return {boolean}
+                 */
+                UnmodifiableListIterator.prototype.hasPrevious = function () {
+                    return this.lit.hasPrevious();
+                };
+                /**
+                 *
+                 * @return {number}
+                 */
+                UnmodifiableListIterator.prototype.nextIndex = function () {
+                    return this.lit.nextIndex();
+                };
+                /**
+                 *
+                 * @return {*}
+                 */
+                UnmodifiableListIterator.prototype.previous = function () {
+                    return this.lit.previous();
+                };
+                /**
+                 *
+                 * @return {number}
+                 */
+                UnmodifiableListIterator.prototype.previousIndex = function () {
+                    return this.lit.previousIndex();
+                };
+                /**
+                 *
+                 * @param {*} o
+                 */
+                UnmodifiableListIterator.prototype.set = function (o) {
+                    throw new java.lang.UnsupportedOperationException();
+                };
+                return UnmodifiableListIterator;
+            }(Collections.UnmodifiableCollectionIterator));
+            Collections.UnmodifiableListIterator = UnmodifiableListIterator;
+            UnmodifiableListIterator["__class"] = "java.util.Collections.UnmodifiableListIterator";
+            UnmodifiableListIterator["__interfaces"] = ["java.util.Iterator", "java.util.ListIterator"];
+            var UnmodifiableRandomAccessList = (function (_super) {
+                __extends(UnmodifiableRandomAccessList, _super);
+                function UnmodifiableRandomAccessList(list) {
+                    return _super.call(this, list) || this;
+                }
+                return UnmodifiableRandomAccessList;
+            }(Collections.UnmodifiableList));
+            Collections.UnmodifiableRandomAccessList = UnmodifiableRandomAccessList;
+            UnmodifiableRandomAccessList["__class"] = "java.util.Collections.UnmodifiableRandomAccessList";
+            UnmodifiableRandomAccessList["__interfaces"] = ["java.util.RandomAccess", "java.util.List", "java.util.Collection", "java.lang.Iterable"];
             var UnmodifiableMap = (function () {
                 function UnmodifiableMap(map) {
                     this.__entrySet = null;
@@ -18743,21 +21162,43 @@ var test;
                     this.__values = null;
                     this.map = map;
                 }
+                /**
+                 *
+                 */
                 UnmodifiableMap.prototype.clear = function () {
                     throw new java.lang.UnsupportedOperationException();
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {boolean}
+                 */
                 UnmodifiableMap.prototype.containsKey = function (key) {
                     return this.map.containsKey(key);
                 };
+                /**
+                 *
+                 * @param {*} val
+                 * @return {boolean}
+                 */
                 UnmodifiableMap.prototype.containsValue = function (val) {
                     return this.map.containsValue(val);
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 UnmodifiableMap.prototype.entrySet = function () {
                     if (this.__entrySet == null) {
                         this.__entrySet = (new UnmodifiableMap.UnmodifiableEntrySet(this.map.entrySet()));
                     }
                     return this.__entrySet;
                 };
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
                 UnmodifiableMap.prototype.equals = function (o) {
                     return (function (o1, o2) { if (o1 && o1.equals) {
                         return o1.equals(o2);
@@ -18766,9 +21207,18 @@ var test;
                         return o1 === o2;
                     } })(this.map, o);
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {*}
+                 */
                 UnmodifiableMap.prototype.get = function (key) {
                     return this.map.get(key);
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 UnmodifiableMap.prototype.hashCode = function () {
                     return (function (o) { if (o.hashCode) {
                         return o.hashCode();
@@ -18777,30 +21227,65 @@ var test;
                         return o.toString();
                     } })(this.map);
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 UnmodifiableMap.prototype.isEmpty = function () {
                     return this.map.isEmpty();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 UnmodifiableMap.prototype.keySet = function () {
                     if (this.__keySet == null) {
                         this.__keySet = (new Collections.UnmodifiableSet(this.map.keySet()));
                     }
                     return this.__keySet;
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @param {*} value
+                 * @return {*}
+                 */
                 UnmodifiableMap.prototype.put = function (key, value) {
                     throw new java.lang.UnsupportedOperationException();
                 };
+                /**
+                 *
+                 * @param {*} t
+                 */
                 UnmodifiableMap.prototype.putAll = function (t) {
                     throw new java.lang.UnsupportedOperationException();
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {*}
+                 */
                 UnmodifiableMap.prototype.remove = function (key) {
                     throw new java.lang.UnsupportedOperationException();
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 UnmodifiableMap.prototype.size = function () {
                     return this.map.size();
                 };
+                /**
+                 *
+                 * @return {string}
+                 */
                 UnmodifiableMap.prototype.toString = function () {
                     return this.map.toString();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 UnmodifiableMap.prototype.values = function () {
                     if (this.__values == null) {
                         this.__values = (new Collections.UnmodifiableCollection(this.map.values()));
@@ -18818,12 +21303,26 @@ var test;
                     function UnmodifiableEntrySet(s) {
                         return _super.call(this, s) || this;
                     }
+                    /**
+                     *
+                     * @param {*} o
+                     * @return {boolean}
+                     */
                     UnmodifiableEntrySet.prototype.contains = function (o) {
                         return this.coll.contains(o);
                     };
+                    /**
+                     *
+                     * @param {*} o
+                     * @return {boolean}
+                     */
                     UnmodifiableEntrySet.prototype.containsAll = function (o) {
                         return this.coll.containsAll(o);
                     };
+                    /**
+                     *
+                     * @return {*}
+                     */
                     UnmodifiableEntrySet.prototype.iterator = function () {
                         var it = this.coll.iterator();
                         return new UnmodifiableEntrySet.UnmodifiableEntrySet$0(this, it);
@@ -18838,6 +21337,11 @@ var test;
                         this.wrap(result, this.coll.size());
                         return result;
                     };
+                    /**
+                     *
+                     * @param {Array} a
+                     * @return {Array}
+                     */
                     UnmodifiableEntrySet.prototype.toArray = function (a) {
                         if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (a[0] != null))) || a === null)) {
                             return this.toArray$java_lang_Object_A(a);
@@ -18859,6 +21363,7 @@ var test;
                         for (var i = 0; i < size; ++i) {
                             array[i] = (new UnmodifiableEntrySet.UnmodifiableEntry(array[i]));
                         }
+                        ;
                     };
                     return UnmodifiableEntrySet;
                 }(Collections.UnmodifiableSet));
@@ -18871,6 +21376,11 @@ var test;
                             this.entry = null;
                             this.entry = entry;
                         }
+                        /**
+                         *
+                         * @param {*} o
+                         * @return {boolean}
+                         */
                         UnmodifiableEntry.prototype.equals = function (o) {
                             return (function (o1, o2) { if (o1 && o1.equals) {
                                 return o1.equals(o2);
@@ -18879,12 +21389,24 @@ var test;
                                 return o1 === o2;
                             } })(this.entry, o);
                         };
+                        /**
+                         *
+                         * @return {*}
+                         */
                         UnmodifiableEntry.prototype.getKey = function () {
                             return this.entry.getKey();
                         };
+                        /**
+                         *
+                         * @return {*}
+                         */
                         UnmodifiableEntry.prototype.getValue = function () {
                             return this.entry.getValue();
                         };
+                        /**
+                         *
+                         * @return {number}
+                         */
                         UnmodifiableEntry.prototype.hashCode = function () {
                             return (function (o) { if (o.hashCode) {
                                 return o.hashCode();
@@ -18893,9 +21415,18 @@ var test;
                                 return o.toString();
                             } })(this.entry);
                         };
+                        /**
+                         *
+                         * @param {*} value
+                         * @return {*}
+                         */
                         UnmodifiableEntry.prototype.setValue = function (value) {
                             throw new java.lang.UnsupportedOperationException();
                         };
+                        /**
+                         *
+                         * @return {string}
+                         */
                         UnmodifiableEntry.prototype.toString = function () {
                             return this.entry.toString();
                         };
@@ -18917,12 +21448,23 @@ var test;
                             }
                             ;
                         };
+                        /**
+                         *
+                         * @return {boolean}
+                         */
                         UnmodifiableEntrySet$0.prototype.hasNext = function () {
                             return this.it.hasNext();
                         };
+                        /**
+                         *
+                         * @return {*}
+                         */
                         UnmodifiableEntrySet$0.prototype.next = function () {
                             return (new UnmodifiableEntrySet.UnmodifiableEntry(this.it.next()));
                         };
+                        /**
+                         *
+                         */
                         UnmodifiableEntrySet$0.prototype.remove = function () {
                             throw new java.lang.UnsupportedOperationException();
                         };
@@ -18932,74 +21474,6 @@ var test;
                     UnmodifiableEntrySet$0["__interfaces"] = ["java.util.Iterator"];
                 })(UnmodifiableEntrySet = UnmodifiableMap.UnmodifiableEntrySet || (UnmodifiableMap.UnmodifiableEntrySet = {}));
             })(UnmodifiableMap = Collections.UnmodifiableMap || (Collections.UnmodifiableMap = {}));
-            var UnmodifiableSortedMap = (function (_super) {
-                __extends(UnmodifiableSortedMap, _super);
-                function UnmodifiableSortedMap(sortedMap) {
-                    var _this = _super.call(this, sortedMap) || this;
-                    _this.sortedMap = null;
-                    _this.sortedMap = sortedMap;
-                    return _this;
-                }
-                UnmodifiableSortedMap.prototype.comparator = function () {
-                    return this.sortedMap.comparator();
-                };
-                UnmodifiableSortedMap.prototype.equals = function (o) {
-                    return (function (o1, o2) { if (o1 && o1.equals) {
-                        return o1.equals(o2);
-                    }
-                    else {
-                        return o1 === o2;
-                    } })(this.sortedMap, o);
-                };
-                UnmodifiableSortedMap.prototype.firstKey = function () {
-                    return this.sortedMap.firstKey();
-                };
-                UnmodifiableSortedMap.prototype.hashCode = function () {
-                    return (function (o) { if (o.hashCode) {
-                        return o.hashCode();
-                    }
-                    else {
-                        return o.toString();
-                    } })(this.sortedMap);
-                };
-                UnmodifiableSortedMap.prototype.headMap = function (toKey, inclusive) {
-                    if (((toKey != null) || toKey === null) && inclusive === undefined) {
-                        return this.headMap$java_lang_Object(toKey);
-                    }
-                    else
-                        throw new Error('invalid overload');
-                };
-                UnmodifiableSortedMap.prototype.headMap$java_lang_Object = function (toKey) {
-                    return (new Collections.UnmodifiableSortedMap(this.sortedMap.headMap(toKey)));
-                };
-                UnmodifiableSortedMap.prototype.lastKey = function () {
-                    return this.sortedMap.lastKey();
-                };
-                UnmodifiableSortedMap.prototype.subMap = function (fromKey, fromInclusive, toKey, toInclusive) {
-                    if (((fromKey != null) || fromKey === null) && ((fromInclusive != null) || fromInclusive === null) && toKey === undefined && toInclusive === undefined) {
-                        return this.subMap$java_lang_Object$java_lang_Object(fromKey, fromInclusive);
-                    }
-                    else
-                        throw new Error('invalid overload');
-                };
-                UnmodifiableSortedMap.prototype.subMap$java_lang_Object$java_lang_Object = function (fromKey, toKey) {
-                    return (new Collections.UnmodifiableSortedMap(this.sortedMap.subMap(fromKey, toKey)));
-                };
-                UnmodifiableSortedMap.prototype.tailMap = function (fromKey, inclusive) {
-                    if (((fromKey != null) || fromKey === null) && inclusive === undefined) {
-                        return this.tailMap$java_lang_Object(fromKey);
-                    }
-                    else
-                        throw new Error('invalid overload');
-                };
-                UnmodifiableSortedMap.prototype.tailMap$java_lang_Object = function (fromKey) {
-                    return (new Collections.UnmodifiableSortedMap(this.sortedMap.tailMap(fromKey)));
-                };
-                return UnmodifiableSortedMap;
-            }(Collections.UnmodifiableMap));
-            Collections.UnmodifiableSortedMap = UnmodifiableSortedMap;
-            UnmodifiableSortedMap["__class"] = "java.util.Collections.UnmodifiableSortedMap";
-            UnmodifiableSortedMap["__interfaces"] = ["java.util.Map", "java.util.SortedMap"];
             var UnmodifiableSortedSet = (function (_super) {
                 __extends(UnmodifiableSortedSet, _super);
                 function UnmodifiableSortedSet(sortedSet) {
@@ -19020,9 +21494,18 @@ var test;
                         _loop_16(index177);
                     }
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 UnmodifiableSortedSet.prototype.comparator = function () {
                     return this.sortedSet.comparator();
                 };
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
                 UnmodifiableSortedSet.prototype.equals = function (o) {
                     return (function (o1, o2) { if (o1 && o1.equals) {
                         return o1.equals(o2);
@@ -19031,9 +21514,17 @@ var test;
                         return o1 === o2;
                     } })(this.sortedSet, o);
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 UnmodifiableSortedSet.prototype.first = function () {
                     return this.sortedSet.first();
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 UnmodifiableSortedSet.prototype.hashCode = function () {
                     return (function (o) { if (o.hashCode) {
                         return o.hashCode();
@@ -19052,6 +21543,10 @@ var test;
                 UnmodifiableSortedSet.prototype.headSet$java_lang_Object = function (toElement) {
                     return (new Collections.UnmodifiableSortedSet(this.sortedSet.headSet(toElement)));
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 UnmodifiableSortedSet.prototype.last = function () {
                     return this.sortedSet.last();
                 };
@@ -19080,89 +21575,110 @@ var test;
             Collections.UnmodifiableSortedSet = UnmodifiableSortedSet;
             UnmodifiableSortedSet["__class"] = "java.util.Collections.UnmodifiableSortedSet";
             UnmodifiableSortedSet["__interfaces"] = ["java.util.SortedSet", "java.util.Collection", "java.util.Set", "java.lang.Iterable"];
-            var UnmodifiableCollectionIterator = (function () {
-                function UnmodifiableCollectionIterator(it) {
-                    this.it = null;
-                    this.it = it;
-                }
-                UnmodifiableCollectionIterator.prototype.forEachRemaining = function (consumer) {
-                    var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
-                    while ((this.hasNext())) {
-                        (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
-                    }
-                    ;
-                };
-                UnmodifiableCollectionIterator.prototype.hasNext = function () {
-                    return this.it.hasNext();
-                };
-                UnmodifiableCollectionIterator.prototype.next = function () {
-                    return this.it.next();
-                };
-                UnmodifiableCollectionIterator.prototype.remove = function () {
-                    throw new java.lang.UnsupportedOperationException();
-                };
-                return UnmodifiableCollectionIterator;
-            }());
-            Collections.UnmodifiableCollectionIterator = UnmodifiableCollectionIterator;
-            UnmodifiableCollectionIterator["__class"] = "java.util.Collections.UnmodifiableCollectionIterator";
-            UnmodifiableCollectionIterator["__interfaces"] = ["java.util.Iterator"];
-            var UnmodifiableListIterator = (function (_super) {
-                __extends(UnmodifiableListIterator, _super);
-                function UnmodifiableListIterator(lit) {
-                    var _this = _super.call(this, lit) || this;
-                    _this.lit = null;
-                    _this.lit = lit;
+            var UnmodifiableSortedMap = (function (_super) {
+                __extends(UnmodifiableSortedMap, _super);
+                function UnmodifiableSortedMap(sortedMap) {
+                    var _this = _super.call(this, sortedMap) || this;
+                    _this.sortedMap = null;
+                    _this.sortedMap = sortedMap;
                     return _this;
                 }
-                UnmodifiableListIterator.prototype.forEachRemaining = function (consumer) {
-                    var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
-                    while ((this.hasNext())) {
-                        (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
+                /**
+                 *
+                 * @return {*}
+                 */
+                UnmodifiableSortedMap.prototype.comparator = function () {
+                    return this.sortedMap.comparator();
+                };
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
+                UnmodifiableSortedMap.prototype.equals = function (o) {
+                    return (function (o1, o2) { if (o1 && o1.equals) {
+                        return o1.equals(o2);
                     }
-                    ;
+                    else {
+                        return o1 === o2;
+                    } })(this.sortedMap, o);
                 };
-                UnmodifiableListIterator.prototype.add = function (o) {
-                    throw new java.lang.UnsupportedOperationException();
+                /**
+                 *
+                 * @return {*}
+                 */
+                UnmodifiableSortedMap.prototype.firstKey = function () {
+                    return this.sortedMap.firstKey();
                 };
-                UnmodifiableListIterator.prototype.hasPrevious = function () {
-                    return this.lit.hasPrevious();
+                /**
+                 *
+                 * @return {number}
+                 */
+                UnmodifiableSortedMap.prototype.hashCode = function () {
+                    return (function (o) { if (o.hashCode) {
+                        return o.hashCode();
+                    }
+                    else {
+                        return o.toString();
+                    } })(this.sortedMap);
                 };
-                UnmodifiableListIterator.prototype.nextIndex = function () {
-                    return this.lit.nextIndex();
+                UnmodifiableSortedMap.prototype.headMap = function (toKey, inclusive) {
+                    if (((toKey != null) || toKey === null) && inclusive === undefined) {
+                        return this.headMap$java_lang_Object(toKey);
+                    }
+                    else
+                        throw new Error('invalid overload');
                 };
-                UnmodifiableListIterator.prototype.previous = function () {
-                    return this.lit.previous();
+                UnmodifiableSortedMap.prototype.headMap$java_lang_Object = function (toKey) {
+                    return (new Collections.UnmodifiableSortedMap(this.sortedMap.headMap(toKey)));
                 };
-                UnmodifiableListIterator.prototype.previousIndex = function () {
-                    return this.lit.previousIndex();
+                /**
+                 *
+                 * @return {*}
+                 */
+                UnmodifiableSortedMap.prototype.lastKey = function () {
+                    return this.sortedMap.lastKey();
                 };
-                UnmodifiableListIterator.prototype.set = function (o) {
-                    throw new java.lang.UnsupportedOperationException();
+                UnmodifiableSortedMap.prototype.subMap = function (fromKey, fromInclusive, toKey, toInclusive) {
+                    if (((fromKey != null) || fromKey === null) && ((fromInclusive != null) || fromInclusive === null) && toKey === undefined && toInclusive === undefined) {
+                        return this.subMap$java_lang_Object$java_lang_Object(fromKey, fromInclusive);
+                    }
+                    else
+                        throw new Error('invalid overload');
                 };
-                return UnmodifiableListIterator;
-            }(Collections.UnmodifiableCollectionIterator));
-            Collections.UnmodifiableListIterator = UnmodifiableListIterator;
-            UnmodifiableListIterator["__class"] = "java.util.Collections.UnmodifiableListIterator";
-            UnmodifiableListIterator["__interfaces"] = ["java.util.Iterator", "java.util.ListIterator"];
-            var RandomHolder = (function () {
-                function RandomHolder() {
-                }
-                RandomHolder.rnd_$LI$ = function () { if (RandomHolder.rnd == null)
-                    RandomHolder.rnd = new java.util.Random(); return RandomHolder.rnd; };
-                ;
-                return RandomHolder;
-            }());
-            Collections.RandomHolder = RandomHolder;
-            RandomHolder["__class"] = "java.util.Collections.RandomHolder";
+                UnmodifiableSortedMap.prototype.subMap$java_lang_Object$java_lang_Object = function (fromKey, toKey) {
+                    return (new Collections.UnmodifiableSortedMap(this.sortedMap.subMap(fromKey, toKey)));
+                };
+                UnmodifiableSortedMap.prototype.tailMap = function (fromKey, inclusive) {
+                    if (((fromKey != null) || fromKey === null) && inclusive === undefined) {
+                        return this.tailMap$java_lang_Object(fromKey);
+                    }
+                    else
+                        throw new Error('invalid overload');
+                };
+                UnmodifiableSortedMap.prototype.tailMap$java_lang_Object = function (fromKey) {
+                    return (new Collections.UnmodifiableSortedMap(this.sortedMap.tailMap(fromKey)));
+                };
+                return UnmodifiableSortedMap;
+            }(Collections.UnmodifiableMap));
+            Collections.UnmodifiableSortedMap = UnmodifiableSortedMap;
+            UnmodifiableSortedMap["__class"] = "java.util.Collections.UnmodifiableSortedMap";
+            UnmodifiableSortedMap["__interfaces"] = ["java.util.Map", "java.util.SortedMap"];
             var Collections$0 = (function () {
                 function Collections$0(it) {
                     this.it = it;
                 }
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 Collections$0.prototype.hasMoreElements = function () {
                     return this.it.hasNext();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 Collections$0.prototype.nextElement = function () {
                     return this.it.next();
                 };
@@ -19174,7 +21690,20 @@ var test;
                 function Collections$1(cmp) {
                     this.cmp = cmp;
                 }
-                Collections$1.prototype.compare = function (t1, t2) {
+                /**
+                 *
+                 * @param {string} o1
+                 * @param {string} o2
+                 * @return {number}
+                 */
+                Collections$1.prototype.compare = function (o1, o2) {
+                    if (((o1 != null) || o1 === null) && ((o2 != null) || o2 === null)) {
+                        return this.compare$java_lang_Object$java_lang_Object(o1, o2);
+                    }
+                    else
+                        throw new Error('invalid overload');
+                };
+                Collections$1.prototype.compare$java_lang_Object$java_lang_Object = function (t1, t2) {
                     return this.cmp.compare(t2, t1);
                 };
                 return Collections$1;
@@ -19194,6 +21723,8 @@ var test;
          *
          * @param <K> key type
          * @param <V> value type
+         * @param {java.lang.Class} type
+         * @class
          * @extends java.util.AbstractMap
          */
         var EnumMap = (function (_super) {
@@ -19246,6 +21777,9 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
+            /**
+             *
+             */
             EnumMap.prototype.clear = function () {
                 this.__keySet.clear();
                 this.__values = new Array(this.__values.length);
@@ -19253,9 +21787,19 @@ var test;
             EnumMap.prototype.clone = function () {
                 return (new EnumMap(this));
             };
+            /**
+             *
+             * @param {*} key
+             * @return {boolean}
+             */
             EnumMap.prototype.containsKey = function (key) {
                 return this.__keySet.contains(key);
             };
+            /**
+             *
+             * @param {*} value
+             * @return {boolean}
+             */
             EnumMap.prototype.containsValue = function (value) {
                 for (var index178 = this.__keySet.iterator(); index178.hasNext();) {
                     var key = index178.next();
@@ -19267,9 +21811,18 @@ var test;
                 }
                 return false;
             };
+            /**
+             *
+             * @return {*}
+             */
             EnumMap.prototype.entrySet = function () {
                 return new EnumMap.EntrySet(this);
             };
+            /**
+             *
+             * @param {*} k
+             * @return {*}
+             */
             EnumMap.prototype.get = function (k) {
                 return this.__keySet.contains(k) ? this.__values[this.asOrdinal(k)] : null;
             };
@@ -19277,6 +21830,12 @@ var test;
                 this.__keySet.add(key);
                 return this.set(key.ordinal(), value);
             };
+            /**
+             *
+             * @param {java.lang.Enum} key
+             * @param {*} value
+             * @return {*}
+             */
             EnumMap.prototype.put = function (key, value) {
                 if (((key != null) || key === null) && ((value != null) || value === null)) {
                     return this.put$java_lang_Enum$java_lang_Object(key, value);
@@ -19287,9 +21846,18 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             EnumMap.prototype.remove = function (key) {
                 return this.__keySet.remove$java_lang_Object(key) ? this.set(this.asOrdinal(key), null) : null;
             };
+            /**
+             *
+             * @return {number}
+             */
             EnumMap.prototype.size = function () {
                 return this.__keySet.size();
             };
@@ -19353,18 +21921,35 @@ var test;
                     _this.__parent = __parent;
                     return _this;
                 }
+                /**
+                 *
+                 */
                 EntrySet.prototype.clear = function () {
                     this.__parent.clear();
                 };
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
                 EntrySet.prototype.contains = function (o) {
                     if (o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
                         return this.__parent.containsEntry(o);
                     }
                     return false;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 EntrySet.prototype.iterator = function () {
                     return new EnumMap.EntrySetIterator(this.__parent);
                 };
+                /**
+                 *
+                 * @param {number} index
+                 * @return {*}
+                 */
                 EntrySet.prototype.remove = function (index) {
                     if (((index != null) || index === null)) {
                         return this.remove$java_lang_Object(index);
@@ -19380,6 +21965,10 @@ var test;
                     }
                     return false;
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 EntrySet.prototype.size = function () {
                     return this.__parent.size();
                 };
@@ -19402,13 +21991,24 @@ var test;
                     }
                     ;
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 EntrySetIterator.prototype.hasNext = function () {
                     return this.it.hasNext();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 EntrySetIterator.prototype.next = function () {
                     this.key = this.it.next();
                     return new EnumMap.MapEntry(this.__parent, this.key);
                 };
+                /**
+                 *
+                 */
                 EntrySetIterator.prototype.remove = function () {
                     javaemul.internal.InternalPreconditions.checkState(this.key != null);
                     this.__parent.remove(this.key);
@@ -19428,12 +22028,25 @@ var test;
                     _this.key = key;
                     return _this;
                 }
+                /**
+                 *
+                 * @return {java.lang.Enum}
+                 */
                 MapEntry.prototype.getKey = function () {
                     return this.key;
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 MapEntry.prototype.getValue = function () {
                     return this.__parent.__values[this.key.ordinal()];
                 };
+                /**
+                 *
+                 * @param {*} value
+                 * @return {*}
+                 */
                 MapEntry.prototype.setValue = function (value) {
                     return this.__parent.set(this.key.ordinal(), value);
                 };
@@ -19455,6 +22068,9 @@ var test;
          * docs]</a>
          *
          * @param <E> element type.
+         * @param {number} ignored
+         * @param {number} alsoIgnored
+         * @class
          * @extends java.util.HashSet
          */
         var LinkedHashSet = (function (_super) {
@@ -19497,6 +22113,10 @@ var test;
                     _loop_17(index179);
                 }
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedHashSet.prototype.clone = function () {
                 return (new LinkedHashSet(this));
             };
@@ -19513,6 +22133,7 @@ var test;
         /**
          * A helper to detect concurrent modifications to collections. This is implemented as a helper
          * utility so that we could remove the checks easily by a flag.
+         * @class
          */
         var ConcurrentModificationDetector = (function () {
             function ConcurrentModificationDetector() {
@@ -19563,6 +22184,7 @@ var test;
              * An emulation of the java.util.logging.Logger class. See
              * <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/logging/Logger.html">
              * The Java API doc for details</a>
+             * @class
              */
             var Logger = (function () {
                 function Logger(name, resourceName) {
@@ -19794,7 +22416,7 @@ var test;
                     }
                     this.useParentHandlers = newUseParentHandlers;
                 };
-                Logger.prototype.getEffectiveLevel = function () {
+                /*private*/ Logger.prototype.getEffectiveLevel = function () {
                     if (this.level != null) {
                         return this.level;
                     }
@@ -19827,7 +22449,7 @@ var test;
                     else
                         throw new Error('invalid overload');
                 };
-                Logger.prototype.actuallyLog$java_util_logging_LogRecord = function (record) {
+                /*private*/ Logger.prototype.actuallyLog$java_util_logging_LogRecord = function (record) {
                     if (this.isLoggable(record.getLevel())) {
                         {
                             var array181 = this.getHandlers();
@@ -19868,6 +22490,7 @@ var test;
     (function (internal) {
         /**
          * A utility class that provides utility functions to do precondition checks inside GWT-SDK.
+         * @class
          */
         var InternalPreconditions = (function () {
             function InternalPreconditions() {
@@ -19923,10 +22546,6 @@ var test;
                     throw new java.lang.ClassCastException();
                 }
             };
-            /**
-             * Ensures the truth of an expression that verifies array type.
-             * @param {boolean} expression
-             */
             InternalPreconditions.checkArrayType$boolean = function (expression) {
                 if (InternalPreconditions.TYPE_CHECK_$LI$()) {
                     InternalPreconditions.checkCriticalArrayType$boolean(expression);
@@ -19946,11 +22565,6 @@ var test;
                     throw new java.lang.ArrayStoreException();
                 }
             };
-            /**
-             * Ensures the truth of an expression that verifies array type.
-             * @param {boolean} expression
-             * @param {*} errorMessage
-             */
             InternalPreconditions.checkArrayType$boolean$java_lang_Object = function (expression, errorMessage) {
                 if (InternalPreconditions.TYPE_CHECK_$LI$()) {
                     InternalPreconditions.checkCriticalArrayType$boolean$java_lang_Object(expression, errorMessage);
@@ -19995,10 +22609,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
-            /**
-             * Ensures the truth of an expression involving existence of an element.
-             * @param {boolean} expression
-             */
             InternalPreconditions.checkElement$boolean = function (expression) {
                 if (InternalPreconditions.API_CHECK_$LI$()) {
                     InternalPreconditions.checkCriticalElement$boolean(expression);
@@ -20013,23 +22623,11 @@ var test;
                     ;
                 }
             };
-            /**
-             * Ensures the truth of an expression involving existence of an element.
-             * <p>
-             * For cases where failing fast is pretty important and not failing early could cause bugs that
-             * are much harder to debug.
-             * @param {boolean} expression
-             */
             InternalPreconditions.checkCriticalElement$boolean = function (expression) {
                 if (!expression) {
                     throw new java.util.NoSuchElementException();
                 }
             };
-            /**
-             * Ensures the truth of an expression involving existence of an element.
-             * @param {boolean} expression
-             * @param {*} errorMessage
-             */
             InternalPreconditions.checkElement$boolean$java_lang_Object = function (expression, errorMessage) {
                 if (InternalPreconditions.API_CHECK_$LI$()) {
                     InternalPreconditions.checkCriticalElement$boolean$java_lang_Object(expression, errorMessage);
@@ -20059,14 +22657,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
-            /**
-             * Ensures the truth of an expression involving existence of an element.
-             * <p>
-             * For cases where failing fast is pretty important and not failing early could cause bugs that
-             * are much harder to debug.
-             * @param {boolean} expression
-             * @param {*} errorMessage
-             */
             InternalPreconditions.checkCriticalElement$boolean$java_lang_Object = function (expression, errorMessage) {
                 if (!expression) {
                     throw new java.util.NoSuchElementException(/* valueOf */ new String(errorMessage).toString());
@@ -20090,10 +22680,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
-            /**
-             * Ensures the truth of an expression involving one or more parameters to the calling method.
-             * @param {boolean} expression
-             */
             InternalPreconditions.checkArgument$boolean = function (expression) {
                 if (InternalPreconditions.API_CHECK_$LI$()) {
                     InternalPreconditions.checkCriticalArgument$boolean(expression);
@@ -20108,23 +22694,11 @@ var test;
                     ;
                 }
             };
-            /**
-             * Ensures the truth of an expression involving one or more parameters to the calling method.
-             * <p>
-             * For cases where failing fast is pretty important and not failing early could cause bugs that
-             * are much harder to debug.
-             * @param {boolean} expression
-             */
             InternalPreconditions.checkCriticalArgument$boolean = function (expression) {
                 if (!expression) {
                     throw new java.lang.IllegalArgumentException();
                 }
             };
-            /**
-             * Ensures the truth of an expression involving one or more parameters to the calling method.
-             * @param {boolean} expression
-             * @param {*} errorMessage
-             */
             InternalPreconditions.checkArgument$boolean$java_lang_Object = function (expression, errorMessage) {
                 if (InternalPreconditions.API_CHECK_$LI$()) {
                     InternalPreconditions.checkCriticalArgument$boolean$java_lang_Object(expression, errorMessage);
@@ -20139,25 +22713,11 @@ var test;
                     ;
                 }
             };
-            /**
-             * Ensures the truth of an expression involving one or more parameters to the calling method.
-             * <p>
-             * For cases where failing fast is pretty important and not failing early could cause bugs that
-             * are much harder to debug.
-             * @param {boolean} expression
-             * @param {*} errorMessage
-             */
             InternalPreconditions.checkCriticalArgument$boolean$java_lang_Object = function (expression, errorMessage) {
                 if (!expression) {
                     throw new java.lang.IllegalArgumentException(/* valueOf */ new String(errorMessage).toString());
                 }
             };
-            /**
-             * Ensures the truth of an expression involving one or more parameters to the calling method.
-             * @param {boolean} expression
-             * @param {string} errorMessageTemplate
-             * @param {Array} errorMessageArgs
-             */
             InternalPreconditions.checkArgument$boolean$java_lang_String$java_lang_Object_A = function (expression, errorMessageTemplate) {
                 var errorMessageArgs = [];
                 for (var _i = 2; _i < arguments.length; _i++) {
@@ -20199,15 +22759,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
-            /**
-             * Ensures the truth of an expression involving one or more parameters to the calling method.
-             * <p>
-             * For cases where failing fast is pretty important and not failing early could cause bugs that
-             * are much harder to debug.
-             * @param {boolean} expression
-             * @param {string} errorMessageTemplate
-             * @param {Array} errorMessageArgs
-             */
             InternalPreconditions.checkCriticalArgument$boolean$java_lang_String$java_lang_Object_A = function (expression, errorMessageTemplate) {
                 var errorMessageArgs = [];
                 for (var _i = 2; _i < arguments.length; _i++) {
@@ -20243,13 +22794,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
-            /**
-             * Ensures the truth of an expression involving the state of the calling instance, but not
-             * involving any parameters to the calling method.
-             *
-             * @param {boolean} expression a boolean expression
-             * @throws IllegalStateException if {@code expression} is false
-             */
             InternalPreconditions.checkState$boolean = function (expression) {
                 if (InternalPreconditions.API_CHECK_$LI$()) {
                     InternalPreconditions.checkCritcalState(expression);
@@ -20277,12 +22821,6 @@ var test;
                     throw new java.lang.IllegalStateException();
                 }
             };
-            /**
-             * Ensures the truth of an expression involving the state of the calling instance, but not
-             * involving any parameters to the calling method.
-             * @param {boolean} expression
-             * @param {*} errorMessage
-             */
             InternalPreconditions.checkState$boolean$java_lang_Object = function (expression, errorMessage) {
                 if (InternalPreconditions.API_CHECK_$LI$()) {
                     InternalPreconditions.checkCriticalState(expression, errorMessage);
@@ -20324,11 +22862,6 @@ var test;
                     throw new java.lang.IllegalStateException(/* valueOf */ new String(errorMessage).toString());
                 }
             };
-            /**
-             * Ensures that an object reference passed as a parameter to the calling method is not null.
-             * @param {*} reference
-             * @return {*}
-             */
             InternalPreconditions.checkNotNull$java_lang_Object = function (reference) {
                 if (InternalPreconditions.API_CHECK_$LI$()) {
                     InternalPreconditions.checkCriticalNotNull(reference);
@@ -20350,11 +22883,6 @@ var test;
                 }
                 return reference;
             };
-            /**
-             * Ensures that an object reference passed as a parameter to the calling method is not null.
-             * @param {*} reference
-             * @param {*} errorMessage
-             */
             InternalPreconditions.checkNotNull$java_lang_Object$java_lang_Object = function (reference, errorMessage) {
                 if (InternalPreconditions.API_CHECK_$LI$()) {
                     InternalPreconditions.checkCriticalNotNull$java_lang_Object$java_lang_Object(reference, errorMessage);
@@ -20542,7 +23070,7 @@ var test;
              * @return {string}
              * @private
              */
-            InternalPreconditions.format = function (template) {
+            /*private*/ InternalPreconditions.format = function (template) {
                 var args = [];
                 for (var _i = 1; _i < arguments.length; _i++) {
                     args[_i - 1] = arguments[_i];
@@ -20590,6 +23118,9 @@ var test;
          *
          * @param <K> key type
          * @param <V> value type
+         * @param {number} ignored
+         * @param {number} alsoIgnored
+         * @class
          * @extends java.util.AbstractHashMap
          */
         var HashMap = (function (_super) {
@@ -20636,9 +23167,20 @@ var test;
             HashMap.prototype.clone = function () {
                 return (new HashMap(this));
             };
+            /**
+             *
+             * @param {*} value1
+             * @param {*} value2
+             * @return {boolean}
+             */
             HashMap.prototype._equals = function (value1, value2) {
                 return java.util.Objects.equals(value1, value2);
             };
+            /**
+             *
+             * @param {*} key
+             * @return {number}
+             */
             HashMap.prototype.getHashCode = function (key) {
                 var hashCode = (function (o) { if (o.hashCode) {
                     return o.hashCode();
@@ -20665,6 +23207,8 @@ var test;
          *
          * @param <K> key type
          * @param <V> value type
+         * @param {number} ignored
+         * @class
          * @extends java.util.AbstractHashMap
          */
         var IdentityHashMap = (function (_super) {
@@ -20703,6 +23247,11 @@ var test;
             IdentityHashMap.prototype.clone = function () {
                 return (new IdentityHashMap(this));
             };
+            /**
+             *
+             * @param {*} obj
+             * @return {boolean}
+             */
             IdentityHashMap.prototype.equals = function (obj) {
                 if (obj === this) {
                     return true;
@@ -20729,6 +23278,10 @@ var test;
                 }
                 return true;
             };
+            /**
+             *
+             * @return {number}
+             */
             IdentityHashMap.prototype.hashCode = function () {
                 var hashCode = 0;
                 for (var index185 = this.entrySet().iterator(); index185.hasNext();) {
@@ -20740,9 +23293,20 @@ var test;
                 }
                 return hashCode;
             };
+            /**
+             *
+             * @param {*} value1
+             * @param {*} value2
+             * @return {boolean}
+             */
             IdentityHashMap.prototype._equals = function (value1, value2) {
                 return value1 === value2;
             };
+            /**
+             *
+             * @param {*} key
+             * @return {number}
+             */
             IdentityHashMap.prototype.getHashCode = function (key) {
                 return javaemul.internal.HashCodes.getObjectIdentityHashCode(key);
             };
@@ -20764,6 +23328,8 @@ var test;
          *
          * @param <K> key type
          * @param <V> value type
+         * @param {*} c
+         * @class
          * @extends java.util.AbstractNavigableMap
          */
         var TreeMap = (function (_super) {
@@ -20896,22 +23462,39 @@ var test;
             TreeMap.otherChild = function (child) {
                 return 1 - child;
             };
+            /**
+             *
+             */
             TreeMap.prototype.clear = function () {
                 this.root = null;
                 this.__size = 0;
             };
+            /**
+             *
+             * @return {*}
+             */
             TreeMap.prototype.comparator = function () {
                 if (this.cmp === java.util.Comparators.natural()) {
                     return null;
                 }
                 return this.cmp;
             };
+            /**
+             *
+             * @return {*}
+             */
             TreeMap.prototype.entrySet = function () {
-                return new TreeMap.EntrySet(this);
+                return new TreeMap.__java_util_TreeMap_EntrySet(this);
             };
             TreeMap.prototype.headMap$java_lang_Object$boolean = function (toKey, inclusive) {
                 return new TreeMap.SubMap(this, TreeMap.SubMapType_Head_$LI$(), null, false, toKey, inclusive);
             };
+            /**
+             *
+             * @param {*} toKey
+             * @param {boolean} inclusive
+             * @return {*}
+             */
             TreeMap.prototype.headMap = function (toKey, inclusive) {
                 if (((toKey != null) || toKey === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
                     return this.headMap$java_lang_Object$boolean(toKey, inclusive);
@@ -20922,6 +23505,12 @@ var test;
                 else
                     throw new Error('invalid overload');
             };
+            /**
+             *
+             * @param {java.lang.Enum} key
+             * @param {*} value
+             * @return {*}
+             */
             TreeMap.prototype.put = function (key, value) {
                 if (((key != null) || key === null) && ((value != null) || value === null)) {
                     return this.put$java_lang_Object$java_lang_Object(key, value);
@@ -20939,18 +23528,35 @@ var test;
                 this.root.isRed = false;
                 return state.value;
             };
+            /**
+             *
+             * @param {*} k
+             * @return {*}
+             */
             TreeMap.prototype.remove = function (k) {
                 var key = k;
                 var state = (new TreeMap.State());
                 this.removeWithState(key, state);
                 return state.value;
             };
+            /**
+             *
+             * @return {number}
+             */
             TreeMap.prototype.size = function () {
                 return this.__size;
             };
             TreeMap.prototype.subMap$java_lang_Object$boolean$java_lang_Object$boolean = function (fromKey, fromInclusive, toKey, toInclusive) {
                 return new TreeMap.SubMap(this, TreeMap.SubMapType_Range_$LI$(), fromKey, fromInclusive, toKey, toInclusive);
             };
+            /**
+             *
+             * @param {*} fromKey
+             * @param {boolean} fromInclusive
+             * @param {*} toKey
+             * @param {boolean} toInclusive
+             * @return {*}
+             */
             TreeMap.prototype.subMap = function (fromKey, fromInclusive, toKey, toInclusive) {
                 if (((fromKey != null) || fromKey === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null) && ((toKey != null) || toKey === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
                     return this.subMap$java_lang_Object$boolean$java_lang_Object$boolean(fromKey, fromInclusive, toKey, toInclusive);
@@ -20964,6 +23570,12 @@ var test;
             TreeMap.prototype.tailMap$java_lang_Object$boolean = function (fromKey, inclusive) {
                 return new TreeMap.SubMap(this, TreeMap.SubMapType_Tail_$LI$(), fromKey, inclusive, null, false);
             };
+            /**
+             *
+             * @param {*} fromKey
+             * @param {boolean} inclusive
+             * @return {*}
+             */
             TreeMap.prototype.tailMap = function (fromKey, inclusive) {
                 if (((fromKey != null) || fromKey === null) && ((typeof inclusive === 'boolean') || inclusive === null)) {
                     return this.tailMap$java_lang_Object$boolean(fromKey, inclusive);
@@ -21028,36 +23640,23 @@ var test;
                 ;
                 return foundNode;
             };
-            /**
-             * Used for testing. Validate that the tree meets all red-black correctness
-             * requirements. These include:
-             *
-             * <pre>
-             * - root is black
-             * - no children of a red node may be red
-             * - the black height of every path through the three to a leaf is exactly the same
-             * </pre>
-             *
-             * @throws RuntimeException if any correctness errors are detected.
-             */
             TreeMap.prototype.assertCorrectness$ = function () {
                 this.assertCorrectness$java_util_TreeMap_Node$boolean(this.root, true);
             };
+            /**
+             *
+             * @return {*}
+             */
             TreeMap.prototype.descendingEntryIterator = function () {
                 return new TreeMap.DescendingEntryIterator(this);
             };
+            /**
+             *
+             * @return {*}
+             */
             TreeMap.prototype.entryIterator = function () {
                 return new TreeMap.EntryIterator(this);
             };
-            /**
-             * Internal helper function for public {@link #assertCorrectness()}.
-             *
-             * @param {java.util.TreeMap.Node} tree the subtree to validate.
-             * @param {boolean} isRed true if the parent of this node is red.
-             * @return {number} the black height of this subtree.
-             * @throws RuntimeException if this RB-tree is not valid.
-             * @private
-             */
             TreeMap.prototype.assertCorrectness$java_util_TreeMap_Node$boolean = function (tree, isRed) {
                 if (tree == null) {
                     return 0;
@@ -21103,7 +23702,7 @@ var test;
              * Finds an entry given a key and returns the node.
              *
              * @param {*} key the search key
-             * @return {java.util.Map.Entry} the node matching the key or null
+             * @return {*} the node matching the key or null
              */
             TreeMap.prototype.getEntry = function (key) {
                 var tree = this.root;
@@ -21120,7 +23719,7 @@ var test;
             };
             /**
              * Returns the left-most node of the tree, or null if empty.
-             * @return {java.util.Map.Entry}
+             * @return {*}
              */
             TreeMap.prototype.getFirstEntry = function () {
                 if (this.root == null) {
@@ -21136,7 +23735,7 @@ var test;
             };
             /**
              * Returns the right-most node of the tree, or null if empty.
-             * @return {java.util.Map.Entry}
+             * @return {*}
              */
             TreeMap.prototype.getLastEntry = function () {
                 if (this.root == null) {
@@ -21150,18 +23749,43 @@ var test;
                 ;
                 return node;
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             TreeMap.prototype.getCeilingEntry = function (key) {
                 return this.getNodeAfter(key, true);
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             TreeMap.prototype.getFloorEntry = function (key) {
                 return this.getNodeBefore(key, true);
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             TreeMap.prototype.getHigherEntry = function (key) {
                 return this.getNodeAfter(key, false);
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             TreeMap.prototype.getLowerEntry = function (key) {
                 return this.getNodeBefore(key, false);
             };
+            /**
+             *
+             * @param {*} entry
+             * @return {boolean}
+             */
             TreeMap.prototype.removeEntry = function (entry) {
                 var state = (new TreeMap.State());
                 state.matchValue = true;
@@ -21438,7 +24062,7 @@ var test;
                 function DescendingEntryIterator(__parent, type, fromKey, fromInclusive, toKey, toInclusive) {
                     var _this = this;
                     if (((type != null && type instanceof java.util.TreeMap.SubMapType) || type === null) && ((fromKey != null) || fromKey === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null) && ((toKey != null) || toKey === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
-                        var __args = Array.prototype.slice.call(arguments);
+                        var __args = Array.prototype.slice.call(arguments, [1]);
                         this.iter = null;
                         this.last = null;
                         this.__parent = __parent;
@@ -21446,14 +24070,14 @@ var test;
                         this.last = null;
                         (function () {
                             var list = (new java.util.ArrayList());
-                            _this.__parent.inOrderAdd(list, type, _this.__parent.root, fromKey, fromInclusive, toKey, toInclusive);
+                            __parent.inOrderAdd(list, type, __parent.root, fromKey, fromInclusive, toKey, toInclusive);
                             _this.iter = list['listIterator$int'](list.size());
                         })();
                     }
                     else if (type === undefined && fromKey === undefined && fromInclusive === undefined && toKey === undefined && toInclusive === undefined) {
-                        var __args = Array.prototype.slice.call(arguments);
+                        var __args = Array.prototype.slice.call(arguments, [1]);
                         {
-                            var __args_28 = Array.prototype.slice.call(arguments);
+                            var __args_28 = Array.prototype.slice.call(arguments, [1]);
                             var type_1 = java.util.TreeMap.SubMapType_All_$LI$();
                             var fromKey_1 = null;
                             var fromInclusive_1 = false;
@@ -21466,7 +24090,7 @@ var test;
                             this.last = null;
                             (function () {
                                 var list = (new java.util.ArrayList());
-                                _this.__parent.inOrderAdd(list, type_1, _this.__parent.root, fromKey_1, fromInclusive_1, toKey_1, toInclusive_1);
+                                __parent.inOrderAdd(list, type_1, __parent.root, fromKey_1, fromInclusive_1, toKey_1, toInclusive_1);
                                 _this.iter = list['listIterator$int'](list.size());
                             })();
                         }
@@ -21482,12 +24106,23 @@ var test;
                     }
                     ;
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 DescendingEntryIterator.prototype.hasNext = function () {
                     return this.iter.hasPrevious();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 DescendingEntryIterator.prototype.next = function () {
                     return this.last = this.iter.previous();
                 };
+                /**
+                 *
+                 */
                 DescendingEntryIterator.prototype.remove = function () {
                     this.iter.remove();
                     this.__parent.removeEntry(this.last);
@@ -21512,7 +24147,7 @@ var test;
                 function EntryIterator(__parent, type, fromKey, fromInclusive, toKey, toInclusive) {
                     var _this = this;
                     if (((type != null && type instanceof java.util.TreeMap.SubMapType) || type === null) && ((fromKey != null) || fromKey === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null) && ((toKey != null) || toKey === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
-                        var __args = Array.prototype.slice.call(arguments);
+                        var __args = Array.prototype.slice.call(arguments, [1]);
                         this.iter = null;
                         this.last = null;
                         this.__parent = __parent;
@@ -21520,14 +24155,14 @@ var test;
                         this.last = null;
                         (function () {
                             var list = (new java.util.ArrayList());
-                            _this.__parent.inOrderAdd(list, type, _this.__parent.root, fromKey, fromInclusive, toKey, toInclusive);
+                            __parent.inOrderAdd(list, type, __parent.root, fromKey, fromInclusive, toKey, toInclusive);
                             _this.iter = list.listIterator();
                         })();
                     }
                     else if (type === undefined && fromKey === undefined && fromInclusive === undefined && toKey === undefined && toInclusive === undefined) {
-                        var __args = Array.prototype.slice.call(arguments);
+                        var __args = Array.prototype.slice.call(arguments, [1]);
                         {
-                            var __args_29 = Array.prototype.slice.call(arguments);
+                            var __args_29 = Array.prototype.slice.call(arguments, [1]);
                             var type_2 = java.util.TreeMap.SubMapType_All_$LI$();
                             var fromKey_2 = null;
                             var fromInclusive_2 = false;
@@ -21540,7 +24175,7 @@ var test;
                             this.last = null;
                             (function () {
                                 var list = (new java.util.ArrayList());
-                                _this.__parent.inOrderAdd(list, type_2, _this.__parent.root, fromKey_2, fromInclusive_2, toKey_2, toInclusive_2);
+                                __parent.inOrderAdd(list, type_2, __parent.root, fromKey_2, fromInclusive_2, toKey_2, toInclusive_2);
                                 _this.iter = list.listIterator();
                             })();
                         }
@@ -21556,12 +24191,23 @@ var test;
                     }
                     ;
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 EntryIterator.prototype.hasNext = function () {
                     return this.iter.hasNext();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 EntryIterator.prototype.next = function () {
                     return this.last = this.iter.next();
                 };
+                /**
+                 *
+                 */
                 EntryIterator.prototype.remove = function () {
                     this.iter.remove();
                     this.__parent.removeEntry(this.last);
@@ -21572,21 +24218,24 @@ var test;
             TreeMap.EntryIterator = EntryIterator;
             EntryIterator["__class"] = "java.util.TreeMap.EntryIterator";
             EntryIterator["__interfaces"] = ["java.util.Iterator"];
-            var EntrySet = (function (_super) {
-                __extends(EntrySet, _super);
-                function EntrySet(__parent) {
+            var __java_util_TreeMap_EntrySet = (function (_super) {
+                __extends(__java_util_TreeMap_EntrySet, _super);
+                function __java_util_TreeMap_EntrySet(__parent) {
                     var _this = _super.call(this, __parent) || this;
                     _this.__parent = __parent;
                     return _this;
                 }
-                EntrySet.prototype.clear = function () {
+                /**
+                 *
+                 */
+                __java_util_TreeMap_EntrySet.prototype.clear = function () {
                     this.__parent.clear();
                 };
-                return EntrySet;
+                return __java_util_TreeMap_EntrySet;
             }(java.util.AbstractNavigableMap.EntrySet));
-            TreeMap.EntrySet = EntrySet;
-            EntrySet["__class"] = "java.util.TreeMap.EntrySet";
-            EntrySet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
+            TreeMap.__java_util_TreeMap_EntrySet = __java_util_TreeMap_EntrySet;
+            __java_util_TreeMap_EntrySet["__class"] = "java.util.TreeMap.EntrySet";
+            __java_util_TreeMap_EntrySet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
             /**
              * Create a node of the specified color.
              *
@@ -21594,6 +24243,7 @@ var test;
              * @param {*} value
              * @param {boolean} isRed true if this should be a red node, false for black
              * @class
+             * @extends java.util.AbstractMap.SimpleEntry
              */
             var Node = (function (_super) {
                 __extends(Node, _super);
@@ -21642,6 +24292,7 @@ var test;
              * behavior.
              *
              * @param <V> value type
+             * @class
              */
             var State = (function () {
                 function State() {
@@ -21650,6 +24301,10 @@ var test;
                     this.matchValue = false;
                     this.value = null;
                 }
+                /**
+                 *
+                 * @return {string}
+                 */
                 State.prototype.toString = function () {
                     return "State: mv=" + this.matchValue + " value=" + this.value + " done=" + this.done + " found=" + this.found;
                 };
@@ -21668,15 +24323,15 @@ var test;
                     _this.toKey = null;
                     _this.type = null;
                     if (type === java.util.TreeMap.SubMapType_Range_$LI$()) {
-                        if (_this.__parent.cmp.compare(toKey, fromKey) < 0) {
+                        if (__parent.cmp.compare(toKey, fromKey) < 0) {
                             throw new java.lang.IllegalArgumentException("subMap: " + toKey + " less than " + fromKey);
                         }
                     }
                     if (type === java.util.TreeMap.SubMapType_Head_$LI$()) {
-                        _this.__parent.cmp.compare(toKey, toKey);
+                        __parent.cmp.compare(toKey, toKey);
                     }
                     if (type === java.util.TreeMap.SubMapType_Tail_$LI$()) {
-                        _this.__parent.cmp.compare(fromKey, fromKey);
+                        __parent.cmp.compare(fromKey, fromKey);
                     }
                     if (type === java.util.TreeMap.SubMapType_All_$LI$()) {
                     }
@@ -21687,9 +24342,17 @@ var test;
                     _this.toInclusive = toInclusive;
                     return _this;
                 }
+                /**
+                 *
+                 * @return {*}
+                 */
                 SubMap.prototype.comparator = function () {
                     return this.__parent.comparator();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 SubMap.prototype.entrySet = function () {
                     return new SubMap.SubMap$0(this);
                 };
@@ -21704,6 +24367,12 @@ var test;
                         return this.__parent.headMap(toKey, toInclusive);
                     }
                 };
+                /**
+                 *
+                 * @param {*} toKey
+                 * @param {boolean} toInclusive
+                 * @return {*}
+                 */
                 SubMap.prototype.headMap = function (toKey, toInclusive) {
                     if (((toKey != null) || toKey === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
                         return this.headMap$java_lang_Object$boolean(toKey, toInclusive);
@@ -21714,9 +24383,19 @@ var test;
                     else
                         throw new Error('invalid overload');
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 SubMap.prototype.isEmpty = function () {
                     return this.getFirstEntry() == null;
                 };
+                /**
+                 *
+                 * @param {java.lang.Enum} key
+                 * @param {*} value
+                 * @return {*}
+                 */
                 SubMap.prototype.put = function (key, value) {
                     if (((key != null) || key === null) && ((value != null) || value === null)) {
                         return this.put$java_lang_Object$java_lang_Object(key, value);
@@ -21730,6 +24409,11 @@ var test;
                     }
                     return this.__parent.put(key, value);
                 };
+                /**
+                 *
+                 * @param {*} k
+                 * @return {*}
+                 */
                 SubMap.prototype.remove = function (k) {
                     var key = k;
                     if (!this.inRange(key)) {
@@ -21737,11 +24421,16 @@ var test;
                     }
                     return this.__parent.remove(key);
                 };
+                /**
+                 *
+                 * @return {number}
+                 */
                 SubMap.prototype.size = function () {
                     var count = 0;
                     for (var it = this.entryIterator(); it.hasNext(); it.next()) {
                         count++;
                     }
+                    ;
                     return count;
                 };
                 SubMap.prototype.subMap$java_lang_Object$boolean$java_lang_Object$boolean = function (newFromKey, newFromInclusive, newToKey, newToInclusive) {
@@ -21753,6 +24442,14 @@ var test;
                     }
                     return this.__parent.subMap(newFromKey, newFromInclusive, newToKey, newToInclusive);
                 };
+                /**
+                 *
+                 * @param {*} newFromKey
+                 * @param {boolean} newFromInclusive
+                 * @param {*} newToKey
+                 * @param {boolean} newToInclusive
+                 * @return {*}
+                 */
                 SubMap.prototype.subMap = function (newFromKey, newFromInclusive, newToKey, newToInclusive) {
                     if (((newFromKey != null) || newFromKey === null) && ((typeof newFromInclusive === 'boolean') || newFromInclusive === null) && ((newToKey != null) || newToKey === null) && ((typeof newToInclusive === 'boolean') || newToInclusive === null)) {
                         return this.subMap$java_lang_Object$boolean$java_lang_Object$boolean(newFromKey, newFromInclusive, newToKey, newToInclusive);
@@ -21774,6 +24471,12 @@ var test;
                         return this.__parent.tailMap(fromKey, fromInclusive);
                     }
                 };
+                /**
+                 *
+                 * @param {*} fromKey
+                 * @param {boolean} fromInclusive
+                 * @return {*}
+                 */
                 SubMap.prototype.tailMap = function (fromKey, fromInclusive) {
                     if (((fromKey != null) || fromKey === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null)) {
                         return this.tailMap$java_lang_Object$boolean(fromKey, fromInclusive);
@@ -21784,15 +24487,32 @@ var test;
                     else
                         throw new Error('invalid overload');
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 SubMap.prototype.descendingEntryIterator = function () {
                     return new TreeMap.DescendingEntryIterator(this.__parent, this.type, this.fromKey, this.fromInclusive, this.toKey, this.toInclusive);
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 SubMap.prototype.entryIterator = function () {
                     return new TreeMap.EntryIterator(this.__parent, this.type, this.fromKey, this.fromInclusive, this.toKey, this.toInclusive);
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {*}
+                 */
                 SubMap.prototype.getEntry = function (key) {
                     return this.guardInRange(this.__parent.getEntry(key));
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 SubMap.prototype.getFirstEntry = function () {
                     var entry;
                     if (this.type.fromKeyValid()) {
@@ -21808,6 +24528,10 @@ var test;
                     }
                     return this.guardInRange(entry);
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 SubMap.prototype.getLastEntry = function () {
                     var entry;
                     if (this.type.toKeyValid()) {
@@ -21823,18 +24547,43 @@ var test;
                     }
                     return this.guardInRange(entry);
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {*}
+                 */
                 SubMap.prototype.getCeilingEntry = function (key) {
                     return this.guardInRange(this.__parent.getCeilingEntry(key));
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {*}
+                 */
                 SubMap.prototype.getFloorEntry = function (key) {
                     return this.guardInRange(this.__parent.getFloorEntry(key));
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {*}
+                 */
                 SubMap.prototype.getHigherEntry = function (key) {
                     return this.guardInRange(this.__parent.getHigherEntry(key));
                 };
+                /**
+                 *
+                 * @param {*} key
+                 * @return {*}
+                 */
                 SubMap.prototype.getLowerEntry = function (key) {
                     return this.guardInRange(this.__parent.getLowerEntry(key));
                 };
+                /**
+                 *
+                 * @param {*} entry
+                 * @return {boolean}
+                 */
                 SubMap.prototype.removeEntry = function (entry) {
                     return this.inRange(entry.getKey()) && this.__parent.removeEntry(entry);
                 };
@@ -21857,6 +24606,10 @@ var test;
                         _this.__parent = __parent;
                         return _this;
                     }
+                    /**
+                     *
+                     * @return {boolean}
+                     */
                     SubMap$0.prototype.isEmpty = function () {
                         return this.__parent.isEmpty();
                     };
@@ -21889,8 +24642,12 @@ var test;
             var SubMapTypeHead = (function (_super) {
                 __extends(SubMapTypeHead, _super);
                 function SubMapTypeHead() {
-                    return _super !== null && _super.apply(this, arguments) || this;
+                    return _super.call(this) || this;
                 }
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 SubMapTypeHead.prototype.toKeyValid = function () {
                     return true;
                 };
@@ -21901,11 +24658,19 @@ var test;
             var SubMapTypeRange = (function (_super) {
                 __extends(SubMapTypeRange, _super);
                 function SubMapTypeRange() {
-                    return _super !== null && _super.apply(this, arguments) || this;
+                    return _super.call(this) || this;
                 }
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 SubMapTypeRange.prototype.fromKeyValid = function () {
                     return true;
                 };
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 SubMapTypeRange.prototype.toKeyValid = function () {
                     return true;
                 };
@@ -21916,8 +24681,12 @@ var test;
             var SubMapTypeTail = (function (_super) {
                 __extends(SubMapTypeTail, _super);
                 function SubMapTypeTail() {
-                    return _super !== null && _super.apply(this, arguments) || this;
+                    return _super.call(this) || this;
                 }
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 SubMapTypeTail.prototype.fromKeyValid = function () {
                     return true;
                 };
@@ -21976,9 +24745,17 @@ var test;
                     this.it = it;
                     this.__parent = __parent;
                 }
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 Hashtable$0.prototype.hasMoreElements = function () {
                     return this.it.hasNext();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 Hashtable$0.prototype.nextElement = function () {
                     return this.it.next();
                 };
@@ -21991,9 +24768,17 @@ var test;
                     this.it = it;
                     this.__parent = __parent;
                 }
+                /**
+                 *
+                 * @return {boolean}
+                 */
                 Hashtable$1.prototype.hasMoreElements = function () {
                     return this.it.hasNext();
                 };
+                /**
+                 *
+                 * @return {*}
+                 */
                 Hashtable$1.prototype.nextElement = function () {
                     return this.it.next();
                 };
@@ -22017,6 +24802,10 @@ var test;
          * key type.
          * @param <V>
          * value type.
+         * @param {number} ignored
+         * @param {number} alsoIgnored
+         * @param {boolean} accessOrder
+         * @class
          * @extends java.util.HashMap
          */
         var LinkedHashMap = (function (_super) {
@@ -22109,6 +24898,9 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
+            /**
+             *
+             */
             LinkedHashMap.prototype.clear = function () {
                 this.map.clear();
                 this.resetChainEntries();
@@ -22117,12 +24909,26 @@ var test;
                 this.head.prev = this.head;
                 this.head.next = this.head;
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedHashMap.prototype.clone = function () {
                 return (new LinkedHashMap(this));
             };
+            /**
+             *
+             * @param {*} key
+             * @return {boolean}
+             */
             LinkedHashMap.prototype.containsKey = function (key) {
                 return this.map.containsKey(key);
             };
+            /**
+             *
+             * @param {*} value
+             * @return {boolean}
+             */
             LinkedHashMap.prototype.containsValue = function (value) {
                 var node = this.head.next;
                 while ((node !== this.head)) {
@@ -22134,9 +24940,18 @@ var test;
                 ;
                 return false;
             };
+            /**
+             *
+             * @return {*}
+             */
             LinkedHashMap.prototype.entrySet = function () {
-                return new LinkedHashMap.EntrySet(this);
+                return new LinkedHashMap.__java_util_LinkedHashMap_EntrySet(this);
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             LinkedHashMap.prototype.get = function (key) {
                 var entry = this.map.get(key);
                 if (entry != null) {
@@ -22145,6 +24960,12 @@ var test;
                 }
                 return null;
             };
+            /**
+             *
+             * @param {java.lang.Enum} key
+             * @param {*} value
+             * @return {*}
+             */
             LinkedHashMap.prototype.put = function (key, value) {
                 if (((key != null) || key === null) && ((value != null) || value === null)) {
                     return this.put$java_lang_Object$java_lang_Object(key, value);
@@ -22171,6 +24992,11 @@ var test;
                     return oldValue;
                 }
             };
+            /**
+             *
+             * @param {*} key
+             * @return {*}
+             */
             LinkedHashMap.prototype.remove = function (key) {
                 var entry = this.map.remove(key);
                 if (entry != null) {
@@ -22179,6 +25005,10 @@ var test;
                 }
                 return null;
             };
+            /**
+             *
+             * @return {number}
+             */
             LinkedHashMap.prototype.size = function () {
                 return this.map.size();
             };
@@ -22208,6 +25038,9 @@ var test;
              * some overhead to HashMap, or to reimplement most of the HashMap code here
              * with small modifications. Paying a small storage cost only if you use
              * LinkedHashMap and minimizing code size seemed like a better tradeoff
+             * @param {*} key
+             * @param {*} value
+             * @class
              * @extends java.util.AbstractMap.SimpleEntry
              */
             var ChainEntry = (function (_super) {
@@ -22243,33 +25076,50 @@ var test;
             LinkedHashMap.ChainEntry = ChainEntry;
             ChainEntry["__class"] = "java.util.LinkedHashMap.ChainEntry";
             ChainEntry["__interfaces"] = ["java.util.Map.Entry"];
-            var EntrySet = (function (_super) {
-                __extends(EntrySet, _super);
-                function EntrySet(__parent) {
+            var __java_util_LinkedHashMap_EntrySet = (function (_super) {
+                __extends(__java_util_LinkedHashMap_EntrySet, _super);
+                function __java_util_LinkedHashMap_EntrySet(__parent) {
                     var _this = _super.call(this) || this;
                     _this.__parent = __parent;
                     return _this;
                 }
-                EntrySet.prototype.clear = function () {
+                /**
+                 *
+                 */
+                __java_util_LinkedHashMap_EntrySet.prototype.clear = function () {
                     this.__parent.clear();
                 };
-                EntrySet.prototype.contains = function (o) {
+                /**
+                 *
+                 * @param {*} o
+                 * @return {boolean}
+                 */
+                __java_util_LinkedHashMap_EntrySet.prototype.contains = function (o) {
                     if (o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
                         return this.__parent.containsEntry(o);
                     }
                     return false;
                 };
-                EntrySet.prototype.iterator = function () {
-                    return new EntrySet.EntryIterator(this);
+                /**
+                 *
+                 * @return {*}
+                 */
+                __java_util_LinkedHashMap_EntrySet.prototype.iterator = function () {
+                    return new __java_util_LinkedHashMap_EntrySet.EntryIterator(this);
                 };
-                EntrySet.prototype.remove = function (index) {
+                /**
+                 *
+                 * @param {number} index
+                 * @return {*}
+                 */
+                __java_util_LinkedHashMap_EntrySet.prototype.remove = function (index) {
                     if (((index != null) || index === null)) {
                         return this.remove$java_lang_Object(index);
                     }
                     else
                         throw new Error('invalid overload');
                 };
-                EntrySet.prototype.remove$java_lang_Object = function (entry) {
+                __java_util_LinkedHashMap_EntrySet.prototype.remove$java_lang_Object = function (entry) {
                     if (this.contains(entry)) {
                         var key = entry.getKey();
                         this.__parent.remove(key);
@@ -22277,22 +25127,26 @@ var test;
                     }
                     return false;
                 };
-                EntrySet.prototype.size = function () {
+                /**
+                 *
+                 * @return {number}
+                 */
+                __java_util_LinkedHashMap_EntrySet.prototype.size = function () {
                     return this.__parent.size();
                 };
-                return EntrySet;
+                return __java_util_LinkedHashMap_EntrySet;
             }(java.util.AbstractSet));
-            LinkedHashMap.EntrySet = EntrySet;
-            EntrySet["__class"] = "java.util.LinkedHashMap.EntrySet";
-            EntrySet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
-            (function (EntrySet) {
+            LinkedHashMap.__java_util_LinkedHashMap_EntrySet = __java_util_LinkedHashMap_EntrySet;
+            __java_util_LinkedHashMap_EntrySet["__class"] = "java.util.LinkedHashMap.EntrySet";
+            __java_util_LinkedHashMap_EntrySet["__interfaces"] = ["java.util.Collection", "java.util.Set", "java.lang.Iterable"];
+            (function (__java_util_LinkedHashMap_EntrySet) {
                 var EntryIterator = (function () {
                     function EntryIterator(__parent) {
                         this.__parent = __parent;
                         this.last = null;
                         this.__next = null;
-                        this.__next = this.__parent.__parent.head.next;
-                        java.util.ConcurrentModificationDetector.recordLastKnownStructure(this.__parent.__parent.map, this);
+                        this.__next = __parent.__parent.head.next;
+                        java.util.ConcurrentModificationDetector.recordLastKnownStructure(__parent.__parent.map, this);
                     }
                     EntryIterator.prototype.forEachRemaining = function (consumer) {
                         var _this = this;
@@ -22302,9 +25156,17 @@ var test;
                         }
                         ;
                     };
+                    /**
+                     *
+                     * @return {boolean}
+                     */
                     EntryIterator.prototype.hasNext = function () {
                         return this.__next !== this.__parent.__parent.head;
                     };
+                    /**
+                     *
+                     * @return {*}
+                     */
                     EntryIterator.prototype.next = function () {
                         java.util.ConcurrentModificationDetector.checkStructuralChange(this.__parent.__parent.map, this);
                         javaemul.internal.InternalPreconditions.checkCriticalElement(this.hasNext());
@@ -22312,6 +25174,9 @@ var test;
                         this.__next = this.__next.next;
                         return this.last;
                     };
+                    /**
+                     *
+                     */
                     EntryIterator.prototype.remove = function () {
                         javaemul.internal.InternalPreconditions.checkState(this.last != null);
                         java.util.ConcurrentModificationDetector.checkStructuralChange(this.__parent.__parent.map, this);
@@ -22322,10 +25187,10 @@ var test;
                     };
                     return EntryIterator;
                 }());
-                EntrySet.EntryIterator = EntryIterator;
+                __java_util_LinkedHashMap_EntrySet.EntryIterator = EntryIterator;
                 EntryIterator["__class"] = "java.util.LinkedHashMap.EntrySet.EntryIterator";
                 EntryIterator["__interfaces"] = ["java.util.Iterator"];
-            })(EntrySet = LinkedHashMap.EntrySet || (LinkedHashMap.EntrySet = {}));
+            })(__java_util_LinkedHashMap_EntrySet = LinkedHashMap.__java_util_LinkedHashMap_EntrySet || (LinkedHashMap.__java_util_LinkedHashMap_EntrySet = {}));
         })(LinkedHashMap = util.LinkedHashMap || (util.LinkedHashMap = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));

@@ -21,7 +21,7 @@ import static javaemul.internal.InternalPreconditions.checkElementIndex;
 import static javaemul.internal.InternalPreconditions.checkPositionIndex;
 import static javaemul.internal.InternalPreconditions.checkPositionIndexes;
 import static javaemul.internal.InternalPreconditions.checkState;
-import static jsweet.util.Globals.any;
+import static jsweet.util.Lang.any;
 
 import java.io.Serializable;
 

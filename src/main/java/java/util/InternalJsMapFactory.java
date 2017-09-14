@@ -16,7 +16,7 @@
 package java.util;
 
 import static javaemul.internal.globals.Globals.Map;
-import static jsweet.util.Globals.$new;
+import static jsweet.util.Lang.$new;
 
 // TODO: remove this file!!
 

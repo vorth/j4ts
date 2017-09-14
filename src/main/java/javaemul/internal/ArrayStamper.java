@@ -15,7 +15,7 @@
  */
 package javaemul.internal;
 
-import static jsweet.util.Globals.any;
+import static jsweet.util.Lang.any;
 
 /**
  * A utility to provide array stamping. Provided as a separate class to simplify

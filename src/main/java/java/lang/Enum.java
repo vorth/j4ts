@@ -17,7 +17,7 @@ package java.lang;
 
 import static javaemul.internal.InternalPreconditions.checkCriticalArgument;
 import static javaemul.internal.InternalPreconditions.checkNotNull;
-import static jsweet.util.Globals.$apply;
+import static jsweet.util.Lang.$apply;
 
 import java.io.Serializable;
 

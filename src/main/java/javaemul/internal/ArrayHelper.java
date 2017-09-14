@@ -15,6 +15,8 @@
  */
 package javaemul.internal;
 
+import static jsweet.util.Lang.$insert;
+
 import def.js.Array;
 import jsweet.util.Lang;
 
@@ -95,7 +97,7 @@ public class ArrayHelper {
 		}
 	}
 
-	private static native void applySplice(Object arrayObject, int index, int deleteCount, Object arrayToAdd) /*-{
-		Array.prototype.splice.apply(arrayObject, [index, deleteCount].concat(arrayToAdd));
-	}-*/;
+	private static void applySplice(Object arrayObject, int index, int deleteCount, Object arrayToAdd) {
+		$insert("Array.prototype.splice.apply(arrayObject, [index, deleteCount].concat(arrayToAdd))");
+	};
 }
