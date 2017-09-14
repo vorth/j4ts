@@ -16,6 +16,7 @@
 package java.util;
 
 import static java.util.ConcurrentModificationDetector.structureChanged;
+import static jsweet.util.Lang.$insert;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Map.Entry;
@@ -146,13 +147,13 @@ class InternalHashCodeMap<K, V> implements Iterable<Entry<K, V>> {
     return chain == null ? newEntryChain() : chain;
   }
 
-  private native Entry<K, V>[] newEntryChain() /*-{
-    return [];
-  }-*/;
+  private Entry<K, V>[] newEntryChain() {
+    return $insert("[]");
+  };
 
-  private native Entry<K, V>[] unsafeCastToArray(Object arr) /*-{
-    return arr;
-  }-*/;
+  private Entry<K, V>[] unsafeCastToArray(Object arr) {
+    return $insert("arr");
+  };
 
   /**
    * Returns hash code of the key as calculated by {@link AbstractHashMap#getHashCode(Object)} but

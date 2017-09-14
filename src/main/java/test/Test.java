@@ -1,13 +1,18 @@
 package test;
 
-import static jsweet.dom.Globals.console;
-import static jsweet.dom.Globals.document;
+import static def.dom.Globals.console;
+import static def.dom.Globals.document;
+import static def.js.Globals.undefined;
+import static jsweet.util.Lang.any;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -15,13 +20,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import jsweet.dom.HTMLElement;
-import jsweet.util.Globals;
+import def.dom.HTMLElement;
 
 public class Test {
 
+	public static void main(String[] args) {
+		System.out.println(Arrays.asList("a","b","c"));
+	}
+	
 	public static void assertEquals(Object o1, Object o2) {
-		if (!Globals.equalsStrict(o1, o2)) {
+		if (!(o1 == o2)) {
 			throw new Error("invalid assertion: " + o1 + "!=" + o2);
 		}
 	}
@@ -73,6 +81,27 @@ public class Test {
 		assertEquals(3, myArray[0]);
 		Arrays.sort(myArray);
 		assertEquals(1, myArray[0]);
+
+		List<String> l = Arrays.asList("a", "b", "c", "d");
+
+		assertEquals(4, l.size());
+
+		// TODO: fix type exception
+		String[] a = any(Arrays.copyOf(l.toArray(new String[0]), 3));
+
+		assertEquals(3, a.length);
+
+		Comparator<String> reverse = new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				return o2.compareTo(o1);
+			}
+		};
+
+		Arrays.sort(a, reverse);
+		// TODO: fix varargs
+		assertEquals("[c, b, a]", Arrays.asList(a[0], a[1], a[2]).toString());
+
 		console.info("end testing arrays");
 	}
 
@@ -104,6 +133,14 @@ public class Test {
 		assertTrue(it.hasNext());
 		assertEquals("c", it.next());
 		assertFalse(it.hasNext());
+
+		l.clear();
+		l.add("bb");
+		l.add("aa");
+		assertEquals(l.toString(), "[bb, aa]");
+		Collections.sort(l, Collator.getInstance());
+		assertEquals(l.toString(), "[aa, bb]");
+
 		console.info("end testing lists");
 	}
 
@@ -149,6 +186,30 @@ public class Test {
 		assertEquals(m.size(), 3);
 		m.remove("a");
 		assertEquals(m.size(), 2);
+		assertEquals(null, m.get("undefinedKey"));
+		assertFalse(m.get("undefinedKey") == undefined);
+
+		Map<MyKey, String> m2 = new HashMap<>();
+
+		m2.put(key1(), "a");
+		m2.put(new MyKey("2"), "b");
+
+		assertEquals(2, m2.size());
+		assertEquals("a", m2.get(new MyKey("1")));
+
+		assertTrue(m2.containsKey(new MyKey("2")));
+
+		assertEquals("[1, 2]", m2.keySet().toString());
+		assertEquals("[a, b]", m2.values().toString());
+
+		m2.remove(new MyKey("1"));
+
+		assertEquals(1, m2.size());
+		assertEquals(null, m2.get(new MyKey("1")));
+		assertEquals(null, Collections.singletonMap(key1(), "1").get(new MyKey("a")));
+		assertEquals("1", Collections.singletonMap(key2(), "1").get(new MyKey("a")));
+		assertEquals("2", Collections.singletonMap(new MyKey("b"), "2").get(new MyKey("b")));
+
 		console.info("end testing maps");
 	}
 
@@ -215,4 +276,34 @@ public class Test {
 	// console.info("end testing math");
 	// }
 
+	static MyKey key1() {
+		return new MyKey("1");
+	}
+
+	static MyKey key2() {
+		return new MyKey("a");
+	}
+
+}
+
+class MyKey {
+	String data;
+
+	public MyKey(String data) {
+		this.data = data;
+	}
+
+	public String toString() {
+		return data;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return data.equals(((MyKey) obj).data);
+	}
+
+	@Override
+	public int hashCode() {
+		return data.hashCode();
+	}
 }

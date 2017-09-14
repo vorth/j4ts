@@ -1,6 +1,6 @@
 package java.io;
 
-import static jsweet.util.Globals.any;
+import static jsweet.util.Lang.any;
 
 import java.nio.charset.Charset;
 

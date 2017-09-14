@@ -15,7 +15,7 @@
  */
 package javaemul.internal;
 
-import static jsweet.util.Globals.function;
+import static jsweet.util.Lang.function;
 
 /**
  * A helper class for long comparison.

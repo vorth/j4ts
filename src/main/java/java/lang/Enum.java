@@ -17,7 +17,7 @@ package java.lang;
 
 import static javaemul.internal.InternalPreconditions.checkCriticalArgument;
 import static javaemul.internal.InternalPreconditions.checkNotNull;
-import static jsweet.util.Globals.$apply;
+import static jsweet.util.Lang.$apply;
 
 import java.io.Serializable;
 
@@ -29,21 +29,21 @@ import java.io.Serializable;
 public abstract class Enum<E extends Enum<E>> implements Comparable<E>, Serializable {
 
 	public static <T extends Enum<T>> T valueOf(Class<T> enumType, String name) {
-		jsweet.lang.Function enumValueOfFunc = checkNotNull(enumType).enumValueOfFunc;
+		def.js.Function enumValueOfFunc = checkNotNull(enumType).enumValueOfFunc;
 		checkCriticalArgument(enumValueOfFunc != null);
 		checkNotNull(name);
 		return invokeValueOf(enumValueOfFunc, name);
 	}
 
-	protected static <T extends Enum<T>> jsweet.lang.Object createValueOfMap(T[] enumConstants) {
-		jsweet.lang.Object result = new jsweet.lang.Object();
+	protected static <T extends Enum<T>> def.js.Object createValueOfMap(T[] enumConstants) {
+		def.js.Object result = new def.js.Object();
 		for (T value : enumConstants) {
 			put0(result, ":" + value.name(), value);
 		}
 		return result;
 	}
 
-	protected static <T extends Enum<T>> T valueOf(jsweet.lang.Object map, String name) {
+	protected static <T extends Enum<T>> T valueOf(def.js.Object map, String name) {
 		checkNotNull(name);
 
 		T result = Enum.<T> get0(map, ":" + name);
@@ -52,15 +52,15 @@ public abstract class Enum<E extends Enum<E>> implements Comparable<E>, Serializ
 	}
 
 	@SuppressWarnings("unchecked")
-	private static <T extends Enum<T>> T get0(jsweet.lang.Object map, String name) {
+	private static <T extends Enum<T>> T get0(def.js.Object map, String name) {
 		return (T) map.$get(name);
 	};
 
-	private static <T extends Enum<T>> T invokeValueOf(jsweet.lang.Function enumValueOfFunc, String name) {
+	private static <T extends Enum<T>> T invokeValueOf(def.js.Function enumValueOfFunc, String name) {
 		return $apply(enumValueOfFunc, name);
 	};
 
-	private static <T extends Enum<T>> void put0(jsweet.lang.Object map, String name, T value) {
+	private static <T extends Enum<T>> void put0(def.js.Object map, String name, T value) {
 		map.$set(name, value);
 	};
 

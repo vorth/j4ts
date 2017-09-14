@@ -15,8 +15,7 @@
  */
 package javaemul.internal;
 
-import static jsweet.util.Globals.$get;
-import static jsweet.util.Globals.$set;
+import static jsweet.util.Lang.object;
 
 /**
  * Contains logics for calculating hash codes in JavaScript.
@@ -38,10 +37,10 @@ public class HashCodes {
 	}
 
 	public static int getObjectIdentityHashCode(Object o) {
-		if ($get(o, HASH_CODE_PROPERTY) != null) {
-			return $get(o, HASH_CODE_PROPERTY);
+		if (object(o).$get(HASH_CODE_PROPERTY) != null) {
+			return object(o).$get(HASH_CODE_PROPERTY);
 		} else {
-			return $set(o, HASH_CODE_PROPERTY, getNextHashId());
+			return object(o).$set(HASH_CODE_PROPERTY, getNextHashId());
 		}
 	};
 

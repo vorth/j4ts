@@ -14,47 +14,34 @@
  * the License.
  */
 package java.util;
-import static jsweet.util.Globals.$apply;
-import static jsweet.util.Globals.$get;
 
-// TODO(goktug): These classes should be interfaces with defender methods instead.
+import jsweet.lang.Ambient;
+
+@Ambient
 class InternalJsMap<V> {
+	@Ambient
 	static class Iterator<V> {
-		public IteratorEntry<V> next() { return null; };
+		public native IteratorEntry<V> next();
 	}
 
+	@Ambient
 	static class IteratorEntry<V> {
 		public Object[] value;
 		public boolean done;
 	}
 
-	public V get(int key) {return null;};
+	public native V get(int key);
 
-	public V get(String key) {return null;};
+	public native V get(String key);
 
-	public void set(int key, V value) {};
+	public native void set(int key, V value);
 
-	public void set(String key, V value) {};
+	public native void set(String key, V value);
 
-	public final void delete(int key) {
-		JsHelper.delete(this, key);
-	}
+	public native final void delete(int key);
 
-	public final void delete(String key) {
-		JsHelper.delete(this, key);
-	}
+	public native final void delete(String key);
 
-	public Iterator<V> entries() { return null; };
+	public native Iterator<V> entries();
 
-	// Calls to delete are via brackets to be compatible with old browsers where
-	// delete is keyword.
-	private static class JsHelper {
-		static void delete(InternalJsMap<?> obj, int key) {
-			$apply($get(obj, "delete"), key);
-		};
-
-		static void delete(InternalJsMap<?> obj, String key) {
-			$apply($get(obj, "delete"), key);
-		};
-	}
 }

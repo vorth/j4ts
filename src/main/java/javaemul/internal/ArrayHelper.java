@@ -15,7 +15,10 @@
  */
 package javaemul.internal;
 
-import jsweet.lang.Array;
+import static jsweet.util.Lang.$insert;
+
+import def.js.Array;
+import jsweet.util.Lang;
 
 /**
  * Provides utilities to perform operations on Arrays.
@@ -35,7 +38,7 @@ public class ArrayHelper {
 	 * any type checks.
 	 */
 	public static Object[] unsafeClone(Object array, int fromIndex, int toIndex) {
-		return ((Array<?>) array).slice(fromIndex, toIndex);
+		return Lang.array(((Array<Object>) array).slice(fromIndex, toIndex));
 	};
 
 	public static <T> T[] createFrom(T[] array, int length) {
@@ -94,7 +97,7 @@ public class ArrayHelper {
 		}
 	}
 
-	private static native void applySplice(Object arrayObject, int index, int deleteCount, Object arrayToAdd) /*-{
-		Array.prototype.splice.apply(arrayObject, [index, deleteCount].concat(arrayToAdd));
-	}-*/;
+	private static void applySplice(Object arrayObject, int index, int deleteCount, Object arrayToAdd) {
+		$insert("Array.prototype.splice.apply(arrayObject, [index, deleteCount].concat(arrayToAdd))");
+	};
 }
