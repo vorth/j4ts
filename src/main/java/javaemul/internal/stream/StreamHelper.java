@@ -47,7 +47,7 @@ public class StreamHelper<T> implements Stream<T> {
     }
 
     @SuppressWarnings("unchecked")
-    private Optional foldRight(Optional<T> identity, BinaryOperator<T> accumulator) {
+    private Optional foldRight(Optional<T> identity, BinaryOperator accumulator) {
         StreamRowReduce rowReduce = new StreamRowReduce(identity, accumulator);
         chain(rowReduce);
         play();
@@ -83,8 +83,7 @@ public class StreamHelper<T> implements Stream<T> {
 
     @SuppressWarnings("unchecked")
     public Stream<T> sorted() {
-        Comparator<T> tComparator = (Comparator<T>) Comparator.naturalOrder();
-        return sorted(tComparator);
+        return sorted((a, b) -> ((Comparable) a).compareTo(b));
     }
 
     @SuppressWarnings("unchecked")
@@ -104,7 +103,8 @@ public class StreamHelper<T> implements Stream<T> {
 
     @SuppressWarnings("unchecked")
     public Stream<T> skip(long n) {
-        return chain(new StreamRowFilter(new CountingPredicate(n).negate()));
+        CountingPredicate p = new CountingPredicate(n);
+        return chain(new StreamRowFilter(v -> !p.test(v)));
     }
 
     @SuppressWarnings("unchecked")
@@ -154,12 +154,14 @@ public class StreamHelper<T> implements Stream<T> {
 
     @SuppressWarnings("unchecked")
     public Optional<T> min(Comparator<? super T> comparator) {
-        return foldRight(Optional.empty(), new ChooseSmallest(comparator));
+        return foldRight(Optional.empty(),
+                (a, b) -> comparator.compare((T) a, (T) b) <= 0 ? a : b);
     }
 
     @SuppressWarnings("unchecked")
     public Optional<T> max(Comparator<? super T> comparator) {
-        return foldRight(Optional.empty(), new ChooseSmallest(comparator.reversed()));
+        return foldRight(Optional.empty(),
+                (a, b) -> comparator.compare((T) a, (T) b) >= 0 ? a : b);
     }
 
     @SuppressWarnings("unchecked")
@@ -186,7 +188,7 @@ public class StreamHelper<T> implements Stream<T> {
     }
 
     public boolean noneMatch(Predicate<? super T> predicate) {
-        return allMatch(predicate.negate());
+        return allMatch(v -> !predicate.test(v));
     }
 
     @SuppressWarnings("unchecked")

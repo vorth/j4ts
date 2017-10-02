@@ -51,14 +51,23 @@ public final class Collectors {
     }
 
     public static <T> Collector<T, ?, List<T>> toList() {
-        return new CollectorImpl<>((Supplier<List<T>>) ArrayList::new, List::add,
-                (left, right) -> { left.addAll(right); return left; });
+        return new CollectorImpl<>(
+                () -> new ArrayList(),
+                (l, i) -> l.add(i),
+                (left, right) -> {
+                    left.addAll(right);
+                    return left;
+                });
     }
 
-    public static <T>
-    Collector<T, ?, Set<T>> toSet() {
-        return new CollectorImpl<>((Supplier<Set<T>>) HashSet::new, Set::add,
-                (left, right) -> { left.addAll(right); return left; });
+    public static <T> Collector<T, ?, Set<T>> toSet() {
+        return new CollectorImpl<>(
+                () -> new HashSet(),
+                (s, i) -> s.add(i),
+                (left, right) -> {
+                    left.addAll(right);
+                    return left;
+                });
     }
 
     public static <T, K, U>

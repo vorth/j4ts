@@ -28,11 +28,4 @@ public interface Comparator<T> {
   @Override
   boolean equals(Object other);
 
-  default Comparator<T> reversed() {
-    return (b, a) -> this.compare(a, b);
-  }
-
-  static <T extends Comparable<? super T>> Comparator<T> naturalOrder() {
-    return Comparators.natural();
-  }
 }
