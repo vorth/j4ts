@@ -23,10 +23,16 @@ package java.util;
  * @param <T> the type to be compared.
  */
 public interface Comparator<T> {
-
   int compare(T a, T b);
 
   @Override
   boolean equals(Object other);
 
+  default Comparator<T> reversed() {
+    return (b, a) -> this.compare(a, b);
+  }
+
+  static <T extends Comparable<? super T>> Comparator<T> naturalOrder() {
+    return Comparators.natural();
+  }
 }

@@ -37,6 +37,7 @@ public class ArrayHelper {
 	 * marked. This is only safe for temp arrays as returned array will not do
 	 * any type checks.
 	 */
+	@SuppressWarnings("unchecked")
 	public static Object[] unsafeClone(Object array, int fromIndex, int toIndex) {
 		return Lang.array(((Array<Object>) array).slice(fromIndex, toIndex));
 	};
