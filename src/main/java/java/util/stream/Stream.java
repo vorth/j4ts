@@ -46,4 +46,7 @@ public interface Stream<T> {
     static<T> Stream<T> of(T... values) {
         return Arrays.asList(values).stream();
     }
+
+    // lazy hack for int stream
+    <U> Stream<U> mapToObj(IntFunction<? extends U> mapper);
 }

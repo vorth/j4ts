@@ -869,13 +869,23 @@ var java;
     (function (util) {
         var stream;
         (function (stream) {
-            var IntStream = (function () {
-                function IntStream() {
+            var IntStream;
+            (function (IntStream) {
+                function range(startInclusive, endExclusive) {
+                    if (startInclusive >= endExclusive) {
+                        return java.util.Collections.emptyList().stream();
+                    }
+                    else {
+                        var result = (new java.util.ArrayList());
+                        for (; startInclusive < endExclusive; ++startInclusive) {
+                            result.add(startInclusive);
+                        }
+                        ;
+                        return result.stream();
+                    }
                 }
-                return IntStream;
-            }());
-            stream.IntStream = IntStream;
-            IntStream["__class"] = "java.util.stream.IntStream";
+                IntStream.range = range;
+            })(IntStream = stream.IntStream || (stream.IntStream = {}));
         })(stream = util.stream || (util.stream = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -1123,9 +1133,6 @@ var java;
         var AbstractCollection = (function () {
             function AbstractCollection() {
             }
-            AbstractCollection.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
             AbstractCollection.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_1 = function (index122) {
@@ -1137,6 +1144,9 @@ var java;
                 for (var index122 = this.iterator(); index122.hasNext();) {
                     _loop_1(index122);
                 }
+            };
+            AbstractCollection.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             AbstractCollection.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
@@ -5463,6 +5473,9 @@ var javaemul;
                 StreamHelper.prototype.map = function (mapper) {
                     return this.chain(new javaemul.internal.stream.StreamRowMap((mapper)));
                 };
+                StreamHelper.prototype.mapToObj = function (mapper) {
+                    return this.chain(new javaemul.internal.stream.StreamRowMap(function (n) { return (function (target) { return (typeof target === 'function') ? target(n) : target.apply(n); })(mapper); }));
+                };
                 StreamHelper.prototype.flatMap = function (mapper) {
                     return this.chain(new javaemul.internal.stream.StreamRowFlatMap((mapper)));
                 };
@@ -7351,6 +7364,13 @@ var test;
             })(result));
             Test.assertEquals(java.util.Arrays.asList(1, 2, 3), result);
         };
+        Test.testIntStreamRange = function () {
+            var result = (new java.util.ArrayList());
+            java.util.stream.IntStream.range(0, 3).mapToObj(function (n) { /* valueOf */ return new String(n).toString(); }).forEach((function (result) {
+                return function (n) { return result.add(n); };
+            })(result));
+            Test.assertEquals(java.util.Arrays.asList("0", "1", "2"), result);
+        };
         Test.key1 = function () {
             return new test.MyKey("1");
         };
@@ -7739,9 +7759,6 @@ var test;
             function AbstractQueue() {
                 return _super.call(this) || this;
             }
-            AbstractQueue.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
             AbstractQueue.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_3 = function (index131) {
@@ -7753,6 +7770,9 @@ var test;
                 for (var index131 = this.iterator(); index131.hasNext();) {
                     _loop_3(index131);
                 }
+            };
+            AbstractQueue.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             AbstractQueue.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
@@ -7835,9 +7855,6 @@ var test;
                 _this.modCount = 0;
                 return _this;
             }
-            AbstractList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
             AbstractList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_4 = function (index132) {
@@ -7849,6 +7866,9 @@ var test;
                 for (var index132 = this.iterator(); index132.hasNext();) {
                     _loop_4(index132);
                 }
+            };
+            AbstractList.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             AbstractList.prototype.add$java_lang_Object = function (obj) {
                 this.add(this.size(), obj);
@@ -8292,9 +8312,6 @@ var test;
             function AbstractSet() {
                 return _super.call(this) || this;
             }
-            AbstractSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
             AbstractSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_5 = function (index135) {
@@ -8306,6 +8323,9 @@ var test;
                 for (var index135 = this.iterator(); index135.hasNext();) {
                     _loop_5(index135);
                 }
+            };
+            AbstractSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /**
              *
@@ -14104,9 +14124,6 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
-            ArrayList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
             ArrayList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_7 = function (index139) {
@@ -14118,6 +14135,9 @@ var test;
                 for (var index139 = this.iterator(); index139.hasNext();) {
                     _loop_7(index139);
                 }
+            };
+            ArrayList.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             ArrayList.prototype.add$java_lang_Object = function (o) {
                 this.array[this.array.length] = o;
@@ -16211,9 +16231,6 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
-            Vector.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
             Vector.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_8 = function (index160) {
@@ -16225,6 +16242,9 @@ var test;
                 for (var index160 = this.iterator(); index160.hasNext();) {
                     _loop_8(index160);
                 }
+            };
+            Vector.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             Vector.prototype.add$java_lang_Object = function (o) {
                 return this.arrayList.add(o);
@@ -17440,9 +17460,6 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
-            TreeSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
             TreeSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_9 = function (index165) {
@@ -17454,6 +17471,9 @@ var test;
                 for (var index165 = this.iterator(); index165.hasNext();) {
                     _loop_9(index165);
                 }
+            };
+            TreeSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             TreeSet.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
@@ -17739,9 +17759,6 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
-            HashSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
             HashSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_10 = function (index166) {
@@ -17753,6 +17770,9 @@ var test;
                 for (var index166 = this.iterator(); index166.hasNext();) {
                     _loop_10(index166);
                 }
+            };
+            HashSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             HashSet.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
@@ -18786,9 +18806,6 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
-            LinkedList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
             LinkedList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_11 = function (index167) {
@@ -18800,6 +18817,9 @@ var test;
                 for (var index167 = this.iterator(); index167.hasNext();) {
                     _loop_11(index167);
                 }
+            };
+            LinkedList.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /**
              *
@@ -19812,9 +19832,6 @@ var test;
                     _this.map = map;
                     return _this;
                 }
-                NavigableKeySet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
                 NavigableKeySet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
                     var _loop_12 = function (index168) {
@@ -19826,6 +19843,9 @@ var test;
                     for (var index168 = this.iterator(); index168.hasNext();) {
                         _loop_12(index168);
                     }
+                };
+                NavigableKeySet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 /**
                  *
@@ -21000,9 +21020,6 @@ var test;
                     this.coll = null;
                     this.coll = coll;
                 }
-                UnmodifiableCollection.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
                 UnmodifiableCollection.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
                     var _loop_13 = function (index176) {
@@ -21014,6 +21031,9 @@ var test;
                     for (var index176 = this.iterator(); index176.hasNext();) {
                         _loop_13(index176);
                     }
+                };
+                UnmodifiableCollection.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 UnmodifiableCollection.prototype.add = function (index, element) {
                     if (((index != null) || index === null) && element === undefined) {
@@ -21193,9 +21213,6 @@ var test;
                     _this.list = list;
                     return _this;
                 }
-                UnmodifiableList.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
                 UnmodifiableList.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
                     var _loop_14 = function (index177) {
@@ -21207,6 +21224,9 @@ var test;
                     for (var index177 = this.iterator(); index177.hasNext();) {
                         _loop_14(index177);
                     }
+                };
+                UnmodifiableList.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 UnmodifiableList.prototype.add$int$java_lang_Object = function (index, element) {
                     throw new java.lang.UnsupportedOperationException();
@@ -21372,9 +21392,6 @@ var test;
                 function UnmodifiableSet(set) {
                     return _super.call(this, set) || this;
                 }
-                UnmodifiableSet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
                 UnmodifiableSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
                     var _loop_15 = function (index178) {
@@ -21386,6 +21403,9 @@ var test;
                     for (var index178 = this.iterator(); index178.hasNext();) {
                         _loop_15(index178);
                     }
+                };
+                UnmodifiableSet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 /**
                  *
@@ -21829,9 +21849,6 @@ var test;
                     _this.sortedSet = sortedSet;
                     return _this;
                 }
-                UnmodifiableSortedSet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
                 UnmodifiableSortedSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
                     var _loop_16 = function (index179) {
@@ -21843,6 +21860,9 @@ var test;
                     for (var index179 = this.iterator(); index179.hasNext();) {
                         _loop_16(index179);
                     }
+                };
+                UnmodifiableSortedSet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 /**
                  *
@@ -22838,9 +22858,6 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
-            LinkedHashSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
             LinkedHashSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_17 = function (index182) {
@@ -22852,6 +22869,9 @@ var test;
                 for (var index182 = this.iterator(); index182.hasNext();) {
                     _loop_17(index182);
                 }
+            };
+            LinkedHashSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /**
              *

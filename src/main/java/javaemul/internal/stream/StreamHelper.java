@@ -72,6 +72,11 @@ public class StreamHelper<T> implements Stream<T> {
     }
 
     @SuppressWarnings("unchecked")
+    public <U> Stream<U> mapToObj(IntFunction<? extends U> mapper) {
+        return chain(new StreamRowMap(n -> mapper.apply((Integer) n)));
+    }
+
+    @SuppressWarnings("unchecked")
     public <R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper) {
         return chain(new StreamRowFlatMap(mapper));
     }

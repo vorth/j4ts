@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import def.dom.HTMLElement;
@@ -356,6 +357,14 @@ public class Test {
 		List<Integer> result = new ArrayList<>();
 		Stream.of(1,2,3).forEach(n -> result.add(n));
 		assertEquals(asList(1,2,3), result);
+	}
+
+	public static void testIntStreamRange() {
+		List<String> result = new ArrayList<>();
+		IntStream.range(0,3)
+				.mapToObj(n -> String.valueOf(n))
+				.forEach(n -> result.add((String) n));
+		assertEquals(asList("0", "1", "2"), result);
 	}
 
 	// java.math is not available yet and should be implemented as a wrapper to
