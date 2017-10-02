@@ -7161,7 +7161,7 @@ var test;
             Test.assertEquals("ac", res);
             var it = l.iterator();
             Test.assertTrue(it.hasNext());
-            Test.assertEquals("a", it.next());
+            Test.assertEquals("da", it.next());
             Test.assertTrue(it.hasNext());
             Test.assertEquals("c", it.next());
             Test.assertFalse(it.hasNext());
