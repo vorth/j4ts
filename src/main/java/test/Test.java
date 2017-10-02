@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import def.dom.HTMLElement;
 
@@ -322,7 +323,7 @@ public class Test {
 		assertEquals(asList(), asList().stream().skip(2).collect(Collectors.toList()));
 	}
 
-	public static void testFilterAndMap() {
+	public static void testStreamFilterAndMap() {
 		assertEquals(asList(2, 6), asList(1,2,3,4).stream()
 				.filter(x -> x % 2 == 1)
 				.map(x -> x * 2)
@@ -333,7 +334,7 @@ public class Test {
 				.collect(Collectors.toList()));
 	}
 
-	public static void testFlatMap() {
+	public static void testStreamFlatMap() {
 		assertEquals(asList(0, 0, 1, 0, 1, 2), asList(0, 1, 2).stream()
 				.flatMap(x -> {
 					final List<Integer> r = new ArrayList();
@@ -343,6 +344,18 @@ public class Test {
 					return r.stream();
 				})
 				.collect(Collectors.toList()));
+	}
+
+	public static void testStreamForEach() {
+		List<Integer> result = new ArrayList<>();
+		asList(1,2,3).forEach(n -> result.add(n));
+		assertEquals(asList(1,2,3), result);
+	}
+
+	public static void testStreamOf() {
+		List<Integer> result = new ArrayList<>();
+		Stream.of(1,2,3).forEach(n -> result.add(n));
+		assertEquals(asList(1,2,3), result);
 	}
 
 	// java.math is not available yet and should be implemented as a wrapper to

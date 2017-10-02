@@ -1,5 +1,6 @@
 package java.util.stream;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Optional;
@@ -41,4 +42,8 @@ public interface Stream<T> {
     Stream<T> unordered();
     Stream<T> onClose(Runnable closeHandler);
     void close();
+
+    static<T> Stream<T> of(T... values) {
+        return Arrays.asList(values).stream();
+    }
 }

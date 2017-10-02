@@ -850,6 +850,25 @@ var java;
     (function (util) {
         var stream;
         (function (stream) {
+            var Stream;
+            (function (Stream) {
+                function of() {
+                    var values = [];
+                    for (var _i = 0; _i < arguments.length; _i++) {
+                        values[_i] = arguments[_i];
+                    }
+                    return java.util.Arrays.asList.apply(null, values).stream();
+                }
+                Stream.of = of;
+            })(Stream = stream.Stream || (stream.Stream = {}));
+        })(stream = util.stream || (util.stream = {}));
+    })(util = java.util || (java.util = {}));
+})(java || (java = {}));
+(function (java) {
+    var util;
+    (function (util) {
+        var stream;
+        (function (stream) {
             var IntStream = (function () {
                 function IntStream() {
                 }
@@ -1104,6 +1123,9 @@ var java;
         var AbstractCollection = (function () {
             function AbstractCollection() {
             }
+            AbstractCollection.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             AbstractCollection.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_1 = function (index122) {
@@ -1115,9 +1137,6 @@ var java;
                 for (var index122 = this.iterator(); index122.hasNext();) {
                     _loop_1(index122);
                 }
-            };
-            AbstractCollection.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             AbstractCollection.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
@@ -7161,7 +7180,7 @@ var test;
             Test.assertEquals("ac", res);
             var it = l.iterator();
             Test.assertTrue(it.hasNext());
-            Test.assertEquals("da", it.next());
+            Test.assertEquals("a", it.next());
             Test.assertTrue(it.hasNext());
             Test.assertEquals("c", it.next());
             Test.assertFalse(it.hasNext());
@@ -7256,6 +7275,81 @@ var test;
             var s = new java.io.ByteArrayInputStream(/* getBytes */ ("abc").split('').map(function (s) { return s.charCodeAt(0); }));
             Test.assertEquals(javaemul.internal.CharacterHelper.getNumericValue('a'), s.read());
             console.info("end testing io");
+        };
+        Test.testStreamCollectList = function () {
+            Test.assertEquals(java.util.Arrays.asList(1, 2, 3), (java.util.Arrays.asList(1, 2, 3).stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+            Test.assertEquals(java.util.Arrays.asList(1), (java.util.Arrays.asList(1).stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList().stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+        };
+        Test.testStreamCollectMap = function () {
+            var m = (new java.util.HashMap());
+            m.put(1, 2);
+            m.put(2, 4);
+            Test.assertEquals(m, (java.util.Arrays.asList(1, 2).stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toMap$java_util_function_Function$java_util_function_Function(function (a) { return a; }, function (a) { return a * 2; }))));
+            Test.assertEquals((new java.util.HashMap()), (java.util.Arrays.asList().stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toMap$java_util_function_Function$java_util_function_Function(function (a) { return a; }, function (a) { return a; }))));
+        };
+        Test.testStreamCollectSet = function () {
+            Test.assertEquals((new java.util.HashSet(java.util.Arrays.asList(1, 2, 3))), (java.util.Arrays.asList(1, 2, 1, 3, 3).stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toSet())));
+            Test.assertEquals((new java.util.HashSet(java.util.Arrays.asList(1))), (java.util.Arrays.asList(1).stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toSet())));
+            Test.assertEquals((new java.util.HashSet()), (java.util.Arrays.asList().stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toSet())));
+        };
+        Test.testStreamFilter = function () {
+            Test.assertEquals(java.util.Arrays.asList(2), (java.util.Arrays.asList(1, 2, 3).stream().filter(function (x) { return (x % 2 === 0); })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList(1).stream().filter(function (x) { return (x % 2 === 0); })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList().stream().filter(function (x) { return x % 2 === 0; })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+        };
+        Test.testStreamSortLiteralList = function () {
+            Test.assertEquals(java.util.Arrays.asList(3, 2, 1), (java.util.Arrays.asList(1, 2, 3).stream()['sorted$java_util_Comparator']({ compare: function (a, b) { return b - a; } })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+            Test.assertEquals(java.util.Arrays.asList(1), (java.util.Arrays.asList(1).stream()['sorted$java_util_Comparator']({ compare: function (a, b) { return b - a; } })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList().stream()['sorted$java_util_Comparator']({ compare: function (a, b) { return 0; } })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+        };
+        Test.testStreamMap = function () {
+            Test.assertEquals(java.util.Arrays.asList(2, 4, 6), (java.util.Arrays.asList(1, 2, 3).stream().map(function (x) { return x * 2; })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+            Test.assertEquals(java.util.Arrays.asList(2), (java.util.Arrays.asList(1).stream().map(function (x) { return x * 2; })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList().stream().map(function (x) { return 1; })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+        };
+        Test.testStreamCount = function () {
+            Test.assertEquals(3, java.util.Arrays.asList(1, 2, 3).stream().count());
+            Test.assertEquals(1, java.util.Arrays.asList(1).stream().count());
+            Test.assertEquals(0, java.util.Arrays.asList().stream().count());
+        };
+        Test.testStreamLimit = function () {
+            Test.assertEquals(java.util.Arrays.asList(1, 2), (java.util.Arrays.asList(1, 2, 3, 4).stream().limit(2)['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+            Test.assertEquals(java.util.Arrays.asList(1), (java.util.Arrays.asList(1).stream().limit(1)['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList().stream().limit(2)['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+        };
+        Test.testStreamSkip = function () {
+            Test.assertEquals(java.util.Arrays.asList(3, 4), (java.util.Arrays.asList(1, 2, 3, 4).stream().skip(2)['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList(1).stream().skip(1)['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList().stream().skip(2)['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+        };
+        Test.testStreamFilterAndMap = function () {
+            Test.assertEquals(java.util.Arrays.asList(2, 6), (java.util.Arrays.asList(1, 2, 3, 4).stream().filter(function (x) { return x % 2 === 1; }).map(function (x) { return x * 2; })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList(2).stream().filter(function (x) { return x % 2 === 1; }).map(function (x) { return x * 2; })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+        };
+        Test.testStreamFlatMap = function () {
+            Test.assertEquals(java.util.Arrays.asList(0, 0, 1, 0, 1, 2), (java.util.Arrays.asList(0, 1, 2).stream().flatMap(function (x) {
+                var r = (new java.util.ArrayList());
+                for (var i = 0; i <= x; ++i) {
+                    r.add(i);
+                }
+                ;
+                return r.stream();
+            })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
+        };
+        Test.testStreamForEach = function () {
+            var result = (new java.util.ArrayList());
+            java.util.Arrays.asList(1, 2, 3).forEach((function (result) {
+                return function (n) { return result.add(n); };
+            })(result));
+            Test.assertEquals(java.util.Arrays.asList(1, 2, 3), result);
+        };
+        Test.testStreamOf = function () {
+            var result = (new java.util.ArrayList());
+            java.util.stream.Stream.of(1, 2, 3).forEach((function (result) {
+                return function (n) { return result.add(n); };
+            })(result));
+            Test.assertEquals(java.util.Arrays.asList(1, 2, 3), result);
         };
         Test.key1 = function () {
             return new test.MyKey("1");
@@ -7645,6 +7739,9 @@ var test;
             function AbstractQueue() {
                 return _super.call(this) || this;
             }
+            AbstractQueue.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             AbstractQueue.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_3 = function (index131) {
@@ -7656,9 +7753,6 @@ var test;
                 for (var index131 = this.iterator(); index131.hasNext();) {
                     _loop_3(index131);
                 }
-            };
-            AbstractQueue.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             AbstractQueue.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
@@ -7741,6 +7835,9 @@ var test;
                 _this.modCount = 0;
                 return _this;
             }
+            AbstractList.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             AbstractList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_4 = function (index132) {
@@ -7752,9 +7849,6 @@ var test;
                 for (var index132 = this.iterator(); index132.hasNext();) {
                     _loop_4(index132);
                 }
-            };
-            AbstractList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             AbstractList.prototype.add$java_lang_Object = function (obj) {
                 this.add(this.size(), obj);
@@ -8198,6 +8292,9 @@ var test;
             function AbstractSet() {
                 return _super.call(this) || this;
             }
+            AbstractSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             AbstractSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_5 = function (index135) {
@@ -8209,9 +8306,6 @@ var test;
                 for (var index135 = this.iterator(); index135.hasNext();) {
                     _loop_5(index135);
                 }
-            };
-            AbstractSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /**
              *
@@ -14010,6 +14104,9 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
+            ArrayList.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             ArrayList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_7 = function (index139) {
@@ -14021,9 +14118,6 @@ var test;
                 for (var index139 = this.iterator(); index139.hasNext();) {
                     _loop_7(index139);
                 }
-            };
-            ArrayList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             ArrayList.prototype.add$java_lang_Object = function (o) {
                 this.array[this.array.length] = o;
@@ -16117,6 +16211,9 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
+            Vector.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             Vector.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_8 = function (index160) {
@@ -16128,9 +16225,6 @@ var test;
                 for (var index160 = this.iterator(); index160.hasNext();) {
                     _loop_8(index160);
                 }
-            };
-            Vector.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             Vector.prototype.add$java_lang_Object = function (o) {
                 return this.arrayList.add(o);
@@ -17346,6 +17440,9 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
+            TreeSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             TreeSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_9 = function (index165) {
@@ -17357,9 +17454,6 @@ var test;
                 for (var index165 = this.iterator(); index165.hasNext();) {
                     _loop_9(index165);
                 }
-            };
-            TreeSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             TreeSet.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
@@ -17645,6 +17739,9 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
+            HashSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             HashSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_10 = function (index166) {
@@ -17656,9 +17753,6 @@ var test;
                 for (var index166 = this.iterator(); index166.hasNext();) {
                     _loop_10(index166);
                 }
-            };
-            HashSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             HashSet.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
@@ -18692,6 +18786,9 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
+            LinkedList.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             LinkedList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_11 = function (index167) {
@@ -18703,9 +18800,6 @@ var test;
                 for (var index167 = this.iterator(); index167.hasNext();) {
                     _loop_11(index167);
                 }
-            };
-            LinkedList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /**
              *
@@ -19718,6 +19812,9 @@ var test;
                     _this.map = map;
                     return _this;
                 }
+                NavigableKeySet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
                 NavigableKeySet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
                     var _loop_12 = function (index168) {
@@ -19729,9 +19826,6 @@ var test;
                     for (var index168 = this.iterator(); index168.hasNext();) {
                         _loop_12(index168);
                     }
-                };
-                NavigableKeySet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 /**
                  *
@@ -20906,6 +21000,9 @@ var test;
                     this.coll = null;
                     this.coll = coll;
                 }
+                UnmodifiableCollection.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
                 UnmodifiableCollection.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
                     var _loop_13 = function (index176) {
@@ -20917,9 +21014,6 @@ var test;
                     for (var index176 = this.iterator(); index176.hasNext();) {
                         _loop_13(index176);
                     }
-                };
-                UnmodifiableCollection.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 UnmodifiableCollection.prototype.add = function (index, element) {
                     if (((index != null) || index === null) && element === undefined) {
@@ -21099,6 +21193,9 @@ var test;
                     _this.list = list;
                     return _this;
                 }
+                UnmodifiableList.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
                 UnmodifiableList.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
                     var _loop_14 = function (index177) {
@@ -21110,9 +21207,6 @@ var test;
                     for (var index177 = this.iterator(); index177.hasNext();) {
                         _loop_14(index177);
                     }
-                };
-                UnmodifiableList.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 UnmodifiableList.prototype.add$int$java_lang_Object = function (index, element) {
                     throw new java.lang.UnsupportedOperationException();
@@ -21278,6 +21372,9 @@ var test;
                 function UnmodifiableSet(set) {
                     return _super.call(this, set) || this;
                 }
+                UnmodifiableSet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
                 UnmodifiableSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
                     var _loop_15 = function (index178) {
@@ -21289,9 +21386,6 @@ var test;
                     for (var index178 = this.iterator(); index178.hasNext();) {
                         _loop_15(index178);
                     }
-                };
-                UnmodifiableSet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 /**
                  *
@@ -21735,6 +21829,9 @@ var test;
                     _this.sortedSet = sortedSet;
                     return _this;
                 }
+                UnmodifiableSortedSet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
                 UnmodifiableSortedSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
                     var _loop_16 = function (index179) {
@@ -21746,9 +21843,6 @@ var test;
                     for (var index179 = this.iterator(); index179.hasNext();) {
                         _loop_16(index179);
                     }
-                };
-                UnmodifiableSortedSet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 /**
                  *
@@ -22744,6 +22838,9 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
+            LinkedHashSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             LinkedHashSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
                 var _loop_17 = function (index182) {
@@ -22755,9 +22852,6 @@ var test;
                 for (var index182 = this.iterator(); index182.hasNext();) {
                     _loop_17(index182);
                 }
-            };
-            LinkedHashSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /**
              *
