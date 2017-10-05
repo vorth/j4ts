@@ -848,167 +848,6 @@ var java;
 (function (java) {
     var util;
     (function (util) {
-        var stream;
-        (function (stream) {
-            var Stream;
-            (function (Stream) {
-                function of() {
-                    var values = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        values[_i] = arguments[_i];
-                    }
-                    return java.util.Arrays.asList.apply(null, values).stream();
-                }
-                Stream.of = of;
-            })(Stream = stream.Stream || (stream.Stream = {}));
-        })(stream = util.stream || (util.stream = {}));
-    })(util = java.util || (java.util = {}));
-})(java || (java = {}));
-(function (java) {
-    var util;
-    (function (util) {
-        var stream;
-        (function (stream) {
-            var IntStream;
-            (function (IntStream) {
-                function range(startInclusive, endExclusive) {
-                    if (startInclusive >= endExclusive) {
-                        return java.util.Collections.emptyList().stream();
-                    }
-                    else {
-                        var result = (new java.util.ArrayList());
-                        for (; startInclusive < endExclusive; ++startInclusive) {
-                            result.add(startInclusive);
-                        }
-                        ;
-                        return result.stream();
-                    }
-                }
-                IntStream.range = range;
-            })(IntStream = stream.IntStream || (stream.IntStream = {}));
-        })(stream = util.stream || (util.stream = {}));
-    })(util = java.util || (java.util = {}));
-})(java || (java = {}));
-(function (java) {
-    var util;
-    (function (util) {
-        var stream;
-        (function (stream) {
-            var Collector;
-            (function (Collector) {
-                var Characteristics;
-                (function (Characteristics) {
-                })(Characteristics = Collector.Characteristics || (Collector.Characteristics = {}));
-            })(Collector = stream.Collector || (stream.Collector = {}));
-        })(stream = util.stream || (util.stream = {}));
-    })(util = java.util || (java.util = {}));
-})(java || (java = {}));
-(function (java) {
-    var util;
-    (function (util) {
-        var stream;
-        (function (stream) {
-            var Collectors = (function () {
-                function Collectors() {
-                }
-                Collectors.throwingMerger = function () {
-                    return function (u, v) {
-                        throw new java.lang.IllegalStateException(javaemul.internal.StringHelper.format("Duplicate key %s", u));
-                    };
-                };
-                Collectors.toList = function () {
-                    return (new Collectors.CollectorImpl(function () { return new java.util.ArrayList(); }, function (l, i) { return l.add(i); }, function (left, right) {
-                        left.addAll$java_util_Collection(right);
-                        return left;
-                    }));
-                };
-                Collectors.toSet = function () {
-                    return (new Collectors.CollectorImpl(function () { return new java.util.HashSet(); }, function (s, i) { return s.add(i); }, function (left, right) {
-                        left.addAll$java_util_Collection(right);
-                        return left;
-                    }));
-                };
-                Collectors.toMap$java_util_function_Function$java_util_function_Function = function (keyMapper, valueMapper) {
-                    return Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier((keyMapper), (valueMapper), (Collectors.throwingMerger()), function () { return new java.util.HashMap(); });
-                };
-                Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator = function (keyMapper, valueMapper, mergeFunction) {
-                    return Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier((keyMapper), (valueMapper), (mergeFunction), function () { return new java.util.HashMap(); });
-                };
-                Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier = function (keyMapper, valueMapper, mergeFunction, mapSupplier) {
-                    var accumulator = function (map, element) { return map.merge((function (target) { return (typeof target === 'function') ? target(element) : target.apply(element); })(keyMapper), (function (target) { return (typeof target === 'function') ? target(element) : target.apply(element); })(valueMapper), (mergeFunction)); };
-                    return (new Collectors.CollectorImpl((mapSupplier), (accumulator), (Collectors.mapMerger((mergeFunction)))));
-                };
-                Collectors.toMap = function (keyMapper, valueMapper, mergeFunction, mapSupplier) {
-                    if (((typeof keyMapper === 'function' && keyMapper.length == 1) || keyMapper === null) && ((typeof valueMapper === 'function' && valueMapper.length == 1) || valueMapper === null) && ((typeof mergeFunction === 'function' && mergeFunction.length == 2) || mergeFunction === null) && ((typeof mapSupplier === 'function' && mapSupplier.length == 0) || mapSupplier === null)) {
-                        return java.util.stream.Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier(keyMapper, valueMapper, mergeFunction, mapSupplier);
-                    }
-                    else if (((typeof keyMapper === 'function' && keyMapper.length == 1) || keyMapper === null) && ((typeof valueMapper === 'function' && valueMapper.length == 1) || valueMapper === null) && ((typeof mergeFunction === 'function' && mergeFunction.length == 2) || mergeFunction === null) && mapSupplier === undefined) {
-                        return java.util.stream.Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator(keyMapper, valueMapper, mergeFunction);
-                    }
-                    else if (((typeof keyMapper === 'function' && keyMapper.length == 1) || keyMapper === null) && ((typeof valueMapper === 'function' && valueMapper.length == 1) || valueMapper === null) && mergeFunction === undefined && mapSupplier === undefined) {
-                        return java.util.stream.Collectors.toMap$java_util_function_Function$java_util_function_Function(keyMapper, valueMapper);
-                    }
-                    else
-                        throw new Error('invalid overload');
-                };
-                Collectors.mapMerger = function (mergeFunction) {
-                    return function (m1, m2) {
-                        for (var index121 = m2.entrySet().iterator(); index121.hasNext();) {
-                            var e = index121.next();
-                            m1.merge(e.getKey(), e.getValue(), (mergeFunction));
-                        }
-                        return m1;
-                    };
-                };
-                return Collectors;
-            }());
-            stream.Collectors = Collectors;
-            Collectors["__class"] = "java.util.stream.Collectors";
-            (function (Collectors) {
-                var CollectorImpl = (function () {
-                    function CollectorImpl(supplier, accumulator, combiner) {
-                        this.__supplier = null;
-                        this.__accumulator = null;
-                        this.__combiner = null;
-                        this.__supplier = (supplier);
-                        this.__accumulator = (accumulator);
-                        this.__combiner = (combiner);
-                    }
-                    /**
-                     *
-                     * @return {*}
-                     */
-                    CollectorImpl.prototype.accumulator = function () {
-                        return (this.__accumulator);
-                    };
-                    /**
-                     *
-                     * @return {*}
-                     */
-                    CollectorImpl.prototype.supplier = function () {
-                        return (this.__supplier);
-                    };
-                    CollectorImpl.prototype.combiner = function () {
-                        throw new java.lang.IllegalStateException();
-                    };
-                    CollectorImpl.prototype.finisher = function () {
-                        throw new java.lang.IllegalStateException();
-                    };
-                    CollectorImpl.prototype.characteristics = function () {
-                        throw new java.lang.IllegalStateException();
-                    };
-                    return CollectorImpl;
-                }());
-                Collectors.CollectorImpl = CollectorImpl;
-                CollectorImpl["__class"] = "java.util.stream.Collectors.CollectorImpl";
-                CollectorImpl["__interfaces"] = ["java.util.stream.Collector"];
-            })(Collectors = stream.Collectors || (stream.Collectors = {}));
-        })(stream = util.stream || (util.stream = {}));
-    })(util = java.util || (java.util = {}));
-})(java || (java = {}));
-(function (java) {
-    var util;
-    (function (util) {
         /**
          * See <a href="https://docs.oracle.com/javase/8/docs/api/java/util/OptionalDouble.html">
          * the official Java API doc</a> for details.
@@ -1135,18 +974,15 @@ var java;
             }
             AbstractCollection.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_1 = function (index122) {
-                    var t = index122.next();
+                var _loop_1 = function (index121) {
+                    var t = index121.next();
                     {
                         (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                     }
                 };
-                for (var index122 = this.iterator(); index122.hasNext();) {
-                    _loop_1(index122);
+                for (var index121 = this.iterator(); index121.hasNext();) {
+                    _loop_1(index121);
                 }
-            };
-            AbstractCollection.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             AbstractCollection.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
@@ -1168,8 +1004,8 @@ var java;
             AbstractCollection.prototype.addAll$java_util_Collection = function (c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
                 var changed = false;
-                for (var index123 = c.iterator(); index123.hasNext();) {
-                    var e = index123.next();
+                for (var index122 = c.iterator(); index122.hasNext();) {
+                    var e = index122.next();
                     {
                         changed = this.add(e) || changed;
                     }
@@ -1201,8 +1037,8 @@ var java;
              */
             AbstractCollection.prototype.containsAll = function (c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
-                for (var index124 = c.iterator(); index124.hasNext();) {
-                    var e = index124.next();
+                for (var index123 = c.iterator(); index123.hasNext();) {
+                    var e = index123.next();
                     {
                         if (!this.contains(e)) {
                             return false;
@@ -1304,8 +1140,8 @@ var java;
              */
             AbstractCollection.prototype.toString = function () {
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index125 = this.iterator(); index125.hasNext();) {
-                    var e = index125.next();
+                for (var index124 = this.iterator(); index124.hasNext();) {
+                    var e = index124.next();
                     {
                         joiner.add(e === this ? "(this Collection)" : new String(e).toString());
                     }
@@ -1821,14 +1657,14 @@ var java;
             }
             InternalHashCodeMap.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_2 = function (index126) {
-                    var t = index126.next();
+                var _loop_2 = function (index125) {
+                    var t = index125.next();
                     {
                         (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                     }
                 };
-                for (var index126 = this.iterator(); index126.hasNext();) {
-                    _loop_2(index126);
+                for (var index125 = this.iterator(); index125.hasNext();) {
+                    _loop_2(index125);
                 }
             };
             InternalHashCodeMap.prototype.put = function (key, value) {
@@ -1873,8 +1709,8 @@ var java;
                 return this.findEntryInChain(key, this.getChainOrEmpty(this.hash(key)));
             };
             /*private*/ InternalHashCodeMap.prototype.findEntryInChain = function (key, chain) {
-                for (var index127 = 0; index127 < chain.length; index127++) {
-                    var entry = chain[index127];
+                for (var index126 = 0; index126 < chain.length; index126++) {
+                    var entry = chain[index126];
                     {
                         if (this.host._equals(key, entry.getKey())) {
                             return entry;
@@ -3975,8 +3811,8 @@ var java;
             };
             Enum.createValueOfMap = function (enumConstants) {
                 var result = new Object();
-                for (var index128 = 0; index128 < enumConstants.length; index128++) {
-                    var value = enumConstants[index128];
+                for (var index127 = 0; index127 < enumConstants.length; index127++) {
+                    var value = enumConstants[index127];
                     {
                         Enum.put0(result, ":" + value.name(), value);
                     }
@@ -5291,467 +5127,6 @@ var javaemul;
         }());
         internal.LongCompareHolder = LongCompareHolder;
         LongCompareHolder["__class"] = "javaemul.internal.LongCompareHolder";
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var RunnableChain = (function () {
-                function RunnableChain(run) {
-                    this.run = null;
-                    this.next = null;
-                    this.run = (run);
-                }
-                RunnableChain.prototype.chain = function (next) {
-                    if (this.next == null) {
-                        this.next = next;
-                        return;
-                    }
-                    this.next.chain(next);
-                };
-                RunnableChain.prototype.runChain = function () {
-                    (function (target) { return (typeof target === 'function') ? target() : target.run(); })(this.run);
-                    if (this.next == null) {
-                        return;
-                    }
-                    this.next.runChain();
-                };
-                return RunnableChain;
-            }());
-            stream.RunnableChain = RunnableChain;
-            RunnableChain["__class"] = "javaemul.internal.stream.RunnableChain";
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var QuiteRunnable = (function () {
-                function QuiteRunnable(loudRunnable) {
-                    this.loudRunnable = null;
-                    this.loudRunnable = (loudRunnable);
-                }
-                /**
-                 *
-                 */
-                QuiteRunnable.prototype.run = function () {
-                    try {
-                        (function (target) { return (typeof target === 'function') ? target() : target.run(); })(this.loudRunnable);
-                    }
-                    catch (e) {
-                        console.error(e.message, e);
-                    }
-                    ;
-                };
-                return QuiteRunnable;
-            }());
-            stream.QuiteRunnable = QuiteRunnable;
-            QuiteRunnable["__class"] = "javaemul.internal.stream.QuiteRunnable";
-            QuiteRunnable["__interfaces"] = ["java.lang.Runnable"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var CountingPredicate = (function () {
-                function CountingPredicate(n) {
-                    this.countDown = 0;
-                    this.countDown = n;
-                }
-                /**
-                 *
-                 * @param {*} t
-                 * @return {boolean}
-                 */
-                CountingPredicate.prototype.test = function (t) {
-                    if (this.countDown <= 0) {
-                        return false;
-                    }
-                    --this.countDown;
-                    return true;
-                };
-                return CountingPredicate;
-            }());
-            stream.CountingPredicate = CountingPredicate;
-            CountingPredicate["__class"] = "javaemul.internal.stream.CountingPredicate";
-            CountingPredicate["__interfaces"] = ["java.util.function.Predicate"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var ChooseSmallest = (function () {
-                function ChooseSmallest(comparator) {
-                    this.comparator = null;
-                    this.comparator = comparator;
-                }
-                ChooseSmallest.prototype.apply = function (t1, t2) {
-                    if (this.comparator.compare(t1, t2) <= 0) {
-                        return t1;
-                    }
-                    return t2;
-                };
-                return ChooseSmallest;
-            }());
-            stream.ChooseSmallest = ChooseSmallest;
-            ChooseSmallest["__class"] = "javaemul.internal.stream.ChooseSmallest";
-            ChooseSmallest["__interfaces"] = ["java.util.function.BiFunction", "java.util.function.BinaryOperator"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var VoidRunnable = (function () {
-                function VoidRunnable() {
-                }
-                VoidRunnable.dryRun_$LI$ = function () { if (VoidRunnable.dryRun == null)
-                    VoidRunnable.dryRun = new VoidRunnable(); return VoidRunnable.dryRun; };
-                ;
-                VoidRunnable.prototype.run = function () {
-                };
-                return VoidRunnable;
-            }());
-            stream.VoidRunnable = VoidRunnable;
-            VoidRunnable["__class"] = "javaemul.internal.stream.VoidRunnable";
-            VoidRunnable["__interfaces"] = ["java.lang.Runnable"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var StreamHelper = (function () {
-                function StreamHelper(data) {
-                    this.onCloseChain = null;
-                    this.head = null;
-                    this.end = null;
-                    this.data = null;
-                    this.head = new javaemul.internal.stream.StreamRowMap(function (o) { return o; });
-                    this.end = new javaemul.internal.stream.StreamRowEnd(this.head);
-                    this.head.chain(this.end);
-                    this.data = data;
-                }
-                /*private*/ StreamHelper.prototype.chain = function (streamRow) {
-                    this.end.chain(streamRow);
-                    return this;
-                };
-                /*private*/ StreamHelper.prototype.play = function () {
-                    for (var index129 = this.data.iterator(); index129.hasNext();) {
-                        var item = index129.next();
-                        {
-                            if (!this.head.item(item)) {
-                                break;
-                            }
-                        }
-                    }
-                    this.head.end();
-                };
-                /*private*/ StreamHelper.prototype.foldRight = function (identity, accumulator) {
-                    var rowReduce = new javaemul.internal.stream.StreamRowReduce(identity, (accumulator));
-                    this.chain(rowReduce);
-                    this.play();
-                    return rowReduce.getResult();
-                };
-                StreamHelper.prototype.filter = function (predicate) {
-                    return this.chain(new javaemul.internal.stream.StreamRowFilter((predicate)));
-                };
-                StreamHelper.prototype.map = function (mapper) {
-                    return this.chain(new javaemul.internal.stream.StreamRowMap((mapper)));
-                };
-                StreamHelper.prototype.mapToObj = function (mapper) {
-                    return this.chain(new javaemul.internal.stream.StreamRowMap(function (n) { return (function (target) { return (typeof target === 'function') ? target(n) : target.apply(n); })(mapper); }));
-                };
-                StreamHelper.prototype.flatMap = function (mapper) {
-                    return this.chain(new javaemul.internal.stream.StreamRowFlatMap((mapper)));
-                };
-                StreamHelper.prototype.distinct = function () {
-                    return this.chain(new javaemul.internal.stream.StreamRowCollector((new java.util.LinkedHashSet())));
-                };
-                StreamHelper.prototype.sorted$ = function () {
-                    return this.sorted$java_util_Comparator({ compare: function (a, b) { return a.compareTo(b); } });
-                };
-                StreamHelper.prototype.sorted$java_util_Comparator = function (comparator) {
-                    return this.chain(new javaemul.internal.stream.StreamRowCollector((new java.util.PriorityQueue(comparator))));
-                };
-                StreamHelper.prototype.sorted = function (comparator) {
-                    if (((comparator != null && (comparator["__interfaces"] != null && comparator["__interfaces"].indexOf("java.util.Comparator") >= 0 || comparator.constructor != null && comparator.constructor["__interfaces"] != null && comparator.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || comparator === null)) {
-                        return this.sorted$java_util_Comparator(comparator);
-                    }
-                    else if (comparator === undefined) {
-                        return this.sorted$();
-                    }
-                    else
-                        throw new Error('invalid overload');
-                };
-                StreamHelper.prototype.peek = function (action) {
-                    return this.chain(new javaemul.internal.stream.StreamRowMap(function (arg0) { return new javaemul.internal.stream.ConsumingFunction(action).apply(arg0); }));
-                };
-                StreamHelper.prototype.limit = function (maxSize) {
-                    return this.chain(new javaemul.internal.stream.StreamRowFilterFlop(function (arg0) { return new javaemul.internal.stream.CountingPredicate(maxSize).test(arg0); }));
-                };
-                StreamHelper.prototype.skip = function (n) {
-                    var p = (new javaemul.internal.stream.CountingPredicate(n));
-                    return this.chain(new javaemul.internal.stream.StreamRowFilter((function (p) {
-                        return function (v) { return !p.test(v); };
-                    })(p)));
-                };
-                StreamHelper.prototype.forEach = function (action) {
-                    this.peek((action));
-                    this.play();
-                };
-                StreamHelper.prototype.forEachOrdered = function (action) {
-                    this.forEach((action));
-                };
-                StreamHelper.prototype.toArray$ = function () {
-                    var result = (new java.util.ArrayList());
-                    this.chain(new javaemul.internal.stream.StreamRowCollector(result));
-                    this.play();
-                    return result.toArray();
-                };
-                StreamHelper.prototype.toArray$java_util_function_IntFunction = function (generator) {
-                    var result = (new java.util.ArrayList());
-                    this.chain(new javaemul.internal.stream.StreamRowCollector(result));
-                    this.play();
-                    return result['toArray$java_lang_Object_A']((function (target) { return (typeof target === 'function') ? target(result.size()) : target.apply(result.size()); })(generator));
-                };
-                StreamHelper.prototype.toArray = function (generator) {
-                    if (((typeof generator === 'function' && generator.length == 1) || generator === null)) {
-                        return this.toArray$java_util_function_IntFunction(generator);
-                    }
-                    else if (generator === undefined) {
-                        return this.toArray$();
-                    }
-                    else
-                        throw new Error('invalid overload');
-                };
-                StreamHelper.prototype.reduce$java_lang_Object$java_util_function_BinaryOperator = function (identity, accumulator) {
-                    return this.foldRight(java.util.Optional.of(identity), (accumulator)).get();
-                };
-                StreamHelper.prototype.reduce$java_util_function_BinaryOperator = function (accumulator) {
-                    return this.foldRight(java.util.Optional.empty(), (accumulator));
-                };
-                StreamHelper.prototype.collect$java_util_stream_Collector = function (collector) {
-                    var container = (function (target) { return (typeof target === 'function') ? target() : target.get(); })(collector.supplier());
-                    var accumulator = (collector.accumulator());
-                    this.chain(new javaemul.internal.stream.StreamRowMap(function (arg0) {
-                        return new javaemul.internal.stream.ConsumingFunction((function (container, accumulator) {
-                            return function (item) { return (function (target) { return (typeof target === 'function') ? target(container, item) : target.accept(container, item); })(accumulator); };
-                        })(container, accumulator)).apply(arg0);
-                    }));
-                    this.play();
-                    return container;
-                };
-                StreamHelper.prototype.min = function (comparator) {
-                    return this.foldRight(java.util.Optional.empty(), function (a, b) { return comparator.compare(a, b) <= 0 ? a : b; });
-                };
-                StreamHelper.prototype.max = function (comparator) {
-                    return this.foldRight(java.util.Optional.empty(), function (a, b) { return comparator.compare(a, b) >= 0 ? a : b; });
-                };
-                StreamHelper.prototype.count = function () {
-                    var counter = new javaemul.internal.stream.StreamRowCount();
-                    this.chain(counter);
-                    return counter.getCount();
-                };
-                StreamHelper.prototype.anyMatch = function (predicate) {
-                    var streamRow = new javaemul.internal.stream.StreamRowOnceFilter((predicate));
-                    this.chain(streamRow);
-                    this.play();
-                    return streamRow.getPredicateValue();
-                };
-                StreamHelper.prototype.allMatch = function (predicate) {
-                    var streamRow = new javaemul.internal.stream.StreamRowAllFilter((predicate));
-                    this.chain(streamRow);
-                    this.play();
-                    return streamRow.getPredicateValue();
-                };
-                StreamHelper.prototype.noneMatch = function (predicate) {
-                    return this.allMatch(function (v) { return !(function (target) { return (typeof target === 'function') ? target(v) : target.test(v); })(predicate); });
-                };
-                StreamHelper.prototype.findFirst = function () {
-                    var streamRow = new javaemul.internal.stream.StreamRowOnceFilter(function (o) { return true; });
-                    this.chain(streamRow);
-                    this.play();
-                    return streamRow.getFirstMatch();
-                };
-                StreamHelper.prototype.findAny = function () {
-                    return this.findFirst();
-                };
-                StreamHelper.prototype.iterator = function () {
-                    var result = (new java.util.ArrayList());
-                    this.chain(new javaemul.internal.stream.StreamRowCollector(result));
-                    this.play();
-                    return result.iterator();
-                };
-                StreamHelper.prototype.isParallel = function () {
-                    return false;
-                };
-                StreamHelper.prototype.sequential = function () {
-                    return this;
-                };
-                StreamHelper.prototype.parallel = function () {
-                    return this;
-                };
-                StreamHelper.prototype.unordered = function () {
-                    return this;
-                };
-                StreamHelper.prototype.onClose = function (closeHandler) {
-                    var chainItem = new javaemul.internal.stream.RunnableChain(function () { return new javaemul.internal.stream.QuiteRunnable(closeHandler).run(); });
-                    if (this.onCloseChain == null) {
-                        this.onCloseChain = chainItem;
-                    }
-                    else {
-                        this.onCloseChain.chain(chainItem);
-                    }
-                    return this;
-                };
-                StreamHelper.prototype.close = function () {
-                    if (this.onCloseChain == null) {
-                        return;
-                    }
-                    this.onCloseChain.runChain();
-                };
-                StreamHelper.prototype.mapToInt = function (mapper) {
-                    throw new java.lang.IllegalStateException();
-                };
-                StreamHelper.prototype.mapToLong = function (mapper) {
-                    throw new java.lang.IllegalStateException();
-                };
-                StreamHelper.prototype.mapToDouble = function (mapper) {
-                    throw new java.lang.IllegalStateException();
-                };
-                StreamHelper.prototype.flatMapToInt = function (mapper) {
-                    throw new java.lang.IllegalStateException();
-                };
-                StreamHelper.prototype.flatMapToLong = function (mapper) {
-                    throw new java.lang.IllegalStateException();
-                };
-                StreamHelper.prototype.flatMapToDouble = function (mapper) {
-                    throw new java.lang.IllegalStateException();
-                };
-                StreamHelper.prototype.spliterator = function () {
-                    throw new java.lang.IllegalStateException();
-                };
-                StreamHelper.prototype.reduce$java_lang_Object$java_util_function_BiFunction$java_util_function_BinaryOperator = function (identity, accumulator, combiner) {
-                    throw new java.lang.IllegalStateException();
-                };
-                StreamHelper.prototype.reduce = function (identity, accumulator, combiner) {
-                    if (((identity != null) || identity === null) && ((typeof accumulator === 'function' && accumulator.length == 2) || accumulator === null) && ((typeof combiner === 'function' && combiner.length == 2) || combiner === null)) {
-                        return this.reduce$java_lang_Object$java_util_function_BiFunction$java_util_function_BinaryOperator(identity, accumulator, combiner);
-                    }
-                    else if (((identity != null) || identity === null) && ((typeof accumulator === 'function' && accumulator.length == 2) || accumulator === null) && combiner === undefined) {
-                        return this.reduce$java_lang_Object$java_util_function_BinaryOperator(identity, accumulator);
-                    }
-                    else if (((typeof identity === 'function' && identity.length == 2) || identity === null) && accumulator === undefined && combiner === undefined) {
-                        return this.reduce$java_util_function_BinaryOperator(identity);
-                    }
-                    else
-                        throw new Error('invalid overload');
-                };
-                StreamHelper.prototype.collect$java_util_function_Supplier$java_util_function_BiConsumer$java_util_function_BiConsumer = function (supplier, accumulator, combiner) {
-                    throw new java.lang.IllegalStateException();
-                };
-                StreamHelper.prototype.collect = function (supplier, accumulator, combiner) {
-                    if (((typeof supplier === 'function' && supplier.length == 0) || supplier === null) && ((typeof accumulator === 'function' && accumulator.length == 2) || accumulator === null) && ((typeof combiner === 'function' && combiner.length == 2) || combiner === null)) {
-                        return this.collect$java_util_function_Supplier$java_util_function_BiConsumer$java_util_function_BiConsumer(supplier, accumulator, combiner);
-                    }
-                    else if (((supplier != null && (supplier["__interfaces"] != null && supplier["__interfaces"].indexOf("java.util.stream.Collector") >= 0 || supplier.constructor != null && supplier.constructor["__interfaces"] != null && supplier.constructor["__interfaces"].indexOf("java.util.stream.Collector") >= 0)) || supplier === null) && accumulator === undefined && combiner === undefined) {
-                        return this.collect$java_util_stream_Collector(supplier);
-                    }
-                    else
-                        throw new Error('invalid overload');
-                };
-                return StreamHelper;
-            }());
-            stream.StreamHelper = StreamHelper;
-            StreamHelper["__class"] = "javaemul.internal.stream.StreamHelper";
-            StreamHelper["__interfaces"] = ["java.util.stream.Stream"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var ConsumingFunction = (function () {
-                function ConsumingFunction(consumer) {
-                    this.consumer = null;
-                    this.consumer = (consumer);
-                }
-                /**
-                 *
-                 * @param {*} t
-                 * @return {*}
-                 */
-                ConsumingFunction.prototype.apply = function (t) {
-                    (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(this.consumer);
-                    return t;
-                };
-                return ConsumingFunction;
-            }());
-            stream.ConsumingFunction = ConsumingFunction;
-            ConsumingFunction["__class"] = "javaemul.internal.stream.ConsumingFunction";
-            ConsumingFunction["__interfaces"] = ["java.util.function.Function"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var TerminalStreamRow = (function () {
-                function TerminalStreamRow() {
-                }
-                TerminalStreamRow.prototype.chain = function (next) {
-                    if (next.constructor === javaemul.internal.stream.StreamRowEnd) {
-                        return;
-                    }
-                    throw new java.lang.IllegalStateException();
-                };
-                TerminalStreamRow.prototype.end = function () {
-                };
-                return TerminalStreamRow;
-            }());
-            stream.TerminalStreamRow = TerminalStreamRow;
-            TerminalStreamRow["__class"] = "javaemul.internal.stream.TerminalStreamRow";
-            TerminalStreamRow["__interfaces"] = ["javaemul.internal.stream.StreamRow"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var TransientStreamRow = (function () {
-                function TransientStreamRow() {
-                    this.next = null;
-                }
-                TransientStreamRow.prototype.chain = function (next) {
-                    this.next = next;
-                };
-                return TransientStreamRow;
-            }());
-            stream.TransientStreamRow = TransientStreamRow;
-            TransientStreamRow["__class"] = "javaemul.internal.stream.TransientStreamRow";
-            TransientStreamRow["__interfaces"] = ["javaemul.internal.stream.StreamRow"];
-        })(stream = internal.stream || (internal.stream = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 (function (javaemul) {
@@ -7184,8 +6559,8 @@ var test;
             Test.assertEquals(l.get(1), "c");
             Test.assertEquals(l['indexOf$java_lang_Object']("a"), 0);
             var res = "";
-            for (var index130 = l.iterator(); index130.hasNext();) {
-                var s = index130.next();
+            for (var index128 = l.iterator(); index128.hasNext();) {
+                var s = index128.next();
                 {
                     res += s;
                 }
@@ -7288,88 +6663,6 @@ var test;
             var s = new java.io.ByteArrayInputStream(/* getBytes */ ("abc").split('').map(function (s) { return s.charCodeAt(0); }));
             Test.assertEquals(javaemul.internal.CharacterHelper.getNumericValue('a'), s.read());
             console.info("end testing io");
-        };
-        Test.testStreamCollectList = function () {
-            Test.assertEquals(java.util.Arrays.asList(1, 2, 3), (java.util.Arrays.asList(1, 2, 3).stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-            Test.assertEquals(java.util.Arrays.asList(1), (java.util.Arrays.asList(1).stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList().stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-        };
-        Test.testStreamCollectMap = function () {
-            var m = (new java.util.HashMap());
-            m.put(1, 2);
-            m.put(2, 4);
-            Test.assertEquals(m, (java.util.Arrays.asList(1, 2).stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toMap$java_util_function_Function$java_util_function_Function(function (a) { return a; }, function (a) { return a * 2; }))));
-            Test.assertEquals((new java.util.HashMap()), (java.util.Arrays.asList().stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toMap$java_util_function_Function$java_util_function_Function(function (a) { return a; }, function (a) { return a; }))));
-        };
-        Test.testStreamCollectSet = function () {
-            Test.assertEquals((new java.util.HashSet(java.util.Arrays.asList(1, 2, 3))), (java.util.Arrays.asList(1, 2, 1, 3, 3).stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toSet())));
-            Test.assertEquals((new java.util.HashSet(java.util.Arrays.asList(1))), (java.util.Arrays.asList(1).stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toSet())));
-            Test.assertEquals((new java.util.HashSet()), (java.util.Arrays.asList().stream()['collect$java_util_stream_Collector'](java.util.stream.Collectors.toSet())));
-        };
-        Test.testStreamFilter = function () {
-            Test.assertEquals(java.util.Arrays.asList(2), (java.util.Arrays.asList(1, 2, 3).stream().filter(function (x) { return (x % 2 === 0); })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList(1).stream().filter(function (x) { return (x % 2 === 0); })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList().stream().filter(function (x) { return x % 2 === 0; })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-        };
-        Test.testStreamSortLiteralList = function () {
-            Test.assertEquals(java.util.Arrays.asList(3, 2, 1), (java.util.Arrays.asList(1, 2, 3).stream()['sorted$java_util_Comparator']({ compare: function (a, b) { return b - a; } })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-            Test.assertEquals(java.util.Arrays.asList(1), (java.util.Arrays.asList(1).stream()['sorted$java_util_Comparator']({ compare: function (a, b) { return b - a; } })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList().stream()['sorted$java_util_Comparator']({ compare: function (a, b) { return 0; } })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-        };
-        Test.testStreamMap = function () {
-            Test.assertEquals(java.util.Arrays.asList(2, 4, 6), (java.util.Arrays.asList(1, 2, 3).stream().map(function (x) { return x * 2; })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-            Test.assertEquals(java.util.Arrays.asList(2), (java.util.Arrays.asList(1).stream().map(function (x) { return x * 2; })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList().stream().map(function (x) { return 1; })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-        };
-        Test.testStreamCount = function () {
-            Test.assertEquals(3, java.util.Arrays.asList(1, 2, 3).stream().count());
-            Test.assertEquals(1, java.util.Arrays.asList(1).stream().count());
-            Test.assertEquals(0, java.util.Arrays.asList().stream().count());
-        };
-        Test.testStreamLimit = function () {
-            Test.assertEquals(java.util.Arrays.asList(1, 2), (java.util.Arrays.asList(1, 2, 3, 4).stream().limit(2)['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-            Test.assertEquals(java.util.Arrays.asList(1), (java.util.Arrays.asList(1).stream().limit(1)['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList().stream().limit(2)['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-        };
-        Test.testStreamSkip = function () {
-            Test.assertEquals(java.util.Arrays.asList(3, 4), (java.util.Arrays.asList(1, 2, 3, 4).stream().skip(2)['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList(1).stream().skip(1)['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList().stream().skip(2)['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-        };
-        Test.testStreamFilterAndMap = function () {
-            Test.assertEquals(java.util.Arrays.asList(2, 6), (java.util.Arrays.asList(1, 2, 3, 4).stream().filter(function (x) { return x % 2 === 1; }).map(function (x) { return x * 2; })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-            Test.assertEquals(java.util.Arrays.asList(), (java.util.Arrays.asList(2).stream().filter(function (x) { return x % 2 === 1; }).map(function (x) { return x * 2; })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-        };
-        Test.testStreamFlatMap = function () {
-            Test.assertEquals(java.util.Arrays.asList(0, 0, 1, 0, 1, 2), (java.util.Arrays.asList(0, 1, 2).stream().flatMap(function (x) {
-                var r = (new java.util.ArrayList());
-                for (var i = 0; i <= x; ++i) {
-                    r.add(i);
-                }
-                ;
-                return r.stream();
-            })['collect$java_util_stream_Collector'](java.util.stream.Collectors.toList())));
-        };
-        Test.testStreamForEach = function () {
-            var result = (new java.util.ArrayList());
-            java.util.Arrays.asList(1, 2, 3).forEach((function (result) {
-                return function (n) { return result.add(n); };
-            })(result));
-            Test.assertEquals(java.util.Arrays.asList(1, 2, 3), result);
-        };
-        Test.testStreamOf = function () {
-            var result = (new java.util.ArrayList());
-            java.util.stream.Stream.of(1, 2, 3).forEach((function (result) {
-                return function (n) { return result.add(n); };
-            })(result));
-            Test.assertEquals(java.util.Arrays.asList(1, 2, 3), result);
-        };
-        Test.testIntStreamRange = function () {
-            var result = (new java.util.ArrayList());
-            java.util.stream.IntStream.range(0, 3).mapToObj(function (n) { /* valueOf */ return new String(n).toString(); }).forEach((function (result) {
-                return function (n) { return result.add(n); };
-            })(result));
-            Test.assertEquals(java.util.Arrays.asList("0", "1", "2"), result);
         };
         Test.key1 = function () {
             return new test.MyKey("1");
@@ -7761,18 +7054,15 @@ var test;
             }
             AbstractQueue.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_3 = function (index131) {
-                    var t = index131.next();
+                var _loop_3 = function (index129) {
+                    var t = index129.next();
                     {
                         (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                     }
                 };
-                for (var index131 = this.iterator(); index131.hasNext();) {
-                    _loop_3(index131);
+                for (var index129 = this.iterator(); index129.hasNext();) {
+                    _loop_3(index129);
                 }
-            };
-            AbstractQueue.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             AbstractQueue.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
@@ -7857,18 +7147,15 @@ var test;
             }
             AbstractList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_4 = function (index132) {
-                    var t = index132.next();
+                var _loop_4 = function (index130) {
+                    var t = index130.next();
                     {
                         (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                     }
                 };
-                for (var index132 = this.iterator(); index132.hasNext();) {
-                    _loop_4(index132);
+                for (var index130 = this.iterator(); index130.hasNext();) {
+                    _loop_4(index130);
                 }
-            };
-            AbstractList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             AbstractList.prototype.add$java_lang_Object = function (obj) {
                 this.add(this.size(), obj);
@@ -7895,8 +7182,8 @@ var test;
             AbstractList.prototype.addAll$int$java_util_Collection = function (index, c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
                 var changed = false;
-                for (var index133 = c.iterator(); index133.hasNext();) {
-                    var e = index133.next();
+                for (var index131 = c.iterator(); index131.hasNext();) {
+                    var e = index131.next();
                     {
                         this.add(index++, e);
                         changed = true;
@@ -7943,8 +7230,8 @@ var test;
                     return false;
                 }
                 var iterOther = other.iterator();
-                for (var index134 = this.iterator(); index134.hasNext();) {
-                    var elem = index134.next();
+                for (var index132 = this.iterator(); index132.hasNext();) {
+                    var elem = index132.next();
                     {
                         var elemOther = iterOther.next();
                         if (!java.util.Objects.equals(elem, elemOther)) {
@@ -8314,18 +7601,15 @@ var test;
             }
             AbstractSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_5 = function (index135) {
-                    var t = index135.next();
+                var _loop_5 = function (index133) {
+                    var t = index133.next();
                     {
                         (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                     }
                 };
-                for (var index135 = this.iterator(); index135.hasNext();) {
-                    _loop_5(index135);
+                for (var index133 = this.iterator(); index133.hasNext();) {
+                    _loop_5(index133);
                 }
-            };
-            AbstractSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /**
              *
@@ -8375,8 +7659,8 @@ var test;
                     ;
                 }
                 else {
-                    for (var index136 = c.iterator(); index136.hasNext();) {
-                        var o1 = index136.next();
+                    for (var index134 = c.iterator(); index134.hasNext();) {
+                        var o1 = index134.next();
                         {
                             this.remove$java_lang_Object(o1);
                         }
@@ -8985,14 +8269,14 @@ var test;
             }
             InternalStringMap.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_6 = function (index137) {
-                    var t = index137.next();
+                var _loop_6 = function (index135) {
+                    var t = index135.next();
                     {
                         (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                     }
                 };
-                for (var index137 = this.iterator(); index137.hasNext();) {
-                    _loop_6(index137);
+                for (var index135 = this.iterator(); index135.hasNext();) {
+                    _loop_6(index135);
                 }
             };
             InternalStringMap.prototype.contains = function (key) {
@@ -13274,338 +12558,6 @@ var test;
         })(LongHelper = internal.LongHelper || (internal.LongHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var StreamRowCount = (function (_super) {
-                __extends(StreamRowCount, _super);
-                function StreamRowCount() {
-                    var _this = _super.call(this) || this;
-                    _this.count = 0;
-                    return _this;
-                }
-                StreamRowCount.prototype.getCount = function () {
-                    return this.count;
-                };
-                StreamRowCount.prototype.item = function (a) {
-                    ++this.count;
-                    return true;
-                };
-                return StreamRowCount;
-            }(javaemul.internal.stream.TerminalStreamRow));
-            stream.StreamRowCount = StreamRowCount;
-            StreamRowCount["__class"] = "javaemul.internal.stream.StreamRowCount";
-            StreamRowCount["__interfaces"] = ["javaemul.internal.stream.StreamRow"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var StreamRowAllFilter = (function (_super) {
-                __extends(StreamRowAllFilter, _super);
-                function StreamRowAllFilter(predicate) {
-                    var _this = _super.call(this) || this;
-                    _this.predicate = null;
-                    _this.predicateValue = false;
-                    _this.attempts = 0;
-                    _this.predicate = (predicate);
-                    return _this;
-                }
-                StreamRowAllFilter.prototype.getPredicateValue = function () {
-                    return this.attempts === 0 || this.predicateValue;
-                };
-                StreamRowAllFilter.prototype.item = function (a) {
-                    ++this.attempts;
-                    this.predicateValue = (function (target) { return (typeof target === 'function') ? target(a) : target.test(a); })(this.predicate) && this.predicateValue;
-                    return this.predicateValue;
-                };
-                return StreamRowAllFilter;
-            }(javaemul.internal.stream.TerminalStreamRow));
-            stream.StreamRowAllFilter = StreamRowAllFilter;
-            StreamRowAllFilter["__class"] = "javaemul.internal.stream.StreamRowAllFilter";
-            StreamRowAllFilter["__interfaces"] = ["javaemul.internal.stream.StreamRow"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var StreamRowOnceFilter = (function (_super) {
-                __extends(StreamRowOnceFilter, _super);
-                function StreamRowOnceFilter(predicate) {
-                    var _this = _super.call(this) || this;
-                    /*private*/ _this.firstMatch = java.util.Optional.empty();
-                    _this.predicate = null;
-                    _this.predicateValue = false;
-                    _this.predicate = (predicate);
-                    return _this;
-                }
-                StreamRowOnceFilter.prototype.getFirstMatch = function () {
-                    return this.firstMatch;
-                };
-                StreamRowOnceFilter.prototype.getPredicateValue = function () {
-                    return this.predicateValue;
-                };
-                StreamRowOnceFilter.prototype.item = function (a) {
-                    this.predicateValue = (function (target) { return (typeof target === 'function') ? target(a) : target.test(a); })(this.predicate);
-                    if (this.predicateValue) {
-                        this.firstMatch = java.util.Optional.of(a);
-                    }
-                    return !this.predicateValue;
-                };
-                return StreamRowOnceFilter;
-            }(javaemul.internal.stream.TerminalStreamRow));
-            stream.StreamRowOnceFilter = StreamRowOnceFilter;
-            StreamRowOnceFilter["__class"] = "javaemul.internal.stream.StreamRowOnceFilter";
-            StreamRowOnceFilter["__interfaces"] = ["javaemul.internal.stream.StreamRow"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var StreamRowReduce = (function (_super) {
-                __extends(StreamRowReduce, _super);
-                function StreamRowReduce(result, operator) {
-                    var _this = _super.call(this) || this;
-                    _this.result = null;
-                    _this.operator = null;
-                    _this.result = result;
-                    _this.operator = (operator);
-                    return _this;
-                }
-                StreamRowReduce.prototype.getResult = function () {
-                    return this.result;
-                };
-                StreamRowReduce.prototype.item = function (a) {
-                    var _this = this;
-                    this.result = java.util.Optional.of(this.result.map(function (v) { return (function (target) { return (typeof target === 'function') ? target(v, a) : target.apply(v, a); })(_this.operator); }).orElse(a));
-                    return true;
-                };
-                return StreamRowReduce;
-            }(javaemul.internal.stream.TerminalStreamRow));
-            stream.StreamRowReduce = StreamRowReduce;
-            StreamRowReduce["__class"] = "javaemul.internal.stream.StreamRowReduce";
-            StreamRowReduce["__interfaces"] = ["javaemul.internal.stream.StreamRow"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            /**
-             * @author Władysław Kargul
-             * @param {*} previous
-             * @class
-             * @extends javaemul.internal.stream.TerminalStreamRow
-             */
-            var StreamRowEnd = (function (_super) {
-                __extends(StreamRowEnd, _super);
-                function StreamRowEnd(previous) {
-                    var _this = _super.call(this) || this;
-                    _this.previous = null;
-                    _this.previous = previous;
-                    return _this;
-                }
-                StreamRowEnd.prototype.chain = function (next) {
-                    if (this.previous != null) {
-                        this.previous.chain(next);
-                    }
-                    this.previous = next;
-                    next.chain(this);
-                };
-                StreamRowEnd.prototype.item = function (a) {
-                    return true;
-                };
-                return StreamRowEnd;
-            }(javaemul.internal.stream.TerminalStreamRow));
-            stream.StreamRowEnd = StreamRowEnd;
-            StreamRowEnd["__class"] = "javaemul.internal.stream.StreamRowEnd";
-            StreamRowEnd["__interfaces"] = ["javaemul.internal.stream.StreamRow"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var StreamRowCollector = (function (_super) {
-                __extends(StreamRowCollector, _super);
-                function StreamRowCollector(collection) {
-                    var _this = _super.call(this) || this;
-                    _this.collection = null;
-                    _this.collection = collection;
-                    return _this;
-                }
-                StreamRowCollector.prototype.item = function (a) {
-                    this.collection.add(a);
-                    return true;
-                };
-                StreamRowCollector.prototype.end = function () {
-                    for (var index138 = this.collection.iterator(); index138.hasNext();) {
-                        var item = index138.next();
-                        {
-                            if (!this.next.item(item)) {
-                                break;
-                            }
-                        }
-                    }
-                    this.next.end();
-                };
-                return StreamRowCollector;
-            }(javaemul.internal.stream.TransientStreamRow));
-            stream.StreamRowCollector = StreamRowCollector;
-            StreamRowCollector["__class"] = "javaemul.internal.stream.StreamRowCollector";
-            StreamRowCollector["__interfaces"] = ["javaemul.internal.stream.StreamRow"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var StreamRowMap = (function (_super) {
-                __extends(StreamRowMap, _super);
-                function StreamRowMap(map) {
-                    var _this = _super.call(this) || this;
-                    _this.map = null;
-                    _this.map = (map);
-                    return _this;
-                }
-                StreamRowMap.prototype.item = function (a) {
-                    return this.next.item((function (target) { return (typeof target === 'function') ? target(a) : target.apply(a); })(this.map));
-                };
-                StreamRowMap.prototype.end = function () {
-                    this.next.end();
-                };
-                return StreamRowMap;
-            }(javaemul.internal.stream.TransientStreamRow));
-            stream.StreamRowMap = StreamRowMap;
-            StreamRowMap["__class"] = "javaemul.internal.stream.StreamRowMap";
-            StreamRowMap["__interfaces"] = ["javaemul.internal.stream.StreamRow"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var StreamRowFilterFlop = (function (_super) {
-                __extends(StreamRowFilterFlop, _super);
-                function StreamRowFilterFlop(predicate) {
-                    var _this = _super.call(this) || this;
-                    _this.predicate = null;
-                    _this.predicate = (predicate);
-                    return _this;
-                }
-                StreamRowFilterFlop.prototype.item = function (a) {
-                    var test = (function (target) { return (typeof target === 'function') ? target(a) : target.test(a); })(this.predicate);
-                    if (test) {
-                        return this.next.item(a);
-                    }
-                    return false;
-                };
-                StreamRowFilterFlop.prototype.end = function () {
-                    this.next.end();
-                };
-                return StreamRowFilterFlop;
-            }(javaemul.internal.stream.TransientStreamRow));
-            stream.StreamRowFilterFlop = StreamRowFilterFlop;
-            StreamRowFilterFlop["__class"] = "javaemul.internal.stream.StreamRowFilterFlop";
-            StreamRowFilterFlop["__interfaces"] = ["javaemul.internal.stream.StreamRow"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var StreamRowFilter = (function (_super) {
-                __extends(StreamRowFilter, _super);
-                function StreamRowFilter(predicate) {
-                    var _this = _super.call(this) || this;
-                    _this.predicate = null;
-                    _this.predicate = (predicate);
-                    return _this;
-                }
-                StreamRowFilter.prototype.item = function (a) {
-                    if ((function (target) { return (typeof target === 'function') ? target(a) : target.test(a); })(this.predicate)) {
-                        return this.next.item(a);
-                    }
-                    return true;
-                };
-                StreamRowFilter.prototype.end = function () {
-                    this.next.end();
-                };
-                return StreamRowFilter;
-            }(javaemul.internal.stream.TransientStreamRow));
-            stream.StreamRowFilter = StreamRowFilter;
-            StreamRowFilter["__class"] = "javaemul.internal.stream.StreamRowFilter";
-            StreamRowFilter["__interfaces"] = ["javaemul.internal.stream.StreamRow"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var StreamRowFlatMap = (function (_super) {
-                __extends(StreamRowFlatMap, _super);
-                function StreamRowFlatMap(flatMap) {
-                    var _this = _super.call(this) || this;
-                    _this.flatMap = null;
-                    _this.flatMap = (flatMap);
-                    return _this;
-                }
-                StreamRowFlatMap.prototype.item = function (a) {
-                    var _this = this;
-                    var subStream = (function (target) { return (typeof target === 'function') ? target(a) : target.apply(a); })(this.flatMap);
-                    try {
-                        try {
-                            subStream.forEach(function (o) {
-                                if (!_this.next.item(o)) {
-                                    throw new javaemul.internal.stream.StopException();
-                                }
-                            });
-                        }
-                        catch (e) {
-                            return false;
-                        }
-                        ;
-                    }
-                    finally {
-                        subStream.close();
-                    }
-                    ;
-                    return true;
-                };
-                StreamRowFlatMap.prototype.end = function () {
-                    this.next.end();
-                };
-                return StreamRowFlatMap;
-            }(javaemul.internal.stream.TransientStreamRow));
-            stream.StreamRowFlatMap = StreamRowFlatMap;
-            StreamRowFlatMap["__class"] = "javaemul.internal.stream.StreamRowFlatMap";
-            StreamRowFlatMap["__interfaces"] = ["javaemul.internal.stream.StreamRow"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
 (function (java) {
     var nio;
     (function (nio) {
@@ -13664,13 +12616,13 @@ var test;
                         _this.cmp = cmp;
                     })();
                 }
-                else if (((initialCapacity != null && (initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Comparator") >= 0 || initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || initialCapacity === null) && cmp === undefined) {
+                else if (((initialCapacity != null && initialCapacity instanceof java.util.PriorityQueue) || initialCapacity === null) && cmp === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var cp = __args[0];
+                    var c_1 = __args[0];
                     {
                         var __args_13 = Array.prototype.slice.call(arguments);
-                        var initialCapacity_1 = PriorityQueue.INITIAL_CAPACITY;
-                        var cmp_1 = cp;
+                        var initialCapacity_1 = c_1.size();
+                        var cmp_1 = c_1.comparator();
                         _this = _super.call(this) || this;
                         _this.cmp = null;
                         _this.heap = null;
@@ -13684,14 +12636,17 @@ var test;
                             _this.cmp = cmp_1;
                         })();
                     }
+                    (function () {
+                        _this.addAll$java_util_Collection(c_1);
+                    })();
                 }
-                else if (((initialCapacity != null && initialCapacity instanceof java.util.PriorityQueue) || initialCapacity === null) && cmp === undefined) {
+                else if (((initialCapacity != null && (initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.SortedSet") >= 0 || initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.SortedSet") >= 0)) || initialCapacity === null) && cmp === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var c_1 = __args[0];
+                    var c_2 = __args[0];
                     {
                         var __args_14 = Array.prototype.slice.call(arguments);
-                        var initialCapacity_2 = c_1.size();
-                        var cmp_2 = c_1.comparator();
+                        var initialCapacity_2 = c_2.size();
+                        var cmp_2 = c_2.comparator();
                         _this = _super.call(this) || this;
                         _this.cmp = null;
                         _this.heap = null;
@@ -13706,30 +12661,6 @@ var test;
                         })();
                     }
                     (function () {
-                        _this.addAll$java_util_Collection(c_1);
-                    })();
-                }
-                else if (((initialCapacity != null && (initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.SortedSet") >= 0 || initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.SortedSet") >= 0)) || initialCapacity === null) && cmp === undefined) {
-                    var __args = Array.prototype.slice.call(arguments);
-                    var c_2 = __args[0];
-                    {
-                        var __args_15 = Array.prototype.slice.call(arguments);
-                        var initialCapacity_3 = c_2.size();
-                        var cmp_3 = c_2.comparator();
-                        _this = _super.call(this) || this;
-                        _this.cmp = null;
-                        _this.heap = null;
-                        _this.cmp = null;
-                        _this.heap = null;
-                        (function () {
-                            _this.heap = (new java.util.ArrayList(initialCapacity_3));
-                            if (cmp_3 == null) {
-                                cmp_3 = java.util.Comparators.natural();
-                            }
-                            _this.cmp = cmp_3;
-                        })();
-                    }
-                    (function () {
                         _this.addAll$java_util_Collection(c_2);
                     })();
                 }
@@ -13737,22 +12668,22 @@ var test;
                     var __args = Array.prototype.slice.call(arguments);
                     var c_3 = __args[0];
                     {
-                        var __args_16 = Array.prototype.slice.call(arguments);
-                        var initialCapacity_4 = c_3.size();
+                        var __args_15 = Array.prototype.slice.call(arguments);
+                        var initialCapacity_3 = c_3.size();
                         {
-                            var __args_17 = Array.prototype.slice.call(arguments);
-                            var cmp_4 = null;
+                            var __args_16 = Array.prototype.slice.call(arguments);
+                            var cmp_3 = null;
                             _this = _super.call(this) || this;
                             _this.cmp = null;
                             _this.heap = null;
                             _this.cmp = null;
                             _this.heap = null;
                             (function () {
-                                _this.heap = (new java.util.ArrayList(initialCapacity_4));
-                                if (cmp_4 == null) {
-                                    cmp_4 = java.util.Comparators.natural();
+                                _this.heap = (new java.util.ArrayList(initialCapacity_3));
+                                if (cmp_3 == null) {
+                                    cmp_3 = java.util.Comparators.natural();
                                 }
-                                _this.cmp = cmp_4;
+                                _this.cmp = cmp_3;
                             })();
                         }
                     }
@@ -13763,8 +12694,8 @@ var test;
                 else if (((typeof initialCapacity === 'number') || initialCapacity === null) && cmp === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args_18 = Array.prototype.slice.call(arguments);
-                        var cmp_5 = null;
+                        var __args_17 = Array.prototype.slice.call(arguments);
+                        var cmp_4 = null;
                         _this = _super.call(this) || this;
                         _this.cmp = null;
                         _this.heap = null;
@@ -13772,32 +12703,32 @@ var test;
                         _this.heap = null;
                         (function () {
                             _this.heap = (new java.util.ArrayList(initialCapacity));
-                            if (cmp_5 == null) {
-                                cmp_5 = java.util.Comparators.natural();
+                            if (cmp_4 == null) {
+                                cmp_4 = java.util.Comparators.natural();
                             }
-                            _this.cmp = cmp_5;
+                            _this.cmp = cmp_4;
                         })();
                     }
                 }
                 else if (initialCapacity === undefined && cmp === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args_19 = Array.prototype.slice.call(arguments);
-                        var initialCapacity_5 = PriorityQueue.INITIAL_CAPACITY;
+                        var __args_18 = Array.prototype.slice.call(arguments);
+                        var initialCapacity_4 = 11;
                         {
-                            var __args_20 = Array.prototype.slice.call(arguments);
-                            var cmp_6 = null;
+                            var __args_19 = Array.prototype.slice.call(arguments);
+                            var cmp_5 = null;
                             _this = _super.call(this) || this;
                             _this.cmp = null;
                             _this.heap = null;
                             _this.cmp = null;
                             _this.heap = null;
                             (function () {
-                                _this.heap = (new java.util.ArrayList(initialCapacity_5));
-                                if (cmp_6 == null) {
-                                    cmp_6 = java.util.Comparators.natural();
+                                _this.heap = (new java.util.ArrayList(initialCapacity_4));
+                                if (cmp_5 == null) {
+                                    cmp_5 = java.util.Comparators.natural();
                                 }
-                                _this.cmp = cmp_6;
+                                _this.cmp = cmp_5;
                             })();
                         }
                     }
@@ -14050,7 +12981,6 @@ var test;
             };
             return PriorityQueue;
         }(java.util.AbstractQueue));
-        PriorityQueue.INITIAL_CAPACITY = 11;
         util.PriorityQueue = PriorityQueue;
         PriorityQueue["__class"] = "java.util.PriorityQueue";
         PriorityQueue["__interfaces"] = ["java.util.Collection", "java.util.Queue", "java.lang.Iterable"];
@@ -14098,14 +13028,14 @@ var test;
                 }
                 else if (((typeof c === 'number') || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
-                    var initialCapacity_6 = __args[0];
+                    var initialCapacity_5 = __args[0];
                     _this = _super.call(this) || this;
                     _this.array = null;
                     _this.exposeElement = null;
                     _this.array = null;
                     _this.exposeElement = null;
                     (function () {
-                        javaemul.internal.InternalPreconditions.checkArgument(initialCapacity_6 >= 0, "Initial capacity must not be negative");
+                        javaemul.internal.InternalPreconditions.checkArgument(initialCapacity_5 >= 0, "Initial capacity must not be negative");
                         _this.array = new Array(0);
                     })();
                 }
@@ -14126,18 +13056,15 @@ var test;
             }
             ArrayList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_7 = function (index139) {
-                    var t = index139.next();
+                var _loop_7 = function (index136) {
+                    var t = index136.next();
                     {
                         (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                     }
                 };
-                for (var index139 = this.iterator(); index139.hasNext();) {
-                    _loop_7(index139);
+                for (var index136 = this.iterator(); index136.hasNext();) {
+                    _loop_7(index136);
                 }
-            };
-            ArrayList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             ArrayList.prototype.add$java_lang_Object = function (o) {
                 this.array[this.array.length] = o;
@@ -14848,8 +13775,8 @@ var test;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index140 = 0; index140 < a.length; index140++) {
-                    var obj = a[index140];
+                for (var index137 = 0; index137 < a.length; index137++) {
+                    var obj = a[index137];
                     {
                         var hash = void 0;
                         if (obj != null && obj instanceof Array && (obj.length == 0 || obj[0] == null || obj[0] != null)) {
@@ -15275,8 +14202,8 @@ var test;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index141 = 0; index141 < a.length; index141++) {
-                    var e = a[index141];
+                for (var index138 = 0; index138 < a.length; index138++) {
+                    var e = a[index138];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.BooleanHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -15320,8 +14247,8 @@ var test;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index142 = 0; index142 < a.length; index142++) {
-                    var e = a[index142];
+                for (var index139 = 0; index139 < a.length; index139++) {
+                    var e = a[index139];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.ByteHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -15334,8 +14261,8 @@ var test;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index143 = 0; index143 < a.length; index143++) {
-                    var e = a[index143];
+                for (var index140 = 0; index140 < a.length; index140++) {
+                    var e = a[index140];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.CharacterHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -15348,8 +14275,8 @@ var test;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index144 = 0; index144 < a.length; index144++) {
-                    var e = a[index144];
+                for (var index141 = 0; index141 < a.length; index141++) {
+                    var e = a[index141];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.DoubleHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -15362,8 +14289,8 @@ var test;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index145 = 0; index145 < a.length; index145++) {
-                    var e = a[index145];
+                for (var index142 = 0; index142 < a.length; index142++) {
+                    var e = a[index142];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.FloatHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -15376,8 +14303,8 @@ var test;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index146 = 0; index146 < a.length; index146++) {
-                    var e = a[index146];
+                for (var index143 = 0; index143 < a.length; index143++) {
+                    var e = a[index143];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.IntegerHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -15390,8 +14317,8 @@ var test;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index147 = 0; index147 < a.length; index147++) {
-                    var e = a[index147];
+                for (var index144 = 0; index144 < a.length; index144++) {
+                    var e = a[index144];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.LongHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -15404,8 +14331,8 @@ var test;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index148 = 0; index148 < a.length; index148++) {
-                    var e = a[index148];
+                for (var index145 = 0; index145 < a.length; index145++) {
+                    var e = a[index145];
                     {
                         hashCode = 31 * hashCode + (function (o) { if (o.hashCode) {
                             return o.hashCode();
@@ -15423,8 +14350,8 @@ var test;
                     return 0;
                 }
                 var hashCode = 1;
-                for (var index149 = 0; index149 < a.length; index149++) {
-                    var e = a[index149];
+                for (var index146 = 0; index146 < a.length; index146++) {
+                    var e = a[index146];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.ShortHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -15557,8 +14484,8 @@ var test;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index150 = 0; index150 < a.length; index150++) {
-                    var element = a[index150];
+                for (var index147 = 0; index147 < a.length; index147++) {
+                    var element = a[index147];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -15601,6 +14528,45 @@ var test;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
+                for (var index148 = 0; index148 < a.length; index148++) {
+                    var element = a[index148];
+                    {
+                        joiner.add(/* valueOf */ new String(element).toString());
+                    }
+                }
+                return joiner.toString();
+            };
+            Arrays.toString$char_A = function (a) {
+                if (a == null) {
+                    return "null";
+                }
+                var joiner = new java.util.StringJoiner(", ", "[", "]");
+                for (var index149 = 0; index149 < a.length; index149++) {
+                    var element = a[index149];
+                    {
+                        joiner.add(/* valueOf */ new String(element).toString());
+                    }
+                }
+                return joiner.toString();
+            };
+            Arrays.toString$double_A = function (a) {
+                if (a == null) {
+                    return "null";
+                }
+                var joiner = new java.util.StringJoiner(", ", "[", "]");
+                for (var index150 = 0; index150 < a.length; index150++) {
+                    var element = a[index150];
+                    {
+                        joiner.add(/* valueOf */ new String(element).toString());
+                    }
+                }
+                return joiner.toString();
+            };
+            Arrays.toString$float_A = function (a) {
+                if (a == null) {
+                    return "null";
+                }
+                var joiner = new java.util.StringJoiner(", ", "[", "]");
                 for (var index151 = 0; index151 < a.length; index151++) {
                     var element = a[index151];
                     {
@@ -15609,7 +14575,7 @@ var test;
                 }
                 return joiner.toString();
             };
-            Arrays.toString$char_A = function (a) {
+            Arrays.toString$int_A = function (a) {
                 if (a == null) {
                     return "null";
                 }
@@ -15622,52 +14588,13 @@ var test;
                 }
                 return joiner.toString();
             };
-            Arrays.toString$double_A = function (a) {
+            Arrays.toString$long_A = function (a) {
                 if (a == null) {
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
                 for (var index153 = 0; index153 < a.length; index153++) {
                     var element = a[index153];
-                    {
-                        joiner.add(/* valueOf */ new String(element).toString());
-                    }
-                }
-                return joiner.toString();
-            };
-            Arrays.toString$float_A = function (a) {
-                if (a == null) {
-                    return "null";
-                }
-                var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index154 = 0; index154 < a.length; index154++) {
-                    var element = a[index154];
-                    {
-                        joiner.add(/* valueOf */ new String(element).toString());
-                    }
-                }
-                return joiner.toString();
-            };
-            Arrays.toString$int_A = function (a) {
-                if (a == null) {
-                    return "null";
-                }
-                var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index155 = 0; index155 < a.length; index155++) {
-                    var element = a[index155];
-                    {
-                        joiner.add(/* valueOf */ new String(element).toString());
-                    }
-                }
-                return joiner.toString();
-            };
-            Arrays.toString$long_A = function (a) {
-                if (a == null) {
-                    return "null";
-                }
-                var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index156 = 0; index156 < a.length; index156++) {
-                    var element = a[index156];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -15685,8 +14612,8 @@ var test;
                     return "null";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index157 = 0; index157 < a.length; index157++) {
-                    var element = a[index157];
+                for (var index154 = 0; index154 < a.length; index154++) {
+                    var element = a[index154];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -15701,8 +14628,8 @@ var test;
                     return "[...]";
                 }
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index158 = 0; index158 < a.length; index158++) {
-                    var obj = a[index158];
+                for (var index155 = 0; index155 < a.length; index155++) {
+                    var obj = a[index155];
                     {
                         if (obj != null && obj.constructor.isArray()) {
                             if (obj != null && obj instanceof Array && (obj.length == 0 || obj[0] == null || obj[0] != null)) {
@@ -16049,8 +14976,8 @@ var test;
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
                 var modified = false;
                 var iter = this.listIterator$int(index);
-                for (var index159 = c.iterator(); index159.hasNext();) {
-                    var e = index159.next();
+                for (var index156 = c.iterator(); index156.hasNext();) {
+                    var e = index156.next();
                     {
                         iter.add(e);
                         modified = true;
@@ -16181,7 +15108,7 @@ var test;
                 if (((typeof initialCapacity === 'number') || initialCapacity === null) && ((typeof ignoredCapacityIncrement === 'number') || ignoredCapacityIncrement === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args_21 = Array.prototype.slice.call(arguments);
+                        var __args_20 = Array.prototype.slice.call(arguments);
                         _this = _super.call(this) || this;
                         _this.arrayList = null;
                         _this.exposeElement = null;
@@ -16233,18 +15160,15 @@ var test;
             }
             Vector.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_8 = function (index160) {
-                    var t = index160.next();
+                var _loop_8 = function (index157) {
+                    var t = index157.next();
                     {
                         (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                     }
                 };
-                for (var index160 = this.iterator(); index160.hasNext();) {
-                    _loop_8(index160);
+                for (var index157 = this.iterator(); index157.hasNext();) {
+                    _loop_8(index157);
                 }
-            };
-            Vector.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             Vector.prototype.add$java_lang_Object = function (o) {
                 return this.arrayList.add(o);
@@ -16548,17 +15472,6 @@ var test;
         var AbstractMap = (function () {
             function AbstractMap() {
             }
-            AbstractMap.prototype.merge = function (key, value, map) {
-                var old = this.get(key);
-                var next = (old == null) ? value : (function (target) { return (typeof target === 'function') ? target(old, value) : target.apply(old, value); })(map);
-                if (next == null) {
-                    this.remove(key);
-                }
-                else {
-                    this.put(key, next);
-                }
-                return next;
-            };
             /**
              *
              */
@@ -16579,8 +15492,8 @@ var test;
              * @return {boolean}
              */
             AbstractMap.prototype.containsValue = function (value) {
-                for (var index161 = this.entrySet().iterator(); index161.hasNext();) {
-                    var entry = index161.next();
+                for (var index158 = this.entrySet().iterator(); index158.hasNext();) {
+                    var entry = index158.next();
                     {
                         var v = entry.getValue();
                         if (java.util.Objects.equals(value, v)) {
@@ -16618,8 +15531,8 @@ var test;
                 if (this.size() !== otherMap.size()) {
                     return false;
                 }
-                for (var index162 = otherMap.entrySet().iterator(); index162.hasNext();) {
-                    var entry = index162.next();
+                for (var index159 = otherMap.entrySet().iterator(); index159.hasNext();) {
+                    var entry = index159.next();
                     {
                         if (!this.containsEntry(entry)) {
                             return false;
@@ -16684,8 +15597,8 @@ var test;
              */
             AbstractMap.prototype.putAll = function (map) {
                 javaemul.internal.InternalPreconditions.checkNotNull(map);
-                for (var index163 = map.entrySet().iterator(); index163.hasNext();) {
-                    var e = index163.next();
+                for (var index160 = map.entrySet().iterator(); index160.hasNext();) {
+                    var e = index160.next();
                     {
                         this.put(e.getKey(), e.getValue());
                     }
@@ -16708,8 +15621,8 @@ var test;
             };
             AbstractMap.prototype.toString$ = function () {
                 var joiner = new java.util.StringJoiner(", ", "{", "}");
-                for (var index164 = this.entrySet().iterator(); index164.hasNext();) {
-                    var entry = index164.next();
+                for (var index161 = this.entrySet().iterator(); index161.hasNext();) {
+                    var entry = index161.next();
                     {
                         joiner.add(this.toString$java_util_Map_Entry(entry));
                     }
@@ -17399,7 +16312,7 @@ var test;
                 if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args_22 = Array.prototype.slice.call(arguments);
+                        var __args_21 = Array.prototype.slice.call(arguments);
                         _this = _super.call(this) || this;
                         _this.map = null;
                         _this.map = null;
@@ -17424,7 +16337,7 @@ var test;
                     var __args = Array.prototype.slice.call(arguments);
                     var s_1 = __args[0];
                     {
-                        var __args_23 = Array.prototype.slice.call(arguments);
+                        var __args_22 = Array.prototype.slice.call(arguments);
                         var c_5 = javaemul.internal.InternalPreconditions.checkNotNull(s_1).comparator();
                         _this = _super.call(this) || this;
                         _this.map = null;
@@ -17462,18 +16375,15 @@ var test;
             }
             TreeSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_9 = function (index165) {
-                    var t = index165.next();
+                var _loop_9 = function (index162) {
+                    var t = index162.next();
                     {
                         (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                     }
                 };
-                for (var index165 = this.iterator(); index165.hasNext();) {
-                    _loop_9(index165);
+                for (var index162 = this.iterator(); index162.hasNext();) {
+                    _loop_9(index162);
                 }
-            };
-            TreeSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             TreeSet.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
@@ -17761,18 +16671,15 @@ var test;
             }
             HashSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_10 = function (index166) {
-                    var t = index166.next();
+                var _loop_10 = function (index163) {
+                    var t = index163.next();
                     {
                         (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                     }
                 };
-                for (var index166 = this.iterator(); index166.hasNext();) {
-                    _loop_10(index166);
+                for (var index163 = this.iterator(); index163.hasNext();) {
+                    _loop_10(index163);
                 }
-            };
-            HashSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             HashSet.prototype.add = function (index, element) {
                 if (((index != null) || index === null) && element === undefined) {
@@ -18729,26 +17636,6 @@ var test;
         IndexOutOfBoundsException["__interfaces"] = ["java.io.Serializable"];
     })(lang = java.lang || (java.lang = {}));
 })(java || (java = {}));
-(function (javaemul) {
-    var internal;
-    (function (internal) {
-        var stream;
-        (function (stream) {
-            var StopException = (function (_super) {
-                __extends(StopException, _super);
-                function StopException() {
-                    var _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, StopException.prototype);
-                    return _this;
-                }
-                return StopException;
-            }(java.lang.RuntimeException));
-            stream.StopException = StopException;
-            StopException["__class"] = "javaemul.internal.stream.StopException";
-            StopException["__interfaces"] = ["java.io.Serializable"];
-        })(stream = internal.stream || (internal.stream = {}));
-    })(internal = javaemul.internal || (javaemul.internal = {}));
-})(javaemul || (javaemul = {}));
 (function (java) {
     var util;
     (function (util) {
@@ -18808,18 +17695,15 @@ var test;
             }
             LinkedList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_11 = function (index167) {
-                    var t = index167.next();
+                var _loop_11 = function (index164) {
+                    var t = index164.next();
                     {
                         (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                     }
                 };
-                for (var index167 = this.iterator(); index167.hasNext();) {
-                    _loop_11(index167);
+                for (var index164 = this.iterator(); index164.hasNext();) {
+                    _loop_11(index164);
                 }
-            };
-            LinkedList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /**
              *
@@ -19351,17 +18235,6 @@ var test;
             function AbstractNavigableMap() {
                 return _super.call(this) || this;
             }
-            AbstractNavigableMap.prototype.merge = function (key, value, map) {
-                var old = this.get(key);
-                var next = (old == null) ? value : (function (target) { return (typeof target === 'function') ? target(old, value) : target.apply(old, value); })(map);
-                if (next == null) {
-                    this.remove(key);
-                }
-                else {
-                    this.put(key, next);
-                }
-                return next;
-            };
             AbstractNavigableMap.copyOf = function (entry) {
                 return entry == null ? null : (new util.AbstractMap.SimpleImmutableEntry(entry));
             };
@@ -19834,18 +18707,15 @@ var test;
                 }
                 NavigableKeySet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_12 = function (index168) {
-                        var t = index168.next();
+                    var _loop_12 = function (index165) {
+                        var t = index165.next();
                         {
                             (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                         }
                     };
-                    for (var index168 = this.iterator(); index168.hasNext();) {
-                        _loop_12(index168);
+                    for (var index165 = this.iterator(); index165.hasNext();) {
+                        _loop_12(index165);
                     }
-                };
-                NavigableKeySet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 /**
                  *
@@ -20114,8 +18984,8 @@ var test;
                     a[_i - 1] = arguments[_i];
                 }
                 var result = false;
-                for (var index169 = 0; index169 < a.length; index169++) {
-                    var e = a[index169];
+                for (var index166 = 0; index166 < a.length; index166++) {
+                    var e = a[index166];
                     {
                         result = c.add(e) || result;
                     }
@@ -20188,8 +19058,8 @@ var test;
                     throw new java.lang.IndexOutOfBoundsException("src does not fit in dest");
                 }
                 var destIt = dest.listIterator();
-                for (var index170 = src.iterator(); index170.hasNext();) {
-                    var e = index170.next();
+                for (var index167 = src.iterator(); index167.hasNext();) {
+                    var e = index167.next();
                     {
                         destIt.next();
                         destIt.set(e);
@@ -20203,8 +19073,8 @@ var test;
                     iterating = c2;
                     testing = c1;
                 }
-                for (var index171 = iterating.iterator(); index171.hasNext();) {
-                    var o = index171.next();
+                for (var index168 = iterating.iterator(); index168.hasNext();) {
+                    var o = index168.next();
                     {
                         if (testing.contains(o)) {
                             return false;
@@ -20241,8 +19111,8 @@ var test;
             };
             Collections.frequency = function (c, o) {
                 var count = 0;
-                for (var index172 = c.iterator(); index172.hasNext();) {
-                    var e = index172.next();
+                for (var index169 = c.iterator(); index169.hasNext();) {
+                    var e = index169.next();
                     {
                         if (java.util.Objects.equals(o, e)) {
                             ++count;
@@ -20415,8 +19285,8 @@ var test;
                     }
                     ;
                     var it = list.listIterator();
-                    for (var index173 = 0; index173 < arr.length; index173++) {
-                        var e = arr[index173];
+                    for (var index170 = 0; index170 < arr.length; index170++) {
+                        var e = arr[index170];
                         {
                             it.next();
                             it.set(e);
@@ -20478,8 +19348,8 @@ var test;
             };
             Collections.hashCode$java_lang_Iterable = function (collection) {
                 var hashCode = 0;
-                for (var index174 = collection.iterator(); index174.hasNext();) {
-                    var e = index174.next();
+                for (var index171 = collection.iterator(); index171.hasNext();) {
+                    var e = index171.next();
                     {
                         hashCode = hashCode + (function (o) { if (o.hashCode) {
                             return o.hashCode();
@@ -20494,8 +19364,8 @@ var test;
             };
             Collections.hashCode$java_util_List = function (list) {
                 var hashCode = 1;
-                for (var index175 = list.iterator(); index175.hasNext();) {
-                    var e = index175.next();
+                for (var index172 = list.iterator(); index172.hasNext();) {
+                    var e = index172.next();
                     {
                         hashCode = 31 * hashCode + (function (o) { if (o.hashCode) {
                             return o.hashCode();
@@ -21022,18 +19892,15 @@ var test;
                 }
                 UnmodifiableCollection.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_13 = function (index176) {
-                        var t = index176.next();
+                    var _loop_13 = function (index173) {
+                        var t = index173.next();
                         {
                             (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                         }
                     };
-                    for (var index176 = this.iterator(); index176.hasNext();) {
-                        _loop_13(index176);
+                    for (var index173 = this.iterator(); index173.hasNext();) {
+                        _loop_13(index173);
                     }
-                };
-                UnmodifiableCollection.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 UnmodifiableCollection.prototype.add = function (index, element) {
                     if (((index != null) || index === null) && element === undefined) {
@@ -21215,18 +20082,15 @@ var test;
                 }
                 UnmodifiableList.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_14 = function (index177) {
-                        var t = index177.next();
+                    var _loop_14 = function (index174) {
+                        var t = index174.next();
                         {
                             (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                         }
                     };
-                    for (var index177 = this.iterator(); index177.hasNext();) {
-                        _loop_14(index177);
+                    for (var index174 = this.iterator(); index174.hasNext();) {
+                        _loop_14(index174);
                     }
-                };
-                UnmodifiableList.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 UnmodifiableList.prototype.add$int$java_lang_Object = function (index, element) {
                     throw new java.lang.UnsupportedOperationException();
@@ -21394,18 +20258,15 @@ var test;
                 }
                 UnmodifiableSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_15 = function (index178) {
-                        var t = index178.next();
+                    var _loop_15 = function (index175) {
+                        var t = index175.next();
                         {
                             (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                         }
                     };
-                    for (var index178 = this.iterator(); index178.hasNext();) {
-                        _loop_15(index178);
+                    for (var index175 = this.iterator(); index175.hasNext();) {
+                        _loop_15(index175);
                     }
-                };
-                UnmodifiableSet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 /**
                  *
@@ -21518,17 +20379,6 @@ var test;
                     this.__values = null;
                     this.map = map;
                 }
-                UnmodifiableMap.prototype.merge = function (key, value, map) {
-                    var old = this.get(key);
-                    var next = (old == null) ? value : (function (target) { return (typeof target === 'function') ? target(old, value) : target.apply(old, value); })(map);
-                    if (next == null) {
-                        this.remove(key);
-                    }
-                    else {
-                        this.put(key, next);
-                    }
-                    return next;
-                };
                 /**
                  *
                  */
@@ -21851,18 +20701,15 @@ var test;
                 }
                 UnmodifiableSortedSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_16 = function (index179) {
-                        var t = index179.next();
+                    var _loop_16 = function (index176) {
+                        var t = index176.next();
                         {
                             (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                         }
                     };
-                    for (var index179 = this.iterator(); index179.hasNext();) {
-                        _loop_16(index179);
+                    for (var index176 = this.iterator(); index176.hasNext();) {
+                        _loop_16(index176);
                     }
-                };
-                UnmodifiableSortedSet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 /**
                  *
@@ -21953,17 +20800,6 @@ var test;
                     _this.sortedMap = sortedMap;
                     return _this;
                 }
-                UnmodifiableSortedMap.prototype.merge = function (key, value, map) {
-                    var old = this.get(key);
-                    var next = (old == null) ? value : (function (target) { return (typeof target === 'function') ? target(old, value) : target.apply(old, value); })(map);
-                    if (next == null) {
-                        this.remove(key);
-                    }
-                    else {
-                        this.put(key, next);
-                    }
-                    return next;
-                };
                 /**
                  *
                  * @return {*}
@@ -22144,7 +20980,7 @@ var test;
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args_24 = Array.prototype.slice.call(arguments);
+                        var __args_23 = Array.prototype.slice.call(arguments);
                         var alsoIgnored_1 = 0;
                         _this = _super.call(this) || this;
                         _this.hashCodeMap = null;
@@ -22201,8 +21037,8 @@ var test;
                 return this._containsValue(value, this.stringMap) || this._containsValue(value, this.hashCodeMap);
             };
             AbstractHashMap.prototype._containsValue = function (value, entries) {
-                for (var index180 = entries.iterator(); index180.hasNext();) {
-                    var entry = index180.next();
+                for (var index177 = entries.iterator(); index177.hasNext();) {
+                    var entry = index177.next();
                     {
                         if (this._equals(value, entry.getValue())) {
                             return true;
@@ -22563,8 +21399,8 @@ var test;
              * @return {boolean}
              */
             EnumMap.prototype.containsValue = function (value) {
-                for (var index181 = this.__keySet.iterator(); index181.hasNext();) {
-                    var key = index181.next();
+                for (var index178 = this.__keySet.iterator(); index178.hasNext();) {
+                    var key = index178.next();
                     {
                         if (java.util.Objects.equals(value, this.__values[key.ordinal()])) {
                             return true;
@@ -22860,18 +21696,15 @@ var test;
             }
             LinkedHashSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_17 = function (index182) {
-                    var t = index182.next();
+                var _loop_17 = function (index179) {
+                    var t = index179.next();
                     {
                         (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                     }
                 };
-                for (var index182 = this.iterator(); index182.hasNext();) {
-                    _loop_17(index182);
+                for (var index179 = this.iterator(); index179.hasNext();) {
+                    _loop_17(index179);
                 }
-            };
-            LinkedHashSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /**
              *
@@ -23230,7 +22063,7 @@ var test;
                     var __args = Array.prototype.slice.call(arguments);
                     var map_3 = __args[0];
                     {
-                        var __args_25 = Array.prototype.slice.call(arguments);
+                        var __args_24 = Array.prototype.slice.call(arguments);
                         var c_8 = javaemul.internal.InternalPreconditions.checkNotNull(map_3).comparator();
                         _this = _super.call(this) || this;
                         _this.cmp = null;
@@ -23259,9 +22092,9 @@ var test;
                     var __args = Array.prototype.slice.call(arguments);
                     var map_4 = __args[0];
                     {
-                        var __args_26 = Array.prototype.slice.call(arguments);
+                        var __args_25 = Array.prototype.slice.call(arguments);
                         {
-                            var __args_27 = Array.prototype.slice.call(arguments);
+                            var __args_26 = Array.prototype.slice.call(arguments);
                             var c_9 = null;
                             _this = _super.call(this) || this;
                             _this.cmp = null;
@@ -23290,7 +22123,7 @@ var test;
                 else if (c === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args_28 = Array.prototype.slice.call(arguments);
+                        var __args_27 = Array.prototype.slice.call(arguments);
                         var c_10 = null;
                         _this = _super.call(this) || this;
                         _this.cmp = null;
@@ -23946,7 +22779,7 @@ var test;
                     else if (type === undefined && fromKey === undefined && fromInclusive === undefined && toKey === undefined && toInclusive === undefined) {
                         var __args = Array.prototype.slice.call(arguments, [1]);
                         {
-                            var __args_29 = Array.prototype.slice.call(arguments, [1]);
+                            var __args_28 = Array.prototype.slice.call(arguments, [1]);
                             var type_1 = java.util.TreeMap.SubMapType_All_$LI$();
                             var fromKey_1 = null;
                             var fromInclusive_1 = false;
@@ -24031,7 +22864,7 @@ var test;
                     else if (type === undefined && fromKey === undefined && fromInclusive === undefined && toKey === undefined && toInclusive === undefined) {
                         var __args = Array.prototype.slice.call(arguments, [1]);
                         {
-                            var __args_30 = Array.prototype.slice.call(arguments, [1]);
+                            var __args_29 = Array.prototype.slice.call(arguments, [1]);
                             var type_2 = java.util.TreeMap.SubMapType_All_$LI$();
                             var fromKey_2 = null;
                             var fromInclusive_2 = false;
@@ -24131,7 +22964,7 @@ var test;
                     else if (((key != null) || key === null) && ((value != null) || value === null) && isRed === undefined) {
                         var __args = Array.prototype.slice.call(arguments);
                         {
-                            var __args_31 = Array.prototype.slice.call(arguments);
+                            var __args_30 = Array.prototype.slice.call(arguments);
                             var isRed_1 = true;
                             _this = _super.call(this, key, value) || this;
                             _this.isRed = false;
@@ -24613,17 +23446,6 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
-            IdentityHashMap.prototype.merge = function (key, value, map) {
-                var old = this.get(key);
-                var next = (old == null) ? value : (function (target) { return (typeof target === 'function') ? target(old, value) : target.apply(old, value); })(map);
-                if (next == null) {
-                    this.remove(key);
-                }
-                else {
-                    this.put(key, next);
-                }
-                return next;
-            };
             IdentityHashMap.prototype.clone = function () {
                 return (new IdentityHashMap(this));
             };
@@ -24643,8 +23465,8 @@ var test;
                 if (this.size() !== otherMap.size()) {
                     return false;
                 }
-                for (var index183 = otherMap.entrySet().iterator(); index183.hasNext();) {
-                    var entry = index183.next();
+                for (var index180 = otherMap.entrySet().iterator(); index180.hasNext();) {
+                    var entry = index180.next();
                     {
                         var otherKey = entry.getKey();
                         var otherValue = entry.getValue();
@@ -24664,8 +23486,8 @@ var test;
              */
             IdentityHashMap.prototype.hashCode = function () {
                 var hashCode = 0;
-                for (var index184 = this.entrySet().iterator(); index184.hasNext();) {
-                    var entry = index184.next();
+                for (var index181 = this.entrySet().iterator(); index181.hasNext();) {
+                    var entry = index181.next();
                     {
                         hashCode += java.lang.System.identityHashCode(entry.getKey());
                         hashCode += java.lang.System.identityHashCode(entry.getValue());
@@ -25063,9 +23885,9 @@ var test;
                 /*private*/ Logger.prototype.actuallyLog$java_util_logging_LogRecord = function (record) {
                     if (this.isLoggable(record.getLevel())) {
                         {
-                            var array186 = this.getHandlers();
-                            for (var index185 = 0; index185 < array186.length; index185++) {
-                                var handler = array186[index185];
+                            var array183 = this.getHandlers();
+                            for (var index182 = 0; index182 < array183.length; index182++) {
+                                var handler = array183[index182];
                                 {
                                     handler.publish(record);
                                 }
@@ -25074,9 +23896,9 @@ var test;
                         var logger = this.getUseParentHandlers() ? this.getParent() : null;
                         while ((logger != null)) {
                             {
-                                var array188 = logger.getHandlers();
-                                for (var index187 = 0; index187 < array188.length; index187++) {
-                                    var handler = array188[index187];
+                                var array185 = logger.getHandlers();
+                                for (var index184 = 0; index184 < array185.length; index184++) {
+                                    var handler = array185[index184];
                                     {
                                         handler.publish(record);
                                     }
@@ -25841,7 +24663,7 @@ var test;
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined && accessOrder === undefined) {
                     var __args = Array.prototype.slice.call(arguments);
                     {
-                        var __args_32 = Array.prototype.slice.call(arguments);
+                        var __args_31 = Array.prototype.slice.call(arguments);
                         var alsoIgnored_2 = 0;
                         _this = _super.call(this, ignored, alsoIgnored_2) || this;
                         _this.accessOrder = false;
@@ -25876,17 +24698,6 @@ var test;
                     throw new Error('invalid overload');
                 return _this;
             }
-            LinkedHashMap.prototype.merge = function (key, value, map) {
-                var old = this.get(key);
-                var next = (old == null) ? value : (function (target) { return (typeof target === 'function') ? target(old, value) : target.apply(old, value); })(map);
-                if (next == null) {
-                    this.remove(key);
-                }
-                else {
-                    this.put(key, next);
-                }
-                return next;
-            };
             /**
              *
              */
@@ -26329,7 +25140,6 @@ javaemul.internal.MathHelper.MAX_VALUE_$LI$();
 javaemul.internal.MathHelper.EPSILON_$LI$();
 javaemul.internal.StringHashCache.front_$LI$();
 javaemul.internal.StringHashCache.back_$LI$();
-javaemul.internal.stream.VoidRunnable.dryRun_$LI$();
 javaemul.internal.NumberHelper.__ParseLong.maxValueForRadix_$LI$();
 javaemul.internal.NumberHelper.__ParseLong.maxLengthForRadix_$LI$();
 javaemul.internal.NumberHelper.__ParseLong.maxDigitsRadixPower_$LI$();

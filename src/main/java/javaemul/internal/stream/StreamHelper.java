@@ -93,7 +93,7 @@ public class StreamHelper<T> implements Stream<T> {
 
     @SuppressWarnings("unchecked")
     public Stream<T> sorted(Comparator<? super T> comparator) {
-        return chain(new StreamRowCollector(new PriorityQueue(comparator)));
+        return chain(new StreamRowSortingCollector(new ArrayList(), comparator));
     }
 
     @SuppressWarnings("unchecked")
@@ -173,6 +173,7 @@ public class StreamHelper<T> implements Stream<T> {
     public long count() {
         final StreamRowCount counter = new StreamRowCount();
         chain(counter);
+        play();
         return counter.getCount();
     }
 

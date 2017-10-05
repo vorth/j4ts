@@ -3,7 +3,7 @@ package javaemul.internal.stream;
 import java.util.Collection;
 
 public class StreamRowCollector extends TransientStreamRow {
-    private final Collection collection;
+    protected final Collection collection;
 
     public StreamRowCollector(Collection collection) {
         this.collection = collection;

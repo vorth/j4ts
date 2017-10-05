@@ -20,9 +20,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import def.dom.HTMLElement;
 
@@ -243,128 +240,6 @@ public class Test {
 		ByteArrayInputStream s = new ByteArrayInputStream("abc".getBytes());
 		assertEquals(Character.getNumericValue('a'), s.read());
 		console.info("end testing io");
-	}
-
-	public static void testStreamCollectList() {
-		assertEquals(asList(1,2,3), asList(1,2,3).stream().collect(Collectors.toList()));
-		assertEquals(asList(1), asList(1).stream().collect(Collectors.toList()));
-		assertEquals(asList(), asList().stream().collect(Collectors.toList()));
-	}
-
-	public static void testStreamCollectMap() {
-		Map<Integer, Integer> m = new HashMap<>();
-		m.put(1,2);
-		m.put(2,4);
-		assertEquals(m, asList(1,2).stream().collect(Collectors.toMap(a -> a, a -> a * 2)));
-		assertEquals(new HashMap<>(), asList()
-				.stream().collect(Collectors.toMap(a -> a, a -> a)));
-	}
-
-	public static void testStreamCollectSet() {
-		assertEquals(new HashSet<>(asList(1,2,3)), asList(1,2,1,3,3)
-				.stream().collect(Collectors.toSet()));
-		assertEquals(new HashSet<>(asList(1)), asList(1).stream().collect(Collectors.toSet()));
-		assertEquals(new HashSet<>(), asList().stream().collect(Collectors.toSet()));
-	}
-
-	public static void testStreamFilter() {
-		assertEquals(asList(2), asList(1,2,3).stream()
-				.filter(x -> (x % 2 == 0))
-				.collect(Collectors.toList()));
-		assertEquals(asList(), asList(1).stream()
-				.filter(x -> (x % 2 == 0))
-				.collect(Collectors.toList()));
-		assertEquals(asList(), asList().stream().filter(x -> ((Integer) x) % 2 == 0)
-				.collect(Collectors.toList()));
-	}
-
-	public static void testStreamSortLiteralList() {
-		assertEquals(asList(3, 2, 1), asList(1,2,3)
-				.stream()
-				.sorted((a, b) -> b - a)
-				.collect(Collectors.toList()));
-		assertEquals(asList(1), asList(1).stream()
-				.sorted((a, b) -> b - a)
-				.collect(Collectors.toList()));
-		assertEquals(asList(), asList().stream()
-				.sorted((a, b) -> 0)
-				.collect(Collectors.toList()));
-	}
-
-	public static void testStreamMap() {
-		assertEquals(asList(2, 4, 6), asList(1,2,3)
-				.stream()
-				.map(x -> x * 2)
-				.collect(Collectors.toList()));
-		assertEquals(asList(2), asList(1).stream()
-				.map(x -> x * 2)
-				.collect(Collectors.toList()));
-		assertEquals(asList(), asList().stream()
-				.map(x -> 1)
-				.collect(Collectors.toList()));
-	}
-
-	public static void testStreamCount() {
-		assertEquals(3, asList(1,2,3).stream().count());
-		assertEquals(1, asList(1).stream().count());
-		assertEquals(0, asList().stream().count());
-	}
-
-	public static void testStreamLimit() {
-		assertEquals(asList(1, 2), asList(1,2,3,4).stream()
-				.limit(2).collect(Collectors.toList()));
-		assertEquals(asList(1), asList(1).stream().limit(1).collect(Collectors.toList()));
-		assertEquals(asList(), asList().stream().limit(2).collect(Collectors.toList()));
-	}
-
-	public static void testStreamSkip() {
-		assertEquals(asList(3, 4), asList(1,2,3,4).stream()
-				.skip(2).collect(Collectors.toList()));
-		assertEquals(asList(), asList(1).stream().skip(1).collect(Collectors.toList()));
-		assertEquals(asList(), asList().stream().skip(2).collect(Collectors.toList()));
-	}
-
-	public static void testStreamFilterAndMap() {
-		assertEquals(asList(2, 6), asList(1,2,3,4).stream()
-				.filter(x -> x % 2 == 1)
-				.map(x -> x * 2)
-				.collect(Collectors.toList()));
-		assertEquals(asList(), asList(2).stream()
-				.filter(x -> x % 2 == 1)
-				.map(x -> x * 2)
-				.collect(Collectors.toList()));
-	}
-
-	public static void testStreamFlatMap() {
-		assertEquals(asList(0, 0, 1, 0, 1, 2), asList(0, 1, 2).stream()
-				.flatMap(x -> {
-					final List<Integer> r = new ArrayList();
-					for (int i = 0; i <= x; ++i) {
-						r.add(i);
-					}
-					return r.stream();
-				})
-				.collect(Collectors.toList()));
-	}
-
-	public static void testStreamForEach() {
-		List<Integer> result = new ArrayList<>();
-		asList(1,2,3).forEach(n -> result.add(n));
-		assertEquals(asList(1,2,3), result);
-	}
-
-	public static void testStreamOf() {
-		List<Integer> result = new ArrayList<>();
-		Stream.of(1,2,3).forEach(n -> result.add(n));
-		assertEquals(asList(1,2,3), result);
-	}
-
-	public static void testIntStreamRange() {
-		List<String> result = new ArrayList<>();
-		IntStream.range(0,3)
-				.mapToObj(n -> String.valueOf(n))
-				.forEach(n -> result.add((String) n));
-		assertEquals(asList("0", "1", "2"), result);
 	}
 
 	// java.math is not available yet and should be implemented as a wrapper to
