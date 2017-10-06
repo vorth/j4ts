@@ -15,6 +15,8 @@
  */
 package java.util;
 
+import java.util.function.BiFunction;
+
 /**
  * Abstract interface for maps.
  *
@@ -69,4 +71,17 @@ public interface Map<K, V> {
   int size();
 
   Collection<V> values();
+
+  default V merge(K key, V value, BiFunction<? super V, ? super V, ? extends V> map) {
+    V old = get(key);
+    V next = (old == null)
+            ? value
+            : map.apply(old, value);
+    if(next == null) {
+      remove(key);
+    } else {
+      put(key, next);
+    }
+    return next;
+  }
 }

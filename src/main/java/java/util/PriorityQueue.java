@@ -24,6 +24,8 @@ package java.util;
  */
 public class PriorityQueue<E> extends AbstractQueue<E> {
 
+  private static final int INITIAL_CAPACITY = 11;
+
   private static int getLeftChild(int node) {
     return 2 * node + 1;
   }
@@ -50,7 +52,11 @@ public class PriorityQueue<E> extends AbstractQueue<E> {
   private ArrayList<E> heap;
 
   public PriorityQueue() {
-    this(11);
+    this(INITIAL_CAPACITY);
+  }
+
+  public PriorityQueue(Comparator<? super E> cp) {
+    this(INITIAL_CAPACITY, cp);
   }
 
   public PriorityQueue(Collection<? extends E> c) {

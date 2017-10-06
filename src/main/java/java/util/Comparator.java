@@ -23,7 +23,6 @@ package java.util;
  * @param <T> the type to be compared.
  */
 public interface Comparator<T> {
-
   int compare(T a, T b);
 
   @Override

@@ -15,6 +15,10 @@
  */
 package java.util;
 
+import javaemul.internal.stream.StreamHelper;
+
+import java.util.stream.Stream;
+
 /**
  * General-purpose interface for storing collections of objects. <a
  * href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Collection.html">[Sun
@@ -56,4 +60,8 @@ public interface Collection<E> extends Iterable<E> {
   Object[] toArray();
 
   <T> T[] toArray(T[] a);
+
+  default Stream<E> stream() {
+    return new StreamHelper<>(this);
+  }
 }

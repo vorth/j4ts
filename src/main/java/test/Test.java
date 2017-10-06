@@ -3,6 +3,7 @@ package test;
 import static def.dom.Globals.console;
 import static def.dom.Globals.document;
 import static def.js.Globals.undefined;
+import static java.util.Arrays.asList;
 import static jsweet.util.Lang.any;
 
 import java.io.ByteArrayInputStream;
@@ -25,7 +26,7 @@ import def.dom.HTMLElement;
 public class Test {
 
 	public static void main(String[] args) {
-		System.out.println(Arrays.asList("a","b","c"));
+		System.out.println(asList("a","b","c"));
 	}
 	
 	public static void assertEquals(Object o1, Object o2) {
@@ -82,7 +83,7 @@ public class Test {
 		Arrays.sort(myArray);
 		assertEquals(1, myArray[0]);
 
-		List<String> l = Arrays.asList("a", "b", "c", "d");
+		List<String> l = asList("a", "b", "c", "d");
 
 		assertEquals(4, l.size());
 
@@ -100,7 +101,7 @@ public class Test {
 
 		Arrays.sort(a, reverse);
 		// TODO: fix varargs
-		assertEquals("[c, b, a]", Arrays.asList(a[0], a[1], a[2]).toString());
+		assertEquals("[c, b, a]", asList(a[0], a[1], a[2]).toString());
 
 		console.info("end testing arrays");
 	}
