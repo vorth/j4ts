@@ -15,7 +15,7 @@
  */
 package java.util;
 
-import static javaemul.internal.globals.Globals.Map;
+import static def.js.Globals.eval;
 import static jsweet.util.Lang.$new;
 
 // TODO: remove this file!!
@@ -27,8 +27,8 @@ class InternalJsMapFactory {
 
 	private static final Object jsMapCtor = getJsMapConstructor();
 
-	private static def.js.Object getJsMapConstructor() { 
-		return Map; 
+	private static def.js.Object getJsMapConstructor() {
+		return eval("window===undefined?global['Map']:window['Map']");
 	};
 
 	/*-{
