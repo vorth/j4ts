@@ -52,7 +52,7 @@ public final class Collectors {
 
     public static <T> Collector<T, ?, List<T>> toList() {
         return new CollectorImpl<>(
-                () -> new ArrayList(),
+                () -> new ArrayList<>(),
                 (l, i) -> l.add(i),
                 (left, right) -> {
                     left.addAll(right);
@@ -62,7 +62,7 @@ public final class Collectors {
 
     public static <T> Collector<T, ?, Set<T>> toSet() {
         return new CollectorImpl<>(
-                () -> new HashSet(),
+                () -> new HashSet<>(),
                 (s, i) -> s.add(i),
                 (left, right) -> {
                     left.addAll(right);

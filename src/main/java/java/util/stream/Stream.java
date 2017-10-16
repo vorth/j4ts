@@ -43,7 +43,8 @@ public interface Stream<T> {
     Stream<T> onClose(Runnable closeHandler);
     void close();
 
-    static<T> Stream<T> of(T... values) {
+    @SafeVarargs
+	static<T> Stream<T> of(T... values) {
         return Arrays.asList(values).stream();
     }
 
