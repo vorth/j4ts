@@ -53,7 +53,7 @@ From JSweet, add the candy dependency in your ``pom.xml``.
 
 ```xml
 <dependency>
-	<groupId>org.jsweet.candies</groupId>
+	<groupId>org.jsweet</groupId>
 	<artifactId>j4ts</artifactId>
 	<version>VERSION</version>
 </dependency>
