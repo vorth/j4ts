@@ -97,7 +97,6 @@ public class Date implements Cloneable, Comparable<Date>, Serializable {
 
 	public Date(long date) {
 		jsdate = $new(jsdateClass(), date);
-		// ((def.js.Date) jsdate).setTime(date);
 	}
 
 	public Date(String date) {
