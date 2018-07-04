@@ -27,6 +27,7 @@ import static jsweet.util.Lang.any;
 import static jsweet.util.Lang.$insert;
 
 import java.io.Serializable;
+import java.util.stream.Stream;
 
 import javaemul.internal.ArrayHelper;
 import javaemul.internal.LongCompareHolder;
@@ -101,6 +102,10 @@ public class Arrays {
 
   public static <T> List<T> asList(T... array) {
     return new ArrayList<T>(array);
+  }
+
+  public static <T> Stream<T> stream(T... array) {
+    return asList(array).stream();
   }
 
   /**
