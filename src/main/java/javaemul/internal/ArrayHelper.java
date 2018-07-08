@@ -73,7 +73,11 @@ public class ArrayHelper {
 		copy(values, 0, array, index, values.length, false);
 	}
 
-	public static void insertToArr(Object array, int index, Object[] values) {
+	/**
+	 * This version of insertTo is specified only for arrays.
+	 * Same implementation (and arguments) as "public static void insertTo(Object array, int index, Object[] values)"
+	 */
+	public static void insertValuesToArray(Object array, int index, Object[] values) {
 		copy(values, 0, array, index, values.length, false);
 	}
 
