@@ -97,7 +97,8 @@ public class URL implements Serializable {
     }
 
     public String getFile() {
-        return jsUrl.$get("pathname");
+        String wholePath = jsUrl.$get("pathname");
+        return wholePath.substring(wholePath.lastIndexOf('/')+1);
     }
 
     public String getHost() {
@@ -105,7 +106,8 @@ public class URL implements Serializable {
     }
 
     public String getPath() {
-        return jsUrl.$get("pathname");
+        String wholePath = jsUrl.$get("pathname");
+        return wholePath.substring(0, wholePath.lastIndexOf('/'));
     }
 
     public int getPort() {
