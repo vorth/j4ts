@@ -1,6 +1,7 @@
 package java.io;
 
 import static jsweet.util.Lang.any;
+import static jsweet.util.Lang.string;
 
 import java.nio.charset.Charset;
 
@@ -30,8 +31,16 @@ public class InputStreamReader extends Reader {
 	}
 
 	public int read(char cbuf[], int offset, int length) throws IOException {
-		byte[] buf = any(cbuf);
-		return in.read(buf, offset, length);
+		byte[] buf = new byte[length - offset];
+		int success = in.read(buf, 0, length);
+
+		if (success > 0) {
+			for (int i = 0; i < success; ++i) {
+				cbuf[i + offset] = string(def.js.String.fromCharCode(buf[i])).charAt(0);
+			}
+		}
+
+		return success;
 	}
 
 	public boolean ready() throws IOException {
