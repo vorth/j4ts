@@ -53,7 +53,7 @@ public class URL implements Serializable {
     }
 
     private static String createObjectURL(Object object) {
-        return ((Function)jsUrlClass().$get("createObjectURL")).apply(null, object).toString();
+        return $insert("window.URL.createObjectURL(object)");
     }
 
     @Override
@@ -77,7 +77,7 @@ public class URL implements Serializable {
             return "";
         if (username != null && password != null)
             return username + ":" + password;
-        return username != null ? username.toString() : password.toString();
+        return username != null ? username : password;
     }
 
     public Object getContent() {
@@ -92,6 +92,14 @@ public class URL implements Serializable {
             case "https":
             case "wss":
                 return 443;
+            case "ftp":
+                return 21;
+            case "sftp":
+                return 22;
+            case "gopher":
+                return 70;
+            case "file":
+                return 0;
         }
         return -1;
     }
@@ -150,5 +158,10 @@ public class URL implements Serializable {
         request.open("GET", jsUrl.$get("href"), false);
         request.send();
         return request;
+    }
+
+    @Override
+    public String toString() {
+        return jsUrl.$get("href");
     }
 }
