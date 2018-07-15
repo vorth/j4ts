@@ -3,6 +3,8 @@ package java.io;
 public class StringReader extends Reader {
     private final char[] charArray;
     private int where;
+    private int marked = -1;
+    private int markedLen;
     public StringReader(String start) {
         this.charArray = start.toCharArray();
     }
@@ -28,6 +30,30 @@ public class StringReader extends Reader {
 
     @Override
     public void close() {
+        where = charArray.length;
+    }
 
+    @Override
+    public boolean ready() {
+        return where < charArray.length;
+    }
+
+    @Override
+    public boolean markSupported() {
+        return true;
+    }
+
+    @Override
+    public void mark(int readAheadLimit) {
+        this.marked = where;
+        this.markedLen = readAheadLimit;
+    }
+
+    @Override
+    public void reset() throws IOException {
+        if (marked == -1 || where > marked + markedLen) {
+            throw new IOException("The stream not been marked or mark has been invalidated");
+        }
+        this.where = marked;
     }
 }
