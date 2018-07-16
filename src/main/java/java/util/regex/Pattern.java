@@ -76,11 +76,11 @@ public class Pattern implements Serializable {
         }
     }
 
-    static Pattern compile(String regexp) {
+    public static Pattern compile(String regexp) {
         return compile(regexp, 0);
     }
 
-    static Pattern compile(String regexpString, int flags) {
+    public static Pattern compile(String regexpString, int flags) {
         String jsFlags = "g";
         if ((flags & MULTILINE) > 0) {
             jsFlags += "m";
@@ -119,18 +119,12 @@ public class Pattern implements Serializable {
                             ")*" +
                         ")" +
                         "((?:" + // main grouped characters ($2)
-                            "[^()\\\\|\\[\\]]|" + // any not special character
-                            "\\\\\\\\|" + // escaped characters
-                            "\\\\\\(|" +
-                            "\\\\\\)|" +
-                            "\\\\\\||" +
-                            "\\\\\\[|" +
-                            "\\\\\\]|" +
+                            "[^\\\\()|]|" + // any not \\ () | character
+                            "\\\\.|" + // escaped characters
                             "\\[\\^?\\]\\]|" + // []] and [^]] special brackets
                             "\\[\\^?(?:" + // brackets
-                                "[^\\\\\\]]|" + // not special closing character
-                                "\\\\\\\\|" + // escaped escape
-                                "\\\\\\]" + // escaped close bracket
+                                "[^\\\\\\]]|" + // not escape or closing character
+                                "\\\\.|" + // escaped characters
                             ")+\\]" +
                         ")*)", "g"), Lang.<Supplier<def.js.String>> any((Function<def.js.String[], def.js.String>)
                         ((def.js.String ... args) -> {
@@ -146,6 +140,7 @@ public class Pattern implements Serializable {
                             boolean hasCloseBracket = regexp.length > endIndexOfMatched && ")".equals(string(regexp.charAt(endIndexOfMatched)));
 
                             if (hasOpenBracket && hasCloseBracket) {
+
                                 return string(string(args[1]) + args[2]);
                             }
 

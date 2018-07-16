@@ -24,6 +24,8 @@ public class Matcher implements MatchResult {
     public Matcher(Pattern _pattern, String text) {
         this._pattern = _pattern;
         this.text = text;
+
+        reset();
     }
 
     private void hasGroups() {
@@ -135,17 +137,11 @@ public class Matcher implements MatchResult {
 
         String regExpStringWithAllCaptures = string(string(regExp.source).replace(new RegExp("" +
                         "((?:" + // non modifiable params $1
-                            "\\\\\\\\|" + // escaped characters
-                            "\\\\\\(|" +
-                            "\\\\\\)|" +
-                            "\\\\\\||" +
-                            "\\\\\\[|" +
-                            "\\\\\\]|" +
+                            "\\\\.|" + // escaped characters
                             "\\[\\^?\\]\\]|" + // []] and [^]] special brackets
                             "\\[\\^?(?:" + // brackets
-                                "[^\\\\\\]]|" + // not special closing character
-                                "\\\\\\\\|" + // escaped escape
-                                "\\\\\\]" + // escaped close bracket
+                                "[^\\\\\\]]|" + // not escape or closing character
+                                "\\\\.|" + // escaped characters
                             ")+\\]" +
                         ")+)|" +
                         "\\(((?:\\?\\:)?)|" + // modifiable param $2 if not a captured
