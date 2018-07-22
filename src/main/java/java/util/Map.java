@@ -16,6 +16,7 @@
 package java.util;
 
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  * Abstract interface for maps.
@@ -83,5 +84,15 @@ public interface Map<K, V> {
       put(key, next);
     }
     return next;
+  }
+
+  default V computeIfAbsent(K key, Function<? super K,? extends V> mappingFunction) {
+    V result;
+    if ((result = get(key)) == null) {
+      result = mappingFunction.apply(key);
+      if (result != null)
+        put(key, result);
+    }
+    return result;
   }
 }

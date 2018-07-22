@@ -27,11 +27,13 @@ public final class Scanner implements Iterator<String>, Closeable {
     private Pattern currentDelimiter = whiteSpacePattern;
     private Matcher matcher;
     private char[] buf = new char[1024];
-    private int bufferRealLength = 0;
+    private int bufferFilledLength = 0;
     private int currentPosition = 0;
+    private int nextTokenStart = 0;
 
     private int nextDelimiterStart = -1;
     private int nextDelimiterEnd = -1;
+    private Pattern nextDelimiterWithPattern;
 
     private int defaultRadix = 10;
 
@@ -70,54 +72,71 @@ public final class Scanner implements Iterator<String>, Closeable {
 
     @Override
     public boolean hasNext() {
-        if (closed && currentPosition == bufferRealLength)
+        if (closed && currentPosition == bufferFilledLength)
             return false;
 
-        if (nextDelimiterStart == -1) {
+        if (nextDelimiterStart == -1 || nextDelimiterWithPattern != currentDelimiter) {
             searchNextTo(currentDelimiter);
+            nextDelimiterWithPattern = currentDelimiter;
         }
-        return currentPosition != bufferRealLength;
+
+        return currentPosition != bufferFilledLength;
     }
 
     private void searchNextTo(Pattern pattern) {
+        searchNextTo(pattern, false);
+    }
+
+    private void searchNextTo(Pattern pattern, boolean canBeEmpty) {
         try {
-            while (!closed) {
-                matcher = pattern.matcher(new String(buf, currentPosition, bufferRealLength - currentPosition));
+            nextTokenStart = 0;
+            while (!closed || bufferFilledLength != currentPosition + nextTokenStart) {
+                matcher = pattern.matcher(new String(buf, currentPosition + nextTokenStart, bufferFilledLength - currentPosition - nextTokenStart));
                 if (matcher.find()) {
-                    if (matcher.start() == 0) { // this cause null result. It shouldn't be happened.
-                        currentPosition += matcher.end();
-                        if (currentPosition < bufferRealLength)
-                            continue;
-                    } else {
-                        nextDelimiterStart = currentPosition + matcher.start();
-                        nextDelimiterEnd = currentPosition + matcher.end();
+                    if (matcher.start() > 0 || canBeEmpty) {
+                        nextDelimiterStart = currentPosition + nextTokenStart + matcher.start();
+                        nextDelimiterEnd = currentPosition + nextTokenStart + matcher.end();
                         return;
                     }
+                    // empty match, move to start the matcher
+                    nextTokenStart += matcher.end();
+                    if (currentPosition + nextTokenStart < bufferFilledLength) // if we are in the buffer, then try again
+                        continue;
                 }
 
-                if (buf.length == bufferRealLength) {
+                if (buf.length == bufferFilledLength) {
                     if (currentPosition < buf.length / 2) {
                         char[] chars = new char[buf.length * 2];
-                        System.arraycopy(buf, currentPosition, chars, 0, bufferRealLength - currentPosition);
+                        System.arraycopy(buf, currentPosition, chars, 0, bufferFilledLength - currentPosition);
                         buf = chars;
                     } else {
-                        System.arraycopy(buf, currentPosition, buf, 0, bufferRealLength - currentPosition);
+                        System.arraycopy(buf, currentPosition, buf, 0, bufferFilledLength - currentPosition);
                     }
-                    bufferRealLength -= currentPosition;
+                    bufferFilledLength -= currentPosition;
                     currentPosition = 0;
                     nextDelimiterStart = nextDelimiterEnd = -1;
                 }
 
-                int read = reader.read(buf, bufferRealLength, buf.length - bufferRealLength);
-                if (read <= 0) {
+                if (closed)
                     break;
+
+                int read = reader.read(buf, bufferFilledLength, buf.length - bufferFilledLength);
+                if (read <= 0) {
+                    try {
+                        close();
+                    } catch (IOException ignored) {
+                    }
+                } else {
+                    bufferFilledLength += read;
                 }
-                bufferRealLength += read;
             }
         } catch (IOException ignored) {
+            try {
+                close();
+            } catch (IOException ignored2) {
+            }
         }
-        closed = true;
-        nextDelimiterStart = nextDelimiterEnd = bufferRealLength;
+        nextDelimiterStart = nextDelimiterEnd = bufferFilledLength;
     }
 
     @Override
@@ -125,18 +144,18 @@ public final class Scanner implements Iterator<String>, Closeable {
         if (!hasNext())
             throw new NoSuchElementException("No more token");
 
-        String result = new String(buf, currentPosition, nextDelimiterStart - currentPosition);
-        currentPosition = nextDelimiterEnd;
+        String result = new String(buf, currentPosition + nextTokenStart, nextDelimiterStart - currentPosition - nextTokenStart);
+        currentPosition = nextDelimiterStart;
         nextDelimiterStart = nextDelimiterEnd = -1;
         return result;
     }
 
     public boolean hasNext(Pattern pattern) {
-        return hasNext() && pattern.matcher(new String(buf, currentPosition, nextDelimiterStart - currentPosition)).matches();
+        return hasNext() && pattern.matcher(new String(buf, currentPosition + nextTokenStart, nextDelimiterStart - currentPosition - nextTokenStart)).matches();
     }
 
     public boolean hasNext(String pattern) {
-        return hasNext() && Pattern.matches(pattern, new String(buf, currentPosition, nextDelimiterStart - currentPosition));
+        return hasNext() && Pattern.matches(pattern, new String(buf, currentPosition + nextTokenStart, nextDelimiterStart - currentPosition - nextTokenStart));
     }
 
     public int radix() {
@@ -200,15 +219,25 @@ public final class Scanner implements Iterator<String>, Closeable {
     }
 
     public boolean hasNextLine() {
-        return hasNext();
+        if (closed && currentPosition == bufferFilledLength)
+            return false;
+
+        if (nextDelimiterStart == -1 || nextDelimiterWithPattern != endLinePattern) {
+            searchNextTo(endLinePattern, true);
+            nextDelimiterWithPattern = endLinePattern;
+        }
+
+        return currentPosition != bufferFilledLength;
     }
 
     public String nextLine() {
         if (!hasNextLine())
             throw new InputMismatchException("No new line");
 
-        searchNextTo(endLinePattern);
-        return next();
+        String result = new String(buf, currentPosition, nextDelimiterStart - currentPosition);
+        currentPosition = nextDelimiterEnd;
+        nextDelimiterStart = nextDelimiterEnd = -1;
+        return result;
     }
 
     public boolean hasNextLong() {
@@ -242,7 +271,14 @@ public final class Scanner implements Iterator<String>, Closeable {
     }
 
     public Scanner skip(Pattern pattern) {
-        searchNextTo(pattern);
+        if (closed && currentPosition == bufferFilledLength)
+            throw new NoSuchElementException("No more token");
+
+        searchNextTo(pattern, true);
+        if (nextDelimiterStart != currentPosition) {
+            throw new NoSuchElementException("The specified pattern was not found");
+        }
+
         currentPosition = nextDelimiterEnd;
         nextDelimiterStart = nextDelimiterEnd = -1;
         return this;
@@ -256,11 +292,10 @@ public final class Scanner implements Iterator<String>, Closeable {
         if (!hasNextLine()) {
             return null;
         }
-        searchNextTo(endLinePattern);
 
         matcher = pattern.matcher(new String(buf, currentPosition, nextDelimiterStart - currentPosition));
         if (matcher.find()) {
-            next();
+            nextLine();
             return matcher.group();
         } else {
             nextDelimiterStart = nextDelimiterEnd = -1;
