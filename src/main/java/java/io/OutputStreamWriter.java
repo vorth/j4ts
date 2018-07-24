@@ -1,6 +1,7 @@
 package java.io;
 
 import static jsweet.util.Lang.any;
+import static jsweet.util.Lang.string;
 
 import java.nio.charset.Charset;
 
@@ -43,8 +44,11 @@ public class OutputStreamWriter extends Writer {
     }
 
     public void write(char cbuf[], int off, int len) throws IOException {
-    	byte[] buf = any(cbuf);
-        out.write(buf, off, len);
+    	byte[] buf = new byte[len];
+    	for (int i = 0; i < len; ++i)
+    	    buf[i] = (byte) string(cbuf[i + off]).charCodeAt(0); // TODO switch to charset converter
+
+        out.write(buf, 0, len);
     }
 
     public void write(String str, int off, int len) throws IOException {

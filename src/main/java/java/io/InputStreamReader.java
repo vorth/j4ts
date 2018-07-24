@@ -36,7 +36,7 @@ public class InputStreamReader extends Reader {
 
 		if (success > 0) {
 			for (int i = 0; i < success; ++i) {
-				cbuf[i + offset] = string(def.js.String.fromCharCode(buf[i])).charAt(0);
+				cbuf[i + offset] = string(def.js.String.fromCharCode(buf[i])).charAt(0); // TODO switch to charset converter
 			}
 		}
 

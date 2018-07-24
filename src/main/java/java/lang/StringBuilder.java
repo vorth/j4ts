@@ -51,7 +51,7 @@ public final class StringBuilder extends AbstractStringBuilder implements CharSe
 
 	@Override
 	public StringBuilder append(char x) {
-		string += x;
+		string += String.valueOf(x);
 		return this;
 	}
 
