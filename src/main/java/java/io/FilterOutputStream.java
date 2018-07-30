@@ -88,33 +88,6 @@ public class FilterOutputStream extends OutputStream {
     }
 
     /**
-     * Writes {@code count} bytes from the byte array {@code buffer} starting at
-     * {@code offset} to the target stream.
-     *
-     * @param buffer
-     *            the buffer to write.
-     * @param offset
-     *            the index of the first byte in {@code buffer} to write.
-     * @param length
-     *            the number of bytes in {@code buffer} to write.
-     * @throws IndexOutOfBoundsException
-     *             if {@code offset < 0} or {@code count < 0}, or if
-     *             {@code offset + count} is bigger than the length of
-     *             {@code buffer}.
-     * @throws IOException
-     *             if an I/O error occurs while writing to this stream.
-     */
-    @Override
-    public void write(byte[] buffer, int offset, int length) throws IOException {
-        IOUtils.checkOffsetAndCount(buffer, offset, length);
-        for (int i = 0; i < length; i++) {
-            // Call write() instead of out.write() since subclasses could
-            // override the write() method.
-            write(buffer[offset + i]);
-        }
-    }
-
-    /**
      * Writes one byte to the target stream. Only the low order byte of the
      * integer {@code oneByte} is written.
      *

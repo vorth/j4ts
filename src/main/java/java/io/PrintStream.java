@@ -24,61 +24,83 @@ public class PrintStream extends FilterOutputStream {
     super(out);
   }
 
-  public void print(boolean x) {
-  }
-
-  public void print(char x) {
-  }
-
-  public void print(char[] x) {
-  }
-
-  public void print(double x) {
-  }
-
-  public void print(float x) {
-  }
-
-  public void print(int x) {
-  }
-
-  public void print(long x) {
-  }
-
-  public void print(Object x) {
-  }
-
   public void print(String s) {
-  }
-
-  public void println() {
-  }
-
-  public void println(boolean x) {
-  }
-
-  public void println(char x) {
-  }
-
-  public void println(char[] x) {
-  }
-
-  public void println(double x) {
-  }
-
-  public void println(float x) {
-  }
-
-  public void println(int x) {
-  }
-
-  public void println(long x) {
-  }
-
-  public void println(Object x) {
+    try {
+      write(s.getBytes());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public void println(String s) {
+    print(s + System.lineSeparator());
   }
 
+  public void print(boolean x) {
+    print(String.valueOf(x));
+  }
+
+  public void print(char x) {
+    print(String.valueOf(x));
+  }
+
+  public void print(char[] x) {
+    println(String.valueOf(x));
+  }
+
+  public void print(double x) {
+    print(String.valueOf(x));
+  }
+
+  public void print(float x) {
+    print(String.valueOf(x));
+  }
+
+  public void print(int x) {
+    print(String.valueOf(x));
+  }
+
+  public void print(long x) {
+    print(String.valueOf(x));
+  }
+
+  public void print(Object x) {
+    print(String.valueOf(x));
+  }
+
+  public void println() {
+    println("");
+  }
+
+  public void println(boolean x) {
+    println(String.valueOf(x));
+  }
+
+  public void println(char x) {
+    println(String.valueOf(x));
+  }
+
+  public void println(char[] x) {
+    println(String.valueOf(x));
+  }
+
+  public void println(double x) {
+    println(String.valueOf(x));
+  }
+
+  public void println(float x) {
+    println(String.valueOf(x));
+  }
+
+  public void println(int x) {
+    println(String.valueOf(x));
+  }
+
+  public void println(long x) {
+    println(String.valueOf(x));
+  }
+
+  public void println(Object x) {
+    println(String.valueOf(x));
+  }
 }

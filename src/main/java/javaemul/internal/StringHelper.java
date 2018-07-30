@@ -18,6 +18,7 @@ package javaemul.internal;
 
 import static javaemul.internal.InternalPreconditions.checkStringBounds;
 import static jsweet.util.Lang.$insert;
+import static jsweet.util.Lang.array;
 import static jsweet.util.Lang.string;
 
 import java.io.UnsupportedEncodingException;
@@ -70,73 +71,73 @@ public final class StringHelper {
      * {@link Devirtualizer} and {@link JavaResourceBase}
      */
     public static final Comparator<String> CASE_INSENSITIVE_ORDER = new Comparator<String>() {
-	@Override
-	public int compare(String a, String b) {
-	    return a.compareToIgnoreCase(b);
-	}
+        @Override
+        public int compare(String a, String b) {
+            return a.compareToIgnoreCase(b);
+        }
     };
 
     public static String copyValueOf(char[] v) {
-	return valueOf(v);
+        return valueOf(v);
     }
 
     public static String copyValueOf(char[] v, int offset, int count) {
-	return valueOf(v, offset, count);
+        return valueOf(v, offset, count);
     }
 
     public static String valueOf(boolean x) {
-	return "" + x;
+        return "" + x;
     }
 
     public static String valueOf(char x) {
-	return "" + x;
+        return "" + x;
     }
 
     public static String valueOf(char x[], int offset, int count) {
-	int end = offset + count;
-	checkStringBounds(offset, end, x.length);
-	// Work around function.prototype.apply call stack size limits:
-	// https://code.google.com/p/v8/issues/detail?id=2896
-	// Performance: http://jsperf.com/string-fromcharcode-test/13
-	int batchSize = ArrayHelper.ARRAY_PROCESS_BATCH_SIZE;
-	String s = "";
-	for (int batchStart = offset; batchStart < end;) {
-	    int batchEnd = Math.min(batchStart + batchSize, end);
-	    s += fromCharCode(ArrayHelper.unsafeClone(x, batchStart, batchEnd));
-	    batchStart = batchEnd;
-	}
-	return s;
+        int end = offset + count;
+        checkStringBounds(offset, end, x.length);
+        // Work around function.prototype.apply call stack size limits:
+        // https://code.google.com/p/v8/issues/detail?id=2896
+        // Performance: http://jsperf.com/string-fromcharcode-test/13
+        int batchSize = ArrayHelper.ARRAY_PROCESS_BATCH_SIZE;
+        String s = "";
+        for (int batchStart = offset; batchStart < end;) {
+            int batchEnd = Math.min(batchStart + batchSize, end);
+            s += array(ArrayHelper.unsafeClone(x, batchStart, batchEnd)).join("");
+            batchStart = batchEnd;
+        }
+        return s;
     }
 
     private static String fromCharCode(Object[] array) {
-	return string(def.js.String.fromCharCode((int) (Object) array));
+        return string(def.js.String.fromCharCode((int) (Object) array));
     }
 
     public static String valueOf(char[] x) {
-	return valueOf(x, 0, x.length);
+        return valueOf(x, 0, x.length);
     }
 
     public static String valueOf(double x) {
-	return "" + x;
+        return "" + x;
     }
 
     public static String valueOf(float x) {
-	return "" + x;
+        return "" + x;
     }
 
     public static String valueOf(int x) {
-	return "" + x;
+        return "" + x;
     }
 
     public static String valueOf(long x) {
-	return "" + x;
+        return "" + x;
     }
 
     // valueOf needs to be treated special:
     // J2cl uses it for String concat and thus it can not use string
     // concatenation itself.
     public static String valueOf(Object x) {
-	return x == null ? "null" : x.toString();
+        return x == null ? "null" : x.toString();
     }
 
     /**
@@ -148,44 +149,44 @@ public final class StringHelper {
      * @skip
      */
     private static String translateReplaceString(String replaceStr) {
-	int pos = 0;
-	while (0 <= (pos = replaceStr.indexOf("\\", pos))) {
-	    if (replaceStr.charAt(pos + 1) == '$') {
-		replaceStr = replaceStr.substring(0, pos) + "$" + replaceStr.substring(++pos);
-	    } else {
-		replaceStr = replaceStr.substring(0, pos) + replaceStr.substring(++pos);
-	    }
-	}
-	return replaceStr;
+        int pos = 0;
+        while (0 <= (pos = replaceStr.indexOf("\\", pos))) {
+            if (replaceStr.charAt(pos + 1) == '$') {
+                replaceStr = replaceStr.substring(0, pos) + "$" + replaceStr.substring(++pos);
+            } else {
+                replaceStr = replaceStr.substring(0, pos) + replaceStr.substring(++pos);
+            }
+        }
+        return replaceStr;
     }
 
     private static int compareTo(String thisStr, String otherStr) {
-	$insert("if (thisStr == otherStr) { return 0; }");
-	return $insert("thisStr < otherStr ? -1 : 1");
+        $insert("if (thisStr == otherStr) { return 0; }");
+        return $insert("thisStr < otherStr ? -1 : 1");
     }
 
     private static Charset getCharset(String charsetName) throws UnsupportedEncodingException {
-	try {
-	    return Charset.forName(charsetName);
-	} catch (UnsupportedCharsetException e) {
-	    throw new UnsupportedEncodingException(charsetName);
-	}
+        try {
+            return Charset.forName(charsetName);
+        } catch (UnsupportedCharsetException e) {
+            throw new UnsupportedEncodingException(charsetName);
+        }
     }
 
     static String fromCodePoint(int codePoint) {
-	if (codePoint >= Character.MIN_SUPPLEMENTARY_CODE_POINT) {
-	    char hiSurrogate = CharacterHelper.getHighSurrogate(codePoint);
-	    char loSurrogate = CharacterHelper.getLowSurrogate(codePoint);
-	    return String.valueOf(hiSurrogate) + String.valueOf(loSurrogate);
-	} else {
-	    return String.valueOf((char) codePoint);
-	}
+        if (codePoint >= Character.MIN_SUPPLEMENTARY_CODE_POINT) {
+            char hiSurrogate = CharacterHelper.getHighSurrogate(codePoint);
+            char loSurrogate = CharacterHelper.getLowSurrogate(codePoint);
+            return String.valueOf(hiSurrogate) + String.valueOf(loSurrogate);
+        } else {
+            return String.valueOf((char) codePoint);
+        }
     }
 
     public static String format(String formatString, Object... args) {
-	return "";
-	// TODO: reactivate
-	// return Globals.sprintf(formatString, args);
+        return "";
+        // TODO: reactivate
+        // return Globals.sprintf(formatString, args);
     }
 
     private StringHelper() {

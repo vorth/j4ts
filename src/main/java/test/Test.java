@@ -1,27 +1,19 @@
 package test;
 
-import static def.dom.Globals.console;
-import static def.dom.Globals.document;
-import static def.js.Globals.undefined;
-import static java.util.Arrays.asList;
-import static jsweet.util.Lang.any;
+import def.dom.HTMLElement;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.text.Collator;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-import def.dom.HTMLElement;
+import static def.dom.Globals.console;
+import static def.dom.Globals.document;
+import static def.js.Globals.eval;
+import static def.js.Globals.undefined;
+import static java.util.Arrays.asList;
+import static jsweet.util.Lang.any;
 
 public class Test {
 
@@ -57,15 +49,33 @@ public class Test {
 			testIO();
 			// not available
 			// testMath();
-			HTMLElement result = document.getElementById("result");
-			if (result != null) {
-				result.innerHTML = "Success!";
+
+			console.error("OS NAME: " + System.getProperty("os.name"));
+			console.info("Get input: ");
+			Scanner scanner = new Scanner(System.in);
+			if (scanner.hasNextLine()) {
+				console.info("Got input: " + scanner.nextLine());
+			} else {
+				console.info("No any input :(");
+			}
+
+			if (System.ENVIRONMENT_IS_WEB) {
+				HTMLElement result = document.getElementById("result");
+				if (result != null) {
+					result.innerHTML = "Success!";
+				}
+			} else {
+				console.info("Success!");
 			}
 		} catch (Exception e) {
 			console.error(e);
-			HTMLElement result = document.getElementById("result");
-			if (result != null) {
-				result.innerHTML = "Failure: " + e.getMessage();
+			if (System.ENVIRONMENT_IS_WEB) {
+				HTMLElement result = document.getElementById("result");
+				if (result != null) {
+					result.innerHTML = "Failure: " + e.getMessage();
+				}
+			} else {
+				console.info("Failure: " + e.getMessage());
 			}
 		}
 	}

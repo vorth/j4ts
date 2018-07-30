@@ -116,11 +116,6 @@ public class FilterInputStream extends InputStream {
         return in.read();
     }
 
-    @Override
-    public int read(byte[] buffer, int byteOffset, int byteCount) throws IOException {
-        return in.read(buffer, byteOffset, byteCount);
-    }
-
     /**
      * Resets this stream to the last marked location. This implementation
      * resets the target stream.

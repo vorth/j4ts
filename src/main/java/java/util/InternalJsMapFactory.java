@@ -15,8 +15,12 @@
  */
 package java.util;
 
+import def.js.Function;
+
+import java.util.function.Supplier;
+
 import static def.js.Globals.eval;
-import static jsweet.util.Lang.$new;
+import static jsweet.util.Lang.*;
 
 // TODO: remove this file!!
 
@@ -28,8 +32,8 @@ class InternalJsMapFactory {
 	private static final Object jsMapCtor = getJsMapConstructor();
 
 	private static def.js.Object getJsMapConstructor() {
-		return eval("typeof window===\"undefined\"?global['Map']:window['Map']");
-	};
+		return object(function((Supplier<def.js.Object>)() -> eval("Map")).call(null));
+	}
 
 	/*-{
 	// Firefox 24 & 25 throws StopIteration to signal the end of iteration.
