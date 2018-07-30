@@ -12,18 +12,17 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import static def.dom.Globals.self;
-import static def.dom.Globals.window;
 import static jsweet.util.Lang.*;
 
 public class URL implements Serializable {
-    static private def.js.Object jsUrlClass() {
-        return (def.js.Object) window.$get("URL");
-    }
-
     private final def.js.Object jsUrl;
 
     public URL(String spec) {
-        jsUrl = $new(jsUrlClass(), spec);
+        jsUrl = InternalJsURLFactory.newJsURL(spec);
+    }
+
+    public URL(URL url, String string) {
+        jsUrl = InternalJsURLFactory.newJsURL(string, url.jsUrl);
     }
 
     public URL(String protocol, String host, String file) {
@@ -52,8 +51,8 @@ public class URL implements Serializable {
         }
     }
 
-    private static String createObjectURL(Object object) {
-        return $insert("window.URL.createObjectURL(object)");
+    private static String createObjectURL(Object obj) {
+        return ((Function) InternalJsURLFactory.jsURLCtor.$get("createObjectURL")).$apply(object(obj));
     }
 
     @Override
@@ -105,8 +104,9 @@ public class URL implements Serializable {
     }
 
     public String getFile() {
-        String wholePath = jsUrl.$get("pathname");
-        return wholePath.substring(wholePath.lastIndexOf('/')+1);
+        String wholePath = getPath();
+        String query = getQuery();
+        return wholePath + (query.length() > 0 ? "?" + query : "");
     }
 
     public String getHost() {
@@ -114,8 +114,7 @@ public class URL implements Serializable {
     }
 
     public String getPath() {
-        String wholePath = jsUrl.$get("pathname");
-        return wholePath.substring(0, wholePath.lastIndexOf('/'));
+        return jsUrl.$get("pathname");
     }
 
     public int getPort() {
@@ -143,9 +142,7 @@ public class URL implements Serializable {
                 Objects.equals(getAuthority(), other.getAuthority()) &&
                 Objects.equals(getHost(), other.getHost()) &&
                 getPort() == other.getPort() &&
-                Objects.equals(getPath(), other.getPath()) &&
-                Objects.equals(getFile(), other.getFile()) &&
-                Objects.equals(getQuery(), other.getQuery());
+                Objects.equals(getFile(), other.getFile());
     }
 
     public String toExternalForm() {

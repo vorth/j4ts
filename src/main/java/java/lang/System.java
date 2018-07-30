@@ -67,7 +67,8 @@ public final class System {
 			propertyMap.put("os.name", ENVIRONMENT_IS_WEB ? "WEB" : "WEB-WORKER");
 			propertyMap.put("os.version", navigator.userAgent);
 
-			propertyMap.put("user.dir", new URL(document.location.href.toString()).getPath());
+			String pathname = document.location.pathname;
+			propertyMap.put("user.dir", pathname.substring(0, pathname.lastIndexOf("/")));
 
 		} else if (ENVIRONMENT_IS_NODE) {
 			def.js.Object os = eval("global.os || (global.os = require(\"os\"))");
@@ -132,7 +133,7 @@ public final class System {
 		propertyMap.put("os.arch", osArch);
 
 
-		PrintStream localOut = out = new PrintStream(new OutputStream() {
+		out = new PrintStream(new OutputStream() {
 			private final String sep = propertyMap.get("line.separator");
 
 			String toOut = "";

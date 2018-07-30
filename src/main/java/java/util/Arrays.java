@@ -29,6 +29,7 @@ import static jsweet.util.Lang.$insert;
 import java.io.Serializable;
 import java.util.stream.Stream;
 
+import def.js.Array;
 import javaemul.internal.ArrayHelper;
 import javaemul.internal.LongCompareHolder;
 
@@ -101,6 +102,11 @@ public class Arrays {
   }
 
   public static <T> List<T> asList(T... array) {
+    // if you want to create a list with one array element, please use
+    // Collections.singletonList(), or wrap it to an other array
+    if (array.length == 1 && Array.isArray(array[0])) {
+      array = any(array[0]);
+    }
     return new ArrayList<T>(array);
   }
 

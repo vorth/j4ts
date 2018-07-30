@@ -15,8 +15,6 @@
  */
 package java.util;
 
-import def.js.Function;
-
 import java.util.function.Supplier;
 
 import static def.js.Globals.eval;
@@ -31,7 +29,7 @@ class InternalJsMapFactory {
 
 	private static final Object jsMapCtor = getJsMapConstructor();
 
-	private static def.js.Object getJsMapConstructor() {
+	private static Object getJsMapConstructor() {
 		return object(function((Supplier<def.js.Object>)() -> eval("Map")).call(null));
 	}
 
