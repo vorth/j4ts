@@ -344,7 +344,7 @@ public final class System {
 		System.out = out;
 	}
 
-	public static String lineSeparator​() {
+	public static String lineSeparator() {
 		return getProperty("line.separator");
 	}
 
