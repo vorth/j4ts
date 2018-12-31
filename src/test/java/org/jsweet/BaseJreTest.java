@@ -3,6 +3,7 @@ package org.jsweet;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -10,6 +11,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -183,5 +185,12 @@ public abstract class BaseJreTest {
                 .mapToObj(String::valueOf)
                 .forEach(result::add);
         assertEquals(asList("0", "1", "2"), result);
+    }
+
+    @Test
+    public void testCollectionRemoveIf() {
+        List<Integer> testList = stream(asList( 0, 0 ,1, 0, 1, 2)).collect(Collectors.toList());
+        assertTrue(testList.removeIf(item -> item.intValue() == 0));
+        assertEquals(asList( 1, 1, 2), testList);
     }
 }

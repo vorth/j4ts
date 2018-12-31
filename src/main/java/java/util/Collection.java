@@ -15,8 +15,11 @@
  */
 package java.util;
 
+import static javaemul.internal.InternalPreconditions.checkNotNull;
+
 import javaemul.internal.stream.StreamHelper;
 
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 /**
@@ -52,6 +55,18 @@ public interface Collection<E> extends Iterable<E> {
   boolean remove(Object o);
 
   boolean removeAll(Collection<?> c);
+
+  default boolean removeIf(Predicate<? super E> filter) {
+    checkNotNull(filter);
+    boolean removed = false;
+    for (Iterator<E> it = iterator(); it.hasNext();) {
+      if (filter.test(it.next())) {
+        it.remove();
+        removed = true;
+      }
+    }
+    return removed;
+  }
 
   boolean retainAll(Collection<?> c);
 
