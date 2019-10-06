@@ -1,12 +1,11 @@
 package java.nio.file;
 
-import java.net.URL;
+import static jsweet.util.Lang.array;
+import static jsweet.util.Lang.string;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
-
-import static jsweet.util.Lang.array;
-import static jsweet.util.Lang.string;
 
 public class Path implements Comparable<Path>, Iterable<Path> {
     // move to filesystem
@@ -40,7 +39,7 @@ public class Path implements Comparable<Path>, Iterable<Path> {
     public Path resolve(Path other) {
         if (other.isAbsolute())
             return other;
-        return new Path(new URL(new URL("file://" + fullPath + "/"), other.fullPath).getPath());
+		return new Path(fullPath + "/" + other.fullPath);
     }
 
     public Path resolve(String other) {
