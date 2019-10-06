@@ -1,4 +1,4 @@
-/* Generated from Java with JSweet 2.3.5 - http://www.jsweet.org */
+/* Generated from Java with JSweet 2.3.6-SNAPSHOT - http://www.jsweet.org */
 var java;
 (function (java) {
     var beans;
@@ -2454,6 +2454,18 @@ var java;
         class AbstractCollection {
             constructor() {
             }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index193 = this.iterator(); index193.hasNext();) {
+                    let t = index193.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -2467,18 +2479,6 @@ var java;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index193 = this.iterator(); index193.hasNext();) {
-                    let t = index193.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             /**
              *
@@ -11777,6 +11777,18 @@ var test;
                 if (this.modCount === undefined)
                     this.modCount = 0;
             }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index202 = this.iterator(); index202.hasNext();) {
+                    let t = index202.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -11790,18 +11802,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index202 = this.iterator(); index202.hasNext();) {
-                    let t = index202.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             add$java_lang_Object(obj) {
                 this.add(this.size(), obj);
@@ -12239,6 +12239,18 @@ var test;
             constructor() {
                 super();
             }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index205 = this.iterator(); index205.hasNext();) {
+                    let t = index205.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -12252,18 +12264,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index205 = this.iterator(); index205.hasNext();) {
-                    let t = index205.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             /**
              *
@@ -12345,6 +12345,18 @@ var test;
             constructor() {
                 super();
             }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index206 = this.iterator(); index206.hasNext();) {
+                    let t = index206.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -12358,18 +12370,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index206 = this.iterator(); index206.hasNext();) {
-                    let t = index206.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             /**
              *
@@ -17068,6 +17068,18 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index213 = this.iterator(); index213.hasNext();) {
+                    let t = index213.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -17081,18 +17093,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index213 = this.iterator(); index213.hasNext();) {
-                    let t = index213.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             add$java_lang_Object(o) {
                 this.array[this.array.length] = o;
@@ -19063,6 +19063,18 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index233 = this.iterator(); index233.hasNext();) {
+                    let t = index233.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -19076,18 +19088,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index233 = this.iterator(); index233.hasNext();) {
-                    let t = index233.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             add$java_lang_Object(o) {
                 return this.arrayList.add(o);
@@ -20749,6 +20749,18 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index238 = this.iterator(); index238.hasNext();) {
+                    let t = index238.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -20762,18 +20774,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index238 = this.iterator(); index238.hasNext();) {
-                    let t = index238.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             /**
              *
@@ -20931,6 +20931,18 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index239 = this.iterator(); index239.hasNext();) {
+                    let t = index239.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -20944,18 +20956,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index239 = this.iterator(); index239.hasNext();) {
-                    let t = index239.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             /**
              *
@@ -21549,6 +21549,18 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index240 = this.iterator(); index240.hasNext();) {
+                    let t = index240.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -21562,18 +21574,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index240 = this.iterator(); index240.hasNext();) {
-                    let t = index240.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             /**
              *
@@ -22983,6 +22983,18 @@ var test;
                         this.map = null;
                     this.map = map;
                 }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index242 = this.iterator(); index242.hasNext();) {
+                        let t = index242.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -22996,18 +23008,6 @@ var test;
                         ;
                     }
                     return removed;
-                }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index242 = this.iterator(); index242.hasNext();) {
-                        let t = index242.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
                 }
                 /**
                  *
@@ -24169,6 +24169,18 @@ var test;
                         this.coll = null;
                     this.coll = coll;
                 }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index250 = this.iterator(); index250.hasNext();) {
+                        let t = index250.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -24182,18 +24194,6 @@ var test;
                         ;
                     }
                     return removed;
-                }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index250 = this.iterator(); index250.hasNext();) {
-                        let t = index250.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
                 }
                 /**
                  *
@@ -24365,6 +24365,18 @@ var test;
                         this.list = null;
                     this.list = list;
                 }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index251 = this.iterator(); index251.hasNext();) {
+                        let t = index251.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -24378,18 +24390,6 @@ var test;
                         ;
                     }
                     return removed;
-                }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index251 = this.iterator(); index251.hasNext();) {
-                        let t = index251.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
                 }
                 add$int$java_lang_Object(index, element) {
                     throw new java.lang.UnsupportedOperationException();
@@ -24549,6 +24549,18 @@ var test;
                 constructor(set) {
                     super(set);
                 }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index252 = this.iterator(); index252.hasNext();) {
+                        let t = index252.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -24562,18 +24574,6 @@ var test;
                         ;
                     }
                     return removed;
-                }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index252 = this.iterator(); index252.hasNext();) {
-                        let t = index252.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
                 }
                 /**
                  *
@@ -25024,6 +25024,18 @@ var test;
                         this.sortedSet = null;
                     this.sortedSet = sortedSet;
                 }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index253 = this.iterator(); index253.hasNext();) {
+                        let t = index253.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -25037,18 +25049,6 @@ var test;
                         ;
                     }
                     return removed;
-                }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index253 = this.iterator(); index253.hasNext();) {
-                        let t = index253.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
                 }
                 /**
                  *
@@ -25651,6 +25651,18 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index255 = this.iterator(); index255.hasNext();) {
+                    let t = index255.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -25664,18 +25676,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index255 = this.iterator(); index255.hasNext();) {
-                    let t = index255.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             /**
              *
