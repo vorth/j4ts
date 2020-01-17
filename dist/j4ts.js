@@ -2454,18 +2454,6 @@ var java;
         class AbstractCollection {
             constructor() {
             }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index193 = this.iterator(); index193.hasNext();) {
-                    let t = index193.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -2479,6 +2467,18 @@ var java;
                     ;
                 }
                 return removed;
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index193 = this.iterator(); index193.hasNext();) {
+                    let t = index193.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
             }
             /**
              *
@@ -2956,7 +2956,7 @@ var java;
     (function (util) {
         class Comparators {
             static NATURAL_$LI$() { if (Comparators.NATURAL == null)
-                Comparators.NATURAL = new Comparators.NaturalComparator(); return Comparators.NATURAL; }
+                Comparators.NATURAL = (a, b) => { return new Comparators.NaturalComparator().compare(a, b); }; return Comparators.NATURAL; }
             ;
             /**
              * Returns the natural Comparator.
@@ -2968,7 +2968,7 @@ var java;
              * @return {*} the natural Comparator
              */
             static natural() {
-                return Comparators.NATURAL_$LI$();
+                return (Comparators.NATURAL_$LI$());
             }
         }
         util.Comparators = Comparators;
@@ -4204,7 +4204,7 @@ var java;
             constructor() {
             }
             static compare(a, b, c) {
-                return a === b ? 0 : c.compare(a, b);
+                return a === b ? 0 : c(a, b);
             }
             static deepEquals(a, b) {
                 if (a === b) {
@@ -7664,10 +7664,10 @@ var javaemul;
                 constructor(comparator) {
                     if (this.comparator === undefined)
                         this.comparator = null;
-                    this.comparator = comparator;
+                    this.comparator = (comparator);
                 }
                 apply(t1, t2) {
-                    if (this.comparator.compare(t1, t2) <= 0) {
+                    if (this.comparator(t1, t2) <= 0) {
                         return t1;
                     }
                     return t2;
@@ -7856,13 +7856,13 @@ var javaemul;
                     return this.chain(new javaemul.internal.stream.StreamRowCollector((new java.util.LinkedHashSet())));
                 }
                 sorted$() {
-                    return this.sorted$java_util_Comparator({ compare: (a, b) => a.compareTo(b) });
+                    return this.sorted$java_util_Comparator((a, b) => a.compareTo(b));
                 }
                 sorted$java_util_Comparator(comparator) {
-                    return this.chain(new javaemul.internal.stream.StreamRowSortingCollector((new java.util.ArrayList()), comparator));
+                    return this.chain(new javaemul.internal.stream.StreamRowSortingCollector((new java.util.ArrayList()), (comparator)));
                 }
                 sorted(comparator) {
-                    if (((comparator != null && (comparator["__interfaces"] != null && comparator["__interfaces"].indexOf("java.util.Comparator") >= 0 || comparator.constructor != null && comparator.constructor["__interfaces"] != null && comparator.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || comparator === null)) {
+                    if (((typeof comparator === 'function' && comparator.length == 2) || comparator === null)) {
                         return this.sorted$java_util_Comparator(comparator);
                     }
                     else if (comparator === undefined) {
@@ -7930,10 +7930,10 @@ var javaemul;
                     return container;
                 }
                 min(comparator) {
-                    return this.foldRight(java.util.Optional.empty(), (a, b) => comparator.compare(a, b) <= 0 ? a : b);
+                    return this.foldRight(java.util.Optional.empty(), (a, b) => comparator(a, b) <= 0 ? a : b);
                 }
                 max(comparator) {
-                    return this.foldRight(java.util.Optional.empty(), (a, b) => comparator.compare(a, b) >= 0 ? a : b);
+                    return this.foldRight(java.util.Optional.empty(), (a, b) => comparator(a, b) >= 0 ? a : b);
                 }
                 count() {
                     let counter = new javaemul.internal.stream.StreamRowCount();
@@ -8276,8 +8276,10 @@ var test;
             Test.assertEquals(4, l.size());
             let a = (java.util.Arrays.copyOf$java_lang_Object_A$int(l['toArray$java_lang_Object_A']([]), 3));
             Test.assertEquals(3, a.length);
-            let reverse = new Test.Test$0();
-            java.util.Arrays.sort$java_lang_Object_A$java_util_Comparator(a, reverse);
+            let reverse = (o1, o2) => {
+                return o2.localeCompare(o1);
+            };
+            java.util.Arrays.sort$java_lang_Object_A$java_util_Comparator(a, (reverse));
             Test.assertEquals("[c, b, a]", java.util.Arrays.asList(a[0], a[1], a[2]).toString());
             console.info("end testing arrays");
         }
@@ -8315,7 +8317,7 @@ var test;
             l.add("bb");
             l.add("aa");
             Test.assertEquals(l.toString(), "[bb, aa]");
-            java.util.Collections.sort$java_util_List$java_util_Comparator(l, java.text.Collator.getInstance());
+            java.util.Collections.sort$java_util_List$java_util_Comparator(l, (java.text.Collator.getInstance()));
             Test.assertEquals(l.toString(), "[aa, bb]");
             console.info("end testing lists");
         }
@@ -8412,30 +8414,6 @@ var test;
     }
     test.Test = Test;
     Test["__class"] = "test.Test";
-    (function (Test) {
-        class Test$0 {
-            constructor() {
-            }
-            compare$java_lang_String$java_lang_String(o1, o2) {
-                return o2.localeCompare(o1);
-            }
-            /**
-             *
-             * @param {string} o1
-             * @param {string} o2
-             * @return {number}
-             */
-            compare(o1, o2) {
-                if (((typeof o1 === 'string') || o1 === null) && ((typeof o2 === 'string') || o2 === null)) {
-                    return this.compare$java_lang_String$java_lang_String(o1, o2);
-                }
-                else
-                    throw new Error('invalid overload');
-            }
-        }
-        Test.Test$0 = Test$0;
-        Test$0["__interfaces"] = ["java.util.Comparator"];
-    })(Test = test.Test || (test.Test = {}));
     class MyKey {
         constructor(data) {
             if (this.data === undefined)
@@ -10358,6 +10336,31 @@ var test;
 (function (java) {
     var lang;
     (function (lang) {
+        class ReflectiveOperationException extends Error {
+            constructor(s) {
+                if (((typeof s === 'string') || s === null)) {
+                    let __args = arguments;
+                    super(s);
+                    this.message = s;
+                    Object.setPrototypeOf(this, ReflectiveOperationException.prototype);
+                }
+                else if (s === undefined) {
+                    let __args = arguments;
+                    super();
+                    Object.setPrototypeOf(this, ReflectiveOperationException.prototype);
+                }
+                else
+                    throw new Error('invalid overload');
+            }
+        }
+        lang.ReflectiveOperationException = ReflectiveOperationException;
+        ReflectiveOperationException["__class"] = "java.lang.ReflectiveOperationException";
+        ReflectiveOperationException["__interfaces"] = ["java.io.Serializable"];
+    })(lang = java.lang || (java.lang = {}));
+})(java || (java = {}));
+(function (java) {
+    var lang;
+    (function (lang) {
         /**
          * See <a
          * href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/RuntimeException.html">the
@@ -11777,18 +11780,6 @@ var test;
                 if (this.modCount === undefined)
                     this.modCount = 0;
             }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index202 = this.iterator(); index202.hasNext();) {
-                    let t = index202.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -11802,6 +11793,18 @@ var test;
                     ;
                 }
                 return removed;
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index202 = this.iterator(); index202.hasNext();) {
+                    let t = index202.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
             }
             add$java_lang_Object(obj) {
                 this.add(this.size(), obj);
@@ -12239,18 +12242,6 @@ var test;
             constructor() {
                 super();
             }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index205 = this.iterator(); index205.hasNext();) {
-                    let t = index205.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -12264,6 +12255,18 @@ var test;
                     ;
                 }
                 return removed;
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index205 = this.iterator(); index205.hasNext();) {
+                    let t = index205.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
             }
             /**
              *
@@ -12345,18 +12348,6 @@ var test;
             constructor() {
                 super();
             }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index206 = this.iterator(); index206.hasNext();) {
-                    let t = index206.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -12370,6 +12361,18 @@ var test;
                     ;
                 }
                 return removed;
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index206 = this.iterator(); index206.hasNext();) {
+                    let t = index206.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
             }
             /**
              *
@@ -12600,8 +12603,13 @@ var test;
         class StringHelper {
             constructor() {
             }
-            static CASE_INSENSITIVE_ORDER_$LI$() { if (StringHelper.CASE_INSENSITIVE_ORDER == null)
-                StringHelper.CASE_INSENSITIVE_ORDER = new StringHelper.StringHelper$0(); return StringHelper.CASE_INSENSITIVE_ORDER; }
+            static CASE_INSENSITIVE_ORDER_$LI$() {
+                if (StringHelper.CASE_INSENSITIVE_ORDER == null)
+                    StringHelper.CASE_INSENSITIVE_ORDER = (a, b) => {
+                        return a.toUpperCase().localeCompare(b.toUpperCase());
+                    };
+                return StringHelper.CASE_INSENSITIVE_ORDER;
+            }
             ;
             static copyValueOf$char_A(v) {
                 return StringHelper.valueOf$char_A(v);
@@ -12750,30 +12758,6 @@ var test;
         }
         internal.StringHelper = StringHelper;
         StringHelper["__class"] = "javaemul.internal.StringHelper";
-        (function (StringHelper) {
-            class StringHelper$0 {
-                constructor() {
-                }
-                compare$java_lang_String$java_lang_String(a, b) {
-                    return a.toUpperCase().localeCompare(b.toUpperCase());
-                }
-                /**
-                 *
-                 * @param {string} a
-                 * @param {string} b
-                 * @return {number}
-                 */
-                compare(a, b) {
-                    if (((typeof a === 'string') || a === null) && ((typeof b === 'string') || b === null)) {
-                        return this.compare$java_lang_String$java_lang_String(a, b);
-                    }
-                    else
-                        throw new Error('invalid overload');
-                }
-            }
-            StringHelper.StringHelper$0 = StringHelper$0;
-            StringHelper$0["__interfaces"] = ["java.util.Comparator"];
-        })(StringHelper = internal.StringHelper || (internal.StringHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
 (function (java) {
@@ -13324,6 +13308,9 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            remove() {
+                throw new java.lang.UnsupportedOperationException();
+            }
             forEachRemaining(consumer) {
                 javaemul.internal.InternalPreconditions.checkNotNull((consumer));
                 while ((this.hasNext())) {
@@ -13332,9 +13319,6 @@ var test;
                     }
                 }
                 ;
-            }
-            remove() {
-                throw new java.lang.UnsupportedOperationException();
             }
             static numeral_$LI$() { if (Scanner.numeral == null)
                 Scanner.numeral = Scanner.digit + "+"; return Scanner.numeral; }
@@ -16116,6 +16100,30 @@ var test;
     })(io = java.io || (java.io = {}));
 })(java || (java = {}));
 (function (java) {
+    var lang;
+    (function (lang) {
+        class InstantiationException extends java.lang.ReflectiveOperationException {
+            constructor(s) {
+                if (((typeof s === 'string') || s === null)) {
+                    let __args = arguments;
+                    super(s);
+                    Object.setPrototypeOf(this, InstantiationException.prototype);
+                }
+                else if (s === undefined) {
+                    let __args = arguments;
+                    super();
+                    Object.setPrototypeOf(this, InstantiationException.prototype);
+                }
+                else
+                    throw new Error('invalid overload');
+            }
+        }
+        lang.InstantiationException = InstantiationException;
+        InstantiationException["__class"] = "java.lang.InstantiationException";
+        InstantiationException["__interfaces"] = ["java.io.Serializable"];
+    })(lang = java.lang || (java.lang = {}));
+})(java || (java = {}));
+(function (java) {
     var io;
     (function (io) {
         /**
@@ -17068,18 +17076,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index213 = this.iterator(); index213.hasNext();) {
-                    let t = index213.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -17093,6 +17089,18 @@ var test;
                     ;
                 }
                 return removed;
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index213 = this.iterator(); index213.hasNext();) {
+                    let t = index213.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
             }
             add$java_lang_Object(o) {
                 this.array[this.array.length] = o;
@@ -17545,7 +17553,7 @@ var test;
                 return -low - 1;
             }
             static binarySearch$java_lang_Object_A$java_lang_Object(sortedArray, key) {
-                return Arrays.binarySearch(sortedArray, key, java.util.Comparators.natural());
+                return Arrays.binarySearch(sortedArray, key, (java.util.Comparators.natural()));
             }
             static binarySearch$short_A$short(sortedArray, key) {
                 let low = 0;
@@ -17570,7 +17578,7 @@ var test;
             }
             static binarySearch$java_lang_Object_A$java_lang_Object$java_util_Comparator(sortedArray, key, comparator) {
                 if (comparator == null) {
-                    comparator = java.util.Comparators.natural();
+                    comparator = (java.util.Comparators.natural());
                 }
                 let low = 0;
                 let high = sortedArray.length - 1;
@@ -17578,7 +17586,7 @@ var test;
                     {
                         let mid = low + ((high - low) >> 1);
                         let midVal = sortedArray[mid];
-                        let compareResult = comparator.compare(midVal, key);
+                        let compareResult = comparator(midVal, key);
                         if (compareResult < 0) {
                             low = mid + 1;
                         }
@@ -17610,7 +17618,7 @@ var test;
              * <code>comparator</code>.
              */
             static binarySearch(sortedArray, key, comparator) {
-                if (((sortedArray != null && sortedArray instanceof Array && (sortedArray.length == 0 || sortedArray[0] == null || (sortedArray[0] != null))) || sortedArray === null) && ((key != null) || key === null) && ((comparator != null && (comparator["__interfaces"] != null && comparator["__interfaces"].indexOf("java.util.Comparator") >= 0 || comparator.constructor != null && comparator.constructor["__interfaces"] != null && comparator.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || comparator === null)) {
+                if (((sortedArray != null && sortedArray instanceof Array && (sortedArray.length == 0 || sortedArray[0] == null || (sortedArray[0] != null))) || sortedArray === null) && ((key != null) || key === null) && ((typeof comparator === 'function' && comparator.length == 2) || comparator === null)) {
                     return java.util.Arrays.binarySearch$java_lang_Object_A$java_lang_Object$java_util_Comparator(sortedArray, key, comparator);
                 }
                 else if (((sortedArray != null && sortedArray instanceof Array && (sortedArray.length == 0 || sortedArray[0] == null || (typeof sortedArray[0] === 'number'))) || sortedArray === null) && ((typeof key === 'number') || key === null) && comparator === undefined) {
@@ -18441,10 +18449,10 @@ var test;
                 Arrays.nativeLongSort$java_lang_Object$int$int(array, fromIndex, toIndex);
             }
             static sort$java_lang_Object_A(array) {
-                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(array, 0, array.length, java.util.Comparators.natural());
+                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(array, 0, array.length, (java.util.Comparators.natural()));
             }
             static sort$java_lang_Object_A$int$int(x, fromIndex, toIndex) {
-                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, java.util.Comparators.natural());
+                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, (java.util.Comparators.natural()));
             }
             static sort$short_A(array) {
                 Arrays.nativeNumberSort$java_lang_Object(array);
@@ -18454,14 +18462,14 @@ var test;
                 Arrays.nativeNumberSort$java_lang_Object$int$int(array, fromIndex, toIndex);
             }
             static sort$java_lang_Object_A$java_util_Comparator(x, c) {
-                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, 0, x.length, c);
+                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, 0, x.length, (c));
             }
             static sort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, c) {
                 javaemul.internal.InternalPreconditions.checkPositionIndexes(fromIndex, toIndex, x.length);
-                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, c);
+                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, (c));
             }
             static sort(x, fromIndex, toIndex, c) {
-                if (((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (x[0] != null))) || x === null) && ((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Comparator") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || c === null)) {
+                if (((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (x[0] != null))) || x === null) && ((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null) && ((typeof c === 'function' && c.length == 2) || c === null)) {
                     return java.util.Arrays.sort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, c);
                 }
                 else if (((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (typeof x[0] === 'number'))) || x === null) && ((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null) && c === undefined) {
@@ -18488,7 +18496,7 @@ var test;
                 else if (((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (typeof x[0] === 'number'))) || x === null) && ((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null) && c === undefined) {
                     return java.util.Arrays.sort$short_A$int$int(x, fromIndex, toIndex);
                 }
-                else if (((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (x[0] != null))) || x === null) && ((fromIndex != null && (fromIndex["__interfaces"] != null && fromIndex["__interfaces"].indexOf("java.util.Comparator") >= 0 || fromIndex.constructor != null && fromIndex.constructor["__interfaces"] != null && fromIndex.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || fromIndex === null) && toIndex === undefined && c === undefined) {
+                else if (((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (x[0] != null))) || x === null) && ((typeof fromIndex === 'function' && fromIndex.length == 2) || fromIndex === null) && toIndex === undefined && c === undefined) {
                     return java.util.Arrays.sort$java_lang_Object_A$java_util_Comparator(x, fromIndex);
                 }
                 else if (((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (typeof x[0] === 'number'))) || x === null) && fromIndex === undefined && toIndex === undefined && c === undefined) {
@@ -18751,7 +18759,7 @@ var test;
             static insertionSort(array, low, high, comp) {
                 for (let i = low + 1; i < high; ++i) {
                     {
-                        for (let j = i; j > low && comp.compare(array[j - 1], array[j]) > 0; --j) {
+                        for (let j = i; j > low && comp(array[j - 1], array[j]) > 0; --j) {
                             {
                                 let t = array[j];
                                 array[j] = array[j - 1];
@@ -18782,7 +18790,7 @@ var test;
                 let topIdx = srcMid;
                 while ((destLow < destHigh)) {
                     {
-                        if (topIdx >= srcHigh || (srcLow < srcMid && comp.compare(src[srcLow], src[topIdx]) <= 0)) {
+                        if (topIdx >= srcHigh || (srcLow < srcMid && comp(src[srcLow], src[topIdx]) <= 0)) {
                             dest[destLow++] = src[srcLow++];
                         }
                         else {
@@ -18794,23 +18802,23 @@ var test;
             }
             static mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, comp) {
                 if (comp == null) {
-                    comp = java.util.Comparators.natural();
+                    comp = (java.util.Comparators.natural());
                 }
                 let temp = Arrays.copyOfRange$java_lang_Object_A$int$int(x, fromIndex, toIndex);
-                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(temp, x, fromIndex, toIndex, -fromIndex, comp);
+                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(temp, x, fromIndex, toIndex, -fromIndex, (comp));
             }
             static mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(temp, array, low, high, ofs, comp) {
                 let length = high - low;
                 if (length < 7) {
-                    Arrays.insertionSort(array, low, high, comp);
+                    Arrays.insertionSort(array, low, high, (comp));
                     return;
                 }
                 let tempLow = low + ofs;
                 let tempHigh = high + ofs;
                 let tempMid = tempLow + ((tempHigh - tempLow) >> 1);
-                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(array, temp, tempLow, tempMid, -ofs, comp);
-                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(array, temp, tempMid, tempHigh, -ofs, comp);
-                if (comp.compare(temp[tempMid - 1], temp[tempMid]) <= 0) {
+                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(array, temp, tempLow, tempMid, -ofs, (comp));
+                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(array, temp, tempMid, tempHigh, -ofs, (comp));
+                if (comp(temp[tempMid - 1], temp[tempMid]) <= 0) {
                     while ((low < high)) {
                         {
                             array[low++] = temp[tempLow++];
@@ -18819,7 +18827,7 @@ var test;
                     ;
                     return;
                 }
-                Arrays.merge(temp, tempLow, tempMid, tempHigh, array, low, high, comp);
+                Arrays.merge(temp, tempLow, tempMid, tempHigh, array, low, high, (comp));
             }
             /**
              * Recursive helper function for
@@ -18836,10 +18844,10 @@ var test;
              * @private
              */
             static mergeSort(temp, array, low, high, ofs, comp) {
-                if (((temp != null && temp instanceof Array && (temp.length == 0 || temp[0] == null || (temp[0] != null))) || temp === null) && ((array != null && array instanceof Array && (array.length == 0 || array[0] == null || (array[0] != null))) || array === null) && ((typeof low === 'number') || low === null) && ((typeof high === 'number') || high === null) && ((typeof ofs === 'number') || ofs === null) && ((comp != null && (comp["__interfaces"] != null && comp["__interfaces"].indexOf("java.util.Comparator") >= 0 || comp.constructor != null && comp.constructor["__interfaces"] != null && comp.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || comp === null)) {
+                if (((temp != null && temp instanceof Array && (temp.length == 0 || temp[0] == null || (temp[0] != null))) || temp === null) && ((array != null && array instanceof Array && (array.length == 0 || array[0] == null || (array[0] != null))) || array === null) && ((typeof low === 'number') || low === null) && ((typeof high === 'number') || high === null) && ((typeof ofs === 'number') || ofs === null) && ((typeof comp === 'function' && comp.length == 2) || comp === null)) {
                     return java.util.Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(temp, array, low, high, ofs, comp);
                 }
-                else if (((temp != null && temp instanceof Array && (temp.length == 0 || temp[0] == null || (temp[0] != null))) || temp === null) && ((typeof array === 'number') || array === null) && ((typeof low === 'number') || low === null) && ((high != null && (high["__interfaces"] != null && high["__interfaces"].indexOf("java.util.Comparator") >= 0 || high.constructor != null && high.constructor["__interfaces"] != null && high.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || high === null) && ofs === undefined && comp === undefined) {
+                else if (((temp != null && temp instanceof Array && (temp.length == 0 || temp[0] == null || (temp[0] != null))) || temp === null) && ((typeof array === 'number') || array === null) && ((typeof low === 'number') || low === null) && ((typeof high === 'function' && high.length == 2) || high === null) && ofs === undefined && comp === undefined) {
                     return java.util.Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(temp, array, low, high);
                 }
                 else
@@ -19063,18 +19071,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index233 = this.iterator(); index233.hasNext();) {
-                    let t = index233.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -19088,6 +19084,18 @@ var test;
                     ;
                 }
                 return removed;
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index233 = this.iterator(); index233.hasNext();) {
+                    let t = index233.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
             }
             add$java_lang_Object(o) {
                 return this.arrayList.add(o);
@@ -19391,7 +19399,7 @@ var test;
          */
         class PriorityQueue extends java.util.AbstractQueue {
             constructor(initialCapacity, cmp) {
-                if (((typeof initialCapacity === 'number') || initialCapacity === null) && ((cmp != null && (cmp["__interfaces"] != null && cmp["__interfaces"].indexOf("java.util.Comparator") >= 0 || cmp.constructor != null && cmp.constructor["__interfaces"] != null && cmp.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || cmp === null)) {
+                if (((typeof initialCapacity === 'number') || initialCapacity === null) && ((typeof cmp === 'function' && cmp.length == 2) || cmp === null)) {
                     let __args = arguments;
                     super();
                     if (this.cmp === undefined)
@@ -19405,12 +19413,12 @@ var test;
                     (() => {
                         this.heap = (new java.util.ArrayList(initialCapacity));
                         if (cmp == null) {
-                            cmp = java.util.Comparators.natural();
+                            cmp = (java.util.Comparators.natural());
                         }
-                        this.cmp = cmp;
+                        this.cmp = (cmp);
                     })();
                 }
-                else if (((initialCapacity != null && (initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Comparator") >= 0 || initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || initialCapacity === null) && cmp === undefined) {
+                else if (((typeof initialCapacity === 'function' && initialCapacity.length == 2) || initialCapacity === null) && cmp === undefined) {
                     let __args = arguments;
                     let cp = __args[0];
                     {
@@ -19429,9 +19437,9 @@ var test;
                         (() => {
                             this.heap = (new java.util.ArrayList(initialCapacity));
                             if (cmp == null) {
-                                cmp = java.util.Comparators.natural();
+                                cmp = (java.util.Comparators.natural());
                             }
-                            this.cmp = cmp;
+                            this.cmp = (cmp);
                         })();
                     }
                 }
@@ -19441,7 +19449,7 @@ var test;
                     {
                         let __args = arguments;
                         let initialCapacity = c.size();
-                        let cmp = c.comparator();
+                        let cmp = (c.comparator());
                         super();
                         if (this.cmp === undefined)
                             this.cmp = null;
@@ -19454,9 +19462,9 @@ var test;
                         (() => {
                             this.heap = (new java.util.ArrayList(initialCapacity));
                             if (cmp == null) {
-                                cmp = java.util.Comparators.natural();
+                                cmp = (java.util.Comparators.natural());
                             }
-                            this.cmp = cmp;
+                            this.cmp = (cmp);
                         })();
                     }
                     (() => {
@@ -19469,7 +19477,7 @@ var test;
                     {
                         let __args = arguments;
                         let initialCapacity = c.size();
-                        let cmp = c.comparator();
+                        let cmp = (c.comparator());
                         super();
                         if (this.cmp === undefined)
                             this.cmp = null;
@@ -19482,9 +19490,9 @@ var test;
                         (() => {
                             this.heap = (new java.util.ArrayList(initialCapacity));
                             if (cmp == null) {
-                                cmp = java.util.Comparators.natural();
+                                cmp = (java.util.Comparators.natural());
                             }
-                            this.cmp = cmp;
+                            this.cmp = (cmp);
                         })();
                     }
                     (() => {
@@ -19512,9 +19520,9 @@ var test;
                             (() => {
                                 this.heap = (new java.util.ArrayList(initialCapacity));
                                 if (cmp == null) {
-                                    cmp = java.util.Comparators.natural();
+                                    cmp = (java.util.Comparators.natural());
                                 }
-                                this.cmp = cmp;
+                                this.cmp = (cmp);
                             })();
                         }
                     }
@@ -19539,9 +19547,9 @@ var test;
                         (() => {
                             this.heap = (new java.util.ArrayList(initialCapacity));
                             if (cmp == null) {
-                                cmp = java.util.Comparators.natural();
+                                cmp = (java.util.Comparators.natural());
                             }
-                            this.cmp = cmp;
+                            this.cmp = (cmp);
                         })();
                     }
                 }
@@ -19565,9 +19573,9 @@ var test;
                             (() => {
                                 this.heap = (new java.util.ArrayList(initialCapacity));
                                 if (cmp == null) {
-                                    cmp = java.util.Comparators.natural();
+                                    cmp = (java.util.Comparators.natural());
                                 }
-                                this.cmp = cmp;
+                                this.cmp = (cmp);
                             })();
                         }
                     }
@@ -19606,7 +19614,7 @@ var test;
                 this.heap.clear();
             }
             comparator() {
-                return this.cmp === java.util.Comparators.natural() ? null : this.cmp;
+                return this.cmp === java.util.Comparators.natural() ? (null) : (this.cmp);
             }
             /**
              *
@@ -19650,7 +19658,7 @@ var test;
                     {
                         let childNode = node;
                         node = PriorityQueue.getParent(node);
-                        if (this.cmp.compare(this.heap.get(node), e) <= 0) {
+                        if (this.cmp(this.heap.get(node), e) <= 0) {
                             this.heap.set(childNode, e);
                             return true;
                         }
@@ -19794,7 +19802,7 @@ var test;
                 while ((!PriorityQueue.isLeaf(node, heapSize))) {
                     {
                         let smallestChild = this.getSmallestChild(node, heapSize);
-                        if (this.cmp.compare(value, this.heap.get(smallestChild)) < 0) {
+                        if (this.cmp(value, this.heap.get(smallestChild)) < 0) {
                             break;
                         }
                         this.heap.set(node, this.heap.get(smallestChild));
@@ -19809,7 +19817,7 @@ var test;
                 let leftChild = PriorityQueue.getLeftChild(node);
                 let rightChild = leftChild + 1;
                 smallestChild = leftChild;
-                if ((rightChild < heapSize) && (this.cmp.compare(this.heap.get(rightChild), this.heap.get(leftChild)) < 0)) {
+                if ((rightChild < heapSize) && (this.cmp(this.heap.get(rightChild), this.heap.get(leftChild)) < 0)) {
                     smallestChild = rightChild;
                 }
                 return smallestChild;
@@ -19848,6 +19856,15 @@ var test;
         class AbstractMap {
             constructor() {
             }
+            computeIfAbsent(key, mappingFunction) {
+                let result;
+                if ((result = this.get(key)) == null) {
+                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
+                    if (result != null)
+                        this.put(key, result);
+                }
+                return result;
+            }
             merge(key, value, map) {
                 let old = this.get(key);
                 let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
@@ -19858,15 +19875,6 @@ var test;
                     this.put(key, next);
                 }
                 return next;
-            }
-            computeIfAbsent(key, mappingFunction) {
-                let result;
-                if ((result = this.get(key)) == null) {
-                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
-                    if (result != null)
-                        this.put(key, result);
-                }
-                return result;
             }
             /**
              *
@@ -20749,18 +20757,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index238 = this.iterator(); index238.hasNext();) {
-                    let t = index238.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -20774,6 +20770,18 @@ var test;
                     ;
                 }
                 return removed;
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index238 = this.iterator(); index238.hasNext();) {
+                    let t = index238.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
             }
             /**
              *
@@ -20875,7 +20883,7 @@ var test;
                         this.addAll(c);
                     })();
                 }
-                else if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Comparator") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || c === null)) {
+                else if (((typeof c === 'function' && c.length == 2) || c === null)) {
                     let __args = arguments;
                     super();
                     if (this.map === undefined)
@@ -20883,7 +20891,7 @@ var test;
                     if (this.map === undefined)
                         this.map = null;
                     (() => {
-                        this.map = (new java.util.TreeMap(c));
+                        this.map = (new java.util.TreeMap((c)));
                     })();
                 }
                 else if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.SortedSet") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.SortedSet") >= 0)) || c === null)) {
@@ -20898,7 +20906,7 @@ var test;
                         if (this.map === undefined)
                             this.map = null;
                         (() => {
-                            this.map = (new java.util.TreeMap(c));
+                            this.map = (new java.util.TreeMap((c)));
                         })();
                     }
                     (() => {
@@ -20931,18 +20939,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index239 = this.iterator(); index239.hasNext();) {
-                    let t = index239.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -20956,6 +20952,18 @@ var test;
                     ;
                 }
                 return removed;
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index239 = this.iterator(); index239.hasNext();) {
+                    let t = index239.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
             }
             /**
              *
@@ -20984,7 +20992,7 @@ var test;
              * @return {*}
              */
             comparator() {
-                return this.map.comparator();
+                return (this.map.comparator());
             }
             /**
              *
@@ -21166,13 +21174,13 @@ var test;
                     super(collection);
                     if (this.comparator === undefined)
                         this.comparator = null;
-                    this.comparator = comparator;
+                    this.comparator = (comparator);
                 }
                 /**
                  *
                  */
                 end() {
-                    java.util.Collections.sort$java_util_List$java_util_Comparator(this.collection, this.comparator);
+                    java.util.Collections.sort$java_util_List$java_util_Comparator(this.collection, (this.comparator));
                     super.end();
                 }
             }
@@ -21549,18 +21557,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index240 = this.iterator(); index240.hasNext();) {
-                    let t = index240.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -21574,6 +21570,18 @@ var test;
                     ;
                 }
                 return removed;
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index240 = this.iterator(); index240.hasNext();) {
+                    let t = index240.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
             }
             /**
              *
@@ -22503,6 +22511,15 @@ var test;
             constructor() {
                 super();
             }
+            computeIfAbsent(key, mappingFunction) {
+                let result;
+                if ((result = this.get(key)) == null) {
+                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
+                    if (result != null)
+                        this.put(key, result);
+                }
+                return result;
+            }
             merge(key, value, map) {
                 let old = this.get(key);
                 let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
@@ -22513,15 +22530,6 @@ var test;
                     this.put(key, next);
                 }
                 return next;
-            }
-            computeIfAbsent(key, mappingFunction) {
-                let result;
-                if ((result = this.get(key)) == null) {
-                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
-                    if (result != null)
-                        this.put(key, result);
-                }
-                return result;
             }
             static copyOf(entry) {
                 return entry == null ? null : (new util.AbstractMap.SimpleImmutableEntry(entry));
@@ -22758,7 +22766,7 @@ var test;
                  * @return {*}
                  */
                 comparator() {
-                    return java.util.Collections.reverseOrder$java_util_Comparator(this.ascendingMap().comparator());
+                    return (java.util.Collections.reverseOrder$java_util_Comparator((this.ascendingMap().comparator())));
                 }
                 /**
                  *
@@ -22983,18 +22991,6 @@ var test;
                         this.map = null;
                     this.map = map;
                 }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index242 = this.iterator(); index242.hasNext();) {
-                        let t = index242.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
-                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -23008,6 +23004,18 @@ var test;
                         ;
                     }
                     return removed;
+                }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index242 = this.iterator(); index242.hasNext();) {
+                        let t = index242.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
                 }
                 /**
                  *
@@ -23028,7 +23036,7 @@ var test;
                  * @return {*}
                  */
                 comparator() {
-                    return this.map.comparator();
+                    return (this.map.comparator());
                 }
                 /**
                  *
@@ -23279,11 +23287,11 @@ var test;
                 return (new Collections.LifoQueue(deque));
             }
             static binarySearch$java_util_List$java_lang_Object(sortedList, key) {
-                return Collections.binarySearch(sortedList, key, null);
+                return Collections.binarySearch(sortedList, key, (null));
             }
             static binarySearch$java_util_List$java_lang_Object$java_util_Comparator(sortedList, key, comparator) {
                 if (comparator == null) {
-                    comparator = java.util.Comparators.natural();
+                    comparator = (java.util.Comparators.natural());
                 }
                 let low = 0;
                 let high = sortedList.size() - 1;
@@ -23291,7 +23299,7 @@ var test;
                     {
                         let mid = low + ((high - low) >> 1);
                         let midVal = sortedList.get(mid);
-                        let compareResult = comparator.compare(midVal, key);
+                        let compareResult = comparator(midVal, key);
                         if (compareResult < 0) {
                             low = mid + 1;
                         }
@@ -23329,7 +23337,7 @@ var test;
              * <code>comparator</code>.
              */
             static binarySearch(sortedList, key, comparator) {
-                if (((sortedList != null && (sortedList["__interfaces"] != null && sortedList["__interfaces"].indexOf("java.util.List") >= 0 || sortedList.constructor != null && sortedList.constructor["__interfaces"] != null && sortedList.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || sortedList === null) && ((key != null) || key === null) && ((comparator != null && (comparator["__interfaces"] != null && comparator["__interfaces"].indexOf("java.util.Comparator") >= 0 || comparator.constructor != null && comparator.constructor["__interfaces"] != null && comparator.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || comparator === null)) {
+                if (((sortedList != null && (sortedList["__interfaces"] != null && sortedList["__interfaces"].indexOf("java.util.List") >= 0 || sortedList.constructor != null && sortedList.constructor["__interfaces"] != null && sortedList.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || sortedList === null) && ((key != null) || key === null) && ((typeof comparator === 'function' && comparator.length == 2) || comparator === null)) {
                     return java.util.Collections.binarySearch$java_util_List$java_lang_Object$java_util_Comparator(sortedList, key, comparator);
                 }
                 else if (((sortedList != null && (sortedList["__interfaces"] != null && sortedList["__interfaces"].indexOf("java.util.List") >= 0 || sortedList.constructor != null && sortedList.constructor["__interfaces"] != null && sortedList.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || sortedList === null) && ((key != null) || key === null) && comparator === undefined) {
@@ -23419,18 +23427,18 @@ var test;
                 return arrayList;
             }
             static max$java_util_Collection(coll) {
-                return (Collections.max$java_util_Collection$java_util_Comparator(coll, null));
+                return (Collections.max$java_util_Collection$java_util_Comparator(coll, (null)));
             }
             static max$java_util_Collection$java_util_Comparator(coll, comp) {
                 if (comp == null) {
-                    comp = java.util.Comparators.natural();
+                    comp = (java.util.Comparators.natural());
                 }
                 let it = coll.iterator();
                 let max = it.next();
                 while ((it.hasNext())) {
                     {
                         let t = it.next();
-                        if (comp.compare(t, max) > 0) {
+                        if (comp(t, max) > 0) {
                             max = t;
                         }
                     }
@@ -23439,7 +23447,7 @@ var test;
                 return max;
             }
             static max(coll, comp) {
-                if (((coll != null && (coll["__interfaces"] != null && coll["__interfaces"].indexOf("java.util.Collection") >= 0 || coll.constructor != null && coll.constructor["__interfaces"] != null && coll.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || coll === null) && ((comp != null && (comp["__interfaces"] != null && comp["__interfaces"].indexOf("java.util.Comparator") >= 0 || comp.constructor != null && comp.constructor["__interfaces"] != null && comp.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || comp === null)) {
+                if (((coll != null && (coll["__interfaces"] != null && coll["__interfaces"].indexOf("java.util.Collection") >= 0 || coll.constructor != null && coll.constructor["__interfaces"] != null && coll.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || coll === null) && ((typeof comp === 'function' && comp.length == 2) || comp === null)) {
                     return java.util.Collections.max$java_util_Collection$java_util_Comparator(coll, comp);
                 }
                 else if (((coll != null && (coll["__interfaces"] != null && coll["__interfaces"].indexOf("java.util.Collection") >= 0 || coll.constructor != null && coll.constructor["__interfaces"] != null && coll.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || coll === null) && comp === undefined) {
@@ -23449,7 +23457,7 @@ var test;
                     throw new Error('invalid overload');
             }
             static min(coll, comp = null) {
-                return (Collections.max$java_util_Collection$java_util_Comparator(coll, Collections.reverseOrder$java_util_Comparator(comp)));
+                return (Collections.max$java_util_Collection$java_util_Comparator(coll, (Collections.reverseOrder$java_util_Comparator((comp)))));
             }
             static newSetFromMap(map) {
                 javaemul.internal.InternalPreconditions.checkArgument(map.isEmpty(), "map is not empty");
@@ -23507,12 +23515,14 @@ var test;
             }
             static reverseOrder$java_util_Comparator(cmp) {
                 if (cmp == null) {
-                    return Collections.reverseOrder();
+                    return (Collections.reverseOrder());
                 }
-                return new Collections.Collections$1(cmp);
+                return (t1, t2) => {
+                    return cmp(t2, t1);
+                };
             }
             static reverseOrder(cmp) {
-                if (((cmp != null && (cmp["__interfaces"] != null && cmp["__interfaces"].indexOf("java.util.Comparator") >= 0 || cmp.constructor != null && cmp.constructor["__interfaces"] != null && cmp.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || cmp === null)) {
+                if (((typeof cmp === 'function' && cmp.length == 2) || cmp === null)) {
                     return java.util.Collections.reverseOrder$java_util_Comparator(cmp);
                 }
                 else if (cmp === undefined) {
@@ -23611,15 +23621,15 @@ var test;
                 return Collections.unmodifiableMap(map);
             }
             static sort$java_util_List(target) {
-                Collections.sort$java_util_List$java_util_Comparator(target, null);
+                Collections.sort$java_util_List$java_util_Comparator(target, (null));
             }
             static sort$java_util_List$java_util_Comparator(target, c) {
                 let x = target.toArray();
-                java.util.Arrays.sort$java_lang_Object_A$java_util_Comparator(x, c);
+                java.util.Arrays.sort$java_lang_Object_A$java_util_Comparator(x, (c));
                 Collections.replaceContents(target, x);
             }
             static sort(target, c) {
-                if (((target != null && (target["__interfaces"] != null && target["__interfaces"].indexOf("java.util.List") >= 0 || target.constructor != null && target.constructor["__interfaces"] != null && target.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || target === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Comparator") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || c === null)) {
+                if (((target != null && (target["__interfaces"] != null && target["__interfaces"].indexOf("java.util.List") >= 0 || target.constructor != null && target.constructor["__interfaces"] != null && target.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || target === null) && ((typeof c === 'function' && c.length == 2) || c === null)) {
                     return java.util.Collections.sort$java_util_List$java_util_Comparator(target, c);
                 }
                 else if (((target != null && (target["__interfaces"] != null && target["__interfaces"].indexOf("java.util.List") >= 0 || target.constructor != null && target.constructor["__interfaces"] != null && target.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || target === null) && c === undefined) {
@@ -24169,18 +24179,6 @@ var test;
                         this.coll = null;
                     this.coll = coll;
                 }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index250 = this.iterator(); index250.hasNext();) {
-                        let t = index250.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
-                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -24194,6 +24192,18 @@ var test;
                         ;
                     }
                     return removed;
+                }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index250 = this.iterator(); index250.hasNext();) {
+                        let t = index250.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
                 }
                 /**
                  *
@@ -24365,18 +24375,6 @@ var test;
                         this.list = null;
                     this.list = list;
                 }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index251 = this.iterator(); index251.hasNext();) {
-                        let t = index251.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
-                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -24390,6 +24388,18 @@ var test;
                         ;
                     }
                     return removed;
+                }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index251 = this.iterator(); index251.hasNext();) {
+                        let t = index251.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
                 }
                 add$int$java_lang_Object(index, element) {
                     throw new java.lang.UnsupportedOperationException();
@@ -24549,18 +24559,6 @@ var test;
                 constructor(set) {
                     super(set);
                 }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index252 = this.iterator(); index252.hasNext();) {
-                        let t = index252.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
-                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -24574,6 +24572,18 @@ var test;
                         ;
                     }
                     return removed;
+                }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index252 = this.iterator(); index252.hasNext();) {
+                        let t = index252.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
                 }
                 /**
                  *
@@ -24686,6 +24696,15 @@ var test;
                         this.__values = null;
                     this.map = map;
                 }
+                computeIfAbsent(key, mappingFunction) {
+                    let result;
+                    if ((result = this.get(key)) == null) {
+                        result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
+                        if (result != null)
+                            this.put(key, result);
+                    }
+                    return result;
+                }
                 merge(key, value, map) {
                     let old = this.get(key);
                     let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
@@ -24696,15 +24715,6 @@ var test;
                         this.put(key, next);
                     }
                     return next;
-                }
-                computeIfAbsent(key, mappingFunction) {
-                    let result;
-                    if ((result = this.get(key)) == null) {
-                        result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
-                        if (result != null)
-                            this.put(key, result);
-                    }
-                    return result;
                 }
                 /**
                  *
@@ -25024,18 +25034,6 @@ var test;
                         this.sortedSet = null;
                     this.sortedSet = sortedSet;
                 }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index253 = this.iterator(); index253.hasNext();) {
-                        let t = index253.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
-                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -25050,12 +25048,24 @@ var test;
                     }
                     return removed;
                 }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index253 = this.iterator(); index253.hasNext();) {
+                        let t = index253.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
                 /**
                  *
                  * @return {*}
                  */
                 comparator() {
-                    return this.sortedSet.comparator();
+                    return (this.sortedSet.comparator());
                 }
                 /**
                  *
@@ -25132,6 +25142,15 @@ var test;
                         this.sortedMap = null;
                     this.sortedMap = sortedMap;
                 }
+                computeIfAbsent(key, mappingFunction) {
+                    let result;
+                    if ((result = this.get(key)) == null) {
+                        result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
+                        if (result != null)
+                            this.put(key, result);
+                    }
+                    return result;
+                }
                 merge(key, value, map) {
                     let old = this.get(key);
                     let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
@@ -25143,21 +25162,12 @@ var test;
                     }
                     return next;
                 }
-                computeIfAbsent(key, mappingFunction) {
-                    let result;
-                    if ((result = this.get(key)) == null) {
-                        result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
-                        if (result != null)
-                            this.put(key, result);
-                    }
-                    return result;
-                }
                 /**
                  *
                  * @return {*}
                  */
                 comparator() {
-                    return this.sortedMap.comparator();
+                    return (this.sortedMap.comparator());
                 }
                 /**
                  *
@@ -25248,22 +25258,6 @@ var test;
             }
             Collections.Collections$0 = Collections$0;
             Collections$0["__interfaces"] = ["java.util.Enumeration"];
-            class Collections$1 {
-                constructor(cmp) {
-                    this.cmp = cmp;
-                }
-                /**
-                 *
-                 * @param {*} t1
-                 * @param {*} t2
-                 * @return {number}
-                 */
-                compare(t1, t2) {
-                    return this.cmp.compare(t2, t1);
-                }
-            }
-            Collections.Collections$1 = Collections$1;
-            Collections$1["__interfaces"] = ["java.util.Comparator"];
         })(Collections = util.Collections || (util.Collections = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
@@ -25651,18 +25645,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index255 = this.iterator(); index255.hasNext();) {
-                    let t = index255.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -25676,6 +25658,18 @@ var test;
                     ;
                 }
                 return removed;
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index255 = this.iterator(); index255.hasNext();) {
+                    let t = index255.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
             }
             /**
              *
@@ -25847,6 +25841,15 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            computeIfAbsent(key, mappingFunction) {
+                let result;
+                if ((result = this.get(key)) == null) {
+                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
+                    if (result != null)
+                        this.put(key, result);
+                }
+                return result;
+            }
             merge(key, value, map) {
                 let old = this.get(key);
                 let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
@@ -25857,15 +25860,6 @@ var test;
                     this.put(key, next);
                 }
                 return next;
-            }
-            computeIfAbsent(key, mappingFunction) {
-                let result;
-                if ((result = this.get(key)) == null) {
-                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
-                    if (result != null)
-                        this.put(key, result);
-                }
-                return result;
             }
             clone() {
                 return (new IdentityHashMap(this));
@@ -25956,7 +25950,7 @@ var test;
          */
         class TreeMap extends java.util.AbstractNavigableMap {
             constructor(c) {
-                if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Comparator") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Comparator") >= 0)) || c === null)) {
+                if (((typeof c === 'function' && c.length == 2) || c === null)) {
                     let __args = arguments;
                     super();
                     if (this.cmp === undefined)
@@ -25982,9 +25976,9 @@ var test;
                     (() => {
                         this.root = null;
                         if (c == null) {
-                            c = java.util.Comparators.natural();
+                            c = (java.util.Comparators.natural());
                         }
-                        this.cmp = c;
+                        this.cmp = (c);
                     })();
                 }
                 else if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.SortedMap") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.SortedMap") >= 0)) || c === null)) {
@@ -26017,9 +26011,9 @@ var test;
                         (() => {
                             this.root = null;
                             if (c == null) {
-                                c = java.util.Comparators.natural();
+                                c = (java.util.Comparators.natural());
                             }
-                            this.cmp = c;
+                            this.cmp = (c);
                         })();
                     }
                     (() => {
@@ -26033,7 +26027,7 @@ var test;
                         let __args = arguments;
                         {
                             let __args = arguments;
-                            let c = null;
+                            let c = (null);
                             super();
                             if (this.cmp === undefined)
                                 this.cmp = null;
@@ -26058,9 +26052,9 @@ var test;
                             (() => {
                                 this.root = null;
                                 if (c == null) {
-                                    c = java.util.Comparators.natural();
+                                    c = (java.util.Comparators.natural());
                                 }
-                                this.cmp = c;
+                                this.cmp = (c);
                             })();
                         }
                     }
@@ -26072,7 +26066,7 @@ var test;
                     let __args = arguments;
                     {
                         let __args = arguments;
-                        let c = null;
+                        let c = (null);
                         super();
                         if (this.cmp === undefined)
                             this.cmp = null;
@@ -26097,9 +26091,9 @@ var test;
                         (() => {
                             this.root = null;
                             if (c == null) {
-                                c = java.util.Comparators.natural();
+                                c = (java.util.Comparators.natural());
                             }
-                            this.cmp = c;
+                            this.cmp = (c);
                         })();
                     }
                 }
@@ -26134,9 +26128,9 @@ var test;
              */
             comparator() {
                 if (this.cmp === java.util.Comparators.natural()) {
-                    return null;
+                    return (null);
                 }
-                return this.cmp;
+                return (this.cmp);
             }
             /**
              *
@@ -26251,7 +26245,7 @@ var test;
                 let node = this.root;
                 while ((node != null)) {
                     {
-                        let c = this.cmp.compare(key, node.getKey());
+                        let c = this.cmp(key, node.getKey());
                         if (inclusive && c === 0) {
                             return node;
                         }
@@ -26280,7 +26274,7 @@ var test;
                 let node = this.root;
                 while ((node != null)) {
                     {
-                        let c = this.cmp.compare(key, node.getKey());
+                        let c = this.cmp(key, node.getKey());
                         if (inclusive && c === 0) {
                             return node;
                         }
@@ -26321,11 +26315,11 @@ var test;
                     throw new java.lang.RuntimeException("Two red nodes adjacent");
                 }
                 let leftNode = tree.child[TreeMap.LEFT];
-                if (leftNode != null && this.cmp.compare(leftNode.getKey(), tree.getKey()) > 0) {
+                if (leftNode != null && this.cmp(leftNode.getKey(), tree.getKey()) > 0) {
                     throw new java.lang.RuntimeException("Left child " + leftNode + " larger than " + tree);
                 }
                 let rightNode = tree.child[TreeMap.RIGHT];
-                if (rightNode != null && this.cmp.compare(rightNode.getKey(), tree.getKey()) < 0) {
+                if (rightNode != null && this.cmp(rightNode.getKey(), tree.getKey()) < 0) {
                     throw new java.lang.RuntimeException("Right child " + rightNode + " smaller than " + tree);
                 }
                 let leftHeight = this.assertCorrectness$java_util_TreeMap_Node$boolean(leftNode, tree.isRed);
@@ -26364,7 +26358,7 @@ var test;
                 let tree = this.root;
                 while ((tree != null)) {
                     {
-                        let c = this.cmp.compare(key, tree.getKey());
+                        let c = this.cmp(key, tree.getKey());
                         if (c === 0) {
                             return tree;
                         }
@@ -26497,7 +26491,7 @@ var test;
                     return newNode;
                 }
                 else {
-                    let c = this.cmp.compare(newNode.getKey(), tree.getKey());
+                    let c = this.cmp(newNode.getKey(), tree.getKey());
                     if (c === 0) {
                         state.value = tree.setValue(newNode.getValue());
                         state.found = true;
@@ -26542,7 +26536,7 @@ var test;
              * @private
              */
             larger(a, b, orEqual) {
-                let compare = this.cmp.compare(a, b);
+                let compare = this.cmp(a, b);
                 return compare > 0 || (orEqual && compare === 0);
             }
             /**
@@ -26554,7 +26548,7 @@ var test;
              * @private
              */
             smaller(a, b, orEqual) {
-                let compare = this.cmp.compare(a, b);
+                let compare = this.cmp(a, b);
                 return compare < 0 || (orEqual && compare === 0);
             }
             /**
@@ -26581,7 +26575,7 @@ var test;
                         let grandparent = parent;
                         parent = node;
                         node = node.child[dir];
-                        let c = this.cmp.compare(key, node.getKey());
+                        let c = this.cmp(key, node.getKey());
                         dir = c < 0 ? TreeMap.LEFT : TreeMap.RIGHT;
                         if (c === 0 && (!state.matchValue || java.util.Objects.equals(node.getValue(), state.value))) {
                             found = node;
@@ -26645,11 +26639,11 @@ var test;
              */
             replaceNode(head, node, newNode) {
                 let parent = head;
-                let direction = (parent.getKey() == null || this.cmp.compare(node.getKey(), parent.getKey()) > 0) ? TreeMap.RIGHT : TreeMap.LEFT;
+                let direction = (parent.getKey() == null || this.cmp(node.getKey(), parent.getKey()) > 0) ? TreeMap.RIGHT : TreeMap.LEFT;
                 while ((parent.child[direction] !== node)) {
                     {
                         parent = parent.child[direction];
-                        direction = this.cmp.compare(node.getKey(), parent.getKey()) > 0 ? TreeMap.RIGHT : TreeMap.LEFT;
+                        direction = this.cmp(node.getKey(), parent.getKey()) > 0 ? TreeMap.RIGHT : TreeMap.LEFT;
                     }
                 }
                 ;
@@ -27006,15 +27000,15 @@ var test;
                     if (this.type === undefined)
                         this.type = null;
                     if (type === java.util.TreeMap.SubMapType_Range_$LI$()) {
-                        if (__parent.cmp.compare(toKey, fromKey) < 0) {
+                        if (__parent.cmp(toKey, fromKey) < 0) {
                             throw new java.lang.IllegalArgumentException("subMap: " + toKey + " less than " + fromKey);
                         }
                     }
                     if (type === java.util.TreeMap.SubMapType_Head_$LI$()) {
-                        __parent.cmp.compare(toKey, toKey);
+                        __parent.cmp(toKey, toKey);
                     }
                     if (type === java.util.TreeMap.SubMapType_Tail_$LI$()) {
-                        __parent.cmp.compare(fromKey, fromKey);
+                        __parent.cmp(fromKey, fromKey);
                     }
                     if (type === java.util.TreeMap.SubMapType_All_$LI$()) {
                     }
@@ -27029,7 +27023,7 @@ var test;
                  * @return {*}
                  */
                 comparator() {
-                    return this.comparator();
+                    return (this.comparator());
                 }
                 /**
                  *
@@ -27039,7 +27033,7 @@ var test;
                     return new SubMap.SubMap$0(this);
                 }
                 headMap$java_lang_Object$boolean(toKey, toInclusive) {
-                    if (this.type.toKeyValid() && this.__parent.cmp.compare(toKey, this.toKey) > 0) {
+                    if (this.type.toKeyValid() && this.__parent.cmp(toKey, this.toKey) > 0) {
                         throw new java.lang.IllegalArgumentException("subMap: " + toKey + " greater than " + this.toKey);
                     }
                     if (this.type.fromKeyValid()) {
@@ -27111,10 +27105,10 @@ var test;
                     return count;
                 }
                 subMap$java_lang_Object$boolean$java_lang_Object$boolean(newFromKey, newFromInclusive, newToKey, newToInclusive) {
-                    if (this.type.fromKeyValid() && this.__parent.cmp.compare(newFromKey, this.fromKey) < 0) {
+                    if (this.type.fromKeyValid() && this.__parent.cmp(newFromKey, this.fromKey) < 0) {
                         throw new java.lang.IllegalArgumentException("subMap: " + newFromKey + " less than " + this.fromKey);
                     }
-                    if (this.type.toKeyValid() && this.__parent.cmp.compare(newToKey, this.toKey) > 0) {
+                    if (this.type.toKeyValid() && this.__parent.cmp(newToKey, this.toKey) > 0) {
                         throw new java.lang.IllegalArgumentException("subMap: " + newToKey + " greater than " + this.toKey);
                     }
                     return this.subMap(newFromKey, newFromInclusive, newToKey, newToInclusive);
@@ -27138,7 +27132,7 @@ var test;
                         throw new Error('invalid overload');
                 }
                 tailMap$java_lang_Object$boolean(fromKey, fromInclusive) {
-                    if (this.type.fromKeyValid() && this.__parent.cmp.compare(fromKey, this.fromKey) < 0) {
+                    if (this.type.fromKeyValid() && this.__parent.cmp(fromKey, this.fromKey) < 0) {
                         throw new java.lang.IllegalArgumentException("subMap: " + fromKey + " less than " + this.fromKey);
                     }
                     if (this.type.toKeyValid()) {
@@ -27920,6 +27914,15 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            computeIfAbsent(key, mappingFunction) {
+                let result;
+                if ((result = this.get(key)) == null) {
+                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
+                    if (result != null)
+                        this.put(key, result);
+                }
+                return result;
+            }
             merge(key, value, map) {
                 let old = this.get(key);
                 let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
@@ -27930,15 +27933,6 @@ var test;
                     this.put(key, next);
                 }
                 return next;
-            }
-            computeIfAbsent(key, mappingFunction) {
-                let result;
-                if ((result = this.get(key)) == null) {
-                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
-                    if (result != null)
-                        this.put(key, result);
-                }
-                return result;
             }
             /**
              *
@@ -28906,11 +28900,11 @@ var test;
             }
             static checkArgument$boolean$java_lang_String$java_lang_Object_A(expression, errorMessageTemplate, ...errorMessageArgs) {
                 if (InternalPreconditions.API_CHECK_$LI$()) {
-                    InternalPreconditions.checkCriticalArgument.apply(this, [expression, errorMessageTemplate].concat(errorMessageArgs));
+                    InternalPreconditions.checkCriticalArgument$boolean$java_lang_String$java_lang_Object_A.apply(this, [expression, errorMessageTemplate].concat(errorMessageArgs));
                 }
                 else if (InternalPreconditions.CHECKED_MODE_$LI$()) {
                     try {
-                        InternalPreconditions.checkCriticalArgument.apply(this, [expression, errorMessageTemplate].concat(errorMessageArgs));
+                        InternalPreconditions.checkCriticalArgument$boolean$java_lang_String$java_lang_Object_A.apply(this, [expression, errorMessageTemplate].concat(errorMessageArgs));
                     }
                     catch (e) {
                         throw new java.lang.AssertionError(e);
