@@ -2454,6 +2454,15 @@ var java;
         class AbstractCollection {
             constructor() {
             }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index193 = this.iterator(); index193.hasNext();) {
+                    let t = index193.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -2470,15 +2479,6 @@ var java;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index193 = this.iterator(); index193.hasNext();) {
-                    let t = index193.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             /**
              *
@@ -11780,6 +11780,15 @@ var test;
                 if (this.modCount === undefined)
                     this.modCount = 0;
             }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index202 = this.iterator(); index202.hasNext();) {
+                    let t = index202.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -11796,15 +11805,6 @@ var test;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index202 = this.iterator(); index202.hasNext();) {
-                    let t = index202.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             add$java_lang_Object(obj) {
                 this.add(this.size(), obj);
@@ -12242,6 +12242,15 @@ var test;
             constructor() {
                 super();
             }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index205 = this.iterator(); index205.hasNext();) {
+                    let t = index205.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -12258,15 +12267,6 @@ var test;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index205 = this.iterator(); index205.hasNext();) {
-                    let t = index205.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             /**
              *
@@ -12348,6 +12348,15 @@ var test;
             constructor() {
                 super();
             }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index206 = this.iterator(); index206.hasNext();) {
+                    let t = index206.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -12364,15 +12373,6 @@ var test;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index206 = this.iterator(); index206.hasNext();) {
-                    let t = index206.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             /**
              *
@@ -17076,6 +17076,15 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index213 = this.iterator(); index213.hasNext();) {
+                    let t = index213.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -17092,15 +17101,6 @@ var test;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index213 = this.iterator(); index213.hasNext();) {
-                    let t = index213.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             add$java_lang_Object(o) {
                 this.array[this.array.length] = o;
@@ -19071,6 +19071,15 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index233 = this.iterator(); index233.hasNext();) {
+                    let t = index233.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -19087,15 +19096,6 @@ var test;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index233 = this.iterator(); index233.hasNext();) {
-                    let t = index233.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             add$java_lang_Object(o) {
                 return this.arrayList.add(o);
@@ -19856,15 +19856,6 @@ var test;
         class AbstractMap {
             constructor() {
             }
-            computeIfAbsent(key, mappingFunction) {
-                let result;
-                if ((result = this.get(key)) == null) {
-                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
-                    if (result != null)
-                        this.put(key, result);
-                }
-                return result;
-            }
             merge(key, value, map) {
                 let old = this.get(key);
                 let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
@@ -19875,6 +19866,15 @@ var test;
                     this.put(key, next);
                 }
                 return next;
+            }
+            computeIfAbsent(key, mappingFunction) {
+                let result;
+                if ((result = this.get(key)) == null) {
+                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
+                    if (result != null)
+                        this.put(key, result);
+                }
+                return result;
             }
             /**
              *
@@ -20757,6 +20757,15 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index238 = this.iterator(); index238.hasNext();) {
+                    let t = index238.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -20773,15 +20782,6 @@ var test;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index238 = this.iterator(); index238.hasNext();) {
-                    let t = index238.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             /**
              *
@@ -20939,6 +20939,15 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index239 = this.iterator(); index239.hasNext();) {
+                    let t = index239.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -20955,15 +20964,6 @@ var test;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index239 = this.iterator(); index239.hasNext();) {
-                    let t = index239.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             /**
              *
@@ -21557,6 +21557,15 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index240 = this.iterator(); index240.hasNext();) {
+                    let t = index240.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -21573,15 +21582,6 @@ var test;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index240 = this.iterator(); index240.hasNext();) {
-                    let t = index240.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             /**
              *
@@ -22511,15 +22511,6 @@ var test;
             constructor() {
                 super();
             }
-            computeIfAbsent(key, mappingFunction) {
-                let result;
-                if ((result = this.get(key)) == null) {
-                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
-                    if (result != null)
-                        this.put(key, result);
-                }
-                return result;
-            }
             merge(key, value, map) {
                 let old = this.get(key);
                 let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
@@ -22530,6 +22521,15 @@ var test;
                     this.put(key, next);
                 }
                 return next;
+            }
+            computeIfAbsent(key, mappingFunction) {
+                let result;
+                if ((result = this.get(key)) == null) {
+                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
+                    if (result != null)
+                        this.put(key, result);
+                }
+                return result;
             }
             static copyOf(entry) {
                 return entry == null ? null : (new util.AbstractMap.SimpleImmutableEntry(entry));
@@ -22991,6 +22991,15 @@ var test;
                         this.map = null;
                     this.map = map;
                 }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index242 = this.iterator(); index242.hasNext();) {
+                        let t = index242.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -23007,15 +23016,6 @@ var test;
                 }
                 stream() {
                     return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index242 = this.iterator(); index242.hasNext();) {
-                        let t = index242.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
                 }
                 /**
                  *
@@ -24179,6 +24179,15 @@ var test;
                         this.coll = null;
                     this.coll = coll;
                 }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index250 = this.iterator(); index250.hasNext();) {
+                        let t = index250.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -24195,15 +24204,6 @@ var test;
                 }
                 stream() {
                     return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index250 = this.iterator(); index250.hasNext();) {
-                        let t = index250.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
                 }
                 /**
                  *
@@ -24375,6 +24375,15 @@ var test;
                         this.list = null;
                     this.list = list;
                 }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index251 = this.iterator(); index251.hasNext();) {
+                        let t = index251.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -24391,15 +24400,6 @@ var test;
                 }
                 stream() {
                     return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index251 = this.iterator(); index251.hasNext();) {
-                        let t = index251.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
                 }
                 add$int$java_lang_Object(index, element) {
                     throw new java.lang.UnsupportedOperationException();
@@ -24559,6 +24559,15 @@ var test;
                 constructor(set) {
                     super(set);
                 }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index252 = this.iterator(); index252.hasNext();) {
+                        let t = index252.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -24575,15 +24584,6 @@ var test;
                 }
                 stream() {
                     return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index252 = this.iterator(); index252.hasNext();) {
-                        let t = index252.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
                 }
                 /**
                  *
@@ -24696,15 +24696,6 @@ var test;
                         this.__values = null;
                     this.map = map;
                 }
-                computeIfAbsent(key, mappingFunction) {
-                    let result;
-                    if ((result = this.get(key)) == null) {
-                        result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
-                        if (result != null)
-                            this.put(key, result);
-                    }
-                    return result;
-                }
                 merge(key, value, map) {
                     let old = this.get(key);
                     let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
@@ -24715,6 +24706,15 @@ var test;
                         this.put(key, next);
                     }
                     return next;
+                }
+                computeIfAbsent(key, mappingFunction) {
+                    let result;
+                    if ((result = this.get(key)) == null) {
+                        result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
+                        if (result != null)
+                            this.put(key, result);
+                    }
+                    return result;
                 }
                 /**
                  *
@@ -25034,6 +25034,15 @@ var test;
                         this.sortedSet = null;
                     this.sortedSet = sortedSet;
                 }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index253 = this.iterator(); index253.hasNext();) {
+                        let t = index253.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -25050,15 +25059,6 @@ var test;
                 }
                 stream() {
                     return (new javaemul.internal.stream.StreamHelper(this));
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index253 = this.iterator(); index253.hasNext();) {
-                        let t = index253.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
                 }
                 /**
                  *
@@ -25142,15 +25142,6 @@ var test;
                         this.sortedMap = null;
                     this.sortedMap = sortedMap;
                 }
-                computeIfAbsent(key, mappingFunction) {
-                    let result;
-                    if ((result = this.get(key)) == null) {
-                        result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
-                        if (result != null)
-                            this.put(key, result);
-                    }
-                    return result;
-                }
                 merge(key, value, map) {
                     let old = this.get(key);
                     let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
@@ -25161,6 +25152,15 @@ var test;
                         this.put(key, next);
                     }
                     return next;
+                }
+                computeIfAbsent(key, mappingFunction) {
+                    let result;
+                    if ((result = this.get(key)) == null) {
+                        result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
+                        if (result != null)
+                            this.put(key, result);
+                    }
+                    return result;
                 }
                 /**
                  *
@@ -25645,6 +25645,15 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index255 = this.iterator(); index255.hasNext();) {
+                    let t = index255.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -25661,15 +25670,6 @@ var test;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index255 = this.iterator(); index255.hasNext();) {
-                    let t = index255.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
             }
             /**
              *
@@ -25841,15 +25841,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
-            computeIfAbsent(key, mappingFunction) {
-                let result;
-                if ((result = this.get(key)) == null) {
-                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
-                    if (result != null)
-                        this.put(key, result);
-                }
-                return result;
-            }
             merge(key, value, map) {
                 let old = this.get(key);
                 let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
@@ -25860,6 +25851,15 @@ var test;
                     this.put(key, next);
                 }
                 return next;
+            }
+            computeIfAbsent(key, mappingFunction) {
+                let result;
+                if ((result = this.get(key)) == null) {
+                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
+                    if (result != null)
+                        this.put(key, result);
+                }
+                return result;
             }
             clone() {
                 return (new IdentityHashMap(this));
@@ -27914,15 +27914,6 @@ var test;
                 else
                     throw new Error('invalid overload');
             }
-            computeIfAbsent(key, mappingFunction) {
-                let result;
-                if ((result = this.get(key)) == null) {
-                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
-                    if (result != null)
-                        this.put(key, result);
-                }
-                return result;
-            }
             merge(key, value, map) {
                 let old = this.get(key);
                 let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
@@ -27933,6 +27924,15 @@ var test;
                     this.put(key, next);
                 }
                 return next;
+            }
+            computeIfAbsent(key, mappingFunction) {
+                let result;
+                if ((result = this.get(key)) == null) {
+                    result = (target => (typeof target === 'function') ? target(key) : target.apply(key))(mappingFunction);
+                    if (result != null)
+                        this.put(key, result);
+                }
+                return result;
             }
             /**
              *

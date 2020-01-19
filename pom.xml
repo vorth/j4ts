@@ -77,8 +77,10 @@
 				<artifactId>jsweet-maven-plugin</artifactId>
 				<version>${jsweet.transpiler.version}</version>
 				<configuration>
-					<verbose>true</verbose>
-					<bundle>true</bundle>
+					<!-- <verbose>true</verbose>  -->
+					<!-- switch bundle vs module -->
+					<bundle>true</bundle> 
+					<!-- <module>commonjs</module> -->
 					<declaration>true</declaration>
 					<outDir>src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}</outDir>
 					<dtsOut>src/main/resources/META-INF/resources/typings/${project.artifactId}/${project.version}</dtsOut>
