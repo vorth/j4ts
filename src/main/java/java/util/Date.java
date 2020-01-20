@@ -26,7 +26,7 @@ import java.io.Serializable;
  * Represents a date and time.
  */
 @SuppressWarnings("serial")
-public class Date implements Cloneable, Comparable<Date>, Serializable {
+public class Date implements Cloneable, Comparable<Date>,  Serializable {
 
 	/**
 	 * Encapsulates static data to avoid Date itself having a static

@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jsweet</groupId>
@@ -77,15 +78,15 @@
 				<artifactId>jsweet-maven-plugin</artifactId>
 				<version>${jsweet.transpiler.version}</version>
 				<configuration>
-					<!-- <verbose>true</verbose>  -->
+					<!-- <verbose>true</verbose> -->
 					<!-- switch bundle vs module -->
-					<bundle>true</bundle> 
+					<bundle>true</bundle>
 					<!-- <module>commonjs</module> -->
 					<declaration>true</declaration>
 					<outDir>src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}</outDir>
 					<dtsOut>src/main/resources/META-INF/resources/typings/${project.artifactId}/${project.version}</dtsOut>
 					<targetVersion>ES6</targetVersion>
-                    <!-- <sourceMap>true</sourceMap> -->
+					<!-- <sourceMap>true</sourceMap> -->
 				</configuration>
 				<executions>
 					<execution>
@@ -102,13 +103,16 @@
 				<version>1.8</version>
 				<executions>
 					<execution>
-						<phase>install</phase>
+						<phase>package</phase>
 						<configuration>
 							<target>
 								<echo message="copying generated bundles to dist..." />
 								<copy
 									file="src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}/bundle.js"
 									tofile="dist/${project.artifactId}.js" verbose="true" />
+								<copy
+									file="src/main/resources/META-INF/resources/typings/${project.artifactId}/${project.version}/bundle.d.ts"
+									tofile="dist/${project.artifactId}.d.ts" verbose="true" />
 							</target>
 						</configuration>
 						<goals>

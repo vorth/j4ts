@@ -77,6 +77,6 @@ public interface Collection<E> extends Iterable<E> {
   <T> T[] toArray(T[] a);
 
   default Stream<E> stream() {
-    return new StreamHelper<>(this);
+    return new StreamHelper<E>(this);
   }
 }

@@ -21,78 +21,115 @@ import java.util.function.Function;
 /**
  * Abstract interface for maps.
  *
- * @param <K> key type.
- * @param <V> value type.
+ * @param <K>
+ *            key type.
+ * @param <V>
+ *            value type.
  */
 public interface Map<K, V> {
 
-  /**
-   * Represents an individual map entry.
-   */
-  public interface Entry<K, V> {
-    @Override
-    boolean equals(Object o);
+	/**
+	 * Represents an individual map entry.
+	 */
+	public interface Entry<K, V> {
+		@Override
+		boolean equals(Object o);
 
-    K getKey();
+		K getKey();
 
-    V getValue();
+		V getValue();
 
-    @Override
-    int hashCode();
+		@Override
+		int hashCode();
 
-    V setValue(V value);
-  }
+		V setValue(V value);
 
-  void clear();
+		/**
+		 *
+		 * Returns a comparator that compares {@link Map.Entry} by value using the given
+		 * {@link Comparator}.
+		 *
+		 * <p>
+		 * The returned comparator is serializable if the specified comparator is also
+		 * serializable.
+		 *
+		 * @param <K>
+		 *            the type of the map keys
+		 * @param <V>
+		 *            the type of the map values
+		 * @param cmp
+		 *            the value {@link Comparator}
+		 * @return a comparator that compares {@link Map.Entry} by the value.
+		 * @since 1.8
+		 */
+		public static <K, V> Comparator<Map.Entry<K, V>> comparingByValue(Comparator<? super V> cmp) {
+			Objects.requireNonNull(cmp);
+			return (Comparator<Map.Entry<K, V>>) (c1, c2) -> cmp.compare(c1.getValue(), c2.getValue());
+		}
 
-  boolean containsKey(Object key);
+	}
 
-  boolean containsValue(Object value);
+	void clear();
 
-  Set<Entry<K, V>> entrySet();
+	boolean containsKey(Object key);
 
-  @Override
-  boolean equals(Object o);
+	boolean containsValue(Object value);
 
-  V get(Object key);
+	Set<Entry<K, V>> entrySet();
 
-  @Override
-  int hashCode();
+	@Override
+	boolean equals(Object o);
 
-  boolean isEmpty();
+	V get(Object key);
 
-  Set<K> keySet();
+	@Override
+	int hashCode();
 
-  V put(K key, V value);
+	boolean isEmpty();
 
-  void putAll(Map<? extends K, ? extends V> t);
+	Set<K> keySet();
 
-  V remove(Object key);
+	V put(K key, V value);
 
-  int size();
+	void putAll(Map<? extends K, ? extends V> t);
 
-  Collection<V> values();
+	V remove(Object key);
 
-  default V merge(K key, V value, BiFunction<? super V, ? super V, ? extends V> map) {
-    V old = get(key);
-    V next = (old == null)
-            ? value
-            : map.apply(old, value);
-    if(next == null) {
-      remove(key);
-    } else {
-      put(key, next);
+	int size();
+
+	Collection<V> values();
+
+	default V merge(K key, V value, BiFunction<? super V, ? super V, ? extends V> map) {
+		V old = get(key);
+		V next = (old == null) ? value : map.apply(old, value);
+		if (next == null) {
+			remove(key);
+		} else {
+			put(key, next);
+		}
+		return next;
+	}
+
+	default V computeIfAbsent(K key, Function<? super K, ? extends V> mappingFunction) {
+		V result;
+		if ((result = get(key)) == null) {
+			result = mappingFunction.apply(key);
+			if (result != null)
+				put(key, result);
+		}
+		return result;
+	}
+
+	default V getOrDefault(Object key, V defaultValue) {
+		V v;
+		return (((v = get(key)) != null) || containsKey(key)) ? v : defaultValue;
+	}
+	default V putIfAbsent(K key, V value) {
+        V v = get(key);
+        if (v == null) {
+            v = put(key, value);
+        }
+
+        return v;
     }
-    return next;
-  }
-
-  default V computeIfAbsent(K key, Function<? super K,? extends V> mappingFunction) {
-    V result;
-    if ((result = get(key)) == null) {
-      result = mappingFunction.apply(key);
-      if (result != null)
-        put(key, result);
-    }
-    return result;
-  }
 }

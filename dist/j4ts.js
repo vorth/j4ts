@@ -1277,8 +1277,8 @@ var java;
             }
             static createValueOfMap(enumConstants) {
                 let result = new Object();
-                for (let index192 = 0; index192 < enumConstants.length; index192++) {
-                    let value = enumConstants[index192];
+                for (let index121 = 0; index121 < enumConstants.length; index121++) {
+                    let value = enumConstants[index121];
                     {
                         Enum.put0(result, ":" + value.name(), value);
                     }
@@ -2441,6 +2441,99 @@ var java;
     })(text = java.text || (java.text = {}));
 })(java || (java = {}));
 (function (java) {
+    var text;
+    (function (text) {
+        /**
+         * Create a new ParsePosition with the given initial index.
+         *
+         * @param {number} index initial index
+         * @class
+         * @author      Mark Davis
+         */
+        class ParsePosition {
+            constructor(index) {
+                /**
+                 * Input: the place you start parsing.
+                 * <br>Output: position where the parse stopped.
+                 * This is designed to be used serially,
+                 * with each call setting index up for the next one.
+                 */
+                this.index = 0;
+                this.errorIndex = -1;
+                this.index = index;
+            }
+            /**
+             * Retrieve the current parse position.  On input to a parse method, this
+             * is the index of the character at which parsing will begin; on output, it
+             * is the index of the character following the last character parsed.
+             *
+             * @return {number} the current parse position
+             */
+            getIndex() {
+                return this.index;
+            }
+            /**
+             * Set the current parse position.
+             *
+             * @param {number} index the current parse position
+             */
+            setIndex(index) {
+                this.index = index;
+            }
+            /**
+             * Set the index at which a parse error occurred.  Formatters
+             * should set this before returning an error code from their
+             * parseObject method.  The default value is -1 if this is not set.
+             *
+             * @param {number} ei the index at which an error occurred
+             * @since 1.2
+             */
+            setErrorIndex(ei) {
+                this.errorIndex = ei;
+            }
+            /**
+             * Retrieve the index at which an error occurred, or -1 if the
+             * error index has not been set.
+             *
+             * @return {number} the index at which an error occurred
+             * @since 1.2
+             */
+            getErrorIndex() {
+                return this.errorIndex;
+            }
+            /**
+             * Overrides equals
+             * @param {*} obj
+             * @return {boolean}
+             */
+            equals(obj) {
+                if (obj == null)
+                    return false;
+                if (!(obj != null && obj instanceof java.text.ParsePosition))
+                    return false;
+                let other = obj;
+                return (this.index === other.index && this.errorIndex === other.errorIndex);
+            }
+            /**
+             * Returns a hash code for this ParsePosition.
+             * @return {number} a hash code value for this object
+             */
+            hashCode() {
+                return (this.errorIndex << 16) | this.index;
+            }
+            /**
+             * Return a string representation of this ParsePosition.
+             * @return  {string} a string representation of this object
+             */
+            toString() {
+                return (c => c["__class"] ? c["__class"] : c["name"])(this.constructor) + "[index=" + this.index + ",errorIndex=" + this.errorIndex + ']';
+            }
+        }
+        text.ParsePosition = ParsePosition;
+        ParsePosition["__class"] = "java.text.ParsePosition";
+    })(text = java.text || (java.text = {}));
+})(java || (java = {}));
+(function (java) {
     var util;
     (function (util) {
         /**
@@ -2456,12 +2549,15 @@ var java;
             }
             forEach(action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index193 = this.iterator(); index193.hasNext();) {
-                    let t = index193.next();
+                for (let index122 = this.iterator(); index122.hasNext();) {
+                    let t = index122.next();
                     {
                         (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
                     }
                 }
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
             }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
@@ -2476,9 +2572,6 @@ var java;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
             }
             /**
              *
@@ -2496,8 +2589,8 @@ var java;
             addAll(c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
                 let changed = false;
-                for (let index194 = c.iterator(); index194.hasNext();) {
-                    let e = index194.next();
+                for (let index123 = c.iterator(); index123.hasNext();) {
+                    let e = index123.next();
                     {
                         changed = this.add(e) || changed;
                     }
@@ -2531,8 +2624,8 @@ var java;
              */
             containsAll(c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
-                for (let index195 = c.iterator(); index195.hasNext();) {
-                    let e = index195.next();
+                for (let index124 = c.iterator(); index124.hasNext();) {
+                    let e = index124.next();
                     {
                         if (!this.contains(e)) {
                             return false;
@@ -2639,8 +2732,8 @@ var java;
              */
             toString() {
                 let joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (let index196 = this.iterator(); index196.hasNext();) {
-                    let e = index196.next();
+                for (let index125 = this.iterator(); index125.hasNext();) {
+                    let e = index125.next();
                     {
                         joiner.add(e === this ? "(this Collection)" : new String(e).toString());
                     }
@@ -3366,8 +3459,8 @@ var java;
             }
             forEach(action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index197 = this.iterator(); index197.hasNext();) {
-                    let t = index197.next();
+                for (let index126 = this.iterator(); index126.hasNext();) {
+                    let t = index126.next();
                     {
                         (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
                     }
@@ -3417,8 +3510,8 @@ var java;
                 return this.findEntryInChain(key, this.getChainOrEmpty(this.hash(key)));
             }
             /*private*/ findEntryInChain(key, chain) {
-                for (let index198 = 0; index198 < chain.length; index198++) {
-                    let entry = chain[index198];
+                for (let index127 = 0; index127 < chain.length; index127++) {
+                    let entry = chain[index127];
                     {
                         if (this.host._equals(key, entry.getKey())) {
                             return entry;
@@ -3573,6 +3666,12 @@ var java;
             static US_$LI$() { if (Locale.US == null)
                 Locale.US = new Locale.USLocale(); return Locale.US; }
             ;
+            static FRANCE_$LI$() { if (Locale.FRANCE == null)
+                Locale.FRANCE = new Locale.FrenchLocale(); return Locale.FRANCE; }
+            ;
+            static UK_$LI$() { if (Locale.UK == null)
+                Locale.UK = new Locale.UKLocale(); return Locale.UK; }
+            ;
             static defaultLocale_$LI$() { if (Locale.defaultLocale == null)
                 Locale.defaultLocale = new Locale.DefaultLocale(); return Locale.defaultLocale; }
             ;
@@ -3616,6 +3715,20 @@ var java;
             }
             Locale.EnglishLocale = EnglishLocale;
             EnglishLocale["__class"] = "java.util.Locale.EnglishLocale";
+            class FrenchLocale extends java.util.Locale {
+                constructor() {
+                    super();
+                }
+                /**
+                 *
+                 * @return {string}
+                 */
+                toString() {
+                    return "fr";
+                }
+            }
+            Locale.FrenchLocale = FrenchLocale;
+            FrenchLocale["__class"] = "java.util.Locale.FrenchLocale";
             class USLocale extends java.util.Locale {
                 constructor() {
                     super();
@@ -3630,6 +3743,20 @@ var java;
             }
             Locale.USLocale = USLocale;
             USLocale["__class"] = "java.util.Locale.USLocale";
+            class UKLocale extends java.util.Locale {
+                constructor() {
+                    super();
+                }
+                /**
+                 *
+                 * @return {string}
+                 */
+                toString() {
+                    return "en-gb";
+                }
+            }
+            Locale.UKLocale = UKLocale;
+            UKLocale["__class"] = "java.util.Locale.UKLocale";
             class DefaultLocale extends java.util.Locale {
                 constructor() {
                     super();
@@ -3639,7 +3766,7 @@ var java;
                  * @return {string}
                  */
                 toString() {
-                    return "unknown";
+                    return "fr";
                 }
             }
             Locale.DefaultLocale = DefaultLocale;
@@ -4189,6 +4316,40 @@ var java;
             LogRecord["__class"] = "java.util.logging.LogRecord";
             LogRecord["__interfaces"] = ["java.io.Serializable"];
         })(logging = util.logging || (util.logging = {}));
+    })(util = java.util || (java.util = {}));
+})(java || (java = {}));
+(function (java) {
+    var util;
+    (function (util) {
+        var Map;
+        (function (Map) {
+            var Entry;
+            (function (Entry) {
+                /**
+                 *
+                 * Returns a comparator that compares {@link Map.Entry} by value using the given
+                 * {@link Comparator}.
+                 *
+                 * <p>
+                 * The returned comparator is serializable if the specified comparator is also
+                 * serializable.
+                 *
+                 * @param <K>
+                 * the type of the map keys
+                 * @param <V>
+                 * the type of the map values
+                 * @param {*} cmp
+                 * the value {@link Comparator}
+                 * @return {*} a comparator that compares {@link Map.Entry} by the value.
+                 * @since 1.8
+                 */
+                function comparingByValue(cmp) {
+                    java.util.Objects.requireNonNull((cmp));
+                    return ((c1, c2) => cmp(c1.getValue(), c2.getValue()));
+                }
+                Entry.comparingByValue = comparingByValue;
+            })(Entry = Map.Entry || (Map.Entry = {}));
+        })(Map = util.Map || (util.Map = {}));
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 (function (java) {
@@ -5239,6 +5400,24 @@ var java;
         (function (regex) {
             class Matcher {
                 constructor(_pattern, text) {
+                    /**
+                     * The range of string that last matched the pattern. If the last
+                     * match failed then first is -1; last initially holds 0 then it
+                     * holds the index of the end of the last match (which is where the
+                     * next search starts).
+                     */
+                    this.first = -1;
+                    /**
+                     * The range of string that last matched the pattern. If the last
+                     * match failed then first is -1; last initially holds 0 then it
+                     * holds the index of the end of the last match (which is where the
+                     * next search starts).
+                     */
+                    this.last = 0;
+                    /**
+                     * The index of the last position appended in a substitution.
+                     */
+                    this.lastAppendPosition = 0;
                     if (this._pattern === undefined)
                         this._pattern = null;
                     if (this.text === undefined)
@@ -5390,6 +5569,8 @@ var java;
                     this.groups = null;
                     this.starts = null;
                     this.ends = null;
+                    this.first = -1;
+                    this.last = 0;
                     return this;
                 }
                 reset$java_lang_CharSequence(input) {
@@ -5796,12 +5977,53 @@ var java;
                 }
                 static mapMerger(mergeFunction) {
                     return (m1, m2) => {
-                        for (let index199 = m2.entrySet().iterator(); index199.hasNext();) {
-                            let e = index199.next();
+                        for (let index128 = m2.entrySet().iterator(); index128.hasNext();) {
+                            let e = index128.next();
                             m1.merge(e.getKey(), e.getValue(), (mergeFunction));
                         }
                         return m1;
                     };
+                }
+                static joining$() {
+                    return (new Collectors.CollectorImpl(() => { return new java.lang.StringBuilder(); }, (instance$StringBuilder, x) => { return instance$StringBuilder.append(x); }, (r1, r2) => {
+                        r1.append$java_lang_CharSequence(r2);
+                        return r1;
+                    }));
+                }
+                static joining$java_lang_CharSequence(delimiter) {
+                    return Collectors.joining$java_lang_CharSequence$java_lang_CharSequence$java_lang_CharSequence(delimiter, "", "");
+                }
+                static joining$java_lang_CharSequence$java_lang_CharSequence$java_lang_CharSequence(delimiter, prefix, suffix) {
+                    return (new Collectors.CollectorImpl(() => new java.util.StringJoiner(delimiter, prefix, suffix), (instance$StringJoiner, newElement) => { return instance$StringJoiner.add(newElement); }, (instance$StringJoiner, other) => { return instance$StringJoiner.merge(other); }));
+                }
+                /**
+                 * Returns a {@code Collector} that concatenates the input elements, separated
+                 * by the specified delimiter, with the specified prefix and suffix, in
+                 * encounter order.
+                 *
+                 * @param {*} delimiter
+                 * the delimiter to be used between each element
+                 * @param {*} prefix
+                 * the sequence of characters to be used at the beginning of the
+                 * joined result
+                 * @param {*} suffix
+                 * the sequence of characters to be used at the end of the joined
+                 * result
+                 * @return {*} A {@code Collector} which concatenates CharSequence elements,
+                 * separated by the specified delimiter, in encounter order
+                 */
+                static joining(delimiter, prefix, suffix) {
+                    if (((delimiter != null && (delimiter["__interfaces"] != null && delimiter["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || delimiter.constructor != null && delimiter.constructor["__interfaces"] != null && delimiter.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof delimiter === "string")) || delimiter === null) && ((prefix != null && (prefix["__interfaces"] != null && prefix["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || prefix.constructor != null && prefix.constructor["__interfaces"] != null && prefix.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof prefix === "string")) || prefix === null) && ((suffix != null && (suffix["__interfaces"] != null && suffix["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || suffix.constructor != null && suffix.constructor["__interfaces"] != null && suffix.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof suffix === "string")) || suffix === null)) {
+                        return java.util.stream.Collectors.joining$java_lang_CharSequence$java_lang_CharSequence$java_lang_CharSequence(delimiter, prefix, suffix);
+                    }
+                    else if (((delimiter != null && (delimiter["__interfaces"] != null && delimiter["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || delimiter.constructor != null && delimiter.constructor["__interfaces"] != null && delimiter.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof delimiter === "string")) || delimiter === null) && prefix === undefined && suffix === undefined) {
+                        return java.util.stream.Collectors.joining$java_lang_CharSequence(delimiter);
+                    }
+                    else if (delimiter === undefined && prefix === undefined && suffix === undefined) {
+                        return java.util.stream.Collectors.joining$();
+                    }
+                    else
+                        throw new Error('invalid overload');
                 }
             }
             stream.Collectors = Collectors;
@@ -6027,6 +6249,437 @@ var java;
         }
         util.StringJoiner = StringJoiner;
         StringJoiner["__class"] = "java.util.StringJoiner";
+    })(util = java.util || (java.util = {}));
+})(java || (java = {}));
+(function (java) {
+    var util;
+    (function (util) {
+        /**
+         * Constructs a string tokenizer for the specified string. All
+         * characters in the <code>delim</code> argument are the delimiters
+         * for separating tokens.
+         * <p>
+         * If the <code>returnDelims</code> flag is <code>true</code>, then
+         * the delimiter characters are also returned as tokens. Each
+         * delimiter is returned as a string of length one. If the flag is
+         * <code>false</code>, the delimiter characters are skipped and only
+         * serve as separators between tokens.
+         * <p>
+         * Note that if <tt>delim</tt> is <tt>null</tt>, this constructor does
+         * not throw an exception. However, trying to invoke other methods on the
+         * resulting <tt>StringTokenizer</tt> may result in a
+         * <tt>NullPointerException</tt>.
+         *
+         * @param   {string} str            a string to be parsed.
+         * @param   {string} delim          the delimiters.
+         * @param   {boolean} returnDelims   flag indicating whether to return the delimiters
+         * as tokens.
+         * @exception NullPointerException if str is <CODE>null</CODE>
+         * @class
+         * @author  unascribed
+         */
+        class StringTokenizer {
+            constructor(str, delim, returnDelims) {
+                /**
+                 * If delimiters include any surrogates (including surrogate
+                 * pairs), hasSurrogates is true and the tokenizer uses the
+                 * different code path. This is because String.indexOf(int)
+                 * doesn't handle unpaired surrogates as a single character.
+                 */
+                /*private*/ this.hasSurrogates = false;
+                if (((typeof str === 'string') || str === null) && ((typeof delim === 'string') || delim === null) && ((typeof returnDelims === 'boolean') || returnDelims === null)) {
+                    let __args = arguments;
+                    if (this.currentPosition === undefined)
+                        this.currentPosition = 0;
+                    if (this.newPosition === undefined)
+                        this.newPosition = 0;
+                    if (this.maxPosition === undefined)
+                        this.maxPosition = 0;
+                    if (this.str === undefined)
+                        this.str = null;
+                    if (this.delimiters === undefined)
+                        this.delimiters = null;
+                    if (this.retDelims === undefined)
+                        this.retDelims = false;
+                    if (this.delimsChanged === undefined)
+                        this.delimsChanged = false;
+                    if (this.maxDelimCodePoint === undefined)
+                        this.maxDelimCodePoint = 0;
+                    if (this.delimiterCodePoints === undefined)
+                        this.delimiterCodePoints = null;
+                    this.hasSurrogates = false;
+                    if (this.currentPosition === undefined)
+                        this.currentPosition = 0;
+                    if (this.newPosition === undefined)
+                        this.newPosition = 0;
+                    if (this.maxPosition === undefined)
+                        this.maxPosition = 0;
+                    if (this.str === undefined)
+                        this.str = null;
+                    if (this.delimiters === undefined)
+                        this.delimiters = null;
+                    if (this.retDelims === undefined)
+                        this.retDelims = false;
+                    if (this.delimsChanged === undefined)
+                        this.delimsChanged = false;
+                    if (this.maxDelimCodePoint === undefined)
+                        this.maxDelimCodePoint = 0;
+                    if (this.delimiterCodePoints === undefined)
+                        this.delimiterCodePoints = null;
+                    (() => {
+                        this.currentPosition = 0;
+                        this.newPosition = -1;
+                        this.delimsChanged = false;
+                        this.str = str;
+                        this.maxPosition = str.length;
+                        this.delimiters = delim;
+                        this.retDelims = returnDelims;
+                        this.setMaxDelimCodePoint();
+                    })();
+                }
+                else if (((typeof str === 'string') || str === null) && ((typeof delim === 'string') || delim === null) && returnDelims === undefined) {
+                    let __args = arguments;
+                    {
+                        let __args = arguments;
+                        let returnDelims = false;
+                        if (this.currentPosition === undefined)
+                            this.currentPosition = 0;
+                        if (this.newPosition === undefined)
+                            this.newPosition = 0;
+                        if (this.maxPosition === undefined)
+                            this.maxPosition = 0;
+                        if (this.str === undefined)
+                            this.str = null;
+                        if (this.delimiters === undefined)
+                            this.delimiters = null;
+                        if (this.retDelims === undefined)
+                            this.retDelims = false;
+                        if (this.delimsChanged === undefined)
+                            this.delimsChanged = false;
+                        if (this.maxDelimCodePoint === undefined)
+                            this.maxDelimCodePoint = 0;
+                        if (this.delimiterCodePoints === undefined)
+                            this.delimiterCodePoints = null;
+                        this.hasSurrogates = false;
+                        if (this.currentPosition === undefined)
+                            this.currentPosition = 0;
+                        if (this.newPosition === undefined)
+                            this.newPosition = 0;
+                        if (this.maxPosition === undefined)
+                            this.maxPosition = 0;
+                        if (this.str === undefined)
+                            this.str = null;
+                        if (this.delimiters === undefined)
+                            this.delimiters = null;
+                        if (this.retDelims === undefined)
+                            this.retDelims = false;
+                        if (this.delimsChanged === undefined)
+                            this.delimsChanged = false;
+                        if (this.maxDelimCodePoint === undefined)
+                            this.maxDelimCodePoint = 0;
+                        if (this.delimiterCodePoints === undefined)
+                            this.delimiterCodePoints = null;
+                        (() => {
+                            this.currentPosition = 0;
+                            this.newPosition = -1;
+                            this.delimsChanged = false;
+                            this.str = str;
+                            this.maxPosition = str.length;
+                            this.delimiters = delim;
+                            this.retDelims = returnDelims;
+                            this.setMaxDelimCodePoint();
+                        })();
+                    }
+                }
+                else if (((typeof str === 'string') || str === null) && delim === undefined && returnDelims === undefined) {
+                    let __args = arguments;
+                    {
+                        let __args = arguments;
+                        let delim = " \t\n\r\f";
+                        let returnDelims = false;
+                        if (this.currentPosition === undefined)
+                            this.currentPosition = 0;
+                        if (this.newPosition === undefined)
+                            this.newPosition = 0;
+                        if (this.maxPosition === undefined)
+                            this.maxPosition = 0;
+                        if (this.str === undefined)
+                            this.str = null;
+                        if (this.delimiters === undefined)
+                            this.delimiters = null;
+                        if (this.retDelims === undefined)
+                            this.retDelims = false;
+                        if (this.delimsChanged === undefined)
+                            this.delimsChanged = false;
+                        if (this.maxDelimCodePoint === undefined)
+                            this.maxDelimCodePoint = 0;
+                        if (this.delimiterCodePoints === undefined)
+                            this.delimiterCodePoints = null;
+                        this.hasSurrogates = false;
+                        if (this.currentPosition === undefined)
+                            this.currentPosition = 0;
+                        if (this.newPosition === undefined)
+                            this.newPosition = 0;
+                        if (this.maxPosition === undefined)
+                            this.maxPosition = 0;
+                        if (this.str === undefined)
+                            this.str = null;
+                        if (this.delimiters === undefined)
+                            this.delimiters = null;
+                        if (this.retDelims === undefined)
+                            this.retDelims = false;
+                        if (this.delimsChanged === undefined)
+                            this.delimsChanged = false;
+                        if (this.maxDelimCodePoint === undefined)
+                            this.maxDelimCodePoint = 0;
+                        if (this.delimiterCodePoints === undefined)
+                            this.delimiterCodePoints = null;
+                        (() => {
+                            this.currentPosition = 0;
+                            this.newPosition = -1;
+                            this.delimsChanged = false;
+                            this.str = str;
+                            this.maxPosition = str.length;
+                            this.delimiters = delim;
+                            this.retDelims = returnDelims;
+                            this.setMaxDelimCodePoint();
+                        })();
+                    }
+                }
+                else
+                    throw new Error('invalid overload');
+            }
+            /**
+             * Set maxDelimCodePoint to the highest char in the delimiter set.
+             * @private
+             */
+            /*private*/ setMaxDelimCodePoint() {
+                if (this.delimiters == null) {
+                    this.maxDelimCodePoint = 0;
+                    return;
+                }
+                let m = 0;
+                let c;
+                let count = 0;
+                for (let i = 0; i < this.delimiters.length; i += javaemul.internal.CharacterHelper.charCount(c)) {
+                    {
+                        c = (this.delimiters.charAt(i)).charCodeAt(0);
+                        if (c >= (c => c.charCodeAt == null ? c : c.charCodeAt(0))(javaemul.internal.CharacterHelper.MIN_HIGH_SURROGATE) && c <= (c => c.charCodeAt == null ? c : c.charCodeAt(0))(javaemul.internal.CharacterHelper.MAX_LOW_SURROGATE)) {
+                            c = this.delimiters.charCodeAt(i);
+                            this.hasSurrogates = true;
+                        }
+                        if (m < c)
+                            m = c;
+                        count++;
+                    }
+                    ;
+                }
+                this.maxDelimCodePoint = m;
+                if (this.hasSurrogates) {
+                    this.delimiterCodePoints = (s => { let a = []; while (s-- > 0)
+                        a.push(0); return a; })(count);
+                    for (let i = 0, j = 0; i < count; i++, j += javaemul.internal.CharacterHelper.charCount(c)) {
+                        {
+                            c = this.delimiters.charCodeAt(j);
+                            this.delimiterCodePoints[i] = c;
+                        }
+                        ;
+                    }
+                }
+            }
+            /**
+             * Skips delimiters starting from the specified position. If retDelims
+             * is false, returns the index of the first non-delimiter character at or
+             * after startPos. If retDelims is true, startPos is returned.
+             * @param {number} startPos
+             * @return {number}
+             * @private
+             */
+            /*private*/ skipDelimiters(startPos) {
+                if (this.delimiters == null)
+                    throw new java.lang.NullPointerException();
+                let position = startPos;
+                while ((!this.retDelims && position < this.maxPosition)) {
+                    {
+                        if (!this.hasSurrogates) {
+                            let c = this.str.charAt(position);
+                            if (((c => c.charCodeAt == null ? c : c.charCodeAt(0))(c) > this.maxDelimCodePoint) || (this.delimiters.indexOf(c) < 0))
+                                break;
+                            position++;
+                        }
+                        else {
+                            let c = this.str.charCodeAt(position);
+                            if ((c > this.maxDelimCodePoint) || !this.isDelimiter(c)) {
+                                break;
+                            }
+                            position += javaemul.internal.CharacterHelper.charCount(c);
+                        }
+                    }
+                }
+                ;
+                return position;
+            }
+            /**
+             * Skips ahead from startPos and returns the index of the next delimiter
+             * character encountered, or maxPosition if no such delimiter is found.
+             * @param {number} startPos
+             * @return {number}
+             * @private
+             */
+            /*private*/ scanToken(startPos) {
+                let position = startPos;
+                while ((position < this.maxPosition)) {
+                    {
+                        if (!this.hasSurrogates) {
+                            let c = this.str.charAt(position);
+                            if (((c => c.charCodeAt == null ? c : c.charCodeAt(0))(c) <= this.maxDelimCodePoint) && (this.delimiters.indexOf(c) >= 0))
+                                break;
+                            position++;
+                        }
+                        else {
+                            let c = this.str.charCodeAt(position);
+                            if ((c <= this.maxDelimCodePoint) && this.isDelimiter(c))
+                                break;
+                            position += javaemul.internal.CharacterHelper.charCount(c);
+                        }
+                    }
+                }
+                ;
+                if (this.retDelims && (startPos === position)) {
+                    if (!this.hasSurrogates) {
+                        let c = this.str.charAt(position);
+                        if (((c => c.charCodeAt == null ? c : c.charCodeAt(0))(c) <= this.maxDelimCodePoint) && (this.delimiters.indexOf(c) >= 0))
+                            position++;
+                    }
+                    else {
+                        let c = this.str.charCodeAt(position);
+                        if ((c <= this.maxDelimCodePoint) && this.isDelimiter(c))
+                            position += javaemul.internal.CharacterHelper.charCount(c);
+                    }
+                }
+                return position;
+            }
+            /*private*/ isDelimiter(codePoint) {
+                for (let i = 0; i < this.delimiterCodePoints.length; i++) {
+                    {
+                        if (this.delimiterCodePoints[i] === codePoint) {
+                            return true;
+                        }
+                    }
+                    ;
+                }
+                return false;
+            }
+            /**
+             * Tests if there are more tokens available from this tokenizer's string.
+             * If this method returns <tt>true</tt>, then a subsequent call to
+             * <tt>nextToken</tt> with no argument will successfully return a token.
+             *
+             * @return  {boolean} <code>true</code> if and only if there is at least one token
+             * in the string after the current position; <code>false</code>
+             * otherwise.
+             */
+            hasMoreTokens() {
+                this.newPosition = this.skipDelimiters(this.currentPosition);
+                return (this.newPosition < this.maxPosition);
+            }
+            nextToken$() {
+                this.currentPosition = (this.newPosition >= 0 && !this.delimsChanged) ? this.newPosition : this.skipDelimiters(this.currentPosition);
+                this.delimsChanged = false;
+                this.newPosition = -1;
+                if (this.currentPosition >= this.maxPosition)
+                    throw new java.util.NoSuchElementException();
+                let start = this.currentPosition;
+                this.currentPosition = this.scanToken(this.currentPosition);
+                return this.str.substring(start, this.currentPosition);
+            }
+            nextToken$java_lang_String(delim) {
+                this.delimiters = delim;
+                this.delimsChanged = true;
+                this.setMaxDelimCodePoint();
+                return this.nextToken();
+            }
+            /**
+             * Returns the next token in this string tokenizer's string. First,
+             * the set of characters considered to be delimiters by this
+             * <tt>StringTokenizer</tt> object is changed to be the characters in
+             * the string <tt>delim</tt>. Then the next token in the string
+             * after the current position is returned. The current position is
+             * advanced beyond the recognized token.  The new delimiter set
+             * remains the default after this call.
+             *
+             * @param      {string} delim   the new delimiters.
+             * @return     {string} the next token, after switching to the new delimiter set.
+             * @exception  NoSuchElementException  if there are no more tokens in this
+             * tokenizer's string.
+             * @exception NullPointerException if delim is <CODE>null</CODE>
+             */
+            nextToken(delim) {
+                if (((typeof delim === 'string') || delim === null)) {
+                    return this.nextToken$java_lang_String(delim);
+                }
+                else if (delim === undefined) {
+                    return this.nextToken$();
+                }
+                else
+                    throw new Error('invalid overload');
+            }
+            /**
+             * Returns the same value as the <code>hasMoreTokens</code>
+             * method. It exists so that this class can implement the
+             * <code>Enumeration</code> interface.
+             *
+             * @return  {boolean} <code>true</code> if there are more tokens;
+             * <code>false</code> otherwise.
+             * @see     java.util.Enumeration
+             * @see     java.util.StringTokenizer#hasMoreTokens()
+             */
+            hasMoreElements() {
+                return this.hasMoreTokens();
+            }
+            /**
+             * Returns the same value as the <code>nextToken</code> method,
+             * except that its declared return value is <code>Object</code> rather than
+             * <code>String</code>. It exists so that this class can implement the
+             * <code>Enumeration</code> interface.
+             *
+             * @return     {*} the next token in the string.
+             * @exception  NoSuchElementException  if there are no more tokens in this
+             * tokenizer's string.
+             * @see        java.util.Enumeration
+             * @see        java.util.StringTokenizer#nextToken()
+             */
+            nextElement() {
+                return this.nextToken();
+            }
+            /**
+             * Calculates the number of times that this tokenizer's
+             * <code>nextToken</code> method can be called before it generates an
+             * exception. The current position is not advanced.
+             *
+             * @return  {number} the number of tokens remaining in the string using the current
+             * delimiter set.
+             * @see     java.util.StringTokenizer#nextToken()
+             */
+            countTokens() {
+                let count = 0;
+                let currpos = this.currentPosition;
+                while ((currpos < this.maxPosition)) {
+                    {
+                        currpos = this.skipDelimiters(currpos);
+                        if (currpos >= this.maxPosition)
+                            break;
+                        currpos = this.scanToken(currpos);
+                        count++;
+                    }
+                }
+                ;
+                return count;
+            }
+        }
+        util.StringTokenizer = StringTokenizer;
+        StringTokenizer["__class"] = "java.util.StringTokenizer";
+        StringTokenizer["__interfaces"] = ["java.util.Enumeration"];
     })(util = java.util || (java.util = {}));
 })(java || (java = {}));
 (function (java) {
@@ -7824,8 +8477,8 @@ var javaemul;
                     return this;
                 }
                 /*private*/ play() {
-                    for (let index200 = this.data.iterator(); index200.hasNext();) {
-                        let item = index200.next();
+                    for (let index129 = this.data.iterator(); index129.hasNext();) {
+                        let item = index129.next();
                         {
                             if (!this.head.item(item)) {
                                 break;
@@ -8300,8 +8953,8 @@ var test;
             Test.assertEquals(l.get(1), "c");
             Test.assertEquals(l.indexOf("a"), 0);
             let res = "";
-            for (let index201 = l.iterator(); index201.hasNext();) {
-                let s = index201.next();
+            for (let index130 = l.iterator(); index130.hasNext();) {
+                let s = index130.next();
                 {
                     res += s;
                 }
@@ -11782,10 +12435,25 @@ var test;
             }
             forEach(action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index202 = this.iterator(); index202.hasNext();) {
-                    let t = index202.next();
+                for (let index131 = this.iterator(); index131.hasNext();) {
+                    let t = index131.next();
                     {
                         (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            sort(c) {
+                let a = this.toArray();
+                java.util.Arrays.sort(a, (c));
+                let i = this.listIterator();
+                for (let index132 = 0; index132 < a.length; index132++) {
+                    let e = a[index132];
+                    {
+                        i.next();
+                        i.set(e);
                     }
                 }
             }
@@ -11802,9 +12470,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
             }
             add$java_lang_Object(obj) {
                 this.add(this.size(), obj);
@@ -11831,8 +12496,8 @@ var test;
             addAll$int$java_util_Collection(index, c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
                 let changed = false;
-                for (let index203 = c.iterator(); index203.hasNext();) {
-                    let e = index203.next();
+                for (let index133 = c.iterator(); index133.hasNext();) {
+                    let e = index133.next();
                     {
                         this.add(index++, e);
                         changed = true;
@@ -11879,8 +12544,8 @@ var test;
                     return false;
                 }
                 let iterOther = other.iterator();
-                for (let index204 = this.iterator(); index204.hasNext();) {
-                    let elem = index204.next();
+                for (let index134 = this.iterator(); index134.hasNext();) {
+                    let elem = index134.next();
                     {
                         let elemOther = iterOther.next();
                         if (!java.util.Objects.equals(elem, elemOther)) {
@@ -12244,12 +12909,15 @@ var test;
             }
             forEach(action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index205 = this.iterator(); index205.hasNext();) {
-                    let t = index205.next();
+                for (let index135 = this.iterator(); index135.hasNext();) {
+                    let t = index135.next();
                     {
                         (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
                     }
                 }
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
             }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
@@ -12264,9 +12932,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
             }
             /**
              *
@@ -12350,12 +13015,15 @@ var test;
             }
             forEach(action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index206 = this.iterator(); index206.hasNext();) {
-                    let t = index206.next();
+                for (let index136 = this.iterator(); index136.hasNext();) {
+                    let t = index136.next();
                     {
                         (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
                     }
                 }
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
             }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
@@ -12370,9 +13038,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
             }
             /**
              *
@@ -12419,8 +13084,8 @@ var test;
                     }
                 }
                 else {
-                    for (let index207 = c.iterator(); index207.hasNext();) {
-                        let o1 = index207.next();
+                    for (let index137 = c.iterator(); index137.hasNext();) {
+                        let o1 = index137.next();
                         {
                             this.remove(o1);
                         }
@@ -12455,8 +13120,8 @@ var test;
             }
             forEach(action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index208 = this.iterator(); index208.hasNext();) {
-                    let t = index208.next();
+                for (let index138 = this.iterator(); index138.hasNext();) {
+                    let t = index138.next();
                     {
                         (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
                     }
@@ -13806,14 +14471,14 @@ var test;
                     throw new Error('invalid overload');
             }
             cancel() {
-                for (let index209 = 0; index209 < this.timeouts.length; index209++) {
-                    let task = this.timeouts[index209];
+                for (let index139 = 0; index139 < this.timeouts.length; index139++) {
+                    let task = this.timeouts[index139];
                     {
                         clearTimeout(task.handle);
                     }
                 }
-                for (let index210 = 0; index210 < this.intervals.length; index210++) {
-                    let task = this.intervals[index210];
+                for (let index140 = 0; index140 < this.intervals.length; index140++) {
+                    let task = this.intervals[index140];
                     {
                         clearInterval(task.handle);
                     }
@@ -15778,8 +16443,8 @@ var test;
                     return true;
                 }
                 end() {
-                    for (let index211 = this.collection.iterator(); index211.hasNext();) {
-                        let item = index211.next();
+                    for (let index141 = this.collection.iterator(); index141.hasNext();) {
+                        let item = index141.next();
                         {
                             if (!this.next.item(item)) {
                                 break;
@@ -16885,8 +17550,8 @@ var test;
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
                 let modified = false;
                 let iter = this.listIterator$int(index);
-                for (let index212 = c.iterator(); index212.hasNext();) {
-                    let e = index212.next();
+                for (let index142 = c.iterator(); index142.hasNext();) {
+                    let e = index142.next();
                     {
                         iter.add(e);
                         modified = true;
@@ -17078,10 +17743,25 @@ var test;
             }
             forEach(action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index213 = this.iterator(); index213.hasNext();) {
-                    let t = index213.next();
+                for (let index143 = this.iterator(); index143.hasNext();) {
+                    let t = index143.next();
                     {
                         (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            sort(c) {
+                let a = this.toArray();
+                java.util.Arrays.sort(a, (c));
+                let i = this.listIterator();
+                for (let index144 = 0; index144 < a.length; index144++) {
+                    let e = a[index144];
+                    {
+                        i.next();
+                        i.set(e);
                     }
                 }
             }
@@ -17098,9 +17778,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
             }
             add$java_lang_Object(o) {
                 this.array[this.array.length] = o;
@@ -17836,8 +18513,8 @@ var test;
                     return 0;
                 }
                 let hashCode = 1;
-                for (let index214 = 0; index214 < a.length; index214++) {
-                    let obj = a[index214];
+                for (let index145 = 0; index145 < a.length; index145++) {
+                    let obj = a[index145];
                     {
                         let hash;
                         if (obj != null && obj instanceof Array && (obj.length == 0 || obj[0] == null || obj[0] != null)) {
@@ -18254,8 +18931,8 @@ var test;
                     return 0;
                 }
                 let hashCode = 1;
-                for (let index215 = 0; index215 < a.length; index215++) {
-                    let e = a[index215];
+                for (let index146 = 0; index146 < a.length; index146++) {
+                    let e = a[index146];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.BooleanHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -18299,8 +18976,8 @@ var test;
                     return 0;
                 }
                 let hashCode = 1;
-                for (let index216 = 0; index216 < a.length; index216++) {
-                    let e = a[index216];
+                for (let index147 = 0; index147 < a.length; index147++) {
+                    let e = a[index147];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.ByteHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -18313,8 +18990,8 @@ var test;
                     return 0;
                 }
                 let hashCode = 1;
-                for (let index217 = 0; index217 < a.length; index217++) {
-                    let e = a[index217];
+                for (let index148 = 0; index148 < a.length; index148++) {
+                    let e = a[index148];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.CharacterHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -18327,8 +19004,8 @@ var test;
                     return 0;
                 }
                 let hashCode = 1;
-                for (let index218 = 0; index218 < a.length; index218++) {
-                    let e = a[index218];
+                for (let index149 = 0; index149 < a.length; index149++) {
+                    let e = a[index149];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.DoubleHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -18341,8 +19018,8 @@ var test;
                     return 0;
                 }
                 let hashCode = 1;
-                for (let index219 = 0; index219 < a.length; index219++) {
-                    let e = a[index219];
+                for (let index150 = 0; index150 < a.length; index150++) {
+                    let e = a[index150];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.FloatHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -18355,8 +19032,8 @@ var test;
                     return 0;
                 }
                 let hashCode = 1;
-                for (let index220 = 0; index220 < a.length; index220++) {
-                    let e = a[index220];
+                for (let index151 = 0; index151 < a.length; index151++) {
+                    let e = a[index151];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.IntegerHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -18369,8 +19046,8 @@ var test;
                     return 0;
                 }
                 let hashCode = 1;
-                for (let index221 = 0; index221 < a.length; index221++) {
-                    let e = a[index221];
+                for (let index152 = 0; index152 < a.length; index152++) {
+                    let e = a[index152];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.LongHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -18383,8 +19060,8 @@ var test;
                     return 0;
                 }
                 let hashCode = 1;
-                for (let index222 = 0; index222 < a.length; index222++) {
-                    let e = a[index222];
+                for (let index153 = 0; index153 < a.length; index153++) {
+                    let e = a[index153];
                     {
                         hashCode = 31 * hashCode + java.util.Objects.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -18397,8 +19074,8 @@ var test;
                     return 0;
                 }
                 let hashCode = 1;
-                for (let index223 = 0; index223 < a.length; index223++) {
-                    let e = a[index223];
+                for (let index154 = 0; index154 < a.length; index154++) {
+                    let e = a[index154];
                     {
                         hashCode = 31 * hashCode + javaemul.internal.ShortHelper.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -18531,8 +19208,8 @@ var test;
                     return "null";
                 }
                 let joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (let index224 = 0; index224 < a.length; index224++) {
-                    let element = a[index224];
+                for (let index155 = 0; index155 < a.length; index155++) {
+                    let element = a[index155];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -18575,8 +19252,8 @@ var test;
                     return "null";
                 }
                 let joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (let index225 = 0; index225 < a.length; index225++) {
-                    let element = a[index225];
+                for (let index156 = 0; index156 < a.length; index156++) {
+                    let element = a[index156];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -18588,8 +19265,8 @@ var test;
                     return "null";
                 }
                 let joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (let index226 = 0; index226 < a.length; index226++) {
-                    let element = a[index226];
+                for (let index157 = 0; index157 < a.length; index157++) {
+                    let element = a[index157];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -18601,8 +19278,8 @@ var test;
                     return "null";
                 }
                 let joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (let index227 = 0; index227 < a.length; index227++) {
-                    let element = a[index227];
+                for (let index158 = 0; index158 < a.length; index158++) {
+                    let element = a[index158];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -18614,8 +19291,8 @@ var test;
                     return "null";
                 }
                 let joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (let index228 = 0; index228 < a.length; index228++) {
-                    let element = a[index228];
+                for (let index159 = 0; index159 < a.length; index159++) {
+                    let element = a[index159];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -18627,8 +19304,8 @@ var test;
                     return "null";
                 }
                 let joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (let index229 = 0; index229 < a.length; index229++) {
-                    let element = a[index229];
+                for (let index160 = 0; index160 < a.length; index160++) {
+                    let element = a[index160];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -18640,8 +19317,8 @@ var test;
                     return "null";
                 }
                 let joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (let index230 = 0; index230 < a.length; index230++) {
-                    let element = a[index230];
+                for (let index161 = 0; index161 < a.length; index161++) {
+                    let element = a[index161];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -18659,8 +19336,8 @@ var test;
                     return "null";
                 }
                 let joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (let index231 = 0; index231 < a.length; index231++) {
-                    let element = a[index231];
+                for (let index162 = 0; index162 < a.length; index162++) {
+                    let element = a[index162];
                     {
                         joiner.add(/* valueOf */ new String(element).toString());
                     }
@@ -18675,8 +19352,8 @@ var test;
                     return "[...]";
                 }
                 let joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (let index232 = 0; index232 < a.length; index232++) {
-                    let obj = a[index232];
+                for (let index163 = 0; index163 < a.length; index163++) {
+                    let obj = a[index163];
                     {
                         if (obj != null && obj.constructor.isArray()) {
                             if (obj != null && obj instanceof Array && (obj.length == 0 || obj[0] == null || obj[0] != null)) {
@@ -19073,10 +19750,25 @@ var test;
             }
             forEach(action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index233 = this.iterator(); index233.hasNext();) {
-                    let t = index233.next();
+                for (let index164 = this.iterator(); index164.hasNext();) {
+                    let t = index164.next();
                     {
                         (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            sort(c) {
+                let a = this.toArray();
+                java.util.Arrays.sort(a, (c));
+                let i = this.listIterator();
+                for (let index165 = 0; index165 < a.length; index165++) {
+                    let e = a[index165];
+                    {
+                        i.next();
+                        i.set(e);
                     }
                 }
             }
@@ -19093,9 +19785,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
             }
             add$java_lang_Object(o) {
                 return this.arrayList.add(o);
@@ -19876,6 +20565,17 @@ var test;
                 }
                 return result;
             }
+            putIfAbsent(key, value) {
+                let v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
+            }
+            getOrDefault(key, defaultValue) {
+                let v;
+                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
+            }
             /**
              *
              */
@@ -19896,8 +20596,8 @@ var test;
              * @return {boolean}
              */
             containsValue(value) {
-                for (let index234 = this.entrySet().iterator(); index234.hasNext();) {
-                    let entry = index234.next();
+                for (let index166 = this.entrySet().iterator(); index166.hasNext();) {
+                    let entry = index166.next();
                     {
                         let v = entry.getValue();
                         if (java.util.Objects.equals(value, v)) {
@@ -19935,8 +20635,8 @@ var test;
                 if (this.size() !== otherMap.size()) {
                     return false;
                 }
-                for (let index235 = otherMap.entrySet().iterator(); index235.hasNext();) {
-                    let entry = index235.next();
+                for (let index167 = otherMap.entrySet().iterator(); index167.hasNext();) {
+                    let entry = index167.next();
                     {
                         if (!this.containsEntry(entry)) {
                             return false;
@@ -19989,8 +20689,8 @@ var test;
              */
             putAll(map) {
                 javaemul.internal.InternalPreconditions.checkNotNull(map);
-                for (let index236 = map.entrySet().iterator(); index236.hasNext();) {
-                    let e = index236.next();
+                for (let index168 = map.entrySet().iterator(); index168.hasNext();) {
+                    let e = index168.next();
                     {
                         this.put(e.getKey(), e.getValue());
                     }
@@ -20013,8 +20713,8 @@ var test;
             }
             toString$() {
                 let joiner = new java.util.StringJoiner(", ", "{", "}");
-                for (let index237 = this.entrySet().iterator(); index237.hasNext();) {
-                    let entry = index237.next();
+                for (let index169 = this.entrySet().iterator(); index169.hasNext();) {
+                    let entry = index169.next();
                     {
                         joiner.add(this.toString$java_util_Map_Entry(entry));
                     }
@@ -20759,12 +21459,15 @@ var test;
             }
             forEach(action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index238 = this.iterator(); index238.hasNext();) {
-                    let t = index238.next();
+                for (let index170 = this.iterator(); index170.hasNext();) {
+                    let t = index170.next();
                     {
                         (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
                     }
                 }
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
             }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
@@ -20779,9 +21482,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
             }
             /**
              *
@@ -20941,12 +21641,15 @@ var test;
             }
             forEach(action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index239 = this.iterator(); index239.hasNext();) {
-                    let t = index239.next();
+                for (let index171 = this.iterator(); index171.hasNext();) {
+                    let t = index171.next();
                     {
                         (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
                     }
                 }
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
             }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
@@ -20961,9 +21664,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
             }
             /**
              *
@@ -21559,10 +22259,25 @@ var test;
             }
             forEach(action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index240 = this.iterator(); index240.hasNext();) {
-                    let t = index240.next();
+                for (let index172 = this.iterator(); index172.hasNext();) {
+                    let t = index172.next();
                     {
                         (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            sort(c) {
+                let a = this.toArray();
+                java.util.Arrays.sort(a, (c));
+                let i = this.listIterator();
+                for (let index173 = 0; index173 < a.length; index173++) {
+                    let e = a[index173];
+                    {
+                        i.next();
+                        i.set(e);
                     }
                 }
             }
@@ -21579,9 +22294,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
             }
             /**
              *
@@ -22227,8 +22939,8 @@ var test;
                 return this._containsValue(value, this.stringMap) || this._containsValue(value, this.hashCodeMap);
             }
             _containsValue(value, entries) {
-                for (let index241 = entries.iterator(); index241.hasNext();) {
-                    let entry = index241.next();
+                for (let index174 = entries.iterator(); index174.hasNext();) {
+                    let entry = index174.next();
                     {
                         if (this._equals(value, entry.getValue())) {
                             return true;
@@ -22530,6 +23242,17 @@ var test;
                         this.put(key, result);
                 }
                 return result;
+            }
+            putIfAbsent(key, value) {
+                let v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
+            }
+            getOrDefault(key, defaultValue) {
+                let v;
+                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
             }
             static copyOf(entry) {
                 return entry == null ? null : (new util.AbstractMap.SimpleImmutableEntry(entry));
@@ -22993,12 +23716,15 @@ var test;
                 }
                 forEach(action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index242 = this.iterator(); index242.hasNext();) {
-                        let t = index242.next();
+                    for (let index175 = this.iterator(); index175.hasNext();) {
+                        let t = index175.next();
                         {
                             (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
                         }
                     }
+                }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
                 }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
@@ -23013,9 +23739,6 @@ var test;
                         ;
                     }
                     return removed;
-                }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 }
                 /**
                  *
@@ -23275,8 +23998,8 @@ var test;
             ;
             static addAll(c, ...a) {
                 let result = false;
-                for (let index243 = 0; index243 < a.length; index243++) {
-                    let e = a[index243];
+                for (let index176 = 0; index176 < a.length; index176++) {
+                    let e = a[index176];
                     {
                         result = c.add(e) || result;
                     }
@@ -23351,8 +24074,8 @@ var test;
                     throw new java.lang.IndexOutOfBoundsException("src does not fit in dest");
                 }
                 let destIt = dest.listIterator();
-                for (let index244 = src.iterator(); index244.hasNext();) {
-                    let e = index244.next();
+                for (let index177 = src.iterator(); index177.hasNext();) {
+                    let e = index177.next();
                     {
                         destIt.next();
                         destIt.set(e);
@@ -23366,8 +24089,8 @@ var test;
                     iterating = c2;
                     testing = c1;
                 }
-                for (let index245 = iterating.iterator(); index245.hasNext();) {
-                    let o = index245.next();
+                for (let index178 = iterating.iterator(); index178.hasNext();) {
+                    let o = index178.next();
                     {
                         if (testing.contains(o)) {
                             return false;
@@ -23406,8 +24129,8 @@ var test;
             }
             static frequency(c, o) {
                 let count = 0;
-                for (let index246 = c.iterator(); index246.hasNext();) {
-                    let e = index246.next();
+                for (let index179 = c.iterator(); index179.hasNext();) {
+                    let e = index179.next();
                     {
                         if (java.util.Objects.equals(o, e)) {
                             ++count;
@@ -23598,8 +24321,8 @@ var test;
                         ;
                     }
                     let it = list.listIterator();
-                    for (let index247 = 0; index247 < arr.length; index247++) {
-                        let e = arr[index247];
+                    for (let index180 = 0; index180 < arr.length; index180++) {
+                        let e = arr[index180];
                         {
                             it.next();
                             it.set(e);
@@ -23661,8 +24384,8 @@ var test;
             }
             static hashCode$java_lang_Iterable(collection) {
                 let hashCode = 0;
-                for (let index248 = collection.iterator(); index248.hasNext();) {
-                    let e = index248.next();
+                for (let index181 = collection.iterator(); index181.hasNext();) {
+                    let e = index181.next();
                     {
                         hashCode = hashCode + java.util.Objects.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -23672,8 +24395,8 @@ var test;
             }
             static hashCode$java_util_List(list) {
                 let hashCode = 1;
-                for (let index249 = list.iterator(); index249.hasNext();) {
-                    let e = index249.next();
+                for (let index182 = list.iterator(); index182.hasNext();) {
+                    let e = index182.next();
                     {
                         hashCode = 31 * hashCode + java.util.Objects.hashCode(e);
                         hashCode = javaemul.internal.Coercions.ensureInt(hashCode);
@@ -24181,12 +24904,15 @@ var test;
                 }
                 forEach(action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index250 = this.iterator(); index250.hasNext();) {
-                        let t = index250.next();
+                    for (let index183 = this.iterator(); index183.hasNext();) {
+                        let t = index183.next();
                         {
                             (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
                         }
                     }
+                }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
                 }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
@@ -24201,9 +24927,6 @@ var test;
                         ;
                     }
                     return removed;
-                }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 }
                 /**
                  *
@@ -24377,10 +25100,25 @@ var test;
                 }
                 forEach(action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index251 = this.iterator(); index251.hasNext();) {
-                        let t = index251.next();
+                    for (let index184 = this.iterator(); index184.hasNext();) {
+                        let t = index184.next();
                         {
                             (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                sort(c) {
+                    let a = this.toArray();
+                    java.util.Arrays.sort(a, (c));
+                    let i = this.listIterator();
+                    for (let index185 = 0; index185 < a.length; index185++) {
+                        let e = a[index185];
+                        {
+                            i.next();
+                            i.set(e);
                         }
                     }
                 }
@@ -24397,9 +25135,6 @@ var test;
                         ;
                     }
                     return removed;
-                }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 }
                 add$int$java_lang_Object(index, element) {
                     throw new java.lang.UnsupportedOperationException();
@@ -24561,12 +25296,15 @@ var test;
                 }
                 forEach(action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index252 = this.iterator(); index252.hasNext();) {
-                        let t = index252.next();
+                    for (let index186 = this.iterator(); index186.hasNext();) {
+                        let t = index186.next();
                         {
                             (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
                         }
                     }
+                }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
                 }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
@@ -24581,9 +25319,6 @@ var test;
                         ;
                     }
                     return removed;
-                }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 }
                 /**
                  *
@@ -24715,6 +25450,17 @@ var test;
                             this.put(key, result);
                     }
                     return result;
+                }
+                putIfAbsent(key, value) {
+                    let v = this.get(key);
+                    if (v == null) {
+                        v = this.put(key, value);
+                    }
+                    return v;
+                }
+                getOrDefault(key, defaultValue) {
+                    let v;
+                    return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
                 }
                 /**
                  *
@@ -25036,12 +25782,15 @@ var test;
                 }
                 forEach(action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index253 = this.iterator(); index253.hasNext();) {
-                        let t = index253.next();
+                    for (let index187 = this.iterator(); index187.hasNext();) {
+                        let t = index187.next();
                         {
                             (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
                         }
                     }
+                }
+                stream() {
+                    return (new javaemul.internal.stream.StreamHelper(this));
                 }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
@@ -25056,9 +25805,6 @@ var test;
                         ;
                     }
                     return removed;
-                }
-                stream() {
-                    return (new javaemul.internal.stream.StreamHelper(this));
                 }
                 /**
                  *
@@ -25161,6 +25907,17 @@ var test;
                             this.put(key, result);
                     }
                     return result;
+                }
+                putIfAbsent(key, value) {
+                    let v = this.get(key);
+                    if (v == null) {
+                        v = this.put(key, value);
+                    }
+                    return v;
+                }
+                getOrDefault(key, defaultValue) {
+                    let v;
+                    return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
                 }
                 /**
                  *
@@ -25359,8 +26116,8 @@ var test;
              * @return {boolean}
              */
             containsValue(value) {
-                for (let index254 = this.__keySet.iterator(); index254.hasNext();) {
-                    let key = index254.next();
+                for (let index188 = this.__keySet.iterator(); index188.hasNext();) {
+                    let key = index188.next();
                     {
                         if (java.util.Objects.equals(value, this.__values[key.ordinal()])) {
                             return true;
@@ -25647,12 +26404,15 @@ var test;
             }
             forEach(action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index255 = this.iterator(); index255.hasNext();) {
-                    let t = index255.next();
+                for (let index189 = this.iterator(); index189.hasNext();) {
+                    let t = index189.next();
                     {
                         (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
                     }
                 }
+            }
+            stream() {
+                return (new javaemul.internal.stream.StreamHelper(this));
             }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
@@ -25667,9 +26427,6 @@ var test;
                     ;
                 }
                 return removed;
-            }
-            stream() {
-                return (new javaemul.internal.stream.StreamHelper(this));
             }
             /**
              *
@@ -25861,6 +26618,17 @@ var test;
                 }
                 return result;
             }
+            putIfAbsent(key, value) {
+                let v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
+            }
+            getOrDefault(key, defaultValue) {
+                let v;
+                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
+            }
             clone() {
                 return (new IdentityHashMap(this));
             }
@@ -25880,8 +26648,8 @@ var test;
                 if (this.size() !== otherMap.size()) {
                     return false;
                 }
-                for (let index256 = otherMap.entrySet().iterator(); index256.hasNext();) {
-                    let entry = index256.next();
+                for (let index190 = otherMap.entrySet().iterator(); index190.hasNext();) {
+                    let entry = index190.next();
                     {
                         let otherKey = entry.getKey();
                         let otherValue = entry.getValue();
@@ -25901,8 +26669,8 @@ var test;
              */
             hashCode() {
                 let hashCode = 0;
-                for (let index257 = this.entrySet().iterator(); index257.hasNext();) {
-                    let entry = index257.next();
+                for (let index191 = this.entrySet().iterator(); index191.hasNext();) {
+                    let entry = index191.next();
                     {
                         hashCode += java.lang.System.identityHashCode(entry.getKey());
                         hashCode += java.lang.System.identityHashCode(entry.getValue());
@@ -27934,6 +28702,17 @@ var test;
                 }
                 return result;
             }
+            putIfAbsent(key, value) {
+                let v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
+            }
+            getOrDefault(key, defaultValue) {
+                let v;
+                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
+            }
             /**
              *
              */
@@ -28226,8 +29005,8 @@ var test;
                 }
                 forEach(action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index258 = this.iterator(); index258.hasNext();) {
-                        let t = index258.next();
+                    for (let index192 = this.iterator(); index192.hasNext();) {
+                        let t = index192.next();
                         {
                             (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
                         }
@@ -28631,9 +29410,9 @@ var test;
                 /*private*/ actuallyLog$java_util_logging_LogRecord(record) {
                     if (this.isLoggable(record.getLevel())) {
                         {
-                            let array260 = this.getHandlers();
-                            for (let index259 = 0; index259 < array260.length; index259++) {
-                                let handler = array260[index259];
+                            let array194 = this.getHandlers();
+                            for (let index193 = 0; index193 < array194.length; index193++) {
+                                let handler = array194[index193];
                                 {
                                     handler.publish(record);
                                 }
@@ -28643,9 +29422,9 @@ var test;
                         while ((logger != null)) {
                             {
                                 {
-                                    let array262 = logger.getHandlers();
-                                    for (let index261 = 0; index261 < array262.length; index261++) {
-                                        let handler = array262[index261];
+                                    let array196 = logger.getHandlers();
+                                    for (let index195 = 0; index195 < array196.length; index195++) {
+                                        let handler = array196[index195];
                                         {
                                             handler.publish(record);
                                         }
@@ -29365,6 +30144,8 @@ java.util.logging.Level.FINE_$LI$();
 java.util.logging.Level.CONFIG_$LI$();
 java.util.logging.Level.ALL_$LI$();
 java.util.Locale.defaultLocale_$LI$();
+java.util.Locale.UK_$LI$();
+java.util.Locale.FRANCE_$LI$();
 java.util.Locale.US_$LI$();
 java.util.Locale.ENGLISH_$LI$();
 java.util.Locale.ROOT_$LI$();

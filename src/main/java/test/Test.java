@@ -1,28 +1,19 @@
 package test;
 
-import static def.dom.Globals.console;
-import static def.dom.Globals.document;
-import static def.js.Globals.undefined;
-import static java.util.Arrays.asList;
-import static jsweet.util.Lang.any;
+import def.dom.HTMLElement;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.text.Collator;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
-import def.dom.HTMLElement;
+import static def.dom.Globals.console;
+import static def.dom.Globals.document;
+import static def.js.Globals.eval;
+import static def.js.Globals.undefined;
+import static java.util.Arrays.asList;
+import static jsweet.util.Lang.any;
 
 public class Test {
 

@@ -20,7 +20,17 @@ public class Matcher implements MatchResult {
     private int[] starts;
     private int[] ends;
     private String[] groups;
-
+    /**
+     * The range of string that last matched the pattern. If the last
+     * match failed then first is -1; last initially holds 0 then it
+     * holds the index of the end of the last match (which is where the
+     * next search starts).
+     */
+    int first = -1, last = 0;
+    /**
+     * The index of the last position appended in a substitution.
+     */
+    int lastAppendPosition = 0;
     public Matcher(Pattern _pattern, String text) {
         this._pattern = _pattern;
         this.text = text;
@@ -270,6 +280,8 @@ public class Matcher implements MatchResult {
         groups = null;
         starts = null;
         ends = null;
+        first = -1;
+        last = 0;
         return this;
     }
 
@@ -301,4 +313,7 @@ public class Matcher implements MatchResult {
         this._pattern = newPattern;
         return this;
     }
+
+
+
 }
