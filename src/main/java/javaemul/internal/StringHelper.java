@@ -25,6 +25,8 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.Comparator;
+import java.util.Objects;
+import java.util.StringJoiner;
 
 //import def.sprintf_js.Globals;
 
@@ -182,11 +184,21 @@ public final class StringHelper {
             return String.valueOf((char) codePoint);
         }
     }
-
+    
     public static String format(String formatString, Object... args) {
         return "";
         // TODO: reactivate
         // return Globals.sprintf(formatString, args);
+    }
+
+    public static String join(CharSequence delimiter, CharSequence... elements) {
+        Objects.requireNonNull(delimiter);
+        Objects.requireNonNull(elements);
+        StringJoiner joiner = new StringJoiner(delimiter);
+        for (CharSequence cs: elements) {
+            joiner.add(cs);
+        }
+        return joiner.toString();
     }
 
     private StringHelper() {
