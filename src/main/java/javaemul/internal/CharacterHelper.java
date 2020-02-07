@@ -232,7 +232,10 @@ public final class CharacterHelper implements Comparable<CharacterHelper>, Seria
 	 * TODO: correct Unicode handling.
 	 */
 	public static boolean isLetterOrDigit(char c) {
-		return string(String.valueOf(c)).match(leterOrDigitRegex()).length > 0;
+		RegExpMatchArray array = string(String.valueOf(c)).match(leterOrDigitRegex());
+		if (array != null)
+			return string(String.valueOf(c)).match(leterOrDigitRegex()).length > 0;
+		return false;
 	}
 
 	private static RegExp leterOrDigitRegex() {
@@ -362,9 +365,8 @@ public final class CharacterHelper implements Comparable<CharacterHelper>, Seria
 
 	public static int toCodePoint(char highSurrogate, char lowSurrogate) {
 		/*
-		 * High and low surrogate chars have the bottom 10 bits to store the
-		 * value above MIN_SUPPLEMENTARY_CODE_POINT, so grab those bits and add
-		 * the offset.
+		 * High and low surrogate chars have the bottom 10 bits to store the value above
+		 * MIN_SUPPLEMENTARY_CODE_POINT, so grab those bits and add the offset.
 		 */
 		return MIN_SUPPLEMENTARY_CODE_POINT + ((highSurrogate & 1023) << 10) + (lowSurrogate & 1023);
 	}
@@ -443,8 +445,8 @@ public final class CharacterHelper implements Comparable<CharacterHelper>, Seria
 	}
 
 	/**
-	 * Computes the low surrogate character of the UTF16 representation of a
-	 * non-BMP code point. See {@link getHighSurrogate}.
+	 * Computes the low surrogate character of the UTF16 representation of a non-BMP
+	 * code point. See {@link getHighSurrogate}.
 	 *
 	 * @param codePoint
 	 *            requested codePoint, required to be >=
