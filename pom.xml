@@ -81,7 +81,7 @@
 					<!-- <verbose>true</verbose> -->
 					<!-- switch bundle vs module -->
 					<bundle>true</bundle>
-					<!-- <module>commonjs</module> -->
+					<module>commonjs</module>
 					<declaration>true</declaration>
 					<outDir>src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}</outDir>
 					<dtsOut>src/main/resources/META-INF/resources/typings/${project.artifactId}/${project.version}</dtsOut>
@@ -181,8 +181,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.jsweet</groupId>
+			<artifactId>jsweet-transpiler</artifactId>
+			<version>2.3.6-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jsweet</groupId>
 			<artifactId>jsweet-core</artifactId>
-			<version>6.0.2</version>
+			<version>6.0.3</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
