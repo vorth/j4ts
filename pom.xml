@@ -81,7 +81,7 @@
 					<!-- <verbose>true</verbose> -->
 					<!-- switch bundle vs module -->
 					<bundle>true</bundle>
-					<module>commonjs</module>
+					<module>none</module>
 					<declaration>true</declaration>
 					<outDir>src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}</outDir>
 					<dtsOut>src/main/resources/META-INF/resources/typings/${project.artifactId}/${project.version}</dtsOut>

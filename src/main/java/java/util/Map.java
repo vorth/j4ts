@@ -132,4 +132,28 @@ public interface Map<K, V> {
 
         return v;
     }
+	   default void replaceAll(BiFunction<? super K, ? super V, ? extends V> function) {
+	        Objects.requireNonNull(function);
+	        for (Map.Entry<K, V> entry : entrySet()) {
+	            K k;
+	            V v;
+	            try {
+	                k = entry.getKey();
+	                v = entry.getValue();
+	            } catch(IllegalStateException ise) {
+	                // this usually means the entry is no longer in the map.
+	                throw new  RuntimeException(ise);
+	            }
+
+	            // ise thrown from function is not a cme.
+	            v = function.apply(k, v);
+
+	            try {
+	                entry.setValue(v);
+	            } catch(IllegalStateException ise) {
+	                // this usually means the entry is no longer in the map.
+	                throw new RuntimeException(ise);
+	            }
+	        }
+	    }
 }

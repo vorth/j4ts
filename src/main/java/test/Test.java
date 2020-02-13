@@ -1,26 +1,36 @@
 package test;
 
-import def.dom.HTMLElement;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.text.Collator;
-import java.util.*;
-
 import static def.dom.Globals.console;
 import static def.dom.Globals.document;
-import static def.js.Globals.eval;
 import static def.js.Globals.undefined;
 import static java.util.Arrays.asList;
 import static jsweet.util.Lang.any;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
+import def.dom.HTMLElement;
+
 public class Test {
 
 	public static void main(String[] args) {
-		System.out.println(asList("a","b","c"));
+		System.out.println(asList("a", "b", "c"));
 	}
-	
+
 	public static void assertEquals(Object o1, Object o2) {
 		if (!(o1 == o2)) {
 			throw new Error("invalid assertion: " + o1 + "!=" + o2);
@@ -47,6 +57,7 @@ public class Test {
 			testSet();
 			testString();
 			testIO();
+			testEnumSet();
 			// not available
 			// testMath();
 
@@ -78,6 +89,11 @@ public class Test {
 				console.info("Failure: " + e.getMessage());
 			}
 		}
+	}
+
+	private static void testEnumSet() {
+		console.info("testing EnumSet");
+		EnumSet.of(MyEnum.A);
 	}
 
 	public static void testArrays() {
@@ -317,4 +333,8 @@ class MyKey {
 	public int hashCode() {
 		return data.hashCode();
 	}
+}
+
+enum MyEnum {
+	A, B, C
 }
