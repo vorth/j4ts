@@ -25,6 +25,17 @@ import java.util.Set;
 
 import def.dom.HTMLElement;
 
+enum MyEnum {
+	A, B, C;
+}
+
+enum MyComplexEnum {
+	A, B, C;
+	public String aFunction() {
+		return "test";
+	}
+}
+
 public class Test {
 
 	public static void main(String[] args) {
@@ -52,12 +63,12 @@ public class Test {
 	public static void test() {
 		try {
 			testArrays();
-			testList();
+			//testList();
 			testMap();
 			testSet();
 			testString();
 			testIO();
-			testEnumSet();
+			testEnums();
 			// not available
 			// testMath();
 
@@ -91,9 +102,26 @@ public class Test {
 		}
 	}
 
-	private static void testEnumSet() {
-		console.info("testing EnumSet");
-		EnumSet.of(MyEnum.A);
+	public static int comp1(Comparable<MyComplexEnum> e) {
+		return e.compareTo(MyComplexEnum.A);
+	}
+
+	public static int comp2(Comparable<MyEnum> e) {
+		// this does not work with simple enums because we cannot infer it is an enum
+		return e.compareTo(MyEnum.A);
+	}
+	
+	public static void testEnums() {
+		console.info("testing enums");
+		assertEquals(1, MyEnum.B);
+		assertEquals("A", MyEnum.A.name());
+		assertEquals("A", MyComplexEnum.A.name());
+		assertEquals(0, MyEnum.A.compareTo(MyEnum.A));
+		assertEquals(MyEnum.B, MyEnum.values()[1]);
+		assertEquals(0, comp1(MyComplexEnum.A));
+		//assertEquals(0, comp2(MyEnum.A));
+		//EnumSet.of(MyEnum.A);
+		console.info("end testing enums");
 	}
 
 	public static void testArrays() {
@@ -333,8 +361,4 @@ class MyKey {
 	public int hashCode() {
 		return data.hashCode();
 	}
-}
-
-enum MyEnum {
-	A, B, C
 }
