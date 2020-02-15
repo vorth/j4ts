@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -22,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import def.dom.HTMLElement;
 
@@ -63,12 +63,13 @@ public class Test {
 	public static void test() {
 		try {
 			testArrays();
-			//testList();
+			testList();
 			testMap();
 			testSet();
 			testString();
 			testIO();
 			testEnums();
+			testStreams();
 			// not available
 			// testMath();
 
@@ -295,6 +296,18 @@ public class Test {
 		assertEquals(Character.getNumericValue('a'), s.read());
 		console.info("end testing io");
 	}
+	
+	public static void testStreams() {
+		console.info("testing streams");
+		List<String> l = new ArrayList<String>();
+		l.add("a");
+		l.add("b");
+		l.add("c");
+		assertEquals(l.stream().collect(Collectors.toList()).toString(), "[a, b, c]");
+		assertEquals(l.stream().filter(e -> e.equals("a")).collect(Collectors.toList()).toString(), "[a]");
+		console.info("end testing streams");
+	}
+	
 
 	// java.math is not available yet and should be implemented as a wrapper to
 	// bignumber.js
