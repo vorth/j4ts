@@ -219,14 +219,14 @@ public abstract class EnumSet<E extends Enum<E>> extends AbstractSet<E> {
     return new EnumSetImpl<E>(all, ArrayHelper.createFrom(all, all.length), 0);
   }
 
-  public static <E extends Enum<E>> EnumSet<E> of(E first) {
+  private static <E extends Enum<E>> EnumSet<E> ofOne(E first) {
     EnumSet<E> set = noneOf(first.getDeclaringClass());
     set.add(first);
     return set;
   }
 
   public static <E extends Enum<E>> EnumSet<E> of(E first, E... rest) {
-    EnumSet<E> set = of(first);
+    EnumSet<E> set = ofOne(first);
     Collections.addAll(set, rest);
     return set;
   }
