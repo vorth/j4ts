@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import def.dom.HTMLElement;
 
@@ -108,10 +109,11 @@ public class Test {
 	}
 
 	public static int comp2(Comparable<MyEnum> e) {
-		// this does not work with simple enums because we cannot infer it is an enum
+		// this does not work with simple enums because we cannot infer it is an
+		// enum
 		return e.compareTo(MyEnum.A);
 	}
-	
+
 	public static void testEnums() {
 		console.info("testing enums");
 		assertEquals(1, MyEnum.B);
@@ -120,8 +122,8 @@ public class Test {
 		assertEquals(0, MyEnum.A.compareTo(MyEnum.A));
 		assertEquals(MyEnum.B, MyEnum.values()[1]);
 		assertEquals(0, comp1(MyComplexEnum.A));
-		//assertEquals(0, comp2(MyEnum.A));
-		//EnumSet.of(MyEnum.A);
+		// assertEquals(0, comp2(MyEnum.A));
+		// EnumSet.of(MyEnum.A);
 		console.info("end testing enums");
 	}
 
@@ -296,7 +298,7 @@ public class Test {
 		assertEquals(Character.getNumericValue('a'), s.read());
 		console.info("end testing io");
 	}
-	
+
 	public static void testStreams() {
 		console.info("testing streams");
 		List<String> l = new ArrayList<String>();
@@ -305,9 +307,14 @@ public class Test {
 		l.add("c");
 		assertEquals(l.stream().collect(Collectors.toList()).toString(), "[a, b, c]");
 		assertEquals(l.stream().filter(e -> e.equals("a")).collect(Collectors.toList()).toString(), "[a]");
+
+		Stream<String[]> str = Stream
+				.of(new String[][] { { "GFG", "GeeksForGeeks" }, { "g", "geeks" }, { "G", "Geeks" } });
+		Map<String, String> map = str.collect(Collectors.toMap(p -> p[0], p -> p[1]));
+		assertEquals(map.size(), 3);
+		assertEquals(map.get("g"), "geeks");
 		console.info("end testing streams");
 	}
-	
 
 	// java.math is not available yet and should be implemented as a wrapper to
 	// bignumber.js

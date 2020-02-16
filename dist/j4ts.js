@@ -2410,6 +2410,10 @@ var test;
             else {
                 return o1 === o2;
             } })(e, "a")).collect(java.util.stream.Collectors.toList()).toString(), "[a]");
+            let str = java.util.stream.Stream.of([["GFG", "GeeksForGeeks"], ["g", "geeks"], ["G", "Geeks"]]);
+            let map = (str.collect(java.util.stream.Collectors.toMap$java_util_function_Function$java_util_function_Function((p) => p[0], (p) => p[1])));
+            Test.assertEquals(map.size(), 3);
+            Test.assertEquals(map.get("g"), "geeks");
             console.info("end testing streams");
         }
         static key1() {
@@ -5124,18 +5128,6 @@ var java;
          * @class
          */
         class AbstractCollection {
-            parallelStream() {
-                return this.stream();
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index125 = this.iterator(); index125.hasNext();) {
-                    let t = index125.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -5152,6 +5144,18 @@ var java;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index125 = this.iterator(); index125.hasNext();) {
+                    let t = index125.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
+            parallelStream() {
+                return this.stream();
             }
             constructor() {
             }
@@ -11314,6 +11318,9 @@ var java;
                 else
                     throw new Error('invalid overload');
             }
+            remove() {
+                throw new java.lang.UnsupportedOperationException();
+            }
             forEachRemaining(consumer) {
                 javaemul.internal.InternalPreconditions.checkNotNull((consumer));
                 while ((this.hasNext())) {
@@ -11322,9 +11329,6 @@ var java;
                     }
                 }
                 ;
-            }
-            remove() {
-                throw new java.lang.UnsupportedOperationException();
             }
             static numeral_$LI$() { if (Scanner.numeral == null)
                 Scanner.numeral = Scanner.digit + "+"; return Scanner.numeral; }
@@ -11654,18 +11658,6 @@ var java;
          * @extends java.util.AbstractCollection
          */
         class AbstractSet extends java.util.AbstractCollection {
-            parallelStream() {
-                return this.stream();
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index131 = this.iterator(); index131.hasNext();) {
-                    let t = index131.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -11682,6 +11674,18 @@ var java;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index131 = this.iterator(); index131.hasNext();) {
+                    let t = index131.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
+            parallelStream() {
+                return this.stream();
             }
             /**
              *
@@ -11764,24 +11768,12 @@ var java;
                 if (this.modCount === undefined)
                     this.modCount = 0;
             }
-            parallelStream() {
-                return this.stream();
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index133 = this.iterator(); index133.hasNext();) {
-                    let t = index133.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             sort(c) {
                 let a = this.toArray();
                 java.util.Arrays.sort(a, (c));
                 let i = this.listIterator();
-                for (let index134 = 0; index134 < a.length; index134++) {
-                    let e = a[index134];
+                for (let index133 = 0; index133 < a.length; index133++) {
+                    let e = a[index133];
                     {
                         i.next();
                         i.set(e);
@@ -11804,6 +11796,18 @@ var java;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index134 = this.iterator(); index134.hasNext();) {
+                    let t = index134.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
+            parallelStream() {
+                return this.stream();
             }
             add$java_lang_Object(obj) {
                 this.add(this.size(), obj);
@@ -12238,18 +12242,6 @@ var java;
          * @class
          */
         class AbstractQueue extends java.util.AbstractCollection {
-            parallelStream() {
-                return this.stream();
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index137 = this.iterator(); index137.hasNext();) {
-                    let t = index137.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -12266,6 +12258,18 @@ var java;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index137 = this.iterator(); index137.hasNext();) {
+                    let t = index137.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
+            parallelStream() {
+                return this.stream();
             }
             constructor() {
                 super();
@@ -16735,17 +16739,6 @@ var java;
          * @class
          */
         class AbstractMap {
-            merge(key, value, map) {
-                let old = this.get(key);
-                let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
-                if (next == null) {
-                    this.remove(key);
-                }
-                else {
-                    this.put(key, next);
-                }
-                return next;
-            }
             replaceAll(__function) {
                 java.util.Objects.requireNonNull((__function));
                 for (let index142 = this.entrySet().iterator(); index142.hasNext();) {
@@ -16776,6 +16769,13 @@ var java;
                 let v;
                 return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
             }
+            putIfAbsent(key, value) {
+                let v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
+            }
             computeIfAbsent(key, mappingFunction) {
                 let result;
                 if ((result = this.get(key)) == null) {
@@ -16785,12 +16785,16 @@ var java;
                 }
                 return result;
             }
-            putIfAbsent(key, value) {
-                let v = this.get(key);
-                if (v == null) {
-                    v = this.put(key, value);
+            merge(key, value, map) {
+                let old = this.get(key);
+                let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
+                if (next == null) {
+                    this.remove(key);
                 }
-                return v;
+                else {
+                    this.put(key, next);
+                }
+                return next;
             }
             constructor() {
             }
@@ -17387,18 +17391,6 @@ var java;
                 else
                     throw new Error('invalid overload');
             }
-            parallelStream() {
-                return this.stream();
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index147 = this.iterator(); index147.hasNext();) {
-                    let t = index147.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -17415,6 +17407,18 @@ var java;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index147 = this.iterator(); index147.hasNext();) {
+                    let t = index147.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
+            parallelStream() {
+                return this.stream();
             }
             /**
              *
@@ -17850,18 +17854,6 @@ var java;
                 else
                     throw new Error('invalid overload');
             }
-            parallelStream() {
-                return this.stream();
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index148 = this.iterator(); index148.hasNext();) {
-                    let t = index148.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -17878,6 +17870,18 @@ var java;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index148 = this.iterator(); index148.hasNext();) {
+                    let t = index148.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
+            parallelStream() {
+                return this.stream();
             }
             /**
              *
@@ -18158,24 +18162,12 @@ var java;
                 else
                     throw new Error('invalid overload');
             }
-            parallelStream() {
-                return this.stream();
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index149 = this.iterator(); index149.hasNext();) {
-                    let t = index149.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             sort(c) {
                 let a = this.toArray();
                 java.util.Arrays.sort(a, (c));
                 let i = this.listIterator();
-                for (let index150 = 0; index150 < a.length; index150++) {
-                    let e = a[index150];
+                for (let index149 = 0; index149 < a.length; index149++) {
+                    let e = a[index149];
                     {
                         i.next();
                         i.set(e);
@@ -18198,6 +18190,18 @@ var java;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index150 = this.iterator(); index150.hasNext();) {
+                    let t = index150.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
+            parallelStream() {
+                return this.stream();
             }
             add$java_lang_Object(o) {
                 return this.arrayList.add(o);
@@ -18715,24 +18719,12 @@ var java;
                 else
                     throw new Error('invalid overload');
             }
-            parallelStream() {
-                return this.stream();
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index152 = this.iterator(); index152.hasNext();) {
-                    let t = index152.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             sort(c) {
                 let a = this.toArray();
                 java.util.Arrays.sort(a, (c));
                 let i = this.listIterator();
-                for (let index153 = 0; index153 < a.length; index153++) {
-                    let e = a[index153];
+                for (let index152 = 0; index152 < a.length; index152++) {
+                    let e = a[index152];
                     {
                         i.next();
                         i.set(e);
@@ -18755,6 +18747,18 @@ var java;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index153 = this.iterator(); index153.hasNext();) {
+                    let t = index153.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
+            parallelStream() {
+                return this.stream();
             }
             add$java_lang_Object(o) {
                 this.array[this.array.length] = o;
@@ -22772,17 +22776,6 @@ var java;
          * @class
          */
         class AbstractNavigableMap extends java.util.AbstractMap {
-            merge(key, value, map) {
-                let old = this.get(key);
-                let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
-                if (next == null) {
-                    this.remove(key);
-                }
-                else {
-                    this.put(key, next);
-                }
-                return next;
-            }
             replaceAll(__function) {
                 java.util.Objects.requireNonNull((__function));
                 for (let index175 = this.entrySet().iterator(); index175.hasNext();) {
@@ -22813,6 +22806,13 @@ var java;
                 let v;
                 return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
             }
+            putIfAbsent(key, value) {
+                let v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
+            }
             computeIfAbsent(key, mappingFunction) {
                 let result;
                 if ((result = this.get(key)) == null) {
@@ -22822,12 +22822,16 @@ var java;
                 }
                 return result;
             }
-            putIfAbsent(key, value) {
-                let v = this.get(key);
-                if (v == null) {
-                    v = this.put(key, value);
+            merge(key, value, map) {
+                let old = this.get(key);
+                let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
+                if (next == null) {
+                    this.remove(key);
                 }
-                return v;
+                else {
+                    this.put(key, next);
+                }
+                return next;
             }
             static copyOf(entry) {
                 return entry == null ? null : (new util.AbstractMap.SimpleImmutableEntry(entry));
@@ -23292,18 +23296,6 @@ var java;
                         this.map = null;
                     this.map = map;
                 }
-                parallelStream() {
-                    return this.stream();
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index176 = this.iterator(); index176.hasNext();) {
-                        let t = index176.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
-                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -23320,6 +23312,18 @@ var java;
                 }
                 stream() {
                     return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index176 = this.iterator(); index176.hasNext();) {
+                        let t = index176.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
+                parallelStream() {
+                    return this.stream();
                 }
                 /**
                  *
@@ -24498,18 +24502,6 @@ var java;
                         this.coll = null;
                     this.coll = coll;
                 }
-                parallelStream() {
-                    return this.stream();
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index184 = this.iterator(); index184.hasNext();) {
-                        let t = index184.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
-                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -24526,6 +24518,18 @@ var java;
                 }
                 stream() {
                     return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index184 = this.iterator(); index184.hasNext();) {
+                        let t = index184.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
+                parallelStream() {
+                    return this.stream();
                 }
                 /**
                  *
@@ -24697,24 +24701,12 @@ var java;
                         this.list = null;
                     this.list = list;
                 }
-                parallelStream() {
-                    return this.stream();
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index185 = this.iterator(); index185.hasNext();) {
-                        let t = index185.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
-                }
                 sort(c) {
                     let a = this.toArray();
                     java.util.Arrays.sort(a, (c));
                     let i = this.listIterator();
-                    for (let index186 = 0; index186 < a.length; index186++) {
-                        let e = a[index186];
+                    for (let index185 = 0; index185 < a.length; index185++) {
+                        let e = a[index185];
                         {
                             i.next();
                             i.set(e);
@@ -24737,6 +24729,18 @@ var java;
                 }
                 stream() {
                     return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index186 = this.iterator(); index186.hasNext();) {
+                        let t = index186.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
+                parallelStream() {
+                    return this.stream();
                 }
                 add$int$java_lang_Object(index, element) {
                     throw new java.lang.UnsupportedOperationException();
@@ -24893,18 +24897,6 @@ var java;
             UnmodifiableList["__class"] = "java.util.Collections.UnmodifiableList";
             UnmodifiableList["__interfaces"] = ["java.util.List", "java.util.Collection", "java.lang.Iterable"];
             class UnmodifiableSet extends Collections.UnmodifiableCollection {
-                parallelStream() {
-                    return this.stream();
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index187 = this.iterator(); index187.hasNext();) {
-                        let t = index187.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
-                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -24921,6 +24913,18 @@ var java;
                 }
                 stream() {
                     return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index187 = this.iterator(); index187.hasNext();) {
+                        let t = index187.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
+                parallelStream() {
+                    return this.stream();
                 }
                 constructor(set) {
                     super(set);
@@ -25036,17 +25040,6 @@ var java;
                         this.__values = null;
                     this.map = map;
                 }
-                merge(key, value, map) {
-                    let old = this.get(key);
-                    let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
-                    if (next == null) {
-                        this.remove(key);
-                    }
-                    else {
-                        this.put(key, next);
-                    }
-                    return next;
-                }
                 replaceAll(__function) {
                     java.util.Objects.requireNonNull((__function));
                     for (let index188 = this.entrySet().iterator(); index188.hasNext();) {
@@ -25077,6 +25070,13 @@ var java;
                     let v;
                     return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
                 }
+                putIfAbsent(key, value) {
+                    let v = this.get(key);
+                    if (v == null) {
+                        v = this.put(key, value);
+                    }
+                    return v;
+                }
                 computeIfAbsent(key, mappingFunction) {
                     let result;
                     if ((result = this.get(key)) == null) {
@@ -25086,12 +25086,16 @@ var java;
                     }
                     return result;
                 }
-                putIfAbsent(key, value) {
-                    let v = this.get(key);
-                    if (v == null) {
-                        v = this.put(key, value);
+                merge(key, value, map) {
+                    let old = this.get(key);
+                    let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
+                    if (next == null) {
+                        this.remove(key);
                     }
-                    return v;
+                    else {
+                        this.put(key, next);
+                    }
+                    return next;
                 }
                 /**
                  *
@@ -25413,18 +25417,6 @@ var java;
                         this.sortedSet = null;
                     this.sortedSet = sortedSet;
                 }
-                parallelStream() {
-                    return this.stream();
-                }
-                forEach(action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    for (let index189 = this.iterator(); index189.hasNext();) {
-                        let t = index189.next();
-                        {
-                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                        }
-                    }
-                }
                 removeIf(filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     let removed = false;
@@ -25441,6 +25433,18 @@ var java;
                 }
                 stream() {
                     return (new javaemul.internal.stream.StreamHelper(this));
+                }
+                forEach(action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    for (let index189 = this.iterator(); index189.hasNext();) {
+                        let t = index189.next();
+                        {
+                            (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                        }
+                    }
+                }
+                parallelStream() {
+                    return this.stream();
                 }
                 /**
                  *
@@ -25524,17 +25528,6 @@ var java;
                         this.sortedMap = null;
                     this.sortedMap = sortedMap;
                 }
-                merge(key, value, map) {
-                    let old = this.get(key);
-                    let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
-                    if (next == null) {
-                        this.remove(key);
-                    }
-                    else {
-                        this.put(key, next);
-                    }
-                    return next;
-                }
                 replaceAll(__function) {
                     java.util.Objects.requireNonNull((__function));
                     for (let index190 = this.entrySet().iterator(); index190.hasNext();) {
@@ -25565,6 +25558,13 @@ var java;
                     let v;
                     return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
                 }
+                putIfAbsent(key, value) {
+                    let v = this.get(key);
+                    if (v == null) {
+                        v = this.put(key, value);
+                    }
+                    return v;
+                }
                 computeIfAbsent(key, mappingFunction) {
                     let result;
                     if ((result = this.get(key)) == null) {
@@ -25574,12 +25574,16 @@ var java;
                     }
                     return result;
                 }
-                putIfAbsent(key, value) {
-                    let v = this.get(key);
-                    if (v == null) {
-                        v = this.put(key, value);
+                merge(key, value, map) {
+                    let old = this.get(key);
+                    let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
+                    if (next == null) {
+                        this.remove(key);
                     }
-                    return v;
+                    else {
+                        this.put(key, next);
+                    }
+                    return next;
                 }
                 /**
                  *
@@ -25696,18 +25700,6 @@ var java;
          * @extends java.util.HashSet
          */
         class LinkedHashSet extends java.util.HashSet {
-            parallelStream() {
-                return this.stream();
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index191 = this.iterator(); index191.hasNext();) {
-                    let t = index191.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             removeIf(filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 let removed = false;
@@ -25724,6 +25716,18 @@ var java;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index191 = this.iterator(); index191.hasNext();) {
+                    let t = index191.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
+            parallelStream() {
+                return this.stream();
             }
             constructor(ignored, alsoIgnored) {
                 if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null)) {
@@ -25895,24 +25899,12 @@ var java;
                 else
                     throw new Error('invalid overload');
             }
-            parallelStream() {
-                return this.stream();
-            }
-            forEach(action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                for (let index192 = this.iterator(); index192.hasNext();) {
-                    let t = index192.next();
-                    {
-                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
-                    }
-                }
-            }
             sort(c) {
                 let a = this.toArray();
                 java.util.Arrays.sort(a, (c));
                 let i = this.listIterator();
-                for (let index193 = 0; index193 < a.length; index193++) {
-                    let e = a[index193];
+                for (let index192 = 0; index192 < a.length; index192++) {
+                    let e = a[index192];
                     {
                         i.next();
                         i.set(e);
@@ -25935,6 +25927,18 @@ var java;
             }
             stream() {
                 return (new javaemul.internal.stream.StreamHelper(this));
+            }
+            forEach(action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                for (let index193 = this.iterator(); index193.hasNext();) {
+                    let t = index193.next();
+                    {
+                        (target => (typeof target === 'function') ? target(t) : target.accept(t))(action);
+                    }
+                }
+            }
+            parallelStream() {
+                return this.stream();
             }
             /**
              *
@@ -26750,17 +26754,6 @@ var java;
                 else
                     throw new Error('invalid overload');
             }
-            merge(key, value, map) {
-                let old = this.get(key);
-                let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
-                if (next == null) {
-                    this.remove(key);
-                }
-                else {
-                    this.put(key, next);
-                }
-                return next;
-            }
             replaceAll(__function) {
                 java.util.Objects.requireNonNull((__function));
                 for (let index194 = this.entrySet().iterator(); index194.hasNext();) {
@@ -26791,6 +26784,13 @@ var java;
                 let v;
                 return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
             }
+            putIfAbsent(key, value) {
+                let v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
+            }
             computeIfAbsent(key, mappingFunction) {
                 let result;
                 if ((result = this.get(key)) == null) {
@@ -26800,12 +26800,16 @@ var java;
                 }
                 return result;
             }
-            putIfAbsent(key, value) {
-                let v = this.get(key);
-                if (v == null) {
-                    v = this.put(key, value);
+            merge(key, value, map) {
+                let old = this.get(key);
+                let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
+                if (next == null) {
+                    this.remove(key);
                 }
-                return v;
+                else {
+                    this.put(key, next);
+                }
+                return next;
             }
             clone() {
                 return (new IdentityHashMap(this));
@@ -28870,17 +28874,6 @@ var java;
                 else
                     throw new Error('invalid overload');
             }
-            merge(key, value, map) {
-                let old = this.get(key);
-                let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
-                if (next == null) {
-                    this.remove(key);
-                }
-                else {
-                    this.put(key, next);
-                }
-                return next;
-            }
             replaceAll(__function) {
                 java.util.Objects.requireNonNull((__function));
                 for (let index198 = this.entrySet().iterator(); index198.hasNext();) {
@@ -28911,6 +28904,13 @@ var java;
                 let v;
                 return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
             }
+            putIfAbsent(key, value) {
+                let v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
+            }
             computeIfAbsent(key, mappingFunction) {
                 let result;
                 if ((result = this.get(key)) == null) {
@@ -28920,12 +28920,16 @@ var java;
                 }
                 return result;
             }
-            putIfAbsent(key, value) {
-                let v = this.get(key);
-                if (v == null) {
-                    v = this.put(key, value);
+            merge(key, value, map) {
+                let old = this.get(key);
+                let next = (old == null) ? value : (target => (typeof target === 'function') ? target(old, value) : target.apply(old, value))(map);
+                if (next == null) {
+                    this.remove(key);
                 }
-                return v;
+                else {
+                    this.put(key, next);
+                }
+                return next;
             }
             /**
              *
