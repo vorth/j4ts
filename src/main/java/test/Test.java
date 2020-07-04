@@ -74,7 +74,7 @@ public class Test {
 			// not available
 			// testMath();
 
-			console.error("OS NAME: " + System.getProperty("os.name"));
+			console.info("OS NAME: " + System.getProperty("os.name"));
 			console.info("Get input: ");
 			Scanner scanner = new Scanner(System.in);
 			if (scanner.hasNextLine()) {

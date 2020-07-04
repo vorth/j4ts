@@ -6,7 +6,7 @@
 	<artifactId>j4ts</artifactId>
 	<version>0.7.0-SNAPSHOT</version>
 	<properties>
-		<jsweet.transpiler.version>2.3.6-SNAPSHOT</jsweet.transpiler.version>
+		<jsweet.transpiler.version>2.3.8</jsweet.transpiler.version>
 	</properties>
 	<licenses>
 		<license>
@@ -59,21 +59,6 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.20</version>
-				<executions>
-					<execution>
-						<phase>test</phase>
-						<goals>
-							<goal>test</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<forkCount>0</forkCount>
-				</configuration>
-			</plugin>
-			<plugin>
 				<groupId>org.jsweet</groupId>
 				<artifactId>jsweet-maven-plugin</artifactId>
 				<version>${jsweet.transpiler.version}</version>
@@ -83,35 +68,45 @@
 					<bundle>true</bundle>
 					<module>none</module>
 					<declaration>true</declaration>
-					<outDir>src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}</outDir>
-					<dtsOut>src/main/resources/META-INF/resources/typings/${project.artifactId}/${project.version}</dtsOut>
-					<targetVersion>ES6</targetVersion>
+					<outDir>target/ts</outDir>
+					<dtsOut>target/typings</dtsOut>
+					<targetVersion>ES3</targetVersion>
 					<!-- <sourceMap>true</sourceMap> -->
 				</configuration>
 				<executions>
 					<execution>
 						<id>generate-js</id>
-						<phase>generate-sources</phase>
+						<!-- attach to the compile phase to avoid re-generating sources with maven-source-plugin -->
+						<phase>compile</phase>
 						<goals>
 							<goal>jsweet</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
+ 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<version>1.8</version>
 				<executions>
 					<execution>
-						<phase>package</phase>
+						<phase>test</phase>
 						<configuration>
 							<target>
+								<delete dir="src/main/resources/META-INF/resources"></delete>
+								<copy
+									file="target/ts/bundle.js"
+									tofile="src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}/bundle.js"
+									verbose="true" />
+								<copy
+									file="target/typings/bundle.d.ts"
+									tofile="src/main/resources/META-INF/resources/typings/${project.artifactId}/${project.version}/bundle.d.ts"
+									verbose="true" />
 								<echo message="copying generated bundles to dist..." />
 								<copy
-									file="src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}/bundle.js"
+									file="target/ts/bundle.js"
 									tofile="dist/${project.artifactId}.js" verbose="true" />
 								<copy
-									file="src/main/resources/META-INF/resources/typings/${project.artifactId}/${project.version}/bundle.d.ts"
+									file="target/typings/bundle.d.ts"
 									tofile="dist/${project.artifactId}.d.ts" verbose="true" />
 							</target>
 						</configuration>
@@ -121,6 +116,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- warning: this plugin re-runs generate-source -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -182,7 +178,7 @@
 		<dependency>
 			<groupId>org.jsweet</groupId>
 			<artifactId>jsweet-transpiler</artifactId>
-			<version>2.3.6-SNAPSHOT</version>
+			<version>${jsweet.transpiler.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jsweet</groupId>
