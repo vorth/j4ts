@@ -16,4 +16,3 @@ var org;
     })(jsweet = org.jsweet || (org.jsweet = {}));
 })(org || (org = {}));
 org.jsweet.j4ts.Manifest.main(null);
-//# sourceMappingURL=Manifest.js.map
