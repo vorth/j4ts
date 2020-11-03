@@ -25,7 +25,7 @@ declare namespace java.io {
          * overridden {@code AutoCloseable.close()}, which may be called at most
          * once.
          */
-        close(): any;
+        close(): void;
     }
 }
 declare namespace java.io {
@@ -43,7 +43,7 @@ declare namespace java.io {
          * @throws IOException
          * if there are any issues writing the data.
          */
-        flush(): any;
+        flush(): void;
     }
 }
 declare namespace java.io {
@@ -1042,7 +1042,7 @@ declare namespace java.text {
      * @author Renaud Pawlak
      * @class
      */
-    class Collator implements java.util.Comparator<any> {
+    class Collator  {
         static collator: Collator;
         static getInstance(): Collator;
         /**
@@ -1242,7 +1242,7 @@ declare namespace java.util {
         retainAll(c: Collection<any>): boolean;
         size(): number;
         toArray<T>(a?: any): any;
-        stream(): any;
+        stream(): java.util.stream.Stream<E>;
     }
 }
 declare namespace java.util {
@@ -1255,7 +1255,7 @@ declare namespace java.util {
      * @class
      */
     interface Comparator<T> {
-        compare(a: T, b: T): number;
+        (a: T, b: T): number;
     }
 }
 declare namespace java.util {
@@ -1279,7 +1279,7 @@ declare namespace java.util {
         static natural<T>(): java.util.Comparator<T>;
     }
     namespace Comparators {
-        class NaturalComparator implements java.util.Comparator<any> {
+        class NaturalComparator {
             /**
              *
              * @param {*} o1
@@ -2781,9 +2781,9 @@ declare namespace java.util.regex {
 }
 declare namespace java.util.regex {
     interface MatchResult {
-        start(i?: any): any;
-        end(i?: any): any;
-        group(i?: any): any;
+        start(i?: any): number;
+        end(i?: any): number;
+        group(i?: any): string;
         groupCount(): number;
     }
 }
@@ -2965,8 +2965,8 @@ declare namespace java.util.stream {
         static toMap$java_util_function_Function$java_util_function_Function<T, K, U>(keyMapper: (p1: any) => any, valueMapper: (p1: any) => any): java.util.stream.Collector<T, any, java.util.Map<K, U>>;
         static toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator<T, K, U>(keyMapper: (p1: any) => any, valueMapper: (p1: any) => any, mergeFunction: (p1: U, p2: U) => U): java.util.stream.Collector<T, any, java.util.Map<K, U>>;
         static toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier<T, K, U, M extends java.util.Map<K, U>>(keyMapper: (p1: any) => any, valueMapper: (p1: any) => any, mergeFunction: (p1: U, p2: U) => U, mapSupplier: () => M): java.util.stream.Collector<T, any, M>;
-        static toMap<T, K, U, M extends java.util.Map<K, U>>(keyMapper?: any, valueMapper?: any, mergeFunction?: any, mapSupplier?: any): any;
-        static mapMerger<K, V, M extends java.util.Map<K, V>>(mergeFunction: (p1: V, p2: V) => V): (p1: M, p2: M) => M;
+        static toMap<T, K, U, M extends java.util.Map<K, U> = any>(keyMapper?: any, valueMapper?: any, mergeFunction?: any, mapSupplier?: any): any;
+        static mapMerger<K, V, M extends java.util.Map<K, V> = any>(mergeFunction: (p1: V, p2: V) => V): (p1: M, p2: M) => M;
     }
     namespace Collectors {
         class CollectorImpl<T, A, R> implements java.util.stream.Collector<T, A, R> {
@@ -3007,18 +3007,18 @@ declare namespace java.util.stream {
 }
 declare namespace java.util.stream {
     interface Stream<T> {
-        filter(predicate: (p1: any) => boolean): Stream<T>;
-        map<R>(mapper: (p1: any) => any): Stream<R>;
-        flatMap<R>(mapper: (p1: any) => any): Stream<R>;
+        filter(predicate: (p1: T) => boolean): Stream<T>;
+        map<R>(mapper: (p1: T) => R): Stream<R>;
+        flatMap<R>(mapper: (p1: T) => any): Stream<R>;
         distinct(): Stream<T>;
-        sorted(comparator?: any): any;
-        peek(action: (p1: any) => void): Stream<T>;
+        sorted(comparator?: java.util.Comparator<T>): Stream<T>;
+        peek(action: (p1: T) => void): Stream<T>;
         limit(maxSize: number): Stream<T>;
         skip(n: number): Stream<T>;
-        forEach(action: (p1: any) => void): any;
-        forEachOrdered(action: (p1: any) => void): any;
-        toArray<A>(generator?: any): any;
-        reduce(identity?: any, accumulator?: any): any;
+        forEach(action: (p1: T) => void): void;
+        forEachOrdered(action: (p1: T) => void): void;
+        toArray<A = any>(generator?: any): T[];
+        reduce(identity?: T, accumulator?: any): T;
         collect<R, A>(collector: java.util.stream.Collector<any, A, R>): R;
         min(comparator: java.util.Comparator<any>): java.util.Optional<T>;
         max(comparator: java.util.Comparator<any>): java.util.Optional<T>;
@@ -3834,59 +3834,6 @@ declare namespace javaemul.internal {
         static getProperty(map: any, key: string): any;
         static createNativeObject(): any;
         static unsafeCastToInt(o: any): number;
-    }
-}
-/**
- * Declares equals and hashCode on JavaScript objects, for compilation.
- * @class
- */
-interface Object {
-    equals(object: Object): boolean;
-}
-declare namespace test {
-    class Test {
-        static main(args: string[]): void;
-        static assertEquals(o1: any, o2: any): void;
-        static assertTrue(b: boolean): void;
-        static assertFalse(b: boolean): void;
-        static test(): void;
-        static testArrays(): void;
-        static testList(): void;
-        static testSet(): void;
-        static testMap(): void;
-        static testString(): void;
-        static testIO(): void;
-        static key1(): test.MyKey;
-        static key2(): test.MyKey;
-    }
-    namespace Test {
-        class Test$0 implements java.util.Comparator<string> {
-            compare$java_lang_String$java_lang_String(o1: string, o2: string): number;
-            /**
-             *
-             * @param {string} o1
-             * @param {string} o2
-             * @return {number}
-             */
-            compare(o1?: any, o2?: any): any;
-            constructor();
-        }
-    }
-    class MyKey {
-        data: string;
-        constructor(data: string);
-        toString(): string;
-        /**
-         *
-         * @param {*} obj
-         * @return {boolean}
-         */
-        equals(obj: any): boolean;
-        /**
-         *
-         * @return {number}
-         */
-        hashCode(): number;
     }
 }
 declare namespace java.io {
@@ -5224,7 +5171,7 @@ declare namespace javaemul.internal {
         constructor();
     }
     namespace StringHelper {
-        class StringHelper$0 implements java.util.Comparator<string> {
+        class StringHelper$0 {
             compare$java_lang_String$java_lang_String(a: string, b: string): number;
             /**
              *
@@ -6878,7 +6825,7 @@ declare namespace java.util {
          */
         static binarySearch<T>(sortedArray?: any, key?: any, comparator?: any): any;
         static copyOf$boolean_A$int(original: boolean[], newLength: number): boolean[];
-        static copyOf(original?: any, newLength?: any): any;
+        static copyOf<T = any>(original?: any, newLength?: any): any;
         static copyOf$byte_A$int(original: number[], newLength: number): number[];
         static copyOf$char_A$int(original: string[], newLength: number): string[];
         static copyOf$double_A$int(original: number[], newLength: number): number[];
@@ -9376,7 +9323,7 @@ declare namespace java.util {
             values(): java.util.Collection<any>;
             constructor();
         }
-        class ReverseComparator implements java.util.Comparator<java.lang.Comparable<any>> {
+        class ReverseComparator {
             static INSTANCE: Collections.ReverseComparator;
             static INSTANCE_$LI$(): Collections.ReverseComparator;
             compare$java_lang_Comparable$java_lang_Comparable(o1: java.lang.Comparable<any>, o2: java.lang.Comparable<any>): number;
@@ -10017,8 +9964,9 @@ declare namespace java.util {
             nextElement(): T;
             constructor(it: any);
         }
-        class Collections$1<T> implements java.util.Comparator<T> {
+        class Collections$1<T> {
             private cmp;
+            
             /**
              *
              * @param {*} t1
@@ -10026,6 +9974,8 @@ declare namespace java.util {
              * @return {number}
              */
             compare(t1: T, t2: T): number;
+            
+
             constructor(cmp: any);
         }
     }
