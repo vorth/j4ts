@@ -18,7 +18,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
-/* Generated from Java with JSweet 2.3.8 - http://www.jsweet.org */
+/* Generated from Java with JSweet 2.4.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -53,8 +53,9 @@ var javaemul;
         var JreHelper = /** @class */ (function () {
             function JreHelper() {
             }
-            JreHelper.LOG10E_$LI$ = function () { if (JreHelper.LOG10E == null)
-                JreHelper.LOG10E = Math.LOG10E; return JreHelper.LOG10E; };
+            JreHelper.LOG10E_$LI$ = function () { if (JreHelper.LOG10E == null) {
+                JreHelper.LOG10E = Math.LOG10E;
+            } return JreHelper.LOG10E; };
             ;
             return JreHelper;
         }());
@@ -73,8 +74,9 @@ var javaemul;
         var BooleanHelper = /** @class */ (function () {
             function BooleanHelper() {
             }
-            BooleanHelper.TYPE_$LI$ = function () { if (BooleanHelper.TYPE == null)
-                BooleanHelper.TYPE = Boolean; return BooleanHelper.TYPE; };
+            BooleanHelper.TYPE_$LI$ = function () { if (BooleanHelper.TYPE == null) {
+                BooleanHelper.TYPE = Boolean;
+            } return BooleanHelper.TYPE; };
             ;
             BooleanHelper.compare = function (x, y) {
                 return (x === y) ? 0 : (x ? 1 : -1);
@@ -175,11 +177,13 @@ var javaemul;
         var StringHashCache = /** @class */ (function () {
             function StringHashCache() {
             }
-            StringHashCache.back_$LI$ = function () { if (StringHashCache.back == null)
-                StringHashCache.back = StringHashCache.createNativeObject(); return StringHashCache.back; };
+            StringHashCache.back_$LI$ = function () { if (StringHashCache.back == null) {
+                StringHashCache.back = StringHashCache.createNativeObject();
+            } return StringHashCache.back; };
             ;
-            StringHashCache.front_$LI$ = function () { if (StringHashCache.front == null)
-                StringHashCache.front = StringHashCache.createNativeObject(); return StringHashCache.front; };
+            StringHashCache.front_$LI$ = function () { if (StringHashCache.front == null) {
+                StringHashCache.front = StringHashCache.createNativeObject();
+            } return StringHashCache.front; };
             ;
             StringHashCache.getHashCode = function (str) {
                 var key = ":" + str;
@@ -253,8 +257,9 @@ var javaemul;
         (function (stream) {
             var ConsumingFunction = /** @class */ (function () {
                 function ConsumingFunction(consumer) {
-                    if (this.consumer === undefined)
+                    if (this.consumer === undefined) {
                         this.consumer = null;
+                    }
                     this.consumer = (consumer);
                 }
                 /**
@@ -305,10 +310,12 @@ var javaemul;
         (function (stream) {
             var RunnableChain = /** @class */ (function () {
                 function RunnableChain(run) {
-                    if (this.run === undefined)
+                    if (this.run === undefined) {
                         this.run = null;
-                    if (this.next === undefined)
+                    }
+                    if (this.next === undefined) {
                         this.next = null;
+                    }
                     this.run = (run);
                 }
                 RunnableChain.prototype.chain = function (next) {
@@ -339,8 +346,9 @@ var javaemul;
         (function (stream) {
             var QuiteRunnable = /** @class */ (function () {
                 function QuiteRunnable(loudRunnable) {
-                    if (this.loudRunnable === undefined)
+                    if (this.loudRunnable === undefined) {
                         this.loudRunnable = null;
+                    }
                     this.loudRunnable = (loudRunnable);
                 }
                 /**
@@ -370,8 +378,9 @@ var javaemul;
         (function (stream) {
             var ChooseSmallest = /** @class */ (function () {
                 function ChooseSmallest(comparator) {
-                    if (this.comparator === undefined)
+                    if (this.comparator === undefined) {
                         this.comparator = null;
+                    }
                     this.comparator = (comparator);
                 }
                 ChooseSmallest.prototype.apply = function (t1, t2) {
@@ -395,14 +404,18 @@ var javaemul;
         (function (stream) {
             var StreamHelper = /** @class */ (function () {
                 function StreamHelper(data) {
-                    if (this.onCloseChain === undefined)
+                    if (this.onCloseChain === undefined) {
                         this.onCloseChain = null;
-                    if (this.head === undefined)
+                    }
+                    if (this.head === undefined) {
                         this.head = null;
-                    if (this.end === undefined)
+                    }
+                    if (this.end === undefined) {
                         this.end = null;
-                    if (this.data === undefined)
+                    }
+                    if (this.data === undefined) {
                         this.data = null;
+                    }
                     this.head = new javaemul.internal.stream.StreamRowMap(function (o) { return o; });
                     this.end = new javaemul.internal.stream.StreamRowEnd(this.head);
                     this.head.chain(this.end);
@@ -632,7 +645,7 @@ var javaemul;
                     if (((typeof supplier === 'function' && supplier.length === 0) || supplier === null) && ((typeof accumulator === 'function' && accumulator.length === 2) || accumulator === null) && ((typeof combiner === 'function' && combiner.length === 2) || combiner === null)) {
                         return this.collect$java_util_function_Supplier$java_util_function_BiConsumer$java_util_function_BiConsumer(supplier, accumulator, combiner);
                     }
-                    else if (((supplier != null && (supplier["__interfaces"] != null && supplier["__interfaces"].indexOf("java.util.stream.Collector") >= 0 || supplier.constructor != null && supplier.constructor["__interfaces"] != null && supplier.constructor["__interfaces"].indexOf("java.util.stream.Collector") >= 0)) || supplier === null) && accumulator === undefined && combiner === undefined) {
+                    else if (((supplier != null && (supplier.constructor != null && supplier.constructor["__interfaces"] != null && supplier.constructor["__interfaces"].indexOf("java.util.stream.Collector") >= 0)) || supplier === null) && accumulator === undefined && combiner === undefined) {
                         return this.collect$java_util_stream_Collector(supplier);
                     }
                     else
@@ -653,8 +666,9 @@ var javaemul;
         (function (stream) {
             var CountingPredicate = /** @class */ (function () {
                 function CountingPredicate(n) {
-                    if (this.countDown === undefined)
+                    if (this.countDown === undefined) {
                         this.countDown = 0;
+                    }
                     this.countDown = n;
                 }
                 /**
@@ -684,8 +698,9 @@ var javaemul;
         (function (stream) {
             var TransientStreamRow = /** @class */ (function () {
                 function TransientStreamRow() {
-                    if (this.next === undefined)
+                    if (this.next === undefined) {
                         this.next = null;
+                    }
                 }
                 TransientStreamRow.prototype.chain = function (next) {
                     this.next = next;
@@ -706,8 +721,9 @@ var javaemul;
             var VoidRunnable = /** @class */ (function () {
                 function VoidRunnable() {
                 }
-                VoidRunnable.dryRun_$LI$ = function () { if (VoidRunnable.dryRun == null)
-                    VoidRunnable.dryRun = new VoidRunnable(); return VoidRunnable.dryRun; };
+                VoidRunnable.dryRun_$LI$ = function () { if (VoidRunnable.dryRun == null) {
+                    VoidRunnable.dryRun = new VoidRunnable();
+                } return VoidRunnable.dryRun; };
                 ;
                 VoidRunnable.prototype.run = function () {
                 };
@@ -871,12 +887,14 @@ var javaemul;
          */
         var CharacterHelper = /** @class */ (function () {
             function CharacterHelper(value) {
-                if (this.value === undefined)
+                if (this.value === undefined) {
                     this.value = null;
+                }
                 this.value = value;
             }
-            CharacterHelper.TYPE_$LI$ = function () { if (CharacterHelper.TYPE == null)
-                CharacterHelper.TYPE = String; return CharacterHelper.TYPE; };
+            CharacterHelper.TYPE_$LI$ = function () { if (CharacterHelper.TYPE == null) {
+                CharacterHelper.TYPE = String;
+            } return CharacterHelper.TYPE; };
             ;
             CharacterHelper.charCount = function (codePoint) {
                 return codePoint >= CharacterHelper.MIN_SUPPLEMENTARY_CODE_POINT ? 2 : 1;
@@ -891,13 +909,13 @@ var javaemul;
                 if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (typeof a[0] === 'string'))) || a === null) && ((typeof index === 'number') || index === null) && ((typeof limit === 'number') || limit === null)) {
                     return javaemul.internal.CharacterHelper.codePointAt$char_A$int$int(a, index, limit);
                 }
-                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && ((typeof limit === 'number') || limit === null)) {
+                else if (((a != null && (a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && ((typeof limit === 'number') || limit === null)) {
                     return javaemul.internal.CharacterHelper.codePointAt$java_lang_CharSequence$int$int(a, index, limit);
                 }
                 else if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (typeof a[0] === 'string'))) || a === null) && ((typeof index === 'number') || index === null) && limit === undefined) {
                     return javaemul.internal.CharacterHelper.codePointAt$char_A$int(a, index);
                 }
-                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && limit === undefined) {
+                else if (((a != null && (a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && limit === undefined) {
                     return javaemul.internal.CharacterHelper.codePointAt$java_lang_CharSequence$int(a, index);
                 }
                 else
@@ -916,13 +934,13 @@ var javaemul;
                 if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (typeof a[0] === 'string'))) || a === null) && ((typeof index === 'number') || index === null) && ((typeof start === 'number') || start === null)) {
                     return javaemul.internal.CharacterHelper.codePointBefore$char_A$int$int(a, index, start);
                 }
-                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && ((typeof start === 'number') || start === null)) {
+                else if (((a != null && (a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && ((typeof start === 'number') || start === null)) {
                     return javaemul.internal.CharacterHelper.codePointBefore$java_lang_CharSequence$int$int(a, index, start);
                 }
                 else if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (typeof a[0] === 'string'))) || a === null) && ((typeof index === 'number') || index === null) && start === undefined) {
                     return javaemul.internal.CharacterHelper.codePointBefore$char_A$int(a, index);
                 }
-                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && start === undefined) {
+                else if (((a != null && (a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof index === 'number') || index === null) && start === undefined) {
                     return javaemul.internal.CharacterHelper.codePointBefore$java_lang_CharSequence$int(a, index);
                 }
                 else
@@ -938,7 +956,7 @@ var javaemul;
                 if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (typeof a[0] === 'string'))) || a === null) && ((typeof offset === 'number') || offset === null) && ((typeof count === 'number') || count === null)) {
                     return javaemul.internal.CharacterHelper.codePointCount$char_A$int$int(a, offset, count);
                 }
-                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof offset === 'number') || offset === null) && ((typeof count === 'number') || count === null)) {
+                else if (((a != null && (a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof offset === 'number') || offset === null) && ((typeof count === 'number') || count === null)) {
                     return javaemul.internal.CharacterHelper.codePointCount$java_lang_CharSequence$int$int(a, offset, count);
                 }
                 else
@@ -1098,7 +1116,7 @@ var javaemul;
                 if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (typeof a[0] === 'string'))) || a === null) && ((typeof start === 'number') || start === null) && ((typeof count === 'number') || count === null) && ((typeof index === 'number') || index === null) && ((typeof codePointOffset === 'number') || codePointOffset === null)) {
                     return javaemul.internal.CharacterHelper.offsetByCodePoints$char_A$int$int$int$int(a, start, count, index, codePointOffset);
                 }
-                else if (((a != null && (a["__interfaces"] != null && a["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof start === 'number') || start === null) && ((typeof count === 'number') || count === null) && index === undefined && codePointOffset === undefined) {
+                else if (((a != null && (a.constructor != null && a.constructor["__interfaces"] != null && a.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof a === "string")) || a === null) && ((typeof start === 'number') || start === null) && ((typeof count === 'number') || count === null) && index === undefined && codePointOffset === undefined) {
                     return javaemul.internal.CharacterHelper.offsetByCodePoints$java_lang_CharSequence$int$int(a, start, count);
                 }
                 else
@@ -1321,9 +1339,10 @@ var javaemul;
             var BoxedValues = /** @class */ (function () {
                 function BoxedValues() {
                 }
-                BoxedValues.boxedValues_$LI$ = function () { if (BoxedValues.boxedValues == null)
+                BoxedValues.boxedValues_$LI$ = function () { if (BoxedValues.boxedValues == null) {
                     BoxedValues.boxedValues = (function (s) { var a = []; while (s-- > 0)
-                        a.push(null); return a; })(128); return BoxedValues.boxedValues; };
+                        a.push(null); return a; })(128);
+                } return BoxedValues.boxedValues; };
                 ;
                 return BoxedValues;
             }());
@@ -1477,14 +1496,17 @@ var javaemul;
         var MathHelper = /** @class */ (function () {
             function MathHelper() {
             }
-            MathHelper.EPSILON_$LI$ = function () { if (MathHelper.EPSILON == null)
-                MathHelper.EPSILON = MathHelper.pow(2, -52); return MathHelper.EPSILON; };
+            MathHelper.EPSILON_$LI$ = function () { if (MathHelper.EPSILON == null) {
+                MathHelper.EPSILON = MathHelper.pow(2, -52);
+            } return MathHelper.EPSILON; };
             ;
-            MathHelper.MAX_VALUE_$LI$ = function () { if (MathHelper.MAX_VALUE == null)
-                MathHelper.MAX_VALUE = (2 - MathHelper.EPSILON_$LI$()) * MathHelper.pow(2, 1023); return MathHelper.MAX_VALUE; };
+            MathHelper.MAX_VALUE_$LI$ = function () { if (MathHelper.MAX_VALUE == null) {
+                MathHelper.MAX_VALUE = (2 - MathHelper.EPSILON_$LI$()) * MathHelper.pow(2, 1023);
+            } return MathHelper.MAX_VALUE; };
             ;
-            MathHelper.MIN_VALUE_$LI$ = function () { if (MathHelper.MIN_VALUE == null)
-                MathHelper.MIN_VALUE = MathHelper.pow(2, -1022); return MathHelper.MIN_VALUE; };
+            MathHelper.MIN_VALUE_$LI$ = function () { if (MathHelper.MIN_VALUE == null) {
+                MathHelper.MIN_VALUE = MathHelper.pow(2, -1022);
+            } return MathHelper.MIN_VALUE; };
             ;
             MathHelper.nextDown = function (x) {
                 return -MathHelper.nextUp(-x);
@@ -1522,11 +1544,13 @@ var javaemul;
                 }
                 return y === 0 ? -0 : y;
             };
-            MathHelper.PI_OVER_180_$LI$ = function () { if (MathHelper.PI_OVER_180 == null)
-                MathHelper.PI_OVER_180 = MathHelper.PI / 180.0; return MathHelper.PI_OVER_180; };
+            MathHelper.PI_OVER_180_$LI$ = function () { if (MathHelper.PI_OVER_180 == null) {
+                MathHelper.PI_OVER_180 = MathHelper.PI / 180.0;
+            } return MathHelper.PI_OVER_180; };
             ;
-            MathHelper.PI_UNDER_180_$LI$ = function () { if (MathHelper.PI_UNDER_180 == null)
-                MathHelper.PI_UNDER_180 = 180.0 / MathHelper.PI; return MathHelper.PI_UNDER_180; };
+            MathHelper.PI_UNDER_180_$LI$ = function () { if (MathHelper.PI_UNDER_180 == null) {
+                MathHelper.PI_UNDER_180 = 180.0 / MathHelper.PI;
+            } return MathHelper.PI_UNDER_180; };
             ;
             MathHelper.abs$double = function (x) {
                 return x <= 0 ? 0.0 - x : x;
@@ -2169,10 +2193,12 @@ var javaemul;
         (function (NumberHelper) {
             var __Decode = /** @class */ (function () {
                 function __Decode(radix, payload) {
-                    if (this.payload === undefined)
+                    if (this.payload === undefined) {
                         this.payload = null;
-                    if (this.radix === undefined)
+                    }
+                    if (this.radix === undefined) {
                         this.radix = 0;
+                    }
                     this.radix = radix;
                     this.payload = payload;
                 }
@@ -2191,19 +2217,23 @@ var javaemul;
                     __ParseLong.__static_initialized = true;
                     __ParseLong.__static_initializer_0();
                 } };
-                __ParseLong.maxDigitsForRadix_$LI$ = function () { __ParseLong.__static_initialize(); if (__ParseLong.maxDigitsForRadix == null)
-                    __ParseLong.maxDigitsForRadix = [-1, -1, 30, 19, 15, 13, 11, 11, 10, 9, 9, 8, 8, 8, 8, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5]; return __ParseLong.maxDigitsForRadix; };
+                __ParseLong.maxDigitsForRadix_$LI$ = function () { __ParseLong.__static_initialize(); if (__ParseLong.maxDigitsForRadix == null) {
+                    __ParseLong.maxDigitsForRadix = [-1, -1, 30, 19, 15, 13, 11, 11, 10, 9, 9, 8, 8, 8, 8, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5];
+                } return __ParseLong.maxDigitsForRadix; };
                 ;
-                __ParseLong.maxDigitsRadixPower_$LI$ = function () { __ParseLong.__static_initialize(); if (__ParseLong.maxDigitsRadixPower == null)
+                __ParseLong.maxDigitsRadixPower_$LI$ = function () { __ParseLong.__static_initialize(); if (__ParseLong.maxDigitsRadixPower == null) {
                     __ParseLong.maxDigitsRadixPower = (function (s) { var a = []; while (s-- > 0)
-                        a.push(0); return a; })(37); return __ParseLong.maxDigitsRadixPower; };
+                        a.push(0); return a; })(37);
+                } return __ParseLong.maxDigitsRadixPower; };
                 ;
-                __ParseLong.maxLengthForRadix_$LI$ = function () { __ParseLong.__static_initialize(); if (__ParseLong.maxLengthForRadix == null)
-                    __ParseLong.maxLengthForRadix = [-1, -1, 63, 40, 32, 28, 25, 23, 21, 20, 19, 19, 18, 18, 17, 17, 16, 16, 16, 15, 15, 15, 15, 14, 14, 14, 14, 14, 14, 13, 13, 13, 13, 13, 13, 13, 13]; return __ParseLong.maxLengthForRadix; };
+                __ParseLong.maxLengthForRadix_$LI$ = function () { __ParseLong.__static_initialize(); if (__ParseLong.maxLengthForRadix == null) {
+                    __ParseLong.maxLengthForRadix = [-1, -1, 63, 40, 32, 28, 25, 23, 21, 20, 19, 19, 18, 18, 17, 17, 16, 16, 16, 15, 15, 15, 15, 14, 14, 14, 14, 14, 14, 13, 13, 13, 13, 13, 13, 13, 13];
+                } return __ParseLong.maxLengthForRadix; };
                 ;
-                __ParseLong.maxValueForRadix_$LI$ = function () { __ParseLong.__static_initialize(); if (__ParseLong.maxValueForRadix == null)
+                __ParseLong.maxValueForRadix_$LI$ = function () { __ParseLong.__static_initialize(); if (__ParseLong.maxValueForRadix == null) {
                     __ParseLong.maxValueForRadix = (function (s) { var a = []; while (s-- > 0)
-                        a.push(0); return a; })(37); return __ParseLong.maxValueForRadix; };
+                        a.push(0); return a; })(37);
+                } return __ParseLong.maxValueForRadix; };
                 ;
                 __ParseLong.__static_initializer_0 = function () {
                     for (var i = 2; i <= 36; i++) {
@@ -2222,345 +2252,24 @@ var javaemul;
         })(NumberHelper = internal.NumberHelper || (internal.NumberHelper = {}));
     })(internal = javaemul.internal || (javaemul.internal = {}));
 })(javaemul || (javaemul = {}));
-var test;
-(function (test) {
-    var MyEnum;
-    (function (MyEnum) {
-        MyEnum[MyEnum["A"] = 0] = "A";
-        MyEnum[MyEnum["B"] = 1] = "B";
-        MyEnum[MyEnum["C"] = 2] = "C";
-    })(MyEnum = test.MyEnum || (test.MyEnum = {}));
-    var MyComplexEnum;
-    (function (MyComplexEnum) {
-        MyComplexEnum[MyComplexEnum["A"] = 0] = "A";
-        MyComplexEnum[MyComplexEnum["B"] = 1] = "B";
-        MyComplexEnum[MyComplexEnum["C"] = 2] = "C";
-    })(MyComplexEnum = test.MyComplexEnum || (test.MyComplexEnum = {}));
-    /** @ignore */
-    var MyComplexEnum_$WRAPPER = /** @class */ (function () {
-        function MyComplexEnum_$WRAPPER(_$ordinal, _$name) {
-            this._$ordinal = _$ordinal;
-            this._$name = _$name;
-        }
-        MyComplexEnum_$WRAPPER.prototype.aFunction = function () {
-            return "test";
-        };
-        MyComplexEnum_$WRAPPER.prototype.name = function () { return this._$name; };
-        MyComplexEnum_$WRAPPER.prototype.ordinal = function () { return this._$ordinal; };
-        MyComplexEnum_$WRAPPER.prototype.compareTo = function (other) { return this._$ordinal - (isNaN(other) ? other._$ordinal : other); };
-        return MyComplexEnum_$WRAPPER;
-    }());
-    test.MyComplexEnum_$WRAPPER = MyComplexEnum_$WRAPPER;
-    MyComplexEnum["__class"] = "test.MyComplexEnum";
-    MyComplexEnum["__interfaces"] = ["java.lang.Comparable", "java.io.Serializable"];
-    MyComplexEnum["_$wrappers"] = [new MyComplexEnum_$WRAPPER(0, "A"), new MyComplexEnum_$WRAPPER(1, "B"), new MyComplexEnum_$WRAPPER(2, "C")];
-    var Test = /** @class */ (function () {
-        function Test() {
-        }
-        Test.main = function (args) {
-            console.info(java.util.Arrays.asList("a", "b", "c"));
-        };
-        Test.assertEquals = function (o1, o2) {
-            if (!(o1 === o2)) {
-                throw new Error("invalid assertion: " + o1 + "!=" + o2);
-            }
-        };
-        Test.assertTrue = function (b) {
-            if (!b) {
-                throw new Error("invalid assertion");
-            }
-        };
-        Test.assertFalse = function (b) {
-            if (b) {
-                throw new Error("invalid assertion");
-            }
-        };
-        Test.test = function () {
-            try {
-                Test.testArrays();
-                Test.testList();
-                Test.testMap();
-                Test.testSet();
-                Test.testString();
-                Test.testIO();
-                Test.testEnums();
-                Test.testStreams();
-                console.info("OS NAME: " + java.lang.System.getProperty$java_lang_String("os.name"));
-                console.info("Get input: ");
-                var scanner = new java.util.Scanner(java.lang.System.in_$LI$());
-                if (scanner.hasNextLine()) {
-                    console.info("Got input: " + scanner.nextLine());
-                }
-                else {
-                    console.info("No any input :(");
-                }
-                if (java.lang.System.ENVIRONMENT_IS_WEB_$LI$()) {
-                    var result = document.getElementById("result");
-                    if (result != null) {
-                        result.innerHTML = "Success!";
-                    }
-                }
-                else {
-                    console.info("Success!");
-                }
-            }
-            catch (e) {
-                console.error(e);
-                if (java.lang.System.ENVIRONMENT_IS_WEB_$LI$()) {
-                    var result = document.getElementById("result");
-                    if (result != null) {
-                        result.innerHTML = "Failure: " + e.message;
-                    }
-                }
-                else {
-                    console.info("Failure: " + e.message);
-                }
-            }
-            ;
-        };
-        Test.comp1 = function (e) {
-            return e.compareTo(test.MyComplexEnum.A);
-        };
-        Test.comp2 = function (e) {
-            return e.compareTo(test.MyEnum.A);
-        };
-        Test.testEnums = function () {
-            console.info("testing enums");
-            Test.assertEquals(1, test.MyEnum.B);
-            Test.assertEquals("A", /* Enum.name */ test.MyEnum[test.MyEnum.A]);
-            Test.assertEquals("A", /* Enum.name */ test.MyComplexEnum[test.MyComplexEnum.A]);
-            Test.assertEquals(0, /* Enum.compareTo */ ((test.MyEnum.A) - (test.MyEnum.A)));
-            Test.assertEquals(test.MyEnum.B, /* Enum.values */ function () { var result = []; for (var val in test.MyEnum) {
-                if (!isNaN(val)) {
-                    result.push(parseInt(val, 10));
-                }
-            } return result; }()[1]);
-            Test.assertEquals(0, Test.comp1((function (wrappers, value) { return wrappers === undefined ? value : wrappers[value]; })(test.MyComplexEnum["_$wrappers"], test.MyComplexEnum.A)));
-            console.info("end testing enums");
-        };
-        Test.testArrays = function () {
-            console.info("testing arrays");
-            var srcArray = ["a", "b", "c"];
-            var dstArray = (function (s) { var a = []; while (s-- > 0)
-                a.push(null); return a; })(srcArray.length - 1);
-            java.lang.System.arraycopy(srcArray, 1, dstArray, 0, srcArray.length - 1);
-            Test.assertEquals(2, dstArray.length);
-            Test.assertEquals("b", dstArray[0]);
-            Test.assertEquals("c", dstArray[1]);
-            var myArray = [3, 2, 1];
-            Test.assertEquals(3, myArray[0]);
-            java.util.Arrays.sort$int_A(myArray);
-            Test.assertEquals(1, myArray[0]);
-            var l = java.util.Arrays.asList("a", "b", "c", "d");
-            Test.assertEquals(4, l.size());
-            var a = java.util.Arrays.copyOf$java_lang_Object_A$int(l['toArray$java_lang_Object_A']([]), 3);
-            Test.assertEquals(3, a.length);
-            var reverse = function (o1, o2) {
-                return /* compareTo */ o2.localeCompare(o1);
-            };
-            java.util.Arrays.sort$java_lang_Object_A$java_util_Comparator(a, (reverse));
-            Test.assertEquals("[c, b, a]", java.util.Arrays.asList(a[0], a[1], a[2]).toString());
-            console.info("end testing arrays");
-        };
-        Test.testList = function () {
-            console.info("testing lists");
-            var l = (new java.util.ArrayList());
-            l.add("a");
-            l.add("b");
-            l.add("c");
-            Test.assertEquals(l.toString(), "[a, b, c]");
-            Test.assertEquals(l.subList(1, 3).toString(), "[b, c]");
-            Test.assertEquals(l['remove$java_lang_Object']("b"), true);
-            Test.assertEquals(l['remove$java_lang_Object']("d"), false);
-            Test.assertEquals(l['remove$int'](1), "c");
-            l.add("c");
-            Test.assertEquals(l.toString(), "[a, c]");
-            Test.assertEquals(l.size(), 2);
-            Test.assertEquals(l.get(1), "c");
-            Test.assertEquals(l.indexOf("a"), 0);
-            var res = "";
-            for (var index122 = l.iterator(); index122.hasNext();) {
-                var s = index122.next();
-                {
-                    res += s;
-                }
-            }
-            Test.assertEquals("ac", res);
-            var it = l.iterator();
-            Test.assertTrue(it.hasNext());
-            Test.assertEquals("a", it.next());
-            Test.assertTrue(it.hasNext());
-            Test.assertEquals("c", it.next());
-            Test.assertFalse(it.hasNext());
-            l.clear();
-            l.add("bb");
-            l.add("aa");
-            Test.assertEquals(l.toString(), "[bb, aa]");
-            java.util.Collections.sort$java_util_List$java_util_Comparator(l, (java.text.Collator.getInstance()));
-            Test.assertEquals(l.toString(), "[aa, bb]");
-            console.info("end testing lists");
-        };
-        Test.testSet = function () {
-            console.info("testing sets");
-            var s = (new java.util.HashSet());
-            s.add("a");
-            s.add("a");
-            s.add("b");
-            s.add("c");
-            s.add("c");
-            Test.assertEquals(s.toString(), "[a, b, c]");
-            s.remove("b");
-            Test.assertTrue(s.contains("a"));
-            Test.assertTrue(s.contains("c"));
-            Test.assertFalse(s.contains("b"));
-            Test.assertEquals(s.size(), 2);
-            console.info("testing bit sets");
-            var bs = java.util.BitSet.valueOf([255]);
-            Test.assertTrue(bs.get$int(0));
-            Test.assertTrue(bs.get$int(1));
-            Test.assertTrue(bs.get$int(7));
-            Test.assertFalse(bs.get$int(8));
-            var bs2 = java.util.BitSet.valueOf([1]);
-            Test.assertTrue(bs2.get$int(0));
-            Test.assertFalse(bs2.get$int(1));
-            bs.and(bs2);
-            Test.assertTrue(bs.get$int(0));
-            Test.assertFalse(bs.get$int(1));
-            console.info("end testing sets");
-        };
-        Test.testMap = function () {
-            console.info("testing maps");
-            var m = (new java.util.HashMap());
-            m.put("a", "aa");
-            m.put("b", "bb");
-            m.put("c", "cc");
-            Test.assertEquals(m.size(), 3);
-            Test.assertEquals("bb", m.get("b"));
-            m.remove("aa");
-            Test.assertEquals(m.size(), 3);
-            m.remove("a");
-            Test.assertEquals(m.size(), 2);
-            Test.assertEquals(null, m.get("undefinedKey"));
-            Test.assertFalse(m.get("undefinedKey") === undefined);
-            var m2 = (new java.util.HashMap());
-            m2.put(Test.key1(), "a");
-            m2.put(new test.MyKey("2"), "b");
-            Test.assertEquals(2, m2.size());
-            Test.assertEquals("a", m2.get(new test.MyKey("1")));
-            Test.assertTrue(m2.containsKey(new test.MyKey("2")));
-            Test.assertEquals("[1, 2]", m2.keySet().toString());
-            Test.assertEquals("[a, b]", m2.values().toString());
-            m2.remove(new test.MyKey("1"));
-            Test.assertEquals(1, m2.size());
-            Test.assertEquals(null, m2.get(new test.MyKey("1")));
-            Test.assertEquals(null, java.util.Collections.singletonMap(Test.key1(), "1").get(new test.MyKey("a")));
-            Test.assertEquals("1", java.util.Collections.singletonMap(Test.key2(), "1").get(new test.MyKey("a")));
-            Test.assertEquals("2", java.util.Collections.singletonMap(new test.MyKey("b"), "2").get(new test.MyKey("b")));
-            console.info("end testing maps");
-        };
-        Test.testString = function () {
-            console.info("testing strings");
-            var sb = new java.lang.StringBuilder();
-            sb.append$boolean(true);
-            sb.append$char('c');
-            sb.append$java_lang_String("test");
-            sb.deleteCharAt(sb.length() - 1);
-            Test.assertEquals("truectes", sb.toString());
-            sb.append$java_lang_CharSequence$int$int("abc", 0, 1);
-            Test.assertEquals("truectesa", sb.toString());
-            var sb2 = new java.lang.StringBuffer();
-            sb2.append$boolean(true);
-            sb2.append$char('c');
-            sb2.append$java_lang_String("test");
-            sb2.deleteCharAt(sb2.length() - 1);
-            Test.assertEquals("truectes", sb2.toString());
-            Test.assertEquals('a', javaemul.internal.CharacterHelper.toLowerCase('A'));
-            Test.assertEquals("abc", "ABC".toLowerCase());
-            console.info("end testing strings");
-        };
-        Test.testIO = function () {
-            console.info("testing io");
-            var s = new java.io.ByteArrayInputStream(/* getBytes */ ("abc").split('').map(function (s) { return s.charCodeAt(0); }));
-            Test.assertEquals(javaemul.internal.CharacterHelper.getNumericValue('a'), s.read$());
-            console.info("end testing io");
-        };
-        Test.testStreams = function () {
-            console.info("testing streams");
-            var l = (new java.util.ArrayList());
-            l.add("a");
-            l.add("b");
-            l.add("c");
-            Test.assertEquals(l.stream().collect(java.util.stream.Collectors.toList()).toString(), "[a, b, c]");
-            Test.assertEquals(l.stream().filter(function (e) { return e === "a"; }).collect(java.util.stream.Collectors.toList()).toString(), "[a]");
-            var str = java.util.stream.Stream.of([["GFG", "GeeksForGeeks"], ["g", "geeks"], ["G", "Geeks"]]);
-            var map = (str.collect(java.util.stream.Collectors.toMap$java_util_function_Function$java_util_function_Function(function (p) { return p[0]; }, function (p) { return p[1]; })));
-            Test.assertEquals(map.size(), 3);
-            Test.assertEquals(map.get("g"), "geeks");
-            console.info("end testing streams");
-        };
-        Test.key1 = function () {
-            return new test.MyKey("1");
-        };
-        Test.key2 = function () {
-            return new test.MyKey("a");
-        };
-        return Test;
-    }());
-    test.Test = Test;
-    Test["__class"] = "test.Test";
-    var MyKey = /** @class */ (function () {
-        function MyKey(data) {
-            if (this.data === undefined)
-                this.data = null;
-            this.data = data;
-        }
-        MyKey.prototype.toString = function () {
-            return this.data;
-        };
-        /**
-         *
-         * @param {*} obj
-         * @return {boolean}
-         */
-        MyKey.prototype.equals = function (obj) {
-            return this.data === obj.data;
-        };
-        /**
-         *
-         * @return {number}
-         */
-        MyKey.prototype.hashCode = function () {
-            return /* hashCode */ (function (o) { if (o.hashCode) {
-                return o.hashCode();
-            }
-            else {
-                return o.toString().split('').reduce(function (prevHash, currVal) { return (((prevHash << 5) - prevHash) + currVal.charCodeAt(0)) | 0; }, 0);
-            } })(this.data);
-        };
-        return MyKey;
-    }());
-    test.MyKey = MyKey;
-    MyKey["__class"] = "test.MyKey";
-})(test || (test = {}));
 var java;
 (function (java) {
     var net;
     (function (net) {
         var URL = /** @class */ (function () {
             function URL(protocol, host, port, file) {
-                var _this = this;
                 if (((typeof protocol === 'string') || protocol === null) && ((typeof host === 'string') || host === null) && ((typeof port === 'number') || port === null) && ((typeof file === 'string') || file === null)) {
                     var __args = arguments;
                     {
                         var __args_1 = arguments;
-                        var spec_1 = protocol + "//" + host + ":" + port + "/" + file;
-                        if (this.jsUrl === undefined)
+                        var spec = protocol + "//" + host + ":" + port + "/" + file;
+                        if (this.jsUrl === undefined) {
                             this.jsUrl = null;
-                        if (this.jsUrl === undefined)
-                            this.jsUrl = null;
-                        (function () {
-                            _this.jsUrl = java.net.InternalJsURLFactory.newJsURL(spec_1);
-                        })();
+                        }
+                        this.jsUrl = java.net.InternalJsURLFactory.newJsURL(spec);
+                    }
+                    if (this.jsUrl === undefined) {
+                        this.jsUrl = null;
                     }
                 }
                 else if (((typeof protocol === 'string') || protocol === null) && ((typeof host === 'string') || host === null) && ((typeof port === 'string') || port === null) && file === undefined) {
@@ -2568,38 +2277,32 @@ var java;
                     var file_1 = __args[2];
                     {
                         var __args_2 = arguments;
-                        var spec_2 = protocol + "//" + host + "/" + file_1;
-                        if (this.jsUrl === undefined)
+                        var spec = protocol + "//" + host + "/" + file_1;
+                        if (this.jsUrl === undefined) {
                             this.jsUrl = null;
-                        if (this.jsUrl === undefined)
-                            this.jsUrl = null;
-                        (function () {
-                            _this.jsUrl = java.net.InternalJsURLFactory.newJsURL(spec_2);
-                        })();
+                        }
+                        this.jsUrl = java.net.InternalJsURLFactory.newJsURL(spec);
+                    }
+                    if (this.jsUrl === undefined) {
+                        this.jsUrl = null;
                     }
                 }
                 else if (((protocol != null && protocol instanceof java.net.URL) || protocol === null) && ((typeof host === 'string') || host === null) && port === undefined && file === undefined) {
                     var __args = arguments;
-                    var url_1 = __args[0];
-                    var string_1 = __args[1];
-                    if (this.jsUrl === undefined)
+                    var url = __args[0];
+                    var string = __args[1];
+                    if (this.jsUrl === undefined) {
                         this.jsUrl = null;
-                    if (this.jsUrl === undefined)
-                        this.jsUrl = null;
-                    (function () {
-                        _this.jsUrl = java.net.InternalJsURLFactory.newJsURL(string_1, url_1.jsUrl);
-                    })();
+                    }
+                    this.jsUrl = java.net.InternalJsURLFactory.newJsURL(string, url.jsUrl);
                 }
                 else if (((typeof protocol === 'string') || protocol === null) && host === undefined && port === undefined && file === undefined) {
                     var __args = arguments;
-                    var spec_3 = __args[0];
-                    if (this.jsUrl === undefined)
+                    var spec = __args[0];
+                    if (this.jsUrl === undefined) {
                         this.jsUrl = null;
-                    if (this.jsUrl === undefined)
-                        this.jsUrl = null;
-                    (function () {
-                        _this.jsUrl = java.net.InternalJsURLFactory.newJsURL(spec_3);
-                    })();
+                    }
+                    this.jsUrl = java.net.InternalJsURLFactory.newJsURL(spec);
                 }
                 else
                     throw new Error('invalid overload');
@@ -2611,7 +2314,7 @@ var java;
                         return new java.io.ByteArrayInputStream(new Int8Array(request.response));
                     case "blob":
                         var fileReaderSyncConstructor = (self["FileReaderSync"]);
-                        if (typeof fileReaderSyncConstructor === "function") {
+                        if (typeof fileReaderSyncConstructor === ("function")) {
                             return new java.io.ByteArrayInputStream(((fileReaderSyncConstructor["readAsArrayBuffer"])(request.response)));
                         }
                         return new java.io.ByteArrayInputStream(/* getBytes */ (URL.createObjectURL(request.response)).split('').map(function (s) { return s.charCodeAt(0); }));
@@ -2736,8 +2439,9 @@ var java;
         var InternalJsURLFactory = /** @class */ (function () {
             function InternalJsURLFactory() {
             }
-            InternalJsURLFactory.jsURLCtor_$LI$ = function () { if (InternalJsURLFactory.jsURLCtor == null)
-                InternalJsURLFactory.jsURLCtor = InternalJsURLFactory.getJsURLConstructor(); return InternalJsURLFactory.jsURLCtor; };
+            InternalJsURLFactory.jsURLCtor_$LI$ = function () { if (InternalJsURLFactory.jsURLCtor == null) {
+                InternalJsURLFactory.jsURLCtor = InternalJsURLFactory.getJsURLConstructor();
+            } return InternalJsURLFactory.jsURLCtor; };
             ;
             /*private*/ InternalJsURLFactory.getJsURLConstructor = function () {
                 var URLConstructor;
@@ -2772,134 +2476,138 @@ var java;
     (function (net) {
         var InternalJsURLForShell = /** @class */ (function () {
             function InternalJsURLForShell(data, url) {
-                var _this = this;
                 if (((typeof data === 'string') || data === null) && ((url != null && url instanceof Object) || url === null)) {
                     var __args = arguments;
                     {
                         var __args_3 = arguments;
                         var data_1 = url["href"] + __args_3[0];
-                        if (this.href === undefined)
+                        if (this.href === undefined) {
                             this.href = null;
-                        if (this.protocol === undefined)
+                        }
+                        if (this.protocol === undefined) {
                             this.protocol = null;
-                        if (this.username === undefined)
+                        }
+                        if (this.username === undefined) {
                             this.username = null;
-                        if (this.password === undefined)
+                        }
+                        if (this.password === undefined) {
                             this.password = null;
-                        if (this.hostname === undefined)
+                        }
+                        if (this.hostname === undefined) {
                             this.hostname = null;
-                        if (this.port === undefined)
+                        }
+                        if (this.port === undefined) {
                             this.port = null;
-                        if (this.pathname === undefined)
+                        }
+                        if (this.pathname === undefined) {
                             this.pathname = null;
-                        if (this.search === undefined)
+                        }
+                        if (this.search === undefined) {
                             this.search = null;
-                        if (this.hash === undefined)
+                        }
+                        if (this.hash === undefined) {
                             this.hash = null;
-                        if (this.href === undefined)
-                            this.href = null;
-                        if (this.protocol === undefined)
-                            this.protocol = null;
-                        if (this.username === undefined)
-                            this.username = null;
-                        if (this.password === undefined)
-                            this.password = null;
-                        if (this.hostname === undefined)
-                            this.hostname = null;
-                        if (this.port === undefined)
-                            this.port = null;
-                        if (this.pathname === undefined)
-                            this.pathname = null;
-                        if (this.search === undefined)
-                            this.search = null;
-                        if (this.hash === undefined)
-                            this.hash = null;
-                        (function () {
-                            _this.href = data_1;
-                            var protocolEnd = data_1.indexOf("://");
-                            if (protocolEnd === -1)
-                                throw new Error("Wrong URL, no protocol");
-                            _this.protocol = data_1.substring(0, protocolEnd);
-                            var userPassEnd = data_1.indexOf("@", protocolEnd + 3);
-                            var userEnd = userPassEnd === -1 ? -1 : data_1.indexOf(":", protocolEnd + 3);
-                            if (userEnd > userPassEnd)
-                                userEnd = -1;
-                            _this.username = userPassEnd === -1 ? null : userEnd === -1 ? data_1.substring(protocolEnd + 3, userPassEnd) : data_1.substring(protocolEnd + 3, userEnd);
-                            _this.password = userPassEnd === -1 || userEnd === -1 ? null : data_1.substring(userPassEnd + 1, userEnd);
-                            var hostStart = userPassEnd === -1 ? protocolEnd + 3 : userPassEnd + 1;
-                            var hostPortEnd = data_1.indexOf("/", hostStart);
-                            var portStart = data_1.indexOf(":", hostStart);
-                            _this.hostname = portStart === -1 || portStart > hostPortEnd ? data_1.substring(hostStart, hostPortEnd) : data_1.substring(hostStart, portStart);
-                            _this.port = portStart !== -1 && portStart < hostPortEnd ? javaemul.internal.IntegerHelper.parseInt(data_1.substring(portStart + 1, hostPortEnd)) : null;
-                            var searchStart = data_1.indexOf("?", hostPortEnd);
-                            var hashStart = data_1.indexOf("#", hostPortEnd);
-                            _this.search = searchStart !== -1 ? hashStart === -1 ? data_1.substring(searchStart + 1) : data_1.substring(searchStart + 1, hashStart) : null;
-                            _this.hash = hashStart !== -1 ? data_1.substring(hashStart + 1) : null;
-                            _this.pathname = searchStart === -1 && hashStart === -1 ? data_1.substring(hostPortEnd + 1) : data_1.substring(hostPortEnd + 1, searchStart === -1 ? hashStart : searchStart);
-                        })();
+                        }
+                        this.href = data_1;
+                        var protocolEnd = data_1.indexOf("://");
+                        if (protocolEnd === -1)
+                            throw new Error("Wrong URL, no protocol");
+                        this.protocol = data_1.substring(0, protocolEnd);
+                        var userPassEnd = data_1.indexOf("@", protocolEnd + 3);
+                        var userEnd = userPassEnd === -1 ? -1 : data_1.indexOf(":", protocolEnd + 3);
+                        if (userEnd > userPassEnd)
+                            userEnd = -1;
+                        this.username = userPassEnd === -1 ? null : userEnd === -1 ? data_1.substring(protocolEnd + 3, userPassEnd) : data_1.substring(protocolEnd + 3, userEnd);
+                        this.password = userPassEnd === -1 || userEnd === -1 ? null : data_1.substring(userPassEnd + 1, userEnd);
+                        var hostStart = userPassEnd === -1 ? protocolEnd + 3 : userPassEnd + 1;
+                        var hostPortEnd = data_1.indexOf("/", hostStart);
+                        var portStart = data_1.indexOf(":", hostStart);
+                        this.hostname = portStart === -1 || portStart > hostPortEnd ? data_1.substring(hostStart, hostPortEnd) : data_1.substring(hostStart, portStart);
+                        this.port = portStart !== -1 && portStart < hostPortEnd ? javaemul.internal.IntegerHelper.parseInt(data_1.substring(portStart + 1, hostPortEnd)) : null;
+                        var searchStart = data_1.indexOf("?", hostPortEnd);
+                        var hashStart = data_1.indexOf("#", hostPortEnd);
+                        this.search = searchStart !== -1 ? hashStart === -1 ? data_1.substring(searchStart + 1) : data_1.substring(searchStart + 1, hashStart) : null;
+                        this.hash = hashStart !== -1 ? data_1.substring(hashStart + 1) : null;
+                        this.pathname = searchStart === -1 && hashStart === -1 ? data_1.substring(hostPortEnd + 1) : data_1.substring(hostPortEnd + 1, searchStart === -1 ? hashStart : searchStart);
+                    }
+                    if (this.href === undefined) {
+                        this.href = null;
+                    }
+                    if (this.protocol === undefined) {
+                        this.protocol = null;
+                    }
+                    if (this.username === undefined) {
+                        this.username = null;
+                    }
+                    if (this.password === undefined) {
+                        this.password = null;
+                    }
+                    if (this.hostname === undefined) {
+                        this.hostname = null;
+                    }
+                    if (this.port === undefined) {
+                        this.port = null;
+                    }
+                    if (this.pathname === undefined) {
+                        this.pathname = null;
+                    }
+                    if (this.search === undefined) {
+                        this.search = null;
+                    }
+                    if (this.hash === undefined) {
+                        this.hash = null;
                     }
                 }
                 else if (((typeof data === 'string') || data === null) && url === undefined) {
                     var __args = arguments;
-                    if (this.href === undefined)
+                    if (this.href === undefined) {
                         this.href = null;
-                    if (this.protocol === undefined)
+                    }
+                    if (this.protocol === undefined) {
                         this.protocol = null;
-                    if (this.username === undefined)
+                    }
+                    if (this.username === undefined) {
                         this.username = null;
-                    if (this.password === undefined)
+                    }
+                    if (this.password === undefined) {
                         this.password = null;
-                    if (this.hostname === undefined)
+                    }
+                    if (this.hostname === undefined) {
                         this.hostname = null;
-                    if (this.port === undefined)
+                    }
+                    if (this.port === undefined) {
                         this.port = null;
-                    if (this.pathname === undefined)
+                    }
+                    if (this.pathname === undefined) {
                         this.pathname = null;
-                    if (this.search === undefined)
+                    }
+                    if (this.search === undefined) {
                         this.search = null;
-                    if (this.hash === undefined)
+                    }
+                    if (this.hash === undefined) {
                         this.hash = null;
-                    if (this.href === undefined)
-                        this.href = null;
-                    if (this.protocol === undefined)
-                        this.protocol = null;
-                    if (this.username === undefined)
-                        this.username = null;
-                    if (this.password === undefined)
-                        this.password = null;
-                    if (this.hostname === undefined)
-                        this.hostname = null;
-                    if (this.port === undefined)
-                        this.port = null;
-                    if (this.pathname === undefined)
-                        this.pathname = null;
-                    if (this.search === undefined)
-                        this.search = null;
-                    if (this.hash === undefined)
-                        this.hash = null;
-                    (function () {
-                        _this.href = data;
-                        var protocolEnd = data.indexOf("://");
-                        if (protocolEnd === -1)
-                            throw new Error("Wrong URL, no protocol");
-                        _this.protocol = data.substring(0, protocolEnd);
-                        var userPassEnd = data.indexOf("@", protocolEnd + 3);
-                        var userEnd = userPassEnd === -1 ? -1 : data.indexOf(":", protocolEnd + 3);
-                        if (userEnd > userPassEnd)
-                            userEnd = -1;
-                        _this.username = userPassEnd === -1 ? null : userEnd === -1 ? data.substring(protocolEnd + 3, userPassEnd) : data.substring(protocolEnd + 3, userEnd);
-                        _this.password = userPassEnd === -1 || userEnd === -1 ? null : data.substring(userPassEnd + 1, userEnd);
-                        var hostStart = userPassEnd === -1 ? protocolEnd + 3 : userPassEnd + 1;
-                        var hostPortEnd = data.indexOf("/", hostStart);
-                        var portStart = data.indexOf(":", hostStart);
-                        _this.hostname = portStart === -1 || portStart > hostPortEnd ? data.substring(hostStart, hostPortEnd) : data.substring(hostStart, portStart);
-                        _this.port = portStart !== -1 && portStart < hostPortEnd ? javaemul.internal.IntegerHelper.parseInt(data.substring(portStart + 1, hostPortEnd)) : null;
-                        var searchStart = data.indexOf("?", hostPortEnd);
-                        var hashStart = data.indexOf("#", hostPortEnd);
-                        _this.search = searchStart !== -1 ? hashStart === -1 ? data.substring(searchStart + 1) : data.substring(searchStart + 1, hashStart) : null;
-                        _this.hash = hashStart !== -1 ? data.substring(hashStart + 1) : null;
-                        _this.pathname = searchStart === -1 && hashStart === -1 ? data.substring(hostPortEnd + 1) : data.substring(hostPortEnd + 1, searchStart === -1 ? hashStart : searchStart);
-                    })();
+                    }
+                    this.href = data;
+                    var protocolEnd = data.indexOf("://");
+                    if (protocolEnd === -1)
+                        throw new Error("Wrong URL, no protocol");
+                    this.protocol = data.substring(0, protocolEnd);
+                    var userPassEnd = data.indexOf("@", protocolEnd + 3);
+                    var userEnd = userPassEnd === -1 ? -1 : data.indexOf(":", protocolEnd + 3);
+                    if (userEnd > userPassEnd)
+                        userEnd = -1;
+                    this.username = userPassEnd === -1 ? null : userEnd === -1 ? data.substring(protocolEnd + 3, userPassEnd) : data.substring(protocolEnd + 3, userEnd);
+                    this.password = userPassEnd === -1 || userEnd === -1 ? null : data.substring(userPassEnd + 1, userEnd);
+                    var hostStart = userPassEnd === -1 ? protocolEnd + 3 : userPassEnd + 1;
+                    var hostPortEnd = data.indexOf("/", hostStart);
+                    var portStart = data.indexOf(":", hostStart);
+                    this.hostname = portStart === -1 || portStart > hostPortEnd ? data.substring(hostStart, hostPortEnd) : data.substring(hostStart, portStart);
+                    this.port = portStart !== -1 && portStart < hostPortEnd ? javaemul.internal.IntegerHelper.parseInt(data.substring(portStart + 1, hostPortEnd)) : null;
+                    var searchStart = data.indexOf("?", hostPortEnd);
+                    var hashStart = data.indexOf("#", hostPortEnd);
+                    this.search = searchStart !== -1 ? hashStart === -1 ? data.substring(searchStart + 1) : data.substring(searchStart + 1, hashStart) : null;
+                    this.hash = hashStart !== -1 ? data.substring(hashStart + 1) : null;
+                    this.pathname = searchStart === -1 && hashStart === -1 ? data.substring(hostPortEnd + 1) : data.substring(hostPortEnd + 1, searchStart === -1 ? hashStart : searchStart);
                 }
                 else
                     throw new Error('invalid overload');
@@ -2915,8 +2623,9 @@ var java;
     (function (util) {
         var EventListenerProxy = /** @class */ (function () {
             function EventListenerProxy(listener) {
-                if (this.listener === undefined)
+                if (this.listener === undefined) {
                     this.listener = null;
+                }
                 this.listener = listener;
             }
             EventListenerProxy.prototype.getListener = function () {
@@ -2973,8 +2682,9 @@ var java;
         var InternalJsMapFactory = /** @class */ (function () {
             function InternalJsMapFactory() {
             }
-            InternalJsMapFactory.jsMapCtor_$LI$ = function () { if (InternalJsMapFactory.jsMapCtor == null)
-                InternalJsMapFactory.jsMapCtor = InternalJsMapFactory.getJsMapConstructor(); return InternalJsMapFactory.jsMapCtor; };
+            InternalJsMapFactory.jsMapCtor_$LI$ = function () { if (InternalJsMapFactory.jsMapCtor == null) {
+                InternalJsMapFactory.jsMapCtor = InternalJsMapFactory.getJsMapConstructor();
+            } return InternalJsMapFactory.jsMapCtor; };
             ;
             /*private*/ InternalJsMapFactory.getJsMapConstructor = function () {
                 return (function () { return eval("Map"); }).call(null);
@@ -3001,24 +2711,19 @@ var java;
          */
         var BitSet = /** @class */ (function () {
             function BitSet(nbits) {
-                var _this = this;
                 if (((typeof nbits === 'number') || nbits === null)) {
                     var __args = arguments;
                     this.bits = [];
-                    this.bits = [];
-                    (function () {
-                        while ((nbits > 0)) {
-                            {
-                                (_this.bits).push(false);
-                                nbits--;
-                            }
+                    while ((nbits > 0)) {
+                        {
+                            (this.bits).push(false);
+                            nbits--;
                         }
-                        ;
-                    })();
+                    }
+                    ;
                 }
                 else if (nbits === undefined) {
                     var __args = arguments;
-                    this.bits = [];
                     this.bits = [];
                 }
                 else
@@ -3394,26 +3099,19 @@ var java;
          */
         var Optional = /** @class */ (function () {
             function Optional(ref) {
-                var _this = this;
                 if (((ref != null) || ref === null)) {
                     var __args = arguments;
-                    if (this.ref === undefined)
+                    if (this.ref === undefined) {
                         this.ref = null;
-                    if (this.ref === undefined)
-                        this.ref = null;
-                    (function () {
-                        _this.ref = (javaemul.internal.InternalPreconditions.checkCriticalNotNull(ref));
-                    })();
+                    }
+                    this.ref = (javaemul.internal.InternalPreconditions.checkCriticalNotNull(ref));
                 }
                 else if (ref === undefined) {
                     var __args = arguments;
-                    if (this.ref === undefined)
+                    if (this.ref === undefined) {
                         this.ref = null;
-                    if (this.ref === undefined)
-                        this.ref = null;
-                    (function () {
-                        _this.ref = null;
-                    })();
+                    }
+                    this.ref = null;
                 }
                 else
                     throw new Error('invalid overload');
@@ -3427,8 +3125,9 @@ var java;
             Optional.ofNullable = function (value) {
                 return value == null ? Optional.empty() : Optional.of(value);
             };
-            Optional.EMPTY_$LI$ = function () { if (Optional.EMPTY == null)
-                Optional.EMPTY = (new Optional()); return Optional.EMPTY; };
+            Optional.EMPTY_$LI$ = function () { if (Optional.EMPTY == null) {
+                Optional.EMPTY = (new Optional());
+            } return Optional.EMPTY; };
             ;
             Optional.prototype.isPresent = function () {
                 return this.ref != null;
@@ -3524,36 +3223,27 @@ var java;
          */
         var OptionalDouble = /** @class */ (function () {
             function OptionalDouble(value) {
-                var _this = this;
                 if (((typeof value === 'number') || value === null)) {
                     var __args = arguments;
-                    if (this.ref === undefined)
+                    if (this.ref === undefined) {
                         this.ref = 0;
-                    if (this.present === undefined)
+                    }
+                    if (this.present === undefined) {
                         this.present = false;
-                    if (this.ref === undefined)
-                        this.ref = 0;
-                    if (this.present === undefined)
-                        this.present = false;
-                    (function () {
-                        _this.ref = value;
-                        _this.present = true;
-                    })();
+                    }
+                    this.ref = value;
+                    this.present = true;
                 }
                 else if (value === undefined) {
                     var __args = arguments;
-                    if (this.ref === undefined)
+                    if (this.ref === undefined) {
                         this.ref = 0;
-                    if (this.present === undefined)
+                    }
+                    if (this.present === undefined) {
                         this.present = false;
-                    if (this.ref === undefined)
-                        this.ref = 0;
-                    if (this.present === undefined)
-                        this.present = false;
-                    (function () {
-                        _this.ref = 0;
-                        _this.present = false;
-                    })();
+                    }
+                    this.ref = 0;
+                    this.present = false;
                 }
                 else
                     throw new Error('invalid overload');
@@ -3564,8 +3254,9 @@ var java;
             OptionalDouble.of = function (value) {
                 return new OptionalDouble(value);
             };
-            OptionalDouble.EMPTY_$LI$ = function () { if (OptionalDouble.EMPTY == null)
-                OptionalDouble.EMPTY = new OptionalDouble(); return OptionalDouble.EMPTY; };
+            OptionalDouble.EMPTY_$LI$ = function () { if (OptionalDouble.EMPTY == null) {
+                OptionalDouble.EMPTY = new OptionalDouble();
+            } return OptionalDouble.EMPTY; };
             ;
             OptionalDouble.prototype.isPresent = function () {
                 return this.present;
@@ -3637,8 +3328,9 @@ var java;
         var Observable = /** @class */ (function () {
             function Observable() {
                 this.changed = false;
-                if (this.obs === undefined)
+                if (this.obs === undefined) {
                     this.obs = null;
+                }
                 this.obs = (new java.util.Vector());
             }
             /**
@@ -3777,23 +3469,25 @@ var java;
         var InternalHashCodeMap = /** @class */ (function () {
             function InternalHashCodeMap(host) {
                 this.backingMap = java.util.InternalJsMapFactory.newJsMap();
-                if (this.host === undefined)
+                if (this.host === undefined) {
                     this.host = null;
-                if (this.__size === undefined)
+                }
+                if (this.__size === undefined) {
                     this.__size = 0;
+                }
                 this.host = host;
             }
             /* Default method injected from java.lang.Iterable */
             InternalHashCodeMap.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_1 = function (index123) {
-                    var t = index123.next();
+                var _loop_1 = function (index122) {
+                    var t = index122.next();
                     {
                         (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                     }
                 };
-                for (var index123 = this.iterator(); index123.hasNext();) {
-                    _loop_1(index123);
+                for (var index122 = this.iterator(); index122.hasNext();) {
+                    _loop_1(index122);
                 }
             };
             InternalHashCodeMap.prototype.put = function (key, value) {
@@ -3840,8 +3534,8 @@ var java;
                 return this.findEntryInChain(key, this.getChainOrEmpty(this.hash(key)));
             };
             /*private*/ InternalHashCodeMap.prototype.findEntryInChain = function (key, chain) {
-                for (var index124 = 0; index124 < chain.length; index124++) {
-                    var entry = chain[index124];
+                for (var index123 = 0; index123 < chain.length; index123++) {
+                    var entry = chain[index123];
                     {
                         if (this.host._equals(key, entry.getKey())) {
                             return entry;
@@ -4038,36 +3732,27 @@ var java;
          */
         var OptionalInt = /** @class */ (function () {
             function OptionalInt(value) {
-                var _this = this;
                 if (((typeof value === 'number') || value === null)) {
                     var __args = arguments;
-                    if (this.ref === undefined)
+                    if (this.ref === undefined) {
                         this.ref = 0;
-                    if (this.present === undefined)
+                    }
+                    if (this.present === undefined) {
                         this.present = false;
-                    if (this.ref === undefined)
-                        this.ref = 0;
-                    if (this.present === undefined)
-                        this.present = false;
-                    (function () {
-                        _this.ref = value;
-                        _this.present = true;
-                    })();
+                    }
+                    this.ref = value;
+                    this.present = true;
                 }
                 else if (value === undefined) {
                     var __args = arguments;
-                    if (this.ref === undefined)
+                    if (this.ref === undefined) {
                         this.ref = 0;
-                    if (this.present === undefined)
+                    }
+                    if (this.present === undefined) {
                         this.present = false;
-                    if (this.ref === undefined)
-                        this.ref = 0;
-                    if (this.present === undefined)
-                        this.present = false;
-                    (function () {
-                        _this.ref = 0;
-                        _this.present = false;
-                    })();
+                    }
+                    this.ref = 0;
+                    this.present = false;
                 }
                 else
                     throw new Error('invalid overload');
@@ -4078,8 +3763,9 @@ var java;
             OptionalInt.of = function (value) {
                 return new OptionalInt(value);
             };
-            OptionalInt.EMPTY_$LI$ = function () { if (OptionalInt.EMPTY == null)
-                OptionalInt.EMPTY = new OptionalInt(); return OptionalInt.EMPTY; };
+            OptionalInt.EMPTY_$LI$ = function () { if (OptionalInt.EMPTY == null) {
+                OptionalInt.EMPTY = new OptionalInt();
+            } return OptionalInt.EMPTY; };
             ;
             OptionalInt.prototype.isPresent = function () {
                 return this.present;
@@ -4151,36 +3837,27 @@ var java;
          */
         var OptionalLong = /** @class */ (function () {
             function OptionalLong(value) {
-                var _this = this;
                 if (((typeof value === 'number') || value === null)) {
                     var __args = arguments;
-                    if (this.ref === undefined)
+                    if (this.ref === undefined) {
                         this.ref = 0;
-                    if (this.present === undefined)
+                    }
+                    if (this.present === undefined) {
                         this.present = false;
-                    if (this.ref === undefined)
-                        this.ref = 0;
-                    if (this.present === undefined)
-                        this.present = false;
-                    (function () {
-                        _this.ref = value;
-                        _this.present = true;
-                    })();
+                    }
+                    this.ref = value;
+                    this.present = true;
                 }
                 else if (value === undefined) {
                     var __args = arguments;
-                    if (this.ref === undefined)
+                    if (this.ref === undefined) {
                         this.ref = 0;
-                    if (this.present === undefined)
+                    }
+                    if (this.present === undefined) {
                         this.present = false;
-                    if (this.ref === undefined)
-                        this.ref = 0;
-                    if (this.present === undefined)
-                        this.present = false;
-                    (function () {
-                        _this.ref = 0;
-                        _this.present = false;
-                    })();
+                    }
+                    this.ref = 0;
+                    this.present = false;
                 }
                 else
                     throw new Error('invalid overload');
@@ -4191,8 +3868,9 @@ var java;
             OptionalLong.of = function (value) {
                 return new OptionalLong(value);
             };
-            OptionalLong.EMPTY_$LI$ = function () { if (OptionalLong.EMPTY == null)
-                OptionalLong.EMPTY = new OptionalLong(); return OptionalLong.EMPTY; };
+            OptionalLong.EMPTY_$LI$ = function () { if (OptionalLong.EMPTY == null) {
+                OptionalLong.EMPTY = new OptionalLong();
+            } return OptionalLong.EMPTY; };
             ;
             OptionalLong.prototype.isPresent = function () {
                 return this.present;
@@ -4264,8 +3942,9 @@ var java;
          */
         var EventObject = /** @class */ (function () {
             function EventObject(source) {
-                if (this.source === undefined)
+                if (this.source === undefined) {
                     this.source = null;
+                }
                 this.source = source;
             }
             EventObject.prototype.getSource = function () {
@@ -4314,112 +3993,115 @@ var java;
          */
         var StringTokenizer = /** @class */ (function () {
             function StringTokenizer(str, delim, returnDelims) {
-                var _this = this;
                 if (((typeof str === 'string') || str === null) && ((typeof delim === 'string') || delim === null) && ((typeof returnDelims === 'boolean') || returnDelims === null)) {
                     var __args = arguments;
-                    if (this.currentPosition === undefined)
+                    if (this.currentPosition === undefined) {
                         this.currentPosition = 0;
-                    if (this.newPosition === undefined)
+                    }
+                    if (this.newPosition === undefined) {
                         this.newPosition = 0;
-                    if (this.maxPosition === undefined)
+                    }
+                    if (this.maxPosition === undefined) {
                         this.maxPosition = 0;
-                    if (this.str === undefined)
+                    }
+                    if (this.str === undefined) {
                         this.str = null;
-                    if (this.delimiters === undefined)
+                    }
+                    if (this.delimiters === undefined) {
                         this.delimiters = null;
-                    if (this.retDelims === undefined)
+                    }
+                    if (this.retDelims === undefined) {
                         this.retDelims = false;
-                    if (this.delimsChanged === undefined)
+                    }
+                    if (this.delimsChanged === undefined) {
                         this.delimsChanged = false;
-                    if (this.maxDelimCodePoint === undefined)
+                    }
+                    if (this.maxDelimCodePoint === undefined) {
                         this.maxDelimCodePoint = 0;
-                    if (this.delimiterCodePoints === undefined)
+                    }
+                    if (this.delimiterCodePoints === undefined) {
                         this.delimiterCodePoints = null;
+                    }
                     this.hasSurrogates = false;
-                    if (this.currentPosition === undefined)
-                        this.currentPosition = 0;
-                    if (this.newPosition === undefined)
-                        this.newPosition = 0;
-                    if (this.maxPosition === undefined)
-                        this.maxPosition = 0;
-                    if (this.str === undefined)
-                        this.str = null;
-                    if (this.delimiters === undefined)
-                        this.delimiters = null;
-                    if (this.retDelims === undefined)
-                        this.retDelims = false;
-                    if (this.delimsChanged === undefined)
-                        this.delimsChanged = false;
-                    if (this.maxDelimCodePoint === undefined)
-                        this.maxDelimCodePoint = 0;
-                    this.hasSurrogates = false;
-                    if (this.delimiterCodePoints === undefined)
-                        this.delimiterCodePoints = null;
-                    (function () {
-                        _this.currentPosition = 0;
-                        _this.newPosition = -1;
-                        _this.delimsChanged = false;
-                        _this.str = str;
-                        _this.maxPosition = str.length;
-                        _this.delimiters = delim;
-                        _this.retDelims = returnDelims;
-                        _this.setMaxDelimCodePoint();
-                    })();
+                    this.currentPosition = 0;
+                    this.newPosition = -1;
+                    this.delimsChanged = false;
+                    this.str = str;
+                    this.maxPosition = str.length;
+                    this.delimiters = delim;
+                    this.retDelims = returnDelims;
+                    this.setMaxDelimCodePoint();
                 }
                 else if (((typeof str === 'string') || str === null) && ((typeof delim === 'string') || delim === null) && returnDelims === undefined) {
                     var __args = arguments;
                     {
                         var __args_4 = arguments;
                         var returnDelims_1 = false;
-                        if (this.currentPosition === undefined)
+                        if (this.currentPosition === undefined) {
                             this.currentPosition = 0;
-                        if (this.newPosition === undefined)
+                        }
+                        if (this.newPosition === undefined) {
                             this.newPosition = 0;
-                        if (this.maxPosition === undefined)
+                        }
+                        if (this.maxPosition === undefined) {
                             this.maxPosition = 0;
-                        if (this.str === undefined)
+                        }
+                        if (this.str === undefined) {
                             this.str = null;
-                        if (this.delimiters === undefined)
+                        }
+                        if (this.delimiters === undefined) {
                             this.delimiters = null;
-                        if (this.retDelims === undefined)
+                        }
+                        if (this.retDelims === undefined) {
                             this.retDelims = false;
-                        if (this.delimsChanged === undefined)
+                        }
+                        if (this.delimsChanged === undefined) {
                             this.delimsChanged = false;
-                        if (this.maxDelimCodePoint === undefined)
+                        }
+                        if (this.maxDelimCodePoint === undefined) {
                             this.maxDelimCodePoint = 0;
-                        if (this.delimiterCodePoints === undefined)
+                        }
+                        if (this.delimiterCodePoints === undefined) {
                             this.delimiterCodePoints = null;
+                        }
                         this.hasSurrogates = false;
-                        if (this.currentPosition === undefined)
-                            this.currentPosition = 0;
-                        if (this.newPosition === undefined)
-                            this.newPosition = 0;
-                        if (this.maxPosition === undefined)
-                            this.maxPosition = 0;
-                        if (this.str === undefined)
-                            this.str = null;
-                        if (this.delimiters === undefined)
-                            this.delimiters = null;
-                        if (this.retDelims === undefined)
-                            this.retDelims = false;
-                        if (this.delimsChanged === undefined)
-                            this.delimsChanged = false;
-                        if (this.maxDelimCodePoint === undefined)
-                            this.maxDelimCodePoint = 0;
-                        this.hasSurrogates = false;
-                        if (this.delimiterCodePoints === undefined)
-                            this.delimiterCodePoints = null;
-                        (function () {
-                            _this.currentPosition = 0;
-                            _this.newPosition = -1;
-                            _this.delimsChanged = false;
-                            _this.str = str;
-                            _this.maxPosition = str.length;
-                            _this.delimiters = delim;
-                            _this.retDelims = returnDelims_1;
-                            _this.setMaxDelimCodePoint();
-                        })();
+                        this.currentPosition = 0;
+                        this.newPosition = -1;
+                        this.delimsChanged = false;
+                        this.str = str;
+                        this.maxPosition = str.length;
+                        this.delimiters = delim;
+                        this.retDelims = returnDelims_1;
+                        this.setMaxDelimCodePoint();
                     }
+                    if (this.currentPosition === undefined) {
+                        this.currentPosition = 0;
+                    }
+                    if (this.newPosition === undefined) {
+                        this.newPosition = 0;
+                    }
+                    if (this.maxPosition === undefined) {
+                        this.maxPosition = 0;
+                    }
+                    if (this.str === undefined) {
+                        this.str = null;
+                    }
+                    if (this.delimiters === undefined) {
+                        this.delimiters = null;
+                    }
+                    if (this.retDelims === undefined) {
+                        this.retDelims = false;
+                    }
+                    if (this.delimsChanged === undefined) {
+                        this.delimsChanged = false;
+                    }
+                    if (this.maxDelimCodePoint === undefined) {
+                        this.maxDelimCodePoint = 0;
+                    }
+                    if (this.delimiterCodePoints === undefined) {
+                        this.delimiterCodePoints = null;
+                    }
+                    this.hasSurrogates = false;
                 }
                 else if (((typeof str === 'string') || str === null) && delim === undefined && returnDelims === undefined) {
                     var __args = arguments;
@@ -4427,55 +4109,71 @@ var java;
                         var __args_5 = arguments;
                         var delim_1 = " \t\n\r\f";
                         var returnDelims_2 = false;
-                        if (this.currentPosition === undefined)
+                        if (this.currentPosition === undefined) {
                             this.currentPosition = 0;
-                        if (this.newPosition === undefined)
+                        }
+                        if (this.newPosition === undefined) {
                             this.newPosition = 0;
-                        if (this.maxPosition === undefined)
+                        }
+                        if (this.maxPosition === undefined) {
                             this.maxPosition = 0;
-                        if (this.str === undefined)
+                        }
+                        if (this.str === undefined) {
                             this.str = null;
-                        if (this.delimiters === undefined)
+                        }
+                        if (this.delimiters === undefined) {
                             this.delimiters = null;
-                        if (this.retDelims === undefined)
+                        }
+                        if (this.retDelims === undefined) {
                             this.retDelims = false;
-                        if (this.delimsChanged === undefined)
+                        }
+                        if (this.delimsChanged === undefined) {
                             this.delimsChanged = false;
-                        if (this.maxDelimCodePoint === undefined)
+                        }
+                        if (this.maxDelimCodePoint === undefined) {
                             this.maxDelimCodePoint = 0;
-                        if (this.delimiterCodePoints === undefined)
+                        }
+                        if (this.delimiterCodePoints === undefined) {
                             this.delimiterCodePoints = null;
+                        }
                         this.hasSurrogates = false;
-                        if (this.currentPosition === undefined)
-                            this.currentPosition = 0;
-                        if (this.newPosition === undefined)
-                            this.newPosition = 0;
-                        if (this.maxPosition === undefined)
-                            this.maxPosition = 0;
-                        if (this.str === undefined)
-                            this.str = null;
-                        if (this.delimiters === undefined)
-                            this.delimiters = null;
-                        if (this.retDelims === undefined)
-                            this.retDelims = false;
-                        if (this.delimsChanged === undefined)
-                            this.delimsChanged = false;
-                        if (this.maxDelimCodePoint === undefined)
-                            this.maxDelimCodePoint = 0;
-                        this.hasSurrogates = false;
-                        if (this.delimiterCodePoints === undefined)
-                            this.delimiterCodePoints = null;
-                        (function () {
-                            _this.currentPosition = 0;
-                            _this.newPosition = -1;
-                            _this.delimsChanged = false;
-                            _this.str = str;
-                            _this.maxPosition = str.length;
-                            _this.delimiters = delim_1;
-                            _this.retDelims = returnDelims_2;
-                            _this.setMaxDelimCodePoint();
-                        })();
+                        this.currentPosition = 0;
+                        this.newPosition = -1;
+                        this.delimsChanged = false;
+                        this.str = str;
+                        this.maxPosition = str.length;
+                        this.delimiters = delim_1;
+                        this.retDelims = returnDelims_2;
+                        this.setMaxDelimCodePoint();
                     }
+                    if (this.currentPosition === undefined) {
+                        this.currentPosition = 0;
+                    }
+                    if (this.newPosition === undefined) {
+                        this.newPosition = 0;
+                    }
+                    if (this.maxPosition === undefined) {
+                        this.maxPosition = 0;
+                    }
+                    if (this.str === undefined) {
+                        this.str = null;
+                    }
+                    if (this.delimiters === undefined) {
+                        this.delimiters = null;
+                    }
+                    if (this.retDelims === undefined) {
+                        this.retDelims = false;
+                    }
+                    if (this.delimsChanged === undefined) {
+                        this.delimsChanged = false;
+                    }
+                    if (this.maxDelimCodePoint === undefined) {
+                        this.maxDelimCodePoint = 0;
+                    }
+                    if (this.delimiterCodePoints === undefined) {
+                        this.delimiterCodePoints = null;
+                    }
+                    this.hasSurrogates = false;
                 }
                 else
                     throw new Error('invalid overload');
@@ -4721,16 +4419,21 @@ var java;
         (function (regex) {
             var Matcher = /** @class */ (function () {
                 function Matcher(_pattern, text) {
-                    if (this._pattern === undefined)
+                    if (this._pattern === undefined) {
                         this._pattern = null;
-                    if (this.text === undefined)
+                    }
+                    if (this.text === undefined) {
                         this.text = null;
-                    if (this.starts === undefined)
+                    }
+                    if (this.starts === undefined) {
                         this.starts = null;
-                    if (this.ends === undefined)
+                    }
+                    if (this.ends === undefined) {
                         this.ends = null;
-                    if (this.groups === undefined)
+                    }
+                    if (this.groups === undefined) {
                         this.groups = null;
+                    }
                     this.first = -1;
                     this.last = 0;
                     this.lastAppendPosition = 0;
@@ -4896,7 +4599,7 @@ var java;
                     return this.reset$();
                 };
                 Matcher.prototype.reset = function (input) {
-                    if (((input != null && (input["__interfaces"] != null && input["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || input.constructor != null && input.constructor["__interfaces"] != null && input.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof input === "string")) || input === null)) {
+                    if (((input != null && (input.constructor != null && input.constructor["__interfaces"] != null && input.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof input === "string")) || input === null)) {
                         return this.reset$java_lang_CharSequence(input);
                     }
                     else if (input === undefined) {
@@ -4943,18 +4646,24 @@ var java;
             (function (Matcher) {
                 var IndexGetter = /** @class */ (function () {
                     function IndexGetter(regexString, parenthesisStart, parenthesisEnd, starts, ends, startLastIndex) {
-                        if (this.regexString === undefined)
+                        if (this.regexString === undefined) {
                             this.regexString = null;
-                        if (this.parenthesisStart === undefined)
+                        }
+                        if (this.parenthesisStart === undefined) {
                             this.parenthesisStart = null;
-                        if (this.parenthesisEnd === undefined)
+                        }
+                        if (this.parenthesisEnd === undefined) {
                             this.parenthesisEnd = null;
-                        if (this.starts === undefined)
+                        }
+                        if (this.starts === undefined) {
                             this.starts = null;
-                        if (this.ends === undefined)
+                        }
+                        if (this.ends === undefined) {
                             this.ends = null;
-                        if (this.startLastIndex === undefined)
+                        }
+                        if (this.startLastIndex === undefined) {
                             this.startLastIndex = 0;
+                        }
                         this.regexString = regexString;
                         this.parenthesisStart = parenthesisStart;
                         this.parenthesisEnd = parenthesisEnd;
@@ -5014,10 +4723,12 @@ var java;
                 IndexGetter["__interfaces"] = ["java.util.function.Function"];
                 var NonCapturesToCaptures = /** @class */ (function () {
                     function NonCapturesToCaptures(start, ends) {
-                        if (this.start === undefined)
+                        if (this.start === undefined) {
                             this.start = null;
-                        if (this.ends === undefined)
+                        }
+                        if (this.ends === undefined) {
                             this.ends = null;
+                        }
                         this.start = start;
                         this.ends = ends;
                     }
@@ -5047,8 +4758,9 @@ var java;
                 NonCapturesToCaptures["__interfaces"] = ["java.util.function.Function"];
                 var FirstReplacer = /** @class */ (function () {
                     function FirstReplacer(replacement) {
-                        if (this.replacement === undefined)
+                        if (this.replacement === undefined) {
                             this.replacement = null;
+                        }
                         this.first = true;
                         this.replacement = replacement;
                     }
@@ -5080,12 +4792,15 @@ var java;
         (function (regex_1) {
             var Pattern = /** @class */ (function () {
                 function Pattern(regexp, _flags, namedGroupsNames) {
-                    if (this.regexp === undefined)
+                    if (this.regexp === undefined) {
                         this.regexp = null;
-                    if (this._flags === undefined)
+                    }
+                    if (this._flags === undefined) {
                         this._flags = 0;
-                    if (this.namedGroupsNames === undefined)
+                    }
+                    if (this.namedGroupsNames === undefined) {
                         this.namedGroupsNames = null;
+                    }
                     this.regexp = regexp;
                     this._flags = _flags;
                     this.namedGroupsNames = namedGroupsNames;
@@ -5194,8 +4909,9 @@ var java;
             (function (Pattern) {
                 var GroupNameRemover = /** @class */ (function () {
                     function GroupNameRemover(namedGroupsNames) {
-                        if (this.namedGroupsNames === undefined)
+                        if (this.namedGroupsNames === undefined) {
                             this.namedGroupsNames = null;
+                        }
                         this.count = 0;
                         this.inBrackets = false;
                         this.namedGroupsNames = namedGroupsNames;
@@ -5250,10 +4966,31 @@ var java;
             function AbstractCollection() {
             }
             /* Default method injected from java.util.Collection */
+            AbstractCollection.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.lang.Iterable */
+            AbstractCollection.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                var _loop_2 = function (index124) {
+                    var t = index124.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index124 = this.iterator(); index124.hasNext();) {
+                    _loop_2(index124);
+                }
+            };
+            /* Default method injected from java.util.Collection */
+            AbstractCollection.prototype.parallelStream = function () {
+                return this.stream();
+            };
+            /* Default method injected from java.util.Collection */
             AbstractCollection.prototype.removeIf = function (filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 var removed = false;
-                var _loop_2 = function (it) {
+                var _loop_3 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -5263,30 +5000,9 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_2(it);
+                    _loop_3(it);
                 }
                 return removed;
-            };
-            /* Default method injected from java.util.Collection */
-            AbstractCollection.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.Collection */
-            AbstractCollection.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.lang.Iterable */
-            AbstractCollection.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_3 = function (index125) {
-                    var t = index125.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index125 = this.iterator(); index125.hasNext();) {
-                    _loop_3(index125);
-                }
             };
             /**
              *
@@ -5304,8 +5020,8 @@ var java;
             AbstractCollection.prototype.addAll = function (c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
                 var changed = false;
-                for (var index126 = c.iterator(); index126.hasNext();) {
-                    var e = index126.next();
+                for (var index125 = c.iterator(); index125.hasNext();) {
+                    var e = index125.next();
                     {
                         changed = this.add(e) || changed;
                     }
@@ -5339,8 +5055,8 @@ var java;
              */
             AbstractCollection.prototype.containsAll = function (c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
-                for (var index127 = c.iterator(); index127.hasNext();) {
-                    var e = index127.next();
+                for (var index126 = c.iterator(); index126.hasNext();) {
+                    var e = index126.next();
                     {
                         if (!this.contains(e)) {
                             return false;
@@ -5447,8 +5163,8 @@ var java;
              */
             AbstractCollection.prototype.toString = function () {
                 var joiner = new java.util.StringJoiner(", ", "[", "]");
-                for (var index128 = this.iterator(); index128.hasNext();) {
-                    var e = index128.next();
+                for (var index127 = this.iterator(); index127.hasNext();) {
+                    var e = index127.next();
                     {
                         joiner.add(e === this ? "(this Collection)" : /* valueOf */ new String(e).toString());
                     }
@@ -5483,11 +5199,13 @@ var java;
         var TimerTask = /** @class */ (function () {
             function TimerTask() {
                 this.state = TimerTask.VIRGIN;
-                if (this.nextExecutionTime === undefined)
+                if (this.nextExecutionTime === undefined) {
                     this.nextExecutionTime = 0;
+                }
                 this.period = 0;
-                if (this.handle === undefined)
+                if (this.handle === undefined) {
                     this.handle = 0;
+                }
             }
             TimerTask.prototype.cancel = function () {
                 var success = this.state === TimerTask.SCHEDULED;
@@ -5524,49 +5242,36 @@ var java;
          */
         var Random = /** @class */ (function () {
             function Random(seed) {
-                var _this = this;
                 if (((typeof seed === 'number') || seed === null)) {
                     var __args = arguments;
-                    if (this.nextNextGaussian === undefined)
+                    if (this.nextNextGaussian === undefined) {
                         this.nextNextGaussian = 0;
-                    if (this.seedhi === undefined)
+                    }
+                    if (this.seedhi === undefined) {
                         this.seedhi = 0;
-                    if (this.seedlo === undefined)
+                    }
+                    if (this.seedlo === undefined) {
                         this.seedlo = 0;
+                    }
                     this.haveNextNextGaussian = false;
-                    this.haveNextNextGaussian = false;
-                    if (this.nextNextGaussian === undefined)
-                        this.nextNextGaussian = 0;
-                    if (this.seedhi === undefined)
-                        this.seedhi = 0;
-                    if (this.seedlo === undefined)
-                        this.seedlo = 0;
-                    (function () {
-                        _this.setSeed$long(seed);
-                    })();
+                    this.setSeed$long(seed);
                 }
                 else if (seed === undefined) {
                     var __args = arguments;
-                    if (this.nextNextGaussian === undefined)
+                    if (this.nextNextGaussian === undefined) {
                         this.nextNextGaussian = 0;
-                    if (this.seedhi === undefined)
+                    }
+                    if (this.seedhi === undefined) {
                         this.seedhi = 0;
-                    if (this.seedlo === undefined)
+                    }
+                    if (this.seedlo === undefined) {
                         this.seedlo = 0;
+                    }
                     this.haveNextNextGaussian = false;
-                    this.haveNextNextGaussian = false;
-                    if (this.nextNextGaussian === undefined)
-                        this.nextNextGaussian = 0;
-                    if (this.seedhi === undefined)
-                        this.seedhi = 0;
-                    if (this.seedlo === undefined)
-                        this.seedlo = 0;
-                    (function () {
-                        var seed = Random.uniqueSeed++ + javaemul.internal.DateUtil.now();
-                        var hi = (Math.floor(seed * Random.twoToTheMinus24) | 0) & 16777215;
-                        var lo = ((seed - (hi * Random.twoToThe24)) | 0);
-                        _this.setSeed$int$int(hi, lo);
-                    })();
+                    var seed_1 = Random.uniqueSeed++ + javaemul.internal.DateUtil.now();
+                    var hi = (Math.floor(seed_1 * Random.twoToTheMinus24) | 0) & 16777215;
+                    var lo = ((seed_1 - (hi * Random.twoToThe24)) | 0);
+                    this.setSeed$int$int(hi, lo);
                 }
                 else
                     throw new Error('invalid overload');
@@ -5575,13 +5280,15 @@ var java;
                 Random.__static_initialized = true;
                 Random.__static_initializer_0();
             } };
-            Random.twoToTheXMinus24_$LI$ = function () { Random.__static_initialize(); if (Random.twoToTheXMinus24 == null)
+            Random.twoToTheXMinus24_$LI$ = function () { Random.__static_initialize(); if (Random.twoToTheXMinus24 == null) {
                 Random.twoToTheXMinus24 = (function (s) { var a = []; while (s-- > 0)
-                    a.push(0); return a; })(25); return Random.twoToTheXMinus24; };
+                    a.push(0); return a; })(25);
+            } return Random.twoToTheXMinus24; };
             ;
-            Random.twoToTheXMinus48_$LI$ = function () { Random.__static_initialize(); if (Random.twoToTheXMinus48 == null)
+            Random.twoToTheXMinus48_$LI$ = function () { Random.__static_initialize(); if (Random.twoToTheXMinus48 == null) {
                 Random.twoToTheXMinus48 = (function (s) { var a = []; while (s-- > 0)
-                    a.push(0); return a; })(33); return Random.twoToTheXMinus48; };
+                    a.push(0); return a; })(33);
+            } return Random.twoToTheXMinus48; };
             ;
             Random.__static_initializer_0 = function () {
                 var twoToTheXMinus48Tmp = 1.52587890625E-5;
@@ -5832,23 +5539,29 @@ var java;
         var Locale = /** @class */ (function () {
             function Locale() {
             }
-            Locale.ROOT_$LI$ = function () { if (Locale.ROOT == null)
-                Locale.ROOT = new Locale.RootLocale(); return Locale.ROOT; };
+            Locale.ROOT_$LI$ = function () { if (Locale.ROOT == null) {
+                Locale.ROOT = new Locale.RootLocale();
+            } return Locale.ROOT; };
             ;
-            Locale.ENGLISH_$LI$ = function () { if (Locale.ENGLISH == null)
-                Locale.ENGLISH = new Locale.EnglishLocale(); return Locale.ENGLISH; };
+            Locale.ENGLISH_$LI$ = function () { if (Locale.ENGLISH == null) {
+                Locale.ENGLISH = new Locale.EnglishLocale();
+            } return Locale.ENGLISH; };
             ;
-            Locale.US_$LI$ = function () { if (Locale.US == null)
-                Locale.US = new Locale.USLocale(); return Locale.US; };
+            Locale.US_$LI$ = function () { if (Locale.US == null) {
+                Locale.US = new Locale.USLocale();
+            } return Locale.US; };
             ;
-            Locale.FRANCE_$LI$ = function () { if (Locale.FRANCE == null)
-                Locale.FRANCE = new Locale.FrenchLocale(); return Locale.FRANCE; };
+            Locale.FRANCE_$LI$ = function () { if (Locale.FRANCE == null) {
+                Locale.FRANCE = new Locale.FrenchLocale();
+            } return Locale.FRANCE; };
             ;
-            Locale.UK_$LI$ = function () { if (Locale.UK == null)
-                Locale.UK = new Locale.UKLocale(); return Locale.UK; };
+            Locale.UK_$LI$ = function () { if (Locale.UK == null) {
+                Locale.UK = new Locale.UKLocale();
+            } return Locale.UK; };
             ;
-            Locale.defaultLocale_$LI$ = function () { if (Locale.defaultLocale == null)
-                Locale.defaultLocale = new Locale.DefaultLocale(); return Locale.defaultLocale; };
+            Locale.defaultLocale_$LI$ = function () { if (Locale.defaultLocale == null) {
+                Locale.defaultLocale = new Locale.DefaultLocale();
+            } return Locale.defaultLocale; };
             ;
             /**
              * Returns an instance that represents the browser's default locale (not
@@ -5968,8 +5681,9 @@ var java;
         var Comparators = /** @class */ (function () {
             function Comparators() {
             }
-            Comparators.NATURAL_$LI$ = function () { if (Comparators.NATURAL == null)
-                Comparators.NATURAL = function (a, b) { return new Comparators.NaturalComparator().compare(a, b); }; return Comparators.NATURAL; };
+            Comparators.NATURAL_$LI$ = function () { if (Comparators.NATURAL == null) {
+                Comparators.NATURAL = function (a, b) { return new Comparators.NaturalComparator().compare(a, b); };
+            } return Comparators.NATURAL; };
             ;
             /**
              * Returns the natural Comparator.
@@ -6028,35 +5742,31 @@ var java;
          */
         var Date = /** @class */ (function () {
             function Date(year, month, date, hrs, min, sec) {
-                var _this = this;
                 if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof date === 'number') || date === null) && ((typeof hrs === 'number') || hrs === null) && ((typeof min === 'number') || min === null) && ((typeof sec === 'number') || sec === null)) {
                     var __args = arguments;
-                    if (this.jsdate === undefined)
+                    if (this.jsdate === undefined) {
                         this.jsdate = null;
-                    if (this.jsdate === undefined)
-                        this.jsdate = null;
-                    (function () {
-                        _this.jsdate = (new (Date.jsdateClass())());
-                        _this.jsdate["setFullYear"](_this.jsdate, year + 1900, month, date);
-                        _this.jsdate["setHours"](_this.jsdate, hrs, min, sec, 0);
-                        _this.fixDaylightSavings(hrs);
-                    })();
+                    }
+                    this.jsdate = (new (Date.jsdateClass())());
+                    this.jsdate["setFullYear"](this.jsdate, year + 1900, month, date);
+                    this.jsdate["setHours"](this.jsdate, hrs, min, sec, 0);
+                    this.fixDaylightSavings(hrs);
                 }
                 else if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof date === 'number') || date === null) && ((typeof hrs === 'number') || hrs === null) && ((typeof min === 'number') || min === null) && sec === undefined) {
                     var __args = arguments;
                     {
                         var __args_6 = arguments;
                         var sec_1 = 0;
-                        if (this.jsdate === undefined)
+                        if (this.jsdate === undefined) {
                             this.jsdate = null;
-                        if (this.jsdate === undefined)
-                            this.jsdate = null;
-                        (function () {
-                            _this.jsdate = (new (Date.jsdateClass())());
-                            _this.jsdate["setFullYear"](_this.jsdate, year + 1900, month, date);
-                            _this.jsdate["setHours"](_this.jsdate, hrs, min, sec_1, 0);
-                            _this.fixDaylightSavings(hrs);
-                        })();
+                        }
+                        this.jsdate = (new (Date.jsdateClass())());
+                        this.jsdate["setFullYear"](this.jsdate, year + 1900, month, date);
+                        this.jsdate["setHours"](this.jsdate, hrs, min, sec_1, 0);
+                        this.fixDaylightSavings(hrs);
+                    }
+                    if (this.jsdate === undefined) {
+                        this.jsdate = null;
                     }
                 }
                 else if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof date === 'number') || date === null) && hrs === undefined && min === undefined && sec === undefined) {
@@ -6066,16 +5776,16 @@ var java;
                         var hrs_1 = 0;
                         var min_1 = 0;
                         var sec_2 = 0;
-                        if (this.jsdate === undefined)
+                        if (this.jsdate === undefined) {
                             this.jsdate = null;
-                        if (this.jsdate === undefined)
-                            this.jsdate = null;
-                        (function () {
-                            _this.jsdate = (new (Date.jsdateClass())());
-                            _this.jsdate["setFullYear"](_this.jsdate, year + 1900, month, date);
-                            _this.jsdate["setHours"](_this.jsdate, hrs_1, min_1, sec_2, 0);
-                            _this.fixDaylightSavings(hrs_1);
-                        })();
+                        }
+                        this.jsdate = (new (Date.jsdateClass())());
+                        this.jsdate["setFullYear"](this.jsdate, year + 1900, month, date);
+                        this.jsdate["setHours"](this.jsdate, hrs_1, min_1, sec_2, 0);
+                        this.fixDaylightSavings(hrs_1);
+                    }
+                    if (this.jsdate === undefined) {
+                        this.jsdate = null;
                     }
                 }
                 else if (((typeof year === 'string') || year === null) && month === undefined && date === undefined && hrs === undefined && min === undefined && sec === undefined) {
@@ -6084,35 +5794,29 @@ var java;
                     {
                         var __args_8 = arguments;
                         var date_2 = Date.parse(__args_8[0]);
-                        if (this.jsdate === undefined)
+                        if (this.jsdate === undefined) {
                             this.jsdate = null;
-                        if (this.jsdate === undefined)
-                            this.jsdate = null;
-                        (function () {
-                            _this.jsdate = (new (Date.jsdateClass())(date_2));
-                        })();
+                        }
+                        this.jsdate = (new (Date.jsdateClass())(date_2));
+                    }
+                    if (this.jsdate === undefined) {
+                        this.jsdate = null;
                     }
                 }
                 else if (((typeof year === 'number') || year === null) && month === undefined && date === undefined && hrs === undefined && min === undefined && sec === undefined) {
                     var __args = arguments;
                     var date_3 = __args[0];
-                    if (this.jsdate === undefined)
+                    if (this.jsdate === undefined) {
                         this.jsdate = null;
-                    if (this.jsdate === undefined)
-                        this.jsdate = null;
-                    (function () {
-                        _this.jsdate = (new (Date.jsdateClass())(date_3));
-                    })();
+                    }
+                    this.jsdate = (new (Date.jsdateClass())(date_3));
                 }
                 else if (year === undefined && month === undefined && date === undefined && hrs === undefined && min === undefined && sec === undefined) {
                     var __args = arguments;
-                    if (this.jsdate === undefined)
+                    if (this.jsdate === undefined) {
                         this.jsdate = null;
-                    if (this.jsdate === undefined)
-                        this.jsdate = null;
-                    (function () {
-                        _this.jsdate = (new (Date.jsdateClass())());
-                    })();
+                    }
+                    this.jsdate = (new (Date.jsdateClass())());
                 }
                 else
                     throw new Error('invalid overload');
@@ -6305,11 +6009,13 @@ var java;
             var StringData = /** @class */ (function () {
                 function StringData() {
                 }
-                StringData.DAYS_$LI$ = function () { if (StringData.DAYS == null)
-                    StringData.DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]; return StringData.DAYS; };
+                StringData.DAYS_$LI$ = function () { if (StringData.DAYS == null) {
+                    StringData.DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                } return StringData.DAYS; };
                 ;
-                StringData.MONTHS_$LI$ = function () { if (StringData.MONTHS == null)
-                    StringData.MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; return StringData.MONTHS; };
+                StringData.MONTHS_$LI$ = function () { if (StringData.MONTHS == null) {
+                    StringData.MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                } return StringData.MONTHS; };
                 ;
                 return StringData;
             }());
@@ -6331,10 +6037,12 @@ var java;
              */
             var Handler = /** @class */ (function () {
                 function Handler() {
-                    if (this.formatter === undefined)
+                    if (this.formatter === undefined) {
                         this.formatter = null;
-                    if (this.level === undefined)
+                    }
+                    if (this.level === undefined) {
                         this.level = null;
+                    }
                 }
                 Handler.prototype.getFormatter = function () {
                     return this.formatter;
@@ -6376,49 +6084,36 @@ var java;
              */
             var LogRecord = /** @class */ (function () {
                 function LogRecord(level, msg) {
-                    var _this = this;
                     if (((level != null && level instanceof java.util.logging.Level) || level === null) && ((typeof msg === 'string') || msg === null)) {
                         var __args = arguments;
-                        if (this.level === undefined)
+                        if (this.level === undefined) {
                             this.level = null;
-                        if (this.msg === undefined)
+                        }
+                        if (this.msg === undefined) {
                             this.msg = null;
-                        if (this.millis === undefined)
+                        }
+                        if (this.millis === undefined) {
                             this.millis = 0;
+                        }
                         this.loggerName = "";
                         this.thrown = null;
-                        if (this.level === undefined)
-                            this.level = null;
-                        this.loggerName = "";
-                        if (this.msg === undefined)
-                            this.msg = null;
-                        this.thrown = null;
-                        if (this.millis === undefined)
-                            this.millis = 0;
-                        (function () {
-                            _this.level = level;
-                            _this.msg = msg;
-                            _this.millis = java.lang.System.currentTimeMillis();
-                        })();
+                        this.level = level;
+                        this.msg = msg;
+                        this.millis = java.lang.System.currentTimeMillis();
                     }
                     else if (level === undefined && msg === undefined) {
                         var __args = arguments;
-                        if (this.level === undefined)
+                        if (this.level === undefined) {
                             this.level = null;
-                        if (this.msg === undefined)
+                        }
+                        if (this.msg === undefined) {
                             this.msg = null;
-                        if (this.millis === undefined)
+                        }
+                        if (this.millis === undefined) {
                             this.millis = 0;
+                        }
                         this.loggerName = "";
                         this.thrown = null;
-                        if (this.level === undefined)
-                            this.level = null;
-                        this.loggerName = "";
-                        if (this.msg === undefined)
-                            this.msg = null;
-                        this.thrown = null;
-                        if (this.millis === undefined)
-                            this.millis = 0;
                     }
                     else
                         throw new Error('invalid overload');
@@ -6515,7 +6210,7 @@ var java;
                     this.addLoggerImpl(logger);
                 };
                 /*private*/ LogManager.prototype.addLoggerImpl = function (logger) {
-                    if (java.lang.System.getProperty$java_lang_String$java_lang_String("gwt.logging.simpleConsoleHandler", "ENABLED") === "ENABLED") {
+                    if (java.lang.System.getProperty$java_lang_String$java_lang_String("gwt.logging.simpleConsoleHandler", "ENABLED") === ("ENABLED")) {
                         if ( /* isEmpty */(logger.getName().length === 0)) {
                             logger.addHandler(new java.util.logging.SimpleConsoleLogHandler());
                         }
@@ -6584,36 +6279,45 @@ var java;
             var Level = /** @class */ (function () {
                 function Level() {
                 }
-                Level.ALL_$LI$ = function () { if (Level.ALL == null)
-                    Level.ALL = new Level.LevelAll(); return Level.ALL; };
+                Level.ALL_$LI$ = function () { if (Level.ALL == null) {
+                    Level.ALL = new Level.LevelAll();
+                } return Level.ALL; };
                 ;
-                Level.CONFIG_$LI$ = function () { if (Level.CONFIG == null)
-                    Level.CONFIG = new Level.LevelConfig(); return Level.CONFIG; };
+                Level.CONFIG_$LI$ = function () { if (Level.CONFIG == null) {
+                    Level.CONFIG = new Level.LevelConfig();
+                } return Level.CONFIG; };
                 ;
-                Level.FINE_$LI$ = function () { if (Level.FINE == null)
-                    Level.FINE = new Level.LevelFine(); return Level.FINE; };
+                Level.FINE_$LI$ = function () { if (Level.FINE == null) {
+                    Level.FINE = new Level.LevelFine();
+                } return Level.FINE; };
                 ;
-                Level.FINER_$LI$ = function () { if (Level.FINER == null)
-                    Level.FINER = new Level.LevelFiner(); return Level.FINER; };
+                Level.FINER_$LI$ = function () { if (Level.FINER == null) {
+                    Level.FINER = new Level.LevelFiner();
+                } return Level.FINER; };
                 ;
-                Level.FINEST_$LI$ = function () { if (Level.FINEST == null)
-                    Level.FINEST = new Level.LevelFinest(); return Level.FINEST; };
+                Level.FINEST_$LI$ = function () { if (Level.FINEST == null) {
+                    Level.FINEST = new Level.LevelFinest();
+                } return Level.FINEST; };
                 ;
-                Level.INFO_$LI$ = function () { if (Level.INFO == null)
-                    Level.INFO = new Level.LevelInfo(); return Level.INFO; };
+                Level.INFO_$LI$ = function () { if (Level.INFO == null) {
+                    Level.INFO = new Level.LevelInfo();
+                } return Level.INFO; };
                 ;
-                Level.OFF_$LI$ = function () { if (Level.OFF == null)
-                    Level.OFF = new Level.LevelOff(); return Level.OFF; };
+                Level.OFF_$LI$ = function () { if (Level.OFF == null) {
+                    Level.OFF = new Level.LevelOff();
+                } return Level.OFF; };
                 ;
-                Level.SEVERE_$LI$ = function () { if (Level.SEVERE == null)
-                    Level.SEVERE = new Level.LevelSevere(); return Level.SEVERE; };
+                Level.SEVERE_$LI$ = function () { if (Level.SEVERE == null) {
+                    Level.SEVERE = new Level.LevelSevere();
+                } return Level.SEVERE; };
                 ;
-                Level.WARNING_$LI$ = function () { if (Level.WARNING == null)
-                    Level.WARNING = new Level.LevelWarning(); return Level.WARNING; };
+                Level.WARNING_$LI$ = function () { if (Level.WARNING == null) {
+                    Level.WARNING = new Level.LevelWarning();
+                } return Level.WARNING; };
                 ;
                 Level.parse = function (name) {
                     java.util.logging.Logger.assertLoggingValues();
-                    var loggingDisabled = java.lang.System.getProperty$java_lang_String$java_lang_String("gwt.logging.enabled", "FALSE") === "FALSE";
+                    var loggingDisabled = java.lang.System.getProperty$java_lang_String$java_lang_String("gwt.logging.enabled", "FALSE") === ("FALSE");
                     if (loggingDisabled) {
                         return null;
                     }
@@ -6893,74 +6597,74 @@ var java;
          */
         var StringJoiner = /** @class */ (function () {
             function StringJoiner(delimiter, prefix, suffix) {
-                var _this = this;
-                if (((delimiter != null && (delimiter["__interfaces"] != null && delimiter["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || delimiter.constructor != null && delimiter.constructor["__interfaces"] != null && delimiter.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof delimiter === "string")) || delimiter === null) && ((prefix != null && (prefix["__interfaces"] != null && prefix["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || prefix.constructor != null && prefix.constructor["__interfaces"] != null && prefix.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof prefix === "string")) || prefix === null) && ((suffix != null && (suffix["__interfaces"] != null && suffix["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || suffix.constructor != null && suffix.constructor["__interfaces"] != null && suffix.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof suffix === "string")) || suffix === null)) {
+                if (((delimiter != null && (delimiter.constructor != null && delimiter.constructor["__interfaces"] != null && delimiter.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof delimiter === "string")) || delimiter === null) && ((prefix != null && (prefix.constructor != null && prefix.constructor["__interfaces"] != null && prefix.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof prefix === "string")) || prefix === null) && ((suffix != null && (suffix.constructor != null && suffix.constructor["__interfaces"] != null && suffix.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof suffix === "string")) || suffix === null)) {
                     var __args = arguments;
-                    if (this.delimiter === undefined)
+                    if (this.delimiter === undefined) {
                         this.delimiter = null;
-                    if (this.prefix === undefined)
+                    }
+                    if (this.prefix === undefined) {
                         this.prefix = null;
-                    if (this.suffix === undefined)
+                    }
+                    if (this.suffix === undefined) {
                         this.suffix = null;
-                    if (this.builder === undefined)
+                    }
+                    if (this.builder === undefined) {
                         this.builder = null;
-                    if (this.emptyValue === undefined)
+                    }
+                    if (this.emptyValue === undefined) {
                         this.emptyValue = null;
-                    if (this.delimiter === undefined)
-                        this.delimiter = null;
-                    if (this.prefix === undefined)
-                        this.prefix = null;
-                    if (this.suffix === undefined)
-                        this.suffix = null;
-                    if (this.builder === undefined)
-                        this.builder = null;
-                    if (this.emptyValue === undefined)
-                        this.emptyValue = null;
-                    (function () {
-                        javaemul.internal.InternalPreconditions.checkNotNull(delimiter, "delimiter");
-                        javaemul.internal.InternalPreconditions.checkNotNull(prefix, "prefix");
-                        javaemul.internal.InternalPreconditions.checkNotNull(suffix, "suffix");
-                        _this.delimiter = delimiter.toString();
-                        _this.prefix = prefix.toString();
-                        _this.suffix = suffix.toString();
-                        _this.emptyValue = _this.prefix + _this.suffix;
-                    })();
+                    }
+                    javaemul.internal.InternalPreconditions.checkNotNull(delimiter, "delimiter");
+                    javaemul.internal.InternalPreconditions.checkNotNull(prefix, "prefix");
+                    javaemul.internal.InternalPreconditions.checkNotNull(suffix, "suffix");
+                    this.delimiter = delimiter.toString();
+                    this.prefix = prefix.toString();
+                    this.suffix = suffix.toString();
+                    this.emptyValue = this.prefix + this.suffix;
                 }
-                else if (((delimiter != null && (delimiter["__interfaces"] != null && delimiter["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || delimiter.constructor != null && delimiter.constructor["__interfaces"] != null && delimiter.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof delimiter === "string")) || delimiter === null) && prefix === undefined && suffix === undefined) {
+                else if (((delimiter != null && (delimiter.constructor != null && delimiter.constructor["__interfaces"] != null && delimiter.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof delimiter === "string")) || delimiter === null) && prefix === undefined && suffix === undefined) {
                     var __args = arguments;
                     {
                         var __args_9 = arguments;
                         var prefix_1 = "";
                         var suffix_1 = "";
-                        if (this.delimiter === undefined)
+                        if (this.delimiter === undefined) {
                             this.delimiter = null;
-                        if (this.prefix === undefined)
+                        }
+                        if (this.prefix === undefined) {
                             this.prefix = null;
-                        if (this.suffix === undefined)
+                        }
+                        if (this.suffix === undefined) {
                             this.suffix = null;
-                        if (this.builder === undefined)
+                        }
+                        if (this.builder === undefined) {
                             this.builder = null;
-                        if (this.emptyValue === undefined)
+                        }
+                        if (this.emptyValue === undefined) {
                             this.emptyValue = null;
-                        if (this.delimiter === undefined)
-                            this.delimiter = null;
-                        if (this.prefix === undefined)
-                            this.prefix = null;
-                        if (this.suffix === undefined)
-                            this.suffix = null;
-                        if (this.builder === undefined)
-                            this.builder = null;
-                        if (this.emptyValue === undefined)
-                            this.emptyValue = null;
-                        (function () {
-                            javaemul.internal.InternalPreconditions.checkNotNull(delimiter, "delimiter");
-                            javaemul.internal.InternalPreconditions.checkNotNull(prefix_1, "prefix");
-                            javaemul.internal.InternalPreconditions.checkNotNull(suffix_1, "suffix");
-                            _this.delimiter = delimiter.toString();
-                            _this.prefix = prefix_1.toString();
-                            _this.suffix = suffix_1.toString();
-                            _this.emptyValue = _this.prefix + _this.suffix;
-                        })();
+                        }
+                        javaemul.internal.InternalPreconditions.checkNotNull(delimiter, "delimiter");
+                        javaemul.internal.InternalPreconditions.checkNotNull(prefix_1, "prefix");
+                        javaemul.internal.InternalPreconditions.checkNotNull(suffix_1, "suffix");
+                        this.delimiter = delimiter.toString();
+                        this.prefix = prefix_1.toString();
+                        this.suffix = suffix_1.toString();
+                        this.emptyValue = this.prefix + this.suffix;
+                    }
+                    if (this.delimiter === undefined) {
+                        this.delimiter = null;
+                    }
+                    if (this.prefix === undefined) {
+                        this.prefix = null;
+                    }
+                    if (this.suffix === undefined) {
+                        this.suffix = null;
+                    }
+                    if (this.builder === undefined) {
+                        this.builder = null;
+                    }
+                    if (this.emptyValue === undefined) {
+                        this.emptyValue = null;
                     }
                 }
                 else
@@ -7036,7 +6740,7 @@ var java;
              * @return {boolean}
              */
             AbstractMapEntry.prototype.equals = function (other) {
-                if (!(other != null && (other["__interfaces"] != null && other["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || other.constructor != null && other.constructor["__interfaces"] != null && other.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0))) {
+                if (!(other != null && (other.constructor != null && other.constructor["__interfaces"] != null && other.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0))) {
                     return false;
                 }
                 var entry = other;
@@ -7181,37 +6885,28 @@ var java;
          */
         var Writer = /** @class */ (function () {
             function Writer(lock) {
-                var _this = this;
                 if (((lock != null) || lock === null)) {
                     var __args = arguments;
-                    if (this.writeBuffer === undefined)
+                    if (this.writeBuffer === undefined) {
                         this.writeBuffer = null;
-                    if (this.lock === undefined)
+                    }
+                    if (this.lock === undefined) {
                         this.lock = null;
-                    if (this.writeBuffer === undefined)
-                        this.writeBuffer = null;
-                    if (this.lock === undefined)
-                        this.lock = null;
-                    (function () {
-                        if (lock == null) {
-                            throw new java.lang.NullPointerException();
-                        }
-                        _this.lock = lock;
-                    })();
+                    }
+                    if (lock == null) {
+                        throw new java.lang.NullPointerException();
+                    }
+                    this.lock = lock;
                 }
                 else if (lock === undefined) {
                     var __args = arguments;
-                    if (this.writeBuffer === undefined)
+                    if (this.writeBuffer === undefined) {
                         this.writeBuffer = null;
-                    if (this.lock === undefined)
+                    }
+                    if (this.lock === undefined) {
                         this.lock = null;
-                    if (this.writeBuffer === undefined)
-                        this.writeBuffer = null;
-                    if (this.lock === undefined)
-                        this.lock = null;
-                    (function () {
-                        _this.lock = _this;
-                    })();
+                    }
+                    this.lock = this;
                 }
                 else
                     throw new Error('invalid overload');
@@ -7285,10 +6980,10 @@ var java;
                 return this;
             };
             Writer.prototype.append = function (csq, start, end) {
-                if (((csq != null && (csq["__interfaces"] != null && csq["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || csq.constructor != null && csq.constructor["__interfaces"] != null && csq.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof csq === "string")) || csq === null) && ((typeof start === 'number') || start === null) && ((typeof end === 'number') || end === null)) {
+                if (((csq != null && (csq.constructor != null && csq.constructor["__interfaces"] != null && csq.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof csq === "string")) || csq === null) && ((typeof start === 'number') || start === null) && ((typeof end === 'number') || end === null)) {
                     return this.append$java_lang_CharSequence$int$int(csq, start, end);
                 }
-                else if (((csq != null && (csq["__interfaces"] != null && csq["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || csq.constructor != null && csq.constructor["__interfaces"] != null && csq.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof csq === "string")) || csq === null) && start === undefined && end === undefined) {
+                else if (((csq != null && (csq.constructor != null && csq.constructor["__interfaces"] != null && csq.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof csq === "string")) || csq === null) && start === undefined && end === undefined) {
                     return this.append$java_lang_CharSequence(csq);
                 }
                 else if (((typeof csq === 'string') || csq === null) && start === undefined && end === undefined) {
@@ -7531,33 +7226,24 @@ var java;
          */
         var Reader = /** @class */ (function () {
             function Reader(lock) {
-                var _this = this;
                 if (((lock != null) || lock === null)) {
                     var __args = arguments;
-                    if (this.lock === undefined)
+                    if (this.lock === undefined) {
                         this.lock = null;
+                    }
                     this.skipBuffer = null;
-                    if (this.lock === undefined)
-                        this.lock = null;
-                    this.skipBuffer = null;
-                    (function () {
-                        if (lock == null) {
-                            throw new java.lang.NullPointerException();
-                        }
-                        _this.lock = lock;
-                    })();
+                    if (lock == null) {
+                        throw new java.lang.NullPointerException();
+                    }
+                    this.lock = lock;
                 }
                 else if (lock === undefined) {
                     var __args = arguments;
-                    if (this.lock === undefined)
+                    if (this.lock === undefined) {
                         this.lock = null;
+                    }
                     this.skipBuffer = null;
-                    if (this.lock === undefined)
-                        this.lock = null;
-                    this.skipBuffer = null;
-                    (function () {
-                        _this.lock = _this;
-                    })();
+                    this.lock = this;
                 }
                 else
                     throw new Error('invalid overload');
@@ -7721,8 +7407,9 @@ var java;
              */
             var Reference = /** @class */ (function () {
                 function Reference(referent) {
-                    if (this.referent === undefined)
+                    if (this.referent === undefined) {
                         this.referent = null;
+                    }
                     this.referent = referent;
                 }
                 Reference.prototype.get = function () {
@@ -7756,13 +7443,11 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, AssertionError.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, AssertionError.prototype);
                 }
                 else if (((typeof message === 'boolean') || message === null) && cause === undefined) {
                     var __args = arguments;
@@ -7771,7 +7456,6 @@ var java;
                         var message_1 = new String(__args_10[0]).toString();
                         _this = _super.call(this, message_1) || this;
                         _this.message = message_1;
-                        Object.setPrototypeOf(_this, AssertionError.prototype);
                     }
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
@@ -7781,7 +7465,6 @@ var java;
                         var message_2 = new String(__args_11[0]).toString();
                         _this = _super.call(this, message_2) || this;
                         _this.message = message_2;
-                        Object.setPrototypeOf(_this, AssertionError.prototype);
                     }
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
@@ -7791,7 +7474,6 @@ var java;
                         var message_3 = new String(__args_12[0]).toString();
                         _this = _super.call(this, message_3) || this;
                         _this.message = message_3;
-                        Object.setPrototypeOf(_this, AssertionError.prototype);
                     }
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
@@ -7801,7 +7483,6 @@ var java;
                         var message_4 = new String(__args_13[0]).toString();
                         _this = _super.call(this, message_4) || this;
                         _this.message = message_4;
-                        Object.setPrototypeOf(_this, AssertionError.prototype);
                     }
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
@@ -7811,7 +7492,6 @@ var java;
                         var message_5 = new String(__args_14[0]).toString();
                         _this = _super.call(this, message_5) || this;
                         _this.message = message_5;
-                        Object.setPrototypeOf(_this, AssertionError.prototype);
                     }
                 }
                 else if (((typeof message === 'number') || message === null) && cause === undefined) {
@@ -7821,19 +7501,16 @@ var java;
                         var message_6 = new String(__args_15[0]).toString();
                         _this = _super.call(this, message_6) || this;
                         _this.message = message_6;
-                        Object.setPrototypeOf(_this, AssertionError.prototype);
                     }
                 }
                 else if (((message != null) || message === null) && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, /* valueOf */ new String(message).toString()) || this;
                     _this.message = /* valueOf */ new String(message).toString();
-                    Object.setPrototypeOf(_this, AssertionError.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, AssertionError.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -7861,50 +7538,39 @@ var java;
          */
         var StackTraceElement = /** @class */ (function () {
             function StackTraceElement(className, methodName, fileName, lineNumber) {
-                var _this = this;
                 if (((typeof className === 'string') || className === null) && ((typeof methodName === 'string') || methodName === null) && ((typeof fileName === 'string') || fileName === null) && ((typeof lineNumber === 'number') || lineNumber === null)) {
                     var __args = arguments;
-                    if (this.className === undefined)
+                    if (this.className === undefined) {
                         this.className = null;
-                    if (this.fileName === undefined)
+                    }
+                    if (this.fileName === undefined) {
                         this.fileName = null;
-                    if (this.lineNumber === undefined)
+                    }
+                    if (this.lineNumber === undefined) {
                         this.lineNumber = 0;
-                    if (this.methodName === undefined)
+                    }
+                    if (this.methodName === undefined) {
                         this.methodName = null;
-                    if (this.className === undefined)
-                        this.className = null;
-                    if (this.fileName === undefined)
-                        this.fileName = null;
-                    if (this.lineNumber === undefined)
-                        this.lineNumber = 0;
-                    if (this.methodName === undefined)
-                        this.methodName = null;
-                    (function () {
-                        _this.className = className;
-                        _this.methodName = methodName;
-                        _this.fileName = fileName;
-                        _this.lineNumber = lineNumber;
-                    })();
+                    }
+                    this.className = className;
+                    this.methodName = methodName;
+                    this.fileName = fileName;
+                    this.lineNumber = lineNumber;
                 }
                 else if (className === undefined && methodName === undefined && fileName === undefined && lineNumber === undefined) {
                     var __args = arguments;
-                    if (this.className === undefined)
+                    if (this.className === undefined) {
                         this.className = null;
-                    if (this.fileName === undefined)
+                    }
+                    if (this.fileName === undefined) {
                         this.fileName = null;
-                    if (this.lineNumber === undefined)
+                    }
+                    if (this.lineNumber === undefined) {
                         this.lineNumber = 0;
-                    if (this.methodName === undefined)
+                    }
+                    if (this.methodName === undefined) {
                         this.methodName = null;
-                    if (this.className === undefined)
-                        this.className = null;
-                    if (this.fileName === undefined)
-                        this.fileName = null;
-                    if (this.lineNumber === undefined)
-                        this.lineNumber = 0;
-                    if (this.methodName === undefined)
-                        this.methodName = null;
+                    }
                 }
                 else
                     throw new Error('invalid overload');
@@ -7982,25 +7648,21 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, VirtualMachineError.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, VirtualMachineError.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = arguments;
                     var cause_1 = __args[0];
                     _this = _super.call(this, cause_1) || this;
                     _this.message = cause_1;
-                    Object.setPrototypeOf(_this, VirtualMachineError.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, VirtualMachineError.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -8034,31 +7696,26 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, Exception.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null) && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, Exception.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, Exception.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = arguments;
                     var cause_2 = __args[0];
                     _this = _super.call(this, cause_2) || this;
                     _this.message = cause_2;
-                    Object.setPrototypeOf(_this, Exception.prototype);
                 }
                 else if (message === undefined && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, Exception.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -8098,25 +7755,21 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, IllegalAccessError.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, IllegalAccessError.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = arguments;
                     var cause_3 = __args[0];
                     _this = _super.call(this, cause_3) || this;
                     _this.message = cause_3;
-                    Object.setPrototypeOf(_this, IllegalAccessError.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, IllegalAccessError.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -8160,25 +7813,21 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, NoSuchMethodError.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, NoSuchMethodError.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = arguments;
                     var cause_4 = __args[0];
                     _this = _super.call(this, cause_4) || this;
                     _this.message = cause_4;
-                    Object.setPrototypeOf(_this, NoSuchMethodError.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, NoSuchMethodError.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -8293,32 +7942,45 @@ var java;
          */
         var Class = /** @class */ (function () {
             function Class() {
-                if (this.enumValueOfFunc === undefined)
+                if (this.enumValueOfFunc === undefined) {
                     this.enumValueOfFunc = null;
-                if (this.modifiers === undefined)
+                }
+                if (this.modifiers === undefined) {
                     this.modifiers = 0;
-                if (this.componentType === undefined)
+                }
+                if (this.componentType === undefined) {
                     this.componentType = null;
-                if (this.enumConstantsFunc === undefined)
+                }
+                if (this.enumConstantsFunc === undefined) {
                     this.enumConstantsFunc = null;
-                if (this.enumSuperclass === undefined)
+                }
+                if (this.enumSuperclass === undefined) {
                     this.enumSuperclass = null;
-                if (this.superclass === undefined)
+                }
+                if (this.superclass === undefined) {
                     this.superclass = null;
-                if (this.simpleName === undefined)
+                }
+                if (this.simpleName === undefined) {
                     this.simpleName = null;
-                if (this.typeName === undefined)
+                }
+                if (this.typeName === undefined) {
                     this.typeName = null;
-                if (this.canonicalName === undefined)
+                }
+                if (this.canonicalName === undefined) {
                     this.canonicalName = null;
-                if (this.packageName === undefined)
+                }
+                if (this.packageName === undefined) {
                     this.packageName = null;
-                if (this.compoundName === undefined)
+                }
+                if (this.compoundName === undefined) {
                     this.compoundName = null;
-                if (this.typeId === undefined)
+                }
+                if (this.typeId === undefined) {
                     this.typeId = null;
-                if (this.arrayLiterals === undefined)
+                }
+                if (this.arrayLiterals === undefined) {
                     this.arrayLiterals = null;
+                }
                 this.sequentialId = Class.nextSequentialId++;
                 this.typeName = null;
                 this.simpleName = null;
@@ -8328,11 +7990,13 @@ var java;
                 this.typeId = null;
                 this.arrayLiterals = null;
             }
-            Class.constructors_$LI$ = function () { if (Class.constructors == null)
-                Class.constructors = (new Array()); return Class.constructors; };
+            Class.constructors_$LI$ = function () { if (Class.constructors == null) {
+                Class.constructors = (new Array());
+            } return Class.constructors; };
             ;
-            Class.classes_$LI$ = function () { if (Class.classes == null)
-                Class.classes = (new Array()); return Class.classes; };
+            Class.classes_$LI$ = function () { if (Class.classes == null) {
+                Class.classes = (new Array());
+            } return Class.classes; };
             ;
             Class.getConstructorForClass = function (clazz) {
                 var index = (Class.classes_$LI$().indexOf(clazz) | 0);
@@ -8474,13 +8138,13 @@ var java;
                         clazz.typeName = "[" + componentType.typeId;
                     }
                     else if (!componentType.isArray()) {
-                        clazz.typeName = "[L" + /* getName */ (function (c) { return c["__class"] ? c["__class"] : c["name"]; })(componentType) + ";";
+                        clazz.typeName = "[L" + /* getName */ (function (c) { return typeof c === 'string' ? c : c["__class"] ? c["__class"] : c["name"]; })(componentType) + ";";
                     }
                     else {
-                        clazz.typeName = "[" + /* getName */ (function (c) { return c["__class"] ? c["__class"] : c["name"]; })(componentType);
+                        clazz.typeName = "[" + /* getName */ (function (c) { return typeof c === 'string' ? c : c["__class"] ? c["__class"] : c["name"]; })(componentType);
                     }
                     clazz.canonicalName = componentType.getCanonicalName() + "[]";
-                    clazz.simpleName = /* getSimpleName */ (function (c) { return c["__class"] ? c["__class"].substring(c["__class"].lastIndexOf('.') + 1) : c["name"].substring(c["name"].lastIndexOf('.') + 1); })(componentType) + "[]";
+                    clazz.simpleName = /* getSimpleName */ (function (c) { return typeof c === 'string' ? c.substring(c.lastIndexOf('.') + 1) : c["__class"] ? c["__class"].substring(c["__class"].lastIndexOf('.') + 1) : c["name"].substring(c["name"].lastIndexOf('.') + 1); })(componentType) + "[]";
                     return;
                 }
                 var packageName = clazz.packageName;
@@ -8548,7 +8212,7 @@ var java;
              * @return {string}
              */
             Class.prototype.toString = function () {
-                return (this.isInterface() ? "interface " : (this.isPrimitive() ? "" : "class ")) + /* getName */ (function (c) { return c["__class"] ? c["__class"] : c["name"]; })(this);
+                return (this.isInterface() ? "interface " : (this.isPrimitive() ? "" : "class ")) + /* getName */ (function (c) { return typeof c === 'string' ? c : c["__class"] ? c["__class"] : c["name"]; })(this);
             };
             /**
              * Used by Enum to allow getSuperclass() to be pruned.
@@ -8574,8 +8238,9 @@ var java;
     (function (lang) {
         var ThreadLocal = /** @class */ (function () {
             function ThreadLocal() {
-                if (this.value === undefined)
+                if (this.value === undefined) {
                     this.value = null;
+                }
             }
             ThreadLocal.prototype.initialValue = function () {
                 return null;
@@ -8610,8 +8275,9 @@ var java;
          */
         var AbstractStringBuilder = /** @class */ (function () {
             function AbstractStringBuilder(string) {
-                if (this.string === undefined)
+                if (this.string === undefined) {
                     this.string = null;
+                }
                 this.string = string;
             }
             AbstractStringBuilder.prototype.length = function () {
@@ -8767,21 +8433,29 @@ var java;
          */
         var Enum = /** @class */ (function () {
             function Enum(name, ordinal) {
-                if (this.__name === undefined)
+                if (this.__name === undefined) {
                     this.__name = null;
-                if (this.__ordinal === undefined)
+                }
+                if (this.__ordinal === undefined) {
                     this.__ordinal = 0;
+                }
                 this.__name = name;
                 this.__ordinal = ordinal;
             }
             Enum.valueOf$java_lang_Class$java_lang_String = function (enumType, name) {
                 var enumValueOfFunc = javaemul.internal.InternalPreconditions.checkNotNull(enumType).enumValueOfFunc;
-                javaemul.internal.InternalPreconditions.checkCriticalArgument(enumValueOfFunc != null, "EnumValueOfFunc is null at enum class: %s, enum value name: %s", /* getName */ (function (c) { return c["__class"] ? c["__class"] : c["name"]; })(enumType), name);
+                javaemul.internal.InternalPreconditions.checkCriticalArgument(enumValueOfFunc != null, "EnumValueOfFunc is null at enum class: %s, enum value name: %s", /* getName */ (function (c) { return typeof c === 'string' ? c : c["__class"] ? c["__class"] : c["name"]; })(enumType), name);
                 javaemul.internal.InternalPreconditions.checkNotNull(name);
                 return (Enum.invokeValueOf(enumValueOfFunc, name));
             };
             Enum.valueOf = function (enumType, name) {
-                if (((enumType != null && enumType instanceof java.lang.Class) || enumType === null) && ((typeof name === 'string') || name === null)) {
+                if (((enumType != null && (enumType["__class"] != null || (function (t) { try {
+                    new t;
+                    return true;
+                }
+                catch (_a) {
+                    return false;
+                } })(enumType))) || enumType === null) && ((typeof name === 'string') || name === null)) {
                     return java.lang.Enum.valueOf$java_lang_Class$java_lang_String(enumType, name);
                 }
                 else if (((enumType != null && enumType instanceof Object) || enumType === null) && ((typeof name === 'string') || name === null)) {
@@ -8792,8 +8466,8 @@ var java;
             };
             Enum.createValueOfMap = function (enumConstants) {
                 var result = new Object();
-                for (var index129 = 0; index129 < enumConstants.length; index129++) {
-                    var value = enumConstants[index129];
+                for (var index128 = 0; index128 < enumConstants.length; index128++) {
+                    var value = enumConstants[index128];
                     {
                         Enum.put0(result, ":" + value.name(), value);
                     }
@@ -8919,11 +8593,13 @@ var java;
         var ByteOrder = /** @class */ (function () {
             function ByteOrder() {
             }
-            ByteOrder.BIG_ENDIAN_$LI$ = function () { if (ByteOrder.BIG_ENDIAN == null)
-                ByteOrder.BIG_ENDIAN = new ByteOrder(); return ByteOrder.BIG_ENDIAN; };
+            ByteOrder.BIG_ENDIAN_$LI$ = function () { if (ByteOrder.BIG_ENDIAN == null) {
+                ByteOrder.BIG_ENDIAN = new ByteOrder();
+            } return ByteOrder.BIG_ENDIAN; };
             ;
-            ByteOrder.LITTLE_ENDIAN_$LI$ = function () { if (ByteOrder.LITTLE_ENDIAN == null)
-                ByteOrder.LITTLE_ENDIAN = new ByteOrder(); return ByteOrder.LITTLE_ENDIAN; };
+            ByteOrder.LITTLE_ENDIAN_$LI$ = function () { if (ByteOrder.LITTLE_ENDIAN == null) {
+                ByteOrder.LITTLE_ENDIAN = new ByteOrder();
+            } return ByteOrder.LITTLE_ENDIAN; };
             ;
             /**
              *
@@ -8970,16 +8646,21 @@ var java;
     (function (nio) {
         var Buffer = /** @class */ (function () {
             function Buffer(capacity, readOnly) {
-                if (this._capacity === undefined)
+                if (this._capacity === undefined) {
                     this._capacity = 0;
-                if (this.readOnly === undefined)
+                }
+                if (this.readOnly === undefined) {
                     this.readOnly = false;
-                if (this._position === undefined)
+                }
+                if (this._position === undefined) {
                     this._position = 0;
-                if (this._limit === undefined)
+                }
+                if (this._limit === undefined) {
                     this._limit = 0;
-                if (this._mark === undefined)
+                }
+                if (this._mark === undefined) {
                     this._mark = 0;
+                }
                 this._capacity = capacity;
                 this.readOnly = readOnly;
                 this._position = 0;
@@ -9094,8 +8775,9 @@ var java;
              */
             var Charset = /** @class */ (function () {
                 function Charset(name, aliasesIgnored) {
-                    if (this.__name === undefined)
+                    if (this.__name === undefined) {
                         this.__name = null;
+                    }
                     this.__name = name;
                 }
                 Charset.availableCharsets = function () {
@@ -9351,7 +9033,7 @@ var java;
              * @return  {string} a string representation of this object
              */
             ParsePosition.prototype.toString = function () {
-                return /* getName */ (function (c) { return c["__class"] ? c["__class"] : c["name"]; })(this.constructor) + "[index=" + this.index + ",errorIndex=" + this.errorIndex + ']';
+                return /* getName */ (function (c) { return typeof c === 'string' ? c : c["__class"] ? c["__class"] : c["name"]; })(this.constructor) + "[index=" + this.index + ",errorIndex=" + this.errorIndex + ']';
             };
             return ParsePosition;
         }());
@@ -9374,8 +9056,9 @@ var java;
                 __extends(StreamRowEnd, _super);
                 function StreamRowEnd(previous) {
                     var _this = _super.call(this) || this;
-                    if (_this.previous === undefined)
+                    if (_this.previous === undefined) {
                         _this.previous = null;
+                    }
                     _this.previous = previous;
                     return _this;
                 }
@@ -9406,12 +9089,15 @@ var java;
                 __extends(StreamRowAllFilter, _super);
                 function StreamRowAllFilter(predicate) {
                     var _this = _super.call(this) || this;
-                    if (_this.predicate === undefined)
+                    if (_this.predicate === undefined) {
                         _this.predicate = null;
-                    if (_this.predicateValue === undefined)
+                    }
+                    if (_this.predicateValue === undefined) {
                         _this.predicateValue = false;
-                    if (_this.attempts === undefined)
+                    }
+                    if (_this.attempts === undefined) {
                         _this.attempts = 0;
+                    }
                     _this.predicate = (predicate);
                     return _this;
                 }
@@ -9440,10 +9126,12 @@ var java;
                 __extends(StreamRowOnceFilter, _super);
                 function StreamRowOnceFilter(predicate) {
                     var _this = _super.call(this) || this;
-                    if (_this.predicate === undefined)
+                    if (_this.predicate === undefined) {
                         _this.predicate = null;
-                    if (_this.predicateValue === undefined)
+                    }
+                    if (_this.predicateValue === undefined) {
                         _this.predicateValue = false;
+                    }
                     _this.firstMatch = java.util.Optional.empty();
                     _this.predicate = (predicate);
                     return _this;
@@ -9478,10 +9166,12 @@ var java;
                 __extends(StreamRowReduce, _super);
                 function StreamRowReduce(result, operator) {
                     var _this = _super.call(this) || this;
-                    if (_this.result === undefined)
+                    if (_this.result === undefined) {
                         _this.result = null;
-                    if (_this.operator === undefined)
+                    }
+                    if (_this.operator === undefined) {
                         _this.operator = null;
+                    }
                     _this.result = result;
                     _this.operator = (operator);
                     return _this;
@@ -9511,8 +9201,9 @@ var java;
                 __extends(StreamRowCount, _super);
                 function StreamRowCount() {
                     var _this = _super.call(this) || this;
-                    if (_this.count === undefined)
+                    if (_this.count === undefined) {
                         _this.count = 0;
+                    }
                     return _this;
                 }
                 StreamRowCount.prototype.getCount = function () {
@@ -9539,8 +9230,9 @@ var java;
                 __extends(StreamRowCollector, _super);
                 function StreamRowCollector(collection) {
                     var _this = _super.call(this) || this;
-                    if (_this.collection === undefined)
+                    if (_this.collection === undefined) {
                         _this.collection = null;
+                    }
                     _this.collection = collection;
                     return _this;
                 }
@@ -9549,8 +9241,8 @@ var java;
                     return true;
                 };
                 StreamRowCollector.prototype.end = function () {
-                    for (var index130 = this.collection.iterator(); index130.hasNext();) {
-                        var item = index130.next();
+                    for (var index129 = this.collection.iterator(); index129.hasNext();) {
+                        var item = index129.next();
                         {
                             if (!this.next.item(item)) {
                                 break;
@@ -9576,8 +9268,9 @@ var java;
                 __extends(StreamRowMap, _super);
                 function StreamRowMap(map) {
                     var _this = _super.call(this) || this;
-                    if (_this.map === undefined)
+                    if (_this.map === undefined) {
                         _this.map = null;
+                    }
                     _this.map = (map);
                     return _this;
                 }
@@ -9604,8 +9297,9 @@ var java;
                 __extends(StreamRowFilter, _super);
                 function StreamRowFilter(predicate) {
                     var _this = _super.call(this) || this;
-                    if (_this.predicate === undefined)
+                    if (_this.predicate === undefined) {
                         _this.predicate = null;
+                    }
                     _this.predicate = (predicate);
                     return _this;
                 }
@@ -9635,8 +9329,9 @@ var java;
                 __extends(StreamRowFilterFlop, _super);
                 function StreamRowFilterFlop(predicate) {
                     var _this = _super.call(this) || this;
-                    if (_this.predicate === undefined)
+                    if (_this.predicate === undefined) {
                         _this.predicate = null;
+                    }
                     _this.predicate = (predicate);
                     return _this;
                 }
@@ -9667,8 +9362,9 @@ var java;
                 __extends(StreamRowFlatMap, _super);
                 function StreamRowFlatMap(flatMap) {
                     var _this = _super.call(this) || this;
-                    if (_this.flatMap === undefined)
+                    if (_this.flatMap === undefined) {
                         _this.flatMap = null;
+                    }
                     _this.flatMap = (flatMap);
                     return _this;
                 }
@@ -10054,11 +9750,13 @@ var java;
             var PowersTable = /** @class */ (function () {
                 function PowersTable() {
                 }
-                PowersTable.powers_$LI$ = function () { if (PowersTable.powers == null)
-                    PowersTable.powers = [javaemul.internal.DoubleHelper.POWER_512, javaemul.internal.DoubleHelper.POWER_256, javaemul.internal.DoubleHelper.POWER_128, javaemul.internal.DoubleHelper.POWER_64, javaemul.internal.DoubleHelper.POWER_32, javaemul.internal.DoubleHelper.POWER_16, javaemul.internal.DoubleHelper.POWER_8, javaemul.internal.DoubleHelper.POWER_4, javaemul.internal.DoubleHelper.POWER_2, javaemul.internal.DoubleHelper.POWER_1]; return PowersTable.powers; };
+                PowersTable.powers_$LI$ = function () { if (PowersTable.powers == null) {
+                    PowersTable.powers = [javaemul.internal.DoubleHelper.POWER_512, javaemul.internal.DoubleHelper.POWER_256, javaemul.internal.DoubleHelper.POWER_128, javaemul.internal.DoubleHelper.POWER_64, javaemul.internal.DoubleHelper.POWER_32, javaemul.internal.DoubleHelper.POWER_16, javaemul.internal.DoubleHelper.POWER_8, javaemul.internal.DoubleHelper.POWER_4, javaemul.internal.DoubleHelper.POWER_2, javaemul.internal.DoubleHelper.POWER_1];
+                } return PowersTable.powers; };
                 ;
-                PowersTable.invPowers_$LI$ = function () { if (PowersTable.invPowers == null)
-                    PowersTable.invPowers = [javaemul.internal.DoubleHelper.POWER_MINUS_512, javaemul.internal.DoubleHelper.POWER_MINUS_256, javaemul.internal.DoubleHelper.POWER_MINUS_128, javaemul.internal.DoubleHelper.POWER_MINUS_64, javaemul.internal.DoubleHelper.POWER_MINUS_32, javaemul.internal.DoubleHelper.POWER_MINUS_16, javaemul.internal.DoubleHelper.POWER_MINUS_8, javaemul.internal.DoubleHelper.POWER_MINUS_4, javaemul.internal.DoubleHelper.POWER_MINUS_2, javaemul.internal.DoubleHelper.POWER_MINUS_1]; return PowersTable.invPowers; };
+                PowersTable.invPowers_$LI$ = function () { if (PowersTable.invPowers == null) {
+                    PowersTable.invPowers = [javaemul.internal.DoubleHelper.POWER_MINUS_512, javaemul.internal.DoubleHelper.POWER_MINUS_256, javaemul.internal.DoubleHelper.POWER_MINUS_128, javaemul.internal.DoubleHelper.POWER_MINUS_64, javaemul.internal.DoubleHelper.POWER_MINUS_32, javaemul.internal.DoubleHelper.POWER_MINUS_16, javaemul.internal.DoubleHelper.POWER_MINUS_8, javaemul.internal.DoubleHelper.POWER_MINUS_4, javaemul.internal.DoubleHelper.POWER_MINUS_2, javaemul.internal.DoubleHelper.POWER_MINUS_1];
+                } return PowersTable.invPowers; };
                 ;
                 return PowersTable;
             }());
@@ -10083,38 +9781,35 @@ var java;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.value === undefined)
+                    if (_this.value === undefined) {
                         _this.value = 0;
-                    if (_this.value === undefined)
-                        _this.value = 0;
-                    (function () {
-                        _this.value = ShortHelper.parseShort(s);
-                    })();
+                    }
+                    _this.value = ShortHelper.parseShort(s);
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = arguments;
-                    var value_1 = __args[0];
+                    var value = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.value === undefined)
+                    if (_this.value === undefined) {
                         _this.value = 0;
-                    if (_this.value === undefined)
-                        _this.value = 0;
-                    (function () {
-                        _this.value = value_1;
-                    })();
+                    }
+                    _this.value = value;
                 }
                 else
                     throw new Error('invalid overload');
                 return _this;
             }
-            ShortHelper.MIN_VALUE_$LI$ = function () { if (ShortHelper.MIN_VALUE == null)
-                ShortHelper.MIN_VALUE = (32768 | 0); return ShortHelper.MIN_VALUE; };
+            ShortHelper.MIN_VALUE_$LI$ = function () { if (ShortHelper.MIN_VALUE == null) {
+                ShortHelper.MIN_VALUE = (32768 | 0);
+            } return ShortHelper.MIN_VALUE; };
             ;
-            ShortHelper.MAX_VALUE_$LI$ = function () { if (ShortHelper.MAX_VALUE == null)
-                ShortHelper.MAX_VALUE = (32767 | 0); return ShortHelper.MAX_VALUE; };
+            ShortHelper.MAX_VALUE_$LI$ = function () { if (ShortHelper.MAX_VALUE == null) {
+                ShortHelper.MAX_VALUE = (32767 | 0);
+            } return ShortHelper.MAX_VALUE; };
             ;
-            ShortHelper.TYPE_$LI$ = function () { if (ShortHelper.TYPE == null)
-                ShortHelper.TYPE = Number; return ShortHelper.TYPE; };
+            ShortHelper.TYPE_$LI$ = function () { if (ShortHelper.TYPE == null) {
+                ShortHelper.TYPE = Number;
+            } return ShortHelper.TYPE; };
             ;
             ShortHelper.compare = function (x, y) {
                 return x - y;
@@ -10263,9 +9958,10 @@ var java;
             var BoxedValues = /** @class */ (function () {
                 function BoxedValues() {
                 }
-                BoxedValues.boxedValues_$LI$ = function () { if (BoxedValues.boxedValues == null)
+                BoxedValues.boxedValues_$LI$ = function () { if (BoxedValues.boxedValues == null) {
                     BoxedValues.boxedValues = (function (s) { var a = []; while (s-- > 0)
-                        a.push(null); return a; })(256); return BoxedValues.boxedValues; };
+                        a.push(null); return a; })(256);
+                } return BoxedValues.boxedValues; };
                 ;
                 return BoxedValues;
             }());
@@ -10290,38 +9986,35 @@ var java;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.value === undefined)
+                    if (_this.value === undefined) {
                         _this.value = 0;
-                    if (_this.value === undefined)
-                        _this.value = 0;
-                    (function () {
-                        _this.value = ByteHelper.parseByte(s);
-                    })();
+                    }
+                    _this.value = ByteHelper.parseByte(s);
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = arguments;
-                    var value_2 = __args[0];
+                    var value = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.value === undefined)
+                    if (_this.value === undefined) {
                         _this.value = 0;
-                    if (_this.value === undefined)
-                        _this.value = 0;
-                    (function () {
-                        _this.value = value_2;
-                    })();
+                    }
+                    _this.value = value;
                 }
                 else
                     throw new Error('invalid overload');
                 return _this;
             }
-            ByteHelper.MIN_VALUE_$LI$ = function () { if (ByteHelper.MIN_VALUE == null)
-                ByteHelper.MIN_VALUE = (128 | 0); return ByteHelper.MIN_VALUE; };
+            ByteHelper.MIN_VALUE_$LI$ = function () { if (ByteHelper.MIN_VALUE == null) {
+                ByteHelper.MIN_VALUE = (128 | 0);
+            } return ByteHelper.MIN_VALUE; };
             ;
-            ByteHelper.MAX_VALUE_$LI$ = function () { if (ByteHelper.MAX_VALUE == null)
-                ByteHelper.MAX_VALUE = (127 | 0); return ByteHelper.MAX_VALUE; };
+            ByteHelper.MAX_VALUE_$LI$ = function () { if (ByteHelper.MAX_VALUE == null) {
+                ByteHelper.MAX_VALUE = (127 | 0);
+            } return ByteHelper.MAX_VALUE; };
             ;
-            ByteHelper.TYPE_$LI$ = function () { if (ByteHelper.TYPE == null)
-                ByteHelper.TYPE = Number; return ByteHelper.TYPE; };
+            ByteHelper.TYPE_$LI$ = function () { if (ByteHelper.TYPE == null) {
+                ByteHelper.TYPE = Number;
+            } return ByteHelper.TYPE; };
             ;
             ByteHelper.compare = function (x, y) {
                 return x - y;
@@ -10466,9 +10159,10 @@ var java;
             var BoxedValues = /** @class */ (function () {
                 function BoxedValues() {
                 }
-                BoxedValues.boxedValues_$LI$ = function () { if (BoxedValues.boxedValues == null)
+                BoxedValues.boxedValues_$LI$ = function () { if (BoxedValues.boxedValues == null) {
                     BoxedValues.boxedValues = (function (s) { var a = []; while (s-- > 0)
-                        a.push(null); return a; })(256); return BoxedValues.boxedValues; };
+                        a.push(null); return a; })(256);
+                } return BoxedValues.boxedValues; };
                 ;
                 return BoxedValues;
             }());
@@ -10493,37 +10187,28 @@ var java;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.value === undefined)
+                    if (_this.value === undefined) {
                         _this.value = 0;
-                    if (_this.value === undefined)
-                        _this.value = 0;
-                    (function () {
-                        _this.value = FloatHelper.parseFloat(s);
-                    })();
+                    }
+                    _this.value = FloatHelper.parseFloat(s);
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = arguments;
-                    var value_3 = __args[0];
+                    var value = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.value === undefined)
+                    if (_this.value === undefined) {
                         _this.value = 0;
-                    if (_this.value === undefined)
-                        _this.value = 0;
-                    (function () {
-                        _this.value = value_3;
-                    })();
+                    }
+                    _this.value = value;
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = arguments;
-                    var value_4 = __args[0];
+                    var value = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.value === undefined)
+                    if (_this.value === undefined) {
                         _this.value = 0;
-                    if (_this.value === undefined)
-                        _this.value = 0;
-                    (function () {
-                        _this.value = value_4;
-                    })();
+                    }
+                    _this.value = value;
                 }
                 else
                     throw new Error('invalid overload');
@@ -10769,25 +10454,19 @@ var java;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.value === undefined)
+                    if (_this.value === undefined) {
                         _this.value = 0;
-                    if (_this.value === undefined)
-                        _this.value = 0;
-                    (function () {
-                        _this.value = IntegerHelper.parseInt(s);
-                    })();
+                    }
+                    _this.value = IntegerHelper.parseInt(s);
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = arguments;
-                    var value_5 = __args[0];
+                    var value = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.value === undefined)
+                    if (_this.value === undefined) {
                         _this.value = 0;
-                    if (_this.value === undefined)
-                        _this.value = 0;
-                    (function () {
-                        _this.value = value_5;
-                    })();
+                    }
+                    _this.value = value;
                 }
                 else
                     throw new Error('invalid overload');
@@ -11101,9 +10780,10 @@ var java;
             var BoxedValues = /** @class */ (function () {
                 function BoxedValues() {
                 }
-                BoxedValues.boxedValues_$LI$ = function () { if (BoxedValues.boxedValues == null)
+                BoxedValues.boxedValues_$LI$ = function () { if (BoxedValues.boxedValues == null) {
                     BoxedValues.boxedValues = (function (s) { var a = []; while (s-- > 0)
-                        a.push(null); return a; })(256); return BoxedValues.boxedValues; };
+                        a.push(null); return a; })(256);
+                } return BoxedValues.boxedValues; };
                 ;
                 return BoxedValues;
             }());
@@ -11116,8 +10796,9 @@ var java;
             var ReverseNibbles = /** @class */ (function () {
                 function ReverseNibbles() {
                 }
-                ReverseNibbles.reverseNibbles_$LI$ = function () { if (ReverseNibbles.reverseNibbles == null)
-                    ReverseNibbles.reverseNibbles = [0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]; return ReverseNibbles.reverseNibbles; };
+                ReverseNibbles.reverseNibbles_$LI$ = function () { if (ReverseNibbles.reverseNibbles == null) {
+                    ReverseNibbles.reverseNibbles = [0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15];
+                } return ReverseNibbles.reverseNibbles; };
                 ;
                 return ReverseNibbles;
             }());
@@ -11142,25 +10823,19 @@ var java;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.value === undefined)
+                    if (_this.value === undefined) {
                         _this.value = 0;
-                    if (_this.value === undefined)
-                        _this.value = 0;
-                    (function () {
-                        _this.value = LongHelper.parseLong(s);
-                    })();
+                    }
+                    _this.value = LongHelper.parseLong(s);
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = arguments;
-                    var value_6 = __args[0];
+                    var value = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.value === undefined)
+                    if (_this.value === undefined) {
                         _this.value = 0;
-                    if (_this.value === undefined)
-                        _this.value = 0;
-                    (function () {
-                        _this.value = value_6;
-                    })();
+                    }
+                    _this.value = value;
                 }
                 else
                     throw new Error('invalid overload');
@@ -11468,9 +11143,10 @@ var java;
             var BoxedValues = /** @class */ (function () {
                 function BoxedValues() {
                 }
-                BoxedValues.boxedValues_$LI$ = function () { if (BoxedValues.boxedValues == null)
+                BoxedValues.boxedValues_$LI$ = function () { if (BoxedValues.boxedValues == null) {
                     BoxedValues.boxedValues = (function (s) { var a = []; while (s-- > 0)
-                        a.push(null); return a; })(256); return BoxedValues.boxedValues; };
+                        a.push(null); return a; })(256);
+                } return BoxedValues.boxedValues; };
                 ;
                 return BoxedValues;
             }());
@@ -11484,18 +11160,20 @@ var java;
     (function (util) {
         var Scanner = /** @class */ (function () {
             function Scanner(string) {
-                var _this = this;
                 if (((typeof string === 'string') || string === null)) {
                     var __args = arguments;
                     {
                         var __args_16 = arguments;
-                        var reader_1 = new java.io.StringReader(string);
-                        if (this.reader === undefined)
+                        var reader = new java.io.StringReader(string);
+                        if (this.reader === undefined) {
                             this.reader = null;
-                        if (this.matcher === undefined)
+                        }
+                        if (this.matcher === undefined) {
                             this.matcher = null;
-                        if (this.nextDelimiterWithPattern === undefined)
+                        }
+                        if (this.nextDelimiterWithPattern === undefined) {
                             this.nextDelimiterWithPattern = null;
+                        }
                         this.currentDelimiter = Scanner.whiteSpacePattern_$LI$();
                         this.buf = (function (s) { var a = []; while (s-- > 0)
                             a.push(null); return a; })(1024);
@@ -11506,39 +11184,43 @@ var java;
                         this.nextDelimiterEnd = -1;
                         this.defaultRadix = 10;
                         this.closed = false;
-                        if (this.reader === undefined)
-                            this.reader = null;
-                        this.currentDelimiter = Scanner.whiteSpacePattern_$LI$();
-                        if (this.matcher === undefined)
-                            this.matcher = null;
-                        this.buf = (function (s) { var a = []; while (s-- > 0)
-                            a.push(null); return a; })(1024);
-                        this.bufferFilledLength = 0;
-                        this.currentPosition = 0;
-                        this.nextTokenStart = 0;
-                        this.nextDelimiterStart = -1;
-                        this.nextDelimiterEnd = -1;
-                        if (this.nextDelimiterWithPattern === undefined)
-                            this.nextDelimiterWithPattern = null;
-                        this.defaultRadix = 10;
-                        this.closed = false;
-                        (function () {
-                            _this.reader = reader_1;
-                        })();
+                        this.reader = reader;
                     }
+                    if (this.reader === undefined) {
+                        this.reader = null;
+                    }
+                    if (this.matcher === undefined) {
+                        this.matcher = null;
+                    }
+                    if (this.nextDelimiterWithPattern === undefined) {
+                        this.nextDelimiterWithPattern = null;
+                    }
+                    this.currentDelimiter = Scanner.whiteSpacePattern_$LI$();
+                    this.buf = (function (s) { var a = []; while (s-- > 0)
+                        a.push(null); return a; })(1024);
+                    this.bufferFilledLength = 0;
+                    this.currentPosition = 0;
+                    this.nextTokenStart = 0;
+                    this.nextDelimiterStart = -1;
+                    this.nextDelimiterEnd = -1;
+                    this.defaultRadix = 10;
+                    this.closed = false;
                 }
                 else if (((string != null && string instanceof java.io.InputStream) || string === null)) {
                     var __args = arguments;
                     var inputStream = __args[0];
                     {
                         var __args_17 = arguments;
-                        var reader_2 = new java.io.InputStreamReader(inputStream);
-                        if (this.reader === undefined)
+                        var reader = new java.io.InputStreamReader(inputStream);
+                        if (this.reader === undefined) {
                             this.reader = null;
-                        if (this.matcher === undefined)
+                        }
+                        if (this.matcher === undefined) {
                             this.matcher = null;
-                        if (this.nextDelimiterWithPattern === undefined)
+                        }
+                        if (this.nextDelimiterWithPattern === undefined) {
                             this.nextDelimiterWithPattern = null;
+                        }
                         this.currentDelimiter = Scanner.whiteSpacePattern_$LI$();
                         this.buf = (function (s) { var a = []; while (s-- > 0)
                             a.push(null); return a; })(1024);
@@ -11549,36 +11231,40 @@ var java;
                         this.nextDelimiterEnd = -1;
                         this.defaultRadix = 10;
                         this.closed = false;
-                        if (this.reader === undefined)
-                            this.reader = null;
-                        this.currentDelimiter = Scanner.whiteSpacePattern_$LI$();
-                        if (this.matcher === undefined)
-                            this.matcher = null;
-                        this.buf = (function (s) { var a = []; while (s-- > 0)
-                            a.push(null); return a; })(1024);
-                        this.bufferFilledLength = 0;
-                        this.currentPosition = 0;
-                        this.nextTokenStart = 0;
-                        this.nextDelimiterStart = -1;
-                        this.nextDelimiterEnd = -1;
-                        if (this.nextDelimiterWithPattern === undefined)
-                            this.nextDelimiterWithPattern = null;
-                        this.defaultRadix = 10;
-                        this.closed = false;
-                        (function () {
-                            _this.reader = reader_2;
-                        })();
+                        this.reader = reader;
                     }
+                    if (this.reader === undefined) {
+                        this.reader = null;
+                    }
+                    if (this.matcher === undefined) {
+                        this.matcher = null;
+                    }
+                    if (this.nextDelimiterWithPattern === undefined) {
+                        this.nextDelimiterWithPattern = null;
+                    }
+                    this.currentDelimiter = Scanner.whiteSpacePattern_$LI$();
+                    this.buf = (function (s) { var a = []; while (s-- > 0)
+                        a.push(null); return a; })(1024);
+                    this.bufferFilledLength = 0;
+                    this.currentPosition = 0;
+                    this.nextTokenStart = 0;
+                    this.nextDelimiterStart = -1;
+                    this.nextDelimiterEnd = -1;
+                    this.defaultRadix = 10;
+                    this.closed = false;
                 }
                 else if (((string != null && string instanceof java.io.Reader) || string === null)) {
                     var __args = arguments;
-                    var reader_3 = __args[0];
-                    if (this.reader === undefined)
+                    var reader = __args[0];
+                    if (this.reader === undefined) {
                         this.reader = null;
-                    if (this.matcher === undefined)
+                    }
+                    if (this.matcher === undefined) {
                         this.matcher = null;
-                    if (this.nextDelimiterWithPattern === undefined)
+                    }
+                    if (this.nextDelimiterWithPattern === undefined) {
                         this.nextDelimiterWithPattern = null;
+                    }
                     this.currentDelimiter = Scanner.whiteSpacePattern_$LI$();
                     this.buf = (function (s) { var a = []; while (s-- > 0)
                         a.push(null); return a; })(1024);
@@ -11589,25 +11275,7 @@ var java;
                     this.nextDelimiterEnd = -1;
                     this.defaultRadix = 10;
                     this.closed = false;
-                    if (this.reader === undefined)
-                        this.reader = null;
-                    this.currentDelimiter = Scanner.whiteSpacePattern_$LI$();
-                    if (this.matcher === undefined)
-                        this.matcher = null;
-                    this.buf = (function (s) { var a = []; while (s-- > 0)
-                        a.push(null); return a; })(1024);
-                    this.bufferFilledLength = 0;
-                    this.currentPosition = 0;
-                    this.nextTokenStart = 0;
-                    this.nextDelimiterStart = -1;
-                    this.nextDelimiterEnd = -1;
-                    if (this.nextDelimiterWithPattern === undefined)
-                        this.nextDelimiterWithPattern = null;
-                    this.defaultRadix = 10;
-                    this.closed = false;
-                    (function () {
-                        _this.reader = reader_3;
-                    })();
+                    this.reader = reader;
                 }
                 else
                     throw new Error('invalid overload');
@@ -11627,35 +11295,45 @@ var java;
             Scanner.prototype.remove = function () {
                 throw new java.lang.UnsupportedOperationException();
             };
-            Scanner.numeral_$LI$ = function () { if (Scanner.numeral == null)
-                Scanner.numeral = Scanner.digit + "+"; return Scanner.numeral; };
+            Scanner.numeral_$LI$ = function () { if (Scanner.numeral == null) {
+                Scanner.numeral = Scanner.digit + "+";
+            } return Scanner.numeral; };
             ;
-            Scanner.decimalNumeral_$LI$ = function () { if (Scanner.decimalNumeral == null)
-                Scanner.decimalNumeral = "(?:" + Scanner.numeral_$LI$() + "|" + Scanner.numeral_$LI$() + Scanner.decimalSeparator + Scanner.digit + "*|" + Scanner.decimalSeparator + Scanner.digit + "+)"; return Scanner.decimalNumeral; };
+            Scanner.decimalNumeral_$LI$ = function () { if (Scanner.decimalNumeral == null) {
+                Scanner.decimalNumeral = "(?:" + Scanner.numeral_$LI$() + "|" + Scanner.numeral_$LI$() + Scanner.decimalSeparator + Scanner.digit + "*|" + Scanner.decimalSeparator + Scanner.digit + "+)";
+            } return Scanner.decimalNumeral; };
             ;
-            Scanner.exponent_$LI$ = function () { if (Scanner.exponent == null)
-                Scanner.exponent = "(?:[eE][+-]?" + Scanner.digit + "+)"; return Scanner.exponent; };
+            Scanner.exponent_$LI$ = function () { if (Scanner.exponent == null) {
+                Scanner.exponent = "(?:[eE][+-]?" + Scanner.digit + "+)";
+            } return Scanner.exponent; };
             ;
-            Scanner.decimal_$LI$ = function () { if (Scanner.decimal == null)
-                Scanner.decimal = "(?:[-+]?" + Scanner.decimalNumeral_$LI$() + Scanner.exponent_$LI$() + "?)"; return Scanner.decimal; };
+            Scanner.decimal_$LI$ = function () { if (Scanner.decimal == null) {
+                Scanner.decimal = "(?:[-+]?" + Scanner.decimalNumeral_$LI$() + Scanner.exponent_$LI$() + "?)";
+            } return Scanner.decimal; };
             ;
-            Scanner.signedNonNumber_$LI$ = function () { if (Scanner.signedNonNumber == null)
-                Scanner.signedNonNumber = "(?:[-+]?" + Scanner.nonNumber + ")"; return Scanner.signedNonNumber; };
+            Scanner.signedNonNumber_$LI$ = function () { if (Scanner.signedNonNumber == null) {
+                Scanner.signedNonNumber = "(?:[-+]?" + Scanner.nonNumber + ")";
+            } return Scanner.signedNonNumber; };
             ;
-            Scanner.booleanPattern_$LI$ = function () { if (Scanner.booleanPattern == null)
-                Scanner.booleanPattern = java.util.regex.Pattern.compile("true|TRUE|True|1|false|FALSE|False|0"); return Scanner.booleanPattern; };
+            Scanner.booleanPattern_$LI$ = function () { if (Scanner.booleanPattern == null) {
+                Scanner.booleanPattern = java.util.regex.Pattern.compile("true|TRUE|True|1|false|FALSE|False|0");
+            } return Scanner.booleanPattern; };
             ;
-            Scanner.integerPattern_$LI$ = function () { if (Scanner.integerPattern == null)
-                Scanner.integerPattern = java.util.regex.Pattern.compile("[-+]?" + Scanner.numeral_$LI$()); return Scanner.integerPattern; };
+            Scanner.integerPattern_$LI$ = function () { if (Scanner.integerPattern == null) {
+                Scanner.integerPattern = java.util.regex.Pattern.compile("[-+]?" + Scanner.numeral_$LI$());
+            } return Scanner.integerPattern; };
             ;
-            Scanner.floatPattern_$LI$ = function () { if (Scanner.floatPattern == null)
-                Scanner.floatPattern = java.util.regex.Pattern.compile(Scanner.decimal_$LI$() + "|" + Scanner.hexFloat + "|" + Scanner.signedNonNumber_$LI$()); return Scanner.floatPattern; };
+            Scanner.floatPattern_$LI$ = function () { if (Scanner.floatPattern == null) {
+                Scanner.floatPattern = java.util.regex.Pattern.compile(Scanner.decimal_$LI$() + "|" + Scanner.hexFloat + "|" + Scanner.signedNonNumber_$LI$());
+            } return Scanner.floatPattern; };
             ;
-            Scanner.endLinePattern_$LI$ = function () { if (Scanner.endLinePattern == null)
-                Scanner.endLinePattern = java.util.regex.Pattern.compile("[\\n\\r]+"); return Scanner.endLinePattern; };
+            Scanner.endLinePattern_$LI$ = function () { if (Scanner.endLinePattern == null) {
+                Scanner.endLinePattern = java.util.regex.Pattern.compile("[\\n\\r]+");
+            } return Scanner.endLinePattern; };
             ;
-            Scanner.whiteSpacePattern_$LI$ = function () { if (Scanner.whiteSpacePattern == null)
-                Scanner.whiteSpacePattern = java.util.regex.Pattern.compile("\\s+"); return Scanner.whiteSpacePattern; };
+            Scanner.whiteSpacePattern_$LI$ = function () { if (Scanner.whiteSpacePattern == null) {
+                Scanner.whiteSpacePattern = java.util.regex.Pattern.compile("\\s+");
+            } return Scanner.whiteSpacePattern; };
             ;
             /**
              *
@@ -11961,10 +11639,31 @@ var java;
                 return _super.call(this) || this;
             }
             /* Default method injected from java.util.Collection */
+            AbstractSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.lang.Iterable */
+            AbstractSet.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                var _loop_4 = function (index130) {
+                    var t = index130.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index130 = this.iterator(); index130.hasNext();) {
+                    _loop_4(index130);
+                }
+            };
+            /* Default method injected from java.util.Collection */
+            AbstractSet.prototype.parallelStream = function () {
+                return this.stream();
+            };
+            /* Default method injected from java.util.Collection */
             AbstractSet.prototype.removeIf = function (filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 var removed = false;
-                var _loop_4 = function (it) {
+                var _loop_5 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -11974,30 +11673,9 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_4(it);
+                    _loop_5(it);
                 }
                 return removed;
-            };
-            /* Default method injected from java.util.Collection */
-            AbstractSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.Collection */
-            AbstractSet.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.lang.Iterable */
-            AbstractSet.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_5 = function (index131) {
-                    var t = index131.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index131 = this.iterator(); index131.hasNext();) {
-                    _loop_5(index131);
-                }
             };
             /**
              *
@@ -12008,7 +11686,7 @@ var java;
                 if (o === this) {
                     return true;
                 }
-                if (!(o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Set") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Set") >= 0))) {
+                if (!(o != null && (o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Set") >= 0))) {
                     return false;
                 }
                 var other = o;
@@ -12044,8 +11722,8 @@ var java;
                     }
                 }
                 else {
-                    for (var index132 = c.iterator(); index132.hasNext();) {
-                        var o1 = index132.next();
+                    for (var index131 = c.iterator(); index131.hasNext();) {
+                        var o1 = index131.next();
                         {
                             this.remove(o1);
                         }
@@ -12076,31 +11754,27 @@ var java;
             __extends(AbstractList, _super);
             function AbstractList() {
                 var _this = _super.call(this) || this;
-                if (_this.modCount === undefined)
+                if (_this.modCount === undefined) {
                     _this.modCount = 0;
+                }
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            AbstractList.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
-                var removed = false;
-                var _loop_6 = function (it) {
-                    {
-                        if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
-                            it.remove();
-                            removed = true;
-                        }
-                    }
-                    ;
-                };
-                for (var it = this.iterator(); it.hasNext();) {
-                    _loop_6(it);
-                }
-                return removed;
-            };
-            /* Default method injected from java.util.Collection */
             AbstractList.prototype.stream = function () {
                 return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.lang.Iterable */
+            AbstractList.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                var _loop_6 = function (index132) {
+                    var t = index132.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index132 = this.iterator(); index132.hasNext();) {
+                    _loop_6(index132);
+                }
             };
             /* Default method injected from java.util.Collection */
             AbstractList.prototype.parallelStream = function () {
@@ -12119,18 +11793,23 @@ var java;
                     }
                 }
             };
-            /* Default method injected from java.lang.Iterable */
-            AbstractList.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_7 = function (index134) {
-                    var t = index134.next();
+            /* Default method injected from java.util.Collection */
+            AbstractList.prototype.removeIf = function (filter) {
+                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                var removed = false;
+                var _loop_7 = function (it) {
                     {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                        if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
+                            it.remove();
+                            removed = true;
+                        }
                     }
+                    ;
                 };
-                for (var index134 = this.iterator(); index134.hasNext();) {
-                    _loop_7(index134);
+                for (var it = this.iterator(); it.hasNext();) {
+                    _loop_7(it);
                 }
+                return removed;
             };
             AbstractList.prototype.add$java_lang_Object = function (obj) {
                 this.add(this.size(), obj);
@@ -12157,8 +11836,8 @@ var java;
             AbstractList.prototype.addAll$int$java_util_Collection = function (index, c) {
                 javaemul.internal.InternalPreconditions.checkNotNull(c);
                 var changed = false;
-                for (var index135 = c.iterator(); index135.hasNext();) {
-                    var e = index135.next();
+                for (var index134 = c.iterator(); index134.hasNext();) {
+                    var e = index134.next();
                     {
                         this.add(index++, e);
                         changed = true;
@@ -12173,10 +11852,10 @@ var java;
              * @return {boolean}
              */
             AbstractList.prototype.addAll = function (index, c) {
-                if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
+                if (((typeof index === 'number') || index === null) && ((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     return this.addAll$int$java_util_Collection(index, c);
                 }
-                else if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
+                else if (((index != null && (index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                     return _super.prototype.addAll.call(this, index);
                 }
                 else
@@ -12197,7 +11876,7 @@ var java;
                 if (o === this) {
                     return true;
                 }
-                if (!(o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.List") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.List") >= 0))) {
+                if (!(o != null && (o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.List") >= 0))) {
                     return false;
                 }
                 var other = o;
@@ -12205,8 +11884,8 @@ var java;
                     return false;
                 }
                 var iterOther = other.iterator();
-                for (var index136 = this.iterator(); index136.hasNext();) {
-                    var elem = index136.next();
+                for (var index135 = this.iterator(); index135.hasNext();) {
+                    var elem = index135.next();
                     {
                         var elemOther = iterOther.next();
                         if (!java.util.Objects.equals(elem, elemOther)) {
@@ -12338,10 +12017,12 @@ var java;
             var IteratorImpl = /** @class */ (function () {
                 function IteratorImpl(__parent) {
                     this.__parent = __parent;
-                    if (this.i === undefined)
+                    if (this.i === undefined) {
                         this.i = 0;
-                    if (this.last === undefined)
+                    }
+                    if (this.last === undefined) {
                         this.last = 0;
+                    }
                     this.i = 0;
                     this.last = -1;
                 }
@@ -12389,12 +12070,15 @@ var java;
                 __extends(SubList, _super);
                 function SubList(wrapped, fromIndex, toIndex) {
                     var _this = _super.call(this) || this;
-                    if (_this.wrapped === undefined)
+                    if (_this.wrapped === undefined) {
                         _this.wrapped = null;
-                    if (_this.fromIndex === undefined)
+                    }
+                    if (_this.fromIndex === undefined) {
                         _this.fromIndex = 0;
-                    if (_this.__size === undefined)
+                    }
+                    if (_this.__size === undefined) {
                         _this.__size = 0;
+                    }
                     javaemul.internal.InternalPreconditions.checkCriticalPositionIndexes(fromIndex, toIndex, wrapped.size());
                     _this.wrapped = wrapped;
                     _this.fromIndex = fromIndex;
@@ -12485,16 +12169,12 @@ var java;
                     if (((typeof start === 'number') || start === null)) {
                         var __args = Array.prototype.slice.call(arguments, [1]);
                         _this = _super.call(this, __parent) || this;
-                        _this.__parent = __parent;
-                        (function () {
-                            javaemul.internal.InternalPreconditions.checkPositionIndex(start, __parent.size());
-                            _this.i = start;
-                        })();
+                        javaemul.internal.InternalPreconditions.checkPositionIndex(start, __parent.size());
+                        _this.i = start;
                     }
                     else if (start === undefined) {
                         var __args = Array.prototype.slice.call(arguments, [1]);
                         _this = _super.call(this, __parent) || this;
-                        _this.__parent = __parent;
                     }
                     else
                         throw new Error('invalid overload');
@@ -12583,10 +12263,31 @@ var java;
                 return _super.call(this) || this;
             }
             /* Default method injected from java.util.Collection */
+            AbstractQueue.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.lang.Iterable */
+            AbstractQueue.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                var _loop_8 = function (index136) {
+                    var t = index136.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index136 = this.iterator(); index136.hasNext();) {
+                    _loop_8(index136);
+                }
+            };
+            /* Default method injected from java.util.Collection */
+            AbstractQueue.prototype.parallelStream = function () {
+                return this.stream();
+            };
+            /* Default method injected from java.util.Collection */
             AbstractQueue.prototype.removeIf = function (filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 var removed = false;
-                var _loop_8 = function (it) {
+                var _loop_9 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -12596,30 +12297,9 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_8(it);
+                    _loop_9(it);
                 }
                 return removed;
-            };
-            /* Default method injected from java.util.Collection */
-            AbstractQueue.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.Collection */
-            AbstractQueue.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.lang.Iterable */
-            AbstractQueue.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_9 = function (index137) {
-                    var t = index137.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index137 = this.iterator(); index137.hasNext();) {
-                    _loop_9(index137);
-                }
             };
             /**
              *
@@ -12689,82 +12369,750 @@ var java;
 (function (java) {
     var util;
     (function (util) {
+        /**
+         * A {@link Deque} based on circular buffer that is implemented with an array and head/tail
+         * pointers. Array deques have no capacity restrictions; they grow as necessary to support usage.
+         * Null elements are prohibited. This class is likely to be faster than {@link Stack}
+         * when used as a stack, and faster than {@link LinkedList} when used as a queue.
+         * <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayDeque.html">ArrayDeque</a>
+         *
+         * @param <E> the element type.
+         * @param {*} c
+         * @class
+         * @extends java.util.AbstractCollection
+         */
+        var ArrayDeque = /** @class */ (function (_super) {
+            __extends(ArrayDeque, _super);
+            function ArrayDeque(c) {
+                var _this = this;
+                if (((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
+                    var __args = arguments;
+                    {
+                        var __args_18 = arguments;
+                        var numElements = c.size();
+                        _this = _super.call(this) || this;
+                        if (_this.head === undefined) {
+                            _this.head = 0;
+                        }
+                        if (_this.tail === undefined) {
+                            _this.tail = 0;
+                        }
+                        _this.array = (function (s) { var a = []; while (s-- > 0)
+                            a.push(null); return a; })(ArrayDeque.MIN_INITIAL_CAPACITY);
+                        javaemul.internal.ArrayHelper.setLength(_this.array, ArrayDeque.nextArrayLength(numElements));
+                    }
+                    if (_this.head === undefined) {
+                        _this.head = 0;
+                    }
+                    if (_this.tail === undefined) {
+                        _this.tail = 0;
+                    }
+                    _this.array = (function (s) { var a = []; while (s-- > 0)
+                        a.push(null); return a; })(ArrayDeque.MIN_INITIAL_CAPACITY);
+                    (function () {
+                        _this.addAll(c);
+                    })();
+                }
+                else if (((typeof c === 'number') || c === null)) {
+                    var __args = arguments;
+                    var numElements = __args[0];
+                    _this = _super.call(this) || this;
+                    if (_this.head === undefined) {
+                        _this.head = 0;
+                    }
+                    if (_this.tail === undefined) {
+                        _this.tail = 0;
+                    }
+                    _this.array = (function (s) { var a = []; while (s-- > 0)
+                        a.push(null); return a; })(ArrayDeque.MIN_INITIAL_CAPACITY);
+                    javaemul.internal.ArrayHelper.setLength(_this.array, ArrayDeque.nextArrayLength(numElements));
+                }
+                else if (c === undefined) {
+                    var __args = arguments;
+                    _this = _super.call(this) || this;
+                    if (_this.head === undefined) {
+                        _this.head = 0;
+                    }
+                    if (_this.tail === undefined) {
+                        _this.tail = 0;
+                    }
+                    _this.array = (function (s) { var a = []; while (s-- > 0)
+                        a.push(null); return a; })(ArrayDeque.MIN_INITIAL_CAPACITY);
+                }
+                else
+                    throw new Error('invalid overload');
+                return _this;
+            }
+            /* Default method injected from java.util.Collection */
+            ArrayDeque.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.lang.Iterable */
+            ArrayDeque.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                var _loop_10 = function (index137) {
+                    var t = index137.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index137 = this.iterator(); index137.hasNext();) {
+                    _loop_10(index137);
+                }
+            };
+            /* Default method injected from java.util.Collection */
+            ArrayDeque.prototype.parallelStream = function () {
+                return this.stream();
+            };
+            /* Default method injected from java.util.Collection */
+            ArrayDeque.prototype.removeIf = function (filter) {
+                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                var removed = false;
+                var _loop_11 = function (it) {
+                    {
+                        if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
+                            it.remove();
+                            removed = true;
+                        }
+                    }
+                    ;
+                };
+                for (var it = this.iterator(); it.hasNext();) {
+                    _loop_11(it);
+                }
+                return removed;
+            };
+            ArrayDeque.checkConcurrentModification = function (expression) {
+                if (!expression) {
+                    throw new java.util.ConcurrentModificationException();
+                }
+            };
+            /**
+             * Returns best power-of-two array length to hold the given number of elements.
+             *
+             * @param {number} numElements the number of elements to hold
+             * @return {number}
+             * @private
+             */
+            ArrayDeque.nextArrayLength = function (numElements) {
+                return ArrayDeque.nextPowerOfTwo(Math.max(ArrayDeque.MIN_INITIAL_CAPACITY, numElements));
+            };
+            /**
+             * Returns a number that is greater than {@code num} and is a power of two.
+             * If passed {@code num} is not positive integer or next power of two overflows then
+             * returned value is non-positive.
+             * E.g., if num == 32, returns 64. if num == 31, returns 32.
+             *
+             * @param {number} num positive integer.
+             * @return {number}
+             * @private
+             */
+            ArrayDeque.nextPowerOfTwo = function (num) {
+                return javaemul.internal.IntegerHelper.highestOneBit(num) << 1;
+            };
+            /**
+             *
+             * @param {*} e
+             * @return {boolean}
+             */
+            ArrayDeque.prototype.add = function (e) {
+                this.addLast(e);
+                return true;
+            };
+            /**
+             *
+             * @param {*} e
+             */
+            ArrayDeque.prototype.addFirst = function (e) {
+                javaemul.internal.InternalPreconditions.checkCriticalNotNull(e);
+                this.head = (this.head - 1) & (this.array.length - 1);
+                this.array[this.head] = e;
+                this.ensureCapacity();
+            };
+            /**
+             *
+             * @param {*} e
+             */
+            ArrayDeque.prototype.addLast = function (e) {
+                javaemul.internal.InternalPreconditions.checkCriticalNotNull(e);
+                this.array[this.tail] = e;
+                this.tail = (this.tail + 1) & (this.array.length - 1);
+                this.ensureCapacity();
+            };
+            /**
+             *
+             */
+            ArrayDeque.prototype.clear = function () {
+                if (this.head === this.tail) {
+                    return;
+                }
+                this.array = (function (s) { var a = []; while (s-- > 0)
+                    a.push(null); return a; })(ArrayDeque.MIN_INITIAL_CAPACITY);
+                this.head = 0;
+                this.tail = 0;
+            };
+            ArrayDeque.prototype.clone = function () {
+                return (new ArrayDeque(this));
+            };
+            ArrayDeque.prototype.contains$java_lang_Object = function (o) {
+                return this.contains$java_util_Iterator$java_lang_Object(this.iterator(), o);
+            };
+            /**
+             *
+             * @return {*}
+             */
+            ArrayDeque.prototype.descendingIterator = function () {
+                return new ArrayDeque.DescendingIteratorImpl(this);
+            };
+            /**
+             *
+             * @return {*}
+             */
+            ArrayDeque.prototype.element = function () {
+                return this.getFirst();
+            };
+            /**
+             *
+             * @return {*}
+             */
+            ArrayDeque.prototype.getFirst = function () {
+                var e = this.peekFirstElement();
+                javaemul.internal.InternalPreconditions.checkElement(e != null);
+                return e;
+            };
+            /**
+             *
+             * @return {*}
+             */
+            ArrayDeque.prototype.getLast = function () {
+                var e = this.peekLastElement();
+                javaemul.internal.InternalPreconditions.checkElement(e != null);
+                return e;
+            };
+            /**
+             *
+             * @return {boolean}
+             */
+            ArrayDeque.prototype.isEmpty = function () {
+                return this.head === this.tail;
+            };
+            /**
+             *
+             * @return {*}
+             */
+            ArrayDeque.prototype.iterator = function () {
+                return new ArrayDeque.IteratorImpl(this);
+            };
+            /**
+             *
+             * @param {*} e
+             * @return {boolean}
+             */
+            ArrayDeque.prototype.offer = function (e) {
+                return this.offerLast(e);
+            };
+            /**
+             *
+             * @param {*} e
+             * @return {boolean}
+             */
+            ArrayDeque.prototype.offerFirst = function (e) {
+                this.addFirst(e);
+                return true;
+            };
+            /**
+             *
+             * @param {*} e
+             * @return {boolean}
+             */
+            ArrayDeque.prototype.offerLast = function (e) {
+                this.addLast(e);
+                return true;
+            };
+            /**
+             *
+             * @return {*}
+             */
+            ArrayDeque.prototype.peek = function () {
+                return this.peekFirst();
+            };
+            /**
+             *
+             * @return {*}
+             */
+            ArrayDeque.prototype.peekFirst = function () {
+                return this.peekFirstElement();
+            };
+            /**
+             *
+             * @return {*}
+             */
+            ArrayDeque.prototype.peekLast = function () {
+                return this.peekLastElement();
+            };
+            /**
+             *
+             * @return {*}
+             */
+            ArrayDeque.prototype.poll = function () {
+                return this.pollFirst();
+            };
+            /**
+             *
+             * @return {*}
+             */
+            ArrayDeque.prototype.pollFirst = function () {
+                var e = this.peekFirstElement();
+                if (e == null) {
+                    return null;
+                }
+                this.array[this.head] = null;
+                this.head = (this.head + 1) & (this.array.length - 1);
+                return e;
+            };
+            /**
+             *
+             * @return {*}
+             */
+            ArrayDeque.prototype.pollLast = function () {
+                var e = this.peekLastElement();
+                if (e == null) {
+                    return null;
+                }
+                this.tail = (this.tail - 1) & (this.array.length - 1);
+                this.array[this.tail] = null;
+                return e;
+            };
+            /**
+             *
+             * @return {*}
+             */
+            ArrayDeque.prototype.pop = function () {
+                return this.removeFirst();
+            };
+            /**
+             *
+             * @param {*} e
+             */
+            ArrayDeque.prototype.push = function (e) {
+                this.addFirst(e);
+            };
+            ArrayDeque.prototype.remove$ = function () {
+                return this.removeFirst();
+            };
+            ArrayDeque.prototype.remove$java_lang_Object = function (o) {
+                return this.removeFirstOccurrence(o);
+            };
+            /**
+             *
+             * @return {*}
+             */
+            ArrayDeque.prototype.removeFirst = function () {
+                var e = this.pollFirst();
+                javaemul.internal.InternalPreconditions.checkElement(e != null);
+                return e;
+            };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
+            ArrayDeque.prototype.removeFirstOccurrence = function (o) {
+                return this.remove$java_util_Iterator$java_lang_Object(this.iterator(), o);
+            };
+            /**
+             *
+             * @return {*}
+             */
+            ArrayDeque.prototype.removeLast = function () {
+                var e = this.pollLast();
+                javaemul.internal.InternalPreconditions.checkElement(e != null);
+                return e;
+            };
+            /**
+             *
+             * @param {*} o
+             * @return {boolean}
+             */
+            ArrayDeque.prototype.removeLastOccurrence = function (o) {
+                return this.remove$java_util_Iterator$java_lang_Object(this.descendingIterator(), o);
+            };
+            /**
+             *
+             * @return {number}
+             */
+            ArrayDeque.prototype.size = function () {
+                return (this.tail - this.head) & (this.array.length - 1);
+            };
+            ArrayDeque.prototype.toArray$java_lang_Object_A = function (out) {
+                var size = this.size();
+                if (out.length < size) {
+                    out = javaemul.internal.ArrayHelper.createFrom(out, size);
+                }
+                this.copyElements(out, size);
+                if (out.length > size) {
+                    out[size] = null;
+                }
+                return out;
+            };
+            /**
+             *
+             * @param {Array} out
+             * @return {Array}
+             */
+            ArrayDeque.prototype.toArray = function (out) {
+                if (((out != null && out instanceof Array && (out.length == 0 || out[0] == null || (out[0] != null))) || out === null)) {
+                    return this.toArray$java_lang_Object_A(out);
+                }
+                else if (out === undefined) {
+                    return this.toArray$();
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            ArrayDeque.prototype.contains$java_util_Iterator$java_lang_Object = function (it, o) {
+                if (o == null) {
+                    return false;
+                }
+                while ((it.hasNext())) {
+                    {
+                        if ( /* equals */(function (o1, o2) { if (o1 && o1.equals) {
+                            return o1.equals(o2);
+                        }
+                        else {
+                            return o1 === o2;
+                        } })(o, it.next())) {
+                            return true;
+                        }
+                    }
+                }
+                ;
+                return false;
+            };
+            ArrayDeque.prototype.contains = function (it, o) {
+                if (((it != null && (it.constructor != null && it.constructor["__interfaces"] != null && it.constructor["__interfaces"].indexOf("java.util.Iterator") >= 0)) || it === null) && ((o != null) || o === null)) {
+                    return this.contains$java_util_Iterator$java_lang_Object(it, o);
+                }
+                else if (((it != null) || it === null) && o === undefined) {
+                    return this.contains$java_lang_Object(it);
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            ArrayDeque.prototype.remove$java_util_Iterator$java_lang_Object = function (it, o) {
+                if (this.contains$java_util_Iterator$java_lang_Object(it, o)) {
+                    it.remove();
+                    return true;
+                }
+                return false;
+            };
+            ArrayDeque.prototype.remove = function (it, o) {
+                if (((it != null && (it.constructor != null && it.constructor["__interfaces"] != null && it.constructor["__interfaces"].indexOf("java.util.Iterator") >= 0)) || it === null) && ((o != null) || o === null)) {
+                    return this.remove$java_util_Iterator$java_lang_Object(it, o);
+                }
+                else if (((it != null) || it === null) && o === undefined) {
+                    return this.remove$java_lang_Object(it);
+                }
+                else if (it === undefined && o === undefined) {
+                    return this.remove$();
+                }
+                else
+                    throw new Error('invalid overload');
+            };
+            ArrayDeque.prototype.peekFirstElement = function () {
+                return this.array[this.head];
+            };
+            ArrayDeque.prototype.peekLastElement = function () {
+                return this.array[(this.tail - 1) & (this.array.length - 1)];
+            };
+            /**
+             * Copies {@code count} ArrayDeque's elements to {@code dest} array.
+             * The method is safe to use when ArrayDeque's array has been rolled over,
+             * i.e. {@code head == tail}.
+             * It is assumed that {@code count < size()}.
+             * @param {Array} dest
+             * @param {number} count
+             * @private
+             */
+            ArrayDeque.prototype.copyElements = function (dest, count) {
+                var mask = this.array.length - 1;
+                for (var i = this.head, dstIdx = 0; dstIdx < count; i = (i + 1) & mask, ++dstIdx) {
+                    {
+                        dest[dstIdx] = this.array[i];
+                    }
+                    ;
+                }
+            };
+            /**
+             * Increase the capacity of this deque when full, i.e.,
+             * when head and tail have wrapped around to become equal.
+             * @private
+             */
+            ArrayDeque.prototype.ensureCapacity = function () {
+                if (this.head !== this.tail) {
+                    return;
+                }
+                var numElements = this.array.length;
+                var newLength = ArrayDeque.nextArrayLength(numElements);
+                if (this.head !== 0) {
+                    var newArray = javaemul.internal.ArrayHelper.createFrom(this.array, newLength);
+                    this.copyElements(newArray, numElements);
+                    this.array = newArray;
+                    this.head = 0;
+                }
+                else {
+                    javaemul.internal.ArrayHelper.setLength(this.array, newLength);
+                }
+                this.tail = numElements;
+            };
+            /**
+             * Removes the element at the specified position in the elements array,
+             * adjusting head and tail as necessary. This results in motion of
+             * elements backwards or forwards in the array.
+             *
+             * @return {number} -1 if elements moved backwards (left-shifted); 1 if forwards (right-shifted).
+             * @param {number} i
+             * @private
+             */
+            ArrayDeque.prototype.removeAtIndex = function (i) {
+                var mask = this.array.length - 1;
+                var headDistance = (i - this.head) & mask;
+                var tailDistance = (this.tail - i) & mask;
+                var size = (this.tail - this.head) & mask;
+                ArrayDeque.checkConcurrentModification(headDistance < size);
+                if (headDistance >= tailDistance) {
+                    this.shiftLeftAtIndex(i);
+                    return -1;
+                }
+                else {
+                    this.shiftRightAtIndex(i);
+                    return 1;
+                }
+            };
+            ArrayDeque.prototype.shiftLeftAtIndex = function (i) {
+                var mask = this.array.length - 1;
+                this.tail = (this.tail - 1) & mask;
+                while ((i !== this.tail)) {
+                    {
+                        var nextOffset = (i + 1) & mask;
+                        this.array[i] = this.array[nextOffset];
+                        i = nextOffset;
+                    }
+                }
+                ;
+                this.array[this.tail] = null;
+            };
+            ArrayDeque.prototype.shiftRightAtIndex = function (i) {
+                var mask = this.array.length - 1;
+                while ((i !== this.head)) {
+                    {
+                        var prevOffset = (i - 1) & mask;
+                        this.array[i] = this.array[prevOffset];
+                        i = prevOffset;
+                    }
+                }
+                ;
+                this.array[this.head] = null;
+                this.head = (this.head + 1) & mask;
+            };
+            /**
+             * The minimum capacity that we'll use for a newly created deque.
+             * Must be a power of 2.
+             */
+            ArrayDeque.MIN_INITIAL_CAPACITY = 8;
+            return ArrayDeque;
+        }(java.util.AbstractCollection));
+        util.ArrayDeque = ArrayDeque;
+        ArrayDeque["__class"] = "java.util.ArrayDeque";
+        ArrayDeque["__interfaces"] = ["java.lang.Cloneable", "java.util.Collection", "java.util.Queue", "java.util.Deque", "java.lang.Iterable"];
+        (function (ArrayDeque) {
+            var IteratorImpl = /** @class */ (function () {
+                function IteratorImpl(__parent) {
+                    this.__parent = __parent;
+                    this.currentIndex = this.__parent.head;
+                    this.fence = this.__parent.tail;
+                    this.lastIndex = -1;
+                }
+                /* Default method injected from java.util.Iterator */
+                IteratorImpl.prototype.forEachRemaining = function (consumer) {
+                    var _this = this;
+                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    while ((this.hasNext())) {
+                        {
+                            (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
+                        }
+                    }
+                    ;
+                };
+                /**
+                 *
+                 * @return {boolean}
+                 */
+                IteratorImpl.prototype.hasNext = function () {
+                    return this.currentIndex !== this.fence;
+                };
+                /**
+                 *
+                 * @return {*}
+                 */
+                IteratorImpl.prototype.next = function () {
+                    javaemul.internal.InternalPreconditions.checkCriticalElement(this.hasNext());
+                    var e = this.__parent.array[this.currentIndex];
+                    ArrayDeque.checkConcurrentModification(this.fence === this.__parent.tail && e != null);
+                    this.lastIndex = this.currentIndex;
+                    this.currentIndex = (this.currentIndex + 1) & (this.__parent.array.length - 1);
+                    return e;
+                };
+                /**
+                 *
+                 */
+                IteratorImpl.prototype.remove = function () {
+                    javaemul.internal.InternalPreconditions.checkState(this.lastIndex >= 0);
+                    if (this.__parent.removeAtIndex(this.lastIndex) < 0) {
+                        this.currentIndex = (this.currentIndex - 1) & (this.__parent.array.length - 1);
+                        this.fence = this.__parent.tail;
+                    }
+                    this.lastIndex = -1;
+                };
+                return IteratorImpl;
+            }());
+            ArrayDeque.IteratorImpl = IteratorImpl;
+            IteratorImpl["__class"] = "java.util.ArrayDeque.IteratorImpl";
+            IteratorImpl["__interfaces"] = ["java.util.Iterator"];
+            var DescendingIteratorImpl = /** @class */ (function () {
+                function DescendingIteratorImpl(__parent) {
+                    this.__parent = __parent;
+                    this.currentIndex = this.__parent.tail;
+                    this.fence = this.__parent.head;
+                    this.lastIndex = -1;
+                }
+                /* Default method injected from java.util.Iterator */
+                DescendingIteratorImpl.prototype.forEachRemaining = function (consumer) {
+                    var _this = this;
+                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    while ((this.hasNext())) {
+                        {
+                            (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
+                        }
+                    }
+                    ;
+                };
+                /**
+                 *
+                 * @return {boolean}
+                 */
+                DescendingIteratorImpl.prototype.hasNext = function () {
+                    return this.currentIndex !== this.fence;
+                };
+                /**
+                 *
+                 * @return {*}
+                 */
+                DescendingIteratorImpl.prototype.next = function () {
+                    javaemul.internal.InternalPreconditions.checkCriticalElement(this.hasNext());
+                    this.currentIndex = (this.currentIndex - 1) & (this.__parent.array.length - 1);
+                    var e = this.__parent.array[this.currentIndex];
+                    ArrayDeque.checkConcurrentModification(this.fence === this.__parent.head && e != null);
+                    this.lastIndex = this.currentIndex;
+                    return e;
+                };
+                /**
+                 *
+                 */
+                DescendingIteratorImpl.prototype.remove = function () {
+                    javaemul.internal.InternalPreconditions.checkState(this.lastIndex >= 0);
+                    if (this.__parent.removeAtIndex(this.lastIndex) > 0) {
+                        this.currentIndex = (this.currentIndex + 1) & (this.__parent.array.length - 1);
+                        this.fence = this.__parent.head;
+                    }
+                    this.lastIndex = -1;
+                };
+                return DescendingIteratorImpl;
+            }());
+            ArrayDeque.DescendingIteratorImpl = DescendingIteratorImpl;
+            DescendingIteratorImpl["__class"] = "java.util.ArrayDeque.DescendingIteratorImpl";
+            DescendingIteratorImpl["__interfaces"] = ["java.util.Iterator"];
+        })(ArrayDeque = util.ArrayDeque || (util.ArrayDeque = {}));
+    })(util = java.util || (java.util = {}));
+})(java || (java = {}));
+(function (java) {
+    var util;
+    (function (util) {
         var Timer = /** @class */ (function () {
             function Timer(name, daemon) {
-                var _this = this;
                 if (((typeof name === 'string') || name === null) && ((typeof daemon === 'boolean') || daemon === null)) {
                     var __args = arguments;
-                    if (this.name === undefined)
+                    if (this.name === undefined) {
                         this.name = null;
+                    }
                     this.timeouts = (new Array());
                     this.intervals = (new Array());
-                    if (this.name === undefined)
-                        this.name = null;
-                    this.timeouts = (new Array());
-                    this.intervals = (new Array());
-                    (function () {
-                        _this.name = name;
-                    })();
+                    this.name = name;
                 }
                 else if (((typeof name === 'string') || name === null) && daemon === undefined) {
                     var __args = arguments;
                     {
-                        var __args_18 = arguments;
+                        var __args_19 = arguments;
                         var daemon_1 = true;
-                        if (this.name === undefined)
+                        if (this.name === undefined) {
                             this.name = null;
+                        }
                         this.timeouts = (new Array());
                         this.intervals = (new Array());
-                        if (this.name === undefined)
-                            this.name = null;
-                        this.timeouts = (new Array());
-                        this.intervals = (new Array());
-                        (function () {
-                            _this.name = name;
-                        })();
+                        this.name = name;
                     }
+                    if (this.name === undefined) {
+                        this.name = null;
+                    }
+                    this.timeouts = (new Array());
+                    this.intervals = (new Array());
                 }
                 else if (((typeof name === 'boolean') || name === null) && daemon === undefined) {
                     var __args = arguments;
                     var daemon_2 = __args[0];
                     {
-                        var __args_19 = arguments;
+                        var __args_20 = arguments;
                         {
-                            var __args_20 = arguments;
+                            var __args_21 = arguments;
                             var name_1 = "Timer-" + ++Timer.nextSerialNumber;
                             var daemon_3 = true;
-                            if (this.name === undefined)
+                            if (this.name === undefined) {
                                 this.name = null;
+                            }
                             this.timeouts = (new Array());
                             this.intervals = (new Array());
-                            if (this.name === undefined)
-                                this.name = null;
-                            this.timeouts = (new Array());
-                            this.intervals = (new Array());
-                            (function () {
-                                _this.name = name_1;
-                            })();
+                            this.name = name_1;
                         }
+                        if (this.name === undefined) {
+                            this.name = null;
+                        }
+                        this.timeouts = (new Array());
+                        this.intervals = (new Array());
                     }
+                    if (this.name === undefined) {
+                        this.name = null;
+                    }
+                    this.timeouts = (new Array());
+                    this.intervals = (new Array());
                 }
                 else if (name === undefined && daemon === undefined) {
                     var __args = arguments;
                     {
-                        var __args_21 = arguments;
+                        var __args_22 = arguments;
                         var name_2 = "Timer-" + ++Timer.nextSerialNumber;
                         var daemon_4 = true;
-                        if (this.name === undefined)
+                        if (this.name === undefined) {
                             this.name = null;
+                        }
                         this.timeouts = (new Array());
                         this.intervals = (new Array());
-                        if (this.name === undefined)
-                            this.name = null;
-                        this.timeouts = (new Array());
-                        this.intervals = (new Array());
-                        (function () {
-                            _this.name = name_2;
-                        })();
+                        this.name = name_2;
                     }
+                    if (this.name === undefined) {
+                        this.name = null;
+                    }
+                    this.timeouts = (new Array());
+                    this.intervals = (new Array());
                 }
                 else
                     throw new Error('invalid overload');
@@ -12942,10 +13290,11 @@ var java;
             function StringHelper() {
             }
             StringHelper.CASE_INSENSITIVE_ORDER_$LI$ = function () {
-                if (StringHelper.CASE_INSENSITIVE_ORDER == null)
+                if (StringHelper.CASE_INSENSITIVE_ORDER == null) {
                     StringHelper.CASE_INSENSITIVE_ORDER = function (a, b) {
                         return /* compareToIgnoreCase */ a.toUpperCase().localeCompare(b.toUpperCase());
                     };
+                }
                 return StringHelper.CASE_INSENSITIVE_ORDER;
             };
             ;
@@ -13143,25 +13492,19 @@ var java;
                 if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof date === 'number') || date === null) && ((typeof hour === 'number') || hour === null) && ((typeof minute === 'number') || minute === null) && ((typeof second === 'number') || second === null) && ((typeof nano === 'number') || nano === null)) {
                     var __args = arguments;
                     _this = _super.call(this, year, month, date, hour, minute, second) || this;
-                    if (_this.nanos === undefined)
+                    if (_this.nanos === undefined) {
                         _this.nanos = 0;
-                    if (_this.nanos === undefined)
-                        _this.nanos = 0;
-                    (function () {
-                        _this.setNanos(nano);
-                    })();
+                    }
+                    _this.setNanos(nano);
                 }
                 else if (((typeof year === 'number') || year === null) && month === undefined && date === undefined && hour === undefined && minute === undefined && second === undefined && nano === undefined) {
                     var __args = arguments;
-                    var time_1 = __args[0];
-                    _this = _super.call(this, time_1) || this;
-                    if (_this.nanos === undefined)
+                    var time = __args[0];
+                    _this = _super.call(this, time) || this;
+                    if (_this.nanos === undefined) {
                         _this.nanos = 0;
-                    if (_this.nanos === undefined)
-                        _this.nanos = 0;
-                    (function () {
-                        _this.nanos = ((((time_1 % 1000) | 0)) * 1000000);
-                    })();
+                    }
+                    _this.nanos = ((((time % 1000) | 0)) * 1000000);
                 }
                 else
                     throw new Error('invalid overload');
@@ -13583,25 +13926,28 @@ var java;
         var InternalStringMap = /** @class */ (function () {
             function InternalStringMap(host) {
                 this.backingMap = java.util.InternalJsMapFactory.newJsMap();
-                if (this.host === undefined)
+                if (this.host === undefined) {
                     this.host = null;
-                if (this.size === undefined)
+                }
+                if (this.size === undefined) {
                     this.size = 0;
-                if (this.valueMod === undefined)
+                }
+                if (this.valueMod === undefined) {
                     this.valueMod = 0;
+                }
                 this.host = host;
             }
             /* Default method injected from java.lang.Iterable */
             InternalStringMap.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_10 = function (index141) {
+                var _loop_12 = function (index141) {
                     var t = index141.next();
                     {
                         (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                     }
                 };
                 for (var index141 = this.iterator(); index141.hasNext();) {
-                    _loop_10(index141);
+                    _loop_12(index141);
                 }
             };
             InternalStringMap.prototype.contains = function (key) {
@@ -13661,8 +14007,9 @@ var java;
                     this.__parent = __parent;
                     this.entries = this.__parent.backingMap.entries();
                     this.current = this.entries.next();
-                    if (this.last === undefined)
+                    if (this.last === undefined) {
                         this.last = null;
+                    }
                 }
                 /* Default method injected from java.util.Iterator */
                 InternalStringMap$0.prototype.forEachRemaining = function (consumer) {
@@ -13756,8 +14103,9 @@ var java;
             __extends(MessageDigest, _super);
             function MessageDigest(algorithm) {
                 var _this = _super.call(this) || this;
-                if (_this.algorithm === undefined)
+                if (_this.algorithm === undefined) {
                     _this.algorithm = null;
+                }
                 _this.algorithm = algorithm;
                 return _this;
             }
@@ -13845,22 +14193,28 @@ var java;
                 __extends(Md5Digest, _super);
                 function Md5Digest() {
                     var _this = _super.call(this, "MD5") || this;
-                    if (_this.buffer === undefined)
+                    if (_this.buffer === undefined) {
                         _this.buffer = null;
-                    if (_this.counter === undefined)
+                    }
+                    if (_this.counter === undefined) {
                         _this.counter = 0;
+                    }
                     _this.oneByte = [0];
-                    if (_this.remainder === undefined)
+                    if (_this.remainder === undefined) {
                         _this.remainder = 0;
-                    if (_this.state === undefined)
+                    }
+                    if (_this.state === undefined) {
                         _this.state = null;
-                    if (_this.x === undefined)
+                    }
+                    if (_this.x === undefined) {
                         _this.x = null;
+                    }
                     _this.engineReset();
                     return _this;
                 }
-                Md5Digest.padding_$LI$ = function () { if (Md5Digest.padding == null)
-                    Md5Digest.padding = [(128 | 0), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; return Md5Digest.padding; };
+                Md5Digest.padding_$LI$ = function () { if (Md5Digest.padding == null) {
+                    Md5Digest.padding = [(128 | 0), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                } return Md5Digest.padding; };
                 ;
                 /**
                  * Converts a long to a 8-byte array using low order first.
@@ -14146,40 +14500,31 @@ var java;
                 if (((out != null && out instanceof java.io.OutputStream) || out === null) && ((typeof charsetName === 'string') || charsetName === null)) {
                     var __args = arguments;
                     _this = _super.call(this, out) || this;
-                    if (_this.out === undefined)
+                    if (_this.out === undefined) {
                         _this.out = null;
-                    if (_this.out === undefined)
-                        _this.out = null;
-                    (function () {
-                        if (charsetName == null)
-                            throw new java.lang.NullPointerException("charsetName");
-                        _this.out = out;
-                    })();
+                    }
+                    if (charsetName == null)
+                        throw new java.lang.NullPointerException("charsetName");
+                    _this.out = out;
                 }
                 else if (((out != null && out instanceof java.io.OutputStream) || out === null) && ((charsetName != null && charsetName instanceof java.nio.charset.Charset) || charsetName === null)) {
                     var __args = arguments;
-                    var cs_1 = __args[1];
+                    var cs = __args[1];
                     _this = _super.call(this, out) || this;
-                    if (_this.out === undefined)
+                    if (_this.out === undefined) {
                         _this.out = null;
-                    if (_this.out === undefined)
-                        _this.out = null;
-                    (function () {
-                        if (cs_1 == null)
-                            throw new java.lang.NullPointerException("charset");
-                        _this.out = out;
-                    })();
+                    }
+                    if (cs == null)
+                        throw new java.lang.NullPointerException("charset");
+                    _this.out = out;
                 }
                 else if (((out != null && out instanceof java.io.OutputStream) || out === null) && charsetName === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, out) || this;
-                    if (_this.out === undefined)
+                    if (_this.out === undefined) {
                         _this.out = null;
-                    if (_this.out === undefined)
-                        _this.out = null;
-                    (function () {
-                        _this.out = out;
-                    })();
+                    }
+                    _this.out = out;
                 }
                 else
                     throw new Error('invalid overload');
@@ -14253,8 +14598,9 @@ var java;
             __extends(FilterInputStream, _super);
             function FilterInputStream(__in) {
                 var _this = _super.call(this) || this;
-                if (_this["in"] === undefined)
+                if (_this["in"] === undefined) {
                     _this["in"] = null;
+                }
                 _this["in"] = __in;
                 return _this;
             }
@@ -14382,64 +14728,64 @@ var java;
                 if (((buf != null && buf instanceof Array && (buf.length == 0 || buf[0] == null || (typeof buf[0] === 'number'))) || buf === null) && ((typeof offset === 'number') || offset === null) && ((typeof length === 'number') || length === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.buf === undefined)
+                    if (_this.buf === undefined) {
                         _this.buf = null;
-                    if (_this.pos === undefined)
+                    }
+                    if (_this.pos === undefined) {
                         _this.pos = 0;
-                    if (_this._mark === undefined)
+                    }
+                    if (_this._mark === undefined) {
                         _this._mark = 0;
-                    if (_this.count === undefined)
+                    }
+                    if (_this.count === undefined) {
                         _this.count = 0;
-                    if (_this.buf === undefined)
-                        _this.buf = null;
-                    if (_this.pos === undefined)
-                        _this.pos = 0;
-                    if (_this._mark === undefined)
-                        _this._mark = 0;
-                    if (_this.count === undefined)
-                        _this.count = 0;
-                    (function () {
-                        if (length === -1) {
-                            length = buf.length;
-                        }
-                        _this.buf = buf;
-                        _this.pos = offset;
-                        _this._mark = offset;
-                        _this.count = offset + length > buf.length ? buf.length : offset + length;
-                    })();
+                    }
+                    if (length === -1) {
+                        length = buf.length;
+                    }
+                    _this.buf = buf;
+                    _this.pos = offset;
+                    _this._mark = offset;
+                    _this.count = offset + length > buf.length ? buf.length : offset + length;
                 }
                 else if (((buf != null && buf instanceof Array && (buf.length == 0 || buf[0] == null || (typeof buf[0] === 'number'))) || buf === null) && offset === undefined && length === undefined) {
                     var __args = arguments;
                     {
-                        var __args_22 = arguments;
+                        var __args_23 = arguments;
                         var offset_1 = 0;
                         var length_1 = -1;
                         _this = _super.call(this) || this;
-                        if (_this.buf === undefined)
+                        if (_this.buf === undefined) {
                             _this.buf = null;
-                        if (_this.pos === undefined)
+                        }
+                        if (_this.pos === undefined) {
                             _this.pos = 0;
-                        if (_this._mark === undefined)
+                        }
+                        if (_this._mark === undefined) {
                             _this._mark = 0;
-                        if (_this.count === undefined)
+                        }
+                        if (_this.count === undefined) {
                             _this.count = 0;
-                        if (_this.buf === undefined)
-                            _this.buf = null;
-                        if (_this.pos === undefined)
-                            _this.pos = 0;
-                        if (_this._mark === undefined)
-                            _this._mark = 0;
-                        if (_this.count === undefined)
-                            _this.count = 0;
-                        (function () {
-                            if (length_1 === -1) {
-                                length_1 = buf.length;
-                            }
-                            _this.buf = buf;
-                            _this.pos = offset_1;
-                            _this._mark = offset_1;
-                            _this.count = offset_1 + length_1 > buf.length ? buf.length : offset_1 + length_1;
-                        })();
+                        }
+                        if (length_1 === -1) {
+                            length_1 = buf.length;
+                        }
+                        _this.buf = buf;
+                        _this.pos = offset_1;
+                        _this._mark = offset_1;
+                        _this.count = offset_1 + length_1 > buf.length ? buf.length : offset_1 + length_1;
+                    }
+                    if (_this.buf === undefined) {
+                        _this.buf = null;
+                    }
+                    if (_this.pos === undefined) {
+                        _this.pos = 0;
+                    }
+                    if (_this._mark === undefined) {
+                        _this._mark = 0;
+                    }
+                    if (_this.count === undefined) {
+                        _this.count = 0;
                     }
                 }
                 else
@@ -14577,101 +14923,105 @@ var java;
                 if (((__in != null && __in instanceof java.io.Reader) || __in === null) && ((typeof sz === 'number') || sz === null)) {
                     var __args = arguments;
                     _this = _super.call(this, __in) || this;
-                    if (_this["in"] === undefined)
+                    if (_this["in"] === undefined) {
                         _this["in"] = null;
-                    if (_this.cb === undefined)
+                    }
+                    if (_this.cb === undefined) {
                         _this.cb = null;
-                    if (_this.nChars === undefined)
+                    }
+                    if (_this.nChars === undefined) {
                         _this.nChars = 0;
-                    if (_this.nextChar === undefined)
+                    }
+                    if (_this.nextChar === undefined) {
                         _this.nextChar = 0;
-                    if (_this.markedChar === undefined)
+                    }
+                    if (_this.markedChar === undefined) {
                         _this.markedChar = 0;
-                    if (_this.readAheadLimit === undefined)
+                    }
+                    if (_this.readAheadLimit === undefined) {
                         _this.readAheadLimit = 0;
-                    if (_this.skipLF === undefined)
+                    }
+                    if (_this.skipLF === undefined) {
                         _this.skipLF = false;
-                    if (_this.markedSkipLF === undefined)
+                    }
+                    if (_this.markedSkipLF === undefined) {
                         _this.markedSkipLF = false;
-                    if (_this["in"] === undefined)
-                        _this["in"] = null;
-                    if (_this.cb === undefined)
-                        _this.cb = null;
-                    if (_this.nChars === undefined)
-                        _this.nChars = 0;
-                    if (_this.nextChar === undefined)
-                        _this.nextChar = 0;
-                    if (_this.markedChar === undefined)
-                        _this.markedChar = 0;
-                    if (_this.readAheadLimit === undefined)
-                        _this.readAheadLimit = 0;
-                    if (_this.skipLF === undefined)
-                        _this.skipLF = false;
-                    if (_this.markedSkipLF === undefined)
-                        _this.markedSkipLF = false;
-                    (function () {
-                        _this.markedChar = BufferedReader.UNMARKED;
-                        _this.readAheadLimit = 0;
-                        _this.skipLF = false;
-                        _this.markedSkipLF = false;
-                        if (sz <= 0)
-                            throw new java.lang.IllegalArgumentException("Buffer size <= 0");
-                        _this["in"] = __in;
-                        _this.cb = (function (s) { var a = []; while (s-- > 0)
-                            a.push(null); return a; })(sz);
-                        _this.nextChar = _this.nChars = 0;
-                    })();
+                    }
+                    _this.markedChar = BufferedReader.UNMARKED;
+                    _this.readAheadLimit = 0;
+                    _this.skipLF = false;
+                    _this.markedSkipLF = false;
+                    if (sz <= 0)
+                        throw new java.lang.IllegalArgumentException("Buffer size <= 0");
+                    _this["in"] = __in;
+                    _this.cb = (function (s) { var a = []; while (s-- > 0)
+                        a.push(null); return a; })(sz);
+                    _this.nextChar = _this.nChars = 0;
                 }
                 else if (((__in != null && __in instanceof java.io.Reader) || __in === null) && sz === undefined) {
                     var __args = arguments;
                     {
-                        var __args_23 = arguments;
+                        var __args_24 = arguments;
                         var sz_1 = BufferedReader.defaultCharBufferSize;
                         _this = _super.call(this, __in) || this;
-                        if (_this["in"] === undefined)
+                        if (_this["in"] === undefined) {
                             _this["in"] = null;
-                        if (_this.cb === undefined)
+                        }
+                        if (_this.cb === undefined) {
                             _this.cb = null;
-                        if (_this.nChars === undefined)
+                        }
+                        if (_this.nChars === undefined) {
                             _this.nChars = 0;
-                        if (_this.nextChar === undefined)
+                        }
+                        if (_this.nextChar === undefined) {
                             _this.nextChar = 0;
-                        if (_this.markedChar === undefined)
+                        }
+                        if (_this.markedChar === undefined) {
                             _this.markedChar = 0;
-                        if (_this.readAheadLimit === undefined)
+                        }
+                        if (_this.readAheadLimit === undefined) {
                             _this.readAheadLimit = 0;
-                        if (_this.skipLF === undefined)
+                        }
+                        if (_this.skipLF === undefined) {
                             _this.skipLF = false;
-                        if (_this.markedSkipLF === undefined)
+                        }
+                        if (_this.markedSkipLF === undefined) {
                             _this.markedSkipLF = false;
-                        if (_this["in"] === undefined)
-                            _this["in"] = null;
-                        if (_this.cb === undefined)
-                            _this.cb = null;
-                        if (_this.nChars === undefined)
-                            _this.nChars = 0;
-                        if (_this.nextChar === undefined)
-                            _this.nextChar = 0;
-                        if (_this.markedChar === undefined)
-                            _this.markedChar = 0;
-                        if (_this.readAheadLimit === undefined)
-                            _this.readAheadLimit = 0;
-                        if (_this.skipLF === undefined)
-                            _this.skipLF = false;
-                        if (_this.markedSkipLF === undefined)
-                            _this.markedSkipLF = false;
-                        (function () {
-                            _this.markedChar = BufferedReader.UNMARKED;
-                            _this.readAheadLimit = 0;
-                            _this.skipLF = false;
-                            _this.markedSkipLF = false;
-                            if (sz_1 <= 0)
-                                throw new java.lang.IllegalArgumentException("Buffer size <= 0");
-                            _this["in"] = __in;
-                            _this.cb = (function (s) { var a = []; while (s-- > 0)
-                                a.push(null); return a; })(sz_1);
-                            _this.nextChar = _this.nChars = 0;
-                        })();
+                        }
+                        _this.markedChar = BufferedReader.UNMARKED;
+                        _this.readAheadLimit = 0;
+                        _this.skipLF = false;
+                        _this.markedSkipLF = false;
+                        if (sz_1 <= 0)
+                            throw new java.lang.IllegalArgumentException("Buffer size <= 0");
+                        _this["in"] = __in;
+                        _this.cb = (function (s) { var a = []; while (s-- > 0)
+                            a.push(null); return a; })(sz_1);
+                        _this.nextChar = _this.nChars = 0;
+                    }
+                    if (_this["in"] === undefined) {
+                        _this["in"] = null;
+                    }
+                    if (_this.cb === undefined) {
+                        _this.cb = null;
+                    }
+                    if (_this.nChars === undefined) {
+                        _this.nChars = 0;
+                    }
+                    if (_this.nextChar === undefined) {
+                        _this.nextChar = 0;
+                    }
+                    if (_this.markedChar === undefined) {
+                        _this.markedChar = 0;
+                    }
+                    if (_this.readAheadLimit === undefined) {
+                        _this.readAheadLimit = 0;
+                    }
+                    if (_this.skipLF === undefined) {
+                        _this.skipLF = false;
+                    }
+                    if (_this.markedSkipLF === undefined) {
+                        _this.markedSkipLF = false;
                     }
                 }
                 else
@@ -14989,38 +15339,29 @@ var java;
                 if (((__in != null && __in instanceof java.io.InputStream) || __in === null) && ((typeof charsetName === 'string') || charsetName === null)) {
                     var __args = arguments;
                     _this = _super.call(this, __in) || this;
-                    if (_this["in"] === undefined)
+                    if (_this["in"] === undefined) {
                         _this["in"] = null;
-                    if (_this["in"] === undefined)
-                        _this["in"] = null;
-                    (function () {
-                        _this["in"] = __in;
-                    })();
+                    }
+                    _this["in"] = __in;
                 }
                 else if (((__in != null && __in instanceof java.io.InputStream) || __in === null) && ((charsetName != null && charsetName instanceof java.nio.charset.Charset) || charsetName === null)) {
                     var __args = arguments;
-                    var cs_2 = __args[1];
+                    var cs = __args[1];
                     _this = _super.call(this, __in) || this;
-                    if (_this["in"] === undefined)
+                    if (_this["in"] === undefined) {
                         _this["in"] = null;
-                    if (_this["in"] === undefined)
-                        _this["in"] = null;
-                    (function () {
-                        _this["in"] = __in;
-                        if (cs_2 == null)
-                            throw new java.lang.NullPointerException("charset");
-                    })();
+                    }
+                    _this["in"] = __in;
+                    if (cs == null)
+                        throw new java.lang.NullPointerException("charset");
                 }
                 else if (((__in != null && __in instanceof java.io.InputStream) || __in === null) && charsetName === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, __in) || this;
-                    if (_this["in"] === undefined)
+                    if (_this["in"] === undefined) {
                         _this["in"] = null;
-                    if (_this["in"] === undefined)
-                        _this["in"] = null;
-                    (function () {
-                        _this["in"] = __in;
-                    })();
+                    }
+                    _this["in"] = __in;
                 }
                 else
                     throw new Error('invalid overload');
@@ -15073,13 +15414,16 @@ var java;
             __extends(StringReader, _super);
             function StringReader(start) {
                 var _this = _super.call(this) || this;
-                if (_this.charArray === undefined)
+                if (_this.charArray === undefined) {
                     _this.charArray = null;
-                if (_this.where === undefined)
+                }
+                if (_this.where === undefined) {
                     _this.where = 0;
+                }
                 _this.marked = -1;
-                if (_this.markedLen === undefined)
+                if (_this.markedLen === undefined) {
                     _this.markedLen = 0;
+                }
                 _this.charArray = /* toCharArray */ (start).split('');
                 return _this;
             }
@@ -15177,8 +15521,9 @@ var java;
             __extends(FilterOutputStream, _super);
             function FilterOutputStream(out) {
                 var _this = _super.call(this) || this;
-                if (_this.out === undefined)
+                if (_this.out === undefined) {
                     _this.out = null;
+                }
                 _this.out = out;
                 return _this;
             }
@@ -15266,39 +15611,31 @@ var java;
                 if (((typeof size === 'number') || size === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.buf === undefined)
+                    if (_this.buf === undefined) {
                         _this.buf = null;
-                    if (_this.count === undefined)
+                    }
+                    if (_this.count === undefined) {
                         _this.count = 0;
-                    if (_this.buf === undefined)
-                        _this.buf = null;
-                    if (_this.count === undefined)
-                        _this.count = 0;
-                    (function () {
-                        if (size >= 0) {
-                            _this.buf = (function (s) { var a = []; while (s-- > 0)
-                                a.push(0); return a; })(size);
-                        }
-                        else {
-                            throw new java.lang.IllegalArgumentException("size < 0");
-                        }
-                    })();
+                    }
+                    if (size >= 0) {
+                        _this.buf = (function (s) { var a = []; while (s-- > 0)
+                            a.push(0); return a; })(size);
+                    }
+                    else {
+                        throw new java.lang.IllegalArgumentException("size < 0");
+                    }
                 }
                 else if (size === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.buf === undefined)
+                    if (_this.buf === undefined) {
                         _this.buf = null;
-                    if (_this.count === undefined)
+                    }
+                    if (_this.count === undefined) {
                         _this.count = 0;
-                    if (_this.buf === undefined)
-                        _this.buf = null;
-                    if (_this.count === undefined)
-                        _this.count = 0;
-                    (function () {
-                        _this.buf = (function (s) { var a = []; while (s-- > 0)
-                            a.push(0); return a; })(32);
-                    })();
+                    }
+                    _this.buf = (function (s) { var a = []; while (s-- > 0)
+                        a.push(0); return a; })(32);
                 }
                 else
                     throw new Error('invalid overload');
@@ -15508,23 +15845,19 @@ var java;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message, cause) || this;
-                    Object.setPrototypeOf(_this, InternalError.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
-                    Object.setPrototypeOf(_this, InternalError.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = arguments;
                     var cause_5 = __args[0];
                     _this = _super.call(this, cause_5) || this;
-                    Object.setPrototypeOf(_this, InternalError.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, InternalError.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -15556,12 +15889,10 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, TooManyListenersException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, TooManyListenersException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -15593,12 +15924,10 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, msg) || this;
                     _this.message = msg;
-                    Object.setPrototypeOf(_this, GeneralSecurityException.prototype);
                 }
                 else if (msg === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, GeneralSecurityException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -15631,25 +15960,21 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, IOException.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && throwable === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, IOException.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && throwable === undefined) {
                     var __args = arguments;
                     var throwable_1 = __args[0];
                     _this = _super.call(this, throwable_1) || this;
                     _this.message = throwable_1;
-                    Object.setPrototypeOf(_this, IOException.prototype);
                 }
                 else if (message === undefined && throwable === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, IOException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -15682,31 +16007,26 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, RuntimeException.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null) && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, RuntimeException.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, RuntimeException.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = arguments;
                     var cause_6 = __args[0];
                     _this = _super.call(this, cause_6) || this;
                     _this.message = cause_6;
-                    Object.setPrototypeOf(_this, RuntimeException.prototype);
                 }
                 else if (message === undefined && cause === undefined && enableSuppression === undefined && writableStackTrace === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, RuntimeException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -15738,12 +16058,10 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, msg) || this;
                     _this.message = msg;
-                    Object.setPrototypeOf(_this, CloneNotSupportedException.prototype);
                 }
                 else if (msg === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, CloneNotSupportedException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -15775,12 +16093,10 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, s) || this;
                     _this.message = s;
-                    Object.setPrototypeOf(_this, InterruptedException.prototype);
                 }
                 else if (s === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, InterruptedException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -15804,12 +16120,10 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, s) || this;
                     _this.message = s;
-                    Object.setPrototypeOf(_this, ReflectiveOperationException.prototype);
                 }
                 else if (s === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, ReflectiveOperationException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -15844,12 +16158,10 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
                     _this.message = message;
-                    Object.setPrototypeOf(_this, NoSuchMethodException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, NoSuchMethodException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -15878,8 +16190,9 @@ var java;
                 var _this = _super.call(this, s) || this;
                 _this.message = s;
                 Object.setPrototypeOf(_this, ParseException.prototype);
-                if (_this.errorOffset === undefined)
+                if (_this.errorOffset === undefined) {
                     _this.errorOffset = 0;
+                }
                 _this.errorOffset = errorOffset;
                 return _this;
             }
@@ -15930,7 +16243,7 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, s) || this;
                 }
-                else if (((s != null && (s["__interfaces"] != null && s["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || s.constructor != null && s.constructor["__interfaces"] != null && s.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof s === "string")) || s === null)) {
+                else if (((s != null && (s.constructor != null && s.constructor["__interfaces"] != null && s.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof s === "string")) || s === null)) {
                     var __args = arguments;
                     _this = _super.call(this, /* valueOf */ new String(s).toString()) || this;
                 }
@@ -15967,7 +16280,7 @@ var java;
                 if (((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (typeof x[0] === 'string'))) || x === null) && ((typeof start === 'number') || start === null) && ((typeof len === 'number') || len === null)) {
                     return this.append$char_A$int$int(x, start, len);
                 }
-                else if (((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof start === 'number') || start === null) && ((typeof len === 'number') || len === null)) {
+                else if (((x != null && (x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof start === 'number') || start === null) && ((typeof len === 'number') || len === null)) {
                     return this.append$java_lang_CharSequence$int$int(x, start, len);
                 }
                 else if (((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (typeof x[0] === 'string'))) || x === null) && start === undefined && len === undefined) {
@@ -15979,7 +16292,7 @@ var java;
                 else if (((x != null && x instanceof java.lang.StringBuffer) || x === null) && start === undefined && len === undefined) {
                     return this.append$java_lang_StringBuffer(x);
                 }
-                else if (((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && start === undefined && len === undefined) {
+                else if (((x != null && (x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && start === undefined && len === undefined) {
                     return this.append$java_lang_CharSequence(x);
                 }
                 else if (((typeof x === 'boolean') || x === null) && start === undefined && len === undefined) {
@@ -16071,7 +16384,7 @@ var java;
                 if (((typeof index === 'number') || index === null) && ((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (typeof x[0] === 'string'))) || x === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
                     return this.insert$int$char_A$int$int(index, x, offset, len);
                 }
-                else if (((typeof index === 'number') || index === null) && ((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
+                else if (((typeof index === 'number') || index === null) && ((x != null && (x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
                     return this.insert$int$java_lang_CharSequence$int$int(index, x, offset, len);
                 }
                 else if (((typeof index === 'number') || index === null) && ((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (typeof x[0] === 'string'))) || x === null) && offset === undefined && len === undefined) {
@@ -16080,7 +16393,7 @@ var java;
                 else if (((typeof index === 'number') || index === null) && ((typeof x === 'string') || x === null) && offset === undefined && len === undefined) {
                     return this.insert$int$java_lang_String(index, x);
                 }
-                else if (((typeof index === 'number') || index === null) && ((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && offset === undefined && len === undefined) {
+                else if (((typeof index === 'number') || index === null) && ((x != null && (x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && offset === undefined && len === undefined) {
                     return this.insert$int$java_lang_CharSequence(index, x);
                 }
                 else if (((typeof index === 'number') || index === null) && ((typeof x === 'boolean') || x === null) && offset === undefined && len === undefined) {
@@ -16167,7 +16480,7 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, s) || this;
                 }
-                else if (((s != null && (s["__interfaces"] != null && s["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || s.constructor != null && s.constructor["__interfaces"] != null && s.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof s === "string")) || s === null)) {
+                else if (((s != null && (s.constructor != null && s.constructor["__interfaces"] != null && s.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof s === "string")) || s === null)) {
                     var __args = arguments;
                     _this = _super.call(this, /* valueOf */ new String(s).toString()) || this;
                 }
@@ -16204,7 +16517,7 @@ var java;
                 if (((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (typeof x[0] === 'string'))) || x === null) && ((typeof start === 'number') || start === null) && ((typeof len === 'number') || len === null)) {
                     return this.append$char_A$int$int(x, start, len);
                 }
-                else if (((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof start === 'number') || start === null) && ((typeof len === 'number') || len === null)) {
+                else if (((x != null && (x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof start === 'number') || start === null) && ((typeof len === 'number') || len === null)) {
                     return this.append$java_lang_CharSequence$int$int(x, start, len);
                 }
                 else if (((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (typeof x[0] === 'string'))) || x === null) && start === undefined && len === undefined) {
@@ -16216,7 +16529,7 @@ var java;
                 else if (((x != null && x instanceof java.lang.StringBuffer) || x === null) && start === undefined && len === undefined) {
                     return this.append$java_lang_StringBuffer(x);
                 }
-                else if (((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && start === undefined && len === undefined) {
+                else if (((x != null && (x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && start === undefined && len === undefined) {
                     return this.append$java_lang_CharSequence(x);
                 }
                 else if (((typeof x === 'boolean') || x === null) && start === undefined && len === undefined) {
@@ -16307,7 +16620,7 @@ var java;
                 if (((typeof index === 'number') || index === null) && ((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (typeof x[0] === 'string'))) || x === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
                     return this.insert$int$char_A$int$int(index, x, offset, len);
                 }
-                else if (((typeof index === 'number') || index === null) && ((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
+                else if (((typeof index === 'number') || index === null) && ((x != null && (x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && ((typeof offset === 'number') || offset === null) && ((typeof len === 'number') || len === null)) {
                     return this.insert$int$java_lang_CharSequence$int$int(index, x, offset, len);
                 }
                 else if (((typeof index === 'number') || index === null) && ((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (typeof x[0] === 'string'))) || x === null) && offset === undefined && len === undefined) {
@@ -16316,7 +16629,7 @@ var java;
                 else if (((typeof index === 'number') || index === null) && ((typeof x === 'string') || x === null) && offset === undefined && len === undefined) {
                     return this.insert$int$java_lang_String(index, x);
                 }
-                else if (((typeof index === 'number') || index === null) && ((x != null && (x["__interfaces"] != null && x["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && offset === undefined && len === undefined) {
+                else if (((typeof index === 'number') || index === null) && ((x != null && (x.constructor != null && x.constructor["__interfaces"] != null && x.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof x === "string")) || x === null) && offset === undefined && len === undefined) {
                     return this.insert$int$java_lang_CharSequence(index, x);
                 }
                 else if (((typeof index === 'number') || index === null) && ((typeof x === 'boolean') || x === null) && offset === undefined && len === undefined) {
@@ -16390,12 +16703,15 @@ var java;
             __extends(ByteBuffer, _super);
             function ByteBuffer(_buffer, readOnly) {
                 var _this = _super.call(this, (_buffer.byteLength | 0), readOnly) || this;
-                if (_this._buffer === undefined)
+                if (_this._buffer === undefined) {
                     _this._buffer = null;
-                if (_this._array === undefined)
+                }
+                if (_this._array === undefined) {
                     _this._array = null;
-                if (_this._data === undefined)
+                }
+                if (_this._data === undefined) {
                     _this._data = null;
+                }
                 _this._order = java.nio.ByteOrder.BIG_ENDIAN_$LI$();
                 _this._buffer = _buffer;
                 _this._array = new Int8Array(_buffer);
@@ -16951,14 +17267,17 @@ var java;
             function EmulatedCharset(name) {
                 return _super.call(this, name, null) || this;
             }
-            EmulatedCharset.UTF_8_$LI$ = function () { if (EmulatedCharset.UTF_8 == null)
-                EmulatedCharset.UTF_8 = new EmulatedCharset.UtfCharset("UTF-8"); return EmulatedCharset.UTF_8; };
+            EmulatedCharset.UTF_8_$LI$ = function () { if (EmulatedCharset.UTF_8 == null) {
+                EmulatedCharset.UTF_8 = new EmulatedCharset.UtfCharset("UTF-8");
+            } return EmulatedCharset.UTF_8; };
             ;
-            EmulatedCharset.ISO_LATIN_1_$LI$ = function () { if (EmulatedCharset.ISO_LATIN_1 == null)
-                EmulatedCharset.ISO_LATIN_1 = new EmulatedCharset.LatinCharset("ISO-LATIN-1"); return EmulatedCharset.ISO_LATIN_1; };
+            EmulatedCharset.ISO_LATIN_1_$LI$ = function () { if (EmulatedCharset.ISO_LATIN_1 == null) {
+                EmulatedCharset.ISO_LATIN_1 = new EmulatedCharset.LatinCharset("ISO-LATIN-1");
+            } return EmulatedCharset.ISO_LATIN_1; };
             ;
-            EmulatedCharset.ISO_8859_1_$LI$ = function () { if (EmulatedCharset.ISO_8859_1 == null)
-                EmulatedCharset.ISO_8859_1 = new EmulatedCharset.LatinCharset("ISO-8859-1"); return EmulatedCharset.ISO_8859_1; };
+            EmulatedCharset.ISO_8859_1_$LI$ = function () { if (EmulatedCharset.ISO_8859_1 == null) {
+                EmulatedCharset.ISO_8859_1 = new EmulatedCharset.LatinCharset("ISO-8859-1");
+            } return EmulatedCharset.ISO_8859_1; };
             ;
             return EmulatedCharset;
         }(java.nio.charset.Charset));
@@ -17199,8 +17518,9 @@ var java;
                 __extends(StreamRowSortingCollector, _super);
                 function StreamRowSortingCollector(collection, comparator) {
                     var _this = _super.call(this, collection) || this;
-                    if (_this.comparator === undefined)
+                    if (_this.comparator === undefined) {
                         _this.comparator = null;
+                    }
                     _this.comparator = (comparator);
                     return _this;
                 }
@@ -17237,6 +17557,24 @@ var java;
             function AbstractMap() {
             }
             /* Default method injected from java.util.Map */
+            AbstractMap.prototype.putIfAbsent = function (key, value) {
+                var v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
+            };
+            /* Default method injected from java.util.Map */
+            AbstractMap.prototype.computeIfAbsent = function (key, mappingFunction) {
+                var result;
+                if ((result = this.get(key)) == null) {
+                    result = (function (target) { return (typeof target === 'function') ? target(key) : target.apply(key); })(mappingFunction);
+                    if (result != null)
+                        this.put(key, result);
+                }
+                return result;
+            };
+            /* Default method injected from java.util.Map */
             AbstractMap.prototype.merge = function (key, value, map) {
                 var old = this.get(key);
                 var next = (old == null) ? value : (function (target) { return (typeof target === 'function') ? target(old, value) : target.apply(old, value); })(map);
@@ -17254,17 +17592,9 @@ var java;
                 return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
             };
             /* Default method injected from java.util.Map */
-            AbstractMap.prototype.putIfAbsent = function (key, value) {
-                var v = this.get(key);
-                if (v == null) {
-                    v = this.put(key, value);
-                }
-                return v;
-            };
-            /* Default method injected from java.util.Map */
             AbstractMap.prototype.replaceAll = function (__function) {
                 java.util.Objects.requireNonNull((__function));
-                var _loop_11 = function (index142) {
+                var _loop_13 = function (index142) {
                     var entry = index142.next();
                     {
                         var k_1;
@@ -17288,18 +17618,8 @@ var java;
                     }
                 };
                 for (var index142 = this.entrySet().iterator(); index142.hasNext();) {
-                    _loop_11(index142);
+                    _loop_13(index142);
                 }
-            };
-            /* Default method injected from java.util.Map */
-            AbstractMap.prototype.computeIfAbsent = function (key, mappingFunction) {
-                var result;
-                if ((result = this.get(key)) == null) {
-                    result = (function (target) { return (typeof target === 'function') ? target(key) : target.apply(key); })(mappingFunction);
-                    if (result != null)
-                        this.put(key, result);
-                }
-                return result;
             };
             /**
              *
@@ -17353,7 +17673,7 @@ var java;
                 if (obj === this) {
                     return true;
                 }
-                if (!(obj != null && (obj["__interfaces"] != null && obj["__interfaces"].indexOf("java.util.Map") >= 0 || obj.constructor != null && obj.constructor["__interfaces"] != null && obj.constructor["__interfaces"].indexOf("java.util.Map") >= 0))) {
+                if (!(obj != null && (obj.constructor != null && obj.constructor["__interfaces"] != null && obj.constructor["__interfaces"].indexOf("java.util.Map") >= 0))) {
                     return false;
                 }
                 var otherMap = obj;
@@ -17450,7 +17770,7 @@ var java;
                 return this.toString$java_lang_Object(entry.getKey()) + "=" + this.toString$java_lang_Object(entry.getValue());
             };
             AbstractMap.prototype.toString = function (entry) {
-                if (((entry != null && (entry["__interfaces"] != null && entry["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || entry.constructor != null && entry.constructor["__interfaces"] != null && entry.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) || entry === null)) {
+                if (((entry != null && (entry.constructor != null && entry.constructor["__interfaces"] != null && entry.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) || entry === null)) {
                     return this.toString$java_util_Map_Entry(entry);
                 }
                 else if (((entry != null) || entry === null)) {
@@ -17508,10 +17828,12 @@ var java;
              */
             var AbstractEntry = /** @class */ (function () {
                 function AbstractEntry(key, value) {
-                    if (this.key === undefined)
+                    if (this.key === undefined) {
                         this.key = null;
-                    if (this.value === undefined)
+                    }
+                    if (this.value === undefined) {
                         this.value = null;
+                    }
                     this.key = key;
                     this.value = value;
                 }
@@ -17545,7 +17867,7 @@ var java;
                  * @return {boolean}
                  */
                 AbstractEntry.prototype.equals = function (other) {
-                    if (!(other != null && (other["__interfaces"] != null && other["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || other.constructor != null && other.constructor["__interfaces"] != null && other.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0))) {
+                    if (!(other != null && (other.constructor != null && other.constructor["__interfaces"] != null && other.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0))) {
                         return false;
                     }
                     var entry = other;
@@ -17586,7 +17908,7 @@ var java;
                         var __args = arguments;
                         _this = _super.call(this, key, value) || this;
                     }
-                    else if (((key != null && (key["__interfaces"] != null && key["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || key.constructor != null && key.constructor["__interfaces"] != null && key.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) || key === null) && value === undefined) {
+                    else if (((key != null && (key.constructor != null && key.constructor["__interfaces"] != null && key.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) || key === null) && value === undefined) {
                         var __args = arguments;
                         var entry = __args[0];
                         _this = _super.call(this, entry.getKey(), entry.getValue()) || this;
@@ -17616,7 +17938,7 @@ var java;
                         var __args = arguments;
                         _this = _super.call(this, key, value) || this;
                     }
-                    else if (((key != null && (key["__interfaces"] != null && key["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || key.constructor != null && key.constructor["__interfaces"] != null && key.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) || key === null) && value === undefined) {
+                    else if (((key != null && (key.constructor != null && key.constructor["__interfaces"] != null && key.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) || key === null) && value === undefined) {
                         var __args = arguments;
                         var entry = __args[0];
                         _this = _super.call(this, entry.getKey(), entry.getValue()) || this;
@@ -17840,90 +18162,91 @@ var java;
                 if (((typeof initialCapacity === 'number') || initialCapacity === null) && ((typeof loadFactor === 'number') || loadFactor === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.map === undefined)
+                    if (_this.map === undefined) {
                         _this.map = null;
-                    if (_this.exposeElement === undefined)
+                    }
+                    if (_this.exposeElement === undefined) {
                         _this.exposeElement = null;
-                    if (_this.map === undefined)
-                        _this.map = null;
-                    if (_this.exposeElement === undefined)
-                        _this.exposeElement = null;
-                    (function () {
-                        _this.map = (new java.util.HashMap(initialCapacity, loadFactor));
-                    })();
+                    }
+                    _this.map = (new java.util.HashMap(initialCapacity, loadFactor));
                 }
-                else if (((initialCapacity != null && (initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0 || initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || initialCapacity === null) && loadFactor === undefined) {
+                else if (((initialCapacity != null && (initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || initialCapacity === null) && loadFactor === undefined) {
                     var __args = arguments;
-                    var c_1 = __args[0];
+                    var c = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.map === undefined)
+                    if (_this.map === undefined) {
                         _this.map = null;
-                    if (_this.exposeElement === undefined)
+                    }
+                    if (_this.exposeElement === undefined) {
                         _this.exposeElement = null;
-                    if (_this.map === undefined)
-                        _this.map = null;
-                    if (_this.exposeElement === undefined)
-                        _this.exposeElement = null;
-                    (function () {
-                        _this.map = (new java.util.HashMap(c_1.size()));
-                        _this.addAll(c_1);
-                    })();
+                    }
+                    _this.map = (new java.util.HashMap(c.size()));
+                    _this.addAll(c);
                 }
                 else if (((initialCapacity != null && initialCapacity instanceof java.util.HashMap) || initialCapacity === null) && loadFactor === undefined) {
                     var __args = arguments;
-                    var map_1 = __args[0];
+                    var map = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.map === undefined)
+                    if (_this.map === undefined) {
                         _this.map = null;
-                    if (_this.exposeElement === undefined)
+                    }
+                    if (_this.exposeElement === undefined) {
                         _this.exposeElement = null;
-                    if (_this.map === undefined)
-                        _this.map = null;
-                    if (_this.exposeElement === undefined)
-                        _this.exposeElement = null;
-                    (function () {
-                        _this.map = map_1;
-                    })();
+                    }
+                    _this.map = map;
                 }
                 else if (((typeof initialCapacity === 'number') || initialCapacity === null) && loadFactor === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.map === undefined)
+                    if (_this.map === undefined) {
                         _this.map = null;
-                    if (_this.exposeElement === undefined)
+                    }
+                    if (_this.exposeElement === undefined) {
                         _this.exposeElement = null;
-                    if (_this.map === undefined)
-                        _this.map = null;
-                    if (_this.exposeElement === undefined)
-                        _this.exposeElement = null;
-                    (function () {
-                        _this.map = (new java.util.HashMap(initialCapacity));
-                    })();
+                    }
+                    _this.map = (new java.util.HashMap(initialCapacity));
                 }
                 else if (initialCapacity === undefined && loadFactor === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.map === undefined)
+                    if (_this.map === undefined) {
                         _this.map = null;
-                    if (_this.exposeElement === undefined)
+                    }
+                    if (_this.exposeElement === undefined) {
                         _this.exposeElement = null;
-                    if (_this.map === undefined)
-                        _this.map = null;
-                    if (_this.exposeElement === undefined)
-                        _this.exposeElement = null;
-                    (function () {
-                        _this.map = (new java.util.HashMap());
-                    })();
+                    }
+                    _this.map = (new java.util.HashMap());
                 }
                 else
                     throw new Error('invalid overload');
                 return _this;
             }
             /* Default method injected from java.util.Collection */
+            HashSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.lang.Iterable */
+            HashSet.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                var _loop_14 = function (index147) {
+                    var t = index147.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index147 = this.iterator(); index147.hasNext();) {
+                    _loop_14(index147);
+                }
+            };
+            /* Default method injected from java.util.Collection */
+            HashSet.prototype.parallelStream = function () {
+                return this.stream();
+            };
+            /* Default method injected from java.util.Collection */
             HashSet.prototype.removeIf = function (filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 var removed = false;
-                var _loop_12 = function (it) {
+                var _loop_15 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -17933,30 +18256,9 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_12(it);
+                    _loop_15(it);
                 }
                 return removed;
-            };
-            /* Default method injected from java.util.Collection */
-            HashSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.Collection */
-            HashSet.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.lang.Iterable */
-            HashSet.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_13 = function (index147) {
-                    var t = index147.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index147 = this.iterator(); index147.hasNext();) {
-                    _loop_13(index147);
-                }
             };
             /**
              *
@@ -18098,7 +18400,7 @@ var java;
                 if (((s != null && s instanceof java.util.EnumSet) || s === null)) {
                     return java.util.EnumSet.copyOf$java_util_EnumSet(s);
                 }
-                else if (((s != null && (s["__interfaces"] != null && s["__interfaces"].indexOf("java.util.Collection") >= 0 || s.constructor != null && s.constructor["__interfaces"] != null && s.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || s === null)) {
+                else if (((s != null && (s.constructor != null && s.constructor["__interfaces"] != null && s.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || s === null)) {
                     return java.util.EnumSet.copyOf$java_util_Collection(s);
                 }
                 else
@@ -18156,12 +18458,15 @@ var java;
                 __extends(EnumSetImpl, _super);
                 function EnumSetImpl(all, set, size) {
                     var _this = _super.call(this) || this;
-                    if (_this.all === undefined)
+                    if (_this.all === undefined) {
                         _this.all = null;
-                    if (_this.set === undefined)
+                    }
+                    if (_this.set === undefined) {
                         _this.set = null;
-                    if (_this.__size === undefined)
+                    }
+                    if (_this.__size === undefined) {
                         _this.__size = 0;
+                    }
                     _this.all = all;
                     _this.set = set;
                     _this.__size = size;
@@ -18335,18 +18640,18 @@ var java;
             __extends(TreeSet, _super);
             function TreeSet(c) {
                 var _this = this;
-                if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
+                if (((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     var __args = arguments;
                     {
-                        var __args_24 = arguments;
+                        var __args_25 = arguments;
                         _this = _super.call(this) || this;
-                        if (_this.map === undefined)
+                        if (_this.map === undefined) {
                             _this.map = null;
-                        if (_this.map === undefined)
-                            _this.map = null;
-                        (function () {
-                            _this.map = (new java.util.TreeMap());
-                        })();
+                        }
+                        _this.map = (new java.util.TreeMap());
+                    }
+                    if (_this.map === undefined) {
+                        _this.map = null;
                     }
                     (function () {
                         _this.addAll(c);
@@ -18355,65 +18660,77 @@ var java;
                 else if (((typeof c === 'function' && c.length === 2) || c === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.map === undefined)
+                    if (_this.map === undefined) {
                         _this.map = null;
-                    if (_this.map === undefined)
-                        _this.map = null;
-                    (function () {
-                        _this.map = (new java.util.TreeMap((c)));
-                    })();
+                    }
+                    _this.map = (new java.util.TreeMap((c)));
                 }
-                else if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.SortedSet") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.SortedSet") >= 0)) || c === null)) {
+                else if (((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.SortedSet") >= 0)) || c === null)) {
                     var __args = arguments;
                     var s_1 = __args[0];
                     {
-                        var __args_25 = arguments;
-                        var c_2 = javaemul.internal.InternalPreconditions.checkNotNull(s_1).comparator();
+                        var __args_26 = arguments;
+                        var c_1 = javaemul.internal.InternalPreconditions.checkNotNull(s_1).comparator();
                         _this = _super.call(this) || this;
-                        if (_this.map === undefined)
+                        if (_this.map === undefined) {
                             _this.map = null;
-                        if (_this.map === undefined)
-                            _this.map = null;
-                        (function () {
-                            _this.map = (new java.util.TreeMap((c_2)));
-                        })();
+                        }
+                        _this.map = (new java.util.TreeMap((c_1)));
+                    }
+                    if (_this.map === undefined) {
+                        _this.map = null;
                     }
                     (function () {
                         _this.addAll(s_1);
                     })();
                 }
-                else if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.NavigableMap") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.NavigableMap") >= 0)) || c === null)) {
+                else if (((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.NavigableMap") >= 0)) || c === null)) {
                     var __args = arguments;
-                    var map_2 = __args[0];
+                    var map = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.map === undefined)
+                    if (_this.map === undefined) {
                         _this.map = null;
-                    if (_this.map === undefined)
-                        _this.map = null;
-                    (function () {
-                        _this.map = map_2;
-                    })();
+                    }
+                    _this.map = map;
                 }
                 else if (c === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.map === undefined)
+                    if (_this.map === undefined) {
                         _this.map = null;
-                    if (_this.map === undefined)
-                        _this.map = null;
-                    (function () {
-                        _this.map = (new java.util.TreeMap());
-                    })();
+                    }
+                    _this.map = (new java.util.TreeMap());
                 }
                 else
                     throw new Error('invalid overload');
                 return _this;
             }
             /* Default method injected from java.util.Collection */
+            TreeSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.lang.Iterable */
+            TreeSet.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                var _loop_16 = function (index148) {
+                    var t = index148.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index148 = this.iterator(); index148.hasNext();) {
+                    _loop_16(index148);
+                }
+            };
+            /* Default method injected from java.util.Collection */
+            TreeSet.prototype.parallelStream = function () {
+                return this.stream();
+            };
+            /* Default method injected from java.util.Collection */
             TreeSet.prototype.removeIf = function (filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 var removed = false;
-                var _loop_14 = function (it) {
+                var _loop_17 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -18423,30 +18740,9 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_14(it);
+                    _loop_17(it);
                 }
                 return removed;
-            };
-            /* Default method injected from java.util.Collection */
-            TreeSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.Collection */
-            TreeSet.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.lang.Iterable */
-            TreeSet.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_15 = function (index148) {
-                    var t = index148.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index148 = this.iterator(); index148.hasNext();) {
-                    _loop_15(index148);
-                }
             };
             /**
              *
@@ -18665,93 +18961,78 @@ var java;
                 if (((typeof initialCapacity === 'number') || initialCapacity === null) && ((typeof ignoredCapacityIncrement === 'number') || ignoredCapacityIncrement === null)) {
                     var __args = arguments;
                     {
-                        var __args_26 = arguments;
+                        var __args_27 = arguments;
                         _this = _super.call(this) || this;
-                        if (_this.arrayList === undefined)
+                        if (_this.arrayList === undefined) {
                             _this.arrayList = null;
-                        if (_this.exposeElement === undefined)
+                        }
+                        if (_this.exposeElement === undefined) {
                             _this.exposeElement = null;
-                        if (_this.arrayList === undefined)
-                            _this.arrayList = null;
-                        if (_this.exposeElement === undefined)
-                            _this.exposeElement = null;
-                        (function () {
-                            _this.arrayList = (new java.util.ArrayList(initialCapacity));
-                        })();
+                        }
+                        _this.arrayList = (new java.util.ArrayList(initialCapacity));
+                    }
+                    if (_this.arrayList === undefined) {
+                        _this.arrayList = null;
+                    }
+                    if (_this.exposeElement === undefined) {
+                        _this.exposeElement = null;
                     }
                 }
-                else if (((initialCapacity != null && (initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0 || initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || initialCapacity === null) && ignoredCapacityIncrement === undefined) {
+                else if (((initialCapacity != null && (initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || initialCapacity === null) && ignoredCapacityIncrement === undefined) {
                     var __args = arguments;
-                    var c_3 = __args[0];
+                    var c = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.arrayList === undefined)
+                    if (_this.arrayList === undefined) {
                         _this.arrayList = null;
-                    if (_this.exposeElement === undefined)
+                    }
+                    if (_this.exposeElement === undefined) {
                         _this.exposeElement = null;
-                    if (_this.arrayList === undefined)
-                        _this.arrayList = null;
-                    if (_this.exposeElement === undefined)
-                        _this.exposeElement = null;
-                    (function () {
-                        _this.arrayList = (new java.util.ArrayList());
-                        _this.addAll$java_util_Collection(c_3);
-                    })();
+                    }
+                    _this.arrayList = (new java.util.ArrayList());
+                    _this.addAll$java_util_Collection(c);
                 }
                 else if (((typeof initialCapacity === 'number') || initialCapacity === null) && ignoredCapacityIncrement === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.arrayList === undefined)
+                    if (_this.arrayList === undefined) {
                         _this.arrayList = null;
-                    if (_this.exposeElement === undefined)
+                    }
+                    if (_this.exposeElement === undefined) {
                         _this.exposeElement = null;
-                    if (_this.arrayList === undefined)
-                        _this.arrayList = null;
-                    if (_this.exposeElement === undefined)
-                        _this.exposeElement = null;
-                    (function () {
-                        _this.arrayList = (new java.util.ArrayList(initialCapacity));
-                    })();
+                    }
+                    _this.arrayList = (new java.util.ArrayList(initialCapacity));
                 }
                 else if (initialCapacity === undefined && ignoredCapacityIncrement === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.arrayList === undefined)
+                    if (_this.arrayList === undefined) {
                         _this.arrayList = null;
-                    if (_this.exposeElement === undefined)
+                    }
+                    if (_this.exposeElement === undefined) {
                         _this.exposeElement = null;
-                    if (_this.arrayList === undefined)
-                        _this.arrayList = null;
-                    if (_this.exposeElement === undefined)
-                        _this.exposeElement = null;
-                    (function () {
-                        _this.arrayList = (new java.util.ArrayList());
-                    })();
+                    }
+                    _this.arrayList = (new java.util.ArrayList());
                 }
                 else
                     throw new Error('invalid overload');
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            Vector.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
-                var removed = false;
-                var _loop_16 = function (it) {
-                    {
-                        if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
-                            it.remove();
-                            removed = true;
-                        }
-                    }
-                    ;
-                };
-                for (var it = this.iterator(); it.hasNext();) {
-                    _loop_16(it);
-                }
-                return removed;
-            };
-            /* Default method injected from java.util.Collection */
             Vector.prototype.stream = function () {
                 return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.lang.Iterable */
+            Vector.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                var _loop_18 = function (index149) {
+                    var t = index149.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index149 = this.iterator(); index149.hasNext();) {
+                    _loop_18(index149);
+                }
             };
             /* Default method injected from java.util.Collection */
             Vector.prototype.parallelStream = function () {
@@ -18762,26 +19043,31 @@ var java;
                 var a = this.toArray();
                 java.util.Arrays.sort(a, (c));
                 var i = this.listIterator();
-                for (var index149 = 0; index149 < a.length; index149++) {
-                    var e = a[index149];
+                for (var index150 = 0; index150 < a.length; index150++) {
+                    var e = a[index150];
                     {
                         i.next();
                         i.set(e);
                     }
                 }
             };
-            /* Default method injected from java.lang.Iterable */
-            Vector.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_17 = function (index150) {
-                    var t = index150.next();
+            /* Default method injected from java.util.Collection */
+            Vector.prototype.removeIf = function (filter) {
+                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                var removed = false;
+                var _loop_19 = function (it) {
                     {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                        if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
+                            it.remove();
+                            removed = true;
+                        }
                     }
+                    ;
                 };
-                for (var index150 = this.iterator(); index150.hasNext();) {
-                    _loop_17(index150);
+                for (var it = this.iterator(); it.hasNext();) {
+                    _loop_19(it);
                 }
+                return removed;
             };
             Vector.prototype.add$java_lang_Object = function (o) {
                 return this.arrayList.add(o);
@@ -18818,10 +19104,10 @@ var java;
              * @return {boolean}
              */
             Vector.prototype.addAll = function (index, c) {
-                if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
+                if (((typeof index === 'number') || index === null) && ((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     return this.addAll$int$java_util_Collection(index, c);
                 }
-                else if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
+                else if (((index != null && (index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                     return this.addAll$java_util_Collection(index);
                 }
                 else
@@ -19126,10 +19412,10 @@ var java;
              * @return {boolean}
              */
             AbstractSequentialList.prototype.addAll = function (index, c) {
-                if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
+                if (((typeof index === 'number') || index === null) && ((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     return this.addAll$int$java_util_Collection(index, c);
                 }
-                else if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
+                else if (((index != null && (index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                     return _super.prototype.addAll.call(this, index);
                 }
                 else
@@ -19253,79 +19539,62 @@ var java;
             __extends(ArrayList, _super);
             function ArrayList(c) {
                 var _this = this;
-                if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
+                if (((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.array === undefined)
+                    if (_this.array === undefined) {
                         _this.array = null;
-                    if (_this.exposeElement === undefined)
+                    }
+                    if (_this.exposeElement === undefined) {
                         _this.exposeElement = null;
-                    if (_this.array === undefined)
-                        _this.array = null;
-                    if (_this.exposeElement === undefined)
-                        _this.exposeElement = null;
-                    (function () {
-                        _this.array = [];
-                        javaemul.internal.ArrayHelper.insertValuesToArray(_this.array, 0, c['toArray$']());
-                    })();
+                    }
+                    _this.array = [];
+                    javaemul.internal.ArrayHelper.insertValuesToArray(_this.array, 0, c['toArray$']());
                 }
                 else if (((typeof c === 'number') || c === null)) {
                     var __args = arguments;
-                    var initialCapacity_1 = __args[0];
+                    var initialCapacity = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.array === undefined)
+                    if (_this.array === undefined) {
                         _this.array = null;
-                    if (_this.exposeElement === undefined)
+                    }
+                    if (_this.exposeElement === undefined) {
                         _this.exposeElement = null;
-                    if (_this.array === undefined)
-                        _this.array = null;
-                    if (_this.exposeElement === undefined)
-                        _this.exposeElement = null;
-                    (function () {
-                        javaemul.internal.InternalPreconditions.checkArgument(initialCapacity_1 >= 0, "Initial capacity must not be negative");
-                        _this.array = [];
-                    })();
+                    }
+                    javaemul.internal.InternalPreconditions.checkArgument(initialCapacity >= 0, "Initial capacity must not be negative");
+                    _this.array = [];
                 }
                 else if (c === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.array === undefined)
+                    if (_this.array === undefined) {
                         _this.array = null;
-                    if (_this.exposeElement === undefined)
+                    }
+                    if (_this.exposeElement === undefined) {
                         _this.exposeElement = null;
-                    if (_this.array === undefined)
-                        _this.array = null;
-                    if (_this.exposeElement === undefined)
-                        _this.exposeElement = null;
-                    (function () {
-                        _this.array = [];
-                    })();
+                    }
+                    _this.array = [];
                 }
                 else
                     throw new Error('invalid overload');
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            ArrayList.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
-                var removed = false;
-                var _loop_18 = function (it) {
-                    {
-                        if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
-                            it.remove();
-                            removed = true;
-                        }
-                    }
-                    ;
-                };
-                for (var it = this.iterator(); it.hasNext();) {
-                    _loop_18(it);
-                }
-                return removed;
-            };
-            /* Default method injected from java.util.Collection */
             ArrayList.prototype.stream = function () {
                 return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.lang.Iterable */
+            ArrayList.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                var _loop_20 = function (index152) {
+                    var t = index152.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index152 = this.iterator(); index152.hasNext();) {
+                    _loop_20(index152);
+                }
             };
             /* Default method injected from java.util.Collection */
             ArrayList.prototype.parallelStream = function () {
@@ -19336,26 +19605,31 @@ var java;
                 var a = this.toArray();
                 java.util.Arrays.sort(a, (c));
                 var i = this.listIterator();
-                for (var index152 = 0; index152 < a.length; index152++) {
-                    var e = a[index152];
+                for (var index153 = 0; index153 < a.length; index153++) {
+                    var e = a[index153];
                     {
                         i.next();
                         i.set(e);
                     }
                 }
             };
-            /* Default method injected from java.lang.Iterable */
-            ArrayList.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_19 = function (index153) {
-                    var t = index153.next();
+            /* Default method injected from java.util.Collection */
+            ArrayList.prototype.removeIf = function (filter) {
+                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                var removed = false;
+                var _loop_21 = function (it) {
                     {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                        if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
+                            it.remove();
+                            removed = true;
+                        }
                     }
+                    ;
                 };
-                for (var index153 = this.iterator(); index153.hasNext();) {
-                    _loop_19(index153);
+                for (var it = this.iterator(); it.hasNext();) {
+                    _loop_21(it);
                 }
+                return removed;
             };
             ArrayList.prototype.add$java_lang_Object = function (o) {
                 this.array[this.array.length] = o;
@@ -19406,10 +19680,10 @@ var java;
              * @return {boolean}
              */
             ArrayList.prototype.addAll = function (index, c) {
-                if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
+                if (((typeof index === 'number') || index === null) && ((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     return this.addAll$int$java_util_Collection(index, c);
                 }
-                else if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
+                else if (((index != null && (index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                     return this.addAll$java_util_Collection(index);
                 }
                 else
@@ -21000,7 +21274,7 @@ var java;
              * @private
              */
             Arrays.deepToString = function (a, arraysIveSeen) {
-                if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (a[0] != null))) || a === null) && ((arraysIveSeen != null && (arraysIveSeen["__interfaces"] != null && arraysIveSeen["__interfaces"].indexOf("java.util.Set") >= 0 || arraysIveSeen.constructor != null && arraysIveSeen.constructor["__interfaces"] != null && arraysIveSeen.constructor["__interfaces"].indexOf("java.util.Set") >= 0)) || arraysIveSeen === null)) {
+                if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (a[0] != null))) || a === null) && ((arraysIveSeen != null && (arraysIveSeen.constructor != null && arraysIveSeen.constructor["__interfaces"] != null && arraysIveSeen.constructor["__interfaces"].indexOf("java.util.Set") >= 0)) || arraysIveSeen === null)) {
                     return java.util.Arrays.deepToString$java_lang_Object_A$java_util_Set(a, arraysIveSeen);
                 }
                 else if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (a[0] != null))) || a === null) && arraysIveSeen === undefined) {
@@ -21181,8 +21455,9 @@ var java;
                 __extends(ArrayList, _super);
                 function ArrayList(array) {
                     var _this = _super.call(this) || this;
-                    if (_this.array === undefined)
+                    if (_this.array === undefined) {
                         _this.array = null;
+                    }
                     _this.array = array;
                     return _this;
                 }
@@ -21285,182 +21560,202 @@ var java;
                 if (((typeof initialCapacity === 'number') || initialCapacity === null) && ((typeof cmp === 'function' && cmp.length === 2) || cmp === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.cmp === undefined)
+                    if (_this.cmp === undefined) {
                         _this.cmp = null;
-                    if (_this.heap === undefined)
+                    }
+                    if (_this.heap === undefined) {
                         _this.heap = null;
-                    if (_this.cmp === undefined)
-                        _this.cmp = null;
-                    if (_this.heap === undefined)
-                        _this.heap = null;
-                    (function () {
-                        _this.heap = (new java.util.ArrayList(initialCapacity));
-                        if (cmp == null) {
-                            cmp = (java.util.Comparators.natural());
-                        }
-                        _this.cmp = (cmp);
-                    })();
+                    }
+                    _this.heap = (new java.util.ArrayList(initialCapacity));
+                    if (cmp == null) {
+                        cmp = (java.util.Comparators.natural());
+                    }
+                    _this.cmp = (cmp);
                 }
                 else if (((typeof initialCapacity === 'function' && initialCapacity.length === 2) || initialCapacity === null) && cmp === undefined) {
                     var __args = arguments;
                     var cp = __args[0];
                     {
-                        var __args_27 = arguments;
-                        var initialCapacity_2 = PriorityQueue.INITIAL_CAPACITY;
+                        var __args_28 = arguments;
+                        var initialCapacity_1 = PriorityQueue.INITIAL_CAPACITY;
                         var cmp_1 = cp;
                         _this = _super.call(this) || this;
-                        if (_this.cmp === undefined)
+                        if (_this.cmp === undefined) {
                             _this.cmp = null;
-                        if (_this.heap === undefined)
+                        }
+                        if (_this.heap === undefined) {
                             _this.heap = null;
-                        if (_this.cmp === undefined)
-                            _this.cmp = null;
-                        if (_this.heap === undefined)
-                            _this.heap = null;
-                        (function () {
-                            _this.heap = (new java.util.ArrayList(initialCapacity_2));
-                            if (cmp_1 == null) {
-                                cmp_1 = (java.util.Comparators.natural());
-                            }
-                            _this.cmp = (cmp_1);
-                        })();
+                        }
+                        _this.heap = (new java.util.ArrayList(initialCapacity_1));
+                        if (cmp_1 == null) {
+                            cmp_1 = (java.util.Comparators.natural());
+                        }
+                        _this.cmp = (cmp_1);
+                    }
+                    if (_this.cmp === undefined) {
+                        _this.cmp = null;
+                    }
+                    if (_this.heap === undefined) {
+                        _this.heap = null;
                     }
                 }
                 else if (((initialCapacity != null && initialCapacity instanceof java.util.PriorityQueue) || initialCapacity === null) && cmp === undefined) {
                     var __args = arguments;
+                    var c_2 = __args[0];
+                    {
+                        var __args_29 = arguments;
+                        var initialCapacity_2 = c_2.size();
+                        var cmp_2 = (c_2.comparator());
+                        _this = _super.call(this) || this;
+                        if (_this.cmp === undefined) {
+                            _this.cmp = null;
+                        }
+                        if (_this.heap === undefined) {
+                            _this.heap = null;
+                        }
+                        _this.heap = (new java.util.ArrayList(initialCapacity_2));
+                        if (cmp_2 == null) {
+                            cmp_2 = (java.util.Comparators.natural());
+                        }
+                        _this.cmp = (cmp_2);
+                    }
+                    if (_this.cmp === undefined) {
+                        _this.cmp = null;
+                    }
+                    if (_this.heap === undefined) {
+                        _this.heap = null;
+                    }
+                    (function () {
+                        _this.addAll(c_2);
+                    })();
+                }
+                else if (((initialCapacity != null && (initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.SortedSet") >= 0)) || initialCapacity === null) && cmp === undefined) {
+                    var __args = arguments;
+                    var c_3 = __args[0];
+                    {
+                        var __args_30 = arguments;
+                        var initialCapacity_3 = c_3.size();
+                        var cmp_3 = (c_3.comparator());
+                        _this = _super.call(this) || this;
+                        if (_this.cmp === undefined) {
+                            _this.cmp = null;
+                        }
+                        if (_this.heap === undefined) {
+                            _this.heap = null;
+                        }
+                        _this.heap = (new java.util.ArrayList(initialCapacity_3));
+                        if (cmp_3 == null) {
+                            cmp_3 = (java.util.Comparators.natural());
+                        }
+                        _this.cmp = (cmp_3);
+                    }
+                    if (_this.cmp === undefined) {
+                        _this.cmp = null;
+                    }
+                    if (_this.heap === undefined) {
+                        _this.heap = null;
+                    }
+                    (function () {
+                        _this.addAll(c_3);
+                    })();
+                }
+                else if (((initialCapacity != null && (initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || initialCapacity === null) && cmp === undefined) {
+                    var __args = arguments;
                     var c_4 = __args[0];
                     {
-                        var __args_28 = arguments;
-                        var initialCapacity_3 = c_4.size();
-                        var cmp_2 = (c_4.comparator());
-                        _this = _super.call(this) || this;
-                        if (_this.cmp === undefined)
-                            _this.cmp = null;
-                        if (_this.heap === undefined)
-                            _this.heap = null;
-                        if (_this.cmp === undefined)
-                            _this.cmp = null;
-                        if (_this.heap === undefined)
-                            _this.heap = null;
-                        (function () {
-                            _this.heap = (new java.util.ArrayList(initialCapacity_3));
-                            if (cmp_2 == null) {
-                                cmp_2 = (java.util.Comparators.natural());
+                        var __args_31 = arguments;
+                        var initialCapacity_4 = c_4.size();
+                        {
+                            var __args_32 = arguments;
+                            var cmp_4 = null;
+                            _this = _super.call(this) || this;
+                            if (_this.cmp === undefined) {
+                                _this.cmp = null;
                             }
-                            _this.cmp = (cmp_2);
-                        })();
+                            if (_this.heap === undefined) {
+                                _this.heap = null;
+                            }
+                            _this.heap = (new java.util.ArrayList(initialCapacity_4));
+                            if (cmp_4 == null) {
+                                cmp_4 = (java.util.Comparators.natural());
+                            }
+                            _this.cmp = (cmp_4);
+                        }
+                        if (_this.cmp === undefined) {
+                            _this.cmp = null;
+                        }
+                        if (_this.heap === undefined) {
+                            _this.heap = null;
+                        }
+                    }
+                    if (_this.cmp === undefined) {
+                        _this.cmp = null;
+                    }
+                    if (_this.heap === undefined) {
+                        _this.heap = null;
                     }
                     (function () {
                         _this.addAll(c_4);
                     })();
                 }
-                else if (((initialCapacity != null && (initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.SortedSet") >= 0 || initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.SortedSet") >= 0)) || initialCapacity === null) && cmp === undefined) {
-                    var __args = arguments;
-                    var c_5 = __args[0];
-                    {
-                        var __args_29 = arguments;
-                        var initialCapacity_4 = c_5.size();
-                        var cmp_3 = (c_5.comparator());
-                        _this = _super.call(this) || this;
-                        if (_this.cmp === undefined)
-                            _this.cmp = null;
-                        if (_this.heap === undefined)
-                            _this.heap = null;
-                        if (_this.cmp === undefined)
-                            _this.cmp = null;
-                        if (_this.heap === undefined)
-                            _this.heap = null;
-                        (function () {
-                            _this.heap = (new java.util.ArrayList(initialCapacity_4));
-                            if (cmp_3 == null) {
-                                cmp_3 = (java.util.Comparators.natural());
-                            }
-                            _this.cmp = (cmp_3);
-                        })();
-                    }
-                    (function () {
-                        _this.addAll(c_5);
-                    })();
-                }
-                else if (((initialCapacity != null && (initialCapacity["__interfaces"] != null && initialCapacity["__interfaces"].indexOf("java.util.Collection") >= 0 || initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || initialCapacity === null) && cmp === undefined) {
-                    var __args = arguments;
-                    var c_6 = __args[0];
-                    {
-                        var __args_30 = arguments;
-                        var initialCapacity_5 = c_6.size();
-                        {
-                            var __args_31 = arguments;
-                            var cmp_4 = null;
-                            _this = _super.call(this) || this;
-                            if (_this.cmp === undefined)
-                                _this.cmp = null;
-                            if (_this.heap === undefined)
-                                _this.heap = null;
-                            if (_this.cmp === undefined)
-                                _this.cmp = null;
-                            if (_this.heap === undefined)
-                                _this.heap = null;
-                            (function () {
-                                _this.heap = (new java.util.ArrayList(initialCapacity_5));
-                                if (cmp_4 == null) {
-                                    cmp_4 = (java.util.Comparators.natural());
-                                }
-                                _this.cmp = (cmp_4);
-                            })();
-                        }
-                    }
-                    (function () {
-                        _this.addAll(c_6);
-                    })();
-                }
                 else if (((typeof initialCapacity === 'number') || initialCapacity === null) && cmp === undefined) {
                     var __args = arguments;
                     {
-                        var __args_32 = arguments;
+                        var __args_33 = arguments;
                         var cmp_5 = null;
                         _this = _super.call(this) || this;
-                        if (_this.cmp === undefined)
+                        if (_this.cmp === undefined) {
                             _this.cmp = null;
-                        if (_this.heap === undefined)
+                        }
+                        if (_this.heap === undefined) {
                             _this.heap = null;
-                        if (_this.cmp === undefined)
-                            _this.cmp = null;
-                        if (_this.heap === undefined)
-                            _this.heap = null;
-                        (function () {
-                            _this.heap = (new java.util.ArrayList(initialCapacity));
-                            if (cmp_5 == null) {
-                                cmp_5 = (java.util.Comparators.natural());
-                            }
-                            _this.cmp = (cmp_5);
-                        })();
+                        }
+                        _this.heap = (new java.util.ArrayList(initialCapacity));
+                        if (cmp_5 == null) {
+                            cmp_5 = (java.util.Comparators.natural());
+                        }
+                        _this.cmp = (cmp_5);
+                    }
+                    if (_this.cmp === undefined) {
+                        _this.cmp = null;
+                    }
+                    if (_this.heap === undefined) {
+                        _this.heap = null;
                     }
                 }
                 else if (initialCapacity === undefined && cmp === undefined) {
                     var __args = arguments;
                     {
-                        var __args_33 = arguments;
-                        var initialCapacity_6 = PriorityQueue.INITIAL_CAPACITY;
+                        var __args_34 = arguments;
+                        var initialCapacity_5 = PriorityQueue.INITIAL_CAPACITY;
                         {
-                            var __args_34 = arguments;
+                            var __args_35 = arguments;
                             var cmp_6 = null;
                             _this = _super.call(this) || this;
-                            if (_this.cmp === undefined)
+                            if (_this.cmp === undefined) {
                                 _this.cmp = null;
-                            if (_this.heap === undefined)
+                            }
+                            if (_this.heap === undefined) {
                                 _this.heap = null;
-                            if (_this.cmp === undefined)
-                                _this.cmp = null;
-                            if (_this.heap === undefined)
-                                _this.heap = null;
-                            (function () {
-                                _this.heap = (new java.util.ArrayList(initialCapacity_6));
-                                if (cmp_6 == null) {
-                                    cmp_6 = (java.util.Comparators.natural());
-                                }
-                                _this.cmp = (cmp_6);
-                            })();
+                            }
+                            _this.heap = (new java.util.ArrayList(initialCapacity_5));
+                            if (cmp_6 == null) {
+                                cmp_6 = (java.util.Comparators.natural());
+                            }
+                            _this.cmp = (cmp_6);
                         }
+                        if (_this.cmp === undefined) {
+                            _this.cmp = null;
+                        }
+                        if (_this.heap === undefined) {
+                            _this.heap = null;
+                        }
+                    }
+                    if (_this.cmp === undefined) {
+                        _this.cmp = null;
+                    }
+                    if (_this.heap === undefined) {
+                        _this.heap = null;
                     }
                 }
                 else
@@ -21891,12 +22186,10 @@ var java;
                 if (((typeof msg === 'string') || msg === null)) {
                     var __args = arguments;
                     _this = _super.call(this, msg) || this;
-                    Object.setPrototypeOf(_this, DigestException.prototype);
                 }
                 else if (msg === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, DigestException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -21927,12 +22220,10 @@ var java;
                 if (((typeof msg === 'string') || msg === null)) {
                     var __args = arguments;
                     _this = _super.call(this, msg) || this;
-                    Object.setPrototypeOf(_this, NoSuchAlgorithmException.prototype);
                 }
                 else if (msg === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, NoSuchAlgorithmException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -21963,12 +22254,10 @@ var java;
                 if (((typeof msg === 'string') || msg === null)) {
                     var __args = arguments;
                     _this = _super.call(this, msg) || this;
-                    Object.setPrototypeOf(_this, UnsupportedEncodingException.prototype);
                 }
                 else if (msg === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, UnsupportedEncodingException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22019,10 +22308,12 @@ var java;
             function MissingResourceException(s, className, key) {
                 var _this = _super.call(this, s) || this;
                 Object.setPrototypeOf(_this, MissingResourceException.prototype);
-                if (_this.className === undefined)
+                if (_this.className === undefined) {
                     _this.className = null;
-                if (_this.key === undefined)
+                }
+                if (_this.key === undefined) {
                     _this.key = null;
+                }
                 _this.key = key;
                 _this.className = className;
                 return _this;
@@ -22058,12 +22349,10 @@ var java;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
-                    Object.setPrototypeOf(_this, ConcurrentModificationException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, ConcurrentModificationException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22094,12 +22383,10 @@ var java;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = arguments;
                     _this = _super.call(this, s) || this;
-                    Object.setPrototypeOf(_this, NoSuchElementException.prototype);
                 }
                 else if (s === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, NoSuchElementException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22155,13 +22442,11 @@ var java;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof java.io.IOException) || cause === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message, (javaemul.internal.InternalPreconditions.checkNotNull(cause))) || this;
-                    Object.setPrototypeOf(_this, UncheckedIOException.prototype);
                 }
                 else if (((message != null && message instanceof java.io.IOException) || message === null) && cause === undefined) {
                     var __args = arguments;
                     var cause_7 = __args[0];
                     _this = _super.call(this, (javaemul.internal.InternalPreconditions.checkNotNull(cause_7))) || this;
-                    Object.setPrototypeOf(_this, UncheckedIOException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22199,24 +22484,20 @@ var java;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message, cause) || this;
-                    Object.setPrototypeOf(_this, IllegalStateException.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = arguments;
                     var s = __args[0];
                     _this = _super.call(this, s) || this;
-                    Object.setPrototypeOf(_this, IllegalStateException.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = arguments;
                     var cause_8 = __args[0];
                     _this = _super.call(this, cause_8) || this;
-                    Object.setPrototypeOf(_this, IllegalStateException.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, IllegalStateException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22247,12 +22528,10 @@ var java;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
-                    Object.setPrototypeOf(_this, NullPointerException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, NullPointerException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22278,24 +22557,20 @@ var java;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message, cause) || this;
-                    Object.setPrototypeOf(_this, IllegalAccessException.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = arguments;
                     var s = __args[0];
                     _this = _super.call(this, s) || this;
-                    Object.setPrototypeOf(_this, IllegalAccessException.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = arguments;
                     var cause_9 = __args[0];
                     _this = _super.call(this, cause_9) || this;
-                    Object.setPrototypeOf(_this, IllegalAccessException.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, IllegalAccessException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22327,23 +22602,19 @@ var java;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message, cause) || this;
-                    Object.setPrototypeOf(_this, IllegalArgumentException.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
-                    Object.setPrototypeOf(_this, IllegalArgumentException.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = arguments;
                     var cause_10 = __args[0];
                     _this = _super.call(this, cause_10) || this;
-                    Object.setPrototypeOf(_this, IllegalArgumentException.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, IllegalArgumentException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22404,10 +22675,12 @@ var java;
                 function IncompleteAnnotationException(annotationType, elementName) {
                     var _this = _super.call(this, "Incomplete annotation: trying to access " + elementName + " on " + annotationType) || this;
                     Object.setPrototypeOf(_this, IncompleteAnnotationException.prototype);
-                    if (_this.__annotationType === undefined)
+                    if (_this.__annotationType === undefined) {
                         _this.__annotationType = null;
-                    if (_this.__elementName === undefined)
+                    }
+                    if (_this.__elementName === undefined) {
                         _this.__elementName = null;
+                    }
                     _this.__annotationType = annotationType;
                     _this.__elementName = elementName;
                     return _this;
@@ -22442,12 +22715,10 @@ var java;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
-                    Object.setPrototypeOf(_this, ClassCastException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, ClassCastException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22478,12 +22749,10 @@ var java;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
-                    Object.setPrototypeOf(_this, NegativeArraySizeException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, NegativeArraySizeException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22514,12 +22783,10 @@ var java;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
-                    Object.setPrototypeOf(_this, ArrayStoreException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, ArrayStoreException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22553,12 +22820,10 @@ var java;
                 if (((typeof explanation === 'string') || explanation === null)) {
                     var __args = arguments;
                     _this = _super.call(this, explanation) || this;
-                    Object.setPrototypeOf(_this, ArithmeticException.prototype);
                 }
                 else if (explanation === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, ArithmeticException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22590,23 +22855,19 @@ var java;
                 if (((typeof message === 'string') || message === null) && ((cause != null && cause instanceof Error) || cause === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message, cause) || this;
-                    Object.setPrototypeOf(_this, UnsupportedOperationException.prototype);
                 }
                 else if (((typeof message === 'string') || message === null) && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
-                    Object.setPrototypeOf(_this, UnsupportedOperationException.prototype);
                 }
                 else if (((message != null && message instanceof Error) || message === null) && cause === undefined) {
                     var __args = arguments;
                     var cause_11 = __args[0];
                     _this = _super.call(this, cause_11) || this;
-                    Object.setPrototypeOf(_this, UnsupportedOperationException.prototype);
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, UnsupportedOperationException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22637,12 +22898,10 @@ var java;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
-                    Object.setPrototypeOf(_this, IndexOutOfBoundsException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, IndexOutOfBoundsException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22699,12 +22958,10 @@ var java;
                 if (((typeof s === 'string') || s === null)) {
                     var __args = arguments;
                     _this = _super.call(this, s) || this;
-                    Object.setPrototypeOf(_this, InstantiationException.prototype);
                 }
                 else if (s === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, InstantiationException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -22729,11 +22986,13 @@ var java;
             var StandardCharsets = /** @class */ (function () {
                 function StandardCharsets() {
                 }
-                StandardCharsets.ISO_8859_1_$LI$ = function () { if (StandardCharsets.ISO_8859_1 == null)
-                    StandardCharsets.ISO_8859_1 = javaemul.internal.EmulatedCharset.ISO_8859_1_$LI$(); return StandardCharsets.ISO_8859_1; };
+                StandardCharsets.ISO_8859_1_$LI$ = function () { if (StandardCharsets.ISO_8859_1 == null) {
+                    StandardCharsets.ISO_8859_1 = javaemul.internal.EmulatedCharset.ISO_8859_1_$LI$();
+                } return StandardCharsets.ISO_8859_1; };
                 ;
-                StandardCharsets.UTF_8_$LI$ = function () { if (StandardCharsets.UTF_8 == null)
-                    StandardCharsets.UTF_8 = javaemul.internal.EmulatedCharset.UTF_8_$LI$(); return StandardCharsets.UTF_8; };
+                StandardCharsets.UTF_8_$LI$ = function () { if (StandardCharsets.UTF_8 == null) {
+                    StandardCharsets.UTF_8 = javaemul.internal.EmulatedCharset.UTF_8_$LI$();
+                } return StandardCharsets.UTF_8; };
                 ;
                 return StandardCharsets;
             }());
@@ -22766,72 +23025,62 @@ var java;
                 if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.hashCodeMap === undefined)
+                    if (_this.hashCodeMap === undefined) {
                         _this.hashCodeMap = null;
-                    if (_this.stringMap === undefined)
+                    }
+                    if (_this.stringMap === undefined) {
                         _this.stringMap = null;
-                    if (_this.hashCodeMap === undefined)
-                        _this.hashCodeMap = null;
-                    if (_this.stringMap === undefined)
-                        _this.stringMap = null;
-                    (function () {
-                        javaemul.internal.InternalPreconditions.checkArgument(ignored >= 0, "Negative initial capacity");
-                        javaemul.internal.InternalPreconditions.checkArgument(alsoIgnored >= 0, "Non-positive load factor");
-                        _this.reset();
-                    })();
+                    }
+                    javaemul.internal.InternalPreconditions.checkArgument(ignored >= 0, "Negative initial capacity");
+                    javaemul.internal.InternalPreconditions.checkArgument(alsoIgnored >= 0, "Non-positive load factor");
+                    _this.reset();
                 }
-                else if (((ignored != null && (ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0 || ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || ignored === null) && alsoIgnored === undefined) {
+                else if (((ignored != null && (ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || ignored === null) && alsoIgnored === undefined) {
                     var __args = arguments;
-                    var toBeCopied_1 = __args[0];
+                    var toBeCopied = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.hashCodeMap === undefined)
+                    if (_this.hashCodeMap === undefined) {
                         _this.hashCodeMap = null;
-                    if (_this.stringMap === undefined)
+                    }
+                    if (_this.stringMap === undefined) {
                         _this.stringMap = null;
-                    if (_this.hashCodeMap === undefined)
-                        _this.hashCodeMap = null;
-                    if (_this.stringMap === undefined)
-                        _this.stringMap = null;
-                    (function () {
-                        _this.reset();
-                        _this.putAll(toBeCopied_1);
-                    })();
+                    }
+                    _this.reset();
+                    _this.putAll(toBeCopied);
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
                     var __args = arguments;
                     {
-                        var __args_35 = arguments;
+                        var __args_36 = arguments;
                         var alsoIgnored_1 = 0;
                         _this = _super.call(this) || this;
-                        if (_this.hashCodeMap === undefined)
+                        if (_this.hashCodeMap === undefined) {
                             _this.hashCodeMap = null;
-                        if (_this.stringMap === undefined)
+                        }
+                        if (_this.stringMap === undefined) {
                             _this.stringMap = null;
-                        if (_this.hashCodeMap === undefined)
-                            _this.hashCodeMap = null;
-                        if (_this.stringMap === undefined)
-                            _this.stringMap = null;
-                        (function () {
-                            javaemul.internal.InternalPreconditions.checkArgument(ignored >= 0, "Negative initial capacity");
-                            javaemul.internal.InternalPreconditions.checkArgument(alsoIgnored_1 >= 0, "Non-positive load factor");
-                            _this.reset();
-                        })();
+                        }
+                        javaemul.internal.InternalPreconditions.checkArgument(ignored >= 0, "Negative initial capacity");
+                        javaemul.internal.InternalPreconditions.checkArgument(alsoIgnored_1 >= 0, "Non-positive load factor");
+                        _this.reset();
+                    }
+                    if (_this.hashCodeMap === undefined) {
+                        _this.hashCodeMap = null;
+                    }
+                    if (_this.stringMap === undefined) {
+                        _this.stringMap = null;
                     }
                 }
                 else if (ignored === undefined && alsoIgnored === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.hashCodeMap === undefined)
+                    if (_this.hashCodeMap === undefined) {
                         _this.hashCodeMap = null;
-                    if (_this.stringMap === undefined)
+                    }
+                    if (_this.stringMap === undefined) {
                         _this.stringMap = null;
-                    if (_this.hashCodeMap === undefined)
-                        _this.hashCodeMap = null;
-                    if (_this.stringMap === undefined)
-                        _this.stringMap = null;
-                    (function () {
-                        _this.reset();
-                    })();
+                    }
+                    _this.reset();
                 }
                 else
                     throw new Error('invalid overload');
@@ -23028,7 +23277,7 @@ var java;
                  * @return {boolean}
                  */
                 EntrySet.prototype.contains = function (o) {
-                    if (o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
+                    if (o != null && (o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
                         return this.__parent.containsEntry(o);
                     }
                     return false;
@@ -23072,14 +23321,18 @@ var java;
             var EntrySetIterator = /** @class */ (function () {
                 function EntrySetIterator(__parent) {
                     this.__parent = __parent;
-                    if (this.stringMapEntries === undefined)
+                    if (this.stringMapEntries === undefined) {
                         this.stringMapEntries = null;
-                    if (this.current === undefined)
+                    }
+                    if (this.current === undefined) {
                         this.current = null;
-                    if (this.last === undefined)
+                    }
+                    if (this.last === undefined) {
                         this.last = null;
-                    if (this.__hasNext === undefined)
+                    }
+                    if (this.__hasNext === undefined) {
                         this.__hasNext = false;
+                    }
                     this.stringMapEntries = __parent.stringMap.iterator();
                     this.current = this.stringMapEntries;
                     this.__hasNext = this.computeHasNext();
@@ -23162,59 +23415,53 @@ var java;
             __extends(EnumMap, _super);
             function EnumMap(type) {
                 var _this = this;
-                if (((type != null && type instanceof java.lang.Class) || type === null)) {
+                if (((type != null && (type["__class"] != null || (function (t) { try {
+                    new t;
+                    return true;
+                }
+                catch (_a) {
+                    return false;
+                } })(type))) || type === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.__keySet === undefined)
+                    if (_this.__keySet === undefined) {
                         _this.__keySet = null;
-                    if (_this.__values === undefined)
+                    }
+                    if (_this.__values === undefined) {
                         _this.__values = null;
-                    if (_this.__keySet === undefined)
-                        _this.__keySet = null;
-                    if (_this.__values === undefined)
-                        _this.__values = null;
-                    (function () {
-                        _this.init$java_lang_Class(type);
-                    })();
+                    }
+                    _this.init$java_lang_Class(type);
                 }
                 else if (((type != null && type instanceof java.util.EnumMap) || type === null)) {
                     var __args = arguments;
-                    var m_1 = __args[0];
+                    var m = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.__keySet === undefined)
+                    if (_this.__keySet === undefined) {
                         _this.__keySet = null;
-                    if (_this.__values === undefined)
+                    }
+                    if (_this.__values === undefined) {
                         _this.__values = null;
-                    if (_this.__keySet === undefined)
-                        _this.__keySet = null;
-                    if (_this.__values === undefined)
-                        _this.__values = null;
-                    (function () {
-                        _this.init$java_util_EnumMap(m_1);
-                    })();
+                    }
+                    _this.init$java_util_EnumMap(m);
                 }
-                else if (((type != null && (type["__interfaces"] != null && type["__interfaces"].indexOf("java.util.Map") >= 0 || type.constructor != null && type.constructor["__interfaces"] != null && type.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || type === null)) {
+                else if (((type != null && (type.constructor != null && type.constructor["__interfaces"] != null && type.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || type === null)) {
                     var __args = arguments;
-                    var m_2 = __args[0];
+                    var m = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.__keySet === undefined)
+                    if (_this.__keySet === undefined) {
                         _this.__keySet = null;
-                    if (_this.__values === undefined)
+                    }
+                    if (_this.__values === undefined) {
                         _this.__values = null;
-                    if (_this.__keySet === undefined)
-                        _this.__keySet = null;
-                    if (_this.__values === undefined)
-                        _this.__values = null;
-                    (function () {
-                        if (m_2 != null && m_2 instanceof java.util.EnumMap) {
-                            _this.init$java_util_EnumMap(m_2);
-                        }
-                        else {
-                            javaemul.internal.InternalPreconditions.checkArgument(!m_2.isEmpty(), "Specified map is empty");
-                            _this.init$java_lang_Class(m_2.keySet().iterator().next().getDeclaringClass());
-                            _this.putAll(m_2);
-                        }
-                    })();
+                    }
+                    if (m != null && m instanceof java.util.EnumMap) {
+                        _this.init$java_util_EnumMap(m);
+                    }
+                    else {
+                        javaemul.internal.InternalPreconditions.checkArgument(!m.isEmpty(), "Specified map is empty");
+                        _this.init$java_lang_Class(m.keySet().iterator().next().getDeclaringClass());
+                        _this.putAll(m);
+                    }
                 }
                 else
                     throw new Error('invalid overload');
@@ -23325,7 +23572,13 @@ var java;
                     a.push(null); return a; })(this.__keySet.capacity());
             };
             EnumMap.prototype.init = function (type) {
-                if (((type != null && type instanceof java.lang.Class) || type === null)) {
+                if (((type != null && (type["__class"] != null || (function (t) { try {
+                    new t;
+                    return true;
+                }
+                catch (_a) {
+                    return false;
+                } })(type))) || type === null)) {
                     return this.init$java_lang_Class(type);
                 }
                 else if (((type != null && type instanceof java.util.EnumMap) || type === null)) {
@@ -23378,7 +23631,7 @@ var java;
                  * @return {boolean}
                  */
                 EntrySet.prototype.contains = function (o) {
-                    if (o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
+                    if (o != null && (o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
                         return this.__parent.containsEntry(o);
                     }
                     return false;
@@ -23419,8 +23672,9 @@ var java;
                 function EntrySetIterator(__parent) {
                     this.__parent = __parent;
                     this.it = this.__parent.__keySet.iterator();
-                    if (this.key === undefined)
+                    if (this.key === undefined) {
                         this.key = null;
+                    }
                 }
                 /* Default method injected from java.util.Iterator */
                 EntrySetIterator.prototype.forEachRemaining = function (consumer) {
@@ -23466,8 +23720,9 @@ var java;
                 function MapEntry(__parent, key) {
                     var _this = _super.call(this) || this;
                     _this.__parent = __parent;
-                    if (_this.key === undefined)
+                    if (_this.key === undefined) {
                         _this.key = null;
+                    }
                     _this.key = key;
                     return _this;
                 }
@@ -23515,6 +23770,24 @@ var java;
                 return _super.call(this) || this;
             }
             /* Default method injected from java.util.Map */
+            AbstractNavigableMap.prototype.putIfAbsent = function (key, value) {
+                var v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
+            };
+            /* Default method injected from java.util.Map */
+            AbstractNavigableMap.prototype.computeIfAbsent = function (key, mappingFunction) {
+                var result;
+                if ((result = this.get(key)) == null) {
+                    result = (function (target) { return (typeof target === 'function') ? target(key) : target.apply(key); })(mappingFunction);
+                    if (result != null)
+                        this.put(key, result);
+                }
+                return result;
+            };
+            /* Default method injected from java.util.Map */
             AbstractNavigableMap.prototype.merge = function (key, value, map) {
                 var old = this.get(key);
                 var next = (old == null) ? value : (function (target) { return (typeof target === 'function') ? target(old, value) : target.apply(old, value); })(map);
@@ -23532,17 +23805,9 @@ var java;
                 return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
             };
             /* Default method injected from java.util.Map */
-            AbstractNavigableMap.prototype.putIfAbsent = function (key, value) {
-                var v = this.get(key);
-                if (v == null) {
-                    v = this.put(key, value);
-                }
-                return v;
-            };
-            /* Default method injected from java.util.Map */
             AbstractNavigableMap.prototype.replaceAll = function (__function) {
                 java.util.Objects.requireNonNull((__function));
-                var _loop_20 = function (index175) {
+                var _loop_22 = function (index175) {
                     var entry = index175.next();
                     {
                         var k_2;
@@ -23566,18 +23831,8 @@ var java;
                     }
                 };
                 for (var index175 = this.entrySet().iterator(); index175.hasNext();) {
-                    _loop_20(index175);
+                    _loop_22(index175);
                 }
-            };
-            /* Default method injected from java.util.Map */
-            AbstractNavigableMap.prototype.computeIfAbsent = function (key, mappingFunction) {
-                var result;
-                if ((result = this.get(key)) == null) {
-                    result = (function (target) { return (typeof target === 'function') ? target(key) : target.apply(key); })(mappingFunction);
-                    if (result != null)
-                        this.put(key, result);
-                }
-                return result;
             };
             AbstractNavigableMap.copyOf = function (entry) {
                 return entry == null ? null : (new util.AbstractMap.SimpleImmutableEntry(entry));
@@ -24006,7 +24261,7 @@ var java;
                  * @return {boolean}
                  */
                 EntrySet.prototype.contains = function (o) {
-                    return (o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) && this.__parent.containsEntry(o);
+                    return (o != null && (o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) && this.__parent.containsEntry(o);
                 };
                 /**
                  *
@@ -24021,7 +24276,7 @@ var java;
                  * @return {boolean}
                  */
                 EntrySet.prototype.remove = function (o) {
-                    if (o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
+                    if (o != null && (o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
                         var entry = o;
                         return this.__parent.removeEntry(entry);
                     }
@@ -24043,16 +24298,38 @@ var java;
                 __extends(NavigableKeySet, _super);
                 function NavigableKeySet(map) {
                     var _this = _super.call(this) || this;
-                    if (_this.map === undefined)
+                    if (_this.map === undefined) {
                         _this.map = null;
+                    }
                     _this.map = map;
                     return _this;
                 }
                 /* Default method injected from java.util.Collection */
+                NavigableKeySet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
+                /* Default method injected from java.lang.Iterable */
+                NavigableKeySet.prototype.forEach = function (action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    var _loop_23 = function (index176) {
+                        var t = index176.next();
+                        {
+                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                        }
+                    };
+                    for (var index176 = this.iterator(); index176.hasNext();) {
+                        _loop_23(index176);
+                    }
+                };
+                /* Default method injected from java.util.Collection */
+                NavigableKeySet.prototype.parallelStream = function () {
+                    return this.stream();
+                };
+                /* Default method injected from java.util.Collection */
                 NavigableKeySet.prototype.removeIf = function (filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     var removed = false;
-                    var _loop_21 = function (it) {
+                    var _loop_24 = function (it) {
                         {
                             if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                                 it.remove();
@@ -24062,30 +24339,9 @@ var java;
                         ;
                     };
                     for (var it = this.iterator(); it.hasNext();) {
-                        _loop_21(it);
+                        _loop_24(it);
                     }
                     return removed;
-                };
-                /* Default method injected from java.util.Collection */
-                NavigableKeySet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
-                /* Default method injected from java.util.Collection */
-                NavigableKeySet.prototype.parallelStream = function () {
-                    return this.stream();
-                };
-                /* Default method injected from java.lang.Iterable */
-                NavigableKeySet.prototype.forEach = function (action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_22 = function (index176) {
-                        var t = index176.next();
-                        {
-                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                        }
-                    };
-                    for (var index176 = this.iterator(); index176.hasNext();) {
-                        _loop_22(index176);
-                    }
                 };
                 /**
                  *
@@ -24340,14 +24596,17 @@ var java;
         var Collections = /** @class */ (function () {
             function Collections() {
             }
-            Collections.EMPTY_LIST_$LI$ = function () { if (Collections.EMPTY_LIST == null)
-                Collections.EMPTY_LIST = new Collections.EmptyList(); return Collections.EMPTY_LIST; };
+            Collections.EMPTY_LIST_$LI$ = function () { if (Collections.EMPTY_LIST == null) {
+                Collections.EMPTY_LIST = new Collections.EmptyList();
+            } return Collections.EMPTY_LIST; };
             ;
-            Collections.EMPTY_MAP_$LI$ = function () { if (Collections.EMPTY_MAP == null)
-                Collections.EMPTY_MAP = new Collections.EmptyMap(); return Collections.EMPTY_MAP; };
+            Collections.EMPTY_MAP_$LI$ = function () { if (Collections.EMPTY_MAP == null) {
+                Collections.EMPTY_MAP = new Collections.EmptyMap();
+            } return Collections.EMPTY_MAP; };
             ;
-            Collections.EMPTY_SET_$LI$ = function () { if (Collections.EMPTY_SET == null)
-                Collections.EMPTY_SET = new Collections.EmptySet(); return Collections.EMPTY_SET; };
+            Collections.EMPTY_SET_$LI$ = function () { if (Collections.EMPTY_SET == null) {
+                Collections.EMPTY_SET = new Collections.EmptySet();
+            } return Collections.EMPTY_SET; };
             ;
             Collections.addAll = function (c) {
                 var a = [];
@@ -24420,10 +24679,10 @@ var java;
              * be compared by <code>comparator</code>.
              */
             Collections.binarySearch = function (sortedList, key, comparator) {
-                if (((sortedList != null && (sortedList["__interfaces"] != null && sortedList["__interfaces"].indexOf("java.util.List") >= 0 || sortedList.constructor != null && sortedList.constructor["__interfaces"] != null && sortedList.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || sortedList === null) && ((key != null) || key === null) && ((typeof comparator === 'function' && comparator.length === 2) || comparator === null)) {
+                if (((sortedList != null && (sortedList.constructor != null && sortedList.constructor["__interfaces"] != null && sortedList.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || sortedList === null) && ((key != null) || key === null) && ((typeof comparator === 'function' && comparator.length === 2) || comparator === null)) {
                     return java.util.Collections.binarySearch$java_util_List$java_lang_Object$java_util_Comparator(sortedList, key, comparator);
                 }
-                else if (((sortedList != null && (sortedList["__interfaces"] != null && sortedList["__interfaces"].indexOf("java.util.List") >= 0 || sortedList.constructor != null && sortedList.constructor["__interfaces"] != null && sortedList.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || sortedList === null) && ((key != null) || key === null) && comparator === undefined) {
+                else if (((sortedList != null && (sortedList.constructor != null && sortedList.constructor["__interfaces"] != null && sortedList.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || sortedList === null) && ((key != null) || key === null) && comparator === undefined) {
                     return java.util.Collections.binarySearch$java_util_List$java_lang_Object(sortedList, key);
                 }
                 else
@@ -24445,7 +24704,7 @@ var java;
             Collections.disjoint = function (c1, c2) {
                 var iterating = c1;
                 var testing = c2;
-                if ((c1 != null && (c1["__interfaces"] != null && c1["__interfaces"].indexOf("java.util.Set") >= 0 || c1.constructor != null && c1.constructor["__interfaces"] != null && c1.constructor["__interfaces"].indexOf("java.util.Set") >= 0)) && !(c2 != null && (c2["__interfaces"] != null && c2["__interfaces"].indexOf("java.util.Set") >= 0 || c2.constructor != null && c2.constructor["__interfaces"] != null && c2.constructor["__interfaces"].indexOf("java.util.Set") >= 0))) {
+                if ((c1 != null && (c1.constructor != null && c1.constructor["__interfaces"] != null && c1.constructor["__interfaces"].indexOf("java.util.Set") >= 0)) && !(c2 != null && (c2.constructor != null && c2.constructor["__interfaces"] != null && c2.constructor["__interfaces"].indexOf("java.util.Set") >= 0))) {
                     iterating = c2;
                     testing = c1;
                 }
@@ -24530,10 +24789,10 @@ var java;
                 return max;
             };
             Collections.max = function (coll, comp) {
-                if (((coll != null && (coll["__interfaces"] != null && coll["__interfaces"].indexOf("java.util.Collection") >= 0 || coll.constructor != null && coll.constructor["__interfaces"] != null && coll.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || coll === null) && ((typeof comp === 'function' && comp.length === 2) || comp === null)) {
+                if (((coll != null && (coll.constructor != null && coll.constructor["__interfaces"] != null && coll.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || coll === null) && ((typeof comp === 'function' && comp.length === 2) || comp === null)) {
                     return java.util.Collections.max$java_util_Collection$java_util_Comparator(coll, comp);
                 }
-                else if (((coll != null && (coll["__interfaces"] != null && coll["__interfaces"].indexOf("java.util.Collection") >= 0 || coll.constructor != null && coll.constructor["__interfaces"] != null && coll.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || coll === null) && comp === undefined) {
+                else if (((coll != null && (coll.constructor != null && coll.constructor["__interfaces"] != null && coll.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || coll === null) && comp === undefined) {
                     return java.util.Collections.max$java_util_Collection(coll);
                 }
                 else
@@ -24572,7 +24831,7 @@ var java;
                 return modified;
             };
             Collections.reverse = function (l) {
-                if (l != null && (l["__interfaces"] != null && l["__interfaces"].indexOf("java.util.RandomAccess") >= 0 || l.constructor != null && l.constructor["__interfaces"] != null && l.constructor["__interfaces"].indexOf("java.util.RandomAccess") >= 0)) {
+                if (l != null && (l.constructor != null && l.constructor["__interfaces"] != null && l.constructor["__interfaces"].indexOf("java.util.RandomAccess") >= 0)) {
                     for (var iFront = 0, iBack = l.size() - 1; iFront < iBack; ++iFront, --iBack) {
                         {
                             Collections.swap(l, iFront, iBack);
@@ -24641,7 +24900,7 @@ var java;
                 if (normdist < 0) {
                     normdist += size;
                 }
-                if (lst != null && (lst["__interfaces"] != null && lst["__interfaces"].indexOf("java.util.RandomAccess") >= 0 || lst.constructor != null && lst.constructor["__interfaces"] != null && lst.constructor["__interfaces"].indexOf("java.util.RandomAccess") >= 0)) {
+                if (lst != null && (lst.constructor != null && lst.constructor["__interfaces"] != null && lst.constructor["__interfaces"].indexOf("java.util.RandomAccess") >= 0)) {
                     var list = lst;
                     var temp = list.get(0);
                     var index = 0;
@@ -24669,7 +24928,7 @@ var java;
             };
             Collections.shuffle = function (list, rnd) {
                 if (rnd === void 0) { rnd = Collections.RandomHolder.rnd_$LI$(); }
-                if (list != null && (list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.RandomAccess") >= 0 || list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.util.RandomAccess") >= 0)) {
+                if (list != null && (list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.util.RandomAccess") >= 0)) {
                     for (var i = list.size() - 1; i >= 1; i--) {
                         {
                             Collections.swapImpl$java_util_List$int$int(list, i, rnd.nextInt$int(i + 1));
@@ -24717,10 +24976,10 @@ var java;
                 Collections.replaceContents(target, x);
             };
             Collections.sort = function (target, c) {
-                if (((target != null && (target["__interfaces"] != null && target["__interfaces"].indexOf("java.util.List") >= 0 || target.constructor != null && target.constructor["__interfaces"] != null && target.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || target === null) && ((typeof c === 'function' && c.length === 2) || c === null)) {
+                if (((target != null && (target.constructor != null && target.constructor["__interfaces"] != null && target.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || target === null) && ((typeof c === 'function' && c.length === 2) || c === null)) {
                     return java.util.Collections.sort$java_util_List$java_util_Comparator(target, c);
                 }
-                else if (((target != null && (target["__interfaces"] != null && target["__interfaces"].indexOf("java.util.List") >= 0 || target.constructor != null && target.constructor["__interfaces"] != null && target.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || target === null) && c === undefined) {
+                else if (((target != null && (target.constructor != null && target.constructor["__interfaces"] != null && target.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || target === null) && c === undefined) {
                     return java.util.Collections.sort$java_util_List(target);
                 }
                 else
@@ -24733,7 +24992,7 @@ var java;
                 return (new Collections.UnmodifiableCollection(coll));
             };
             Collections.unmodifiableList = function (list) {
-                return (list != null && (list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.RandomAccess") >= 0 || list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.util.RandomAccess") >= 0)) ? (new Collections.UnmodifiableRandomAccessList(list)) : (new Collections.UnmodifiableList(list));
+                return (list != null && (list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.util.RandomAccess") >= 0)) ? (new Collections.UnmodifiableRandomAccessList(list)) : (new Collections.UnmodifiableList(list));
             };
             Collections.unmodifiableMap = function (map) {
                 return (new Collections.UnmodifiableMap(map));
@@ -24775,10 +25034,10 @@ var java;
              * @return {number}
              */
             Collections.hashCode = function (list) {
-                if (((list != null && (list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.List") >= 0 || list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || list === null)) {
+                if (((list != null && (list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || list === null)) {
                     return java.util.Collections.hashCode$java_util_List(list);
                 }
-                else if (((list != null && (list["__interfaces"] != null && list["__interfaces"].indexOf("java.lang.Iterable") >= 0 || list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.lang.Iterable") >= 0)) || list === null)) {
+                else if (((list != null && (list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.lang.Iterable") >= 0)) || list === null)) {
                     return java.util.Collections.hashCode$java_lang_Iterable(list);
                 }
                 else
@@ -24810,7 +25069,7 @@ var java;
                 list.set(j, t);
             };
             Collections.swapImpl = function (list, i, j) {
-                if (((list != null && (list["__interfaces"] != null && list["__interfaces"].indexOf("java.util.List") >= 0 || list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || list === null) && ((typeof i === 'number') || i === null) && ((typeof j === 'number') || j === null)) {
+                if (((list != null && (list.constructor != null && list.constructor["__interfaces"] != null && list.constructor["__interfaces"].indexOf("java.util.List") >= 0)) || list === null) && ((typeof i === 'number') || i === null) && ((typeof j === 'number') || j === null)) {
                     return java.util.Collections.swapImpl$java_util_List$int$int(list, i, j);
                 }
                 else if (((list != null && list instanceof Array && (list.length == 0 || list[0] == null || (list[0] != null))) || list === null) && ((typeof i === 'number') || i === null) && ((typeof j === 'number') || j === null)) {
@@ -24839,8 +25098,9 @@ var java;
                 __extends(LifoQueue, _super);
                 function LifoQueue(deque) {
                     var _this = _super.call(this) || this;
-                    if (_this.deque === undefined)
+                    if (_this.deque === undefined) {
                         _this.deque = null;
+                    }
                     _this.deque = deque;
                     return _this;
                 }
@@ -24958,8 +25218,9 @@ var java;
                     }
                     ;
                 };
-                EmptyListIterator.INSTANCE_$LI$ = function () { if (EmptyListIterator.INSTANCE == null)
-                    EmptyListIterator.INSTANCE = new Collections.EmptyListIterator(); return EmptyListIterator.INSTANCE; };
+                EmptyListIterator.INSTANCE_$LI$ = function () { if (EmptyListIterator.INSTANCE == null) {
+                    EmptyListIterator.INSTANCE = new Collections.EmptyListIterator();
+                } return EmptyListIterator.INSTANCE; };
                 ;
                 /**
                  *
@@ -25125,8 +25386,9 @@ var java;
             var ReverseComparator = /** @class */ (function () {
                 function ReverseComparator() {
                 }
-                ReverseComparator.INSTANCE_$LI$ = function () { if (ReverseComparator.INSTANCE == null)
-                    ReverseComparator.INSTANCE = new Collections.ReverseComparator(); return ReverseComparator.INSTANCE; };
+                ReverseComparator.INSTANCE_$LI$ = function () { if (ReverseComparator.INSTANCE == null) {
+                    ReverseComparator.INSTANCE = new Collections.ReverseComparator();
+                } return ReverseComparator.INSTANCE; };
                 ;
                 ReverseComparator.prototype.compare$java_lang_Comparable$java_lang_Comparable = function (o1, o2) {
                     return o2.compareTo(o1);
@@ -25138,7 +25400,7 @@ var java;
                  * @return {number}
                  */
                 ReverseComparator.prototype.compare = function (o1, o2) {
-                    if (((o1 != null && (o1["__interfaces"] != null && o1["__interfaces"].indexOf("java.lang.Comparable") >= 0 || o1.constructor != null && o1.constructor["__interfaces"] != null && o1.constructor["__interfaces"].indexOf("java.lang.Comparable") >= 0)) || o1 === null) && ((o2 != null && (o2["__interfaces"] != null && o2["__interfaces"].indexOf("java.lang.Comparable") >= 0 || o2.constructor != null && o2.constructor["__interfaces"] != null && o2.constructor["__interfaces"].indexOf("java.lang.Comparable") >= 0)) || o2 === null)) {
+                    if (((o1 != null && (o1.constructor != null && o1.constructor["__interfaces"] != null && o1.constructor["__interfaces"].indexOf("java.lang.Comparable") >= 0)) || o1 === null) && ((o2 != null && (o2.constructor != null && o2.constructor["__interfaces"] != null && o2.constructor["__interfaces"].indexOf("java.lang.Comparable") >= 0)) || o2 === null)) {
                         return this.compare$java_lang_Comparable$java_lang_Comparable(o1, o2);
                     }
                     else
@@ -25153,10 +25415,12 @@ var java;
                 __extends(SetFromMap, _super);
                 function SetFromMap(map) {
                     var _this = _super.call(this) || this;
-                    if (_this.backingMap === undefined)
+                    if (_this.backingMap === undefined) {
                         _this.backingMap = null;
-                    if (_this.__keySet === undefined)
+                    }
+                    if (_this.__keySet === undefined) {
                         _this.__keySet = null;
+                    }
                     _this.backingMap = map;
                     return _this;
                 }
@@ -25256,8 +25520,9 @@ var java;
                 __extends(SingletonList, _super);
                 function SingletonList(element) {
                     var _this = _super.call(this) || this;
-                    if (_this.element === undefined)
+                    if (_this.element === undefined) {
                         _this.element = null;
+                    }
                     _this.element = element;
                     return _this;
                 }
@@ -25292,15 +25557,37 @@ var java;
             SingletonList["__interfaces"] = ["java.util.List", "java.util.Collection", "java.lang.Iterable", "java.io.Serializable"];
             var UnmodifiableCollection = /** @class */ (function () {
                 function UnmodifiableCollection(coll) {
-                    if (this.coll === undefined)
+                    if (this.coll === undefined) {
                         this.coll = null;
+                    }
                     this.coll = coll;
                 }
+                /* Default method injected from java.util.Collection */
+                UnmodifiableCollection.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
+                /* Default method injected from java.lang.Iterable */
+                UnmodifiableCollection.prototype.forEach = function (action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    var _loop_25 = function (index184) {
+                        var t = index184.next();
+                        {
+                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                        }
+                    };
+                    for (var index184 = this.iterator(); index184.hasNext();) {
+                        _loop_25(index184);
+                    }
+                };
+                /* Default method injected from java.util.Collection */
+                UnmodifiableCollection.prototype.parallelStream = function () {
+                    return this.stream();
+                };
                 /* Default method injected from java.util.Collection */
                 UnmodifiableCollection.prototype.removeIf = function (filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     var removed = false;
-                    var _loop_23 = function (it) {
+                    var _loop_26 = function (it) {
                         {
                             if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                                 it.remove();
@@ -25310,30 +25597,9 @@ var java;
                         ;
                     };
                     for (var it = this.iterator(); it.hasNext();) {
-                        _loop_23(it);
+                        _loop_26(it);
                     }
                     return removed;
-                };
-                /* Default method injected from java.util.Collection */
-                UnmodifiableCollection.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
-                /* Default method injected from java.util.Collection */
-                UnmodifiableCollection.prototype.parallelStream = function () {
-                    return this.stream();
-                };
-                /* Default method injected from java.lang.Iterable */
-                UnmodifiableCollection.prototype.forEach = function (action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_24 = function (index184) {
-                        var t = index184.next();
-                        {
-                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                        }
-                    };
-                    for (var index184 = this.iterator(); index184.hasNext();) {
-                        _loop_24(index184);
-                    }
                 };
                 /**
                  *
@@ -25453,8 +25719,9 @@ var java;
             UnmodifiableCollection["__interfaces"] = ["java.util.Collection", "java.lang.Iterable"];
             var UnmodifiableCollectionIterator = /** @class */ (function () {
                 function UnmodifiableCollectionIterator(it) {
-                    if (this.it === undefined)
+                    if (this.it === undefined) {
                         this.it = null;
+                    }
                     this.it = it;
                 }
                 /* Default method injected from java.util.Iterator */
@@ -25496,8 +25763,9 @@ var java;
             var RandomHolder = /** @class */ (function () {
                 function RandomHolder() {
                 }
-                RandomHolder.rnd_$LI$ = function () { if (RandomHolder.rnd == null)
-                    RandomHolder.rnd = new java.util.Random(); return RandomHolder.rnd; };
+                RandomHolder.rnd_$LI$ = function () { if (RandomHolder.rnd == null) {
+                    RandomHolder.rnd = new java.util.Random();
+                } return RandomHolder.rnd; };
                 ;
                 return RandomHolder;
             }());
@@ -25507,32 +25775,28 @@ var java;
                 __extends(UnmodifiableList, _super);
                 function UnmodifiableList(list) {
                     var _this = _super.call(this, list) || this;
-                    if (_this.list === undefined)
+                    if (_this.list === undefined) {
                         _this.list = null;
+                    }
                     _this.list = list;
                     return _this;
                 }
                 /* Default method injected from java.util.Collection */
-                UnmodifiableList.prototype.removeIf = function (filter) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((filter));
-                    var removed = false;
-                    var _loop_25 = function (it) {
-                        {
-                            if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
-                                it.remove();
-                                removed = true;
-                            }
-                        }
-                        ;
-                    };
-                    for (var it = this.iterator(); it.hasNext();) {
-                        _loop_25(it);
-                    }
-                    return removed;
-                };
-                /* Default method injected from java.util.Collection */
                 UnmodifiableList.prototype.stream = function () {
                     return (new javaemul.internal.stream.StreamHelper(this));
+                };
+                /* Default method injected from java.lang.Iterable */
+                UnmodifiableList.prototype.forEach = function (action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    var _loop_27 = function (index185) {
+                        var t = index185.next();
+                        {
+                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                        }
+                    };
+                    for (var index185 = this.iterator(); index185.hasNext();) {
+                        _loop_27(index185);
+                    }
                 };
                 /* Default method injected from java.util.Collection */
                 UnmodifiableList.prototype.parallelStream = function () {
@@ -25543,26 +25807,31 @@ var java;
                     var a = this.toArray();
                     java.util.Arrays.sort(a, (c));
                     var i = this.listIterator();
-                    for (var index185 = 0; index185 < a.length; index185++) {
-                        var e = a[index185];
+                    for (var index186 = 0; index186 < a.length; index186++) {
+                        var e = a[index186];
                         {
                             i.next();
                             i.set(e);
                         }
                     }
                 };
-                /* Default method injected from java.lang.Iterable */
-                UnmodifiableList.prototype.forEach = function (action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_26 = function (index186) {
-                        var t = index186.next();
+                /* Default method injected from java.util.Collection */
+                UnmodifiableList.prototype.removeIf = function (filter) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                    var removed = false;
+                    var _loop_28 = function (it) {
                         {
-                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                            if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
+                                it.remove();
+                                removed = true;
+                            }
                         }
+                        ;
                     };
-                    for (var index186 = this.iterator(); index186.hasNext();) {
-                        _loop_26(index186);
+                    for (var it = this.iterator(); it.hasNext();) {
+                        _loop_28(it);
                     }
+                    return removed;
                 };
                 UnmodifiableList.prototype.add$int$java_lang_Object = function (index, element) {
                     throw new java.lang.UnsupportedOperationException();
@@ -25592,10 +25861,10 @@ var java;
                  * @return {boolean}
                  */
                 UnmodifiableList.prototype.addAll = function (index, c) {
-                    if (((typeof index === 'number') || index === null) && ((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
+                    if (((typeof index === 'number') || index === null) && ((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                         return this.addAll$int$java_util_Collection(index, c);
                     }
-                    else if (((index != null && (index["__interfaces"] != null && index["__interfaces"].indexOf("java.util.Collection") >= 0 || index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
+                    else if (((index != null && (index.constructor != null && index.constructor["__interfaces"] != null && index.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || index === null) && c === undefined) {
                         return _super.prototype.addAll.call(this, index);
                     }
                     else
@@ -25725,10 +25994,31 @@ var java;
                     return _super.call(this, set) || this;
                 }
                 /* Default method injected from java.util.Collection */
+                UnmodifiableSet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
+                /* Default method injected from java.lang.Iterable */
+                UnmodifiableSet.prototype.forEach = function (action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    var _loop_29 = function (index187) {
+                        var t = index187.next();
+                        {
+                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                        }
+                    };
+                    for (var index187 = this.iterator(); index187.hasNext();) {
+                        _loop_29(index187);
+                    }
+                };
+                /* Default method injected from java.util.Collection */
+                UnmodifiableSet.prototype.parallelStream = function () {
+                    return this.stream();
+                };
+                /* Default method injected from java.util.Collection */
                 UnmodifiableSet.prototype.removeIf = function (filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     var removed = false;
-                    var _loop_27 = function (it) {
+                    var _loop_30 = function (it) {
                         {
                             if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                                 it.remove();
@@ -25738,30 +26028,9 @@ var java;
                         ;
                     };
                     for (var it = this.iterator(); it.hasNext();) {
-                        _loop_27(it);
+                        _loop_30(it);
                     }
                     return removed;
-                };
-                /* Default method injected from java.util.Collection */
-                UnmodifiableSet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
-                /* Default method injected from java.util.Collection */
-                UnmodifiableSet.prototype.parallelStream = function () {
-                    return this.stream();
-                };
-                /* Default method injected from java.lang.Iterable */
-                UnmodifiableSet.prototype.forEach = function (action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_28 = function (index187) {
-                        var t = index187.next();
-                        {
-                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                        }
-                    };
-                    for (var index187 = this.iterator(); index187.hasNext();) {
-                        _loop_28(index187);
-                    }
                 };
                 /**
                  *
@@ -25797,8 +26066,9 @@ var java;
                 __extends(UnmodifiableListIterator, _super);
                 function UnmodifiableListIterator(lit) {
                     var _this = _super.call(this, lit) || this;
-                    if (_this.lit === undefined)
+                    if (_this.lit === undefined) {
                         _this.lit = null;
+                    }
                     _this.lit = lit;
                     return _this;
                 }
@@ -25872,16 +26142,38 @@ var java;
             UnmodifiableRandomAccessList["__interfaces"] = ["java.util.RandomAccess", "java.util.List", "java.util.Collection", "java.lang.Iterable"];
             var UnmodifiableMap = /** @class */ (function () {
                 function UnmodifiableMap(map) {
-                    if (this.__entrySet === undefined)
+                    if (this.__entrySet === undefined) {
                         this.__entrySet = null;
-                    if (this.__keySet === undefined)
+                    }
+                    if (this.__keySet === undefined) {
                         this.__keySet = null;
-                    if (this.map === undefined)
+                    }
+                    if (this.map === undefined) {
                         this.map = null;
-                    if (this.__values === undefined)
+                    }
+                    if (this.__values === undefined) {
                         this.__values = null;
+                    }
                     this.map = map;
                 }
+                /* Default method injected from java.util.Map */
+                UnmodifiableMap.prototype.putIfAbsent = function (key, value) {
+                    var v = this.get(key);
+                    if (v == null) {
+                        v = this.put(key, value);
+                    }
+                    return v;
+                };
+                /* Default method injected from java.util.Map */
+                UnmodifiableMap.prototype.computeIfAbsent = function (key, mappingFunction) {
+                    var result;
+                    if ((result = this.get(key)) == null) {
+                        result = (function (target) { return (typeof target === 'function') ? target(key) : target.apply(key); })(mappingFunction);
+                        if (result != null)
+                            this.put(key, result);
+                    }
+                    return result;
+                };
                 /* Default method injected from java.util.Map */
                 UnmodifiableMap.prototype.merge = function (key, value, map) {
                     var old = this.get(key);
@@ -25900,17 +26192,9 @@ var java;
                     return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
                 };
                 /* Default method injected from java.util.Map */
-                UnmodifiableMap.prototype.putIfAbsent = function (key, value) {
-                    var v = this.get(key);
-                    if (v == null) {
-                        v = this.put(key, value);
-                    }
-                    return v;
-                };
-                /* Default method injected from java.util.Map */
                 UnmodifiableMap.prototype.replaceAll = function (__function) {
                     java.util.Objects.requireNonNull((__function));
-                    var _loop_29 = function (index188) {
+                    var _loop_31 = function (index188) {
                         var entry = index188.next();
                         {
                             var k_3;
@@ -25934,18 +26218,8 @@ var java;
                         }
                     };
                     for (var index188 = this.entrySet().iterator(); index188.hasNext();) {
-                        _loop_29(index188);
+                        _loop_31(index188);
                     }
-                };
-                /* Default method injected from java.util.Map */
-                UnmodifiableMap.prototype.computeIfAbsent = function (key, mappingFunction) {
-                    var result;
-                    if ((result = this.get(key)) == null) {
-                        result = (function (target) { return (typeof target === 'function') ? target(key) : target.apply(key); })(mappingFunction);
-                        if (result != null)
-                            this.put(key, result);
-                    }
-                    return result;
                 };
                 /**
                  *
@@ -26162,8 +26436,9 @@ var java;
                 (function (UnmodifiableEntrySet) {
                     var UnmodifiableEntry = /** @class */ (function () {
                         function UnmodifiableEntry(entry) {
-                            if (this.entry === undefined)
+                            if (this.entry === undefined) {
                                 this.entry = null;
+                            }
                             this.entry = entry;
                         }
                         /**
@@ -26271,16 +26546,38 @@ var java;
                 __extends(UnmodifiableSortedSet, _super);
                 function UnmodifiableSortedSet(sortedSet) {
                     var _this = _super.call(this, sortedSet) || this;
-                    if (_this.sortedSet === undefined)
+                    if (_this.sortedSet === undefined) {
                         _this.sortedSet = null;
+                    }
                     _this.sortedSet = sortedSet;
                     return _this;
                 }
                 /* Default method injected from java.util.Collection */
+                UnmodifiableSortedSet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
+                /* Default method injected from java.lang.Iterable */
+                UnmodifiableSortedSet.prototype.forEach = function (action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    var _loop_32 = function (index189) {
+                        var t = index189.next();
+                        {
+                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                        }
+                    };
+                    for (var index189 = this.iterator(); index189.hasNext();) {
+                        _loop_32(index189);
+                    }
+                };
+                /* Default method injected from java.util.Collection */
+                UnmodifiableSortedSet.prototype.parallelStream = function () {
+                    return this.stream();
+                };
+                /* Default method injected from java.util.Collection */
                 UnmodifiableSortedSet.prototype.removeIf = function (filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull((filter));
                     var removed = false;
-                    var _loop_30 = function (it) {
+                    var _loop_33 = function (it) {
                         {
                             if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                                 it.remove();
@@ -26290,30 +26587,9 @@ var java;
                         ;
                     };
                     for (var it = this.iterator(); it.hasNext();) {
-                        _loop_30(it);
+                        _loop_33(it);
                     }
                     return removed;
-                };
-                /* Default method injected from java.util.Collection */
-                UnmodifiableSortedSet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
-                /* Default method injected from java.util.Collection */
-                UnmodifiableSortedSet.prototype.parallelStream = function () {
-                    return this.stream();
-                };
-                /* Default method injected from java.lang.Iterable */
-                UnmodifiableSortedSet.prototype.forEach = function (action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_31 = function (index189) {
-                        var t = index189.next();
-                        {
-                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                        }
-                    };
-                    for (var index189 = this.iterator(); index189.hasNext();) {
-                        _loop_31(index189);
-                    }
                 };
                 /**
                  *
@@ -26395,11 +26671,30 @@ var java;
                 __extends(UnmodifiableSortedMap, _super);
                 function UnmodifiableSortedMap(sortedMap) {
                     var _this = _super.call(this, sortedMap) || this;
-                    if (_this.sortedMap === undefined)
+                    if (_this.sortedMap === undefined) {
                         _this.sortedMap = null;
+                    }
                     _this.sortedMap = sortedMap;
                     return _this;
                 }
+                /* Default method injected from java.util.Map */
+                UnmodifiableSortedMap.prototype.putIfAbsent = function (key, value) {
+                    var v = this.get(key);
+                    if (v == null) {
+                        v = this.put(key, value);
+                    }
+                    return v;
+                };
+                /* Default method injected from java.util.Map */
+                UnmodifiableSortedMap.prototype.computeIfAbsent = function (key, mappingFunction) {
+                    var result;
+                    if ((result = this.get(key)) == null) {
+                        result = (function (target) { return (typeof target === 'function') ? target(key) : target.apply(key); })(mappingFunction);
+                        if (result != null)
+                            this.put(key, result);
+                    }
+                    return result;
+                };
                 /* Default method injected from java.util.Map */
                 UnmodifiableSortedMap.prototype.merge = function (key, value, map) {
                     var old = this.get(key);
@@ -26418,17 +26713,9 @@ var java;
                     return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
                 };
                 /* Default method injected from java.util.Map */
-                UnmodifiableSortedMap.prototype.putIfAbsent = function (key, value) {
-                    var v = this.get(key);
-                    if (v == null) {
-                        v = this.put(key, value);
-                    }
-                    return v;
-                };
-                /* Default method injected from java.util.Map */
                 UnmodifiableSortedMap.prototype.replaceAll = function (__function) {
                     java.util.Objects.requireNonNull((__function));
-                    var _loop_32 = function (index190) {
+                    var _loop_34 = function (index190) {
                         var entry = index190.next();
                         {
                             var k_4;
@@ -26452,18 +26739,8 @@ var java;
                         }
                     };
                     for (var index190 = this.entrySet().iterator(); index190.hasNext();) {
-                        _loop_32(index190);
+                        _loop_34(index190);
                     }
-                };
-                /* Default method injected from java.util.Map */
-                UnmodifiableSortedMap.prototype.computeIfAbsent = function (key, mappingFunction) {
-                    var result;
-                    if ((result = this.get(key)) == null) {
-                        result = (function (target) { return (typeof target === 'function') ? target(key) : target.apply(key); })(mappingFunction);
-                        if (result != null)
-                            this.put(key, result);
-                    }
-                    return result;
                 };
                 /**
                  *
@@ -26589,13 +26866,11 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, (new java.util.LinkedHashMap(ignored, alsoIgnored))) || this;
                 }
-                else if (((ignored != null && (ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Collection") >= 0 || ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || ignored === null) && alsoIgnored === undefined) {
+                else if (((ignored != null && (ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || ignored === null) && alsoIgnored === undefined) {
                     var __args = arguments;
-                    var c_7 = __args[0];
+                    var c = __args[0];
                     _this = _super.call(this, (new java.util.LinkedHashMap())) || this;
-                    (function () {
-                        _this.addAll(c_7);
-                    })();
+                    _this.addAll(c);
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
                     var __args = arguments;
@@ -26610,10 +26885,31 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Collection */
+            LinkedHashSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.lang.Iterable */
+            LinkedHashSet.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                var _loop_35 = function (index191) {
+                    var t = index191.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index191 = this.iterator(); index191.hasNext();) {
+                    _loop_35(index191);
+                }
+            };
+            /* Default method injected from java.util.Collection */
+            LinkedHashSet.prototype.parallelStream = function () {
+                return this.stream();
+            };
+            /* Default method injected from java.util.Collection */
             LinkedHashSet.prototype.removeIf = function (filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull((filter));
                 var removed = false;
-                var _loop_33 = function (it) {
+                var _loop_36 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -26623,30 +26919,9 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_33(it);
+                    _loop_36(it);
                 }
                 return removed;
-            };
-            /* Default method injected from java.util.Collection */
-            LinkedHashSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.Collection */
-            LinkedHashSet.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.lang.Iterable */
-            LinkedHashSet.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_34 = function (index191) {
-                    var t = index191.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index191 = this.iterator(); index191.hasNext();) {
-                    _loop_34(index191);
-                }
             };
             /**
              *
@@ -26745,82 +27020,65 @@ var java;
             __extends(LinkedList, _super);
             function LinkedList(c) {
                 var _this = this;
-                if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Collection") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
+                if (((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || c === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.exposeElement === undefined)
+                    if (_this.exposeElement === undefined) {
                         _this.exposeElement = null;
-                    if (_this.header === undefined)
+                    }
+                    if (_this.header === undefined) {
                         _this.header = null;
-                    if (_this.tail === undefined)
+                    }
+                    if (_this.tail === undefined) {
                         _this.tail = null;
-                    if (_this.__size === undefined)
+                    }
+                    if (_this.__size === undefined) {
                         _this.__size = 0;
-                    if (_this.exposeElement === undefined)
-                        _this.exposeElement = null;
-                    if (_this.header === undefined)
-                        _this.header = null;
-                    if (_this.tail === undefined)
-                        _this.tail = null;
-                    if (_this.__size === undefined)
-                        _this.__size = 0;
-                    (function () {
-                        _this.header = (new LinkedList.Node());
-                        _this.tail = (new LinkedList.Node());
-                        _this.reset();
-                        _this.addAll(c);
-                    })();
+                    }
+                    _this.header = (new LinkedList.Node());
+                    _this.tail = (new LinkedList.Node());
+                    _this.reset();
+                    _this.addAll(c);
                 }
                 else if (c === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.exposeElement === undefined)
+                    if (_this.exposeElement === undefined) {
                         _this.exposeElement = null;
-                    if (_this.header === undefined)
+                    }
+                    if (_this.header === undefined) {
                         _this.header = null;
-                    if (_this.tail === undefined)
+                    }
+                    if (_this.tail === undefined) {
                         _this.tail = null;
-                    if (_this.__size === undefined)
+                    }
+                    if (_this.__size === undefined) {
                         _this.__size = 0;
-                    if (_this.exposeElement === undefined)
-                        _this.exposeElement = null;
-                    if (_this.header === undefined)
-                        _this.header = null;
-                    if (_this.tail === undefined)
-                        _this.tail = null;
-                    if (_this.__size === undefined)
-                        _this.__size = 0;
-                    (function () {
-                        _this.header = (new LinkedList.Node());
-                        _this.tail = (new LinkedList.Node());
-                        _this.reset();
-                    })();
+                    }
+                    _this.header = (new LinkedList.Node());
+                    _this.tail = (new LinkedList.Node());
+                    _this.reset();
                 }
                 else
                     throw new Error('invalid overload');
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            LinkedList.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
-                var removed = false;
-                var _loop_35 = function (it) {
-                    {
-                        if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
-                            it.remove();
-                            removed = true;
-                        }
-                    }
-                    ;
-                };
-                for (var it = this.iterator(); it.hasNext();) {
-                    _loop_35(it);
-                }
-                return removed;
-            };
-            /* Default method injected from java.util.Collection */
             LinkedList.prototype.stream = function () {
                 return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.lang.Iterable */
+            LinkedList.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                var _loop_37 = function (index192) {
+                    var t = index192.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index192 = this.iterator(); index192.hasNext();) {
+                    _loop_37(index192);
+                }
             };
             /* Default method injected from java.util.Collection */
             LinkedList.prototype.parallelStream = function () {
@@ -26831,26 +27089,31 @@ var java;
                 var a = this.toArray();
                 java.util.Arrays.sort(a, (c));
                 var i = this.listIterator();
-                for (var index192 = 0; index192 < a.length; index192++) {
-                    var e = a[index192];
+                for (var index193 = 0; index193 < a.length; index193++) {
+                    var e = a[index193];
                     {
                         i.next();
                         i.set(e);
                     }
                 }
             };
-            /* Default method injected from java.lang.Iterable */
-            LinkedList.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_36 = function (index193) {
-                    var t = index193.next();
+            /* Default method injected from java.util.Collection */
+            LinkedList.prototype.removeIf = function (filter) {
+                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                var removed = false;
+                var _loop_38 = function (it) {
                     {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                        if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
+                            it.remove();
+                            removed = true;
+                        }
                     }
+                    ;
                 };
-                for (var index193 = this.iterator(); index193.hasNext();) {
-                    _loop_36(index193);
+                for (var it = this.iterator(); it.hasNext();) {
+                    _loop_38(it);
                 }
+                return removed;
             };
             /**
              *
@@ -27193,10 +27456,12 @@ var java;
             var ListIteratorImpl2 = /** @class */ (function () {
                 function ListIteratorImpl2(__parent, index, startNode) {
                     this.__parent = __parent;
-                    if (this.currentIndex === undefined)
+                    if (this.currentIndex === undefined) {
                         this.currentIndex = 0;
-                    if (this.currentNode === undefined)
+                    }
+                    if (this.currentNode === undefined) {
                         this.currentNode = null;
+                    }
                     this.lastNode = null;
                     this.currentNode = startNode;
                     this.currentIndex = index;
@@ -27307,12 +27572,15 @@ var java;
              */
             var Node = /** @class */ (function () {
                 function Node() {
-                    if (this.next === undefined)
+                    if (this.next === undefined) {
                         this.next = null;
-                    if (this.prev === undefined)
+                    }
+                    if (this.prev === undefined) {
                         this.prev = null;
-                    if (this.value === undefined)
+                    }
+                    if (this.value === undefined) {
                         this.value = null;
+                    }
                 }
                 return Node;
             }());
@@ -27331,12 +27599,10 @@ var java;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
-                    Object.setPrototypeOf(_this, InputMismatchException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, InputMismatchException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -27378,31 +27644,26 @@ var java;
                     if (((typeof desc === 'string') || desc === null) && ((typeof pattern === 'string') || pattern === null) && ((typeof index === 'number') || index === null)) {
                         var __args = arguments;
                         {
-                            var __args_36 = arguments;
+                            var __args_37 = arguments;
                             var throwable = PatternSyntaxException.createSyntaxError(desc, index);
                             _this = _super.call(this, throwable) || this;
-                            if (_this.pattern === undefined)
+                            if (_this.pattern === undefined) {
                                 _this.pattern = null;
-                            Object.setPrototypeOf(_this, PatternSyntaxException.prototype);
-                            if (_this.pattern === undefined)
-                                _this.pattern = null;
-                            (function () {
-                                _this.pattern = pattern;
-                            })();
+                            }
+                            _this.pattern = pattern;
+                        }
+                        if (_this.pattern === undefined) {
+                            _this.pattern = null;
                         }
                     }
                     else if (((desc != null && desc instanceof Error) || desc === null) && ((typeof pattern === 'string') || pattern === null) && index === undefined) {
                         var __args = arguments;
                         var throwable = __args[0];
                         _this = _super.call(this, throwable) || this;
-                        if (_this.pattern === undefined)
+                        if (_this.pattern === undefined) {
                             _this.pattern = null;
-                        Object.setPrototypeOf(_this, PatternSyntaxException.prototype);
-                        if (_this.pattern === undefined)
-                            _this.pattern = null;
-                        (function () {
-                            _this.pattern = pattern;
-                        })();
+                        }
+                        _this.pattern = pattern;
                     }
                     else
                         throw new Error('invalid overload');
@@ -27455,12 +27716,10 @@ var java;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
-                    Object.setPrototypeOf(_this, NumberFormatException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, NumberFormatException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -27498,8 +27757,9 @@ var java;
                 function IllegalCharsetNameException(charsetName) {
                     var _this = _super.call(this, /* valueOf */ new String(charsetName).toString()) || this;
                     Object.setPrototypeOf(_this, IllegalCharsetNameException.prototype);
-                    if (_this.charsetName === undefined)
+                    if (_this.charsetName === undefined) {
                         _this.charsetName = null;
+                    }
                     _this.charsetName = charsetName;
                     return _this;
                 }
@@ -27530,8 +27790,9 @@ var java;
                 function UnsupportedCharsetException(charsetName) {
                     var _this = _super.call(this, /* valueOf */ new String(charsetName).toString()) || this;
                     Object.setPrototypeOf(_this, UnsupportedCharsetException.prototype);
-                    if (_this.charsetName === undefined)
+                    if (_this.charsetName === undefined) {
                         _this.charsetName = null;
+                    }
                     _this.charsetName = charsetName;
                     return _this;
                 }
@@ -27581,18 +27842,15 @@ var java;
                 if (((typeof message === 'string') || message === null)) {
                     var __args = arguments;
                     _this = _super.call(this, message) || this;
-                    Object.setPrototypeOf(_this, StringIndexOutOfBoundsException.prototype);
                 }
                 else if (((typeof message === 'number') || message === null)) {
                     var __args = arguments;
                     var index = __args[0];
                     _this = _super.call(this, "String index out of range: " + index) || this;
-                    Object.setPrototypeOf(_this, StringIndexOutOfBoundsException.prototype);
                 }
                 else if (message === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, StringIndexOutOfBoundsException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -27626,18 +27884,15 @@ var java;
                 if (((typeof msg === 'string') || msg === null)) {
                     var __args = arguments;
                     _this = _super.call(this, msg) || this;
-                    Object.setPrototypeOf(_this, ArrayIndexOutOfBoundsException.prototype);
                 }
                 else if (((typeof msg === 'number') || msg === null)) {
                     var __args = arguments;
                     var index = __args[0];
                     _this = _super.call(this, "Array index " + index + " out of range") || this;
-                    Object.setPrototypeOf(_this, ArrayIndexOutOfBoundsException.prototype);
                 }
                 else if (msg === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    Object.setPrototypeOf(_this, ArrayIndexOutOfBoundsException.prototype);
                 }
                 else
                     throw new Error('invalid overload');
@@ -27668,47 +27923,59 @@ var java;
             __extends(IdentityHashMap, _super);
             function IdentityHashMap(toBeCopied) {
                 var _this = this;
-                if (((toBeCopied != null && (toBeCopied["__interfaces"] != null && toBeCopied["__interfaces"].indexOf("java.util.Map") >= 0 || toBeCopied.constructor != null && toBeCopied.constructor["__interfaces"] != null && toBeCopied.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || toBeCopied === null)) {
+                if (((toBeCopied != null && (toBeCopied.constructor != null && toBeCopied.constructor["__interfaces"] != null && toBeCopied.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || toBeCopied === null)) {
                     var __args = arguments;
                     _this = _super.call(this, toBeCopied) || this;
-                    if (_this.exposeKey === undefined)
+                    if (_this.exposeKey === undefined) {
                         _this.exposeKey = null;
-                    if (_this.exposeValue === undefined)
+                    }
+                    if (_this.exposeValue === undefined) {
                         _this.exposeValue = null;
-                    if (_this.exposeKey === undefined)
-                        _this.exposeKey = null;
-                    if (_this.exposeValue === undefined)
-                        _this.exposeValue = null;
+                    }
                 }
                 else if (((typeof toBeCopied === 'number') || toBeCopied === null)) {
                     var __args = arguments;
                     var ignored = __args[0];
                     _this = _super.call(this, ignored) || this;
-                    if (_this.exposeKey === undefined)
+                    if (_this.exposeKey === undefined) {
                         _this.exposeKey = null;
-                    if (_this.exposeValue === undefined)
+                    }
+                    if (_this.exposeValue === undefined) {
                         _this.exposeValue = null;
-                    if (_this.exposeKey === undefined)
-                        _this.exposeKey = null;
-                    if (_this.exposeValue === undefined)
-                        _this.exposeValue = null;
+                    }
                 }
                 else if (toBeCopied === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.exposeKey === undefined)
+                    if (_this.exposeKey === undefined) {
                         _this.exposeKey = null;
-                    if (_this.exposeValue === undefined)
+                    }
+                    if (_this.exposeValue === undefined) {
                         _this.exposeValue = null;
-                    if (_this.exposeKey === undefined)
-                        _this.exposeKey = null;
-                    if (_this.exposeValue === undefined)
-                        _this.exposeValue = null;
+                    }
                 }
                 else
                     throw new Error('invalid overload');
                 return _this;
             }
+            /* Default method injected from java.util.Map */
+            IdentityHashMap.prototype.putIfAbsent = function (key, value) {
+                var v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
+            };
+            /* Default method injected from java.util.Map */
+            IdentityHashMap.prototype.computeIfAbsent = function (key, mappingFunction) {
+                var result;
+                if ((result = this.get(key)) == null) {
+                    result = (function (target) { return (typeof target === 'function') ? target(key) : target.apply(key); })(mappingFunction);
+                    if (result != null)
+                        this.put(key, result);
+                }
+                return result;
+            };
             /* Default method injected from java.util.Map */
             IdentityHashMap.prototype.merge = function (key, value, map) {
                 var old = this.get(key);
@@ -27727,17 +27994,9 @@ var java;
                 return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
             };
             /* Default method injected from java.util.Map */
-            IdentityHashMap.prototype.putIfAbsent = function (key, value) {
-                var v = this.get(key);
-                if (v == null) {
-                    v = this.put(key, value);
-                }
-                return v;
-            };
-            /* Default method injected from java.util.Map */
             IdentityHashMap.prototype.replaceAll = function (__function) {
                 java.util.Objects.requireNonNull((__function));
-                var _loop_37 = function (index194) {
+                var _loop_39 = function (index194) {
                     var entry = index194.next();
                     {
                         var k_5;
@@ -27761,18 +28020,8 @@ var java;
                     }
                 };
                 for (var index194 = this.entrySet().iterator(); index194.hasNext();) {
-                    _loop_37(index194);
+                    _loop_39(index194);
                 }
-            };
-            /* Default method injected from java.util.Map */
-            IdentityHashMap.prototype.computeIfAbsent = function (key, mappingFunction) {
-                var result;
-                if ((result = this.get(key)) == null) {
-                    result = (function (target) { return (typeof target === 'function') ? target(key) : target.apply(key); })(mappingFunction);
-                    if (result != null)
-                        this.put(key, result);
-                }
-                return result;
             };
             IdentityHashMap.prototype.clone = function () {
                 return (new IdentityHashMap(this));
@@ -27786,7 +28035,7 @@ var java;
                 if (obj === this) {
                     return true;
                 }
-                if (!(obj != null && (obj["__interfaces"] != null && obj["__interfaces"].indexOf("java.util.Map") >= 0 || obj.constructor != null && obj.constructor["__interfaces"] != null && obj.constructor["__interfaces"].indexOf("java.util.Map") >= 0))) {
+                if (!(obj != null && (obj.constructor != null && obj.constructor["__interfaces"] != null && obj.constructor["__interfaces"].indexOf("java.util.Map") >= 0))) {
                     return false;
                 }
                 var otherMap = obj;
@@ -27869,51 +28118,43 @@ var java;
                 if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null)) {
                     var __args = arguments;
                     _this = _super.call(this, ignored, alsoIgnored) || this;
-                    if (_this.exposeKey === undefined)
+                    if (_this.exposeKey === undefined) {
                         _this.exposeKey = null;
-                    if (_this.exposeValue === undefined)
+                    }
+                    if (_this.exposeValue === undefined) {
                         _this.exposeValue = null;
-                    if (_this.exposeKey === undefined)
-                        _this.exposeKey = null;
-                    if (_this.exposeValue === undefined)
-                        _this.exposeValue = null;
+                    }
                 }
-                else if (((ignored != null && (ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0 || ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || ignored === null) && alsoIgnored === undefined) {
+                else if (((ignored != null && (ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || ignored === null) && alsoIgnored === undefined) {
                     var __args = arguments;
                     var toBeCopied = __args[0];
                     _this = _super.call(this, toBeCopied) || this;
-                    if (_this.exposeKey === undefined)
+                    if (_this.exposeKey === undefined) {
                         _this.exposeKey = null;
-                    if (_this.exposeValue === undefined)
+                    }
+                    if (_this.exposeValue === undefined) {
                         _this.exposeValue = null;
-                    if (_this.exposeKey === undefined)
-                        _this.exposeKey = null;
-                    if (_this.exposeValue === undefined)
-                        _this.exposeValue = null;
+                    }
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, ignored) || this;
-                    if (_this.exposeKey === undefined)
+                    if (_this.exposeKey === undefined) {
                         _this.exposeKey = null;
-                    if (_this.exposeValue === undefined)
+                    }
+                    if (_this.exposeValue === undefined) {
                         _this.exposeValue = null;
-                    if (_this.exposeKey === undefined)
-                        _this.exposeKey = null;
-                    if (_this.exposeValue === undefined)
-                        _this.exposeValue = null;
+                    }
                 }
                 else if (ignored === undefined && alsoIgnored === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.exposeKey === undefined)
+                    if (_this.exposeKey === undefined) {
                         _this.exposeKey = null;
-                    if (_this.exposeValue === undefined)
+                    }
+                    if (_this.exposeValue === undefined) {
                         _this.exposeValue = null;
-                    if (_this.exposeKey === undefined)
-                        _this.exposeKey = null;
-                    if (_this.exposeValue === undefined)
-                        _this.exposeValue = null;
+                    }
                 }
                 else
                     throw new Error('invalid overload');
@@ -27974,165 +28215,201 @@ var java;
                 if (((typeof c === 'function' && c.length === 2) || c === null)) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.cmp === undefined)
+                    if (_this.cmp === undefined) {
                         _this.cmp = null;
-                    if (_this.exposeKeyType === undefined)
-                        _this.exposeKeyType = null;
-                    if (_this.exposeValueType === undefined)
-                        _this.exposeValueType = null;
-                    if (_this.root === undefined)
-                        _this.root = null;
-                    if (_this.__size === undefined)
-                        _this.__size = 0;
-                    if (_this.cmp === undefined)
-                        _this.cmp = null;
-                    if (_this.exposeKeyType === undefined)
-                        _this.exposeKeyType = null;
-                    if (_this.exposeValueType === undefined)
-                        _this.exposeValueType = null;
-                    if (_this.root === undefined)
-                        _this.root = null;
-                    if (_this.__size === undefined)
-                        _this.__size = 0;
-                    (function () {
-                        _this.root = null;
-                        if (c == null) {
-                            c = (java.util.Comparators.natural());
-                        }
-                        _this.cmp = (c);
-                    })();
-                }
-                else if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.SortedMap") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.SortedMap") >= 0)) || c === null)) {
-                    var __args = arguments;
-                    var map_3 = __args[0];
-                    {
-                        var __args_37 = arguments;
-                        var c_8 = javaemul.internal.InternalPreconditions.checkNotNull(map_3).comparator();
-                        _this = _super.call(this) || this;
-                        if (_this.cmp === undefined)
-                            _this.cmp = null;
-                        if (_this.exposeKeyType === undefined)
-                            _this.exposeKeyType = null;
-                        if (_this.exposeValueType === undefined)
-                            _this.exposeValueType = null;
-                        if (_this.root === undefined)
-                            _this.root = null;
-                        if (_this.__size === undefined)
-                            _this.__size = 0;
-                        if (_this.cmp === undefined)
-                            _this.cmp = null;
-                        if (_this.exposeKeyType === undefined)
-                            _this.exposeKeyType = null;
-                        if (_this.exposeValueType === undefined)
-                            _this.exposeValueType = null;
-                        if (_this.root === undefined)
-                            _this.root = null;
-                        if (_this.__size === undefined)
-                            _this.__size = 0;
-                        (function () {
-                            _this.root = null;
-                            if (c_8 == null) {
-                                c_8 = (java.util.Comparators.natural());
-                            }
-                            _this.cmp = (c_8);
-                        })();
                     }
-                    (function () {
-                        _this.putAll(map_3);
-                    })();
+                    if (_this.exposeKeyType === undefined) {
+                        _this.exposeKeyType = null;
+                    }
+                    if (_this.exposeValueType === undefined) {
+                        _this.exposeValueType = null;
+                    }
+                    if (_this.root === undefined) {
+                        _this.root = null;
+                    }
+                    if (_this.__size === undefined) {
+                        _this.__size = 0;
+                    }
+                    _this.root = null;
+                    if (c == null) {
+                        c = (java.util.Comparators.natural());
+                    }
+                    _this.cmp = (c);
                 }
-                else if (((c != null && (c["__interfaces"] != null && c["__interfaces"].indexOf("java.util.Map") >= 0 || c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || c === null)) {
+                else if (((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.SortedMap") >= 0)) || c === null)) {
                     var __args = arguments;
-                    var map_4 = __args[0];
+                    var map_1 = __args[0];
                     {
                         var __args_38 = arguments;
-                        {
-                            var __args_39 = arguments;
-                            var c_9 = (null);
-                            _this = _super.call(this) || this;
-                            if (_this.cmp === undefined)
-                                _this.cmp = null;
-                            if (_this.exposeKeyType === undefined)
-                                _this.exposeKeyType = null;
-                            if (_this.exposeValueType === undefined)
-                                _this.exposeValueType = null;
-                            if (_this.root === undefined)
-                                _this.root = null;
-                            if (_this.__size === undefined)
-                                _this.__size = 0;
-                            if (_this.cmp === undefined)
-                                _this.cmp = null;
-                            if (_this.exposeKeyType === undefined)
-                                _this.exposeKeyType = null;
-                            if (_this.exposeValueType === undefined)
-                                _this.exposeValueType = null;
-                            if (_this.root === undefined)
-                                _this.root = null;
-                            if (_this.__size === undefined)
-                                _this.__size = 0;
-                            (function () {
-                                _this.root = null;
-                                if (c_9 == null) {
-                                    c_9 = (java.util.Comparators.natural());
-                                }
-                                _this.cmp = (c_9);
-                            })();
+                        var c_5 = javaemul.internal.InternalPreconditions.checkNotNull(map_1).comparator();
+                        _this = _super.call(this) || this;
+                        if (_this.cmp === undefined) {
+                            _this.cmp = null;
                         }
+                        if (_this.exposeKeyType === undefined) {
+                            _this.exposeKeyType = null;
+                        }
+                        if (_this.exposeValueType === undefined) {
+                            _this.exposeValueType = null;
+                        }
+                        if (_this.root === undefined) {
+                            _this.root = null;
+                        }
+                        if (_this.__size === undefined) {
+                            _this.__size = 0;
+                        }
+                        _this.root = null;
+                        if (c_5 == null) {
+                            c_5 = (java.util.Comparators.natural());
+                        }
+                        _this.cmp = (c_5);
+                    }
+                    if (_this.cmp === undefined) {
+                        _this.cmp = null;
+                    }
+                    if (_this.exposeKeyType === undefined) {
+                        _this.exposeKeyType = null;
+                    }
+                    if (_this.exposeValueType === undefined) {
+                        _this.exposeValueType = null;
+                    }
+                    if (_this.root === undefined) {
+                        _this.root = null;
+                    }
+                    if (_this.__size === undefined) {
+                        _this.__size = 0;
                     }
                     (function () {
-                        _this.putAll(map_4);
+                        _this.putAll(map_1);
+                    })();
+                }
+                else if (((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || c === null)) {
+                    var __args = arguments;
+                    var map_2 = __args[0];
+                    {
+                        var __args_39 = arguments;
+                        {
+                            var __args_40 = arguments;
+                            var c_6 = (null);
+                            _this = _super.call(this) || this;
+                            if (_this.cmp === undefined) {
+                                _this.cmp = null;
+                            }
+                            if (_this.exposeKeyType === undefined) {
+                                _this.exposeKeyType = null;
+                            }
+                            if (_this.exposeValueType === undefined) {
+                                _this.exposeValueType = null;
+                            }
+                            if (_this.root === undefined) {
+                                _this.root = null;
+                            }
+                            if (_this.__size === undefined) {
+                                _this.__size = 0;
+                            }
+                            _this.root = null;
+                            if (c_6 == null) {
+                                c_6 = (java.util.Comparators.natural());
+                            }
+                            _this.cmp = (c_6);
+                        }
+                        if (_this.cmp === undefined) {
+                            _this.cmp = null;
+                        }
+                        if (_this.exposeKeyType === undefined) {
+                            _this.exposeKeyType = null;
+                        }
+                        if (_this.exposeValueType === undefined) {
+                            _this.exposeValueType = null;
+                        }
+                        if (_this.root === undefined) {
+                            _this.root = null;
+                        }
+                        if (_this.__size === undefined) {
+                            _this.__size = 0;
+                        }
+                    }
+                    if (_this.cmp === undefined) {
+                        _this.cmp = null;
+                    }
+                    if (_this.exposeKeyType === undefined) {
+                        _this.exposeKeyType = null;
+                    }
+                    if (_this.exposeValueType === undefined) {
+                        _this.exposeValueType = null;
+                    }
+                    if (_this.root === undefined) {
+                        _this.root = null;
+                    }
+                    if (_this.__size === undefined) {
+                        _this.__size = 0;
+                    }
+                    (function () {
+                        _this.putAll(map_2);
                     })();
                 }
                 else if (c === undefined) {
                     var __args = arguments;
                     {
-                        var __args_40 = arguments;
-                        var c_10 = (null);
+                        var __args_41 = arguments;
+                        var c_7 = (null);
                         _this = _super.call(this) || this;
-                        if (_this.cmp === undefined)
+                        if (_this.cmp === undefined) {
                             _this.cmp = null;
-                        if (_this.exposeKeyType === undefined)
+                        }
+                        if (_this.exposeKeyType === undefined) {
                             _this.exposeKeyType = null;
-                        if (_this.exposeValueType === undefined)
+                        }
+                        if (_this.exposeValueType === undefined) {
                             _this.exposeValueType = null;
-                        if (_this.root === undefined)
+                        }
+                        if (_this.root === undefined) {
                             _this.root = null;
-                        if (_this.__size === undefined)
+                        }
+                        if (_this.__size === undefined) {
                             _this.__size = 0;
-                        if (_this.cmp === undefined)
-                            _this.cmp = null;
-                        if (_this.exposeKeyType === undefined)
-                            _this.exposeKeyType = null;
-                        if (_this.exposeValueType === undefined)
-                            _this.exposeValueType = null;
-                        if (_this.root === undefined)
-                            _this.root = null;
-                        if (_this.__size === undefined)
-                            _this.__size = 0;
-                        (function () {
-                            _this.root = null;
-                            if (c_10 == null) {
-                                c_10 = (java.util.Comparators.natural());
-                            }
-                            _this.cmp = (c_10);
-                        })();
+                        }
+                        _this.root = null;
+                        if (c_7 == null) {
+                            c_7 = (java.util.Comparators.natural());
+                        }
+                        _this.cmp = (c_7);
+                    }
+                    if (_this.cmp === undefined) {
+                        _this.cmp = null;
+                    }
+                    if (_this.exposeKeyType === undefined) {
+                        _this.exposeKeyType = null;
+                    }
+                    if (_this.exposeValueType === undefined) {
+                        _this.exposeValueType = null;
+                    }
+                    if (_this.root === undefined) {
+                        _this.root = null;
+                    }
+                    if (_this.__size === undefined) {
+                        _this.__size = 0;
                     }
                 }
                 else
                     throw new Error('invalid overload');
                 return _this;
             }
-            TreeMap.SubMapType_All_$LI$ = function () { if (TreeMap.SubMapType_All == null)
-                TreeMap.SubMapType_All = new TreeMap.SubMapType(); return TreeMap.SubMapType_All; };
+            TreeMap.SubMapType_All_$LI$ = function () { if (TreeMap.SubMapType_All == null) {
+                TreeMap.SubMapType_All = new TreeMap.SubMapType();
+            } return TreeMap.SubMapType_All; };
             ;
-            TreeMap.SubMapType_Head_$LI$ = function () { if (TreeMap.SubMapType_Head == null)
-                TreeMap.SubMapType_Head = new TreeMap.SubMapTypeHead(); return TreeMap.SubMapType_Head; };
+            TreeMap.SubMapType_Head_$LI$ = function () { if (TreeMap.SubMapType_Head == null) {
+                TreeMap.SubMapType_Head = new TreeMap.SubMapTypeHead();
+            } return TreeMap.SubMapType_Head; };
             ;
-            TreeMap.SubMapType_Range_$LI$ = function () { if (TreeMap.SubMapType_Range == null)
-                TreeMap.SubMapType_Range = new TreeMap.SubMapTypeRange(); return TreeMap.SubMapType_Range; };
+            TreeMap.SubMapType_Range_$LI$ = function () { if (TreeMap.SubMapType_Range == null) {
+                TreeMap.SubMapType_Range = new TreeMap.SubMapTypeRange();
+            } return TreeMap.SubMapType_Range; };
             ;
-            TreeMap.SubMapType_Tail_$LI$ = function () { if (TreeMap.SubMapType_Tail == null)
-                TreeMap.SubMapType_Tail = new TreeMap.SubMapTypeTail(); return TreeMap.SubMapType_Tail; };
+            TreeMap.SubMapType_Tail_$LI$ = function () { if (TreeMap.SubMapType_Tail == null) {
+                TreeMap.SubMapType_Tail = new TreeMap.SubMapTypeTail();
+            } return TreeMap.SubMapType_Tail; };
             ;
             TreeMap.otherChild = function (child) {
                 return 1 - child;
@@ -28742,47 +29019,42 @@ var java;
              */
             var DescendingEntryIterator = /** @class */ (function () {
                 function DescendingEntryIterator(__parent, type, fromKey, fromInclusive, toKey, toInclusive) {
-                    var _this = this;
                     if (((type != null && type instanceof java.util.TreeMap.SubMapType) || type === null) && ((fromKey != null) || fromKey === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null) && ((toKey != null) || toKey === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
                         var __args = Array.prototype.slice.call(arguments, [1]);
-                        if (this.iter === undefined)
+                        if (this.iter === undefined) {
                             this.iter = null;
-                        if (this.last === undefined)
+                        }
+                        if (this.last === undefined) {
                             this.last = null;
-                        this.__parent = __parent;
-                        if (this.iter === undefined)
-                            this.iter = null;
-                        if (this.last === undefined)
-                            this.last = null;
-                        (function () {
-                            var list = (new java.util.ArrayList());
-                            __parent.inOrderAdd(list, type, __parent.root, fromKey, fromInclusive, toKey, toInclusive);
-                            _this.iter = list['listIterator$int'](list.size());
-                        })();
+                        }
+                        var list = (new java.util.ArrayList());
+                        __parent.inOrderAdd(list, type, __parent.root, fromKey, fromInclusive, toKey, toInclusive);
+                        this.iter = list['listIterator$int'](list.size());
                     }
                     else if (type === undefined && fromKey === undefined && fromInclusive === undefined && toKey === undefined && toInclusive === undefined) {
                         var __args = Array.prototype.slice.call(arguments, [1]);
                         {
-                            var __args_41 = Array.prototype.slice.call(arguments, [1]);
+                            var __args_42 = Array.prototype.slice.call(arguments, [1]);
                             var type_1 = java.util.TreeMap.SubMapType_All_$LI$();
                             var fromKey_1 = null;
                             var fromInclusive_1 = false;
                             var toKey_1 = null;
                             var toInclusive_1 = false;
-                            if (this.iter === undefined)
+                            if (this.iter === undefined) {
                                 this.iter = null;
-                            if (this.last === undefined)
+                            }
+                            if (this.last === undefined) {
                                 this.last = null;
-                            this.__parent = __parent;
-                            if (this.iter === undefined)
-                                this.iter = null;
-                            if (this.last === undefined)
-                                this.last = null;
-                            (function () {
-                                var list = (new java.util.ArrayList());
-                                __parent.inOrderAdd(list, type_1, __parent.root, fromKey_1, fromInclusive_1, toKey_1, toInclusive_1);
-                                _this.iter = list['listIterator$int'](list.size());
-                            })();
+                            }
+                            var list = (new java.util.ArrayList());
+                            __parent.inOrderAdd(list, type_1, __parent.root, fromKey_1, fromInclusive_1, toKey_1, toInclusive_1);
+                            this.iter = list['listIterator$int'](list.size());
+                        }
+                        if (this.iter === undefined) {
+                            this.iter = null;
+                        }
+                        if (this.last === undefined) {
+                            this.last = null;
                         }
                     }
                     else
@@ -28838,47 +29110,42 @@ var java;
              */
             var EntryIterator = /** @class */ (function () {
                 function EntryIterator(__parent, type, fromKey, fromInclusive, toKey, toInclusive) {
-                    var _this = this;
                     if (((type != null && type instanceof java.util.TreeMap.SubMapType) || type === null) && ((fromKey != null) || fromKey === null) && ((typeof fromInclusive === 'boolean') || fromInclusive === null) && ((toKey != null) || toKey === null) && ((typeof toInclusive === 'boolean') || toInclusive === null)) {
                         var __args = Array.prototype.slice.call(arguments, [1]);
-                        if (this.iter === undefined)
+                        if (this.iter === undefined) {
                             this.iter = null;
-                        if (this.last === undefined)
+                        }
+                        if (this.last === undefined) {
                             this.last = null;
-                        this.__parent = __parent;
-                        if (this.iter === undefined)
-                            this.iter = null;
-                        if (this.last === undefined)
-                            this.last = null;
-                        (function () {
-                            var list = (new java.util.ArrayList());
-                            __parent.inOrderAdd(list, type, __parent.root, fromKey, fromInclusive, toKey, toInclusive);
-                            _this.iter = list['listIterator$']();
-                        })();
+                        }
+                        var list = (new java.util.ArrayList());
+                        __parent.inOrderAdd(list, type, __parent.root, fromKey, fromInclusive, toKey, toInclusive);
+                        this.iter = list['listIterator$']();
                     }
                     else if (type === undefined && fromKey === undefined && fromInclusive === undefined && toKey === undefined && toInclusive === undefined) {
                         var __args = Array.prototype.slice.call(arguments, [1]);
                         {
-                            var __args_42 = Array.prototype.slice.call(arguments, [1]);
+                            var __args_43 = Array.prototype.slice.call(arguments, [1]);
                             var type_2 = java.util.TreeMap.SubMapType_All_$LI$();
                             var fromKey_2 = null;
                             var fromInclusive_2 = false;
                             var toKey_2 = null;
                             var toInclusive_2 = false;
-                            if (this.iter === undefined)
+                            if (this.iter === undefined) {
                                 this.iter = null;
-                            if (this.last === undefined)
+                            }
+                            if (this.last === undefined) {
                                 this.last = null;
-                            this.__parent = __parent;
-                            if (this.iter === undefined)
-                                this.iter = null;
-                            if (this.last === undefined)
-                                this.last = null;
-                            (function () {
-                                var list = (new java.util.ArrayList());
-                                __parent.inOrderAdd(list, type_2, __parent.root, fromKey_2, fromInclusive_2, toKey_2, toInclusive_2);
-                                _this.iter = list['listIterator$']();
-                            })();
+                            }
+                            var list = (new java.util.ArrayList());
+                            __parent.inOrderAdd(list, type_2, __parent.root, fromKey_2, fromInclusive_2, toKey_2, toInclusive_2);
+                            this.iter = list['listIterator$']();
+                        }
+                        if (this.iter === undefined) {
+                            this.iter = null;
+                        }
+                        if (this.last === undefined) {
+                            this.last = null;
                         }
                     }
                     else
@@ -28956,30 +29223,28 @@ var java;
                     if (((key != null) || key === null) && ((value != null) || value === null) && ((typeof isRed === 'boolean') || isRed === null)) {
                         var __args = arguments;
                         _this = _super.call(this, key, value) || this;
-                        if (_this.isRed === undefined)
+                        if (_this.isRed === undefined) {
                             _this.isRed = false;
+                        }
                         _this.child = [null, null];
-                        if (_this.isRed === undefined)
-                            _this.isRed = false;
-                        (function () {
-                            _this.isRed = isRed;
-                        })();
+                        _this.isRed = isRed;
                     }
                     else if (((key != null) || key === null) && ((value != null) || value === null) && isRed === undefined) {
                         var __args = arguments;
                         {
-                            var __args_43 = arguments;
+                            var __args_44 = arguments;
                             var isRed_1 = true;
                             _this = _super.call(this, key, value) || this;
-                            if (_this.isRed === undefined)
+                            if (_this.isRed === undefined) {
                                 _this.isRed = false;
+                            }
                             _this.child = [null, null];
-                            if (_this.isRed === undefined)
-                                _this.isRed = false;
-                            (function () {
-                                _this.isRed = isRed_1;
-                            })();
+                            _this.isRed = isRed_1;
                         }
+                        if (_this.isRed === undefined) {
+                            _this.isRed = false;
+                        }
+                        _this.child = [null, null];
                     }
                     else
                         throw new Error('invalid overload');
@@ -29004,14 +29269,18 @@ var java;
              */
             var State = /** @class */ (function () {
                 function State() {
-                    if (this.done === undefined)
+                    if (this.done === undefined) {
                         this.done = false;
-                    if (this.found === undefined)
+                    }
+                    if (this.found === undefined) {
                         this.found = false;
-                    if (this.matchValue === undefined)
+                    }
+                    if (this.matchValue === undefined) {
                         this.matchValue = false;
-                    if (this.value === undefined)
+                    }
+                    if (this.value === undefined) {
                         this.value = null;
+                    }
                 }
                 /**
                  *
@@ -29029,16 +29298,21 @@ var java;
                 function SubMap(__parent, type, fromKey, fromInclusive, toKey, toInclusive) {
                     var _this = _super.call(this) || this;
                     _this.__parent = __parent;
-                    if (_this.fromInclusive === undefined)
+                    if (_this.fromInclusive === undefined) {
                         _this.fromInclusive = false;
-                    if (_this.fromKey === undefined)
+                    }
+                    if (_this.fromKey === undefined) {
                         _this.fromKey = null;
-                    if (_this.toInclusive === undefined)
+                    }
+                    if (_this.toInclusive === undefined) {
                         _this.toInclusive = false;
-                    if (_this.toKey === undefined)
+                    }
+                    if (_this.toKey === undefined) {
                         _this.toKey = null;
-                    if (_this.type === undefined)
+                    }
+                    if (_this.type === undefined) {
                         _this.type = null;
+                    }
                     if (type === java.util.TreeMap.SubMapType_Range_$LI$()) {
                         if (((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(__parent.cmp))(toKey, fromKey) < 0) {
                             throw new java.lang.IllegalArgumentException("subMap: " + toKey + " less than " + fromKey);
@@ -29422,11 +29696,13 @@ var java;
                         throw new java.lang.IllegalStateException(javaemul.internal.StringHelper.format("Duplicate key %s", u));
                     };
                 };
-                Collectors.CH_ID_$LI$ = function () { if (Collectors.CH_ID == null)
-                    Collectors.CH_ID = java.util.Collections.unmodifiableSet(java.util.Collections.singleton(java.util.stream.Collector.Characteristics.IDENTITY_FINISH)); return Collectors.CH_ID; };
+                Collectors.CH_ID_$LI$ = function () { if (Collectors.CH_ID == null) {
+                    Collectors.CH_ID = java.util.Collections.unmodifiableSet(java.util.Collections.singleton(java.util.stream.Collector.Characteristics.IDENTITY_FINISH));
+                } return Collectors.CH_ID; };
                 ;
-                Collectors.CH_NOID_$LI$ = function () { if (Collectors.CH_NOID == null)
-                    Collectors.CH_NOID = java.util.Collections.emptySet(); return Collectors.CH_NOID; };
+                Collectors.CH_NOID_$LI$ = function () { if (Collectors.CH_NOID == null) {
+                    Collectors.CH_NOID = java.util.Collections.emptySet();
+                } return Collectors.CH_NOID; };
                 ;
                 Collectors.toList = function () {
                     return (new Collectors.CollectorImpl(function () { return new java.util.ArrayList(); }, function (l, i) { return l.add(i); }, function (left, right) {
@@ -29501,10 +29777,10 @@ var java;
                  * separated by the specified delimiter, in encounter order
                  */
                 Collectors.joining = function (delimiter, prefix, suffix) {
-                    if (((delimiter != null && (delimiter["__interfaces"] != null && delimiter["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || delimiter.constructor != null && delimiter.constructor["__interfaces"] != null && delimiter.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof delimiter === "string")) || delimiter === null) && ((prefix != null && (prefix["__interfaces"] != null && prefix["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || prefix.constructor != null && prefix.constructor["__interfaces"] != null && prefix.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof prefix === "string")) || prefix === null) && ((suffix != null && (suffix["__interfaces"] != null && suffix["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || suffix.constructor != null && suffix.constructor["__interfaces"] != null && suffix.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof suffix === "string")) || suffix === null)) {
+                    if (((delimiter != null && (delimiter.constructor != null && delimiter.constructor["__interfaces"] != null && delimiter.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof delimiter === "string")) || delimiter === null) && ((prefix != null && (prefix.constructor != null && prefix.constructor["__interfaces"] != null && prefix.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof prefix === "string")) || prefix === null) && ((suffix != null && (suffix.constructor != null && suffix.constructor["__interfaces"] != null && suffix.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof suffix === "string")) || suffix === null)) {
                         return java.util.stream.Collectors.joining$java_lang_CharSequence$java_lang_CharSequence$java_lang_CharSequence(delimiter, prefix, suffix);
                     }
-                    else if (((delimiter != null && (delimiter["__interfaces"] != null && delimiter["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || delimiter.constructor != null && delimiter.constructor["__interfaces"] != null && delimiter.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof delimiter === "string")) || delimiter === null) && prefix === undefined && suffix === undefined) {
+                    else if (((delimiter != null && (delimiter.constructor != null && delimiter.constructor["__interfaces"] != null && delimiter.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof delimiter === "string")) || delimiter === null) && prefix === undefined && suffix === undefined) {
                         return java.util.stream.Collectors.joining$java_lang_CharSequence(delimiter);
                     }
                     else if (delimiter === undefined && prefix === undefined && suffix === undefined) {
@@ -29542,10 +29818,10 @@ var java;
                     }
                 };
                 Collectors.groupingBy = function (classifier, mapFactory, downstream) {
-                    if (((typeof classifier === 'function' && classifier.length === 1) || classifier === null) && ((typeof mapFactory === 'function' && mapFactory.length === 0) || mapFactory === null) && ((downstream != null && (downstream["__interfaces"] != null && downstream["__interfaces"].indexOf("java.util.stream.Collector") >= 0 || downstream.constructor != null && downstream.constructor["__interfaces"] != null && downstream.constructor["__interfaces"].indexOf("java.util.stream.Collector") >= 0)) || downstream === null)) {
+                    if (((typeof classifier === 'function' && classifier.length === 1) || classifier === null) && ((typeof mapFactory === 'function' && mapFactory.length === 0) || mapFactory === null) && ((downstream != null && (downstream.constructor != null && downstream.constructor["__interfaces"] != null && downstream.constructor["__interfaces"].indexOf("java.util.stream.Collector") >= 0)) || downstream === null)) {
                         return java.util.stream.Collectors.groupingBy$java_util_function_Function$java_util_function_Supplier$java_util_stream_Collector(classifier, mapFactory, downstream);
                     }
-                    else if (((typeof classifier === 'function' && classifier.length === 1) || classifier === null) && ((mapFactory != null && (mapFactory["__interfaces"] != null && mapFactory["__interfaces"].indexOf("java.util.stream.Collector") >= 0 || mapFactory.constructor != null && mapFactory.constructor["__interfaces"] != null && mapFactory.constructor["__interfaces"].indexOf("java.util.stream.Collector") >= 0)) || mapFactory === null) && downstream === undefined) {
+                    else if (((typeof classifier === 'function' && classifier.length === 1) || classifier === null) && ((mapFactory != null && (mapFactory.constructor != null && mapFactory.constructor["__interfaces"] != null && mapFactory.constructor["__interfaces"].indexOf("java.util.stream.Collector") >= 0)) || mapFactory === null) && downstream === undefined) {
                         return java.util.stream.Collectors.groupingBy$java_util_function_Function$java_util_stream_Collector(classifier, mapFactory);
                     }
                     else
@@ -29593,105 +29869,113 @@ var java;
             (function (Collectors) {
                 var CollectorImpl = /** @class */ (function () {
                     function CollectorImpl(supplier, accumulator, combiner, finisher, characteristics) {
-                        var _this = this;
-                        if (((typeof supplier === 'function' && supplier.length === 0) || supplier === null) && ((typeof accumulator === 'function' && accumulator.length === 2) || accumulator === null) && ((typeof combiner === 'function' && combiner.length === 2) || combiner === null) && ((typeof finisher === 'function' && finisher.length === 1) || finisher === null) && ((characteristics != null && (characteristics["__interfaces"] != null && characteristics["__interfaces"].indexOf("java.util.Set") >= 0 || characteristics.constructor != null && characteristics.constructor["__interfaces"] != null && characteristics.constructor["__interfaces"].indexOf("java.util.Set") >= 0)) || characteristics === null)) {
+                        if (((typeof supplier === 'function' && supplier.length === 0) || supplier === null) && ((typeof accumulator === 'function' && accumulator.length === 2) || accumulator === null) && ((typeof combiner === 'function' && combiner.length === 2) || combiner === null) && ((typeof finisher === 'function' && finisher.length === 1) || finisher === null) && ((characteristics != null && (characteristics.constructor != null && characteristics.constructor["__interfaces"] != null && characteristics.constructor["__interfaces"].indexOf("java.util.Set") >= 0)) || characteristics === null)) {
                             var __args = arguments;
-                            if (this.__supplier === undefined)
+                            if (this.__supplier === undefined) {
                                 this.__supplier = null;
-                            if (this.__accumulator === undefined)
+                            }
+                            if (this.__accumulator === undefined) {
                                 this.__accumulator = null;
-                            if (this.__combiner === undefined)
+                            }
+                            if (this.__combiner === undefined) {
                                 this.__combiner = null;
-                            if (this.__characteristics === undefined)
+                            }
+                            if (this.__characteristics === undefined) {
                                 this.__characteristics = null;
-                            if (this.__finisher === undefined)
+                            }
+                            if (this.__finisher === undefined) {
                                 this.__finisher = null;
-                            if (this.__supplier === undefined)
-                                this.__supplier = null;
-                            if (this.__accumulator === undefined)
-                                this.__accumulator = null;
-                            if (this.__combiner === undefined)
-                                this.__combiner = null;
-                            if (this.__characteristics === undefined)
-                                this.__characteristics = null;
-                            if (this.__finisher === undefined)
-                                this.__finisher = null;
-                            (function () {
-                                _this.__supplier = (supplier);
-                                _this.__accumulator = (accumulator);
-                                _this.__combiner = (combiner);
-                                _this.__finisher = (finisher);
-                                _this.__characteristics = characteristics;
-                            })();
+                            }
+                            this.__supplier = (supplier);
+                            this.__accumulator = (accumulator);
+                            this.__combiner = (combiner);
+                            this.__finisher = (finisher);
+                            this.__characteristics = characteristics;
                         }
-                        else if (((typeof supplier === 'function' && supplier.length === 0) || supplier === null) && ((typeof accumulator === 'function' && accumulator.length === 2) || accumulator === null) && ((typeof combiner === 'function' && combiner.length === 2) || combiner === null) && ((finisher != null && (finisher["__interfaces"] != null && finisher["__interfaces"].indexOf("java.util.Set") >= 0 || finisher.constructor != null && finisher.constructor["__interfaces"] != null && finisher.constructor["__interfaces"].indexOf("java.util.Set") >= 0)) || finisher === null) && characteristics === undefined) {
+                        else if (((typeof supplier === 'function' && supplier.length === 0) || supplier === null) && ((typeof accumulator === 'function' && accumulator.length === 2) || accumulator === null) && ((typeof combiner === 'function' && combiner.length === 2) || combiner === null) && ((finisher != null && (finisher.constructor != null && finisher.constructor["__interfaces"] != null && finisher.constructor["__interfaces"].indexOf("java.util.Set") >= 0)) || finisher === null) && characteristics === undefined) {
                             var __args = arguments;
                             var characteristics_1 = __args[3];
                             {
-                                var __args_44 = arguments;
+                                var __args_45 = arguments;
                                 var finisher_1 = CollectorImpl.castingIdentity();
-                                if (this.__supplier === undefined)
+                                if (this.__supplier === undefined) {
                                     this.__supplier = null;
-                                if (this.__accumulator === undefined)
+                                }
+                                if (this.__accumulator === undefined) {
                                     this.__accumulator = null;
-                                if (this.__combiner === undefined)
+                                }
+                                if (this.__combiner === undefined) {
                                     this.__combiner = null;
-                                if (this.__characteristics === undefined)
+                                }
+                                if (this.__characteristics === undefined) {
                                     this.__characteristics = null;
-                                if (this.__finisher === undefined)
+                                }
+                                if (this.__finisher === undefined) {
                                     this.__finisher = null;
-                                if (this.__supplier === undefined)
-                                    this.__supplier = null;
-                                if (this.__accumulator === undefined)
-                                    this.__accumulator = null;
-                                if (this.__combiner === undefined)
-                                    this.__combiner = null;
-                                if (this.__characteristics === undefined)
-                                    this.__characteristics = null;
-                                if (this.__finisher === undefined)
-                                    this.__finisher = null;
-                                (function () {
-                                    _this.__supplier = (supplier);
-                                    _this.__accumulator = (accumulator);
-                                    _this.__combiner = (combiner);
-                                    _this.__finisher = (finisher_1);
-                                    _this.__characteristics = characteristics_1;
-                                })();
+                                }
+                                this.__supplier = (supplier);
+                                this.__accumulator = (accumulator);
+                                this.__combiner = (combiner);
+                                this.__finisher = (finisher_1);
+                                this.__characteristics = characteristics_1;
+                            }
+                            if (this.__supplier === undefined) {
+                                this.__supplier = null;
+                            }
+                            if (this.__accumulator === undefined) {
+                                this.__accumulator = null;
+                            }
+                            if (this.__combiner === undefined) {
+                                this.__combiner = null;
+                            }
+                            if (this.__characteristics === undefined) {
+                                this.__characteristics = null;
+                            }
+                            if (this.__finisher === undefined) {
+                                this.__finisher = null;
                             }
                         }
                         else if (((typeof supplier === 'function' && supplier.length === 0) || supplier === null) && ((typeof accumulator === 'function' && accumulator.length === 2) || accumulator === null) && ((typeof combiner === 'function' && combiner.length === 2) || combiner === null) && finisher === undefined && characteristics === undefined) {
                             var __args = arguments;
                             {
-                                var __args_45 = arguments;
+                                var __args_46 = arguments;
                                 var finisher_2 = CollectorImpl.castingIdentity();
                                 var characteristics_2 = null;
-                                if (this.__supplier === undefined)
+                                if (this.__supplier === undefined) {
                                     this.__supplier = null;
-                                if (this.__accumulator === undefined)
+                                }
+                                if (this.__accumulator === undefined) {
                                     this.__accumulator = null;
-                                if (this.__combiner === undefined)
+                                }
+                                if (this.__combiner === undefined) {
                                     this.__combiner = null;
-                                if (this.__characteristics === undefined)
+                                }
+                                if (this.__characteristics === undefined) {
                                     this.__characteristics = null;
-                                if (this.__finisher === undefined)
+                                }
+                                if (this.__finisher === undefined) {
                                     this.__finisher = null;
-                                if (this.__supplier === undefined)
-                                    this.__supplier = null;
-                                if (this.__accumulator === undefined)
-                                    this.__accumulator = null;
-                                if (this.__combiner === undefined)
-                                    this.__combiner = null;
-                                if (this.__characteristics === undefined)
-                                    this.__characteristics = null;
-                                if (this.__finisher === undefined)
-                                    this.__finisher = null;
-                                (function () {
-                                    _this.__supplier = (supplier);
-                                    _this.__accumulator = (accumulator);
-                                    _this.__combiner = (combiner);
-                                    _this.__finisher = (finisher_2);
-                                    _this.__characteristics = characteristics_2;
-                                })();
+                                }
+                                this.__supplier = (supplier);
+                                this.__accumulator = (accumulator);
+                                this.__combiner = (combiner);
+                                this.__finisher = (finisher_2);
+                                this.__characteristics = characteristics_2;
+                            }
+                            if (this.__supplier === undefined) {
+                                this.__supplier = null;
+                            }
+                            if (this.__accumulator === undefined) {
+                                this.__accumulator = null;
+                            }
+                            if (this.__combiner === undefined) {
+                                this.__combiner = null;
+                            }
+                            if (this.__characteristics === undefined) {
+                                this.__characteristics = null;
+                            }
+                            if (this.__finisher === undefined) {
+                                this.__finisher = null;
                             }
                         }
                         else
@@ -29770,119 +30054,121 @@ var java;
                 if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null) && ((typeof accessOrder === 'boolean') || accessOrder === null)) {
                     var __args = arguments;
                     _this = _super.call(this, ignored, alsoIgnored) || this;
-                    if (_this.accessOrder === undefined)
+                    if (_this.accessOrder === undefined) {
                         _this.accessOrder = false;
-                    if (_this.head === undefined)
+                    }
+                    if (_this.head === undefined) {
                         _this.head = null;
-                    if (_this.map === undefined)
+                    }
+                    if (_this.map === undefined) {
                         _this.map = null;
-                    if (_this.accessOrder === undefined)
-                        _this.accessOrder = false;
-                    if (_this.head === undefined)
-                        _this.head = null;
-                    if (_this.map === undefined)
-                        _this.map = null;
-                    (function () {
-                        _this.head = new LinkedHashMap.ChainEntry(_this);
-                        _this.map = (new java.util.HashMap());
-                        _this.accessOrder = accessOrder;
-                        _this.resetChainEntries();
-                    })();
+                    }
+                    _this.head = new LinkedHashMap.ChainEntry(_this);
+                    _this.map = (new java.util.HashMap());
+                    _this.accessOrder = accessOrder;
+                    _this.resetChainEntries();
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && ((typeof alsoIgnored === 'number') || alsoIgnored === null) && accessOrder === undefined) {
                     var __args = arguments;
                     _this = _super.call(this, ignored, alsoIgnored) || this;
-                    if (_this.accessOrder === undefined)
+                    if (_this.accessOrder === undefined) {
                         _this.accessOrder = false;
-                    if (_this.head === undefined)
+                    }
+                    if (_this.head === undefined) {
                         _this.head = null;
-                    if (_this.map === undefined)
+                    }
+                    if (_this.map === undefined) {
                         _this.map = null;
-                    if (_this.accessOrder === undefined)
-                        _this.accessOrder = false;
-                    if (_this.head === undefined)
-                        _this.head = null;
-                    if (_this.map === undefined)
-                        _this.map = null;
-                    (function () {
-                        _this.head = new LinkedHashMap.ChainEntry(_this);
-                        _this.map = (new java.util.HashMap());
-                        _this.resetChainEntries();
-                    })();
+                    }
+                    _this.head = new LinkedHashMap.ChainEntry(_this);
+                    _this.map = (new java.util.HashMap());
+                    _this.resetChainEntries();
                 }
-                else if (((ignored != null && (ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0 || ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || ignored === null) && alsoIgnored === undefined && accessOrder === undefined) {
+                else if (((ignored != null && (ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || ignored === null) && alsoIgnored === undefined && accessOrder === undefined) {
                     var __args = arguments;
-                    var toBeCopied_2 = __args[0];
+                    var toBeCopied = __args[0];
                     _this = _super.call(this) || this;
-                    if (_this.accessOrder === undefined)
+                    if (_this.accessOrder === undefined) {
                         _this.accessOrder = false;
-                    if (_this.head === undefined)
+                    }
+                    if (_this.head === undefined) {
                         _this.head = null;
-                    if (_this.map === undefined)
+                    }
+                    if (_this.map === undefined) {
                         _this.map = null;
-                    if (_this.accessOrder === undefined)
-                        _this.accessOrder = false;
-                    if (_this.head === undefined)
-                        _this.head = null;
-                    if (_this.map === undefined)
-                        _this.map = null;
-                    (function () {
-                        _this.head = new LinkedHashMap.ChainEntry(_this);
-                        _this.map = (new java.util.HashMap());
-                        _this.resetChainEntries();
-                        _this.putAll(toBeCopied_2);
-                    })();
+                    }
+                    _this.head = new LinkedHashMap.ChainEntry(_this);
+                    _this.map = (new java.util.HashMap());
+                    _this.resetChainEntries();
+                    _this.putAll(toBeCopied);
                 }
                 else if (((typeof ignored === 'number') || ignored === null) && alsoIgnored === undefined && accessOrder === undefined) {
                     var __args = arguments;
                     {
-                        var __args_46 = arguments;
+                        var __args_47 = arguments;
                         var alsoIgnored_2 = 0;
                         _this = _super.call(this, ignored, alsoIgnored_2) || this;
-                        if (_this.accessOrder === undefined)
+                        if (_this.accessOrder === undefined) {
                             _this.accessOrder = false;
-                        if (_this.head === undefined)
+                        }
+                        if (_this.head === undefined) {
                             _this.head = null;
-                        if (_this.map === undefined)
+                        }
+                        if (_this.map === undefined) {
                             _this.map = null;
-                        if (_this.accessOrder === undefined)
-                            _this.accessOrder = false;
-                        if (_this.head === undefined)
-                            _this.head = null;
-                        if (_this.map === undefined)
-                            _this.map = null;
-                        (function () {
-                            _this.head = new LinkedHashMap.ChainEntry(_this);
-                            _this.map = (new java.util.HashMap());
-                            _this.resetChainEntries();
-                        })();
+                        }
+                        _this.head = new LinkedHashMap.ChainEntry(_this);
+                        _this.map = (new java.util.HashMap());
+                        _this.resetChainEntries();
+                    }
+                    if (_this.accessOrder === undefined) {
+                        _this.accessOrder = false;
+                    }
+                    if (_this.head === undefined) {
+                        _this.head = null;
+                    }
+                    if (_this.map === undefined) {
+                        _this.map = null;
                     }
                 }
                 else if (ignored === undefined && alsoIgnored === undefined && accessOrder === undefined) {
                     var __args = arguments;
                     _this = _super.call(this) || this;
-                    if (_this.accessOrder === undefined)
+                    if (_this.accessOrder === undefined) {
                         _this.accessOrder = false;
-                    if (_this.head === undefined)
+                    }
+                    if (_this.head === undefined) {
                         _this.head = null;
-                    if (_this.map === undefined)
+                    }
+                    if (_this.map === undefined) {
                         _this.map = null;
-                    if (_this.accessOrder === undefined)
-                        _this.accessOrder = false;
-                    if (_this.head === undefined)
-                        _this.head = null;
-                    if (_this.map === undefined)
-                        _this.map = null;
-                    (function () {
-                        _this.head = new LinkedHashMap.ChainEntry(_this);
-                        _this.map = (new java.util.HashMap());
-                        _this.resetChainEntries();
-                    })();
+                    }
+                    _this.head = new LinkedHashMap.ChainEntry(_this);
+                    _this.map = (new java.util.HashMap());
+                    _this.resetChainEntries();
                 }
                 else
                     throw new Error('invalid overload');
                 return _this;
             }
+            /* Default method injected from java.util.Map */
+            LinkedHashMap.prototype.putIfAbsent = function (key, value) {
+                var v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
+            };
+            /* Default method injected from java.util.Map */
+            LinkedHashMap.prototype.computeIfAbsent = function (key, mappingFunction) {
+                var result;
+                if ((result = this.get(key)) == null) {
+                    result = (function (target) { return (typeof target === 'function') ? target(key) : target.apply(key); })(mappingFunction);
+                    if (result != null)
+                        this.put(key, result);
+                }
+                return result;
+            };
             /* Default method injected from java.util.Map */
             LinkedHashMap.prototype.merge = function (key, value, map) {
                 var old = this.get(key);
@@ -29901,17 +30187,9 @@ var java;
                 return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
             };
             /* Default method injected from java.util.Map */
-            LinkedHashMap.prototype.putIfAbsent = function (key, value) {
-                var v = this.get(key);
-                if (v == null) {
-                    v = this.put(key, value);
-                }
-                return v;
-            };
-            /* Default method injected from java.util.Map */
             LinkedHashMap.prototype.replaceAll = function (__function) {
                 java.util.Objects.requireNonNull((__function));
-                var _loop_38 = function (index198) {
+                var _loop_40 = function (index198) {
                     var entry = index198.next();
                     {
                         var k_6;
@@ -29935,18 +30213,8 @@ var java;
                     }
                 };
                 for (var index198 = this.entrySet().iterator(); index198.hasNext();) {
-                    _loop_38(index198);
+                    _loop_40(index198);
                 }
-            };
-            /* Default method injected from java.util.Map */
-            LinkedHashMap.prototype.computeIfAbsent = function (key, mappingFunction) {
-                var result;
-                if ((result = this.get(key)) == null) {
-                    result = (function (target) { return (typeof target === 'function') ? target(key) : target.apply(key); })(mappingFunction);
-                    if (result != null)
-                        this.put(key, result);
-                }
-                return result;
             };
             /**
              *
@@ -30095,10 +30363,12 @@ var java;
                     if (value === void 0) { value = null; }
                     var _this = _super.call(this, key, value) || this;
                     _this.__parent = __parent;
-                    if (_this.next === undefined)
+                    if (_this.next === undefined) {
                         _this.next = null;
-                    if (_this.prev === undefined)
+                    }
+                    if (_this.prev === undefined) {
                         _this.prev = null;
+                    }
                     return _this;
                 }
                 /**
@@ -30142,7 +30412,7 @@ var java;
                  * @return {boolean}
                  */
                 __java_util_LinkedHashMap_EntrySet.prototype.contains = function (o) {
-                    if (o != null && (o["__interfaces"] != null && o["__interfaces"].indexOf("java.util.Map.Entry") >= 0 || o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
+                    if (o != null && (o.constructor != null && o.constructor["__interfaces"] != null && o.constructor["__interfaces"].indexOf("java.util.Map.Entry") >= 0)) {
                         return this.__parent.containsEntry(o);
                     }
                     return false;
@@ -30183,10 +30453,12 @@ var java;
                 var EntryIterator = /** @class */ (function () {
                     function EntryIterator(__parent) {
                         this.__parent = __parent;
-                        if (this.last === undefined)
+                        if (this.last === undefined) {
                             this.last = null;
-                        if (this.__next === undefined)
+                        }
+                        if (this.__next === undefined) {
                             this.__next = null;
+                        }
                         this.__next = __parent.__parent.head.next;
                         java.util.ConcurrentModificationDetector.recordLastKnownStructure(__parent.__parent.map, this);
                     }
@@ -30265,7 +30537,7 @@ var java;
                     var __args = arguments;
                     _this = _super.call(this, ignored, alsoIgnored) || this;
                 }
-                else if (((ignored != null && (ignored["__interfaces"] != null && ignored["__interfaces"].indexOf("java.util.Map") >= 0 || ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || ignored === null) && alsoIgnored === undefined) {
+                else if (((ignored != null && (ignored.constructor != null && ignored.constructor["__interfaces"] != null && ignored.constructor["__interfaces"].indexOf("java.util.Map") >= 0)) || ignored === null) && alsoIgnored === undefined) {
                     var __args = arguments;
                     var toBeCopied = __args[0];
                     _this = _super.call(this, toBeCopied) || this;
@@ -30356,17 +30628,21 @@ var java;
                 System.__static_initialized = true;
                 System.__static_initializer_0();
             } };
-            System.ENVIRONMENT_IS_WEB_$LI$ = function () { System.__static_initialize(); if (System.ENVIRONMENT_IS_WEB == null)
-                System.ENVIRONMENT_IS_WEB = java.util.Objects.equals(typeof window, "object"); return System.ENVIRONMENT_IS_WEB; };
+            System.ENVIRONMENT_IS_WEB_$LI$ = function () { System.__static_initialize(); if (System.ENVIRONMENT_IS_WEB == null) {
+                System.ENVIRONMENT_IS_WEB = java.util.Objects.equals(typeof window, "object");
+            } return System.ENVIRONMENT_IS_WEB; };
             ;
-            System.ENVIRONMENT_IS_WORKER_$LI$ = function () { System.__static_initialize(); if (System.ENVIRONMENT_IS_WORKER == null)
-                System.ENVIRONMENT_IS_WORKER = java.util.Objects.equals(typeof importScripts, "function"); return System.ENVIRONMENT_IS_WORKER; };
+            System.ENVIRONMENT_IS_WORKER_$LI$ = function () { System.__static_initialize(); if (System.ENVIRONMENT_IS_WORKER == null) {
+                System.ENVIRONMENT_IS_WORKER = java.util.Objects.equals(typeof importScripts, "function");
+            } return System.ENVIRONMENT_IS_WORKER; };
             ;
-            System.ENVIRONMENT_IS_NODE_$LI$ = function () { System.__static_initialize(); if (System.ENVIRONMENT_IS_NODE == null)
-                System.ENVIRONMENT_IS_NODE = !System.ENVIRONMENT_IS_WEB_$LI$() && !System.ENVIRONMENT_IS_WORKER_$LI$() && java.util.Objects.equals((eval("typeof process")), "object") && java.util.Objects.equals((eval("typeof require")), "function"); return System.ENVIRONMENT_IS_NODE; };
+            System.ENVIRONMENT_IS_NODE_$LI$ = function () { System.__static_initialize(); if (System.ENVIRONMENT_IS_NODE == null) {
+                System.ENVIRONMENT_IS_NODE = !System.ENVIRONMENT_IS_WEB_$LI$() && !System.ENVIRONMENT_IS_WORKER_$LI$() && java.util.Objects.equals((eval("typeof process")), "object") && java.util.Objects.equals((eval("typeof require")), "function");
+            } return System.ENVIRONMENT_IS_NODE; };
             ;
-            System.ENVIRONMENT_IS_SHELL_$LI$ = function () { System.__static_initialize(); if (System.ENVIRONMENT_IS_SHELL == null)
-                System.ENVIRONMENT_IS_SHELL = !System.ENVIRONMENT_IS_WEB_$LI$() && !System.ENVIRONMENT_IS_WORKER_$LI$() && !System.ENVIRONMENT_IS_NODE_$LI$(); return System.ENVIRONMENT_IS_SHELL; };
+            System.ENVIRONMENT_IS_SHELL_$LI$ = function () { System.__static_initialize(); if (System.ENVIRONMENT_IS_SHELL == null) {
+                System.ENVIRONMENT_IS_SHELL = !System.ENVIRONMENT_IS_WEB_$LI$() && !System.ENVIRONMENT_IS_WORKER_$LI$() && !System.ENVIRONMENT_IS_NODE_$LI$();
+            } return System.ENVIRONMENT_IS_SHELL; };
             ;
             System.propertyMap_$LI$ = function () { System.__static_initialize(); return System.propertyMap; };
             ;
@@ -30607,8 +30883,9 @@ var java;
                 __extends(System$2, _super);
                 function System$2() {
                     var _this = _super.call(this) || this;
-                    if (_this.readData === undefined)
+                    if (_this.readData === undefined) {
                         _this.readData = null;
+                    }
                     _this.where = 0;
                     _this.sep = java.lang.System.propertyMap_$LI$().get("line.separator");
                     _this.readerFunction = function () {
@@ -30703,17 +30980,21 @@ var java;
         var InternalPreconditions = /** @class */ (function () {
             function InternalPreconditions() {
             }
-            InternalPreconditions.CHECKED_MODE_$LI$ = function () { if (InternalPreconditions.CHECKED_MODE == null)
-                InternalPreconditions.CHECKED_MODE = java.lang.System.getProperty("jre.checkedMode", "ENABLED") === "ENABLED"; return InternalPreconditions.CHECKED_MODE; };
+            InternalPreconditions.CHECKED_MODE_$LI$ = function () { if (InternalPreconditions.CHECKED_MODE == null) {
+                InternalPreconditions.CHECKED_MODE = java.lang.System.getProperty("jre.checkedMode", "ENABLED") === ("ENABLED");
+            } return InternalPreconditions.CHECKED_MODE; };
             ;
-            InternalPreconditions.TYPE_CHECK_$LI$ = function () { if (InternalPreconditions.TYPE_CHECK == null)
-                InternalPreconditions.TYPE_CHECK = java.lang.System.getProperty("jre.checks.type", "ENABLED") === "ENABLED"; return InternalPreconditions.TYPE_CHECK; };
+            InternalPreconditions.TYPE_CHECK_$LI$ = function () { if (InternalPreconditions.TYPE_CHECK == null) {
+                InternalPreconditions.TYPE_CHECK = java.lang.System.getProperty("jre.checks.type", "ENABLED") === ("ENABLED");
+            } return InternalPreconditions.TYPE_CHECK; };
             ;
-            InternalPreconditions.API_CHECK_$LI$ = function () { if (InternalPreconditions.API_CHECK == null)
-                InternalPreconditions.API_CHECK = java.lang.System.getProperty("jre.checks.api", "ENABLED") === "ENABLED"; return InternalPreconditions.API_CHECK; };
+            InternalPreconditions.API_CHECK_$LI$ = function () { if (InternalPreconditions.API_CHECK == null) {
+                InternalPreconditions.API_CHECK = java.lang.System.getProperty("jre.checks.api", "ENABLED") === ("ENABLED");
+            } return InternalPreconditions.API_CHECK; };
             ;
-            InternalPreconditions.BOUND_CHECK_$LI$ = function () { if (InternalPreconditions.BOUND_CHECK == null)
-                InternalPreconditions.BOUND_CHECK = java.lang.System.getProperty("jre.checks.bounds", "ENABLED") === "ENABLED"; return InternalPreconditions.BOUND_CHECK; };
+            InternalPreconditions.BOUND_CHECK_$LI$ = function () { if (InternalPreconditions.BOUND_CHECK == null) {
+                InternalPreconditions.BOUND_CHECK = java.lang.System.getProperty("jre.checks.bounds", "ENABLED") === ("ENABLED");
+            } return InternalPreconditions.BOUND_CHECK; };
             ;
             InternalPreconditions.checkType = function (expression) {
                 if (InternalPreconditions.TYPE_CHECK_$LI$()) {
@@ -30931,17 +31212,18 @@ var java;
              * @param {Array} errorMessageArgs
              */
             InternalPreconditions.checkArgument = function (expression, errorMessageTemplate) {
+                var _a;
                 var errorMessageArgs = [];
                 for (var _i = 2; _i < arguments.length; _i++) {
                     errorMessageArgs[_i - 2] = arguments[_i];
                 }
                 if (((typeof expression === 'boolean') || expression === null) && ((typeof errorMessageTemplate === 'string') || errorMessageTemplate === null) && ((errorMessageArgs != null && errorMessageArgs instanceof Array && (errorMessageArgs.length == 0 || errorMessageArgs[0] == null || (errorMessageArgs[0] != null))) || errorMessageArgs === null)) {
-                    return javaemul.internal.InternalPreconditions.checkArgument$boolean$java_lang_String$java_lang_Object_A(expression, errorMessageTemplate, errorMessageArgs);
+                    return (_a = javaemul.internal.InternalPreconditions).checkArgument$boolean$java_lang_String$java_lang_Object_A.apply(_a, __spreadArrays([expression, errorMessageTemplate], errorMessageArgs));
                 }
-                else if (((typeof expression === 'boolean') || expression === null) && ((errorMessageTemplate != null) || errorMessageTemplate === null) && errorMessageArgs === undefined) {
+                else if (((typeof expression === 'boolean') || expression === null) && ((errorMessageTemplate != null) || errorMessageTemplate === null) && errorMessageArgs === undefined || errorMessageArgs.length === 0) {
                     return javaemul.internal.InternalPreconditions.checkArgument$boolean$java_lang_Object(expression, errorMessageTemplate);
                 }
-                else if (((typeof expression === 'boolean') || expression === null) && errorMessageTemplate === undefined && errorMessageArgs === undefined) {
+                else if (((typeof expression === 'boolean') || expression === null) && errorMessageTemplate === undefined && errorMessageArgs === undefined || errorMessageArgs.length === 0) {
                     return javaemul.internal.InternalPreconditions.checkArgument$boolean(expression);
                 }
                 else
@@ -30966,17 +31248,18 @@ var java;
              * @param {Array} errorMessageArgs
              */
             InternalPreconditions.checkCriticalArgument = function (expression, errorMessageTemplate) {
+                var _a;
                 var errorMessageArgs = [];
                 for (var _i = 2; _i < arguments.length; _i++) {
                     errorMessageArgs[_i - 2] = arguments[_i];
                 }
                 if (((typeof expression === 'boolean') || expression === null) && ((typeof errorMessageTemplate === 'string') || errorMessageTemplate === null) && ((errorMessageArgs != null && errorMessageArgs instanceof Array && (errorMessageArgs.length == 0 || errorMessageArgs[0] == null || (errorMessageArgs[0] != null))) || errorMessageArgs === null)) {
-                    return javaemul.internal.InternalPreconditions.checkCriticalArgument$boolean$java_lang_String$java_lang_Object_A(expression, errorMessageTemplate, errorMessageArgs);
+                    return (_a = javaemul.internal.InternalPreconditions).checkCriticalArgument$boolean$java_lang_String$java_lang_Object_A.apply(_a, __spreadArrays([expression, errorMessageTemplate], errorMessageArgs));
                 }
-                else if (((typeof expression === 'boolean') || expression === null) && ((errorMessageTemplate != null) || errorMessageTemplate === null) && errorMessageArgs === undefined) {
+                else if (((typeof expression === 'boolean') || expression === null) && ((errorMessageTemplate != null) || errorMessageTemplate === null) && errorMessageArgs === undefined || errorMessageArgs.length === 0) {
                     return javaemul.internal.InternalPreconditions.checkCriticalArgument$boolean$java_lang_Object(expression, errorMessageTemplate);
                 }
-                else if (((typeof expression === 'boolean') || expression === null) && errorMessageTemplate === undefined && errorMessageArgs === undefined) {
+                else if (((typeof expression === 'boolean') || expression === null) && errorMessageTemplate === undefined && errorMessageArgs === undefined || errorMessageArgs.length === 0) {
                     return javaemul.internal.InternalPreconditions.checkCriticalArgument$boolean(expression);
                 }
                 else
@@ -31311,8 +31594,9 @@ var java;
         var ConcurrentModificationDetector = /** @class */ (function () {
             function ConcurrentModificationDetector() {
             }
-            ConcurrentModificationDetector.API_CHECK_$LI$ = function () { if (ConcurrentModificationDetector.API_CHECK == null)
-                ConcurrentModificationDetector.API_CHECK = java.lang.System.getProperty("jre.checks.api", "ENABLED") === "ENABLED"; return ConcurrentModificationDetector.API_CHECK; };
+            ConcurrentModificationDetector.API_CHECK_$LI$ = function () { if (ConcurrentModificationDetector.API_CHECK == null) {
+                ConcurrentModificationDetector.API_CHECK = java.lang.System.getProperty("jre.checks.api", "ENABLED") === ("ENABLED");
+            } return ConcurrentModificationDetector.API_CHECK; };
             ;
             ConcurrentModificationDetector.structureChanged = function (map) {
                 if (!ConcurrentModificationDetector.API_CHECK_$LI$()) {
@@ -31356,15 +31640,19 @@ var java;
              */
             var Logger = /** @class */ (function () {
                 function Logger(name, resourceName) {
-                    if (this.handlers === undefined)
+                    if (this.handlers === undefined) {
                         this.handlers = null;
+                    }
                     this.level = null;
-                    if (this.name === undefined)
+                    if (this.name === undefined) {
                         this.name = null;
-                    if (this.parent === undefined)
+                    }
+                    if (this.parent === undefined) {
                         this.parent = null;
-                    if (this.useParentHandlers === undefined)
+                    }
+                    if (this.useParentHandlers === undefined) {
                         this.useParentHandlers = false;
+                    }
                     if (Logger.LOGGING_FALSE_$LI$()) {
                         return;
                     }
@@ -31376,17 +31664,21 @@ var java;
                     Logger.__static_initialized = true;
                     Logger.__static_initializer_0();
                 } };
-                Logger.LOGGING_ENABLED_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_ENABLED == null)
-                    Logger.LOGGING_ENABLED = java.lang.System.getProperty("gwt.logging.enabled", "TRUE"); return Logger.LOGGING_ENABLED; };
+                Logger.LOGGING_ENABLED_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_ENABLED == null) {
+                    Logger.LOGGING_ENABLED = java.lang.System.getProperty("gwt.logging.enabled", "TRUE");
+                } return Logger.LOGGING_ENABLED; };
                 ;
-                Logger.LOGGING_WARNING_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_WARNING == null)
-                    Logger.LOGGING_WARNING = Logger.LOGGING_ENABLED_$LI$() === "WARNING"; return Logger.LOGGING_WARNING; };
+                Logger.LOGGING_WARNING_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_WARNING == null) {
+                    Logger.LOGGING_WARNING = Logger.LOGGING_ENABLED_$LI$() === ("WARNING");
+                } return Logger.LOGGING_WARNING; };
                 ;
-                Logger.LOGGING_SEVERE_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_SEVERE == null)
-                    Logger.LOGGING_SEVERE = Logger.LOGGING_ENABLED_$LI$() === "SEVERE"; return Logger.LOGGING_SEVERE; };
+                Logger.LOGGING_SEVERE_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_SEVERE == null) {
+                    Logger.LOGGING_SEVERE = Logger.LOGGING_ENABLED_$LI$() === ("SEVERE");
+                } return Logger.LOGGING_SEVERE; };
                 ;
-                Logger.LOGGING_FALSE_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_FALSE == null)
-                    Logger.LOGGING_FALSE = Logger.LOGGING_ENABLED_$LI$() === "FALSE"; return Logger.LOGGING_FALSE; };
+                Logger.LOGGING_FALSE_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_FALSE == null) {
+                    Logger.LOGGING_FALSE = Logger.LOGGING_ENABLED_$LI$() === ("FALSE");
+                } return Logger.LOGGING_FALSE; };
                 ;
                 Logger.__static_initializer_0 = function () {
                     Logger.assertLoggingValues();
@@ -31401,7 +31693,7 @@ var java;
                     return java.util.logging.LogManager.getLogManager().ensureLogger(name);
                 };
                 Logger.assertLoggingValues = function () {
-                    if ((Logger.LOGGING_ENABLED_$LI$() === "FALSE") || (Logger.LOGGING_ENABLED_$LI$() === "TRUE") || (Logger.LOGGING_ENABLED_$LI$() === "SEVERE") || (Logger.LOGGING_ENABLED_$LI$() === "WARNING")) {
+                    if ((Logger.LOGGING_ENABLED_$LI$() === ("FALSE")) || (Logger.LOGGING_ENABLED_$LI$() === ("TRUE")) || (Logger.LOGGING_ENABLED_$LI$() === ("SEVERE")) || (Logger.LOGGING_ENABLED_$LI$() === ("WARNING"))) {
                         return;
                     }
                     throw new java.lang.RuntimeException("Undefined value for gwt.logging.enabled: \'" + Logger.LOGGING_ENABLED_$LI$() + "\'. Allowed values are TRUE, FALSE, SEVERE, WARNING");
@@ -31634,25 +31926,27 @@ var java;
         (function (file) {
             var Path = /** @class */ (function () {
                 function Path(fullPath) {
-                    if (this.fullPath === undefined)
+                    if (this.fullPath === undefined) {
                         this.fullPath = null;
+                    }
                     this.fullPath = fullPath;
                 }
                 /* Default method injected from java.lang.Iterable */
                 Path.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_39 = function (index203) {
+                    var _loop_41 = function (index203) {
                         var t = index203.next();
                         {
                             (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
                         }
                     };
                     for (var index203 = this.iterator(); index203.hasNext();) {
-                        _loop_39(index203);
+                        _loop_41(index203);
                     }
                 };
-                Path.PATH_SEPARATOR_$LI$ = function () { if (Path.PATH_SEPARATOR == null)
-                    Path.PATH_SEPARATOR = java.lang.System.getProperty("file.separator"); return Path.PATH_SEPARATOR; };
+                Path.PATH_SEPARATOR_$LI$ = function () { if (Path.PATH_SEPARATOR == null) {
+                    Path.PATH_SEPARATOR = java.lang.System.getProperty("file.separator");
+                } return Path.PATH_SEPARATOR; };
                 ;
                 Path.prototype.compareTo$java_nio_file_Path = function (path) {
                     return /* compareTo */ this.toString().localeCompare(path.toString());
@@ -31832,4 +32126,3 @@ javaemul.internal.StringHashCache.front_$LI$();
 javaemul.internal.StringHashCache.back_$LI$();
 javaemul.internal.BooleanHelper.TYPE_$LI$();
 javaemul.internal.JreHelper.LOG10E_$LI$();
-test.Test.main(null);

@@ -368,10 +368,10 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>, Cl
     return (tail - head) & (array.length - 1);
   }
 
-  @Override
-  public Spliterator<E> spliterator() {
-    return Spliterators.spliterator(this, Spliterator.NONNULL | Spliterator.ORDERED);
-  }
+//  @Override
+//  public Spliterator<E> spliterator() {
+      // return Spliterators.spliterator(this, Spliterator.NONNULL | Spliterator.ORDERED);
+//  }
 
   @SuppressWarnings("unchecked")
   @Override

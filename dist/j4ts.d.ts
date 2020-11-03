@@ -1,2 +1,2 @@
-/* Generated from Java with JSweet 2.3.8 - http://www.jsweet.org */
+/* Generated from Java with JSweet 2.4.0-SNAPSHOT - http://www.jsweet.org */
 
