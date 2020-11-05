@@ -474,10 +474,12 @@ var javaemul;
                         throw new Error('invalid overload');
                 };
                 StreamHelper.prototype.peek = function (action) {
-                    return this.chain(new javaemul.internal.stream.StreamRowMap(function (arg0) { return new javaemul.internal.stream.ConsumingFunction(action).apply(arg0); }));
+                    var f = new javaemul.internal.stream.ConsumingFunction(action);
+                    return this.chain(new javaemul.internal.stream.StreamRowMap((arg0) => f.apply(arg0)));
                 };
                 StreamHelper.prototype.limit = function (maxSize) {
-                    return this.chain(new javaemul.internal.stream.StreamRowFilterFlop(function (arg0) { return new javaemul.internal.stream.CountingPredicate(maxSize).test(arg0); }));
+                    var p = new javaemul.internal.stream.CountingPredicate(maxSize);
+                    return this.chain(new javaemul.internal.stream.StreamRowFilterFlop((arg0) => p.test(arg0)));
                 };
                 StreamHelper.prototype.skip = function (n) {
                     var p = (new javaemul.internal.stream.CountingPredicate(n));
@@ -523,11 +525,11 @@ var javaemul;
                 StreamHelper.prototype.collect$java_util_stream_Collector = function (collector) {
                     var container = (function (target) { return (typeof target === 'function') ? target() : target.get(); })(collector.supplier());
                     var accumulator = (collector.accumulator());
-                    this.chain(new javaemul.internal.stream.StreamRowMap(function (arg0) {
-                        return new javaemul.internal.stream.ConsumingFunction((function (container, accumulator) {
-                            return function (item) { return (function (target) { return (typeof target === 'function') ? target(container, item) : target.accept(container, item); })(accumulator); };
-                        })(container, accumulator)).apply(arg0);
-                    }));
+
+                    var f = new javaemul.internal.stream.ConsumingFunction((function (container, accumulator) {
+                        return function (item) { return (function (target) { return (typeof target === 'function') ? target(container, item) : target.accept(container, item); })(accumulator); };
+                    })(container, accumulator));
+                    this.chain(new javaemul.internal.stream.StreamRowMap((arg0) => f.apply(arg0)));
                     this.play();
                     return container;
                 };
