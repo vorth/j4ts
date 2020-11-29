@@ -1,4 +1,4 @@
-/* Generated from Java with JSweet 3.0.0-RC8 - http://www.jsweet.org */
+/* Generated from Java with JSweet 3.0.0 - http://www.jsweet.org */
 var org;
 (function (org) {
     var jsweet;
