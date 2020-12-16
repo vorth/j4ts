@@ -9,7 +9,7 @@
 	<properties>
 		<jsweet.transpiler.version>3.0.0</jsweet.transpiler.version>
 		
-		<java.version.release>11</java.version.release>
+		<java.version.release>8</java.version.release>
 		<java.version>1.${java.version.release}</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
