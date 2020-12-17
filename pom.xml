@@ -5,7 +5,31 @@
 	<groupId>org.jsweet</groupId>
 	<artifactId>j4ts</artifactId>
 	<version>2.0.0</version>
+	<name>j4ts</name>
+	<description>JS runtime for Java API support used wrapped as a JSweet candy</description>
+	<url>http://www.jsweet.org</url>
 	
+<developers>
+		<developer>
+			<id>rpawlak</id>
+			<name>Renaud Pawlak</name>
+			<email>renaud.pawlak@gmail.com</email>
+		</developer>
+		<developer>
+			<id>lgrignon</id>
+			<name>Louis Grignon</name>
+			<email>louis.grignon@gmail.com</email>
+		</developer>
+	</developers>
+	<issueManagement>
+		<url>https://github.com/j4ts/j4ts/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+<scm>
+		<url>https://github.com/j4ts/j4ts</url>
+		<connection>scm:git:git://github.com/j4ts/j4ts.git</connection>
+		<developerConnection>scm:git:git@github.com:j4ts/j4ts.git</developerConnection>
+	</scm>
 	<properties>
 		<jsweet.transpiler.version>3.0.0</jsweet.transpiler.version>
 		
@@ -136,11 +160,11 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- warning: this plugin re-runs generate-source -->
-			<plugin>
+
+<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>3.0.1</version>
+				<version>3.1.0</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -150,6 +174,50 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.1.1</version>
+				<configuration>
+					<sourcepath>src/main/java</sourcepath>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<skip>${skipJavadoc}</skip>
+					<excludePackageNames>org.jsweet.transpiler.model.support</excludePackageNames>
+					<fixTags>all</fixTags>
+					<failOnError>false</failOnError>
+					<destDir>j4ts-${project.version}</destDir>
+					<header><![CDATA[<a href="http://www.jsweet.org" target="_blank" style="text-transform: lowercase">http://www.jsweet.org<a>]]></header>
+					<bottom><![CDATA[<center>Copyright 2015, <a href="http://www.cincheo.org" target="_blank">Cinchéo SAS<a> - Web site: <a href="http://www.jsweet.org" target="_blank">http://www.jsweet.org<a><center>]]></bottom>
+					<stylesheetfile>/var/www/apidocs/stylesheet.css</stylesheetfile>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.6</version>
+				<configuration>
+					<skip>${skipSigning}</skip>
+				</configuration>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 		<pluginManagement>
 			<plugins>
