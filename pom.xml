@@ -6,7 +6,7 @@
 	<artifactId>j4ts</artifactId>
 	<version>0.7.0-SNAPSHOT</version>
 	<properties>
-		<jsweet.transpiler.version>2.4.0-SNAPSHOT</jsweet.transpiler.version>
+		<jsweet.transpiler.version>3.1.0-SNAPSHOT</jsweet.transpiler.version>
 	</properties>
 	<licenses>
 		<license>
@@ -71,6 +71,7 @@
 					<outDir>target/ts</outDir>
 					<dtsOut>target/typings</dtsOut>
 					<targetVersion>ES3</targetVersion>
+					<javaCompilerExtraOptions>-source,1.8,-target,1.8</javaCompilerExtraOptions>
 					<!-- <sourceMap>true</sourceMap> -->
 				</configuration>
 				<executions>
@@ -183,7 +184,7 @@
 		<dependency>
 			<groupId>org.jsweet</groupId>
 			<artifactId>jsweet-core</artifactId>
-			<version>6.0.3</version>
+			<version>6.3.0</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>

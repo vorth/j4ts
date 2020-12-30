@@ -18,7 +18,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
-/* Generated from Java with JSweet 2.4.0-SNAPSHOT - http://www.jsweet.org */
+/* Generated from Java with JSweet 3.0.0 - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -56,7 +56,6 @@ var javaemul;
             JreHelper.LOG10E_$LI$ = function () { if (JreHelper.LOG10E == null) {
                 JreHelper.LOG10E = Math.LOG10E;
             } return JreHelper.LOG10E; };
-            ;
             return JreHelper;
         }());
         internal.JreHelper = JreHelper;
@@ -77,7 +76,6 @@ var javaemul;
             BooleanHelper.TYPE_$LI$ = function () { if (BooleanHelper.TYPE == null) {
                 BooleanHelper.TYPE = Boolean;
             } return BooleanHelper.TYPE; };
-            ;
             BooleanHelper.compare = function (x, y) {
                 return (x === y) ? 0 : (x ? 1 : -1);
             };
@@ -97,7 +95,7 @@ var javaemul;
                 return /* equalsIgnoreCase */ (function (o1, o2) { return o1.toUpperCase() === (o2 === null ? o2 : o2.toUpperCase()); })("true", s);
             };
             BooleanHelper.toString = function (x) {
-                return /* valueOf */ new String(x).toString();
+                return /* valueOf */ String(x).toString();
             };
             BooleanHelper.valueOf$boolean = function (b) {
                 return b ? BooleanHelper.TRUE : BooleanHelper.FALSE;
@@ -180,11 +178,9 @@ var javaemul;
             StringHashCache.back_$LI$ = function () { if (StringHashCache.back == null) {
                 StringHashCache.back = StringHashCache.createNativeObject();
             } return StringHashCache.back; };
-            ;
             StringHashCache.front_$LI$ = function () { if (StringHashCache.front == null) {
                 StringHashCache.front = StringHashCache.createNativeObject();
             } return StringHashCache.front; };
-            ;
             StringHashCache.getHashCode = function (str) {
                 var key = ":" + str;
                 var result = StringHashCache.getProperty(StringHashCache.front_$LI$(), key);
@@ -260,7 +256,9 @@ var javaemul;
                     if (this.consumer === undefined) {
                         this.consumer = null;
                     }
-                    this.consumer = (consumer);
+                    this.consumer = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer));
                 }
                 /**
                  *
@@ -316,7 +314,9 @@ var javaemul;
                     if (this.next === undefined) {
                         this.next = null;
                     }
-                    this.run = (run);
+                    this.run = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['run'] ? funcInst['run'] : funcInst).call(funcInst); }; })(run));
                 }
                 RunnableChain.prototype.chain = function (next) {
                     if (this.next == null) {
@@ -326,7 +326,7 @@ var javaemul;
                     this.next.chain(next);
                 };
                 RunnableChain.prototype.runChain = function () {
-                    ((function (target) { return (target['run'] === undefined) ? target : target['run']; })(this.run))();
+                    (function (target) { return (typeof target === 'function') ? target() : target.run(); })(this.run);
                     if (this.next == null) {
                         return;
                     }
@@ -349,19 +349,20 @@ var javaemul;
                     if (this.loudRunnable === undefined) {
                         this.loudRunnable = null;
                     }
-                    this.loudRunnable = (loudRunnable);
+                    this.loudRunnable = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['run'] ? funcInst['run'] : funcInst).call(funcInst); }; })(loudRunnable));
                 }
                 /**
                  *
                  */
                 QuiteRunnable.prototype.run = function () {
                     try {
-                        ((function (target) { return (target['run'] === undefined) ? target : target['run']; })(this.loudRunnable))();
+                        (function (target) { return (typeof target === 'function') ? target() : target.run(); })(this.loudRunnable);
                     }
                     catch (e) {
                         console.error(e.message, e);
                     }
-                    ;
                 };
                 return QuiteRunnable;
             }());
@@ -381,10 +382,12 @@ var javaemul;
                     if (this.comparator === undefined) {
                         this.comparator = null;
                     }
-                    this.comparator = (comparator);
+                    this.comparator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comparator));
                 }
                 ChooseSmallest.prototype.apply = function (t1, t2) {
-                    if (((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.comparator))(t1, t2) <= 0) {
+                    if (this.comparator(t1, t2) <= 0) {
                         return t1;
                     }
                     return t2;
@@ -437,22 +440,30 @@ var javaemul;
                     this.head.end();
                 };
                 /*private*/ StreamHelper.prototype.foldRight = function (identity, accumulator) {
-                    var rowReduce = new javaemul.internal.stream.StreamRowReduce(identity, (accumulator));
+                    var rowReduce = new javaemul.internal.stream.StreamRowReduce(identity, ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(accumulator)));
                     this.chain(rowReduce);
                     this.play();
                     return rowReduce.getResult();
                 };
                 StreamHelper.prototype.filter = function (predicate) {
-                    return this.chain(new javaemul.internal.stream.StreamRowFilter((predicate)));
+                    return this.chain(new javaemul.internal.stream.StreamRowFilter(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate))));
                 };
                 StreamHelper.prototype.map = function (mapper) {
-                    return this.chain(new javaemul.internal.stream.StreamRowMap((mapper)));
+                    return this.chain(new javaemul.internal.stream.StreamRowMap(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(mapper))));
                 };
                 StreamHelper.prototype.mapToObj = function (mapper) {
                     return this.chain(new javaemul.internal.stream.StreamRowMap(function (n) { return (function (target) { return (typeof target === 'function') ? target(n) : target.apply(n); })(mapper); }));
                 };
                 StreamHelper.prototype.flatMap = function (mapper) {
-                    return this.chain(new javaemul.internal.stream.StreamRowFlatMap((mapper)));
+                    return this.chain(new javaemul.internal.stream.StreamRowFlatMap(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(mapper))));
                 };
                 StreamHelper.prototype.distinct = function () {
                     return this.chain(new javaemul.internal.stream.StreamRowCollector((new java.util.LinkedHashSet())));
@@ -461,7 +472,9 @@ var javaemul;
                     return this.sorted$java_util_Comparator(function (a, b) { return a.compareTo(b); });
                 };
                 StreamHelper.prototype.sorted$java_util_Comparator = function (comparator) {
-                    return this.chain(new javaemul.internal.stream.StreamRowSortingCollector((new java.util.ArrayList()), (comparator)));
+                    return this.chain(new javaemul.internal.stream.StreamRowSortingCollector((new java.util.ArrayList()), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comparator))));
                 };
                 StreamHelper.prototype.sorted = function (comparator) {
                     if (((typeof comparator === 'function' && comparator.length === 2) || comparator === null)) {
@@ -474,10 +487,14 @@ var javaemul;
                         throw new Error('invalid overload');
                 };
                 StreamHelper.prototype.peek = function (action) {
-                    return this.chain(new javaemul.internal.stream.StreamRowMap(function (arg0) { return new javaemul.internal.stream.ConsumingFunction(action).apply(arg0); }));
+                    return this.chain(new javaemul.internal.stream.StreamRowMap((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(new javaemul.internal.stream.ConsumingFunction(action))));
                 };
                 StreamHelper.prototype.limit = function (maxSize) {
-                    return this.chain(new javaemul.internal.stream.StreamRowFilterFlop(function (arg0) { return new javaemul.internal.stream.CountingPredicate(maxSize).test(arg0); }));
+                    return this.chain(new javaemul.internal.stream.StreamRowFilterFlop((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(new javaemul.internal.stream.CountingPredicate(maxSize))));
                 };
                 StreamHelper.prototype.skip = function (n) {
                     var p = (new javaemul.internal.stream.CountingPredicate(n));
@@ -486,11 +503,15 @@ var javaemul;
                     })(p)));
                 };
                 StreamHelper.prototype.forEach = function (action) {
-                    this.peek((action));
+                    this.peek(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
                     this.play();
                 };
                 StreamHelper.prototype.forEachOrdered = function (action) {
-                    this.forEach((action));
+                    this.forEach(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
                 };
                 StreamHelper.prototype.toArray$ = function () {
                     var result = (new java.util.ArrayList());
@@ -515,27 +536,33 @@ var javaemul;
                         throw new Error('invalid overload');
                 };
                 StreamHelper.prototype.reduce$java_lang_Object$java_util_function_BinaryOperator = function (identity, accumulator) {
-                    return this.foldRight(java.util.Optional.of(identity), (accumulator)).get();
+                    return this.foldRight(java.util.Optional.of(identity), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(accumulator))).get();
                 };
                 StreamHelper.prototype.reduce$java_util_function_BinaryOperator = function (accumulator) {
-                    return this.foldRight(java.util.Optional.empty(), (accumulator));
+                    return this.foldRight(java.util.Optional.empty(), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(accumulator)));
                 };
                 StreamHelper.prototype.collect$java_util_stream_Collector = function (collector) {
                     var container = (function (target) { return (typeof target === 'function') ? target() : target.get(); })(collector.supplier());
-                    var accumulator = (collector.accumulator());
-                    this.chain(new javaemul.internal.stream.StreamRowMap(function (arg0) {
-                        return new javaemul.internal.stream.ConsumingFunction((function (container, accumulator) {
-                            return function (item) { return (function (target) { return (typeof target === 'function') ? target(container, item) : target.accept(container, item); })(accumulator); };
-                        })(container, accumulator)).apply(arg0);
-                    }));
+                    var accumulator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(collector.accumulator()));
+                    this.chain(new javaemul.internal.stream.StreamRowMap((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(new javaemul.internal.stream.ConsumingFunction((function (container, accumulator) {
+                        return function (item) { return (function (target) { return (typeof target === 'function') ? target(container, item) : target.accept(container, item); })(accumulator); };
+                    })(container, accumulator)))));
                     this.play();
                     return container;
                 };
                 StreamHelper.prototype.min = function (comparator) {
-                    return this.foldRight(java.util.Optional.empty(), function (a, b) { return ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(comparator))(a, b) <= 0 ? a : b; });
+                    return this.foldRight(java.util.Optional.empty(), function (a, b) { return comparator(a, b) <= 0 ? a : b; });
                 };
                 StreamHelper.prototype.max = function (comparator) {
-                    return this.foldRight(java.util.Optional.empty(), function (a, b) { return ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(comparator))(a, b) >= 0 ? a : b; });
+                    return this.foldRight(java.util.Optional.empty(), function (a, b) { return comparator(a, b) >= 0 ? a : b; });
                 };
                 StreamHelper.prototype.count = function () {
                     var counter = new javaemul.internal.stream.StreamRowCount();
@@ -544,13 +571,17 @@ var javaemul;
                     return counter.getCount();
                 };
                 StreamHelper.prototype.anyMatch = function (predicate) {
-                    var streamRow = new javaemul.internal.stream.StreamRowOnceFilter((predicate));
+                    var streamRow = new javaemul.internal.stream.StreamRowOnceFilter(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate)));
                     this.chain(streamRow);
                     this.play();
                     return streamRow.getPredicateValue();
                 };
                 StreamHelper.prototype.allMatch = function (predicate) {
-                    var streamRow = new javaemul.internal.stream.StreamRowAllFilter((predicate));
+                    var streamRow = new javaemul.internal.stream.StreamRowAllFilter(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate)));
                     this.chain(streamRow);
                     this.play();
                     return streamRow.getPredicateValue();
@@ -586,7 +617,9 @@ var javaemul;
                     return this;
                 };
                 StreamHelper.prototype.onClose = function (closeHandler) {
-                    var chainItem = new javaemul.internal.stream.RunnableChain(function () { return new javaemul.internal.stream.QuiteRunnable(closeHandler).run(); });
+                    var chainItem = new javaemul.internal.stream.RunnableChain((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['run'] ? funcInst['run'] : funcInst).call(funcInst); }; })(new javaemul.internal.stream.QuiteRunnable(closeHandler)));
                     if (this.onCloseChain == null) {
                         this.onCloseChain = chainItem;
                     }
@@ -724,7 +757,6 @@ var javaemul;
                 VoidRunnable.dryRun_$LI$ = function () { if (VoidRunnable.dryRun == null) {
                     VoidRunnable.dryRun = new VoidRunnable();
                 } return VoidRunnable.dryRun; };
-                ;
                 VoidRunnable.prototype.run = function () {
                 };
                 return VoidRunnable;
@@ -760,7 +792,6 @@ var javaemul;
                 }
                 catch (e) {
                 }
-                ;
             };
             JsUtils.getIntProperty = function (map, key) {
                 return ((map)[key]);
@@ -895,7 +926,6 @@ var javaemul;
             CharacterHelper.TYPE_$LI$ = function () { if (CharacterHelper.TYPE == null) {
                 CharacterHelper.TYPE = String;
             } return CharacterHelper.TYPE; };
-            ;
             CharacterHelper.charCount = function (codePoint) {
                 return codePoint >= CharacterHelper.MIN_SUPPLEMENTARY_CODE_POINT ? 2 : 1;
             };
@@ -1027,7 +1057,7 @@ var javaemul;
                 return (c).charCodeAt(0);
             };
             CharacterHelper.isDigit = function (c) {
-                var result = ( /* valueOf */new String(c).toString()).match(CharacterHelper.digitRegex());
+                var result = ( /* valueOf */String(c).toString()).match(CharacterHelper.digitRegex());
                 return result != null && result.length > 0;
             };
             CharacterHelper.digitRegex = function () {
@@ -1037,15 +1067,15 @@ var javaemul;
                 return (function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(ch) >= (function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(CharacterHelper.MIN_HIGH_SURROGATE) && (function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(ch) <= (function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(CharacterHelper.MAX_HIGH_SURROGATE);
             };
             CharacterHelper.isLetter = function (c) {
-                return ( /* valueOf */new String(c).toString()).match(CharacterHelper.leterRegex()).length > 0;
+                return ( /* valueOf */String(c).toString()).match(CharacterHelper.leterRegex()).length > 0;
             };
             CharacterHelper.leterRegex = function () {
                 return new RegExp("[A-Z]", "i");
             };
             CharacterHelper.isLetterOrDigit = function (c) {
-                var array = ( /* valueOf */new String(c).toString()).match(CharacterHelper.leterOrDigitRegex());
+                var array = ( /* valueOf */String(c).toString()).match(CharacterHelper.leterOrDigitRegex());
                 if (array != null)
-                    return ( /* valueOf */new String(c).toString()).match(CharacterHelper.leterOrDigitRegex()).length > 0;
+                    return ( /* valueOf */String(c).toString()).match(CharacterHelper.leterOrDigitRegex()).length > 0;
                 return false;
             };
             CharacterHelper.leterOrDigitRegex = function () {
@@ -1079,7 +1109,7 @@ var javaemul;
                 }
             };
             CharacterHelper.isWhitespace$char = function (ch) {
-                return ( /* valueOf */new String(ch).toString()).match(CharacterHelper.whitespaceRegex()).length > 0;
+                return ( /* valueOf */String(ch).toString()).match(CharacterHelper.whitespaceRegex()).length > 0;
             };
             CharacterHelper.isWhitespace = function (ch) {
                 if (((typeof ch === 'string') || ch === null)) {
@@ -1184,7 +1214,7 @@ var javaemul;
                 return CharacterHelper.MIN_SUPPLEMENTARY_CODE_POINT + (((function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(highSurrogate) & 1023) << 10) + ((function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(lowSurrogate) & 1023);
             };
             CharacterHelper.toLowerCase$char = function (c) {
-                return /* valueOf */ new String(c).toString().toLowerCase().charAt(0);
+                return /* valueOf */ String(c).toString().toLowerCase().charAt(0);
             };
             CharacterHelper.toLowerCase = function (c) {
                 if (((typeof c === 'string') || c === null)) {
@@ -1197,13 +1227,13 @@ var javaemul;
                     throw new Error('invalid overload');
             };
             CharacterHelper.toLowerCase$int = function (c) {
-                return ( /* valueOf */new String(String.fromCharCode(c)).toString().toLowerCase().charAt(0)).charCodeAt(0);
+                return ( /* valueOf */String(String.fromCharCode(c)).toString().toLowerCase().charAt(0)).charCodeAt(0);
             };
             CharacterHelper.toString = function (x) {
-                return /* valueOf */ new String(x).toString();
+                return /* valueOf */ String(x).toString();
             };
             CharacterHelper.toUpperCase$char = function (c) {
-                return /* valueOf */ new String(c).toString().toUpperCase().charAt(0);
+                return /* valueOf */ String(c).toString().toUpperCase().charAt(0);
             };
             CharacterHelper.toUpperCase = function (c) {
                 if (((typeof c === 'string') || c === null)) {
@@ -1216,7 +1246,7 @@ var javaemul;
                     throw new Error('invalid overload');
             };
             CharacterHelper.toUpperCase$int = function (c) {
-                return /* valueOf */ new String(String.fromCharCode(c)).toString().toUpperCase().charAt(0);
+                return /* valueOf */ String(String.fromCharCode(c)).toString().toUpperCase().charAt(0);
             };
             CharacterHelper.valueOf = function (c) {
                 if ((function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(c) < 128) {
@@ -1310,7 +1340,7 @@ var javaemul;
              * @return {string}
              */
             CharacterHelper.prototype.toString = function () {
-                return /* valueOf */ new String(this.value).toString();
+                return /* valueOf */ String(this.value).toString();
             };
             CharacterHelper.MIN_RADIX = 2;
             CharacterHelper.MAX_RADIX = 36;
@@ -1343,7 +1373,6 @@ var javaemul;
                     BoxedValues.boxedValues = (function (s) { var a = []; while (s-- > 0)
                         a.push(null); return a; })(128);
                 } return BoxedValues.boxedValues; };
-                ;
                 return BoxedValues;
             }());
             CharacterHelper.BoxedValues = BoxedValues;
@@ -1400,7 +1429,7 @@ var javaemul;
              * @param {*} array
              * @param {number} fromIndex
              * @param {number} toIndex
-             * @return {Array}
+             * @return {java.lang.Object[]}
              */
             ArrayHelper.unsafeClone = function (array, fromIndex, toIndex) {
                 return array.slice(fromIndex, toIndex);
@@ -1442,7 +1471,7 @@ var javaemul;
              * Same implementation (and arguments) as "public static void insertTo(Object array, int index, Object[] values)"
              * @param {*} array
              * @param {number} index
-             * @param {Array} values
+             * @param {java.lang.Object[]} values
              */
             ArrayHelper.insertValuesToArray = function (array, index, values) {
                 ArrayHelper.copy$java_lang_Object$int$java_lang_Object$int$int$boolean(values, 0, array, index, values.length, false);
@@ -1499,15 +1528,12 @@ var javaemul;
             MathHelper.EPSILON_$LI$ = function () { if (MathHelper.EPSILON == null) {
                 MathHelper.EPSILON = MathHelper.pow(2, -52);
             } return MathHelper.EPSILON; };
-            ;
             MathHelper.MAX_VALUE_$LI$ = function () { if (MathHelper.MAX_VALUE == null) {
                 MathHelper.MAX_VALUE = (2 - MathHelper.EPSILON_$LI$()) * MathHelper.pow(2, 1023);
             } return MathHelper.MAX_VALUE; };
-            ;
             MathHelper.MIN_VALUE_$LI$ = function () { if (MathHelper.MIN_VALUE == null) {
                 MathHelper.MIN_VALUE = MathHelper.pow(2, -1022);
             } return MathHelper.MIN_VALUE; };
-            ;
             MathHelper.nextDown = function (x) {
                 return -MathHelper.nextUp(-x);
             };
@@ -1547,11 +1573,9 @@ var javaemul;
             MathHelper.PI_OVER_180_$LI$ = function () { if (MathHelper.PI_OVER_180 == null) {
                 MathHelper.PI_OVER_180 = MathHelper.PI / 180.0;
             } return MathHelper.PI_OVER_180; };
-            ;
             MathHelper.PI_UNDER_180_$LI$ = function () { if (MathHelper.PI_UNDER_180 == null) {
                 MathHelper.PI_UNDER_180 = 180.0 / MathHelper.PI;
             } return MathHelper.PI_UNDER_180; };
-            ;
             MathHelper.abs$double = function (x) {
                 return x <= 0 ? 0.0 - x : x;
             };
@@ -2220,21 +2244,17 @@ var javaemul;
                 __ParseLong.maxDigitsForRadix_$LI$ = function () { __ParseLong.__static_initialize(); if (__ParseLong.maxDigitsForRadix == null) {
                     __ParseLong.maxDigitsForRadix = [-1, -1, 30, 19, 15, 13, 11, 11, 10, 9, 9, 8, 8, 8, 8, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5];
                 } return __ParseLong.maxDigitsForRadix; };
-                ;
                 __ParseLong.maxDigitsRadixPower_$LI$ = function () { __ParseLong.__static_initialize(); if (__ParseLong.maxDigitsRadixPower == null) {
                     __ParseLong.maxDigitsRadixPower = (function (s) { var a = []; while (s-- > 0)
                         a.push(0); return a; })(37);
                 } return __ParseLong.maxDigitsRadixPower; };
-                ;
                 __ParseLong.maxLengthForRadix_$LI$ = function () { __ParseLong.__static_initialize(); if (__ParseLong.maxLengthForRadix == null) {
                     __ParseLong.maxLengthForRadix = [-1, -1, 63, 40, 32, 28, 25, 23, 21, 20, 19, 19, 18, 18, 17, 17, 16, 16, 16, 15, 15, 15, 15, 14, 14, 14, 14, 14, 14, 13, 13, 13, 13, 13, 13, 13, 13];
                 } return __ParseLong.maxLengthForRadix; };
-                ;
                 __ParseLong.maxValueForRadix_$LI$ = function () { __ParseLong.__static_initialize(); if (__ParseLong.maxValueForRadix == null) {
                     __ParseLong.maxValueForRadix = (function (s) { var a = []; while (s-- > 0)
                         a.push(0); return a; })(37);
                 } return __ParseLong.maxValueForRadix; };
-                ;
                 __ParseLong.__static_initializer_0 = function () {
                     for (var i = 2; i <= 36; i++) {
                         {
@@ -2442,7 +2462,6 @@ var java;
             InternalJsURLFactory.jsURLCtor_$LI$ = function () { if (InternalJsURLFactory.jsURLCtor == null) {
                 InternalJsURLFactory.jsURLCtor = InternalJsURLFactory.getJsURLConstructor();
             } return InternalJsURLFactory.jsURLCtor; };
-            ;
             /*private*/ InternalJsURLFactory.getJsURLConstructor = function () {
                 var URLConstructor;
                 if (java.lang.System.ENVIRONMENT_IS_NODE_$LI$()) {
@@ -2664,8 +2683,12 @@ var java;
                  * @since 1.8
                  */
                 function comparingByValue(cmp) {
-                    java.util.Objects.requireNonNull((cmp));
-                    return (function (c1, c2) { return ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(cmp))(c1.getValue(), c2.getValue()); });
+                    java.util.Objects.requireNonNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp)));
+                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(function (c1, c2) { return cmp(c1.getValue(), c2.getValue()); }));
                 }
                 Entry.comparingByValue = comparingByValue;
             })(Entry = Map.Entry || (Map.Entry = {}));
@@ -2685,7 +2708,6 @@ var java;
             InternalJsMapFactory.jsMapCtor_$LI$ = function () { if (InternalJsMapFactory.jsMapCtor == null) {
                 InternalJsMapFactory.jsMapCtor = InternalJsMapFactory.getJsMapConstructor();
             } return InternalJsMapFactory.jsMapCtor; };
-            ;
             /*private*/ InternalJsMapFactory.getJsMapConstructor = function () {
                 return (function () { return eval("Map"); }).call(null);
             };
@@ -2949,7 +2971,7 @@ var java;
             function Objects() {
             }
             Objects.compare = function (a, b, c) {
-                return a === b ? 0 : ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(c))(a, b);
+                return a === b ? 0 : c(a, b);
             };
             Objects.deepEquals = function (a, b) {
                 if (a === b) {
@@ -2958,12 +2980,7 @@ var java;
                 if (a == null || b == null) {
                     return false;
                 }
-                if ( /* equals */(function (o1, o2) { if (o1 && o1.equals) {
-                    return o1.equals(o2);
-                }
-                else {
-                    return o1 === o2;
-                } })(a, b)) {
+                if ( /* equals */(function (o1, o2) { return o1 && o1.equals ? o1.equals(o2) : o1 === o2; })(a, b)) {
                     return true;
                 }
                 var class1 = a.constructor;
@@ -3006,12 +3023,7 @@ var java;
                 return true;
             };
             Objects.equals = function (a, b) {
-                return (a === b) || (a != null && /* equals */ (function (o1, o2) { if (o1 && o1.equals) {
-                    return o1.equals(o2);
-                }
-                else {
-                    return o1 === o2;
-                } })(a, b));
+                return (a === b) || (a != null && /* equals */ (function (o1, o2) { return o1 && o1.equals ? o1.equals(o2) : o1 === o2; })(a, b));
             };
             Objects.hashCode = function (o) {
                 return o != null ? /* hashCode */ (function (o) { if (o.hashCode) {
@@ -3066,7 +3078,7 @@ var java;
                 return obj;
             };
             Objects.toString$java_lang_Object = function (o) {
-                return /* valueOf */ new String(o).toString();
+                return /* valueOf */ String(o).toString();
             };
             Objects.toString$java_lang_Object$java_lang_String = function (o, nullDefault) {
                 return o != null ? o.toString() : nullDefault;
@@ -3128,7 +3140,6 @@ var java;
             Optional.EMPTY_$LI$ = function () { if (Optional.EMPTY == null) {
                 Optional.EMPTY = (new Optional());
             } return Optional.EMPTY; };
-            ;
             Optional.prototype.isPresent = function () {
                 return this.ref != null;
             };
@@ -3144,7 +3155,9 @@ var java;
             };
             Optional.prototype.filter = function (predicate) {
                 var _this = this;
-                javaemul.internal.InternalPreconditions.checkCriticalNotNull((predicate));
+                javaemul.internal.InternalPreconditions.checkCriticalNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate)));
                 if (!this.isPresent() || (function (target) { return (typeof target === 'function') ? target(_this.ref) : target.test(_this.ref); })(predicate)) {
                     return this;
                 }
@@ -3152,7 +3165,9 @@ var java;
             };
             Optional.prototype.map = function (mapper) {
                 var _this = this;
-                javaemul.internal.InternalPreconditions.checkCriticalNotNull((mapper));
+                javaemul.internal.InternalPreconditions.checkCriticalNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(mapper)));
                 if (this.isPresent()) {
                     return Optional.ofNullable((function (target) { return (typeof target === 'function') ? target(_this.ref) : target.apply(_this.ref); })(mapper));
                 }
@@ -3160,7 +3175,9 @@ var java;
             };
             Optional.prototype.flatMap = function (mapper) {
                 var _this = this;
-                javaemul.internal.InternalPreconditions.checkCriticalNotNull((mapper));
+                javaemul.internal.InternalPreconditions.checkCriticalNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(mapper)));
                 if (this.isPresent()) {
                     return (javaemul.internal.InternalPreconditions.checkCriticalNotNull((function (target) { return (typeof target === 'function') ? target(_this.ref) : target.apply(_this.ref); })(mapper)));
                 }
@@ -3205,7 +3222,7 @@ var java;
              * @return {string}
              */
             Optional.prototype.toString = function () {
-                return this.isPresent() ? "Optional.of(" + /* valueOf */ new String(this.ref).toString() + ")" : "Optional.empty()";
+                return this.isPresent() ? "Optional.of(" + /* valueOf */ String(this.ref).toString() + ")" : "Optional.empty()";
             };
             return Optional;
         }());
@@ -3257,7 +3274,6 @@ var java;
             OptionalDouble.EMPTY_$LI$ = function () { if (OptionalDouble.EMPTY == null) {
                 OptionalDouble.EMPTY = new OptionalDouble();
             } return OptionalDouble.EMPTY; };
-            ;
             OptionalDouble.prototype.isPresent = function () {
                 return this.present;
             };
@@ -3479,7 +3495,9 @@ var java;
             }
             /* Default method injected from java.lang.Iterable */
             InternalHashCodeMap.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
                 var _loop_1 = function (index122) {
                     var t = index122.next();
                     {
@@ -3591,7 +3609,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 InternalHashCodeMap$0.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -3766,7 +3786,6 @@ var java;
             OptionalInt.EMPTY_$LI$ = function () { if (OptionalInt.EMPTY == null) {
                 OptionalInt.EMPTY = new OptionalInt();
             } return OptionalInt.EMPTY; };
-            ;
             OptionalInt.prototype.isPresent = function () {
                 return this.present;
             };
@@ -3871,7 +3890,6 @@ var java;
             OptionalLong.EMPTY_$LI$ = function () { if (OptionalLong.EMPTY == null) {
                 OptionalLong.EMPTY = new OptionalLong();
             } return OptionalLong.EMPTY; };
-            ;
             OptionalLong.prototype.isPresent = function () {
                 return this.present;
             };
@@ -4458,26 +4476,18 @@ var java;
                     var parenthesisStart = [];
                     var parenthesisEnds = [];
                     var nonCapturesToCaptures = new Matcher.NonCapturesToCaptures(parenthesisStart, parenthesisEnds);
-                    var regExpStringWithAllCaptures = (regExp.source).replace(new RegExp("((?:\\\\.|\\[\\^?\\]\\]|\\[\\^?(?:[^\\\\\\]]|\\\\.|)+\\])+)|\\(((?:\\?\\:)?)|(\\))", "g"), ((function (nonCapturesToCaptures) {
-                        return function () {
-                            var args = [];
-                            for (var _i = 0; _i < arguments.length; _i++) {
-                                args[_i] = arguments[_i];
-                            }
-                            return nonCapturesToCaptures.apply(args);
-                        };
-                    })(nonCapturesToCaptures)));
+                    var regExpStringWithAllCaptures = (regExp.source).replace(new RegExp("((?:\\\\.|\\[\\^?\\]\\]|\\[\\^?(?:[^\\\\\\]]|\\\\.|)+\\])+)|\\(((?:\\?\\:)?)|(\\))", "g"), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (nonCapturesToCaptures) {
+                        return function (args) { return nonCapturesToCaptures.apply(args); };
+                    })(nonCapturesToCaptures)))));
                     var regExpWithAllCaptures = new RegExp(regExpStringWithAllCaptures);
                     var indexGetter = new Matcher.IndexGetter(regExp.source, parenthesisStart, parenthesisEnds, this.starts, this.ends, startLastIndex);
-                    (this.text.substring(startLastIndex)).replace(regExpWithAllCaptures, ((function (indexGetter) {
-                        return function () {
-                            var args = [];
-                            for (var _i = 0; _i < arguments.length; _i++) {
-                                args[_i] = arguments[_i];
-                            }
-                            return indexGetter.apply(args);
-                        };
-                    })(indexGetter)));
+                    (this.text.substring(startLastIndex)).replace(regExpWithAllCaptures, ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (indexGetter) {
+                        return function (args) { return indexGetter.apply(args); };
+                    })(indexGetter)))));
                     return true;
                 };
                 Matcher.prototype.end$ = function () {
@@ -4580,9 +4590,13 @@ var java;
                 Matcher.prototype.replaceFirst = function (replacement) {
                     this.reset$();
                     var firstReplacer = new Matcher.FirstReplacer(replacement);
-                    this.text = (this.text).replace(this._pattern.regexp, (((function (firstReplacer) {
+                    this.text = (this.text).replace(this._pattern.regexp, ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(((function (firstReplacer) {
                         return function (args) { return firstReplacer.apply(args); };
-                    })(firstReplacer))));
+                    })(firstReplacer)))))));
                     return this.text;
                 };
                 Matcher.prototype.reset$ = function () {
@@ -4673,7 +4687,7 @@ var java;
                     }
                     /**
                      *
-                     * @param {Array} args
+                     * @param {def.js.String[]} args
                      * @return {string}
                      */
                     IndexGetter.prototype.apply = function (args) {
@@ -4734,7 +4748,7 @@ var java;
                     }
                     /**
                      *
-                     * @param {Array} args
+                     * @param {def.js.String[]} args
                      * @return {string}
                      */
                     NonCapturesToCaptures.prototype.apply = function (args) {
@@ -4766,7 +4780,7 @@ var java;
                     }
                     /**
                      *
-                     * @param {Array} args
+                     * @param {def.js.String[]} args
                      * @return {string}
                      */
                     FirstReplacer.prototype.apply = function (args) {
@@ -4824,19 +4838,17 @@ var java;
                     }
                     var namedGroupsNames = (new java.util.HashMap());
                     var groupNameRemover = new Pattern.GroupNameRemover(namedGroupsNames);
-                    regexpString = (regexpString).replace(new RegExp("(?:\\\\\\\\)*(\\\\?)\\[\\^?\\]?|(?:\\\\\\\\)*(\\\\?)\\]|(?:\\\\\\\\)*(\\\\?)\\((?:(\\?\\:)|\\?<([^>]+)>)?", "g"), (((function (groupNameRemover) {
-                        return function () {
-                            var args = [];
-                            for (var _i = 0; _i < arguments.length; _i++) {
-                                args[_i] = arguments[_i];
-                            }
-                            return groupNameRemover.apply(args);
-                        };
-                    })(groupNameRemover)))).replace(new RegExp("(\\?\\:|(?:[*+?]|\\{[^\\}]+\\})*)((?:[^\\\\()|]|\\\\.|\\[\\^?\\]\\]|\\[\\^?(?:[^\\\\\\]]|\\\\.|)+\\])*)", "g"), ((function () {
-                        var args = [];
-                        for (var _i = 0; _i < arguments.length; _i++) {
-                            args[_i] = arguments[_i];
-                        }
+                    regexpString = (regexpString).replace(new RegExp("(?:\\\\\\\\)*(\\\\?)\\[\\^?\\]?|(?:\\\\\\\\)*(\\\\?)\\]|(?:\\\\\\\\)*(\\\\?)\\((?:(\\?\\:)|\\?<([^>]+)>)?", "g"), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(((function (groupNameRemover) {
+                        return function (args) { return groupNameRemover.apply(args); };
+                    })(groupNameRemover))))))).replace(new RegExp("(\\?\\:|(?:[*+?]|\\{[^\\}]+\\})*)((?:[^\\\\()|]|\\\\.|\\[\\^?\\]\\]|\\[\\^?(?:[^\\\\\\]]|\\\\.|)+\\])*)", "g"), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })((function (args) {
                         if (args[2] === undefined || args[2].length === 0) {
                             return args[1];
                         }
@@ -4849,14 +4861,13 @@ var java;
                             return args[1] + args[2];
                         }
                         return args[1] + "(?:" + args[2] + ")";
-                    })));
+                    }))))));
                     try {
                         return new Pattern(new RegExp(regexpString, jsFlags), flags, namedGroupsNames);
                     }
                     catch (e) {
                         throw new java.util.regex.PatternSyntaxException(e, regexpString);
                     }
-                    ;
                 };
                 Pattern.compile = function (regexpString, flags) {
                     if (((typeof regexpString === 'string') || regexpString === null) && ((typeof flags === 'number') || flags === null)) {
@@ -4918,7 +4929,7 @@ var java;
                     }
                     /**
                      *
-                     * @param {Array} args
+                     * @param {def.js.String[]} args
                      * @return {string}
                      */
                     GroupNameRemover.prototype.apply = function (args) {
@@ -4966,31 +4977,20 @@ var java;
             function AbstractCollection() {
             }
             /* Default method injected from java.util.Collection */
-            AbstractCollection.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.lang.Iterable */
-            AbstractCollection.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_2 = function (index124) {
-                    var t = index124.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index124 = this.iterator(); index124.hasNext();) {
-                    _loop_2(index124);
-                }
-            };
-            /* Default method injected from java.util.Collection */
             AbstractCollection.prototype.parallelStream = function () {
                 return this.stream();
             };
             /* Default method injected from java.util.Collection */
+            AbstractCollection.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.util.Collection */
             AbstractCollection.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                 var removed = false;
-                var _loop_3 = function (it) {
+                var _loop_2 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -5000,9 +5000,24 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_3(it);
+                    _loop_2(it);
                 }
                 return removed;
+            };
+            /* Default method injected from java.lang.Iterable */
+            AbstractCollection.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                var _loop_3 = function (index124) {
+                    var t = index124.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index124 = this.iterator(); index124.hasNext();) {
+                    _loop_3(index124);
+                }
             };
             /**
              *
@@ -5144,8 +5159,8 @@ var java;
             };
             /**
              *
-             * @param {Array} a
-             * @return {Array}
+             * @param {T[]} a
+             * @return {T[]}
              */
             AbstractCollection.prototype.toArray = function (a) {
                 if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (a[0] != null))) || a === null)) {
@@ -5166,7 +5181,7 @@ var java;
                 for (var index127 = this.iterator(); index127.hasNext();) {
                     var e = index127.next();
                     {
-                        joiner.add(e === this ? "(this Collection)" : /* valueOf */ new String(e).toString());
+                        joiner.add(e === this ? "(this Collection)" : /* valueOf */ String(e).toString());
                     }
                 }
                 return joiner.toString();
@@ -5284,12 +5299,10 @@ var java;
                 Random.twoToTheXMinus24 = (function (s) { var a = []; while (s-- > 0)
                     a.push(0); return a; })(25);
             } return Random.twoToTheXMinus24; };
-            ;
             Random.twoToTheXMinus48_$LI$ = function () { Random.__static_initialize(); if (Random.twoToTheXMinus48 == null) {
                 Random.twoToTheXMinus48 = (function (s) { var a = []; while (s-- > 0)
                     a.push(0); return a; })(33);
             } return Random.twoToTheXMinus48; };
-            ;
             Random.__static_initializer_0 = function () {
                 var twoToTheXMinus48Tmp = 1.52587890625E-5;
                 for (var i = 32; i >= 0; i--) {
@@ -5321,7 +5334,7 @@ var java;
              * Modifies the {@code byte} array by a random sequence of {@code byte}s
              * generated by this random number generator.
              *
-             * @param {Array} buf non-null array to contain the new random {@code byte}s.
+             * @param {byte[]} buf non-null array to contain the new random {@code byte}s.
              * @see #next
              */
             Random.prototype.nextBytes = function (buf) {
@@ -5542,27 +5555,21 @@ var java;
             Locale.ROOT_$LI$ = function () { if (Locale.ROOT == null) {
                 Locale.ROOT = new Locale.RootLocale();
             } return Locale.ROOT; };
-            ;
             Locale.ENGLISH_$LI$ = function () { if (Locale.ENGLISH == null) {
                 Locale.ENGLISH = new Locale.EnglishLocale();
             } return Locale.ENGLISH; };
-            ;
             Locale.US_$LI$ = function () { if (Locale.US == null) {
                 Locale.US = new Locale.USLocale();
             } return Locale.US; };
-            ;
             Locale.FRANCE_$LI$ = function () { if (Locale.FRANCE == null) {
                 Locale.FRANCE = new Locale.FrenchLocale();
             } return Locale.FRANCE; };
-            ;
             Locale.UK_$LI$ = function () { if (Locale.UK == null) {
                 Locale.UK = new Locale.UKLocale();
             } return Locale.UK; };
-            ;
             Locale.defaultLocale_$LI$ = function () { if (Locale.defaultLocale == null) {
                 Locale.defaultLocale = new Locale.DefaultLocale();
             } return Locale.defaultLocale; };
-            ;
             /**
              * Returns an instance that represents the browser's default locale (not
              * necessarily the one defined by 'gwt.locale').
@@ -5682,9 +5689,10 @@ var java;
             function Comparators() {
             }
             Comparators.NATURAL_$LI$ = function () { if (Comparators.NATURAL == null) {
-                Comparators.NATURAL = function (a, b) { return new Comparators.NaturalComparator().compare(a, b); };
+                Comparators.NATURAL = (function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(new Comparators.NaturalComparator());
             } return Comparators.NATURAL; };
-            ;
             /**
              * Returns the natural Comparator.
              * <p>
@@ -5695,7 +5703,11 @@ var java;
              * @return {*} the natural Comparator
              */
             Comparators.natural = function () {
-                return (Comparators.NATURAL_$LI$());
+                return ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(Comparators.NATURAL_$LI$()))));
             };
             return Comparators;
         }());
@@ -5842,7 +5854,7 @@ var java;
                     return "0" + number;
                 }
                 else {
-                    return /* valueOf */ new String(number).toString();
+                    return /* valueOf */ String(number).toString();
                 }
             };
             Date.jsdateClass = function () {
@@ -6012,11 +6024,9 @@ var java;
                 StringData.DAYS_$LI$ = function () { if (StringData.DAYS == null) {
                     StringData.DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
                 } return StringData.DAYS; };
-                ;
                 StringData.MONTHS_$LI$ = function () { if (StringData.MONTHS == null) {
                     StringData.MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 } return StringData.MONTHS; };
-                ;
                 return StringData;
             }());
             Date.StringData = StringData;
@@ -6282,39 +6292,30 @@ var java;
                 Level.ALL_$LI$ = function () { if (Level.ALL == null) {
                     Level.ALL = new Level.LevelAll();
                 } return Level.ALL; };
-                ;
                 Level.CONFIG_$LI$ = function () { if (Level.CONFIG == null) {
                     Level.CONFIG = new Level.LevelConfig();
                 } return Level.CONFIG; };
-                ;
                 Level.FINE_$LI$ = function () { if (Level.FINE == null) {
                     Level.FINE = new Level.LevelFine();
                 } return Level.FINE; };
-                ;
                 Level.FINER_$LI$ = function () { if (Level.FINER == null) {
                     Level.FINER = new Level.LevelFiner();
                 } return Level.FINER; };
-                ;
                 Level.FINEST_$LI$ = function () { if (Level.FINEST == null) {
                     Level.FINEST = new Level.LevelFinest();
                 } return Level.FINEST; };
-                ;
                 Level.INFO_$LI$ = function () { if (Level.INFO == null) {
                     Level.INFO = new Level.LevelInfo();
                 } return Level.INFO; };
-                ;
                 Level.OFF_$LI$ = function () { if (Level.OFF == null) {
                     Level.OFF = new Level.LevelOff();
                 } return Level.OFF; };
-                ;
                 Level.SEVERE_$LI$ = function () { if (Level.SEVERE == null) {
                     Level.SEVERE = new Level.LevelSevere();
                 } return Level.SEVERE; };
-                ;
                 Level.WARNING_$LI$ = function () { if (Level.WARNING == null) {
                     Level.WARNING = new Level.LevelWarning();
                 } return Level.WARNING; };
-                ;
                 Level.parse = function (name) {
                     java.util.logging.Logger.assertLoggingValues();
                     var loggingDisabled = java.lang.System.getProperty$java_lang_String$java_lang_String("gwt.logging.enabled", "FALSE") === ("FALSE");
@@ -6841,7 +6842,7 @@ var java;
             /**
              * Validates the offset and the byte count for the given array of bytes.
              *
-             * @param {Array} buffer Array of bytes to be checked.
+             * @param {byte[]} buffer Array of bytes to be checked.
              * @param {number} byteOffset Starting offset in the array.
              * @param {number} byteCount Total number of bytes to be accessed.
              * @throws NullPointerException if the given reference to the buffer is null.
@@ -7114,7 +7115,6 @@ var java;
                             }
                             throw e;
                         }
-                        ;
                         buffer[byteOffset + i] = (c | 0);
                     }
                     ;
@@ -7131,7 +7131,7 @@ var java;
              * if {@code byteOffset < 0 || byteCount < 0 || byteOffset + byteCount > buffer.length}.
              * @throws IOException
              * if the stream is closed or another IOException occurs.
-             * @param {Array} buffer
+             * @param {byte[]} buffer
              * @param {number} byteOffset
              * @param {number} byteCount
              * @return {number}
@@ -7359,7 +7359,7 @@ var java;
              * Writes {@code count} bytes from the byte array {@code buffer} starting at
              * position {@code offset} to this stream.
              *
-             * @param {Array} buffer
+             * @param {byte[]} buffer
              * the buffer to be written.
              * @param {number} offset
              * the start position in {@code buffer} from where to get bytes.
@@ -7453,7 +7453,7 @@ var java;
                     var __args = arguments;
                     {
                         var __args_10 = arguments;
-                        var message_1 = new String(__args_10[0]).toString();
+                        var message_1 = String(__args_10[0]).toString();
                         _this = _super.call(this, message_1) || this;
                         _this.message = message_1;
                     }
@@ -7462,7 +7462,7 @@ var java;
                     var __args = arguments;
                     {
                         var __args_11 = arguments;
-                        var message_2 = new String(__args_11[0]).toString();
+                        var message_2 = String(__args_11[0]).toString();
                         _this = _super.call(this, message_2) || this;
                         _this.message = message_2;
                     }
@@ -7471,7 +7471,7 @@ var java;
                     var __args = arguments;
                     {
                         var __args_12 = arguments;
-                        var message_3 = new String(__args_12[0]).toString();
+                        var message_3 = String(__args_12[0]).toString();
                         _this = _super.call(this, message_3) || this;
                         _this.message = message_3;
                     }
@@ -7480,7 +7480,7 @@ var java;
                     var __args = arguments;
                     {
                         var __args_13 = arguments;
-                        var message_4 = new String(__args_13[0]).toString();
+                        var message_4 = String(__args_13[0]).toString();
                         _this = _super.call(this, message_4) || this;
                         _this.message = message_4;
                     }
@@ -7489,7 +7489,7 @@ var java;
                     var __args = arguments;
                     {
                         var __args_14 = arguments;
-                        var message_5 = new String(__args_14[0]).toString();
+                        var message_5 = String(__args_14[0]).toString();
                         _this = _super.call(this, message_5) || this;
                         _this.message = message_5;
                     }
@@ -7498,15 +7498,15 @@ var java;
                     var __args = arguments;
                     {
                         var __args_15 = arguments;
-                        var message_6 = new String(__args_15[0]).toString();
+                        var message_6 = String(__args_15[0]).toString();
                         _this = _super.call(this, message_6) || this;
                         _this.message = message_6;
                     }
                 }
                 else if (((message != null) || message === null) && cause === undefined) {
                     var __args = arguments;
-                    _this = _super.call(this, /* valueOf */ new String(message).toString()) || this;
-                    _this.message = /* valueOf */ new String(message).toString();
+                    _this = _super.call(this, /* valueOf */ String(message).toString()) || this;
+                    _this.message = /* valueOf */ String(message).toString();
                 }
                 else if (message === undefined && cause === undefined) {
                     var __args = arguments;
@@ -7993,11 +7993,9 @@ var java;
             Class.constructors_$LI$ = function () { if (Class.constructors == null) {
                 Class.constructors = (new Array());
             } return Class.constructors; };
-            ;
             Class.classes_$LI$ = function () { if (Class.classes == null) {
                 Class.classes = (new Array());
             } return Class.classes; };
-            ;
             Class.getConstructorForClass = function (clazz) {
                 var index = (Class.classes_$LI$().indexOf(clazz) | 0);
                 return index === -1 ? null : Class.constructors_$LI$()[index];
@@ -8289,7 +8287,7 @@ var java;
                     this.string = this.string.substring(0, newLength);
                 }
                 else if (newLength > oldLength) {
-                    this.string += /* valueOf */ new String((function (s) { var a = []; while (s-- > 0)
+                    this.string += /* valueOf */ String((function (s) { var a = []; while (s-- > 0)
                         a.push(null); return a; })(newLength - oldLength)).toString();
                 }
             };
@@ -8320,7 +8318,7 @@ var java;
              * @param {string} x
              */
             AbstractStringBuilder.prototype.setCharAt = function (index, x) {
-                this.replace0(index, index + 1, /* valueOf */ new String(x).toString());
+                this.replace0(index, index + 1, /* valueOf */ String(x).toString());
             };
             AbstractStringBuilder.prototype.subSequence = function (start, end) {
                 return this.string.substring(start, end);
@@ -8387,7 +8385,7 @@ var java;
                 this.string += /* subSequence */ x.substring(start, end);
             };
             AbstractStringBuilder.prototype.appendCodePoint0 = function (x) {
-                this.string += /* valueOf */ new String(/* toChars */ String.fromCharCode(x)).toString();
+                this.string += /* valueOf */ String(/* toChars */ String.fromCharCode(x)).toString();
             };
             AbstractStringBuilder.prototype.replace0 = function (start, end, toInsert) {
                 this.string = this.string.substring(0, start) + toInsert + this.string.substring(end);
@@ -8596,11 +8594,9 @@ var java;
             ByteOrder.BIG_ENDIAN_$LI$ = function () { if (ByteOrder.BIG_ENDIAN == null) {
                 ByteOrder.BIG_ENDIAN = new ByteOrder();
             } return ByteOrder.BIG_ENDIAN; };
-            ;
             ByteOrder.LITTLE_ENDIAN_$LI$ = function () { if (ByteOrder.LITTLE_ENDIAN == null) {
                 ByteOrder.LITTLE_ENDIAN = new ByteOrder();
             } return ByteOrder.LITTLE_ENDIAN; };
-            ;
             /**
              *
              * @return {string}
@@ -9098,7 +9094,9 @@ var java;
                     if (_this.attempts === undefined) {
                         _this.attempts = 0;
                     }
-                    _this.predicate = (predicate);
+                    _this.predicate = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate));
                     return _this;
                 }
                 StreamRowAllFilter.prototype.getPredicateValue = function () {
@@ -9133,7 +9131,9 @@ var java;
                         _this.predicateValue = false;
                     }
                     _this.firstMatch = java.util.Optional.empty();
-                    _this.predicate = (predicate);
+                    _this.predicate = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate));
                     return _this;
                 }
                 StreamRowOnceFilter.prototype.getFirstMatch = function () {
@@ -9173,7 +9173,9 @@ var java;
                         _this.operator = null;
                     }
                     _this.result = result;
-                    _this.operator = (operator);
+                    _this.operator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(operator));
                     return _this;
                 }
                 StreamRowReduce.prototype.getResult = function () {
@@ -9271,7 +9273,9 @@ var java;
                     if (_this.map === undefined) {
                         _this.map = null;
                     }
-                    _this.map = (map);
+                    _this.map = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(map));
                     return _this;
                 }
                 StreamRowMap.prototype.item = function (a) {
@@ -9300,7 +9304,9 @@ var java;
                     if (_this.predicate === undefined) {
                         _this.predicate = null;
                     }
-                    _this.predicate = (predicate);
+                    _this.predicate = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate));
                     return _this;
                 }
                 StreamRowFilter.prototype.item = function (a) {
@@ -9332,7 +9338,9 @@ var java;
                     if (_this.predicate === undefined) {
                         _this.predicate = null;
                     }
-                    _this.predicate = (predicate);
+                    _this.predicate = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate));
                     return _this;
                 }
                 StreamRowFilterFlop.prototype.item = function (a) {
@@ -9365,7 +9373,9 @@ var java;
                     if (_this.flatMap === undefined) {
                         _this.flatMap = null;
                     }
-                    _this.flatMap = (flatMap);
+                    _this.flatMap = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(flatMap));
                     return _this;
                 }
                 StreamRowFlatMap.prototype.item = function (a) {
@@ -9382,12 +9392,10 @@ var java;
                         catch (e) {
                             return false;
                         }
-                        ;
                     }
                     finally {
                         subStream.close();
                     }
-                    ;
                     return true;
                 };
                 StreamRowFlatMap.prototype.end = function () {
@@ -9594,7 +9602,7 @@ var java;
                 return internal.NumberHelper.__parseAndValidateDouble(s);
             };
             DoubleHelper.toString = function (b) {
-                return /* valueOf */ new String(b).toString();
+                return /* valueOf */ String(b).toString();
             };
             DoubleHelper.valueOf$double = function (d) {
                 return new Number(d);
@@ -9753,11 +9761,9 @@ var java;
                 PowersTable.powers_$LI$ = function () { if (PowersTable.powers == null) {
                     PowersTable.powers = [javaemul.internal.DoubleHelper.POWER_512, javaemul.internal.DoubleHelper.POWER_256, javaemul.internal.DoubleHelper.POWER_128, javaemul.internal.DoubleHelper.POWER_64, javaemul.internal.DoubleHelper.POWER_32, javaemul.internal.DoubleHelper.POWER_16, javaemul.internal.DoubleHelper.POWER_8, javaemul.internal.DoubleHelper.POWER_4, javaemul.internal.DoubleHelper.POWER_2, javaemul.internal.DoubleHelper.POWER_1];
                 } return PowersTable.powers; };
-                ;
                 PowersTable.invPowers_$LI$ = function () { if (PowersTable.invPowers == null) {
                     PowersTable.invPowers = [javaemul.internal.DoubleHelper.POWER_MINUS_512, javaemul.internal.DoubleHelper.POWER_MINUS_256, javaemul.internal.DoubleHelper.POWER_MINUS_128, javaemul.internal.DoubleHelper.POWER_MINUS_64, javaemul.internal.DoubleHelper.POWER_MINUS_32, javaemul.internal.DoubleHelper.POWER_MINUS_16, javaemul.internal.DoubleHelper.POWER_MINUS_8, javaemul.internal.DoubleHelper.POWER_MINUS_4, javaemul.internal.DoubleHelper.POWER_MINUS_2, javaemul.internal.DoubleHelper.POWER_MINUS_1];
                 } return PowersTable.invPowers; };
-                ;
                 return PowersTable;
             }());
             DoubleHelper.PowersTable = PowersTable;
@@ -9802,15 +9808,12 @@ var java;
             ShortHelper.MIN_VALUE_$LI$ = function () { if (ShortHelper.MIN_VALUE == null) {
                 ShortHelper.MIN_VALUE = (32768 | 0);
             } return ShortHelper.MIN_VALUE; };
-            ;
             ShortHelper.MAX_VALUE_$LI$ = function () { if (ShortHelper.MAX_VALUE == null) {
                 ShortHelper.MAX_VALUE = (32767 | 0);
             } return ShortHelper.MAX_VALUE; };
-            ;
             ShortHelper.TYPE_$LI$ = function () { if (ShortHelper.TYPE == null) {
                 ShortHelper.TYPE = Number;
             } return ShortHelper.TYPE; };
-            ;
             ShortHelper.compare = function (x, y) {
                 return x - y;
             };
@@ -9833,7 +9836,7 @@ var java;
                 return ((((s & 255) << 8) | ((s & 65280) >> 8)) | 0);
             };
             ShortHelper.toString = function (b) {
-                return /* valueOf */ new String(b).toString();
+                return /* valueOf */ String(b).toString();
             };
             ShortHelper.valueOf$short = function (s) {
                 if (s > -129 && s < 128) {
@@ -9962,7 +9965,6 @@ var java;
                     BoxedValues.boxedValues = (function (s) { var a = []; while (s-- > 0)
                         a.push(null); return a; })(256);
                 } return BoxedValues.boxedValues; };
-                ;
                 return BoxedValues;
             }());
             ShortHelper.BoxedValues = BoxedValues;
@@ -10007,15 +10009,12 @@ var java;
             ByteHelper.MIN_VALUE_$LI$ = function () { if (ByteHelper.MIN_VALUE == null) {
                 ByteHelper.MIN_VALUE = (128 | 0);
             } return ByteHelper.MIN_VALUE; };
-            ;
             ByteHelper.MAX_VALUE_$LI$ = function () { if (ByteHelper.MAX_VALUE == null) {
                 ByteHelper.MAX_VALUE = (127 | 0);
             } return ByteHelper.MAX_VALUE; };
-            ;
             ByteHelper.TYPE_$LI$ = function () { if (ByteHelper.TYPE == null) {
                 ByteHelper.TYPE = Number;
             } return ByteHelper.TYPE; };
-            ;
             ByteHelper.compare = function (x, y) {
                 return x - y;
             };
@@ -10037,7 +10036,7 @@ var java;
                 return (internal.NumberHelper.__parseAndValidateInt(s, radix, ByteHelper.MIN_VALUE_$LI$(), ByteHelper.MAX_VALUE_$LI$()) | 0);
             };
             ByteHelper.toString = function (b) {
-                return /* valueOf */ new String(b).toString();
+                return /* valueOf */ String(b).toString();
             };
             ByteHelper.valueOf$byte = function (b) {
                 var rebase = b + 128;
@@ -10163,7 +10162,6 @@ var java;
                     BoxedValues.boxedValues = (function (s) { var a = []; while (s-- > 0)
                         a.push(null); return a; })(256);
                 } return BoxedValues.boxedValues; };
-                ;
                 return BoxedValues;
             }());
             ByteHelper.BoxedValues = BoxedValues;
@@ -10312,7 +10310,7 @@ var java;
                 return doubleValue;
             };
             FloatHelper.toString = function (b) {
-                return /* valueOf */ new String(b).toString();
+                return /* valueOf */ String(b).toString();
             };
             FloatHelper.valueOf$float = function (f) {
                 return new Number(f);
@@ -10628,11 +10626,11 @@ var java;
                 return IntegerHelper.toUnsignedRadixString(value, 8);
             };
             IntegerHelper.toString$int = function (value) {
-                return /* valueOf */ new String(value).toString();
+                return /* valueOf */ String(value).toString();
             };
             IntegerHelper.toString$int$int = function (value, radix) {
                 if (radix === 10 || radix < javaemul.internal.CharacterHelper.MIN_RADIX || radix > javaemul.internal.CharacterHelper.MAX_RADIX) {
-                    return /* valueOf */ new String(value).toString();
+                    return /* valueOf */ String(value).toString();
                 }
                 return IntegerHelper.toRadixString(value, radix);
             };
@@ -10784,7 +10782,6 @@ var java;
                     BoxedValues.boxedValues = (function (s) { var a = []; while (s-- > 0)
                         a.push(null); return a; })(256);
                 } return BoxedValues.boxedValues; };
-                ;
                 return BoxedValues;
             }());
             IntegerHelper.BoxedValues = BoxedValues;
@@ -10799,7 +10796,6 @@ var java;
                 ReverseNibbles.reverseNibbles_$LI$ = function () { if (ReverseNibbles.reverseNibbles == null) {
                     ReverseNibbles.reverseNibbles = [0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15];
                 } return ReverseNibbles.reverseNibbles; };
-                ;
                 return ReverseNibbles;
             }());
             IntegerHelper.ReverseNibbles = ReverseNibbles;
@@ -10959,11 +10955,11 @@ var java;
                 return LongHelper.toPowerOfTwoUnsignedString(value, 3);
             };
             LongHelper.toString$long = function (value) {
-                return /* valueOf */ new String(value).toString();
+                return /* valueOf */ String(value).toString();
             };
             LongHelper.toString$long$int = function (value, intRadix) {
                 if (intRadix === 10 || intRadix < javaemul.internal.CharacterHelper.MIN_RADIX || intRadix > javaemul.internal.CharacterHelper.MAX_RADIX) {
-                    return /* valueOf */ new String(value).toString();
+                    return /* valueOf */ String(value).toString();
                 }
                 var intValue = (value | 0);
                 if (intValue === value) {
@@ -11147,7 +11143,6 @@ var java;
                     BoxedValues.boxedValues = (function (s) { var a = []; while (s-- > 0)
                         a.push(null); return a; })(256);
                 } return BoxedValues.boxedValues; };
-                ;
                 return BoxedValues;
             }());
             LongHelper.BoxedValues = BoxedValues;
@@ -11281,9 +11276,15 @@ var java;
                     throw new Error('invalid overload');
             }
             /* Default method injected from java.util.Iterator */
+            Scanner.prototype.remove = function () {
+                throw new java.lang.UnsupportedOperationException();
+            };
+            /* Default method injected from java.util.Iterator */
             Scanner.prototype.forEachRemaining = function (consumer) {
                 var _this = this;
-                javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                 while ((this.hasNext())) {
                     {
                         (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -11291,50 +11292,36 @@ var java;
                 }
                 ;
             };
-            /* Default method injected from java.util.Iterator */
-            Scanner.prototype.remove = function () {
-                throw new java.lang.UnsupportedOperationException();
-            };
             Scanner.numeral_$LI$ = function () { if (Scanner.numeral == null) {
                 Scanner.numeral = Scanner.digit + "+";
             } return Scanner.numeral; };
-            ;
             Scanner.decimalNumeral_$LI$ = function () { if (Scanner.decimalNumeral == null) {
                 Scanner.decimalNumeral = "(?:" + Scanner.numeral_$LI$() + "|" + Scanner.numeral_$LI$() + Scanner.decimalSeparator + Scanner.digit + "*|" + Scanner.decimalSeparator + Scanner.digit + "+)";
             } return Scanner.decimalNumeral; };
-            ;
             Scanner.exponent_$LI$ = function () { if (Scanner.exponent == null) {
                 Scanner.exponent = "(?:[eE][+-]?" + Scanner.digit + "+)";
             } return Scanner.exponent; };
-            ;
             Scanner.decimal_$LI$ = function () { if (Scanner.decimal == null) {
                 Scanner.decimal = "(?:[-+]?" + Scanner.decimalNumeral_$LI$() + Scanner.exponent_$LI$() + "?)";
             } return Scanner.decimal; };
-            ;
             Scanner.signedNonNumber_$LI$ = function () { if (Scanner.signedNonNumber == null) {
                 Scanner.signedNonNumber = "(?:[-+]?" + Scanner.nonNumber + ")";
             } return Scanner.signedNonNumber; };
-            ;
             Scanner.booleanPattern_$LI$ = function () { if (Scanner.booleanPattern == null) {
                 Scanner.booleanPattern = java.util.regex.Pattern.compile("true|TRUE|True|1|false|FALSE|False|0");
             } return Scanner.booleanPattern; };
-            ;
             Scanner.integerPattern_$LI$ = function () { if (Scanner.integerPattern == null) {
                 Scanner.integerPattern = java.util.regex.Pattern.compile("[-+]?" + Scanner.numeral_$LI$());
             } return Scanner.integerPattern; };
-            ;
             Scanner.floatPattern_$LI$ = function () { if (Scanner.floatPattern == null) {
                 Scanner.floatPattern = java.util.regex.Pattern.compile(Scanner.decimal_$LI$() + "|" + Scanner.hexFloat + "|" + Scanner.signedNonNumber_$LI$());
             } return Scanner.floatPattern; };
-            ;
             Scanner.endLinePattern_$LI$ = function () { if (Scanner.endLinePattern == null) {
                 Scanner.endLinePattern = java.util.regex.Pattern.compile("[\\n\\r]+");
             } return Scanner.endLinePattern; };
-            ;
             Scanner.whiteSpacePattern_$LI$ = function () { if (Scanner.whiteSpacePattern == null) {
                 Scanner.whiteSpacePattern = java.util.regex.Pattern.compile("\\s+");
             } return Scanner.whiteSpacePattern; };
-            ;
             /**
              *
              */
@@ -11413,7 +11400,6 @@ var java;
                                 }
                                 catch (ignored) {
                                 }
-                                ;
                             }
                             else {
                                 this.bufferFilledLength += read;
@@ -11428,9 +11414,7 @@ var java;
                     }
                     catch (ignored2) {
                     }
-                    ;
                 }
-                ;
                 this.nextDelimiterStart = this.nextDelimiterEnd = this.bufferFilledLength;
             };
             Scanner.prototype.searchNextTo = function (pattern, canBeEmpty) {
@@ -11639,31 +11623,20 @@ var java;
                 return _super.call(this) || this;
             }
             /* Default method injected from java.util.Collection */
-            AbstractSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.lang.Iterable */
-            AbstractSet.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_4 = function (index130) {
-                    var t = index130.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index130 = this.iterator(); index130.hasNext();) {
-                    _loop_4(index130);
-                }
-            };
-            /* Default method injected from java.util.Collection */
             AbstractSet.prototype.parallelStream = function () {
                 return this.stream();
             };
             /* Default method injected from java.util.Collection */
+            AbstractSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.util.Collection */
             AbstractSet.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                 var removed = false;
-                var _loop_5 = function (it) {
+                var _loop_4 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -11673,9 +11646,24 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_5(it);
+                    _loop_4(it);
                 }
                 return removed;
+            };
+            /* Default method injected from java.lang.Iterable */
+            AbstractSet.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                var _loop_5 = function (index130) {
+                    var t = index130.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index130 = this.iterator(); index130.hasNext();) {
+                    _loop_5(index130);
+                }
             };
             /**
              *
@@ -11760,33 +11748,24 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            AbstractList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.lang.Iterable */
-            AbstractList.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_6 = function (index132) {
-                    var t = index132.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index132 = this.iterator(); index132.hasNext();) {
-                    _loop_6(index132);
-                }
-            };
-            /* Default method injected from java.util.Collection */
             AbstractList.prototype.parallelStream = function () {
                 return this.stream();
+            };
+            /* Default method injected from java.util.Collection */
+            AbstractList.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /* Default method injected from java.util.List */
             AbstractList.prototype.sort = function (c) {
                 var a = this.toArray();
-                java.util.Arrays.sort(a, (c));
+                java.util.Arrays.sort(a, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)))));
                 var i = this.listIterator();
-                for (var index133 = 0; index133 < a.length; index133++) {
-                    var e = a[index133];
+                for (var index132 = 0; index132 < a.length; index132++) {
+                    var e = a[index132];
                     {
                         i.next();
                         i.set(e);
@@ -11795,9 +11774,11 @@ var java;
             };
             /* Default method injected from java.util.Collection */
             AbstractList.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                 var removed = false;
-                var _loop_7 = function (it) {
+                var _loop_6 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -11807,9 +11788,24 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_7(it);
+                    _loop_6(it);
                 }
                 return removed;
+            };
+            /* Default method injected from java.lang.Iterable */
+            AbstractList.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                var _loop_7 = function (index133) {
+                    var t = index133.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index133 = this.iterator(); index133.hasNext();) {
+                    _loop_7(index133);
+                }
             };
             AbstractList.prototype.add$java_lang_Object = function (obj) {
                 this.add(this.size(), obj);
@@ -12029,7 +12025,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 IteratorImpl.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -12183,7 +12181,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 ListIteratorImpl.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -12263,31 +12263,20 @@ var java;
                 return _super.call(this) || this;
             }
             /* Default method injected from java.util.Collection */
-            AbstractQueue.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.lang.Iterable */
-            AbstractQueue.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_8 = function (index136) {
-                    var t = index136.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index136 = this.iterator(); index136.hasNext();) {
-                    _loop_8(index136);
-                }
-            };
-            /* Default method injected from java.util.Collection */
             AbstractQueue.prototype.parallelStream = function () {
                 return this.stream();
             };
             /* Default method injected from java.util.Collection */
+            AbstractQueue.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.util.Collection */
             AbstractQueue.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                 var removed = false;
-                var _loop_9 = function (it) {
+                var _loop_8 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -12297,9 +12286,24 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_9(it);
+                    _loop_8(it);
                 }
                 return removed;
+            };
+            /* Default method injected from java.lang.Iterable */
+            AbstractQueue.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                var _loop_9 = function (index136) {
+                    var t = index136.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index136 = this.iterator(); index136.hasNext();) {
+                    _loop_9(index136);
+                }
             };
             /**
              *
@@ -12444,31 +12448,20 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            ArrayDeque.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.lang.Iterable */
-            ArrayDeque.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_10 = function (index137) {
-                    var t = index137.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index137 = this.iterator(); index137.hasNext();) {
-                    _loop_10(index137);
-                }
-            };
-            /* Default method injected from java.util.Collection */
             ArrayDeque.prototype.parallelStream = function () {
                 return this.stream();
             };
             /* Default method injected from java.util.Collection */
+            ArrayDeque.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.util.Collection */
             ArrayDeque.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                 var removed = false;
-                var _loop_11 = function (it) {
+                var _loop_10 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -12478,9 +12471,24 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_11(it);
+                    _loop_10(it);
                 }
                 return removed;
+            };
+            /* Default method injected from java.lang.Iterable */
+            ArrayDeque.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                var _loop_11 = function (index137) {
+                    var t = index137.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index137 = this.iterator(); index137.hasNext();) {
+                    _loop_11(index137);
+                }
             };
             ArrayDeque.checkConcurrentModification = function (expression) {
                 if (!expression) {
@@ -12757,8 +12765,8 @@ var java;
             };
             /**
              *
-             * @param {Array} out
-             * @return {Array}
+             * @param {T[]} out
+             * @return {T[]}
              */
             ArrayDeque.prototype.toArray = function (out) {
                 if (((out != null && out instanceof Array && (out.length == 0 || out[0] == null || (out[0] != null))) || out === null)) {
@@ -12776,12 +12784,7 @@ var java;
                 }
                 while ((it.hasNext())) {
                     {
-                        if ( /* equals */(function (o1, o2) { if (o1 && o1.equals) {
-                            return o1.equals(o2);
-                        }
-                        else {
-                            return o1 === o2;
-                        } })(o, it.next())) {
+                        if ( /* equals */(function (o1, o2) { return o1 && o1.equals ? o1.equals(o2) : o1 === o2; })(o, it.next())) {
                             return true;
                         }
                     }
@@ -12830,7 +12833,7 @@ var java;
              * The method is safe to use when ArrayDeque's array has been rolled over,
              * i.e. {@code head == tail}.
              * It is assumed that {@code count < size()}.
-             * @param {Array} dest
+             * @param {java.lang.Object[]} dest
              * @param {number} count
              * @private
              */
@@ -12936,7 +12939,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 IteratorImpl.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -12989,7 +12994,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 DescendingIteratorImpl.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -13297,7 +13304,6 @@ var java;
                 }
                 return StringHelper.CASE_INSENSITIVE_ORDER;
             };
-            ;
             StringHelper.copyValueOf$char_A = function (v) {
                 return StringHelper.valueOf$char_A(v);
             };
@@ -13427,16 +13433,15 @@ var java;
                 catch (e) {
                     throw new java.io.UnsupportedEncodingException(charsetName);
                 }
-                ;
             };
             StringHelper.fromCodePoint = function (codePoint) {
                 if (codePoint >= javaemul.internal.CharacterHelper.MIN_SUPPLEMENTARY_CODE_POINT) {
                     var hiSurrogate = javaemul.internal.CharacterHelper.getHighSurrogate(codePoint);
                     var loSurrogate = javaemul.internal.CharacterHelper.getLowSurrogate(codePoint);
-                    return /* valueOf */ new String(hiSurrogate).toString() + /* valueOf */ new String(loSurrogate).toString();
+                    return /* valueOf */ String(hiSurrogate).toString() + /* valueOf */ String(loSurrogate).toString();
                 }
                 else {
-                    return /* valueOf */ new String(String.fromCharCode(codePoint)).toString();
+                    return /* valueOf */ String(String.fromCharCode(codePoint)).toString();
                 }
             };
             StringHelper.format = function (formatString) {
@@ -13541,13 +13546,12 @@ var java;
                     catch (e) {
                         throw new java.lang.IllegalArgumentException("Invalid escape format: " + s);
                     }
-                    ;
                 }
                 return new Timestamp(d.getYear(), d.getMonth(), d.getDate(), t.getHours(), t.getMinutes(), t.getSeconds(), nanos);
             };
             /*private*/ Timestamp.padNine = function (value) {
                 var toReturn = new java.lang.StringBuilder("000000000");
-                var asString = new String(value).toString();
+                var asString = String(value).toString();
                 toReturn = toReturn.replace(9 - asString.length, 9, asString);
                 return toReturn.toString();
             };
@@ -13702,7 +13706,6 @@ var java;
                 catch (e) {
                     throw new java.lang.IllegalArgumentException("Invalid escape format: " + s);
                 }
-                ;
             };
             /**
              *
@@ -13803,7 +13806,6 @@ var java;
                 catch (e) {
                     throw new java.lang.IllegalArgumentException("Invalid escape format: " + s);
                 }
-                ;
             };
             /**
              *
@@ -13939,7 +13941,9 @@ var java;
             }
             /* Default method injected from java.lang.Iterable */
             InternalStringMap.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
                 var _loop_12 = function (index141) {
                     var t = index141.next();
                     {
@@ -14014,7 +14018,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 InternalStringMap$0.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -14215,12 +14221,11 @@ var java;
                 Md5Digest.padding_$LI$ = function () { if (Md5Digest.padding == null) {
                     Md5Digest.padding = [(128 | 0), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
                 } return Md5Digest.padding; };
-                ;
                 /**
                  * Converts a long to a 8-byte array using low order first.
                  *
                  * @param {number} n A long.
-                 * @return {Array} A byte[].
+                 * @return {byte[]} A byte[].
                  */
                 Md5Digest.toBytes = function (n) {
                     var b = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -14244,8 +14249,8 @@ var java;
                 /**
                  * Converts a 64-byte array into a 16-int array.
                  *
-                 * @param {Array} in A byte[].
-                 * @param {Array} out An int[].
+                 * @param {byte[]} in A byte[].
+                 * @param {int[]} out An int[].
                  * @private
                  */
                 Md5Digest.byte2int = function (__in, out) {
@@ -14291,8 +14296,8 @@ var java;
                 /**
                  * Converts a 4-int array into a 16-byte array.
                  *
-                 * @param {Array} in An int[].
-                 * @param {Array} out A byte[].
+                 * @param {int[]} in An int[].
+                 * @param {byte[]} out A byte[].
                  * @private
                  */
                 Md5Digest.int2byte = function (__in, out) {
@@ -14381,7 +14386,7 @@ var java;
                 };
                 /**
                  *
-                 * @param {Array} input
+                 * @param {byte[]} input
                  * @param {number} offset
                  * @param {number} len
                  */
@@ -14651,6 +14656,21 @@ var java;
             FilterInputStream.prototype.markSupported = function () {
                 return this["in"].markSupported();
             };
+            /**
+             * Reads up to {@code byteCount} bytes from this stream and stores them in
+             * the byte array {@code buffer} starting at {@code byteOffset}.
+             * Returns the number of bytes actually read or -1 if the end of the stream
+             * has been reached.
+             *
+             * @throws IndexOutOfBoundsException
+             * if {@code byteOffset < 0 || byteCount < 0 || byteOffset + byteCount > buffer.length}.
+             * @throws IOException
+             * if the stream is closed or another IOException occurs.
+             * @param {byte[]} buffer
+             * @param {number} byteOffset
+             * @param {number} byteCount
+             * @return {number}
+             */
             FilterInputStream.prototype.read = function (buffer, byteOffset, byteCount) {
                 if (((buffer != null && buffer instanceof Array && (buffer.length == 0 || buffer[0] == null || (typeof buffer[0] === 'number'))) || buffer === null) && ((typeof byteOffset === 'number') || byteOffset === null) && ((typeof byteCount === 'number') || byteCount === null)) {
                     return _super.prototype.read.call(this, buffer, byteOffset, byteCount);
@@ -14712,7 +14732,7 @@ var java;
          * {@code buf} with the initial position set to {@code offset} and the
          * number of bytes available set to {@code offset} + {@code length}.
          *
-         * @param {Array} buf
+         * @param {byte[]} buf
          * the byte array to stream over.
          * @param {number} offset
          * the initial position in {@code buf} to start streaming from.
@@ -14854,7 +14874,7 @@ var java;
             };
             /**
              *
-             * @param {Array} buffer
+             * @param {byte[]} buffer
              * @param {number} byteOffset
              * @param {number} byteCount
              * @return {number}
@@ -15309,7 +15329,6 @@ var java;
                     this["in"] = null;
                     this.cb = null;
                 }
-                ;
             };
             BufferedReader.INVALIDATED = -2;
             BufferedReader.UNMARKED = -1;
@@ -15443,7 +15462,7 @@ var java;
             };
             /**
              *
-             * @param {Array} cbuf
+             * @param {char[]} cbuf
              * @param {number} off
              * @param {number} len
              * @return {number}
@@ -15541,7 +15560,6 @@ var java;
                 catch (e) {
                     thrown = e;
                 }
-                ;
                 try {
                     this.out.close();
                 }
@@ -15550,7 +15568,6 @@ var java;
                         thrown = e;
                     }
                 }
-                ;
                 if (thrown != null) {
                     throw new java.io.IOException(thrown);
                 }
@@ -15565,6 +15582,24 @@ var java;
             FilterOutputStream.prototype.flush = function () {
                 this.out.flush();
             };
+            /**
+             * Writes {@code count} bytes from the byte array {@code buffer} starting at
+             * position {@code offset} to this stream.
+             *
+             * @param {byte[]} buffer
+             * the buffer to be written.
+             * @param {number} offset
+             * the start position in {@code buffer} from where to get bytes.
+             * @param {number} count
+             * the number of bytes from {@code buffer} to write to this
+             * stream.
+             * @throws IOException
+             * if an error occurs while writing to this stream.
+             * @throws IndexOutOfBoundsException
+             * if {@code offset < 0} or {@code count < 0}, or if
+             * {@code offset + count} is bigger than the length of
+             * {@code buffer}.
+             */
             FilterOutputStream.prototype.write = function (buffer, offset, count) {
                 if (((buffer != null && buffer instanceof Array && (buffer.length == 0 || buffer[0] == null || (typeof buffer[0] === 'number'))) || buffer === null) && ((typeof offset === 'number') || offset === null) && ((typeof count === 'number') || count === null)) {
                     _super.prototype.write.call(this, buffer, offset, count);
@@ -15680,7 +15715,7 @@ var java;
              * changes made to the receiver after returning will not be reflected in the
              * byte array returned to the caller.
              *
-             * @return {Array} this stream's current contents as a byte array.
+             * @return {byte[]} this stream's current contents as a byte array.
              */
             ByteArrayOutputStream.prototype.toByteArray = function () {
                 var newArray = (function (s) { var a = []; while (s-- > 0)
@@ -15742,7 +15777,7 @@ var java;
              * Writes {@code count} bytes from the byte array {@code buffer} starting at
              * offset {@code index} to this stream.
              *
-             * @param {Array} buffer
+             * @param {byte[]} buffer
              * the buffer to be written.
              * @param {number} offset
              * the initial position in {@code buffer} to retrieve bytes.
@@ -16245,7 +16280,7 @@ var java;
                 }
                 else if (((s != null && (s.constructor != null && s.constructor["__interfaces"] != null && s.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof s === "string")) || s === null)) {
                     var __args = arguments;
-                    _this = _super.call(this, /* valueOf */ new String(s).toString()) || this;
+                    _this = _super.call(this, /* valueOf */ String(s).toString()) || this;
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = arguments;
@@ -16265,11 +16300,11 @@ var java;
                 return this;
             };
             StringBuilder.prototype.append$char = function (x) {
-                this.string += /* valueOf */ new String(x).toString();
+                this.string += /* valueOf */ String(x).toString();
                 return this;
             };
             StringBuilder.prototype.append$char_A = function (x) {
-                this.string += /* valueOf */ new String(x).toString();
+                this.string += /* valueOf */ String(x).toString();
                 return this;
             };
             StringBuilder.prototype.append$char_A$int$int = function (x, start, len) {
@@ -16368,14 +16403,14 @@ var java;
                 return this;
             };
             StringBuilder.prototype.insert$int$boolean = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuilder.prototype.insert$int$char = function (index, x) {
-                this.replace0(index, index, /* valueOf */ new String(x).toString());
+                this.replace0(index, index, /* valueOf */ String(x).toString());
                 return this;
             };
             StringBuilder.prototype.insert$int$char_A = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuilder.prototype.insert$int$char_A$int$int = function (index, x, offset, len) {
                 return this.insert$int$java_lang_String(index, /* valueOf */ (function (str, index, len) { return str.join('').substring(index, index + len); })(x, offset, len));
@@ -16427,19 +16462,19 @@ var java;
                 return this.insert$int$java_lang_String(index, /* subSequence */ chars.substring(start, end).toString());
             };
             StringBuilder.prototype.insert$int$double = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuilder.prototype.insert$int$float = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuilder.prototype.insert$int$int = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuilder.prototype.insert$int$long = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuilder.prototype.insert$int$java_lang_Object = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuilder.prototype.insert$int$java_lang_String = function (index, x) {
                 this.replace0(index, index, x);
@@ -16482,7 +16517,7 @@ var java;
                 }
                 else if (((s != null && (s.constructor != null && s.constructor["__interfaces"] != null && s.constructor["__interfaces"].indexOf("java.lang.CharSequence") >= 0 || typeof s === "string")) || s === null)) {
                     var __args = arguments;
-                    _this = _super.call(this, /* valueOf */ new String(s).toString()) || this;
+                    _this = _super.call(this, /* valueOf */ String(s).toString()) || this;
                 }
                 else if (((typeof s === 'number') || s === null)) {
                     var __args = arguments;
@@ -16506,7 +16541,7 @@ var java;
                 return this;
             };
             StringBuffer.prototype.append$char_A = function (x) {
-                this.string += /* valueOf */ new String(x).toString();
+                this.string += /* valueOf */ String(x).toString();
                 return this;
             };
             StringBuffer.prototype.append$char_A$int$int = function (x, start, len) {
@@ -16605,13 +16640,13 @@ var java;
                 return this;
             };
             StringBuffer.prototype.insert$int$boolean = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuffer.prototype.insert$int$char = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuffer.prototype.insert$int$char_A = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuffer.prototype.insert$int$char_A$int$int = function (index, x, offset, len) {
                 return this.insert$int$java_lang_String(index, /* valueOf */ (function (str, index, len) { return str.join('').substring(index, index + len); })(x, offset, len));
@@ -16663,19 +16698,19 @@ var java;
                 return this.insert$int$java_lang_String(index, /* subSequence */ chars.substring(start, end).toString());
             };
             StringBuffer.prototype.insert$int$double = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuffer.prototype.insert$int$float = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuffer.prototype.insert$int$int = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuffer.prototype.insert$int$long = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuffer.prototype.insert$int$java_lang_Object = function (index, x) {
-                return this.insert$int$java_lang_String(index, /* valueOf */ new String(x).toString());
+                return this.insert$int$java_lang_String(index, /* valueOf */ String(x).toString());
             };
             StringBuffer.prototype.insert$int$java_lang_String = function (index, x) {
                 this.replace0(index, index, x);
@@ -16723,7 +16758,7 @@ var java;
             };
             /**
              *
-             * @return {Array}
+             * @return {byte[]}
              */
             ByteBuffer.prototype.array = function () {
                 return this._array;
@@ -17270,15 +17305,12 @@ var java;
             EmulatedCharset.UTF_8_$LI$ = function () { if (EmulatedCharset.UTF_8 == null) {
                 EmulatedCharset.UTF_8 = new EmulatedCharset.UtfCharset("UTF-8");
             } return EmulatedCharset.UTF_8; };
-            ;
             EmulatedCharset.ISO_LATIN_1_$LI$ = function () { if (EmulatedCharset.ISO_LATIN_1 == null) {
                 EmulatedCharset.ISO_LATIN_1 = new EmulatedCharset.LatinCharset("ISO-LATIN-1");
             } return EmulatedCharset.ISO_LATIN_1; };
-            ;
             EmulatedCharset.ISO_8859_1_$LI$ = function () { if (EmulatedCharset.ISO_8859_1 == null) {
                 EmulatedCharset.ISO_8859_1 = new EmulatedCharset.LatinCharset("ISO-8859-1");
             } return EmulatedCharset.ISO_8859_1; };
-            ;
             return EmulatedCharset;
         }(java.nio.charset.Charset));
         internal.EmulatedCharset = EmulatedCharset;
@@ -17293,7 +17325,7 @@ var java;
                 /**
                  *
                  * @param {string} str
-                 * @return {Array}
+                 * @return {byte[]}
                  */
                 LatinCharset.prototype.getBytes = function (str) {
                     var n = str.length;
@@ -17309,10 +17341,10 @@ var java;
                 };
                 /**
                  *
-                 * @param {Array} bytes
+                 * @param {byte[]} bytes
                  * @param {number} ofs
                  * @param {number} len
-                 * @return {Array}
+                 * @return {char[]}
                  */
                 LatinCharset.prototype.decodeString = function (bytes, ofs, len) {
                     var chars = (function (s) { var a = []; while (s-- > 0)
@@ -17337,10 +17369,10 @@ var java;
                 }
                 /**
                  *
-                 * @param {Array} bytes
+                 * @param {byte[]} bytes
                  * @param {number} ofs
                  * @param {number} len
-                 * @return {Array}
+                 * @return {char[]}
                  */
                 UtfCharset.prototype.decodeString = function (bytes, ofs, len) {
                     var charCount = 0;
@@ -17418,7 +17450,7 @@ var java;
                 /**
                  *
                  * @param {string} str
-                 * @return {Array}
+                 * @return {byte[]}
                  */
                 UtfCharset.prototype.getBytes = function (str) {
                     var n = str.length;
@@ -17461,7 +17493,7 @@ var java;
                 /**
                  * Encode a single character in UTF8.
                  *
-                 * @param {Array} bytes byte array to store character in
+                 * @param {byte[]} bytes byte array to store character in
                  * @param {number} ofs offset into byte array to store first byte
                  * @param {number} codePoint character to encode
                  * @return {number} number of bytes consumed by encoding the character
@@ -17521,14 +17553,18 @@ var java;
                     if (_this.comparator === undefined) {
                         _this.comparator = null;
                     }
-                    _this.comparator = (comparator);
+                    _this.comparator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comparator));
                     return _this;
                 }
                 /**
                  *
                  */
                 StreamRowSortingCollector.prototype.end = function () {
-                    java.util.Collections.sort$java_util_List$java_util_Comparator(this.collection, (this.comparator));
+                    java.util.Collections.sort$java_util_List$java_util_Comparator(this.collection, ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.comparator)));
                     _super.prototype.end.call(this);
                 };
                 return StreamRowSortingCollector;
@@ -17557,14 +17593,6 @@ var java;
             function AbstractMap() {
             }
             /* Default method injected from java.util.Map */
-            AbstractMap.prototype.putIfAbsent = function (key, value) {
-                var v = this.get(key);
-                if (v == null) {
-                    v = this.put(key, value);
-                }
-                return v;
-            };
-            /* Default method injected from java.util.Map */
             AbstractMap.prototype.computeIfAbsent = function (key, mappingFunction) {
                 var result;
                 if ((result = this.get(key)) == null) {
@@ -17573,6 +17601,19 @@ var java;
                         this.put(key, result);
                 }
                 return result;
+            };
+            /* Default method injected from java.util.Map */
+            AbstractMap.prototype.getOrDefault = function (key, defaultValue) {
+                var v;
+                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
+            };
+            /* Default method injected from java.util.Map */
+            AbstractMap.prototype.putIfAbsent = function (key, value) {
+                var v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
             };
             /* Default method injected from java.util.Map */
             AbstractMap.prototype.merge = function (key, value, map) {
@@ -17587,13 +17628,10 @@ var java;
                 return next;
             };
             /* Default method injected from java.util.Map */
-            AbstractMap.prototype.getOrDefault = function (key, defaultValue) {
-                var v;
-                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
-            };
-            /* Default method injected from java.util.Map */
             AbstractMap.prototype.replaceAll = function (__function) {
-                java.util.Objects.requireNonNull((__function));
+                java.util.Objects.requireNonNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(__function)));
                 var _loop_13 = function (index142) {
                     var entry = index142.next();
                     {
@@ -17606,7 +17644,6 @@ var java;
                         catch (ise) {
                             throw new java.lang.RuntimeException(ise);
                         }
-                        ;
                         v_1 = (function (target) { return (typeof target === 'function') ? target(k_1, v_1) : target.apply(k_1, v_1); })(__function);
                         try {
                             entry.setValue(v_1);
@@ -17614,7 +17651,6 @@ var java;
                         catch (ise) {
                             throw new java.lang.RuntimeException(ise);
                         }
-                        ;
                     }
                 };
                 for (var index142 = this.entrySet().iterator(); index142.hasNext();) {
@@ -17783,7 +17819,7 @@ var java;
                     throw new Error('invalid overload');
             };
             AbstractMap.prototype.toString$java_lang_Object = function (o) {
-                return o === this ? "(this Map)" : /* valueOf */ new String(o).toString();
+                return o === this ? "(this Map)" : /* valueOf */ String(o).toString();
             };
             /**
              *
@@ -18021,7 +18057,9 @@ var java;
                     /* Default method injected from java.util.Iterator */
                     AbstractMap$0$0.prototype.forEachRemaining = function (consumer) {
                         var _this = this;
-                        javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                         while ((this.hasNext())) {
                             {
                                 (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -18104,7 +18142,9 @@ var java;
                     /* Default method injected from java.util.Iterator */
                     AbstractMap$1$0.prototype.forEachRemaining = function (consumer) {
                         var _this = this;
-                        javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                         while ((this.hasNext())) {
                             {
                                 (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -18222,31 +18262,20 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            HashSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.lang.Iterable */
-            HashSet.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_14 = function (index147) {
-                    var t = index147.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index147 = this.iterator(); index147.hasNext();) {
-                    _loop_14(index147);
-                }
-            };
-            /* Default method injected from java.util.Collection */
             HashSet.prototype.parallelStream = function () {
                 return this.stream();
             };
             /* Default method injected from java.util.Collection */
+            HashSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.util.Collection */
             HashSet.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                 var removed = false;
-                var _loop_15 = function (it) {
+                var _loop_14 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -18256,9 +18285,24 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_15(it);
+                    _loop_14(it);
                 }
                 return removed;
+            };
+            /* Default method injected from java.lang.Iterable */
+            HashSet.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                var _loop_15 = function (index147) {
+                    var t = index147.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index147 = this.iterator(); index147.hasNext();) {
+                    _loop_15(index147);
+                }
             };
             /**
              *
@@ -18448,8 +18492,8 @@ var java;
             /**
              * Constructs a set taking ownership of the specified set. The size must
              * accurately reflect the number of non-null items in set.
-             * @param {Array} all
-             * @param {Array} set
+             * @param {E[]} all
+             * @param {E[]} set
              * @param {number} size
              * @class
              * @extends java.util.EnumSet
@@ -18569,7 +18613,9 @@ var java;
                     /* Default method injected from java.util.Iterator */
                     IteratorImpl.prototype.forEachRemaining = function (consumer) {
                         var _this = this;
-                        javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                         while ((this.hasNext())) {
                             {
                                 (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -18663,7 +18709,9 @@ var java;
                     if (_this.map === undefined) {
                         _this.map = null;
                     }
-                    _this.map = (new java.util.TreeMap((c)));
+                    _this.map = (new java.util.TreeMap(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c))));
                 }
                 else if (((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.SortedSet") >= 0)) || c === null)) {
                     var __args = arguments;
@@ -18675,7 +18723,9 @@ var java;
                         if (_this.map === undefined) {
                             _this.map = null;
                         }
-                        _this.map = (new java.util.TreeMap((c_1)));
+                        _this.map = (new java.util.TreeMap(((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c_1))));
                     }
                     if (_this.map === undefined) {
                         _this.map = null;
@@ -18706,31 +18756,20 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            TreeSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.lang.Iterable */
-            TreeSet.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_16 = function (index148) {
-                    var t = index148.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index148 = this.iterator(); index148.hasNext();) {
-                    _loop_16(index148);
-                }
-            };
-            /* Default method injected from java.util.Collection */
             TreeSet.prototype.parallelStream = function () {
                 return this.stream();
             };
             /* Default method injected from java.util.Collection */
+            TreeSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.util.Collection */
             TreeSet.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                 var removed = false;
-                var _loop_17 = function (it) {
+                var _loop_16 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -18740,9 +18779,24 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_17(it);
+                    _loop_16(it);
                 }
                 return removed;
+            };
+            /* Default method injected from java.lang.Iterable */
+            TreeSet.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                var _loop_17 = function (index148) {
+                    var t = index148.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index148 = this.iterator(); index148.hasNext();) {
+                    _loop_17(index148);
+                }
             };
             /**
              *
@@ -18771,7 +18825,9 @@ var java;
              * @return {*}
              */
             TreeSet.prototype.comparator = function () {
-                return (this.map.comparator());
+                return ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.map.comparator()));
             };
             /**
              *
@@ -19018,33 +19074,24 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            Vector.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.lang.Iterable */
-            Vector.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_18 = function (index149) {
-                    var t = index149.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index149 = this.iterator(); index149.hasNext();) {
-                    _loop_18(index149);
-                }
-            };
-            /* Default method injected from java.util.Collection */
             Vector.prototype.parallelStream = function () {
                 return this.stream();
+            };
+            /* Default method injected from java.util.Collection */
+            Vector.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /* Default method injected from java.util.List */
             Vector.prototype.sort = function (c) {
                 var a = this.toArray();
-                java.util.Arrays.sort(a, (c));
+                java.util.Arrays.sort(a, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)))));
                 var i = this.listIterator();
-                for (var index150 = 0; index150 < a.length; index150++) {
-                    var e = a[index150];
+                for (var index149 = 0; index149 < a.length; index149++) {
+                    var e = a[index149];
                     {
                         i.next();
                         i.set(e);
@@ -19053,9 +19100,11 @@ var java;
             };
             /* Default method injected from java.util.Collection */
             Vector.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                 var removed = false;
-                var _loop_19 = function (it) {
+                var _loop_18 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -19065,9 +19114,24 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_19(it);
+                    _loop_18(it);
                 }
                 return removed;
+            };
+            /* Default method injected from java.lang.Iterable */
+            Vector.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                var _loop_19 = function (index150) {
+                    var t = index150.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index150 = this.iterator(); index150.hasNext();) {
+                    _loop_19(index150);
+                }
             };
             Vector.prototype.add$java_lang_Object = function (o) {
                 return this.arrayList.add(o);
@@ -19308,8 +19372,8 @@ var java;
             };
             /**
              *
-             * @param {Array} a
-             * @return {Array}
+             * @param {T[]} a
+             * @return {T[]}
              */
             Vector.prototype.toArray = function (a) {
                 if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (a[0] != null))) || a === null)) {
@@ -19346,7 +19410,7 @@ var java;
             };
             /*private*/ Vector.checkArrayIndexOutOfBounds = function (expression, index) {
                 if (!expression) {
-                    throw new java.lang.ArrayIndexOutOfBoundsException(/* valueOf */ new String(index).toString());
+                    throw new java.lang.ArrayIndexOutOfBoundsException(/* valueOf */ String(index).toString());
                 }
             };
             return Vector;
@@ -19434,7 +19498,6 @@ var java;
                 catch (e) {
                     throw new java.lang.IndexOutOfBoundsException("Can\'t get element " + index);
                 }
-                ;
             };
             /**
              *
@@ -19469,7 +19532,6 @@ var java;
                 catch (e) {
                     throw new java.lang.IndexOutOfBoundsException("Can\'t remove element " + index);
                 }
-                ;
             };
             /**
              *
@@ -19502,7 +19564,6 @@ var java;
                 catch (e) {
                     throw new java.lang.IndexOutOfBoundsException("Can\'t set element " + index);
                 }
-                ;
             };
             return AbstractSequentialList;
         }(java.util.AbstractList));
@@ -19580,33 +19641,24 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            ArrayList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.lang.Iterable */
-            ArrayList.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_20 = function (index152) {
-                    var t = index152.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index152 = this.iterator(); index152.hasNext();) {
-                    _loop_20(index152);
-                }
-            };
-            /* Default method injected from java.util.Collection */
             ArrayList.prototype.parallelStream = function () {
                 return this.stream();
+            };
+            /* Default method injected from java.util.Collection */
+            ArrayList.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /* Default method injected from java.util.List */
             ArrayList.prototype.sort = function (c) {
                 var a = this.toArray();
-                java.util.Arrays.sort(a, (c));
+                java.util.Arrays.sort(a, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)))));
                 var i = this.listIterator();
-                for (var index153 = 0; index153 < a.length; index153++) {
-                    var e = a[index153];
+                for (var index152 = 0; index152 < a.length; index152++) {
+                    var e = a[index152];
                     {
                         i.next();
                         i.set(e);
@@ -19615,9 +19667,11 @@ var java;
             };
             /* Default method injected from java.util.Collection */
             ArrayList.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                 var removed = false;
-                var _loop_21 = function (it) {
+                var _loop_20 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -19627,9 +19681,24 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_21(it);
+                    _loop_20(it);
                 }
                 return removed;
+            };
+            /* Default method injected from java.lang.Iterable */
+            ArrayList.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                var _loop_21 = function (index153) {
+                    var t = index153.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index153 = this.iterator(); index153.hasNext();) {
+                    _loop_21(index153);
+                }
             };
             ArrayList.prototype.add$java_lang_Object = function (o) {
                 this.array[this.array.length] = o;
@@ -19804,8 +19873,8 @@ var java;
             };
             /**
              *
-             * @param {Array} out
-             * @return {Array}
+             * @param {T[]} out
+             * @return {T[]}
              */
             ArrayList.prototype.toArray = function (out) {
                 if (((out != null && out instanceof Array && (out.length == 0 || out[0] == null || (out[0] != null))) || out === null)) {
@@ -19901,7 +19970,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 ArrayList$0.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -20096,7 +20167,9 @@ var java;
                 return -low - 1;
             };
             Arrays.binarySearch$java_lang_Object_A$java_lang_Object = function (sortedArray, key) {
-                return Arrays.binarySearch(sortedArray, key, (java.util.Comparators.natural()));
+                return Arrays.binarySearch(sortedArray, key, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural())));
             };
             Arrays.binarySearch$short_A$short = function (sortedArray, key) {
                 var low = 0;
@@ -20121,7 +20194,9 @@ var java;
             };
             Arrays.binarySearch$java_lang_Object_A$java_lang_Object$java_util_Comparator = function (sortedArray, key, comparator) {
                 if (comparator == null) {
-                    comparator = (java.util.Comparators.natural());
+                    comparator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                 }
                 var low = 0;
                 var high = sortedArray.length - 1;
@@ -20129,7 +20204,7 @@ var java;
                     {
                         var mid = low + ((high - low) >> 1);
                         var midVal = sortedArray[mid];
-                        var compareResult = ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(comparator))(midVal, key);
+                        var compareResult = comparator(midVal, key);
                         if (compareResult < 0) {
                             low = mid + 1;
                         }
@@ -20148,7 +20223,7 @@ var java;
              * Perform a binary search on a sorted object array, using a user-specified
              * comparison function.
              *
-             * @param {Array} sortedArray object array to search
+             * @param {T[]} sortedArray object array to search
              * @param {*} key value to search for
              * @param {*} comparator comparision function, <code>null</code> indicates
              * <i>natural ordering</i> should be used.
@@ -20992,10 +21067,14 @@ var java;
                 Arrays.nativeLongSort$java_lang_Object$int$int(array, fromIndex, toIndex);
             };
             Arrays.sort$java_lang_Object_A = function (array) {
-                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(array, 0, array.length, (java.util.Comparators.natural()));
+                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(array, 0, array.length, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural())));
             };
             Arrays.sort$java_lang_Object_A$int$int = function (x, fromIndex, toIndex) {
-                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, (java.util.Comparators.natural()));
+                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural())));
             };
             Arrays.sort$short_A = function (array) {
                 Arrays.nativeNumberSort$java_lang_Object(array);
@@ -21005,11 +21084,15 @@ var java;
                 Arrays.nativeNumberSort$java_lang_Object$int$int(array, fromIndex, toIndex);
             };
             Arrays.sort$java_lang_Object_A$java_util_Comparator = function (x, c) {
-                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, 0, x.length, (c));
+                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, 0, x.length, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)));
             };
             Arrays.sort$java_lang_Object_A$int$int$java_util_Comparator = function (x, fromIndex, toIndex, c) {
                 javaemul.internal.InternalPreconditions.checkPositionIndexes(fromIndex, toIndex, x.length);
-                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, (c));
+                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)));
             };
             Arrays.sort = function (x, fromIndex, toIndex, c) {
                 if (((x != null && x instanceof Array && (x.length == 0 || x[0] == null || (x[0] != null))) || x === null) && ((typeof fromIndex === 'number') || fromIndex === null) && ((typeof toIndex === 'number') || toIndex === null) && ((typeof c === 'function' && c.length === 2) || c === null)) {
@@ -21077,7 +21160,7 @@ var java;
                 for (var index164 = 0; index164 < a.length; index164++) {
                     var element = a[index164];
                     {
-                        joiner.add(/* valueOf */ new String(element).toString());
+                        joiner.add(/* valueOf */ String(element).toString());
                     }
                 }
                 return joiner.toString();
@@ -21121,7 +21204,7 @@ var java;
                 for (var index165 = 0; index165 < a.length; index165++) {
                     var element = a[index165];
                     {
-                        joiner.add(/* valueOf */ new String(element).toString());
+                        joiner.add(/* valueOf */ String(element).toString());
                     }
                 }
                 return joiner.toString();
@@ -21134,7 +21217,7 @@ var java;
                 for (var index166 = 0; index166 < a.length; index166++) {
                     var element = a[index166];
                     {
-                        joiner.add(/* valueOf */ new String(element).toString());
+                        joiner.add(/* valueOf */ String(element).toString());
                     }
                 }
                 return joiner.toString();
@@ -21147,7 +21230,7 @@ var java;
                 for (var index167 = 0; index167 < a.length; index167++) {
                     var element = a[index167];
                     {
-                        joiner.add(/* valueOf */ new String(element).toString());
+                        joiner.add(/* valueOf */ String(element).toString());
                     }
                 }
                 return joiner.toString();
@@ -21160,7 +21243,7 @@ var java;
                 for (var index168 = 0; index168 < a.length; index168++) {
                     var element = a[index168];
                     {
-                        joiner.add(/* valueOf */ new String(element).toString());
+                        joiner.add(/* valueOf */ String(element).toString());
                     }
                 }
                 return joiner.toString();
@@ -21173,7 +21256,7 @@ var java;
                 for (var index169 = 0; index169 < a.length; index169++) {
                     var element = a[index169];
                     {
-                        joiner.add(/* valueOf */ new String(element).toString());
+                        joiner.add(/* valueOf */ String(element).toString());
                     }
                 }
                 return joiner.toString();
@@ -21186,7 +21269,7 @@ var java;
                 for (var index170 = 0; index170 < a.length; index170++) {
                     var element = a[index170];
                     {
-                        joiner.add(/* valueOf */ new String(element).toString());
+                        joiner.add(/* valueOf */ String(element).toString());
                     }
                 }
                 return joiner.toString();
@@ -21205,7 +21288,7 @@ var java;
                 for (var index171 = 0; index171 < a.length; index171++) {
                     var element = a[index171];
                     {
-                        joiner.add(/* valueOf */ new String(element).toString());
+                        joiner.add(/* valueOf */ String(element).toString());
                     }
                 }
                 return joiner.toString();
@@ -21260,7 +21343,7 @@ var java;
                             }
                         }
                         else {
-                            joiner.add(/* valueOf */ new String(obj).toString());
+                            joiner.add(/* valueOf */ String(obj).toString());
                         }
                     }
                 }
@@ -21268,7 +21351,7 @@ var java;
             };
             /**
              * Recursive helper function for {@link Arrays#deepToString(Object[])}.
-             * @param {Array} a
+             * @param {java.lang.Object[]} a
              * @param {*} arraysIveSeen
              * @return {string}
              * @private
@@ -21293,7 +21376,7 @@ var java;
             /**
              * Sort a small subsection of an array by insertion sort.
              *
-             * @param {Array} array array to sort
+             * @param {java.lang.Object[]} array array to sort
              * @param {number} low lower bound of range to sort
              * @param {number} high upper bound of range to sort
              * @param {*} comp comparator to use
@@ -21302,7 +21385,7 @@ var java;
             Arrays.insertionSort = function (array, low, high, comp) {
                 for (var i = low + 1; i < high; ++i) {
                     {
-                        for (var j = i; j > low && ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(comp))(array[j - 1], array[j]) > 0; --j) {
+                        for (var j = i; j > low && comp(array[j - 1], array[j]) > 0; --j) {
                             {
                                 var t = array[j];
                                 array[j] = array[j - 1];
@@ -21318,12 +21401,12 @@ var java;
              * Merge the two sorted subarrays (srcLow,srcMid] and (srcMid,srcHigh] into
              * dest.
              *
-             * @param {Array} src source array for merge
+             * @param {java.lang.Object[]} src source array for merge
              * @param {number} srcLow lower bound of bottom sorted half
              * @param {number} srcMid upper bound of bottom sorted half & lower bound of top sorted
              * half
              * @param {number} srcHigh upper bound of top sorted half
-             * @param {Array} dest destination array for merge
+             * @param {java.lang.Object[]} dest destination array for merge
              * @param {number} destLow lower bound of destination
              * @param {number} destHigh upper bound of destination
              * @param {*} comp comparator to use
@@ -21333,7 +21416,7 @@ var java;
                 var topIdx = srcMid;
                 while ((destLow < destHigh)) {
                     {
-                        if (topIdx >= srcHigh || (srcLow < srcMid && ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(comp))(src[srcLow], src[topIdx]) <= 0)) {
+                        if (topIdx >= srcHigh || (srcLow < srcMid && comp(src[srcLow], src[topIdx]) <= 0)) {
                             dest[destLow++] = src[srcLow++];
                         }
                         else {
@@ -21345,23 +21428,35 @@ var java;
             };
             Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator = function (x, fromIndex, toIndex, comp) {
                 if (comp == null) {
-                    comp = (java.util.Comparators.natural());
+                    comp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                 }
                 var temp = Arrays.copyOfRange$java_lang_Object_A$int$int(x, fromIndex, toIndex);
-                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(temp, x, fromIndex, toIndex, -fromIndex, (comp));
+                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(temp, x, fromIndex, toIndex, -fromIndex, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comp)))));
             };
             Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator = function (temp, array, low, high, ofs, comp) {
                 var length = high - low;
                 if (length < 7) {
-                    Arrays.insertionSort(array, low, high, (comp));
+                    Arrays.insertionSort(array, low, high, ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comp)));
                     return;
                 }
                 var tempLow = low + ofs;
                 var tempHigh = high + ofs;
                 var tempMid = tempLow + ((tempHigh - tempLow) >> 1);
-                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(array, temp, tempLow, tempMid, -ofs, (comp));
-                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(array, temp, tempMid, tempHigh, -ofs, (comp));
-                if (((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(comp))(temp[tempMid - 1], temp[tempMid]) <= 0) {
+                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(array, temp, tempLow, tempMid, -ofs, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comp)));
+                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(array, temp, tempMid, tempHigh, -ofs, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comp)));
+                if (comp(temp[tempMid - 1], temp[tempMid]) <= 0) {
                     while ((low < high)) {
                         {
                             array[low++] = temp[tempLow++];
@@ -21370,16 +21465,18 @@ var java;
                     ;
                     return;
                 }
-                Arrays.merge(temp, tempLow, tempMid, tempHigh, array, low, high, (comp));
+                Arrays.merge(temp, tempLow, tempMid, tempHigh, array, low, high, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comp)));
             };
             /**
              * Recursive helper function for
              * {@link Arrays#mergeSort(Object[], int, int, Comparator)}.
              *
-             * @param {Array} temp temporary space, as large as the range of elements being
+             * @param {java.lang.Object[]} temp temporary space, as large as the range of elements being
              * sorted. On entry, temp should contain a copy of the sort range
              * from array.
-             * @param {Array} array array to sort
+             * @param {java.lang.Object[]} array array to sort
              * @param {number} low lower bound of range to sort
              * @param {number} high upper bound of range to sort
              * @param {number} ofs offset to convert an array index into a temp index
@@ -21518,8 +21615,8 @@ var java;
                 };
                 /**
                  *
-                 * @param {Array} out
-                 * @return {Array}
+                 * @param {T[]} out
+                 * @return {T[]}
                  */
                 ArrayList.prototype.toArray = function (out) {
                     if (((out != null && out instanceof Array && (out.length == 0 || out[0] == null || (out[0] != null))) || out === null)) {
@@ -21568,9 +21665,13 @@ var java;
                     }
                     _this.heap = (new java.util.ArrayList(initialCapacity));
                     if (cmp == null) {
-                        cmp = (java.util.Comparators.natural());
+                        cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                     }
-                    _this.cmp = (cmp);
+                    _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp));
                 }
                 else if (((typeof initialCapacity === 'function' && initialCapacity.length === 2) || initialCapacity === null) && cmp === undefined) {
                     var __args = arguments;
@@ -21588,9 +21689,13 @@ var java;
                         }
                         _this.heap = (new java.util.ArrayList(initialCapacity_1));
                         if (cmp_1 == null) {
-                            cmp_1 = (java.util.Comparators.natural());
+                            cmp_1 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                         }
-                        _this.cmp = (cmp_1);
+                        _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp_1));
                     }
                     if (_this.cmp === undefined) {
                         _this.cmp = null;
@@ -21605,7 +21710,9 @@ var java;
                     {
                         var __args_29 = arguments;
                         var initialCapacity_2 = c_2.size();
-                        var cmp_2 = (c_2.comparator());
+                        var cmp_2 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c_2.comparator()));
                         _this = _super.call(this) || this;
                         if (_this.cmp === undefined) {
                             _this.cmp = null;
@@ -21615,9 +21722,13 @@ var java;
                         }
                         _this.heap = (new java.util.ArrayList(initialCapacity_2));
                         if (cmp_2 == null) {
-                            cmp_2 = (java.util.Comparators.natural());
+                            cmp_2 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                         }
-                        _this.cmp = (cmp_2);
+                        _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp_2));
                     }
                     if (_this.cmp === undefined) {
                         _this.cmp = null;
@@ -21635,7 +21746,9 @@ var java;
                     {
                         var __args_30 = arguments;
                         var initialCapacity_3 = c_3.size();
-                        var cmp_3 = (c_3.comparator());
+                        var cmp_3 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c_3.comparator()));
                         _this = _super.call(this) || this;
                         if (_this.cmp === undefined) {
                             _this.cmp = null;
@@ -21645,9 +21758,13 @@ var java;
                         }
                         _this.heap = (new java.util.ArrayList(initialCapacity_3));
                         if (cmp_3 == null) {
-                            cmp_3 = (java.util.Comparators.natural());
+                            cmp_3 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                         }
-                        _this.cmp = (cmp_3);
+                        _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp_3));
                     }
                     if (_this.cmp === undefined) {
                         _this.cmp = null;
@@ -21677,9 +21794,13 @@ var java;
                             }
                             _this.heap = (new java.util.ArrayList(initialCapacity_4));
                             if (cmp_4 == null) {
-                                cmp_4 = (java.util.Comparators.natural());
+                                cmp_4 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                    return funcInst;
+                                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                             }
-                            _this.cmp = (cmp_4);
+                            _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp_4));
                         }
                         if (_this.cmp === undefined) {
                             _this.cmp = null;
@@ -21712,9 +21833,13 @@ var java;
                         }
                         _this.heap = (new java.util.ArrayList(initialCapacity));
                         if (cmp_5 == null) {
-                            cmp_5 = (java.util.Comparators.natural());
+                            cmp_5 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                         }
-                        _this.cmp = (cmp_5);
+                        _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp_5));
                     }
                     if (_this.cmp === undefined) {
                         _this.cmp = null;
@@ -21740,9 +21865,13 @@ var java;
                             }
                             _this.heap = (new java.util.ArrayList(initialCapacity_5));
                             if (cmp_6 == null) {
-                                cmp_6 = (java.util.Comparators.natural());
+                                cmp_6 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                    return funcInst;
+                                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                             }
-                            _this.cmp = (cmp_6);
+                            _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp_6));
                         }
                         if (_this.cmp === undefined) {
                             _this.cmp = null;
@@ -21793,7 +21922,11 @@ var java;
                 this.heap.clear();
             };
             PriorityQueue.prototype.comparator = function () {
-                return this.cmp === java.util.Comparators.natural() ? (null) : (this.cmp);
+                return this.cmp === java.util.Comparators.natural() ? ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null)) : ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.cmp));
             };
             /**
              *
@@ -21837,7 +21970,7 @@ var java;
                     {
                         var childNode = node;
                         node = PriorityQueue.getParent(node);
-                        if (((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.cmp))(this.heap.get(node), e) <= 0) {
+                        if (this.cmp(this.heap.get(node), e) <= 0) {
                             this.heap.set(childNode, e);
                             return true;
                         }
@@ -21932,8 +22065,8 @@ var java;
             };
             /**
              *
-             * @param {Array} a
-             * @return {Array}
+             * @param {T[]} a
+             * @return {T[]}
              */
             PriorityQueue.prototype.toArray = function (a) {
                 if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (a[0] != null))) || a === null)) {
@@ -21981,7 +22114,7 @@ var java;
                 while ((!PriorityQueue.isLeaf(node, heapSize))) {
                     {
                         var smallestChild = this.getSmallestChild(node, heapSize);
-                        if (((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.cmp))(value, this.heap.get(smallestChild)) < 0) {
+                        if (this.cmp(value, this.heap.get(smallestChild)) < 0) {
                             break;
                         }
                         this.heap.set(node, this.heap.get(smallestChild));
@@ -21996,7 +22129,7 @@ var java;
                 var leftChild = PriorityQueue.getLeftChild(node);
                 var rightChild = leftChild + 1;
                 smallestChild = leftChild;
-                if ((rightChild < heapSize) && (((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.cmp))(this.heap.get(rightChild), this.heap.get(leftChild)) < 0)) {
+                if ((rightChild < heapSize) && (this.cmp(this.heap.get(rightChild), this.heap.get(leftChild)) < 0)) {
                     smallestChild = rightChild;
                 }
                 return smallestChild;
@@ -22040,7 +22173,6 @@ var java;
                 catch (e) {
                     console.error(e.message, e);
                 }
-                ;
             };
             PrintStream.prototype.print = function (s) {
                 if (((typeof s === 'string') || s === null)) {
@@ -22111,55 +22243,55 @@ var java;
                     throw new Error('invalid overload');
             };
             PrintStream.prototype.print$boolean = function (x) {
-                this.print$java_lang_String(/* valueOf */ new String(x).toString());
+                this.print$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.print$char = function (x) {
-                this.print$java_lang_String(/* valueOf */ new String(x).toString());
+                this.print$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.print$char_A = function (x) {
-                this.println$java_lang_String(/* valueOf */ new String(x).toString());
+                this.println$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.print$double = function (x) {
-                this.print$java_lang_String(/* valueOf */ new String(x).toString());
+                this.print$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.print$float = function (x) {
-                this.print$java_lang_String(/* valueOf */ new String(x).toString());
+                this.print$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.print$int = function (x) {
-                this.print$java_lang_String(/* valueOf */ new String(x).toString());
+                this.print$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.print$long = function (x) {
-                this.print$java_lang_String(/* valueOf */ new String(x).toString());
+                this.print$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.print$java_lang_Object = function (x) {
-                this.print$java_lang_String(/* valueOf */ new String(x).toString());
+                this.print$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.println$ = function () {
                 this.println$java_lang_String("");
             };
             PrintStream.prototype.println$boolean = function (x) {
-                this.println$java_lang_String(/* valueOf */ new String(x).toString());
+                this.println$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.println$char = function (x) {
-                this.println$java_lang_String(/* valueOf */ new String(x).toString());
+                this.println$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.println$char_A = function (x) {
-                this.println$java_lang_String(/* valueOf */ new String(x).toString());
+                this.println$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.println$double = function (x) {
-                this.println$java_lang_String(/* valueOf */ new String(x).toString());
+                this.println$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.println$float = function (x) {
-                this.println$java_lang_String(/* valueOf */ new String(x).toString());
+                this.println$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.println$int = function (x) {
-                this.println$java_lang_String(/* valueOf */ new String(x).toString());
+                this.println$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.println$long = function (x) {
-                this.println$java_lang_String(/* valueOf */ new String(x).toString());
+                this.println$java_lang_String(/* valueOf */ String(x).toString());
             };
             PrintStream.prototype.println$java_lang_Object = function (x) {
-                this.println$java_lang_String(/* valueOf */ new String(x).toString());
+                this.println$java_lang_String(/* valueOf */ String(x).toString());
             };
             return PrintStream;
         }(java.io.FilterOutputStream));
@@ -22989,11 +23121,9 @@ var java;
                 StandardCharsets.ISO_8859_1_$LI$ = function () { if (StandardCharsets.ISO_8859_1 == null) {
                     StandardCharsets.ISO_8859_1 = javaemul.internal.EmulatedCharset.ISO_8859_1_$LI$();
                 } return StandardCharsets.ISO_8859_1; };
-                ;
                 StandardCharsets.UTF_8_$LI$ = function () { if (StandardCharsets.UTF_8 == null) {
                     StandardCharsets.UTF_8 = javaemul.internal.EmulatedCharset.UTF_8_$LI$();
                 } return StandardCharsets.UTF_8; };
-                ;
                 return StandardCharsets;
             }());
             charset.StandardCharsets = StandardCharsets;
@@ -23341,7 +23471,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 EntrySetIterator.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -23679,7 +23811,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 EntrySetIterator.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -23770,14 +23904,6 @@ var java;
                 return _super.call(this) || this;
             }
             /* Default method injected from java.util.Map */
-            AbstractNavigableMap.prototype.putIfAbsent = function (key, value) {
-                var v = this.get(key);
-                if (v == null) {
-                    v = this.put(key, value);
-                }
-                return v;
-            };
-            /* Default method injected from java.util.Map */
             AbstractNavigableMap.prototype.computeIfAbsent = function (key, mappingFunction) {
                 var result;
                 if ((result = this.get(key)) == null) {
@@ -23786,6 +23912,19 @@ var java;
                         this.put(key, result);
                 }
                 return result;
+            };
+            /* Default method injected from java.util.Map */
+            AbstractNavigableMap.prototype.getOrDefault = function (key, defaultValue) {
+                var v;
+                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
+            };
+            /* Default method injected from java.util.Map */
+            AbstractNavigableMap.prototype.putIfAbsent = function (key, value) {
+                var v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
             };
             /* Default method injected from java.util.Map */
             AbstractNavigableMap.prototype.merge = function (key, value, map) {
@@ -23800,13 +23939,10 @@ var java;
                 return next;
             };
             /* Default method injected from java.util.Map */
-            AbstractNavigableMap.prototype.getOrDefault = function (key, defaultValue) {
-                var v;
-                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
-            };
-            /* Default method injected from java.util.Map */
             AbstractNavigableMap.prototype.replaceAll = function (__function) {
-                java.util.Objects.requireNonNull((__function));
+                java.util.Objects.requireNonNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(__function)));
                 var _loop_22 = function (index175) {
                     var entry = index175.next();
                     {
@@ -23819,7 +23955,6 @@ var java;
                         catch (ise) {
                             throw new java.lang.RuntimeException(ise);
                         }
-                        ;
                         v_2 = (function (target) { return (typeof target === 'function') ? target(k_2, v_2) : target.apply(k_2, v_2); })(__function);
                         try {
                             entry.setValue(v_2);
@@ -23827,7 +23962,6 @@ var java;
                         catch (ise) {
                             throw new java.lang.RuntimeException(ise);
                         }
-                        ;
                     }
                 };
                 for (var index175 = this.entrySet().iterator(); index175.hasNext();) {
@@ -24072,7 +24206,11 @@ var java;
                  * @return {*}
                  */
                 DescendingMap.prototype.comparator = function () {
-                    return (java.util.Collections.reverseOrder$java_util_Comparator((this.ascendingMap().comparator())));
+                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Collections.reverseOrder$java_util_Comparator(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.ascendingMap().comparator())))));
                 };
                 /**
                  *
@@ -24305,31 +24443,20 @@ var java;
                     return _this;
                 }
                 /* Default method injected from java.util.Collection */
-                NavigableKeySet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
-                /* Default method injected from java.lang.Iterable */
-                NavigableKeySet.prototype.forEach = function (action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_23 = function (index176) {
-                        var t = index176.next();
-                        {
-                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                        }
-                    };
-                    for (var index176 = this.iterator(); index176.hasNext();) {
-                        _loop_23(index176);
-                    }
-                };
-                /* Default method injected from java.util.Collection */
                 NavigableKeySet.prototype.parallelStream = function () {
                     return this.stream();
                 };
                 /* Default method injected from java.util.Collection */
+                NavigableKeySet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
+                /* Default method injected from java.util.Collection */
                 NavigableKeySet.prototype.removeIf = function (filter) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                     var removed = false;
-                    var _loop_24 = function (it) {
+                    var _loop_23 = function (it) {
                         {
                             if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                                 it.remove();
@@ -24339,9 +24466,24 @@ var java;
                         ;
                     };
                     for (var it = this.iterator(); it.hasNext();) {
-                        _loop_24(it);
+                        _loop_23(it);
                     }
                     return removed;
+                };
+                /* Default method injected from java.lang.Iterable */
+                NavigableKeySet.prototype.forEach = function (action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                    var _loop_24 = function (index176) {
+                        var t = index176.next();
+                        {
+                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                        }
+                    };
+                    for (var index176 = this.iterator(); index176.hasNext();) {
+                        _loop_24(index176);
+                    }
                 };
                 /**
                  *
@@ -24362,7 +24504,9 @@ var java;
                  * @return {*}
                  */
                 NavigableKeySet.prototype.comparator = function () {
-                    return (this.map.comparator());
+                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.map.comparator()));
                 };
                 /**
                  *
@@ -24547,7 +24691,9 @@ var java;
                     /* Default method injected from java.util.Iterator */
                     NavigableKeySet$0.prototype.forEachRemaining = function (consumer) {
                         var _this = this;
-                        javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                         while ((this.hasNext())) {
                             {
                                 (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -24599,15 +24745,12 @@ var java;
             Collections.EMPTY_LIST_$LI$ = function () { if (Collections.EMPTY_LIST == null) {
                 Collections.EMPTY_LIST = new Collections.EmptyList();
             } return Collections.EMPTY_LIST; };
-            ;
             Collections.EMPTY_MAP_$LI$ = function () { if (Collections.EMPTY_MAP == null) {
                 Collections.EMPTY_MAP = new Collections.EmptyMap();
             } return Collections.EMPTY_MAP; };
-            ;
             Collections.EMPTY_SET_$LI$ = function () { if (Collections.EMPTY_SET == null) {
                 Collections.EMPTY_SET = new Collections.EmptySet();
             } return Collections.EMPTY_SET; };
-            ;
             Collections.addAll = function (c) {
                 var a = [];
                 for (var _i = 1; _i < arguments.length; _i++) {
@@ -24626,11 +24769,15 @@ var java;
                 return (new Collections.LifoQueue(deque));
             };
             Collections.binarySearch$java_util_List$java_lang_Object = function (sortedList, key) {
-                return Collections.binarySearch(sortedList, key, (null));
+                return Collections.binarySearch(sortedList, key, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null)));
             };
             Collections.binarySearch$java_util_List$java_lang_Object$java_util_Comparator = function (sortedList, key, comparator) {
                 if (comparator == null) {
-                    comparator = (java.util.Comparators.natural());
+                    comparator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                 }
                 var low = 0;
                 var high = sortedList.size() - 1;
@@ -24638,7 +24785,7 @@ var java;
                     {
                         var mid = low + ((high - low) >> 1);
                         var midVal = sortedList.get(mid);
-                        var compareResult = ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(comparator))(midVal, key);
+                        var compareResult = comparator(midVal, key);
                         if (compareResult < 0) {
                             low = mid + 1;
                         }
@@ -24769,18 +24916,22 @@ var java;
                 return arrayList;
             };
             Collections.max$java_util_Collection = function (coll) {
-                return (Collections.max$java_util_Collection$java_util_Comparator(coll, (null)));
+                return (Collections.max$java_util_Collection$java_util_Comparator(coll, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null))));
             };
             Collections.max$java_util_Collection$java_util_Comparator = function (coll, comp) {
                 if (comp == null) {
-                    comp = (java.util.Comparators.natural());
+                    comp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                 }
                 var it = coll.iterator();
                 var max = it.next();
                 while ((it.hasNext())) {
                     {
                         var t = it.next();
-                        if (((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(comp))(t, max) > 0) {
+                        if (comp(t, max) > 0) {
                             max = t;
                         }
                     }
@@ -24800,7 +24951,11 @@ var java;
             };
             Collections.min = function (coll, comp) {
                 if (comp === void 0) { comp = null; }
-                return (Collections.max$java_util_Collection$java_util_Comparator(coll, (Collections.reverseOrder$java_util_Comparator((comp)))));
+                return (Collections.max$java_util_Collection$java_util_Comparator(coll, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(Collections.reverseOrder$java_util_Comparator(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comp)))))));
             };
             Collections.newSetFromMap = function (map) {
                 javaemul.internal.InternalPreconditions.checkArgument(map.isEmpty(), "map is not empty");
@@ -24854,14 +25009,20 @@ var java;
                 }
             };
             Collections.reverseOrder$ = function () {
-                return Collections.ReverseComparator.INSTANCE_$LI$();
+                return ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(Collections.ReverseComparator.INSTANCE_$LI$()))));
             };
             Collections.reverseOrder$java_util_Comparator = function (cmp) {
                 if (cmp == null) {
-                    return (Collections.reverseOrder$());
+                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(Collections.reverseOrder$()));
                 }
                 return function (t1, t2) {
-                    return ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(cmp))(t2, t1);
+                    return cmp(t2, t1);
                 };
             };
             Collections.reverseOrder = function (cmp) {
@@ -24968,11 +25129,17 @@ var java;
                 return Collections.unmodifiableMap(map);
             };
             Collections.sort$java_util_List = function (target) {
-                Collections.sort$java_util_List$java_util_Comparator(target, (null));
+                Collections.sort$java_util_List$java_util_Comparator(target, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null)));
             };
             Collections.sort$java_util_List$java_util_Comparator = function (target, c) {
                 var x = target['toArray$']();
-                java.util.Arrays.sort$java_lang_Object_A$java_util_Comparator(x, (c));
+                java.util.Arrays.sort$java_lang_Object_A$java_util_Comparator(x, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)))));
                 Collections.replaceContents(target, x);
             };
             Collections.sort = function (target, c) {
@@ -25050,7 +25217,7 @@ var java;
              * element type
              * @param {*} target
              * list to replace contents from an array
-             * @param {Array} x
+             * @param {java.lang.Object[]} x
              * an Object array which can contain only T instances
              * @private
              */
@@ -25210,7 +25377,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 EmptyListIterator.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -25221,7 +25390,6 @@ var java;
                 EmptyListIterator.INSTANCE_$LI$ = function () { if (EmptyListIterator.INSTANCE == null) {
                     EmptyListIterator.INSTANCE = new Collections.EmptyListIterator();
                 } return EmptyListIterator.INSTANCE; };
-                ;
                 /**
                  *
                  * @param {*} o
@@ -25389,7 +25557,6 @@ var java;
                 ReverseComparator.INSTANCE_$LI$ = function () { if (ReverseComparator.INSTANCE == null) {
                     ReverseComparator.INSTANCE = new Collections.ReverseComparator();
                 } return ReverseComparator.INSTANCE; };
-                ;
                 ReverseComparator.prototype.compare$java_lang_Comparable$java_lang_Comparable = function (o1, o2) {
                     return o2.compareTo(o1);
                 };
@@ -25563,31 +25730,20 @@ var java;
                     this.coll = coll;
                 }
                 /* Default method injected from java.util.Collection */
-                UnmodifiableCollection.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
-                /* Default method injected from java.lang.Iterable */
-                UnmodifiableCollection.prototype.forEach = function (action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_25 = function (index184) {
-                        var t = index184.next();
-                        {
-                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                        }
-                    };
-                    for (var index184 = this.iterator(); index184.hasNext();) {
-                        _loop_25(index184);
-                    }
-                };
-                /* Default method injected from java.util.Collection */
                 UnmodifiableCollection.prototype.parallelStream = function () {
                     return this.stream();
                 };
                 /* Default method injected from java.util.Collection */
+                UnmodifiableCollection.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
+                /* Default method injected from java.util.Collection */
                 UnmodifiableCollection.prototype.removeIf = function (filter) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                     var removed = false;
-                    var _loop_26 = function (it) {
+                    var _loop_25 = function (it) {
                         {
                             if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                                 it.remove();
@@ -25597,9 +25753,24 @@ var java;
                         ;
                     };
                     for (var it = this.iterator(); it.hasNext();) {
-                        _loop_26(it);
+                        _loop_25(it);
                     }
                     return removed;
+                };
+                /* Default method injected from java.lang.Iterable */
+                UnmodifiableCollection.prototype.forEach = function (action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                    var _loop_26 = function (index184) {
+                        var t = index184.next();
+                        {
+                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                        }
+                    };
+                    for (var index184 = this.iterator(); index184.hasNext();) {
+                        _loop_26(index184);
+                    }
                 };
                 /**
                  *
@@ -25692,8 +25863,8 @@ var java;
                 };
                 /**
                  *
-                 * @param {Array} a
-                 * @return {Array}
+                 * @param {E[]} a
+                 * @return {E[]}
                  */
                 UnmodifiableCollection.prototype.toArray = function (a) {
                     if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (a[0] != null))) || a === null)) {
@@ -25727,7 +25898,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 UnmodifiableCollectionIterator.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -25766,7 +25939,6 @@ var java;
                 RandomHolder.rnd_$LI$ = function () { if (RandomHolder.rnd == null) {
                     RandomHolder.rnd = new java.util.Random();
                 } return RandomHolder.rnd; };
-                ;
                 return RandomHolder;
             }());
             Collections.RandomHolder = RandomHolder;
@@ -25782,33 +25954,24 @@ var java;
                     return _this;
                 }
                 /* Default method injected from java.util.Collection */
-                UnmodifiableList.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
-                /* Default method injected from java.lang.Iterable */
-                UnmodifiableList.prototype.forEach = function (action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_27 = function (index185) {
-                        var t = index185.next();
-                        {
-                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                        }
-                    };
-                    for (var index185 = this.iterator(); index185.hasNext();) {
-                        _loop_27(index185);
-                    }
-                };
-                /* Default method injected from java.util.Collection */
                 UnmodifiableList.prototype.parallelStream = function () {
                     return this.stream();
+                };
+                /* Default method injected from java.util.Collection */
+                UnmodifiableList.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 /* Default method injected from java.util.List */
                 UnmodifiableList.prototype.sort = function (c) {
                     var a = this.toArray();
-                    java.util.Arrays.sort(a, (c));
+                    java.util.Arrays.sort(a, ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)))));
                     var i = this.listIterator();
-                    for (var index186 = 0; index186 < a.length; index186++) {
-                        var e = a[index186];
+                    for (var index185 = 0; index185 < a.length; index185++) {
+                        var e = a[index185];
                         {
                             i.next();
                             i.set(e);
@@ -25817,9 +25980,11 @@ var java;
                 };
                 /* Default method injected from java.util.Collection */
                 UnmodifiableList.prototype.removeIf = function (filter) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                     var removed = false;
-                    var _loop_28 = function (it) {
+                    var _loop_27 = function (it) {
                         {
                             if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                                 it.remove();
@@ -25829,9 +25994,24 @@ var java;
                         ;
                     };
                     for (var it = this.iterator(); it.hasNext();) {
-                        _loop_28(it);
+                        _loop_27(it);
                     }
                     return removed;
+                };
+                /* Default method injected from java.lang.Iterable */
+                UnmodifiableList.prototype.forEach = function (action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                    var _loop_28 = function (index186) {
+                        var t = index186.next();
+                        {
+                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                        }
+                    };
+                    for (var index186 = this.iterator(); index186.hasNext();) {
+                        _loop_28(index186);
+                    }
                 };
                 UnmodifiableList.prototype.add$int$java_lang_Object = function (index, element) {
                     throw new java.lang.UnsupportedOperationException();
@@ -25846,7 +26026,7 @@ var java;
                         return this.add$int$java_lang_Object(index, element);
                     }
                     else if (((index != null) || index === null) && element === undefined) {
-                        _super.prototype.add.call(this, index);
+                        return _super.prototype.add.call(this, index);
                     }
                     else
                         throw new Error('invalid overload');
@@ -25994,31 +26174,20 @@ var java;
                     return _super.call(this, set) || this;
                 }
                 /* Default method injected from java.util.Collection */
-                UnmodifiableSet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
-                /* Default method injected from java.lang.Iterable */
-                UnmodifiableSet.prototype.forEach = function (action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_29 = function (index187) {
-                        var t = index187.next();
-                        {
-                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                        }
-                    };
-                    for (var index187 = this.iterator(); index187.hasNext();) {
-                        _loop_29(index187);
-                    }
-                };
-                /* Default method injected from java.util.Collection */
                 UnmodifiableSet.prototype.parallelStream = function () {
                     return this.stream();
                 };
                 /* Default method injected from java.util.Collection */
+                UnmodifiableSet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
+                /* Default method injected from java.util.Collection */
                 UnmodifiableSet.prototype.removeIf = function (filter) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                     var removed = false;
-                    var _loop_30 = function (it) {
+                    var _loop_29 = function (it) {
                         {
                             if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                                 it.remove();
@@ -26028,9 +26197,24 @@ var java;
                         ;
                     };
                     for (var it = this.iterator(); it.hasNext();) {
-                        _loop_30(it);
+                        _loop_29(it);
                     }
                     return removed;
+                };
+                /* Default method injected from java.lang.Iterable */
+                UnmodifiableSet.prototype.forEach = function (action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                    var _loop_30 = function (index187) {
+                        var t = index187.next();
+                        {
+                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                        }
+                    };
+                    for (var index187 = this.iterator(); index187.hasNext();) {
+                        _loop_30(index187);
+                    }
                 };
                 /**
                  *
@@ -26075,7 +26259,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 UnmodifiableListIterator.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -26157,14 +26343,6 @@ var java;
                     this.map = map;
                 }
                 /* Default method injected from java.util.Map */
-                UnmodifiableMap.prototype.putIfAbsent = function (key, value) {
-                    var v = this.get(key);
-                    if (v == null) {
-                        v = this.put(key, value);
-                    }
-                    return v;
-                };
-                /* Default method injected from java.util.Map */
                 UnmodifiableMap.prototype.computeIfAbsent = function (key, mappingFunction) {
                     var result;
                     if ((result = this.get(key)) == null) {
@@ -26173,6 +26351,19 @@ var java;
                             this.put(key, result);
                     }
                     return result;
+                };
+                /* Default method injected from java.util.Map */
+                UnmodifiableMap.prototype.getOrDefault = function (key, defaultValue) {
+                    var v;
+                    return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
+                };
+                /* Default method injected from java.util.Map */
+                UnmodifiableMap.prototype.putIfAbsent = function (key, value) {
+                    var v = this.get(key);
+                    if (v == null) {
+                        v = this.put(key, value);
+                    }
+                    return v;
                 };
                 /* Default method injected from java.util.Map */
                 UnmodifiableMap.prototype.merge = function (key, value, map) {
@@ -26187,13 +26378,10 @@ var java;
                     return next;
                 };
                 /* Default method injected from java.util.Map */
-                UnmodifiableMap.prototype.getOrDefault = function (key, defaultValue) {
-                    var v;
-                    return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
-                };
-                /* Default method injected from java.util.Map */
                 UnmodifiableMap.prototype.replaceAll = function (__function) {
-                    java.util.Objects.requireNonNull((__function));
+                    java.util.Objects.requireNonNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(__function)));
                     var _loop_31 = function (index188) {
                         var entry = index188.next();
                         {
@@ -26206,7 +26394,6 @@ var java;
                             catch (ise) {
                                 throw new java.lang.RuntimeException(ise);
                             }
-                            ;
                             v_3 = (function (target) { return (typeof target === 'function') ? target(k_3, v_3) : target.apply(k_3, v_3); })(__function);
                             try {
                                 entry.setValue(v_3);
@@ -26214,7 +26401,6 @@ var java;
                             catch (ise) {
                                 throw new java.lang.RuntimeException(ise);
                             }
-                            ;
                         }
                     };
                     for (var index188 = this.entrySet().iterator(); index188.hasNext();) {
@@ -26398,8 +26584,8 @@ var java;
                     };
                     /**
                      *
-                     * @param {Array} a
-                     * @return {Array}
+                     * @param {T[]} a
+                     * @return {T[]}
                      */
                     UnmodifiableEntrySet.prototype.toArray = function (a) {
                         if (((a != null && a instanceof Array && (a.length == 0 || a[0] == null || (a[0] != null))) || a === null)) {
@@ -26414,7 +26600,7 @@ var java;
                     /**
                      * Wrap an array of Map.Entries as UnmodifiableEntries.
                      *
-                     * @param {Array} array
+                     * @param {java.lang.Object[]} array
                      * array to wrap
                      * @param {number} size
                      * number of entries to wrap
@@ -26508,7 +26694,9 @@ var java;
                         /* Default method injected from java.util.Iterator */
                         UnmodifiableEntrySet$0.prototype.forEachRemaining = function (consumer) {
                             var _this = this;
-                            javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                            javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                             while ((this.hasNext())) {
                                 {
                                     (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -26553,31 +26741,20 @@ var java;
                     return _this;
                 }
                 /* Default method injected from java.util.Collection */
-                UnmodifiableSortedSet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
-                /* Default method injected from java.lang.Iterable */
-                UnmodifiableSortedSet.prototype.forEach = function (action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
-                    var _loop_32 = function (index189) {
-                        var t = index189.next();
-                        {
-                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                        }
-                    };
-                    for (var index189 = this.iterator(); index189.hasNext();) {
-                        _loop_32(index189);
-                    }
-                };
-                /* Default method injected from java.util.Collection */
                 UnmodifiableSortedSet.prototype.parallelStream = function () {
                     return this.stream();
                 };
                 /* Default method injected from java.util.Collection */
+                UnmodifiableSortedSet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
+                /* Default method injected from java.util.Collection */
                 UnmodifiableSortedSet.prototype.removeIf = function (filter) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                     var removed = false;
-                    var _loop_33 = function (it) {
+                    var _loop_32 = function (it) {
                         {
                             if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                                 it.remove();
@@ -26587,16 +26764,33 @@ var java;
                         ;
                     };
                     for (var it = this.iterator(); it.hasNext();) {
-                        _loop_33(it);
+                        _loop_32(it);
                     }
                     return removed;
+                };
+                /* Default method injected from java.lang.Iterable */
+                UnmodifiableSortedSet.prototype.forEach = function (action) {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                    var _loop_33 = function (index189) {
+                        var t = index189.next();
+                        {
+                            (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                        }
+                    };
+                    for (var index189 = this.iterator(); index189.hasNext();) {
+                        _loop_33(index189);
+                    }
                 };
                 /**
                  *
                  * @return {*}
                  */
                 UnmodifiableSortedSet.prototype.comparator = function () {
-                    return (this.sortedSet.comparator());
+                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.sortedSet.comparator()));
                 };
                 /**
                  *
@@ -26678,14 +26872,6 @@ var java;
                     return _this;
                 }
                 /* Default method injected from java.util.Map */
-                UnmodifiableSortedMap.prototype.putIfAbsent = function (key, value) {
-                    var v = this.get(key);
-                    if (v == null) {
-                        v = this.put(key, value);
-                    }
-                    return v;
-                };
-                /* Default method injected from java.util.Map */
                 UnmodifiableSortedMap.prototype.computeIfAbsent = function (key, mappingFunction) {
                     var result;
                     if ((result = this.get(key)) == null) {
@@ -26694,6 +26880,19 @@ var java;
                             this.put(key, result);
                     }
                     return result;
+                };
+                /* Default method injected from java.util.Map */
+                UnmodifiableSortedMap.prototype.getOrDefault = function (key, defaultValue) {
+                    var v;
+                    return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
+                };
+                /* Default method injected from java.util.Map */
+                UnmodifiableSortedMap.prototype.putIfAbsent = function (key, value) {
+                    var v = this.get(key);
+                    if (v == null) {
+                        v = this.put(key, value);
+                    }
+                    return v;
                 };
                 /* Default method injected from java.util.Map */
                 UnmodifiableSortedMap.prototype.merge = function (key, value, map) {
@@ -26708,13 +26907,10 @@ var java;
                     return next;
                 };
                 /* Default method injected from java.util.Map */
-                UnmodifiableSortedMap.prototype.getOrDefault = function (key, defaultValue) {
-                    var v;
-                    return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
-                };
-                /* Default method injected from java.util.Map */
                 UnmodifiableSortedMap.prototype.replaceAll = function (__function) {
-                    java.util.Objects.requireNonNull((__function));
+                    java.util.Objects.requireNonNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(__function)));
                     var _loop_34 = function (index190) {
                         var entry = index190.next();
                         {
@@ -26727,7 +26923,6 @@ var java;
                             catch (ise) {
                                 throw new java.lang.RuntimeException(ise);
                             }
-                            ;
                             v_4 = (function (target) { return (typeof target === 'function') ? target(k_4, v_4) : target.apply(k_4, v_4); })(__function);
                             try {
                                 entry.setValue(v_4);
@@ -26735,7 +26930,6 @@ var java;
                             catch (ise) {
                                 throw new java.lang.RuntimeException(ise);
                             }
-                            ;
                         }
                     };
                     for (var index190 = this.entrySet().iterator(); index190.hasNext();) {
@@ -26747,7 +26941,9 @@ var java;
                  * @return {*}
                  */
                 UnmodifiableSortedMap.prototype.comparator = function () {
-                    return (this.sortedMap.comparator());
+                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.sortedMap.comparator()));
                 };
                 /**
                  *
@@ -26885,31 +27081,20 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            LinkedHashSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.lang.Iterable */
-            LinkedHashSet.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_35 = function (index191) {
-                    var t = index191.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index191 = this.iterator(); index191.hasNext();) {
-                    _loop_35(index191);
-                }
-            };
-            /* Default method injected from java.util.Collection */
             LinkedHashSet.prototype.parallelStream = function () {
                 return this.stream();
             };
             /* Default method injected from java.util.Collection */
+            LinkedHashSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
+            /* Default method injected from java.util.Collection */
             LinkedHashSet.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                 var removed = false;
-                var _loop_36 = function (it) {
+                var _loop_35 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -26919,9 +27104,24 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_36(it);
+                    _loop_35(it);
                 }
                 return removed;
+            };
+            /* Default method injected from java.lang.Iterable */
+            LinkedHashSet.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                var _loop_36 = function (index191) {
+                    var t = index191.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index191 = this.iterator(); index191.hasNext();) {
+                    _loop_36(index191);
+                }
             };
             /**
              *
@@ -27064,33 +27264,24 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            LinkedList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.lang.Iterable */
-            LinkedList.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull((action));
-                var _loop_37 = function (index192) {
-                    var t = index192.next();
-                    {
-                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
-                    }
-                };
-                for (var index192 = this.iterator(); index192.hasNext();) {
-                    _loop_37(index192);
-                }
-            };
-            /* Default method injected from java.util.Collection */
             LinkedList.prototype.parallelStream = function () {
                 return this.stream();
+            };
+            /* Default method injected from java.util.Collection */
+            LinkedList.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /* Default method injected from java.util.List */
             LinkedList.prototype.sort = function (c) {
                 var a = this.toArray();
-                java.util.Arrays.sort(a, (c));
+                java.util.Arrays.sort(a, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)))));
                 var i = this.listIterator();
-                for (var index193 = 0; index193 < a.length; index193++) {
-                    var e = a[index193];
+                for (var index192 = 0; index192 < a.length; index192++) {
+                    var e = a[index192];
                     {
                         i.next();
                         i.set(e);
@@ -27099,9 +27290,11 @@ var java;
             };
             /* Default method injected from java.util.Collection */
             LinkedList.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull((filter));
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                 var removed = false;
-                var _loop_38 = function (it) {
+                var _loop_37 = function (it) {
                     {
                         if ((function (target) { return (typeof target === 'function') ? target(it.next()) : target.test(it.next()); })(filter)) {
                             it.remove();
@@ -27111,9 +27304,24 @@ var java;
                     ;
                 };
                 for (var it = this.iterator(); it.hasNext();) {
-                    _loop_38(it);
+                    _loop_37(it);
                 }
                 return removed;
+            };
+            /* Default method injected from java.lang.Iterable */
+            LinkedList.prototype.forEach = function (action) {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
+                var _loop_38 = function (index193) {
+                    var t = index193.next();
+                    {
+                        (function (target) { return (typeof target === 'function') ? target(t) : target.accept(t); })(action);
+                    }
+                };
+                for (var index193 = this.iterator(); index193.hasNext();) {
+                    _loop_38(index193);
+                }
             };
             /**
              *
@@ -27413,7 +27621,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 DescendingIteratorImpl.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -27469,7 +27679,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 ListIteratorImpl2.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -27755,7 +27967,7 @@ var java;
             var IllegalCharsetNameException = /** @class */ (function (_super) {
                 __extends(IllegalCharsetNameException, _super);
                 function IllegalCharsetNameException(charsetName) {
-                    var _this = _super.call(this, /* valueOf */ new String(charsetName).toString()) || this;
+                    var _this = _super.call(this, /* valueOf */ String(charsetName).toString()) || this;
                     Object.setPrototypeOf(_this, IllegalCharsetNameException.prototype);
                     if (_this.charsetName === undefined) {
                         _this.charsetName = null;
@@ -27788,7 +28000,7 @@ var java;
             var UnsupportedCharsetException = /** @class */ (function (_super) {
                 __extends(UnsupportedCharsetException, _super);
                 function UnsupportedCharsetException(charsetName) {
-                    var _this = _super.call(this, /* valueOf */ new String(charsetName).toString()) || this;
+                    var _this = _super.call(this, /* valueOf */ String(charsetName).toString()) || this;
                     Object.setPrototypeOf(_this, UnsupportedCharsetException.prototype);
                     if (_this.charsetName === undefined) {
                         _this.charsetName = null;
@@ -27959,14 +28171,6 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Map */
-            IdentityHashMap.prototype.putIfAbsent = function (key, value) {
-                var v = this.get(key);
-                if (v == null) {
-                    v = this.put(key, value);
-                }
-                return v;
-            };
-            /* Default method injected from java.util.Map */
             IdentityHashMap.prototype.computeIfAbsent = function (key, mappingFunction) {
                 var result;
                 if ((result = this.get(key)) == null) {
@@ -27975,6 +28179,19 @@ var java;
                         this.put(key, result);
                 }
                 return result;
+            };
+            /* Default method injected from java.util.Map */
+            IdentityHashMap.prototype.getOrDefault = function (key, defaultValue) {
+                var v;
+                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
+            };
+            /* Default method injected from java.util.Map */
+            IdentityHashMap.prototype.putIfAbsent = function (key, value) {
+                var v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
             };
             /* Default method injected from java.util.Map */
             IdentityHashMap.prototype.merge = function (key, value, map) {
@@ -27989,13 +28206,10 @@ var java;
                 return next;
             };
             /* Default method injected from java.util.Map */
-            IdentityHashMap.prototype.getOrDefault = function (key, defaultValue) {
-                var v;
-                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
-            };
-            /* Default method injected from java.util.Map */
             IdentityHashMap.prototype.replaceAll = function (__function) {
-                java.util.Objects.requireNonNull((__function));
+                java.util.Objects.requireNonNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(__function)));
                 var _loop_39 = function (index194) {
                     var entry = index194.next();
                     {
@@ -28008,7 +28222,6 @@ var java;
                         catch (ise) {
                             throw new java.lang.RuntimeException(ise);
                         }
-                        ;
                         v_5 = (function (target) { return (typeof target === 'function') ? target(k_5, v_5) : target.apply(k_5, v_5); })(__function);
                         try {
                             entry.setValue(v_5);
@@ -28016,7 +28229,6 @@ var java;
                         catch (ise) {
                             throw new java.lang.RuntimeException(ise);
                         }
-                        ;
                     }
                 };
                 for (var index194 = this.entrySet().iterator(); index194.hasNext();) {
@@ -28232,9 +28444,13 @@ var java;
                     }
                     _this.root = null;
                     if (c == null) {
-                        c = (java.util.Comparators.natural());
+                        c = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                     }
-                    _this.cmp = (c);
+                    _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c));
                 }
                 else if (((c != null && (c.constructor != null && c.constructor["__interfaces"] != null && c.constructor["__interfaces"].indexOf("java.util.SortedMap") >= 0)) || c === null)) {
                     var __args = arguments;
@@ -28260,9 +28476,13 @@ var java;
                         }
                         _this.root = null;
                         if (c_5 == null) {
-                            c_5 = (java.util.Comparators.natural());
+                            c_5 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                         }
-                        _this.cmp = (c_5);
+                        _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c_5));
                     }
                     if (_this.cmp === undefined) {
                         _this.cmp = null;
@@ -28290,7 +28510,9 @@ var java;
                         var __args_39 = arguments;
                         {
                             var __args_40 = arguments;
-                            var c_6 = (null);
+                            var c_6 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null));
                             _this = _super.call(this) || this;
                             if (_this.cmp === undefined) {
                                 _this.cmp = null;
@@ -28309,9 +28531,13 @@ var java;
                             }
                             _this.root = null;
                             if (c_6 == null) {
-                                c_6 = (java.util.Comparators.natural());
+                                c_6 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                    return funcInst;
+                                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                             }
-                            _this.cmp = (c_6);
+                            _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c_6));
                         }
                         if (_this.cmp === undefined) {
                             _this.cmp = null;
@@ -28352,7 +28578,9 @@ var java;
                     var __args = arguments;
                     {
                         var __args_41 = arguments;
-                        var c_7 = (null);
+                        var c_7 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null));
                         _this = _super.call(this) || this;
                         if (_this.cmp === undefined) {
                             _this.cmp = null;
@@ -28371,9 +28599,13 @@ var java;
                         }
                         _this.root = null;
                         if (c_7 == null) {
-                            c_7 = (java.util.Comparators.natural());
+                            c_7 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                         }
-                        _this.cmp = (c_7);
+                        _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c_7));
                     }
                     if (_this.cmp === undefined) {
                         _this.cmp = null;
@@ -28398,19 +28630,15 @@ var java;
             TreeMap.SubMapType_All_$LI$ = function () { if (TreeMap.SubMapType_All == null) {
                 TreeMap.SubMapType_All = new TreeMap.SubMapType();
             } return TreeMap.SubMapType_All; };
-            ;
             TreeMap.SubMapType_Head_$LI$ = function () { if (TreeMap.SubMapType_Head == null) {
                 TreeMap.SubMapType_Head = new TreeMap.SubMapTypeHead();
             } return TreeMap.SubMapType_Head; };
-            ;
             TreeMap.SubMapType_Range_$LI$ = function () { if (TreeMap.SubMapType_Range == null) {
                 TreeMap.SubMapType_Range = new TreeMap.SubMapTypeRange();
             } return TreeMap.SubMapType_Range; };
-            ;
             TreeMap.SubMapType_Tail_$LI$ = function () { if (TreeMap.SubMapType_Tail == null) {
                 TreeMap.SubMapType_Tail = new TreeMap.SubMapTypeTail();
             } return TreeMap.SubMapType_Tail; };
-            ;
             TreeMap.otherChild = function (child) {
                 return 1 - child;
             };
@@ -28427,9 +28655,13 @@ var java;
              */
             TreeMap.prototype.comparator = function () {
                 if (this.cmp === java.util.Comparators.natural()) {
-                    return (null);
+                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null));
                 }
-                return (this.cmp);
+                return ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.cmp));
             };
             /**
              *
@@ -28544,7 +28776,7 @@ var java;
                 var node = this.root;
                 while ((node != null)) {
                     {
-                        var c = ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.cmp))(key, node.getKey());
+                        var c = this.cmp(key, node.getKey());
                         if (inclusive && c === 0) {
                             return node;
                         }
@@ -28573,7 +28805,7 @@ var java;
                 var node = this.root;
                 while ((node != null)) {
                     {
-                        var c = ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.cmp))(key, node.getKey());
+                        var c = this.cmp(key, node.getKey());
                         if (inclusive && c === 0) {
                             return node;
                         }
@@ -28614,11 +28846,11 @@ var java;
                     throw new java.lang.RuntimeException("Two red nodes adjacent");
                 }
                 var leftNode = tree.child[TreeMap.LEFT];
-                if (leftNode != null && ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.cmp))(leftNode.getKey(), tree.getKey()) > 0) {
+                if (leftNode != null && this.cmp(leftNode.getKey(), tree.getKey()) > 0) {
                     throw new java.lang.RuntimeException("Left child " + leftNode + " larger than " + tree);
                 }
                 var rightNode = tree.child[TreeMap.RIGHT];
-                if (rightNode != null && ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.cmp))(rightNode.getKey(), tree.getKey()) < 0) {
+                if (rightNode != null && this.cmp(rightNode.getKey(), tree.getKey()) < 0) {
                     throw new java.lang.RuntimeException("Right child " + rightNode + " smaller than " + tree);
                 }
                 var leftHeight = this.assertCorrectness$java_util_TreeMap_Node$boolean(leftNode, tree.isRed);
@@ -28657,7 +28889,7 @@ var java;
                 var tree = this.root;
                 while ((tree != null)) {
                     {
-                        var c = ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.cmp))(key, tree.getKey());
+                        var c = this.cmp(key, tree.getKey());
                         if (c === 0) {
                             return tree;
                         }
@@ -28790,7 +29022,7 @@ var java;
                     return newNode;
                 }
                 else {
-                    var c = ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.cmp))(newNode.getKey(), tree.getKey());
+                    var c = this.cmp(newNode.getKey(), tree.getKey());
                     if (c === 0) {
                         state.value = tree.setValue(newNode.getValue());
                         state.found = true;
@@ -28835,7 +29067,7 @@ var java;
              * @private
              */
             TreeMap.prototype.larger = function (a, b, orEqual) {
-                var compare = ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.cmp))(a, b);
+                var compare = this.cmp(a, b);
                 return compare > 0 || (orEqual && compare === 0);
             };
             /**
@@ -28847,7 +29079,7 @@ var java;
              * @private
              */
             TreeMap.prototype.smaller = function (a, b, orEqual) {
-                var compare = ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.cmp))(a, b);
+                var compare = this.cmp(a, b);
                 return compare < 0 || (orEqual && compare === 0);
             };
             /**
@@ -28874,7 +29106,7 @@ var java;
                         var grandparent = parent;
                         parent = node;
                         node = node.child[dir];
-                        var c = ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.cmp))(key, node.getKey());
+                        var c = this.cmp(key, node.getKey());
                         dir = c < 0 ? TreeMap.LEFT : TreeMap.RIGHT;
                         if (c === 0 && (!state.matchValue || java.util.Objects.equals(node.getValue(), state.value))) {
                             found = node;
@@ -28938,11 +29170,11 @@ var java;
              */
             TreeMap.prototype.replaceNode = function (head, node, newNode) {
                 var parent = head;
-                var direction = (parent.getKey() == null || ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.cmp))(node.getKey(), parent.getKey()) > 0) ? TreeMap.RIGHT : TreeMap.LEFT;
+                var direction = (parent.getKey() == null || this.cmp(node.getKey(), parent.getKey()) > 0) ? TreeMap.RIGHT : TreeMap.LEFT;
                 while ((parent.child[direction] !== node)) {
                     {
                         parent = parent.child[direction];
-                        direction = ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.cmp))(node.getKey(), parent.getKey()) > 0 ? TreeMap.RIGHT : TreeMap.LEFT;
+                        direction = this.cmp(node.getKey(), parent.getKey()) > 0 ? TreeMap.RIGHT : TreeMap.LEFT;
                     }
                 }
                 ;
@@ -29063,7 +29295,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 DescendingEntryIterator.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -29154,7 +29388,9 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 EntryIterator.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
                         {
                             (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -29314,15 +29550,15 @@ var java;
                         _this.type = null;
                     }
                     if (type === java.util.TreeMap.SubMapType_Range_$LI$()) {
-                        if (((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(__parent.cmp))(toKey, fromKey) < 0) {
+                        if (__parent.cmp(toKey, fromKey) < 0) {
                             throw new java.lang.IllegalArgumentException("subMap: " + toKey + " less than " + fromKey);
                         }
                     }
                     if (type === java.util.TreeMap.SubMapType_Head_$LI$()) {
-                        ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(__parent.cmp))(toKey, toKey);
+                        __parent.cmp(toKey, toKey);
                     }
                     if (type === java.util.TreeMap.SubMapType_Tail_$LI$()) {
-                        ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(__parent.cmp))(fromKey, fromKey);
+                        __parent.cmp(fromKey, fromKey);
                     }
                     if (type === java.util.TreeMap.SubMapType_All_$LI$()) {
                     }
@@ -29338,7 +29574,9 @@ var java;
                  * @return {*}
                  */
                 SubMap.prototype.comparator = function () {
-                    return (this.comparator());
+                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.comparator()));
                 };
                 /**
                  *
@@ -29348,7 +29586,7 @@ var java;
                     return new SubMap.SubMap$0(this);
                 };
                 SubMap.prototype.headMap$java_lang_Object$boolean = function (toKey, toInclusive) {
-                    if (this.type.toKeyValid() && ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.__parent.cmp))(toKey, this.toKey) > 0) {
+                    if (this.type.toKeyValid() && this.__parent.cmp(toKey, this.toKey) > 0) {
                         throw new java.lang.IllegalArgumentException("subMap: " + toKey + " greater than " + this.toKey);
                     }
                     if (this.type.fromKeyValid()) {
@@ -29420,10 +29658,10 @@ var java;
                     return count;
                 };
                 SubMap.prototype.subMap$java_lang_Object$boolean$java_lang_Object$boolean = function (newFromKey, newFromInclusive, newToKey, newToInclusive) {
-                    if (this.type.fromKeyValid() && ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.__parent.cmp))(newFromKey, this.fromKey) < 0) {
+                    if (this.type.fromKeyValid() && this.__parent.cmp(newFromKey, this.fromKey) < 0) {
                         throw new java.lang.IllegalArgumentException("subMap: " + newFromKey + " less than " + this.fromKey);
                     }
-                    if (this.type.toKeyValid() && ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.__parent.cmp))(newToKey, this.toKey) > 0) {
+                    if (this.type.toKeyValid() && this.__parent.cmp(newToKey, this.toKey) > 0) {
                         throw new java.lang.IllegalArgumentException("subMap: " + newToKey + " greater than " + this.toKey);
                     }
                     return this.subMap(newFromKey, newFromInclusive, newToKey, newToInclusive);
@@ -29447,7 +29685,7 @@ var java;
                         throw new Error('invalid overload');
                 };
                 SubMap.prototype.tailMap$java_lang_Object$boolean = function (fromKey, fromInclusive) {
-                    if (this.type.fromKeyValid() && ((function (target) { return (target['compare'] === undefined) ? target : target['compare']; })(this.__parent.cmp))(fromKey, this.fromKey) < 0) {
+                    if (this.type.fromKeyValid() && this.__parent.cmp(fromKey, this.fromKey) < 0) {
                         throw new java.lang.IllegalArgumentException("subMap: " + fromKey + " less than " + this.fromKey);
                     }
                     if (this.type.toKeyValid()) {
@@ -29699,11 +29937,9 @@ var java;
                 Collectors.CH_ID_$LI$ = function () { if (Collectors.CH_ID == null) {
                     Collectors.CH_ID = java.util.Collections.unmodifiableSet(java.util.Collections.singleton(java.util.stream.Collector.Characteristics.IDENTITY_FINISH));
                 } return Collectors.CH_ID; };
-                ;
                 Collectors.CH_NOID_$LI$ = function () { if (Collectors.CH_NOID == null) {
                     Collectors.CH_NOID = java.util.Collections.emptySet();
                 } return Collectors.CH_NOID; };
-                ;
                 Collectors.toList = function () {
                     return (new Collectors.CollectorImpl(function () { return new java.util.ArrayList(); }, function (l, i) { return l.add(i); }, function (left, right) {
                         left.addAll$java_util_Collection(right);
@@ -29717,14 +29953,36 @@ var java;
                     }));
                 };
                 Collectors.toMap$java_util_function_Function$java_util_function_Function = function (keyMapper, valueMapper) {
-                    return Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier((keyMapper), (valueMapper), (Collectors.throwingMerger()), function () { return new java.util.HashMap(); });
+                    return Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(keyMapper)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(valueMapper)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(Collectors.throwingMerger())), function () { return new java.util.HashMap(); });
                 };
                 Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator = function (keyMapper, valueMapper, mergeFunction) {
-                    return Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier((keyMapper), (valueMapper), (mergeFunction), function () { return new java.util.HashMap(); });
+                    return Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(keyMapper)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(valueMapper)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(mergeFunction)), function () { return new java.util.HashMap(); });
                 };
                 Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier = function (keyMapper, valueMapper, mergeFunction, mapSupplier) {
-                    var accumulator = function (map, element) { return map.merge((function (target) { return (typeof target === 'function') ? target(element) : target.apply(element); })(keyMapper), (function (target) { return (typeof target === 'function') ? target(element) : target.apply(element); })(valueMapper), (mergeFunction)); };
-                    return (new Collectors.CollectorImpl((mapSupplier), (accumulator), (Collectors.mapMerger((mergeFunction)))));
+                    var accumulator = function (map, element) { return map.merge((function (target) { return (typeof target === 'function') ? target(element) : target.apply(element); })(keyMapper), (function (target) { return (typeof target === 'function') ? target(element) : target.apply(element); })(valueMapper), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(mergeFunction))); };
+                    return (new Collectors.CollectorImpl(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(mapSupplier)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(Collectors.mapMerger(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(mergeFunction)))))));
                 };
                 Collectors.toMap = function (keyMapper, valueMapper, mergeFunction, mapSupplier) {
                     if (((typeof keyMapper === 'function' && keyMapper.length === 1) || keyMapper === null) && ((typeof valueMapper === 'function' && valueMapper.length === 1) || valueMapper === null) && ((typeof mergeFunction === 'function' && mergeFunction.length === 2) || mergeFunction === null) && ((typeof mapSupplier === 'function' && mapSupplier.length === 0) || mapSupplier === null)) {
@@ -29743,7 +30001,9 @@ var java;
                     return function (m1, m2) {
                         for (var index197 = m2.entrySet().iterator(); index197.hasNext();) {
                             var e = index197.next();
-                            m1.merge(e.getKey(), e.getValue(), (mergeFunction));
+                            m1.merge(e.getKey(), e.getValue(), ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(mergeFunction)));
                         }
                         return m1;
                     };
@@ -29790,11 +30050,17 @@ var java;
                         throw new Error('invalid overload');
                 };
                 Collectors.groupingBy$java_util_function_Function$java_util_stream_Collector = function (classifier, downstream) {
-                    return Collectors.groupingBy$java_util_function_Function$java_util_function_Supplier$java_util_stream_Collector((classifier), function () { return new java.util.HashMap(); }, downstream);
+                    return Collectors.groupingBy$java_util_function_Function$java_util_function_Supplier$java_util_stream_Collector(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(classifier)), function () { return new java.util.HashMap(); }, downstream);
                 };
                 Collectors.groupingBy$java_util_function_Function$java_util_function_Supplier$java_util_stream_Collector = function (classifier, mapFactory, downstream) {
-                    var downstreamSupplier = (downstream.supplier());
-                    var downstreamAccumulator = (downstream.accumulator());
+                    var downstreamSupplier = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(downstream.supplier()));
+                    var downstreamAccumulator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(downstream.accumulator()));
                     var accumulator = (function (downstreamAccumulator) {
                         return function (m, t) {
                             var key = (java.util.Objects.requireNonNull((function (target) { return (typeof target === 'function') ? target(t) : target.apply(t); })(classifier), "element cannot be mapped to a null key"));
@@ -29802,19 +30068,45 @@ var java;
                             (function (target) { return (typeof target === 'function') ? target(container, t) : target.accept(container, t); })(downstreamAccumulator);
                         };
                     })(downstreamAccumulator);
-                    var merger = (Collectors.mapMerger((downstream.combiner())));
-                    var mangledFactory = (mapFactory);
+                    var merger = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(Collectors.mapMerger(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(downstream.combiner())))));
+                    var mangledFactory = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(mapFactory))));
                     if (downstream.characteristics().contains(java.util.stream.Collector.Characteristics.IDENTITY_FINISH)) {
-                        return (new Collectors.CollectorImpl((mangledFactory), (accumulator), (merger), Collectors.CH_ID_$LI$()));
+                        return (new Collectors.CollectorImpl(((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(mangledFactory)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(merger)), Collectors.CH_ID_$LI$()));
                     }
                     else {
-                        var downstreamFinisher_1 = (downstream.finisher());
+                        var downstreamFinisher_1 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(downstream.finisher()))));
                         var finisher = function (intermediate) {
                             intermediate.replaceAll(function (k, v) { return (function (target) { return (typeof target === 'function') ? target(v) : target.apply(v); })(downstreamFinisher_1); });
                             var castResult = intermediate;
                             return castResult;
                         };
-                        return (new Collectors.CollectorImpl((mangledFactory), (accumulator), (merger), (finisher), Collectors.CH_NOID_$LI$()));
+                        return (new Collectors.CollectorImpl(((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(mangledFactory)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(merger)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(finisher)), Collectors.CH_NOID_$LI$()));
                     }
                 };
                 Collectors.groupingBy = function (classifier, mapFactory, downstream) {
@@ -29828,13 +30120,23 @@ var java;
                         throw new Error('invalid overload');
                 };
                 Collectors.mapping = function (mapper, downstream) {
-                    var downstreamAccumulator = (downstream.accumulator());
-                    return (new Collectors.CollectorImpl((downstream.supplier()), (function (downstreamAccumulator) {
+                    var downstreamAccumulator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(downstream.accumulator()));
+                    return (new Collectors.CollectorImpl(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(downstream.supplier())), (function (downstreamAccumulator) {
                         return function (r, t) { return (function (target) { return (typeof target === 'function') ? target(r, (function (target) { return (typeof target === 'function') ? target(t) : target.apply(t); })(mapper)) : target.accept(r, (function (target) { return (typeof target === 'function') ? target(t) : target.apply(t); })(mapper)); })(downstreamAccumulator); };
-                    })(downstreamAccumulator), (downstream.combiner()), (downstream.finisher()), downstream.characteristics()));
+                    })(downstreamAccumulator), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(downstream.combiner())), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(downstream.finisher())), downstream.characteristics()));
                 };
                 Collectors.reducing$java_lang_Object$java_util_function_BinaryOperator = function (identity, op) {
-                    return (new Collectors.CollectorImpl((Collectors.boxSupplier(identity)), function (a, t) {
+                    return (new Collectors.CollectorImpl(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(Collectors.boxSupplier(identity))), function (a, t) {
                         a[0] = (function (target) { return (typeof target === 'function') ? target(a[0], t) : target.apply(a[0], t); })(op);
                     }, function (a, b) {
                         a[0] = (function (target) { return (typeof target === 'function') ? target(a[0], b[0]) : target.apply(a[0], b[0]); })(op);
@@ -29842,7 +30144,9 @@ var java;
                     }, function (a) { return a[0]; }, Collectors.CH_NOID_$LI$()));
                 };
                 Collectors.reducing$java_lang_Object$java_util_function_Function$java_util_function_BinaryOperator = function (identity, mapper, op) {
-                    return (new Collectors.CollectorImpl((Collectors.boxSupplier(identity)), function (a, t) {
+                    return (new Collectors.CollectorImpl(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(Collectors.boxSupplier(identity))), function (a, t) {
                         a[0] = (function (target) { return (typeof target === 'function') ? target(a[0], (function (target) { return (typeof target === 'function') ? target(t) : target.apply(t); })(mapper)) : target.apply(a[0], (function (target) { return (typeof target === 'function') ? target(t) : target.apply(t); })(mapper)); })(op);
                     }, function (a, b) {
                         a[0] = (function (target) { return (typeof target === 'function') ? target(a[0], b[0]) : target.apply(a[0], b[0]); })(op);
@@ -29886,10 +30190,18 @@ var java;
                             if (this.__finisher === undefined) {
                                 this.__finisher = null;
                             }
-                            this.__supplier = (supplier);
-                            this.__accumulator = (accumulator);
-                            this.__combiner = (combiner);
-                            this.__finisher = (finisher);
+                            this.__supplier = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(supplier));
+                            this.__accumulator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator));
+                            this.__combiner = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(combiner));
+                            this.__finisher = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                return funcInst;
+                            } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(finisher));
                             this.__characteristics = characteristics;
                         }
                         else if (((typeof supplier === 'function' && supplier.length === 0) || supplier === null) && ((typeof accumulator === 'function' && accumulator.length === 2) || accumulator === null) && ((typeof combiner === 'function' && combiner.length === 2) || combiner === null) && ((finisher != null && (finisher.constructor != null && finisher.constructor["__interfaces"] != null && finisher.constructor["__interfaces"].indexOf("java.util.Set") >= 0)) || finisher === null) && characteristics === undefined) {
@@ -29913,10 +30225,18 @@ var java;
                                 if (this.__finisher === undefined) {
                                     this.__finisher = null;
                                 }
-                                this.__supplier = (supplier);
-                                this.__accumulator = (accumulator);
-                                this.__combiner = (combiner);
-                                this.__finisher = (finisher_1);
+                                this.__supplier = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                    return funcInst;
+                                } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(supplier));
+                                this.__accumulator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                    return funcInst;
+                                } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator));
+                                this.__combiner = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                    return funcInst;
+                                } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(combiner));
+                                this.__finisher = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                    return funcInst;
+                                } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(finisher_1));
                                 this.__characteristics = characteristics_1;
                             }
                             if (this.__supplier === undefined) {
@@ -29956,10 +30276,18 @@ var java;
                                 if (this.__finisher === undefined) {
                                     this.__finisher = null;
                                 }
-                                this.__supplier = (supplier);
-                                this.__accumulator = (accumulator);
-                                this.__combiner = (combiner);
-                                this.__finisher = (finisher_2);
+                                this.__supplier = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                    return funcInst;
+                                } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(supplier));
+                                this.__accumulator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                    return funcInst;
+                                } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator));
+                                this.__combiner = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                    return funcInst;
+                                } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(combiner));
+                                this.__finisher = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                    return funcInst;
+                                } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(finisher_2));
                                 this.__characteristics = characteristics_2;
                             }
                             if (this.__supplier === undefined) {
@@ -29989,28 +30317,36 @@ var java;
                      * @return {*}
                      */
                     CollectorImpl.prototype.accumulator = function () {
-                        return (this.__accumulator);
+                        return ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(this.__accumulator));
                     };
                     /**
                      *
                      * @return {*}
                      */
                     CollectorImpl.prototype.supplier = function () {
-                        return (this.__supplier);
+                        return ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(this.__supplier));
                     };
                     /**
                      *
                      * @return {*}
                      */
                     CollectorImpl.prototype.combiner = function () {
-                        return (this.__combiner);
+                        return ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(this.__combiner));
                     };
                     /**
                      *
                      * @return {*}
                      */
                     CollectorImpl.prototype.finisher = function () {
-                        return (this.__finisher);
+                        return ((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(this.__finisher));
                     };
                     /**
                      *
@@ -30152,14 +30488,6 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Map */
-            LinkedHashMap.prototype.putIfAbsent = function (key, value) {
-                var v = this.get(key);
-                if (v == null) {
-                    v = this.put(key, value);
-                }
-                return v;
-            };
-            /* Default method injected from java.util.Map */
             LinkedHashMap.prototype.computeIfAbsent = function (key, mappingFunction) {
                 var result;
                 if ((result = this.get(key)) == null) {
@@ -30168,6 +30496,19 @@ var java;
                         this.put(key, result);
                 }
                 return result;
+            };
+            /* Default method injected from java.util.Map */
+            LinkedHashMap.prototype.getOrDefault = function (key, defaultValue) {
+                var v;
+                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
+            };
+            /* Default method injected from java.util.Map */
+            LinkedHashMap.prototype.putIfAbsent = function (key, value) {
+                var v = this.get(key);
+                if (v == null) {
+                    v = this.put(key, value);
+                }
+                return v;
             };
             /* Default method injected from java.util.Map */
             LinkedHashMap.prototype.merge = function (key, value, map) {
@@ -30182,13 +30523,10 @@ var java;
                 return next;
             };
             /* Default method injected from java.util.Map */
-            LinkedHashMap.prototype.getOrDefault = function (key, defaultValue) {
-                var v;
-                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
-            };
-            /* Default method injected from java.util.Map */
             LinkedHashMap.prototype.replaceAll = function (__function) {
-                java.util.Objects.requireNonNull((__function));
+                java.util.Objects.requireNonNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(__function)));
                 var _loop_40 = function (index198) {
                     var entry = index198.next();
                     {
@@ -30201,7 +30539,6 @@ var java;
                         catch (ise) {
                             throw new java.lang.RuntimeException(ise);
                         }
-                        ;
                         v_6 = (function (target) { return (typeof target === 'function') ? target(k_6, v_6) : target.apply(k_6, v_6); })(__function);
                         try {
                             entry.setValue(v_6);
@@ -30209,7 +30546,6 @@ var java;
                         catch (ise) {
                             throw new java.lang.RuntimeException(ise);
                         }
-                        ;
                     }
                 };
                 for (var index198 = this.entrySet().iterator(); index198.hasNext();) {
@@ -30465,7 +30801,9 @@ var java;
                     /* Default method injected from java.util.Iterator */
                     EntryIterator.prototype.forEachRemaining = function (consumer) {
                         var _this = this;
-                        javaemul.internal.InternalPreconditions.checkNotNull((consumer));
+                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                            return funcInst;
+                        } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                         while ((this.hasNext())) {
                             {
                                 (function (target) { return (typeof target === 'function') ? target(_this.next()) : target.accept(_this.next()); })(consumer);
@@ -30631,27 +30969,19 @@ var java;
             System.ENVIRONMENT_IS_WEB_$LI$ = function () { System.__static_initialize(); if (System.ENVIRONMENT_IS_WEB == null) {
                 System.ENVIRONMENT_IS_WEB = java.util.Objects.equals(typeof window, "object");
             } return System.ENVIRONMENT_IS_WEB; };
-            ;
             System.ENVIRONMENT_IS_WORKER_$LI$ = function () { System.__static_initialize(); if (System.ENVIRONMENT_IS_WORKER == null) {
                 System.ENVIRONMENT_IS_WORKER = java.util.Objects.equals(typeof importScripts, "function");
             } return System.ENVIRONMENT_IS_WORKER; };
-            ;
             System.ENVIRONMENT_IS_NODE_$LI$ = function () { System.__static_initialize(); if (System.ENVIRONMENT_IS_NODE == null) {
                 System.ENVIRONMENT_IS_NODE = !System.ENVIRONMENT_IS_WEB_$LI$() && !System.ENVIRONMENT_IS_WORKER_$LI$() && java.util.Objects.equals((eval("typeof process")), "object") && java.util.Objects.equals((eval("typeof require")), "function");
             } return System.ENVIRONMENT_IS_NODE; };
-            ;
             System.ENVIRONMENT_IS_SHELL_$LI$ = function () { System.__static_initialize(); if (System.ENVIRONMENT_IS_SHELL == null) {
                 System.ENVIRONMENT_IS_SHELL = !System.ENVIRONMENT_IS_WEB_$LI$() && !System.ENVIRONMENT_IS_WORKER_$LI$() && !System.ENVIRONMENT_IS_NODE_$LI$();
             } return System.ENVIRONMENT_IS_SHELL; };
-            ;
             System.propertyMap_$LI$ = function () { System.__static_initialize(); return System.propertyMap; };
-            ;
             System.err_$LI$ = function () { System.__static_initialize(); return System.err; };
-            ;
             System.out_$LI$ = function () { System.__static_initialize(); return System.out; };
-            ;
             System.in_$LI$ = function () { System.__static_initialize(); return System["in"]; };
-            ;
             System.__static_initializer_0 = function () {
                 System.propertyMap = (new java.util.HashMap());
                 System.propertyMap_$LI$().put("java.vendor", "JSweet");
@@ -30799,6 +31129,24 @@ var java;
                     _this.toOut = "";
                     return _this;
                 }
+                /**
+                 * Writes {@code count} bytes from the byte array {@code buffer} starting at
+                 * position {@code offset} to this stream.
+                 *
+                 * @param {byte[]} buffer
+                 * the buffer to be written.
+                 * @param {number} offset
+                 * the start position in {@code buffer} from where to get bytes.
+                 * @param {number} count
+                 * the number of bytes from {@code buffer} to write to this
+                 * stream.
+                 * @throws IOException
+                 * if an error occurs while writing to this stream.
+                 * @throws IndexOutOfBoundsException
+                 * if {@code offset < 0} or {@code count < 0}, or if
+                 * {@code offset + count} is bigger than the length of
+                 * {@code buffer}.
+                 */
                 System$0.prototype.write = function (buffer, offset, count) {
                     if (((buffer != null && buffer instanceof Array && (buffer.length == 0 || buffer[0] == null || (typeof buffer[0] === 'number'))) || buffer === null) && ((typeof offset === 'number') || offset === null) && ((typeof count === 'number') || count === null)) {
                         _super.prototype.write.call(this, buffer, offset, count);
@@ -30843,6 +31191,24 @@ var java;
                     _this.toOut = "";
                     return _this;
                 }
+                /**
+                 * Writes {@code count} bytes from the byte array {@code buffer} starting at
+                 * position {@code offset} to this stream.
+                 *
+                 * @param {byte[]} buffer
+                 * the buffer to be written.
+                 * @param {number} offset
+                 * the start position in {@code buffer} from where to get bytes.
+                 * @param {number} count
+                 * the number of bytes from {@code buffer} to write to this
+                 * stream.
+                 * @throws IOException
+                 * if an error occurs while writing to this stream.
+                 * @throws IndexOutOfBoundsException
+                 * if {@code offset < 0} or {@code count < 0}, or if
+                 * {@code offset + count} is bigger than the length of
+                 * {@code buffer}.
+                 */
                 System$1.prototype.write = function (buffer, offset, count) {
                     if (((buffer != null && buffer instanceof Array && (buffer.length == 0 || buffer[0] == null || (typeof buffer[0] === 'number'))) || buffer === null) && ((typeof offset === 'number') || offset === null) && ((typeof count === 'number') || count === null)) {
                         _super.prototype.write.call(this, buffer, offset, count);
@@ -30902,7 +31268,6 @@ var java;
                             }
                             catch (ignored) {
                             }
-                            ;
                             var bytesRead = 0;
                             try {
                                 bytesRead = ((fs["readSync"])((fd), buf, (0), (BUFSIZE), null));
@@ -30911,7 +31276,6 @@ var java;
                                 if (e.toString().indexOf("EOF") === -1)
                                     throw e;
                             }
-                            ;
                             if (usingDevice)
                                 (fs["closeSync"])((fd));
                             if (bytesRead > 0)
@@ -30935,6 +31299,21 @@ var java;
                     };
                     return _this;
                 }
+                /**
+                 * Reads up to {@code byteCount} bytes from this stream and stores them in
+                 * the byte array {@code buffer} starting at {@code byteOffset}.
+                 * Returns the number of bytes actually read or -1 if the end of the stream
+                 * has been reached.
+                 *
+                 * @throws IndexOutOfBoundsException
+                 * if {@code byteOffset < 0 || byteCount < 0 || byteOffset + byteCount > buffer.length}.
+                 * @throws IOException
+                 * if the stream is closed or another IOException occurs.
+                 * @param {byte[]} buffer
+                 * @param {number} byteOffset
+                 * @param {number} byteCount
+                 * @return {number}
+                 */
                 System$2.prototype.read = function (buffer, byteOffset, byteCount) {
                     if (((buffer != null && buffer instanceof Array && (buffer.length == 0 || buffer[0] == null || (typeof buffer[0] === 'number'))) || buffer === null) && ((typeof byteOffset === 'number') || byteOffset === null) && ((typeof byteCount === 'number') || byteCount === null)) {
                         return _super.prototype.read.call(this, buffer, byteOffset, byteCount);
@@ -30983,19 +31362,15 @@ var java;
             InternalPreconditions.CHECKED_MODE_$LI$ = function () { if (InternalPreconditions.CHECKED_MODE == null) {
                 InternalPreconditions.CHECKED_MODE = java.lang.System.getProperty("jre.checkedMode", "ENABLED") === ("ENABLED");
             } return InternalPreconditions.CHECKED_MODE; };
-            ;
             InternalPreconditions.TYPE_CHECK_$LI$ = function () { if (InternalPreconditions.TYPE_CHECK == null) {
                 InternalPreconditions.TYPE_CHECK = java.lang.System.getProperty("jre.checks.type", "ENABLED") === ("ENABLED");
             } return InternalPreconditions.TYPE_CHECK; };
-            ;
             InternalPreconditions.API_CHECK_$LI$ = function () { if (InternalPreconditions.API_CHECK == null) {
                 InternalPreconditions.API_CHECK = java.lang.System.getProperty("jre.checks.api", "ENABLED") === ("ENABLED");
             } return InternalPreconditions.API_CHECK; };
-            ;
             InternalPreconditions.BOUND_CHECK_$LI$ = function () { if (InternalPreconditions.BOUND_CHECK == null) {
                 InternalPreconditions.BOUND_CHECK = java.lang.System.getProperty("jre.checks.bounds", "ENABLED") === ("ENABLED");
             } return InternalPreconditions.BOUND_CHECK; };
-            ;
             InternalPreconditions.checkType = function (expression) {
                 if (InternalPreconditions.TYPE_CHECK_$LI$()) {
                     InternalPreconditions.checkCriticalType(expression);
@@ -31007,7 +31382,6 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             InternalPreconditions.checkCriticalType = function (expression) {
@@ -31026,7 +31400,6 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             InternalPreconditions.checkCriticalArrayType$boolean = function (expression) {
@@ -31045,7 +31418,6 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             /**
@@ -31065,7 +31437,7 @@ var java;
             };
             InternalPreconditions.checkCriticalArrayType$boolean$java_lang_Object = function (expression, errorMessage) {
                 if (!expression) {
-                    throw new java.lang.ArrayStoreException(/* valueOf */ new String(errorMessage).toString());
+                    throw new java.lang.ArrayStoreException(/* valueOf */ String(errorMessage).toString());
                 }
             };
             InternalPreconditions.checkCriticalArrayType = function (expression, errorMessage) {
@@ -31089,7 +31461,6 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             InternalPreconditions.checkCriticalElement$boolean = function (expression) {
@@ -31108,7 +31479,6 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             /**
@@ -31128,7 +31498,7 @@ var java;
             };
             InternalPreconditions.checkCriticalElement$boolean$java_lang_Object = function (expression, errorMessage) {
                 if (!expression) {
-                    throw new java.util.NoSuchElementException(/* valueOf */ new String(errorMessage).toString());
+                    throw new java.util.NoSuchElementException(/* valueOf */ String(errorMessage).toString());
                 }
             };
             /**
@@ -31160,7 +31530,6 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             InternalPreconditions.checkCriticalArgument$boolean = function (expression) {
@@ -31179,12 +31548,11 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             InternalPreconditions.checkCriticalArgument$boolean$java_lang_Object = function (expression, errorMessage) {
                 if (!expression) {
-                    throw new java.lang.IllegalArgumentException(/* valueOf */ new String(errorMessage).toString());
+                    throw new java.lang.IllegalArgumentException(/* valueOf */ String(errorMessage).toString());
                 }
             };
             InternalPreconditions.checkArgument$boolean$java_lang_String$java_lang_Object_A = function (expression, errorMessageTemplate) {
@@ -31202,14 +31570,13 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             /**
              * Ensures the truth of an expression involving one or more parameters to the calling method.
              * @param {boolean} expression
              * @param {string} errorMessageTemplate
-             * @param {Array} errorMessageArgs
+             * @param {java.lang.Object[]} errorMessageArgs
              */
             InternalPreconditions.checkArgument = function (expression, errorMessageTemplate) {
                 var _a;
@@ -31245,7 +31612,7 @@ var java;
              * are much harder to debug.
              * @param {boolean} expression
              * @param {string} errorMessageTemplate
-             * @param {Array} errorMessageArgs
+             * @param {java.lang.Object[]} errorMessageArgs
              */
             InternalPreconditions.checkCriticalArgument = function (expression, errorMessageTemplate) {
                 var _a;
@@ -31276,7 +31643,6 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             /**
@@ -31303,7 +31669,6 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             /**
@@ -31330,7 +31695,7 @@ var java;
              */
             InternalPreconditions.checkCriticalState = function (expression, errorMessage) {
                 if (!expression) {
-                    throw new java.lang.IllegalStateException(/* valueOf */ new String(errorMessage).toString());
+                    throw new java.lang.IllegalStateException(/* valueOf */ String(errorMessage).toString());
                 }
             };
             InternalPreconditions.checkNotNull$java_lang_Object = function (reference) {
@@ -31344,7 +31709,6 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
                 return reference;
             };
@@ -31365,7 +31729,6 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             /**
@@ -31385,7 +31748,7 @@ var java;
             };
             InternalPreconditions.checkCriticalNotNull$java_lang_Object$java_lang_Object = function (reference, errorMessage) {
                 if (reference == null) {
-                    throw new java.lang.NullPointerException(/* valueOf */ new String(errorMessage).toString());
+                    throw new java.lang.NullPointerException(/* valueOf */ String(errorMessage).toString());
                 }
             };
             InternalPreconditions.checkCriticalNotNull = function (reference, errorMessage) {
@@ -31413,7 +31776,6 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             InternalPreconditions.checkCriticalArraySize = function (size) {
@@ -31438,7 +31800,6 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             InternalPreconditions.checkCriticalElementIndex = function (index, size) {
@@ -31463,7 +31824,6 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             InternalPreconditions.checkCriticalPositionIndex = function (index, size) {
@@ -31490,7 +31850,6 @@ var java;
                     catch (e) {
                         throw new java.lang.AssertionError(e);
                     }
-                    ;
                 }
             };
             /**
@@ -31537,7 +31896,7 @@ var java;
              * placeholders, the unmatched arguments will be appended to the end of the formatted message in
              * square braces.
              * @param {string} template
-             * @param {Array} args
+             * @param {java.lang.Object[]} args
              * @return {string}
              * @private
              */
@@ -31546,7 +31905,7 @@ var java;
                 for (var _i = 1; _i < arguments.length; _i++) {
                     args[_i - 1] = arguments[_i];
                 }
-                template = /* valueOf */ new String(template).toString();
+                template = /* valueOf */ String(template).toString();
                 var builder = new java.lang.StringBuilder(template.length + 16 * args.length);
                 var templateStart = 0;
                 var i = 0;
@@ -31597,7 +31956,6 @@ var java;
             ConcurrentModificationDetector.API_CHECK_$LI$ = function () { if (ConcurrentModificationDetector.API_CHECK == null) {
                 ConcurrentModificationDetector.API_CHECK = java.lang.System.getProperty("jre.checks.api", "ENABLED") === ("ENABLED");
             } return ConcurrentModificationDetector.API_CHECK; };
-            ;
             ConcurrentModificationDetector.structureChanged = function (map) {
                 if (!ConcurrentModificationDetector.API_CHECK_$LI$()) {
                     return;
@@ -31667,19 +32025,15 @@ var java;
                 Logger.LOGGING_ENABLED_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_ENABLED == null) {
                     Logger.LOGGING_ENABLED = java.lang.System.getProperty("gwt.logging.enabled", "TRUE");
                 } return Logger.LOGGING_ENABLED; };
-                ;
                 Logger.LOGGING_WARNING_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_WARNING == null) {
                     Logger.LOGGING_WARNING = Logger.LOGGING_ENABLED_$LI$() === ("WARNING");
                 } return Logger.LOGGING_WARNING; };
-                ;
                 Logger.LOGGING_SEVERE_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_SEVERE == null) {
                     Logger.LOGGING_SEVERE = Logger.LOGGING_ENABLED_$LI$() === ("SEVERE");
                 } return Logger.LOGGING_SEVERE; };
-                ;
                 Logger.LOGGING_FALSE_$LI$ = function () { Logger.__static_initialize(); if (Logger.LOGGING_FALSE == null) {
                     Logger.LOGGING_FALSE = Logger.LOGGING_ENABLED_$LI$() === ("FALSE");
                 } return Logger.LOGGING_FALSE; };
-                ;
                 Logger.__static_initializer_0 = function () {
                     Logger.assertLoggingValues();
                 };
@@ -31933,7 +32287,9 @@ var java;
                 }
                 /* Default method injected from java.lang.Iterable */
                 Path.prototype.forEach = function (action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull((action));
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
                     var _loop_41 = function (index203) {
                         var t = index203.next();
                         {
@@ -31947,7 +32303,6 @@ var java;
                 Path.PATH_SEPARATOR_$LI$ = function () { if (Path.PATH_SEPARATOR == null) {
                     Path.PATH_SEPARATOR = java.lang.System.getProperty("file.separator");
                 } return Path.PATH_SEPARATOR; };
-                ;
                 Path.prototype.compareTo$java_nio_file_Path = function (path) {
                     return /* compareTo */ this.toString().localeCompare(path.toString());
                 };
