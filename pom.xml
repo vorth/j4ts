@@ -108,7 +108,7 @@
 						</goals>
 					</execution>
 					<execution>
-						<id>transpile</id>
+						<id>copyToDist</id>
 						<phase>compile</phase>
 						<configuration>
 							<target>
