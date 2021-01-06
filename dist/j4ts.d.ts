@@ -1852,8 +1852,8 @@ declare namespace java.util {
      */
     abstract class AbstractCollection<E> implements java.util.Collection<E> {
         removeIf(filter: (p1: any) => boolean): boolean;
-        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        stream(): java.util.stream.Stream<any>;
         parallelStream(): java.util.stream.Stream<any>;
         constructor();
         /**
@@ -5003,8 +5003,8 @@ declare namespace java.util {
      */
     abstract class AbstractSet<E> extends java.util.AbstractCollection<E> implements java.util.Set<E> {
         removeIf(filter: (p1: any) => boolean): boolean;
-        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        stream(): java.util.stream.Stream<any>;
         parallelStream(): java.util.stream.Stream<any>;
         /**
          *
@@ -5039,10 +5039,10 @@ declare namespace java.util {
      * @class
      */
     abstract class AbstractList<E> extends java.util.AbstractCollection<E> implements java.util.List<E> {
-        sort(c: java.util.Comparator<any>): void;
         removeIf(filter: (p1: any) => boolean): boolean;
-        stream(): java.util.stream.Stream<any>;
+        sort(c: java.util.Comparator<any>): void;
         forEach(action: (p1: any) => void): void;
+        stream(): java.util.stream.Stream<any>;
         parallelStream(): java.util.stream.Stream<any>;
         modCount: number;
         constructor();
@@ -5246,8 +5246,8 @@ declare namespace java.util {
      */
     abstract class AbstractQueue<E> extends java.util.AbstractCollection<E> implements java.util.Queue<E> {
         removeIf(filter: (p1: any) => boolean): boolean;
-        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        stream(): java.util.stream.Stream<any>;
         parallelStream(): java.util.stream.Stream<any>;
         constructor();
         /**
@@ -5313,8 +5313,8 @@ declare namespace java.util {
      */
     class ArrayDeque<E> extends java.util.AbstractCollection<E> implements java.util.Deque<E>, java.lang.Cloneable {
         removeIf(filter: (p1: any) => boolean): boolean;
-        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        stream(): java.util.stream.Stream<any>;
         parallelStream(): java.util.stream.Stream<any>;
         /**
          * The minimum capacity that we'll use for a newly created deque.
@@ -6909,11 +6909,11 @@ declare namespace java.util {
      * @class
      */
     abstract class AbstractMap<K, V> implements java.util.Map<K, V> {
-        computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
+        replaceAll(__function: (p1: any, p2: any) => any): void;
+        getOrDefault(key: any, defaultValue: any): any;
         putIfAbsent(key: any, value: any): any;
         merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
-        getOrDefault(key: any, defaultValue: any): any;
-        replaceAll(__function: (p1: any, p2: any) => any): void;
+        computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
         constructor();
         /**
          *
@@ -7185,8 +7185,8 @@ declare namespace java.util {
      */
     class HashSet<E> extends java.util.AbstractSet<E> implements java.util.Set<E>, java.lang.Cloneable, java.io.Serializable {
         removeIf(filter: (p1: any) => boolean): boolean;
-        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        stream(): java.util.stream.Stream<any>;
         parallelStream(): java.util.stream.Stream<any>;
         map: java.util.HashMap<E, any>;
         /**
@@ -7369,8 +7369,8 @@ declare namespace java.util {
      */
     class TreeSet<E> extends java.util.AbstractSet<E> implements java.util.NavigableSet<E>, java.io.Serializable {
         removeIf(filter: (p1: any) => boolean): boolean;
-        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        stream(): java.util.stream.Stream<any>;
         parallelStream(): java.util.stream.Stream<any>;
         /**
          * TreeSet is stored as a TreeMap of the requested type to a constant Boolean.
@@ -7508,10 +7508,10 @@ declare namespace java.util {
      * @extends java.util.AbstractList
      */
     class Vector<E> extends java.util.AbstractList<E> implements java.util.List<E>, java.util.RandomAccess, java.lang.Cloneable, java.io.Serializable {
-        sort(c: java.util.Comparator<any>): void;
         removeIf(filter: (p1: any) => boolean): boolean;
-        stream(): java.util.stream.Stream<any>;
+        sort(c: java.util.Comparator<any>): void;
         forEach(action: (p1: any) => void): void;
+        stream(): java.util.stream.Stream<any>;
         parallelStream(): java.util.stream.Stream<any>;
         arrayList: java.util.ArrayList<E>;
         /**
@@ -7735,10 +7735,10 @@ declare namespace java.util {
      * @extends java.util.AbstractList
      */
     class ArrayList<E> extends java.util.AbstractList<E> implements java.util.List<E>, java.lang.Cloneable, java.util.RandomAccess, java.io.Serializable {
-        sort(c: java.util.Comparator<any>): void;
         removeIf(filter: (p1: any) => boolean): boolean;
-        stream(): java.util.stream.Stream<any>;
+        sort(c: java.util.Comparator<any>): void;
         forEach(action: (p1: any) => void): void;
+        stream(): java.util.stream.Stream<any>;
         parallelStream(): java.util.stream.Stream<any>;
         /**
          * This field holds a JavaScript array.
@@ -8968,11 +8968,11 @@ declare namespace java.util {
      * @class
      */
     abstract class AbstractNavigableMap<K, V> extends java.util.AbstractMap<K, V> implements java.util.NavigableMap<K, V> {
-        computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
+        replaceAll(__function: (p1: any, p2: any) => any): void;
+        getOrDefault(key: any, defaultValue: any): any;
         putIfAbsent(key: any, value: any): any;
         merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
-        getOrDefault(key: any, defaultValue: any): any;
-        replaceAll(__function: (p1: any, p2: any) => any): void;
+        computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
         static copyOf<K, V>(entry: Map.Entry<K, V>): Map.Entry<K, V>;
         static getKeyOrNSE<K, V>(entry: Map.Entry<K, V>): K;
         /**
@@ -9315,8 +9315,8 @@ declare namespace java.util {
         }
         class NavigableKeySet<K, V> extends java.util.AbstractSet<K> implements java.util.NavigableSet<K> {
             removeIf(filter: (p1: any) => boolean): boolean;
-            stream(): java.util.stream.Stream<any>;
             forEach(action: (p1: any) => void): void;
+            stream(): java.util.stream.Stream<any>;
             parallelStream(): java.util.stream.Stream<any>;
             map: java.util.NavigableMap<K, V>;
             constructor(map: java.util.NavigableMap<K, V>);
@@ -9847,8 +9847,8 @@ declare namespace java.util {
         }
         class UnmodifiableCollection<T> implements java.util.Collection<T> {
             removeIf(filter: (p1: any) => boolean): boolean;
-            stream(): java.util.stream.Stream<any>;
             forEach(action: (p1: any) => void): void;
+            stream(): java.util.stream.Stream<any>;
             parallelStream(): java.util.stream.Stream<any>;
             coll: java.util.Collection<any>;
             constructor(coll: java.util.Collection<any>);
@@ -9952,10 +9952,10 @@ declare namespace java.util {
             constructor();
         }
         class UnmodifiableList<T> extends Collections.UnmodifiableCollection<T> implements java.util.List<T> {
-            sort(c: java.util.Comparator<any>): void;
             removeIf(filter: (p1: any) => boolean): boolean;
-            stream(): java.util.stream.Stream<any>;
+            sort(c: java.util.Comparator<any>): void;
             forEach(action: (p1: any) => void): void;
+            stream(): java.util.stream.Stream<any>;
             parallelStream(): java.util.stream.Stream<any>;
             list: java.util.List<any>;
             constructor(list: java.util.List<any>);
@@ -10040,8 +10040,8 @@ declare namespace java.util {
         }
         class UnmodifiableSet<T> extends Collections.UnmodifiableCollection<T> implements java.util.Set<T> {
             removeIf(filter: (p1: any) => boolean): boolean;
-            stream(): java.util.stream.Stream<any>;
             forEach(action: (p1: any) => void): void;
+            stream(): java.util.stream.Stream<any>;
             parallelStream(): java.util.stream.Stream<any>;
             constructor(set: java.util.Set<any>);
             /**
@@ -10095,11 +10095,11 @@ declare namespace java.util {
             constructor(list: java.util.List<any>);
         }
         class UnmodifiableMap<K, V> implements java.util.Map<K, V> {
-            computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
+            replaceAll(__function: (p1: any, p2: any) => any): void;
+            getOrDefault(key: any, defaultValue: any): any;
             putIfAbsent(key: any, value: any): any;
             merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
-            getOrDefault(key: any, defaultValue: any): any;
-            replaceAll(__function: (p1: any, p2: any) => any): void;
+            computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
             __entrySet: Collections.UnmodifiableSet<java.util.Map.Entry<K, V>>;
             __keySet: Collections.UnmodifiableSet<K>;
             map: java.util.Map<any, any>;
@@ -10287,8 +10287,8 @@ declare namespace java.util {
         }
         class UnmodifiableSortedSet<E> extends Collections.UnmodifiableSet<E> implements java.util.SortedSet<E> {
             removeIf(filter: (p1: any) => boolean): boolean;
-            stream(): java.util.stream.Stream<any>;
             forEach(action: (p1: any) => void): void;
+            stream(): java.util.stream.Stream<any>;
             parallelStream(): java.util.stream.Stream<any>;
             sortedSet: java.util.SortedSet<E>;
             constructor(sortedSet: java.util.SortedSet<any>);
@@ -10339,11 +10339,11 @@ declare namespace java.util {
             tailSet(fromElement: E): java.util.SortedSet<E>;
         }
         class UnmodifiableSortedMap<K, V> extends Collections.UnmodifiableMap<K, V> implements java.util.SortedMap<K, V> {
-            computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
+            replaceAll(__function: (p1: any, p2: any) => any): void;
+            getOrDefault(key: any, defaultValue: any): any;
             putIfAbsent(key: any, value: any): any;
             merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
-            getOrDefault(key: any, defaultValue: any): any;
-            replaceAll(__function: (p1: any, p2: any) => any): void;
+            computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
             sortedMap: java.util.SortedMap<K, any>;
             constructor(sortedMap: java.util.SortedMap<K, any>);
             /**
@@ -10423,8 +10423,8 @@ declare namespace java.util {
      */
     class LinkedHashSet<E> extends java.util.HashSet<E> implements java.util.Set<E>, java.lang.Cloneable {
         removeIf(filter: (p1: any) => boolean): boolean;
-        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        stream(): java.util.stream.Stream<any>;
         parallelStream(): java.util.stream.Stream<any>;
         constructor(ignored?: any, alsoIgnored?: any);
         /**
@@ -10471,10 +10471,10 @@ declare namespace java.util {
      * @extends java.util.AbstractSequentialList
      */
     class LinkedList<E> extends java.util.AbstractSequentialList<E> implements java.lang.Cloneable, java.util.List<E>, java.util.Deque<E>, java.io.Serializable {
-        sort(c: java.util.Comparator<any>): void;
         removeIf(filter: (p1: any) => boolean): boolean;
-        stream(): java.util.stream.Stream<any>;
+        sort(c: java.util.Comparator<any>): void;
         forEach(action: (p1: any) => void): void;
+        stream(): java.util.stream.Stream<any>;
         parallelStream(): java.util.stream.Stream<any>;
         /**
          * Ensures that RPC will consider type parameter E to be exposed. It will be
@@ -10858,11 +10858,11 @@ declare namespace java.util {
      * @extends java.util.AbstractHashMap
      */
     class IdentityHashMap<K, V> extends java.util.AbstractHashMap<K, V> implements java.util.Map<K, V>, java.lang.Cloneable, java.io.Serializable {
-        computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
+        replaceAll(__function: (p1: any, p2: any) => any): void;
+        getOrDefault(key: any, defaultValue: any): any;
         putIfAbsent(key: any, value: any): any;
         merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
-        getOrDefault(key: any, defaultValue: any): any;
-        replaceAll(__function: (p1: any, p2: any) => any): void;
+        computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
         /**
          * Ensures that RPC will consider type parameter K to be exposed. It will be
          * pruned by dead code elimination.
@@ -11601,11 +11601,11 @@ declare namespace java.util {
      * @extends java.util.HashMap
      */
     class LinkedHashMap<K, V> extends java.util.HashMap<K, V> implements java.util.Map<K, V> {
-        computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
+        replaceAll(__function: (p1: any, p2: any) => any): void;
+        getOrDefault(key: any, defaultValue: any): any;
         putIfAbsent(key: any, value: any): any;
         merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
-        getOrDefault(key: any, defaultValue: any): any;
-        replaceAll(__function: (p1: any, p2: any) => any): void;
+        computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
         accessOrder: boolean;
         head: LinkedHashMap.ChainEntry;
         map: java.util.HashMap<K, LinkedHashMap.ChainEntry>;

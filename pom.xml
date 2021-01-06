@@ -63,51 +63,61 @@
 				<artifactId>jsweet-maven-plugin</artifactId>
 				<version>${jsweet.transpiler.version}</version>
 				<configuration>
-					<!-- <verbose>true</verbose> -->
-					<!-- switch bundle vs module -->
+					<verbose>false</verbose>
 					<bundle>true</bundle>
 					<module>none</module>
 					<declaration>true</declaration>
-					<outDir>target/ts</outDir>
-					<dtsOut>target/typings</dtsOut>
+					<outDir>src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}</outDir>
+					<dtsOut>src/main/resources/META-INF/resources/typings/${project.artifactId}/${project.version}</dtsOut>
 					<targetVersion>ES3</targetVersion>
 					<javaCompilerExtraOptions>-source,1.8,-target,1.8</javaCompilerExtraOptions>
-					<!-- <sourceMap>true</sourceMap> -->
 				</configuration>
 				<executions>
 					<execution>
 						<id>generate-js</id>
-						<!-- attach to the compile phase to avoid re-generating sources with maven-source-plugin -->
-						<phase>compile</phase>
+						<!-- attach to the compile phase to avoid re-generating sources with 
+							maven-source-plugin -->
+						<phase>generate-sources</phase>
 						<goals>
 							<goal>jsweet</goal>
 						</goals>
 					</execution>
+					<execution>
+						<id>clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
 				</executions>
 			</plugin>
- 			<plugin>
+			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<version>1.8</version>
 				<executions>
 					<execution>
-						<phase>compile</phase>
+						<id>cleanTargetFolder</id>
+						<phase>validate</phase>
 						<configuration>
 							<target>
 								<delete dir="src/main/resources/META-INF/resources"></delete>
-								<copy
-									file="target/ts/bundle.js"
-									tofile="src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}/bundle.js"
-									verbose="true" />
-								<copy
-									file="target/typings/bundle.d.ts"
-									tofile="src/main/resources/META-INF/resources/typings/${project.artifactId}/${project.version}/bundle.d.ts"
-									verbose="true" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>transpile</id>
+						<phase>compile</phase>
+						<configuration>
+							<target>
 								<echo message="copying generated bundles to dist..." />
 								<copy
-									file="target/ts/bundle.js"
+									file="src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}/bundle.js"
 									tofile="dist/${project.artifactId}.js" verbose="true" />
 								<copy
-									file="target/typings/bundle.d.ts"
+									file="src/main/resources/META-INF/resources/typings/${project.artifactId}/${project.version}/bundle.d.ts"
 									tofile="dist/${project.artifactId}.d.ts" verbose="true" />
 							</target>
 						</configuration>
@@ -134,7 +144,7 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
