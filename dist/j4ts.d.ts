@@ -42,7 +42,7 @@ declare namespace javaemul.internal {
         static toString(x: boolean): string;
         static valueOf$boolean(b: boolean): boolean;
         static valueOf$java_lang_String(s: string): boolean;
-        static valueOf(s?: any): any;
+        static valueOf(s?: any): boolean;
         booleanValue(): boolean;
         static unsafeCast(value: any): boolean;
         compareTo$javaemul_internal_BooleanHelper(b: BooleanHelper): number;
@@ -51,7 +51,7 @@ declare namespace javaemul.internal {
          * @param {javaemul.internal.BooleanHelper} b
          * @return {number}
          */
-        compareTo(b?: any): any;
+        compareTo(b?: any): number;
         /**
          *
          * @param {*} o
@@ -173,7 +173,7 @@ declare namespace javaemul.internal.stream {
         distinct(): java.util.stream.Stream<T>;
         sorted$(): java.util.stream.Stream<T>;
         sorted$java_util_Comparator(comparator: java.util.Comparator<any>): java.util.stream.Stream<T>;
-        sorted(comparator?: any): any;
+        sorted(comparator?: any): java.util.stream.Stream<T>;
         peek(action: (p1: any) => void): java.util.stream.Stream<T>;
         limit(maxSize: number): java.util.stream.Stream<T>;
         skip(n: number): java.util.stream.Stream<T>;
@@ -181,7 +181,7 @@ declare namespace javaemul.internal.stream {
         forEachOrdered(action: (p1: any) => void): void;
         toArray$(): any[];
         toArray$java_util_function_IntFunction<A>(generator: (p0: number) => A[]): A[];
-        toArray<A>(generator?: any): any;
+        toArray<T0 = any>(generator?: any): any;
         reduce$java_lang_Object$java_util_function_BinaryOperator(identity: T, accumulator: (p1: T, p2: T) => T): T;
         reduce$java_util_function_BinaryOperator(accumulator: (p1: T, p2: T) => T): java.util.Optional<T>;
         collect$java_util_stream_Collector<R, A>(collector: java.util.stream.Collector<any, A, R>): R;
@@ -208,9 +208,9 @@ declare namespace javaemul.internal.stream {
         flatMapToDouble(mapper: (p1: any) => any): java.util.stream.DoubleStream;
         spliterator(): java.util.Spliterator<T>;
         reduce$java_lang_Object$java_util_function_BiFunction$java_util_function_BinaryOperator<U>(identity: U, accumulator: (p1: U, p2: any) => U, combiner: (p1: U, p2: U) => U): U;
-        reduce<U>(identity?: any, accumulator?: any, combiner?: any): any;
+        reduce<T0 = any>(identity?: any, accumulator?: any, combiner?: any): any;
         collect$java_util_function_Supplier$java_util_function_BiConsumer$java_util_function_BiConsumer<R>(supplier: () => R, accumulator: (p1: R, p2: any) => void, combiner: (p1: R, p2: R) => void): R;
-        collect<R>(supplier?: any, accumulator?: any, combiner?: any): any;
+        collect<T0 = any, T1 = any>(supplier?: any, accumulator?: any, combiner?: any): any;
     }
 }
 declare namespace javaemul.internal.stream {
@@ -343,20 +343,20 @@ declare namespace javaemul.internal {
         static charCount(codePoint: number): number;
         static codePointAt$char_A$int(a: string[], index: number): number;
         static codePointAt$char_A$int$int(a: string[], index: number, limit: number): number;
-        static codePointAt(a?: any, index?: any, limit?: any): any;
+        static codePointAt(a?: any, index?: any, limit?: any): number;
         static codePointAt$java_lang_CharSequence$int(seq: any, index: number): number;
         static codePointBefore$char_A$int(a: string[], index: number): number;
         static codePointBefore$char_A$int$int(a: string[], index: number, start: number): number;
-        static codePointBefore(a?: any, index?: any, start?: any): any;
+        static codePointBefore(a?: any, index?: any, start?: any): number;
         static codePointBefore$java_lang_CharSequence$int(cs: any, index: number): number;
         static codePointCount$char_A$int$int(a: string[], offset: number, count: number): number;
-        static codePointCount(a?: any, offset?: any, count?: any): any;
+        static codePointCount(a?: any, offset?: any, count?: any): number;
         static codePointCount$java_lang_CharSequence$int$int(seq: any, beginIndex: number, endIndex: number): number;
         static compare(x: string, y: string): number;
         static digit(c: string, radix: number): number;
         static getNumericValue(ch: string): number;
         static forDigit$int$int(digit: number, radix: number): string;
-        static forDigit(digit?: any, radix?: any): any;
+        static forDigit(digit?: any, radix?: any): string;
         /**
          * @skip
          *
@@ -381,7 +381,7 @@ declare namespace javaemul.internal {
          */
         static isSpace(c: string): boolean;
         static isWhitespace$char(ch: string): boolean;
-        static isWhitespace(ch?: any): any;
+        static isWhitespace(ch?: any): boolean;
         static isWhitespace$int(codePoint: number): boolean;
         static whitespaceRegex(): RegExp;
         static isSupplementaryCodePoint(codePoint: number): boolean;
@@ -389,7 +389,7 @@ declare namespace javaemul.internal {
         static isUpperCase(c: string): boolean;
         static isValidCodePoint(codePoint: number): boolean;
         static offsetByCodePoints$char_A$int$int$int$int(a: string[], start: number, count: number, index: number, codePointOffset: number): number;
-        static offsetByCodePoints(a?: any, start?: any, count?: any, index?: any, codePointOffset?: any): any;
+        static offsetByCodePoints(a?: any, start?: any, count?: any, index?: any, codePointOffset?: any): number;
         static offsetByCodePoints$java_lang_CharSequence$int$int(seq: any, index: number, codePointOffset: number): number;
         static toChars$int(codePoint: number): string[];
         static toChars$int$char_A$int(codePoint: number, dst: string[], dstIndex: number): number;
@@ -400,7 +400,7 @@ declare namespace javaemul.internal {
         static toLowerCase$int(c: number): number;
         static toString(x: string): string;
         static toUpperCase$char(c: string): string;
-        static toUpperCase(c?: any): any;
+        static toUpperCase(c?: any): string;
         static toUpperCase$int(c: number): string;
         static valueOf(c: string): string;
         static codePointAt$java_lang_CharSequence$int$int(cs: any, index: number, limit: number): number;
@@ -435,7 +435,7 @@ declare namespace javaemul.internal {
          * @param {javaemul.internal.CharacterHelper} c
          * @return {number}
          */
-        compareTo(c?: any): any;
+        compareTo(c?: any): number;
         /**
          *
          * @param {*} o
@@ -962,11 +962,11 @@ declare namespace java.util {
         static nonNull(obj: any): boolean;
         static requireNonNull$java_lang_Object<T>(obj: T): T;
         static requireNonNull$java_lang_Object$java_lang_String<T>(obj: T, message: string): T;
-        static requireNonNull<T>(obj?: any, message?: any): any;
+        static requireNonNull<T0 = any>(obj?: any, message?: any): any;
         static requireNonNull$java_lang_Object$java_util_function_Supplier<T>(obj: T, messageSupplier: () => string): T;
         static toString$java_lang_Object(o: any): string;
         static toString$java_lang_Object$java_lang_String(o: any, nullDefault: string): string;
-        static toString(o?: any, nullDefault?: any): any;
+        static toString(o?: any, nullDefault?: any): string;
     }
 }
 declare namespace java.util {
@@ -1106,7 +1106,7 @@ declare namespace java.util {
         removeIf(filter: (p1: any) => boolean): boolean;
         retainAll(c: Collection<any>): boolean;
         size(): number;
-        toArray<T>(a?: any): any;
+        toArray<T0 = any>(a?: any): any;
         stream(): java.util.stream.Stream<E>;
         parallelStream(): java.util.stream.Stream<E>;
     }
@@ -1273,7 +1273,7 @@ declare namespace java.util {
      */
     interface List<E> extends java.util.Collection<E> {
         add(index?: any, element?: any): any;
-        addAll(index?: any, c?: any): any;
+        addAll(index?: any, c?: any): boolean;
         /**
          *
          */
@@ -1303,7 +1303,7 @@ declare namespace java.util {
          */
         iterator(): java.util.Iterator<E>;
         lastIndexOf(o: any): number;
-        listIterator(from?: any): any;
+        listIterator(from?: any): java.util.ListIterator<E>;
         remove(index?: any): any;
         /**
          *
@@ -1329,7 +1329,7 @@ declare namespace java.util {
          * @param {T[]} array
          * @return {T[]}
          */
-        toArray<T>(array?: any): any;
+        toArray<T0 = any>(array?: any): any;
         sort(c: java.util.Comparator<any>): any;
     }
 }
@@ -1386,13 +1386,13 @@ declare namespace java.util.stream {
         map<R>(mapper: (p1: any) => any): Stream<R>;
         flatMap<R>(mapper: (p1: any) => any): Stream<R>;
         distinct(): Stream<T>;
-        sorted(comparator?: any): any;
+        sorted(comparator?: any): Stream<T>;
         peek(action: (p1: any) => void): Stream<T>;
         limit(maxSize: number): Stream<T>;
         skip(n: number): Stream<T>;
         forEach(action: (p1: any) => void): any;
         forEachOrdered(action: (p1: any) => void): any;
-        toArray<A>(generator?: any): any;
+        toArray<T0 = any>(generator?: any): any;
         reduce(identity?: any, accumulator?: any): any;
         collect<R, A>(collector: java.util.stream.Collector<any, A, R>): R;
         min(comparator: java.util.Comparator<any>): java.util.Optional<T>;
@@ -1653,7 +1653,7 @@ declare namespace java.util {
          * tokenizer's string.
          * @exception NullPointerException if delim is <CODE>null</CODE>
          */
-        nextToken(delim?: any): any;
+        nextToken(delim?: any): string;
         /**
          * Returns the same value as the <code>hasMoreTokens</code>
          * method. It exists so that this class can implement the
@@ -1721,14 +1721,14 @@ declare namespace java.util.regex {
         end$(): number;
         end$int(i: number): number;
         end$java_lang_String(string: string): number;
-        end(string?: any): any;
+        end(string?: any): number;
         find$(): boolean;
         find$int(start: number): boolean;
-        find(start?: any): any;
+        find(start?: any): boolean;
         group$(): string;
         group$int(i: number): string;
         group$java_lang_String(string: string): string;
-        group(string?: any): any;
+        group(string?: any): string;
         /**
          *
          * @return {number}
@@ -1744,11 +1744,11 @@ declare namespace java.util.regex {
         replaceFirst(replacement: string): string;
         reset$(): Matcher;
         reset$java_lang_CharSequence(input: any): Matcher;
-        reset(input?: any): any;
+        reset(input?: any): Matcher;
         start$(): number;
         start$int(i: number): number;
         start$java_lang_String(string: string): number;
-        start(string?: any): any;
+        start(string?: any): number;
         toMatchResult(): java.util.regex.MatchResult;
         usePattern(newPattern: java.util.regex.Pattern): Matcher;
     }
@@ -1804,7 +1804,7 @@ declare namespace java.util.regex {
         constructor(regexp: RegExp, _flags: number, namedGroupsNames: java.util.Map<string, number>);
         static compile$java_lang_String(regexp: string): Pattern;
         static compile$java_lang_String$int(regexpString: string, flags: number): Pattern;
-        static compile(regexpString?: any, flags?: any): any;
+        static compile(regexpString?: any, flags?: any): Pattern;
         flags(): number;
         matcher(sequence: any): java.util.regex.Matcher;
         static matches(regex: string, input: any): boolean;
@@ -1835,9 +1835,9 @@ declare namespace java.util.regex {
 }
 declare namespace java.util.regex {
     interface MatchResult {
-        start(i?: any): any;
-        end(i?: any): any;
-        group(i?: any): any;
+        start(i?: any): number;
+        end(i?: any): number;
+        group(i?: any): string;
         groupCount(): number;
     }
 }
@@ -1851,10 +1851,10 @@ declare namespace java.util {
      * @class
      */
     abstract class AbstractCollection<E> implements java.util.Collection<E> {
-        parallelStream(): java.util.stream.Stream<any>;
-        stream(): java.util.stream.Stream<any>;
         removeIf(filter: (p1: any) => boolean): boolean;
+        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        parallelStream(): java.util.stream.Stream<any>;
         constructor();
         /**
          *
@@ -1924,7 +1924,7 @@ declare namespace java.util {
          * @param {T[]} a
          * @return {T[]}
          */
-        toArray<T>(a?: any): any;
+        toArray<T0 = any>(a?: any): any;
         /**
          *
          * @return {string}
@@ -2051,7 +2051,7 @@ declare namespace java.util {
          * @param {number} n the exclusive upper border of the range [0 - n).
          * @return {number} a random {@code int}.
          */
-        nextInt(n?: any): any;
+        nextInt(n?: any): number;
         /**
          * Generates a uniformly distributed 64-bit integer value from the random
          * number sequence.
@@ -2509,7 +2509,7 @@ declare namespace java.util {
          * @param {java.util.Date} other
          * @return {number}
          */
-        compareTo(other?: any): any;
+        compareTo(other?: any): number;
         /**
          *
          * @param {*} obj
@@ -2663,7 +2663,7 @@ declare namespace java.util {
          * @param {T[]} a
          * @return {T[]}
          */
-        toArray<T>(a?: any): any;
+        toArray<T0 = any>(a?: any): any;
     }
 }
 declare namespace java.util {
@@ -3253,7 +3253,7 @@ declare namespace java.io {
          * @param {number} byteCount
          * @return {number}
          */
-        read(buffer?: any, byteOffset?: any, byteCount?: any): any;
+        read(buffer?: any, byteOffset?: any, byteCount?: any): number;
         /**
          * Resets this stream to the last marked location. Throws an
          * {@code IOException} if the number of bytes read since the mark has been
@@ -3299,7 +3299,7 @@ declare namespace java.io {
         read$(): number;
         read$char_A(cbuf: string[]): number;
         read$char_A$int$int(cbuf: string[], off: number, len: number): number;
-        read(cbuf?: any, off?: any, len?: any): any;
+        read(cbuf?: any, off?: any, len?: any): number;
         /**
          * Maximum skip-buffer size
          */
@@ -3827,13 +3827,13 @@ declare namespace java.lang {
         subSequence(start: number, end: number): any;
         substring$int(begin: number): string;
         substring$int$int(begin: number, end: number): string;
-        substring(begin?: any, end?: any): any;
+        substring(begin?: any, end?: any): string;
         indexOf$java_lang_String(x: string): number;
         indexOf$java_lang_String$int(x: string, start: number): number;
-        indexOf(x?: any, start?: any): any;
+        indexOf(x?: any, start?: any): number;
         lastIndexOf$java_lang_String(s: string): number;
         lastIndexOf$java_lang_String$int(s: string, start: number): number;
-        lastIndexOf(s?: any, start?: any): any;
+        lastIndexOf(s?: any, start?: any): number;
         /**
          *
          * @return {string}
@@ -3855,7 +3855,7 @@ declare namespace java.lang {
      */
     abstract class Enum<E extends java.lang.Enum<E>> implements java.lang.Comparable<E>, java.io.Serializable {
         static valueOf$java_lang_Class$java_lang_String<T extends java.lang.Enum<T>>(enumType: any, name: string): T;
-        static valueOf<T extends java.lang.Enum<T>>(enumType?: any, name?: any): any;
+        static valueOf<T0 = any>(enumType?: any, name?: any): any;
         static createValueOfMap<T extends java.lang.Enum<T>>(enumConstants: T[]): Object;
         static valueOf$def_js_Object$java_lang_String<T extends java.lang.Enum<T>>(map: Object, name: string): T;
         static get0<T extends java.lang.Enum<T>>(map: Object, name: string): T;
@@ -3870,7 +3870,7 @@ declare namespace java.lang {
          * @param {java.lang.Enum} other
          * @return {number}
          */
-        compareTo(other?: any): any;
+        compareTo(other?: any): number;
         getDeclaringClass(): any;
         name(): string;
         ordinal(): number;
@@ -3889,7 +3889,7 @@ declare namespace java.lang {
      * @class
      */
     interface Appendable {
-        append(charSquence?: any, start?: any, end?: any): any;
+        append(charSquence?: any, start?: any, end?: any): java.lang.Appendable;
     }
 }
 declare namespace java.lang {
@@ -4003,7 +4003,7 @@ declare namespace java.nio.charset {
          * @param {java.nio.charset.Charset} that
          * @return {number}
          */
-        compareTo(that?: any): any;
+        compareTo(that?: any): number;
         /**
          *
          * @return {number}
@@ -4297,7 +4297,7 @@ declare namespace javaemul.internal {
         static toString(b: number): string;
         static valueOf$double(d: number): number;
         static valueOf$java_lang_String(s: string): number;
-        static valueOf(s?: any): any;
+        static valueOf(s?: any): number;
         constructor(s?: any);
         /**
          *
@@ -4310,7 +4310,7 @@ declare namespace javaemul.internal {
          * @param {javaemul.internal.DoubleHelper} b
          * @return {number}
          */
-        compareTo(b?: any): any;
+        compareTo(b?: any): number;
         /**
          *
          * @return {number}
@@ -4401,7 +4401,7 @@ declare namespace javaemul.internal {
         static valueOf$short(s: number): number;
         static valueOf$java_lang_String(s: string): number;
         static valueOf$java_lang_String$int(s: string, radix: number): number;
-        static valueOf(s?: any, radix?: any): any;
+        static valueOf(s?: any, radix?: any): number;
         value: number;
         constructor(s?: any);
         /**
@@ -4415,7 +4415,7 @@ declare namespace javaemul.internal {
          * @param {javaemul.internal.ShortHelper} b
          * @return {number}
          */
-        compareTo(b?: any): any;
+        compareTo(b?: any): number;
         /**
          *
          * @return {number}
@@ -4500,7 +4500,7 @@ declare namespace javaemul.internal {
         static valueOf$byte(b: number): number;
         static valueOf$java_lang_String(s: string): number;
         static valueOf$java_lang_String$int(s: string, radix: number): number;
-        static valueOf(s?: any, radix?: any): any;
+        static valueOf(s?: any, radix?: any): number;
         value: number;
         constructor(s?: any);
         /**
@@ -4514,7 +4514,7 @@ declare namespace javaemul.internal {
          * @param {javaemul.internal.ByteHelper} b
          * @return {number}
          */
-        compareTo(b?: any): any;
+        compareTo(b?: any): number;
         /**
          *
          * @return {number}
@@ -4602,7 +4602,7 @@ declare namespace javaemul.internal {
         static toString(b: number): string;
         static valueOf$float(f: number): number;
         static valueOf$java_lang_String(s: string): number;
-        static valueOf(s?: any): any;
+        static valueOf(s?: any): number;
         value: number;
         constructor(s?: any);
         /**
@@ -4616,7 +4616,7 @@ declare namespace javaemul.internal {
          * @param {javaemul.internal.FloatHelper} b
          * @return {number}
          */
-        compareTo(b?: any): any;
+        compareTo(b?: any): number;
         /**
          *
          * @return {number}
@@ -4705,7 +4705,7 @@ declare namespace javaemul.internal {
         static toOctalString(value: number): string;
         static toString$int(value: number): string;
         static toString$int$int(value: number, radix: number): string;
-        static toString(value?: any, radix?: any): any;
+        static toString(value?: any, radix?: any): string;
         static valueOf$int(i: number): number;
         static valueOf$java_lang_String(s: string): number;
         static valueOf$java_lang_String$int(s: string, radix: number): number;
@@ -4725,7 +4725,7 @@ declare namespace javaemul.internal {
          * @param {javaemul.internal.IntegerHelper} b
          * @return {number}
          */
-        compareTo(b?: any): any;
+        compareTo(b?: any): number;
         /**
          *
          * @return {number}
@@ -4829,11 +4829,11 @@ declare namespace javaemul.internal {
         static toOctalString(value: number): string;
         static toString$long(value: number): string;
         static toString$long$int(value: number, intRadix: number): string;
-        static toString(value?: any, intRadix?: any): any;
+        static toString(value?: any, intRadix?: any): string;
         static valueOf$long(i: number): number;
         static valueOf$java_lang_String(s: string): number;
         static valueOf$java_lang_String$int(s: string, radix: number): number;
-        static valueOf(s?: any, radix?: any): any;
+        static valueOf(s?: any, radix?: any): number;
         static toPowerOfTwoUnsignedString(value: number, shift: number): string;
         value: number;
         constructor(s?: any);
@@ -4848,7 +4848,7 @@ declare namespace javaemul.internal {
          * @param {javaemul.internal.LongHelper} b
          * @return {number}
          */
-        compareTo(b?: any): any;
+        compareTo(b?: any): number;
         /**
          *
          * @return {number}
@@ -4950,7 +4950,7 @@ declare namespace java.util {
         close(): void;
         delimiter(): java.util.regex.Pattern;
         useDelimiter$java_lang_String(currentDelimiter: string): Scanner;
-        useDelimiter(currentDelimiter?: any): any;
+        useDelimiter(currentDelimiter?: any): Scanner;
         useDelimiter$java_util_regex_Pattern(currentDelimiter: java.util.regex.Pattern): Scanner;
         hasNext$(): boolean;
         searchNextTo$java_util_regex_Pattern(pattern: java.util.regex.Pattern): void;
@@ -4962,7 +4962,7 @@ declare namespace java.util {
          */
         next(): string;
         hasNext$java_util_regex_Pattern(pattern: java.util.regex.Pattern): boolean;
-        hasNext(pattern?: any): any;
+        hasNext(pattern?: any): boolean;
         hasNext$java_lang_String(pattern: string): boolean;
         radix(): number;
         hasNextBoolean(): boolean;
@@ -4983,10 +4983,10 @@ declare namespace java.util {
         nextShort(): number;
         reset(): Scanner;
         skip$java_lang_String(pattern: string): Scanner;
-        skip(pattern?: any): any;
+        skip(pattern?: any): Scanner;
         skip$java_util_regex_Pattern(pattern: java.util.regex.Pattern): Scanner;
         findInLine$java_lang_String(pattern: string): string;
-        findInLine(pattern?: any): any;
+        findInLine(pattern?: any): string;
         findInLine$java_util_regex_Pattern(pattern: java.util.regex.Pattern): string;
         match(): java.util.regex.MatchResult;
     }
@@ -5002,10 +5002,10 @@ declare namespace java.util {
      * @extends java.util.AbstractCollection
      */
     abstract class AbstractSet<E> extends java.util.AbstractCollection<E> implements java.util.Set<E> {
-        parallelStream(): java.util.stream.Stream<any>;
-        stream(): java.util.stream.Stream<any>;
         removeIf(filter: (p1: any) => boolean): boolean;
+        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        parallelStream(): java.util.stream.Stream<any>;
         /**
          *
          * @param {*} o
@@ -5039,11 +5039,11 @@ declare namespace java.util {
      * @class
      */
     abstract class AbstractList<E> extends java.util.AbstractCollection<E> implements java.util.List<E> {
-        parallelStream(): java.util.stream.Stream<any>;
-        stream(): java.util.stream.Stream<any>;
         sort(c: java.util.Comparator<any>): void;
         removeIf(filter: (p1: any) => boolean): boolean;
+        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        parallelStream(): java.util.stream.Stream<any>;
         modCount: number;
         constructor();
         add$java_lang_Object(obj: E): boolean;
@@ -5061,7 +5061,7 @@ declare namespace java.util {
          * @param {*} c
          * @return {boolean}
          */
-        addAll(index?: any, c?: any): any;
+        addAll(index?: any, c?: any): boolean;
         /**
          *
          */
@@ -5107,7 +5107,7 @@ declare namespace java.util {
          * @param {number} from
          * @return {*}
          */
-        listIterator(from?: any): any;
+        listIterator(from?: any): java.util.ListIterator<E>;
         remove$int(index: number): E;
         /**
          *
@@ -5245,10 +5245,10 @@ declare namespace java.util {
      * @class
      */
     abstract class AbstractQueue<E> extends java.util.AbstractCollection<E> implements java.util.Queue<E> {
-        parallelStream(): java.util.stream.Stream<any>;
-        stream(): java.util.stream.Stream<any>;
         removeIf(filter: (p1: any) => boolean): boolean;
+        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        parallelStream(): java.util.stream.Stream<any>;
         constructor();
         /**
          *
@@ -5312,10 +5312,10 @@ declare namespace java.util {
      * @extends java.util.AbstractCollection
      */
     class ArrayDeque<E> extends java.util.AbstractCollection<E> implements java.util.Deque<E>, java.lang.Cloneable {
-        parallelStream(): java.util.stream.Stream<any>;
-        stream(): java.util.stream.Stream<any>;
         removeIf(filter: (p1: any) => boolean): boolean;
+        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        parallelStream(): java.util.stream.Stream<any>;
         /**
          * The minimum capacity that we'll use for a newly created deque.
          * Must be a power of 2.
@@ -5502,9 +5502,9 @@ declare namespace java.util {
          * @param {T[]} out
          * @return {T[]}
          */
-        toArray<T>(out?: any): any;
+        toArray<T0 = any>(out?: any): any;
         contains$java_util_Iterator$java_lang_Object(it: java.util.Iterator<E>, o: any): boolean;
-        contains(it?: any, o?: any): any;
+        contains(it?: any, o?: any): boolean;
         remove$java_util_Iterator$java_lang_Object(it: java.util.Iterator<E>, o: any): boolean;
         remove(it?: any, o?: any): any;
         peekFirstElement(): E;
@@ -5636,11 +5636,11 @@ declare namespace javaemul.internal {
         static CASE_INSENSITIVE_ORDER_$LI$(): java.util.Comparator<string>;
         static copyValueOf$char_A(v: string[]): string;
         static copyValueOf$char_A$int$int(v: string[], offset: number, count: number): string;
-        static copyValueOf(v?: any, offset?: any, count?: any): any;
+        static copyValueOf(v?: any, offset?: any, count?: any): string;
         static valueOf$boolean(x: boolean): string;
         static valueOf$char(x: string): string;
         static valueOf$char_A$int$int(x: string[], offset: number, count: number): string;
-        static valueOf(x?: any, offset?: any, count?: any): any;
+        static valueOf(x?: any, offset?: any, count?: any): string;
         static fromCharCode(array: any[]): string;
         static valueOf$char_A(x: string[]): string;
         static valueOf$double(x: number): string;
@@ -5693,15 +5693,15 @@ declare namespace java.sql {
         nanos: number;
         constructor(year?: any, month?: any, date?: any, hour?: any, minute?: any, second?: any, nano?: any);
         after$java_sql_Timestamp(ts: Timestamp): boolean;
-        after(ts?: any): any;
+        after(ts?: any): boolean;
         before$java_sql_Timestamp(ts: Timestamp): boolean;
-        before(ts?: any): any;
+        before(ts?: any): boolean;
         compareTo$java_util_Date(o: java.util.Date): number;
         compareTo$java_sql_Timestamp(o: Timestamp): number;
-        compareTo(o?: any): any;
+        compareTo(o?: any): number;
         equals$java_lang_Object(ts: any): boolean;
         equals$java_sql_Timestamp(ts: Timestamp): boolean;
-        equals(ts?: any): any;
+        equals(ts?: any): boolean;
         getNanos(): number;
         /**
          *
@@ -6104,7 +6104,7 @@ declare namespace java.io {
          * @param {number} byteCount
          * @return {number}
          */
-        read(buffer?: any, byteOffset?: any, byteCount?: any): any;
+        read(buffer?: any, byteOffset?: any, byteCount?: any): number;
         read$(): number;
         /**
          * Resets this stream to the last marked location. This implementation
@@ -6212,7 +6212,7 @@ declare namespace java.io {
          * @param {number} byteCount
          * @return {number}
          */
-        read(buffer?: any, byteOffset?: any, byteCount?: any): any;
+        read(buffer?: any, byteOffset?: any, byteCount?: any): number;
         /**
          * Resets this stream to the last marked location. This implementation
          * resets the position to either the marked position, the start position
@@ -6260,9 +6260,9 @@ declare namespace java.io {
         read$(): number;
         read1(cbuf: string[], off: number, len: number): number;
         read$char_A$int$int(cbuf: string[], off: number, len: number): number;
-        read(cbuf?: any, off?: any, len?: any): any;
+        read(cbuf?: any, off?: any, len?: any): number;
         readLine$boolean(ignoreLF: boolean): string;
-        readLine(ignoreLF?: any): any;
+        readLine(ignoreLF?: any): string;
         readLine$(): string;
         skip(n: number): number;
         ready(): boolean;
@@ -6284,7 +6284,7 @@ declare namespace java.io {
         in: java.io.InputStream;
         constructor(__in?: any, charsetName?: any);
         read$char_A$int$int(cbuf: string[], offset: number, length: number): number;
-        read(cbuf?: any, offset?: any, length?: any): any;
+        read(cbuf?: any, offset?: any, length?: any): number;
         ready(): boolean;
         close(): void;
     }
@@ -6304,7 +6304,7 @@ declare namespace java.io {
          * @param {number} len
          * @return {number}
          */
-        read(cbuf?: any, off?: any, len?: any): any;
+        read(cbuf?: any, off?: any, len?: any): number;
         /**
          *
          */
@@ -6449,7 +6449,7 @@ declare namespace java.io {
          * @throws UnsupportedEncodingException
          * if the provided encoding is not supported.
          */
-        toString(charsetName?: any): any;
+        toString(charsetName?: any): string;
         write$byte_A$int$int(buffer: number[], offset: number, len: number): void;
         /**
          * Writes {@code count} bytes from the byte array {@code buffer} starting at
@@ -6670,7 +6670,7 @@ declare namespace java.lang {
         insert$int$char(index: number, x: string): java.lang.StringBuilder;
         insert$int$char_A(index: number, x: string[]): java.lang.StringBuilder;
         insert$int$char_A$int$int(index: number, x: string[], offset: number, len: number): java.lang.StringBuilder;
-        insert(index?: any, x?: any, offset?: any, len?: any): any;
+        insert(index?: any, x?: any, offset?: any, len?: any): java.lang.StringBuilder;
         insert$int$java_lang_CharSequence(index: number, chars: any): java.lang.StringBuilder;
         insert$int$java_lang_CharSequence$int$int(index: number, chars: any, start: number, end: number): java.lang.StringBuilder;
         insert$int$double(index: number, x: number): java.lang.StringBuilder;
@@ -6716,7 +6716,7 @@ declare namespace java.lang {
         insert$int$char(index: number, x: string): java.lang.StringBuffer;
         insert$int$char_A(index: number, x: string[]): java.lang.StringBuffer;
         insert$int$char_A$int$int(index: number, x: string[], offset: number, len: number): java.lang.StringBuffer;
-        insert(index?: any, x?: any, offset?: any, len?: any): any;
+        insert(index?: any, x?: any, offset?: any, len?: any): java.lang.StringBuffer;
         insert$int$java_lang_CharSequence(index: number, chars: any): java.lang.StringBuffer;
         insert$int$java_lang_CharSequence$int$int(index: number, chars: any, start: number, end: number): java.lang.StringBuffer;
         insert$int$double(index: number, x: number): java.lang.StringBuffer;
@@ -6750,7 +6750,7 @@ declare namespace java.nio {
          * @param {java.nio.ByteBuffer} byteBuffer
          * @return {number}
          */
-        compareTo(byteBuffer?: any): any;
+        compareTo(byteBuffer?: any): number;
         duplicate(): ByteBuffer;
         /**
          *
@@ -6765,48 +6765,48 @@ declare namespace java.nio {
         get$int(from: number): number;
         getChar$(): string;
         getChar$int(from: number): string;
-        getChar(from?: any): any;
+        getChar(from?: any): string;
         getDouble$(): number;
         getDouble$int(from: number): number;
-        getDouble(from?: any): any;
+        getDouble(from?: any): number;
         getFloat$(): number;
         getFloat$int(from: number): number;
-        getFloat(from?: any): any;
+        getFloat(from?: any): number;
         getInt$(): number;
         getInt$int(from: number): number;
-        getInt(from?: any): any;
+        getInt(from?: any): number;
         getLong$(): number;
         getLong$int(from: number): number;
-        getLong(from?: any): any;
+        getLong(from?: any): number;
         getShort$(): number;
         getShort$int(from: number): number;
-        getShort(from?: any): any;
+        getShort(from?: any): number;
         order$(): java.nio.ByteOrder;
         order$java_nio_ByteOrder(newOrder: java.nio.ByteOrder): ByteBuffer;
         order(newOrder?: any): any;
         put$byte(b: number): ByteBuffer;
         put$byte_A(src: number[]): ByteBuffer;
         put$byte_A$int$int(src: number[], offset: number, length: number): ByteBuffer;
-        put(src?: any, offset?: any, length?: any): any;
+        put(src?: any, offset?: any, length?: any): ByteBuffer;
         put$int$byte(to: number, b: number): ByteBuffer;
         putChar$char(value: string): ByteBuffer;
         putChar$int$char(to: number, value: string): ByteBuffer;
-        putChar(to?: any, value?: any): any;
+        putChar(to?: any, value?: any): ByteBuffer;
         putDouble$double(value: number): ByteBuffer;
         putDouble$int$double(to: number, value: number): ByteBuffer;
-        putDouble(to?: any, value?: any): any;
+        putDouble(to?: any, value?: any): ByteBuffer;
         putFloat$float(value: number): ByteBuffer;
         putFloat$int$float(to: number, value: number): ByteBuffer;
-        putFloat(to?: any, value?: any): any;
+        putFloat(to?: any, value?: any): ByteBuffer;
         putInt$int(value: number): ByteBuffer;
         putInt$int$int(to: number, value: number): ByteBuffer;
-        putInt(to?: any, value?: any): any;
+        putInt(to?: any, value?: any): ByteBuffer;
         putLong$long(value: number): ByteBuffer;
         putLong$int$long(to: number, value: number): ByteBuffer;
-        putLong(to?: any, value?: any): any;
+        putLong(to?: any, value?: any): ByteBuffer;
         putShort$short(value: number): ByteBuffer;
         putShort$int$short(to: number, value: number): ByteBuffer;
-        putShort(to?: any, value?: any): any;
+        putShort(to?: any, value?: any): ByteBuffer;
         slice(): ByteBuffer;
         /**
          *
@@ -6815,7 +6815,7 @@ declare namespace java.nio {
         hashCode(): number;
         static wrap$byte_A(array: number[]): ByteBuffer;
         static wrap$byte_A$int$int(array: number[], offset: number, length: number): ByteBuffer;
-        static wrap(array?: any, offset?: any, length?: any): any;
+        static wrap(array?: any, offset?: any, length?: any): ByteBuffer;
         static wrap$def_js_ArrayBuffer(array: ArrayBuffer): ByteBuffer;
         static wrap$def_js_ArrayBuffer$int$double(array: ArrayBuffer, offset: number, length: number): ByteBuffer;
     }
@@ -6910,9 +6910,9 @@ declare namespace java.util {
      */
     abstract class AbstractMap<K, V> implements java.util.Map<K, V> {
         computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
-        getOrDefault(key: any, defaultValue: any): any;
         putIfAbsent(key: any, value: any): any;
         merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
+        getOrDefault(key: any, defaultValue: any): any;
         replaceAll(__function: (p1: any, p2: any) => any): void;
         constructor();
         /**
@@ -6989,7 +6989,7 @@ declare namespace java.util {
         size(): number;
         toString$(): string;
         toString$java_util_Map_Entry(entry: Map.Entry<K, V>): string;
-        toString(entry?: any): any;
+        toString(entry?: any): string;
         toString$java_lang_Object(o: any): string;
         /**
          *
@@ -7184,10 +7184,10 @@ declare namespace java.util {
      * @extends java.util.AbstractSet
      */
     class HashSet<E> extends java.util.AbstractSet<E> implements java.util.Set<E>, java.lang.Cloneable, java.io.Serializable {
-        parallelStream(): java.util.stream.Stream<any>;
-        stream(): java.util.stream.Stream<any>;
         removeIf(filter: (p1: any) => boolean): boolean;
+        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        parallelStream(): java.util.stream.Stream<any>;
         map: java.util.HashMap<E, any>;
         /**
          * Ensures that RPC will consider type parameter E to be exposed. It will be
@@ -7255,7 +7255,7 @@ declare namespace java.util {
         static complementOf<E extends java.lang.Enum<E>>(other: EnumSet<E>): EnumSet<E>;
         static copyOf$java_util_Collection<E extends java.lang.Enum<E>>(c: java.util.Collection<E>): EnumSet<E>;
         static copyOf$java_util_EnumSet<E extends java.lang.Enum<E>>(s: EnumSet<E>): EnumSet<E>;
-        static copyOf<E extends java.lang.Enum<E>>(s?: any): any;
+        static copyOf<T0 = any>(s?: any): any;
         static noneOf<E extends java.lang.Enum<E>>(elementType: any): EnumSet<E>;
         static ofOne<E extends java.lang.Enum<E>>(first: E): EnumSet<E>;
         static of<E extends java.lang.Enum<E>>(first: E, ...rest: E[]): EnumSet<E>;
@@ -7294,7 +7294,7 @@ declare namespace java.util {
              * @param {java.lang.Enum} e
              * @return {boolean}
              */
-            add(e?: any): any;
+            add(e?: any): boolean;
             /**
              *
              * @return {java.util.EnumSet}
@@ -7368,10 +7368,10 @@ declare namespace java.util {
      * @extends java.util.AbstractSet
      */
     class TreeSet<E> extends java.util.AbstractSet<E> implements java.util.NavigableSet<E>, java.io.Serializable {
-        parallelStream(): java.util.stream.Stream<any>;
-        stream(): java.util.stream.Stream<any>;
         removeIf(filter: (p1: any) => boolean): boolean;
+        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        parallelStream(): java.util.stream.Stream<any>;
         /**
          * TreeSet is stored as a TreeMap of the requested type to a constant Boolean.
          */
@@ -7508,11 +7508,11 @@ declare namespace java.util {
      * @extends java.util.AbstractList
      */
     class Vector<E> extends java.util.AbstractList<E> implements java.util.List<E>, java.util.RandomAccess, java.lang.Cloneable, java.io.Serializable {
-        parallelStream(): java.util.stream.Stream<any>;
-        stream(): java.util.stream.Stream<any>;
         sort(c: java.util.Comparator<any>): void;
         removeIf(filter: (p1: any) => boolean): boolean;
+        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        parallelStream(): java.util.stream.Stream<any>;
         arrayList: java.util.ArrayList<E>;
         /**
          * Ensures that RPC will consider type parameter E to be exposed. It will be
@@ -7536,7 +7536,7 @@ declare namespace java.util {
          * @param {*} c
          * @return {boolean}
          */
-        addAll(index?: any, c?: any): any;
+        addAll(index?: any, c?: any): boolean;
         addElement(o: E): void;
         capacity(): number;
         /**
@@ -7569,7 +7569,7 @@ declare namespace java.util {
         get(index: number): E;
         indexOf$java_lang_Object(elem: any): number;
         indexOf$java_lang_Object$int(elem: any, index: number): number;
-        indexOf(elem?: any, index?: any): any;
+        indexOf(elem?: any, index?: any): number;
         insertElementAt(o: E, index: number): void;
         /**
          *
@@ -7584,7 +7584,7 @@ declare namespace java.util {
         lastElement(): E;
         lastIndexOf$java_lang_Object(o: any): number;
         lastIndexOf$java_lang_Object$int(o: any, index: number): number;
-        lastIndexOf(o?: any, index?: any): any;
+        lastIndexOf(o?: any, index?: any): number;
         remove$int(index: number): E;
         /**
          *
@@ -7629,7 +7629,7 @@ declare namespace java.util {
          * @param {T[]} a
          * @return {T[]}
          */
-        toArray<T>(a?: any): any;
+        toArray<T0 = any>(a?: any): any;
         /**
          *
          * @return {string}
@@ -7672,7 +7672,7 @@ declare namespace java.util {
          * @param {*} c
          * @return {boolean}
          */
-        addAll(index?: any, c?: any): any;
+        addAll(index?: any, c?: any): boolean;
         /**
          *
          * @param {number} index
@@ -7735,11 +7735,11 @@ declare namespace java.util {
      * @extends java.util.AbstractList
      */
     class ArrayList<E> extends java.util.AbstractList<E> implements java.util.List<E>, java.lang.Cloneable, java.util.RandomAccess, java.io.Serializable {
-        parallelStream(): java.util.stream.Stream<any>;
-        stream(): java.util.stream.Stream<any>;
         sort(c: java.util.Comparator<any>): void;
         removeIf(filter: (p1: any) => boolean): boolean;
+        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        parallelStream(): java.util.stream.Stream<any>;
         /**
          * This field holds a JavaScript array.
          */
@@ -7766,7 +7766,7 @@ declare namespace java.util {
          * @param {*} c
          * @return {boolean}
          */
-        addAll(index?: any, c?: any): any;
+        addAll(index?: any, c?: any): boolean;
         /**
          *
          */
@@ -7824,7 +7824,7 @@ declare namespace java.util {
          * @param {T[]} out
          * @return {T[]}
          */
-        toArray<T>(out?: any): any;
+        toArray<T0 = any>(out?: any): any;
         trimToSize(): void;
         /**
          *
@@ -7839,7 +7839,7 @@ declare namespace java.util {
          * @param {number} index
          * @return {number}
          */
-        indexOf(o?: any, index?: any): any;
+        indexOf(o?: any, index?: any): number;
         lastIndexOf$java_lang_Object$int(o: any, index: number): number;
         /**
          * Used by Vector.
@@ -7847,7 +7847,7 @@ declare namespace java.util {
          * @param {number} index
          * @return {number}
          */
-        lastIndexOf(o?: any, index?: any): any;
+        lastIndexOf(o?: any, index?: any): number;
         setSize(newSize: number): void;
     }
     namespace ArrayList {
@@ -7909,9 +7909,9 @@ declare namespace java.util {
          * <code>sortedArray</code>'s elements cannot be compared by
          * <code>comparator</code>.
          */
-        static binarySearch<T>(sortedArray?: any, key?: any, comparator?: any): any;
+        static binarySearch<T0 = any>(sortedArray?: any, key?: any, comparator?: any): number;
         static copyOf$boolean_A$int(original: boolean[], newLength: number): boolean[];
-        static copyOf(original?: any, newLength?: any): any;
+        static copyOf<T0 = any>(original?: any, newLength?: any): any;
         static copyOf$byte_A$int(original: number[], newLength: number): number[];
         static copyOf$char_A$int(original: string[], newLength: number): string[];
         static copyOf$double_A$int(original: number[], newLength: number): number[];
@@ -7921,7 +7921,7 @@ declare namespace java.util {
         static copyOf$short_A$int(original: number[], newLength: number): number[];
         static copyOf$java_lang_Object_A$int<T>(original: T[], newLength: number): T[];
         static copyOfRange$boolean_A$int$int(original: boolean[], from: number, to: number): boolean[];
-        static copyOfRange(original?: any, from?: any, to?: any): any;
+        static copyOfRange<T0 = any>(original?: any, from?: any, to?: any): any;
         static copyOfRange$byte_A$int$int(original: number[], from: number, to: number): number[];
         static copyOfRange$char_A$int$int(original: string[], from: number, to: number): string[];
         static copyOfRange$double_A$int$int(original: number[], from: number, to: number): number[];
@@ -7934,7 +7934,7 @@ declare namespace java.util {
         static deepHashCode(a: any[]): number;
         static deepToString$java_lang_Object_A(a: any[]): string;
         static equals$boolean_A$boolean_A(array1: boolean[], array2: boolean[]): boolean;
-        static equals(array1?: any, array2?: any): any;
+        static equals(array1?: any, array2?: any): boolean;
         static equals$byte_A$byte_A(array1: number[], array2: number[]): boolean;
         static equals$char_A$char_A(array1: string[], array2: string[]): boolean;
         static equals$double_A$double_A(array1: number[], array2: number[]): boolean;
@@ -7963,7 +7963,7 @@ declare namespace java.util {
         static fill$short_A$int$int$short(a: number[], fromIndex: number, toIndex: number, val: number): void;
         static fill$short_A$short(a: number[], val: number): void;
         static hashCode$boolean_A(a: boolean[]): number;
-        static hashCode(a?: any): any;
+        static hashCode(a?: any): number;
         static hashCode$byte_A(a: number[]): number;
         static hashCode$char_A(a: string[]): number;
         static hashCode$double_A(a: number[]): number;
@@ -7990,9 +7990,9 @@ declare namespace java.util {
         static sort$short_A$int$int(array: number[], fromIndex: number, toIndex: number): void;
         static sort$java_lang_Object_A$java_util_Comparator<T>(x: T[], c: java.util.Comparator<any>): void;
         static sort$java_lang_Object_A$int$int$java_util_Comparator<T>(x: T[], fromIndex: number, toIndex: number, c: java.util.Comparator<any>): void;
-        static sort<T>(x?: any, fromIndex?: any, toIndex?: any, c?: any): any;
+        static sort<T0 = any>(x?: any, fromIndex?: any, toIndex?: any, c?: any): any;
         static toString$boolean_A(a: boolean[]): string;
-        static toString(a?: any): any;
+        static toString(a?: any): string;
         static toString$byte_A(a: number[]): string;
         static toString$char_A(a: string[]): string;
         static toString$double_A(a: number[]): string;
@@ -8009,7 +8009,7 @@ declare namespace java.util {
          * @return {string}
          * @private
          */
-        static deepToString(a?: any, arraysIveSeen?: any): any;
+        static deepToString(a?: any, arraysIveSeen?: any): string;
         static getCopyLength(array: any, from: number, to: number): number;
         /**
          * Sort a small subsection of an array by insertion sort.
@@ -8114,7 +8114,7 @@ declare namespace java.util {
              * @param {T[]} out
              * @return {T[]}
              */
-            toArray<T>(out?: any): any;
+            toArray<T0 = any>(out?: any): any;
         }
     }
 }
@@ -8224,7 +8224,7 @@ declare namespace java.util {
          * @param {T[]} a
          * @return {T[]}
          */
-        toArray<T>(a?: any): any;
+        toArray<T0 = any>(a?: any): any;
         /**
          *
          * @return {string}
@@ -8969,9 +8969,9 @@ declare namespace java.util {
      */
     abstract class AbstractNavigableMap<K, V> extends java.util.AbstractMap<K, V> implements java.util.NavigableMap<K, V> {
         computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
-        getOrDefault(key: any, defaultValue: any): any;
         putIfAbsent(key: any, value: any): any;
         merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
+        getOrDefault(key: any, defaultValue: any): any;
         replaceAll(__function: (p1: any, p2: any) => any): void;
         static copyOf<K, V>(entry: Map.Entry<K, V>): Map.Entry<K, V>;
         static getKeyOrNSE<K, V>(entry: Map.Entry<K, V>): K;
@@ -9314,10 +9314,10 @@ declare namespace java.util {
             constructor(__parent: any);
         }
         class NavigableKeySet<K, V> extends java.util.AbstractSet<K> implements java.util.NavigableSet<K> {
-            parallelStream(): java.util.stream.Stream<any>;
-            stream(): java.util.stream.Stream<any>;
             removeIf(filter: (p1: any) => boolean): boolean;
+            stream(): java.util.stream.Stream<any>;
             forEach(action: (p1: any) => void): void;
+            parallelStream(): java.util.stream.Stream<any>;
             map: java.util.NavigableMap<K, V>;
             constructor(map: java.util.NavigableMap<K, V>);
             /**
@@ -9502,7 +9502,7 @@ declare namespace java.util {
          * if <code>key</code> and <code>sortedList</code>'s elements cannot
          * be compared by <code>comparator</code>.
          */
-        static binarySearch<T>(sortedList?: any, key?: any, comparator?: any): any;
+        static binarySearch<T0 = any>(sortedList?: any, key?: any, comparator?: any): number;
         static copy<T>(dest: java.util.List<any>, src: java.util.List<any>): void;
         static disjoint(c1: java.util.Collection<any>, c2: java.util.Collection<any>): boolean;
         static emptyIterator<T>(): java.util.Iterator<T>;
@@ -9516,7 +9516,7 @@ declare namespace java.util {
         static list<T>(e: java.util.Enumeration<T>): java.util.ArrayList<T>;
         static max$java_util_Collection<T extends any & java.lang.Comparable<any>>(coll: java.util.Collection<any>): T;
         static max$java_util_Collection$java_util_Comparator<T>(coll: java.util.Collection<any>, comp: java.util.Comparator<any>): T;
-        static max<T>(coll?: any, comp?: any): any;
+        static max<T0 = any>(coll?: any, comp?: any): any;
         static min<T>(coll: java.util.Collection<any>, comp?: java.util.Comparator<any>): T;
         static newSetFromMap<E>(map: java.util.Map<E, boolean>): java.util.Set<E>;
         static nCopies<T>(n: number, o: T): java.util.List<T>;
@@ -9524,7 +9524,7 @@ declare namespace java.util {
         static reverse<T>(l: java.util.List<T>): void;
         static reverseOrder$<T>(): java.util.Comparator<T>;
         static reverseOrder$java_util_Comparator<T>(cmp: java.util.Comparator<T>): java.util.Comparator<T>;
-        static reverseOrder<T>(cmp?: any): any;
+        static reverseOrder<T0 = any>(cmp?: any): any;
         /**
          * Rotates the elements in {@code list} by the distance {@code dist}
          * <p>
@@ -9545,7 +9545,7 @@ declare namespace java.util {
         static singletonMap<K, V>(key: K, value: V): java.util.Map<K, V>;
         static sort$java_util_List<T>(target: java.util.List<T>): void;
         static sort$java_util_List$java_util_Comparator<T>(target: java.util.List<T>, c: java.util.Comparator<any>): void;
-        static sort<T>(target?: any, c?: any): any;
+        static sort<T0 = any>(target?: any, c?: any): any;
         static swap(list: java.util.List<any>, i: number, j: number): void;
         static unmodifiableCollection<T>(coll: java.util.Collection<any>): java.util.Collection<T>;
         static unmodifiableList<T>(list: java.util.List<any>): java.util.List<T>;
@@ -9560,7 +9560,7 @@ declare namespace java.util {
          * @param {*} list
          * @return {number}
          */
-        static hashCode<T>(list?: any): any;
+        static hashCode<T0 = any>(list?: any): number;
         /**
          * Replace contents of a list from an array.
          *
@@ -9574,7 +9574,7 @@ declare namespace java.util {
          */
         static replaceContents<T>(target: java.util.List<T>, x: any[]): void;
         static swapImpl$java_util_List$int$int<T>(list: java.util.List<T>, i: number, j: number): void;
-        static swapImpl<T>(list?: any, i?: any, j?: any): any;
+        static swapImpl<T0 = any>(list?: any, i?: any, j?: any): any;
         static swapImpl$java_lang_Object_A$int$int(a: any[], i: number, j: number): void;
         static synchronizedList<T>(list: java.util.List<T>): java.util.List<T>;
         static synchronizedSet<T>(s: java.util.Set<T>): java.util.Set<T>;
@@ -9762,7 +9762,7 @@ declare namespace java.util {
              * @param {*} o2
              * @return {number}
              */
-            compare(o1?: any, o2?: any): any;
+            compare(o1?: any, o2?: any): number;
             constructor();
         }
         class SetFromMap<E> extends java.util.AbstractSet<E> implements java.io.Serializable {
@@ -9846,10 +9846,10 @@ declare namespace java.util {
             size(): number;
         }
         class UnmodifiableCollection<T> implements java.util.Collection<T> {
-            parallelStream(): java.util.stream.Stream<any>;
-            stream(): java.util.stream.Stream<any>;
             removeIf(filter: (p1: any) => boolean): boolean;
+            stream(): java.util.stream.Stream<any>;
             forEach(action: (p1: any) => void): void;
+            parallelStream(): java.util.stream.Stream<any>;
             coll: java.util.Collection<any>;
             constructor(coll: java.util.Collection<any>);
             /**
@@ -9920,7 +9920,7 @@ declare namespace java.util {
              * @param {E[]} a
              * @return {E[]}
              */
-            toArray<E>(a?: any): any;
+            toArray<T0 = any>(a?: any): any;
             /**
              *
              * @return {string}
@@ -9952,11 +9952,11 @@ declare namespace java.util {
             constructor();
         }
         class UnmodifiableList<T> extends Collections.UnmodifiableCollection<T> implements java.util.List<T> {
-            parallelStream(): java.util.stream.Stream<any>;
-            stream(): java.util.stream.Stream<any>;
             sort(c: java.util.Comparator<any>): void;
             removeIf(filter: (p1: any) => boolean): boolean;
+            stream(): java.util.stream.Stream<any>;
             forEach(action: (p1: any) => void): void;
+            parallelStream(): java.util.stream.Stream<any>;
             list: java.util.List<any>;
             constructor(list: java.util.List<any>);
             add$int$java_lang_Object(index: number, element: T): void;
@@ -9973,7 +9973,7 @@ declare namespace java.util {
              * @param {*} c
              * @return {boolean}
              */
-            addAll(index?: any, c?: any): any;
+            addAll(index?: any, c?: any): boolean;
             /**
              *
              * @param {*} o
@@ -10015,7 +10015,7 @@ declare namespace java.util {
              * @param {number} from
              * @return {*}
              */
-            listIterator(from?: any): any;
+            listIterator(from?: any): java.util.ListIterator<T>;
             remove$int(index: number): T;
             /**
              *
@@ -10039,10 +10039,10 @@ declare namespace java.util {
             subList(fromIndex: number, toIndex: number): java.util.List<T>;
         }
         class UnmodifiableSet<T> extends Collections.UnmodifiableCollection<T> implements java.util.Set<T> {
-            parallelStream(): java.util.stream.Stream<any>;
-            stream(): java.util.stream.Stream<any>;
             removeIf(filter: (p1: any) => boolean): boolean;
+            stream(): java.util.stream.Stream<any>;
             forEach(action: (p1: any) => void): void;
+            parallelStream(): java.util.stream.Stream<any>;
             constructor(set: java.util.Set<any>);
             /**
              *
@@ -10096,9 +10096,9 @@ declare namespace java.util {
         }
         class UnmodifiableMap<K, V> implements java.util.Map<K, V> {
             computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
-            getOrDefault(key: any, defaultValue: any): any;
             putIfAbsent(key: any, value: any): any;
             merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
+            getOrDefault(key: any, defaultValue: any): any;
             replaceAll(__function: (p1: any, p2: any) => any): void;
             __entrySet: Collections.UnmodifiableSet<java.util.Map.Entry<K, V>>;
             __keySet: Collections.UnmodifiableSet<K>;
@@ -10214,7 +10214,7 @@ declare namespace java.util {
                  * @param {T[]} a
                  * @return {T[]}
                  */
-                toArray<T>(a?: any): any;
+                toArray<T0 = any>(a?: any): any;
                 /**
                  * Wrap an array of Map.Entries as UnmodifiableEntries.
                  *
@@ -10286,10 +10286,10 @@ declare namespace java.util {
             }
         }
         class UnmodifiableSortedSet<E> extends Collections.UnmodifiableSet<E> implements java.util.SortedSet<E> {
-            parallelStream(): java.util.stream.Stream<any>;
-            stream(): java.util.stream.Stream<any>;
             removeIf(filter: (p1: any) => boolean): boolean;
+            stream(): java.util.stream.Stream<any>;
             forEach(action: (p1: any) => void): void;
+            parallelStream(): java.util.stream.Stream<any>;
             sortedSet: java.util.SortedSet<E>;
             constructor(sortedSet: java.util.SortedSet<any>);
             /**
@@ -10340,9 +10340,9 @@ declare namespace java.util {
         }
         class UnmodifiableSortedMap<K, V> extends Collections.UnmodifiableMap<K, V> implements java.util.SortedMap<K, V> {
             computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
-            getOrDefault(key: any, defaultValue: any): any;
             putIfAbsent(key: any, value: any): any;
             merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
+            getOrDefault(key: any, defaultValue: any): any;
             replaceAll(__function: (p1: any, p2: any) => any): void;
             sortedMap: java.util.SortedMap<K, any>;
             constructor(sortedMap: java.util.SortedMap<K, any>);
@@ -10422,10 +10422,10 @@ declare namespace java.util {
      * @extends java.util.HashSet
      */
     class LinkedHashSet<E> extends java.util.HashSet<E> implements java.util.Set<E>, java.lang.Cloneable {
-        parallelStream(): java.util.stream.Stream<any>;
-        stream(): java.util.stream.Stream<any>;
         removeIf(filter: (p1: any) => boolean): boolean;
+        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        parallelStream(): java.util.stream.Stream<any>;
         constructor(ignored?: any, alsoIgnored?: any);
         /**
          *
@@ -10471,11 +10471,11 @@ declare namespace java.util {
      * @extends java.util.AbstractSequentialList
      */
     class LinkedList<E> extends java.util.AbstractSequentialList<E> implements java.lang.Cloneable, java.util.List<E>, java.util.Deque<E>, java.io.Serializable {
-        parallelStream(): java.util.stream.Stream<any>;
-        stream(): java.util.stream.Stream<any>;
         sort(c: java.util.Comparator<any>): void;
         removeIf(filter: (p1: any) => boolean): boolean;
+        stream(): java.util.stream.Stream<any>;
         forEach(action: (p1: any) => void): void;
+        parallelStream(): java.util.stream.Stream<any>;
         /**
          * Ensures that RPC will consider type parameter E to be exposed. It will be
          * pruned by dead code elimination.
@@ -10859,9 +10859,9 @@ declare namespace java.util {
      */
     class IdentityHashMap<K, V> extends java.util.AbstractHashMap<K, V> implements java.util.Map<K, V>, java.lang.Cloneable, java.io.Serializable {
         computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
-        getOrDefault(key: any, defaultValue: any): any;
         putIfAbsent(key: any, value: any): any;
         merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
+        getOrDefault(key: any, defaultValue: any): any;
         replaceAll(__function: (p1: any, p2: any) => any): void;
         /**
          * Ensures that RPC will consider type parameter K to be exposed. It will be
@@ -11515,7 +11515,7 @@ declare namespace java.util.stream {
         static toMap$java_util_function_Function$java_util_function_Function<T, K, U>(keyMapper: (p1: any) => any, valueMapper: (p1: any) => any): java.util.stream.Collector<T, any, java.util.Map<K, U>>;
         static toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator<T, K, U>(keyMapper: (p1: any) => any, valueMapper: (p1: any) => any, mergeFunction: (p1: U, p2: U) => U): java.util.stream.Collector<T, any, java.util.Map<K, U>>;
         static toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier<T, K, U, M extends java.util.Map<K, U>>(keyMapper: (p1: any) => any, valueMapper: (p1: any) => any, mergeFunction: (p1: U, p2: U) => U, mapSupplier: () => M): java.util.stream.Collector<T, any, M>;
-        static toMap<T, K, U, M extends java.util.Map<K, U>>(keyMapper?: any, valueMapper?: any, mergeFunction?: any, mapSupplier?: any): any;
+        static toMap<T0 = any, T1 = any, T2 = any, T3 = any>(keyMapper?: any, valueMapper?: any, mergeFunction?: any, mapSupplier?: any): any;
         static mapMerger<K, V, M extends java.util.Map<K, V>>(mergeFunction: (p1: V, p2: V) => V): (p1: M, p2: M) => M;
         static joining$(): java.util.stream.Collector<any, any, string>;
         static joining$java_lang_CharSequence(delimiter: any): java.util.stream.Collector<any, any, string>;
@@ -11536,14 +11536,14 @@ declare namespace java.util.stream {
          * @return {*} A {@code Collector} which concatenates CharSequence elements,
          * separated by the specified delimiter, in encounter order
          */
-        static joining(delimiter?: any, prefix?: any, suffix?: any): any;
+        static joining(delimiter?: any, prefix?: any, suffix?: any): java.util.stream.Collector<any, any, string>;
         static groupingBy$java_util_function_Function$java_util_stream_Collector<T, K, A, D>(classifier: (p1: any) => any, downstream: java.util.stream.Collector<any, A, D>): java.util.stream.Collector<T, any, java.util.Map<K, D>>;
         static groupingBy$java_util_function_Function$java_util_function_Supplier$java_util_stream_Collector<T, K, D, A, M extends java.util.Map<K, D>>(classifier: (p1: any) => any, mapFactory: () => M, downstream: java.util.stream.Collector<any, A, D>): java.util.stream.Collector<T, any, M>;
-        static groupingBy<T, K, D, A, M extends java.util.Map<K, D>>(classifier?: any, mapFactory?: any, downstream?: any): any;
+        static groupingBy<T0 = any, T1 = any, T2 = any, T3 = any, T4 = any>(classifier?: any, mapFactory?: any, downstream?: any): any;
         static mapping<T, U, A, R>(mapper: (p1: any) => any, downstream: java.util.stream.Collector<any, A, R>): java.util.stream.Collector<T, any, R>;
         static reducing$java_lang_Object$java_util_function_BinaryOperator<T>(identity: T, op: (p1: T, p2: T) => T): java.util.stream.Collector<T, any, T>;
         static reducing$java_lang_Object$java_util_function_Function$java_util_function_BinaryOperator<T, U>(identity: U, mapper: (p1: any) => any, op: (p1: U, p2: U) => U): java.util.stream.Collector<T, any, U>;
-        static reducing<T, U>(identity?: any, mapper?: any, op?: any): any;
+        static reducing<T0 = any, T1 = any>(identity?: any, mapper?: any, op?: any): any;
         static boxSupplier<T>(identity: T): () => T[];
     }
     namespace Collectors {
@@ -11602,9 +11602,9 @@ declare namespace java.util {
      */
     class LinkedHashMap<K, V> extends java.util.HashMap<K, V> implements java.util.Map<K, V> {
         computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
-        getOrDefault(key: any, defaultValue: any): any;
         putIfAbsent(key: any, value: any): any;
         merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
+        getOrDefault(key: any, defaultValue: any): any;
         replaceAll(__function: (p1: any, p2: any) => any): void;
         accessOrder: boolean;
         head: LinkedHashMap.ChainEntry;
@@ -11821,7 +11821,7 @@ declare namespace java.lang {
         static gc(): void;
         static getProperty$java_lang_String(key: string): string;
         static getProperty$java_lang_String$java_lang_String(key: string, def: string): string;
-        static getProperty(key?: any, def?: any): any;
+        static getProperty(key?: any, def?: any): string;
         static identityHashCode(o: any): number;
         static setErr(err: java.io.PrintStream): void;
         static setOut(out: java.io.PrintStream): void;
@@ -11907,7 +11907,7 @@ declare namespace java.lang {
              * @param {number} byteCount
              * @return {number}
              */
-            read(buffer?: any, byteOffset?: any, byteCount?: any): any;
+            read(buffer?: any, byteOffset?: any, byteCount?: any): number;
             read$(): number;
             constructor();
         }
@@ -12015,9 +12015,9 @@ declare namespace javaemul.internal {
          * @param {*} reference
          * @param {*} errorMessage
          */
-        static checkNotNull(reference?: any, errorMessage?: any): any;
+        static checkNotNull<T0 = any>(reference?: any, errorMessage?: any): any;
         static checkCriticalNotNull$java_lang_Object$java_lang_Object(reference: any, errorMessage: any): void;
-        static checkCriticalNotNull(reference?: any, errorMessage?: any): any;
+        static checkCriticalNotNull<T0 = any>(reference?: any, errorMessage?: any): any;
         /**
          * Ensures that {@code size} specifies a valid array size (i.e. non-negative).
          * @param {number} size
@@ -12166,12 +12166,12 @@ declare namespace java.nio.file {
          * @param {java.nio.file.Path} path
          * @return {number}
          */
-        compareTo(path?: any): any;
+        compareTo(path?: any): number;
         isAbsolute(): boolean;
         getFileName(): Path;
         getParent(): Path;
         resolve$java_nio_file_Path(other: Path): Path;
-        resolve(other?: any): any;
+        resolve(other?: any): Path;
         resolve$java_lang_String(other: string): Path;
         toAbsolutePath(): Path;
         /**

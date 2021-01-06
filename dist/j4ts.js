@@ -18,7 +18,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
-/* Generated from Java with JSweet 3.0.0 - http://www.jsweet.org */
+/* Generated from Java with JSweet 3.1.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -4838,18 +4838,13 @@ var java;
                     }
                     var namedGroupsNames = (new java.util.HashMap());
                     var groupNameRemover = new Pattern.GroupNameRemover(namedGroupsNames);
-                    regexpString = (regexpString).replace(new RegExp("(?:\\\\\\\\)*(\\\\?)\\[\\^?\\]?|(?:\\\\\\\\)*(\\\\?)\\]|(?:\\\\\\\\)*(\\\\?)\\((?:(\\?\\:)|\\?<([^>]+)>)?", "g"), ((function (funcInst) { if (typeof funcInst == 'function') {
-                        return funcInst;
-                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
-                        return funcInst;
-                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(((function (groupNameRemover) {
-                        return function (args) { return groupNameRemover.apply(args); };
-                    })(groupNameRemover))))))).replace(new RegExp("(\\?\\:|(?:[*+?]|\\{[^\\}]+\\})*)((?:[^\\\\()|]|\\\\.|\\[\\^?\\]\\]|\\[\\^?(?:[^\\\\\\]]|\\\\.|)+\\])*)", "g"), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    var mapper = ((function (funcInst) { if (typeof funcInst == 'function') {
                         return funcInst;
                     } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })((function (args) {
-                        if (args[2] === undefined || args[2].length === 0) {
+                        console.info("test");
+                        if (!Array.isArray(args) || args[2] === undefined || args[2].length === 0) {
                             return args[1];
                         }
                         var regexp = args[args.length - 1];
@@ -4861,7 +4856,16 @@ var java;
                             return args[1] + args[2];
                         }
                         return args[1] + "(?:" + args[2] + ")";
-                    }))))));
+                    })))));
+                    regexpString = (regexpString).replace(new RegExp("(?:\\\\\\\\)*(\\\\?)\\[\\^?\\]?|(?:\\\\\\\\)*(\\\\?)\\]|(?:\\\\\\\\)*(\\\\?)\\((?:(\\?\\:)|\\?<([^>]+)>)?", "g"), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(((function (groupNameRemover) {
+                        return function (args) { return groupNameRemover.apply(args); };
+                    })(groupNameRemover))))))).replace(new RegExp("(\\?\\:|(?:[*+?]|\\{[^\\}]+\\})*)((?:[^\\\\()|]|\\\\.|\\[\\^?\\]\\]|\\[\\^?(?:[^\\\\\\]]|\\\\.|)+\\])*)", "g"), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(mapper)));
                     try {
                         return new Pattern(new RegExp(regexpString, jsFlags), flags, namedGroupsNames);
                     }
@@ -4977,14 +4981,6 @@ var java;
             function AbstractCollection() {
             }
             /* Default method injected from java.util.Collection */
-            AbstractCollection.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.util.Collection */
-            AbstractCollection.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.Collection */
             AbstractCollection.prototype.removeIf = function (filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
                     return funcInst;
@@ -5004,6 +5000,10 @@ var java;
                 }
                 return removed;
             };
+            /* Default method injected from java.util.Collection */
+            AbstractCollection.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             /* Default method injected from java.lang.Iterable */
             AbstractCollection.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -5018,6 +5018,10 @@ var java;
                 for (var index124 = this.iterator(); index124.hasNext();) {
                     _loop_3(index124);
                 }
+            };
+            /* Default method injected from java.util.Collection */
+            AbstractCollection.prototype.parallelStream = function () {
+                return this.stream();
             };
             /**
              *
@@ -11623,14 +11627,6 @@ var java;
                 return _super.call(this) || this;
             }
             /* Default method injected from java.util.Collection */
-            AbstractSet.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.util.Collection */
-            AbstractSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.Collection */
             AbstractSet.prototype.removeIf = function (filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
                     return funcInst;
@@ -11650,6 +11646,10 @@ var java;
                 }
                 return removed;
             };
+            /* Default method injected from java.util.Collection */
+            AbstractSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             /* Default method injected from java.lang.Iterable */
             AbstractSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -11664,6 +11664,10 @@ var java;
                 for (var index130 = this.iterator(); index130.hasNext();) {
                     _loop_5(index130);
                 }
+            };
+            /* Default method injected from java.util.Collection */
+            AbstractSet.prototype.parallelStream = function () {
+                return this.stream();
             };
             /**
              *
@@ -11747,14 +11751,6 @@ var java;
                 }
                 return _this;
             }
-            /* Default method injected from java.util.Collection */
-            AbstractList.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.util.Collection */
-            AbstractList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
             /* Default method injected from java.util.List */
             AbstractList.prototype.sort = function (c) {
                 var a = this.toArray();
@@ -11792,6 +11788,10 @@ var java;
                 }
                 return removed;
             };
+            /* Default method injected from java.util.Collection */
+            AbstractList.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             /* Default method injected from java.lang.Iterable */
             AbstractList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -11806,6 +11806,10 @@ var java;
                 for (var index133 = this.iterator(); index133.hasNext();) {
                     _loop_7(index133);
                 }
+            };
+            /* Default method injected from java.util.Collection */
+            AbstractList.prototype.parallelStream = function () {
+                return this.stream();
             };
             AbstractList.prototype.add$java_lang_Object = function (obj) {
                 this.add(this.size(), obj);
@@ -12263,14 +12267,6 @@ var java;
                 return _super.call(this) || this;
             }
             /* Default method injected from java.util.Collection */
-            AbstractQueue.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.util.Collection */
-            AbstractQueue.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.Collection */
             AbstractQueue.prototype.removeIf = function (filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
                     return funcInst;
@@ -12290,6 +12286,10 @@ var java;
                 }
                 return removed;
             };
+            /* Default method injected from java.util.Collection */
+            AbstractQueue.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             /* Default method injected from java.lang.Iterable */
             AbstractQueue.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -12304,6 +12304,10 @@ var java;
                 for (var index136 = this.iterator(); index136.hasNext();) {
                     _loop_9(index136);
                 }
+            };
+            /* Default method injected from java.util.Collection */
+            AbstractQueue.prototype.parallelStream = function () {
+                return this.stream();
             };
             /**
              *
@@ -12448,14 +12452,6 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            ArrayDeque.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.util.Collection */
-            ArrayDeque.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.Collection */
             ArrayDeque.prototype.removeIf = function (filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
                     return funcInst;
@@ -12475,6 +12471,10 @@ var java;
                 }
                 return removed;
             };
+            /* Default method injected from java.util.Collection */
+            ArrayDeque.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             /* Default method injected from java.lang.Iterable */
             ArrayDeque.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -12489,6 +12489,10 @@ var java;
                 for (var index137 = this.iterator(); index137.hasNext();) {
                     _loop_11(index137);
                 }
+            };
+            /* Default method injected from java.util.Collection */
+            ArrayDeque.prototype.parallelStream = function () {
+                return this.stream();
             };
             ArrayDeque.checkConcurrentModification = function (expression) {
                 if (!expression) {
@@ -17603,11 +17607,6 @@ var java;
                 return result;
             };
             /* Default method injected from java.util.Map */
-            AbstractMap.prototype.getOrDefault = function (key, defaultValue) {
-                var v;
-                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
-            };
-            /* Default method injected from java.util.Map */
             AbstractMap.prototype.putIfAbsent = function (key, value) {
                 var v = this.get(key);
                 if (v == null) {
@@ -17626,6 +17625,11 @@ var java;
                     this.put(key, next);
                 }
                 return next;
+            };
+            /* Default method injected from java.util.Map */
+            AbstractMap.prototype.getOrDefault = function (key, defaultValue) {
+                var v;
+                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
             };
             /* Default method injected from java.util.Map */
             AbstractMap.prototype.replaceAll = function (__function) {
@@ -18262,14 +18266,6 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            HashSet.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.util.Collection */
-            HashSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.Collection */
             HashSet.prototype.removeIf = function (filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
                     return funcInst;
@@ -18289,6 +18285,10 @@ var java;
                 }
                 return removed;
             };
+            /* Default method injected from java.util.Collection */
+            HashSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             /* Default method injected from java.lang.Iterable */
             HashSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -18303,6 +18303,10 @@ var java;
                 for (var index147 = this.iterator(); index147.hasNext();) {
                     _loop_15(index147);
                 }
+            };
+            /* Default method injected from java.util.Collection */
+            HashSet.prototype.parallelStream = function () {
+                return this.stream();
             };
             /**
              *
@@ -18756,14 +18760,6 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            TreeSet.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.util.Collection */
-            TreeSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.Collection */
             TreeSet.prototype.removeIf = function (filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
                     return funcInst;
@@ -18783,6 +18779,10 @@ var java;
                 }
                 return removed;
             };
+            /* Default method injected from java.util.Collection */
+            TreeSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             /* Default method injected from java.lang.Iterable */
             TreeSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -18797,6 +18797,10 @@ var java;
                 for (var index148 = this.iterator(); index148.hasNext();) {
                     _loop_17(index148);
                 }
+            };
+            /* Default method injected from java.util.Collection */
+            TreeSet.prototype.parallelStream = function () {
+                return this.stream();
             };
             /**
              *
@@ -19073,14 +19077,6 @@ var java;
                     throw new Error('invalid overload');
                 return _this;
             }
-            /* Default method injected from java.util.Collection */
-            Vector.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.util.Collection */
-            Vector.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
             /* Default method injected from java.util.List */
             Vector.prototype.sort = function (c) {
                 var a = this.toArray();
@@ -19118,6 +19114,10 @@ var java;
                 }
                 return removed;
             };
+            /* Default method injected from java.util.Collection */
+            Vector.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             /* Default method injected from java.lang.Iterable */
             Vector.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -19132,6 +19132,10 @@ var java;
                 for (var index150 = this.iterator(); index150.hasNext();) {
                     _loop_19(index150);
                 }
+            };
+            /* Default method injected from java.util.Collection */
+            Vector.prototype.parallelStream = function () {
+                return this.stream();
             };
             Vector.prototype.add$java_lang_Object = function (o) {
                 return this.arrayList.add(o);
@@ -19640,14 +19644,6 @@ var java;
                     throw new Error('invalid overload');
                 return _this;
             }
-            /* Default method injected from java.util.Collection */
-            ArrayList.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.util.Collection */
-            ArrayList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
             /* Default method injected from java.util.List */
             ArrayList.prototype.sort = function (c) {
                 var a = this.toArray();
@@ -19685,6 +19681,10 @@ var java;
                 }
                 return removed;
             };
+            /* Default method injected from java.util.Collection */
+            ArrayList.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             /* Default method injected from java.lang.Iterable */
             ArrayList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -19699,6 +19699,10 @@ var java;
                 for (var index153 = this.iterator(); index153.hasNext();) {
                     _loop_21(index153);
                 }
+            };
+            /* Default method injected from java.util.Collection */
+            ArrayList.prototype.parallelStream = function () {
+                return this.stream();
             };
             ArrayList.prototype.add$java_lang_Object = function (o) {
                 this.array[this.array.length] = o;
@@ -23914,11 +23918,6 @@ var java;
                 return result;
             };
             /* Default method injected from java.util.Map */
-            AbstractNavigableMap.prototype.getOrDefault = function (key, defaultValue) {
-                var v;
-                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
-            };
-            /* Default method injected from java.util.Map */
             AbstractNavigableMap.prototype.putIfAbsent = function (key, value) {
                 var v = this.get(key);
                 if (v == null) {
@@ -23937,6 +23936,11 @@ var java;
                     this.put(key, next);
                 }
                 return next;
+            };
+            /* Default method injected from java.util.Map */
+            AbstractNavigableMap.prototype.getOrDefault = function (key, defaultValue) {
+                var v;
+                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
             };
             /* Default method injected from java.util.Map */
             AbstractNavigableMap.prototype.replaceAll = function (__function) {
@@ -24443,14 +24447,6 @@ var java;
                     return _this;
                 }
                 /* Default method injected from java.util.Collection */
-                NavigableKeySet.prototype.parallelStream = function () {
-                    return this.stream();
-                };
-                /* Default method injected from java.util.Collection */
-                NavigableKeySet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
-                /* Default method injected from java.util.Collection */
                 NavigableKeySet.prototype.removeIf = function (filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
                         return funcInst;
@@ -24470,6 +24466,10 @@ var java;
                     }
                     return removed;
                 };
+                /* Default method injected from java.util.Collection */
+                NavigableKeySet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
                 /* Default method injected from java.lang.Iterable */
                 NavigableKeySet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -24484,6 +24484,10 @@ var java;
                     for (var index176 = this.iterator(); index176.hasNext();) {
                         _loop_24(index176);
                     }
+                };
+                /* Default method injected from java.util.Collection */
+                NavigableKeySet.prototype.parallelStream = function () {
+                    return this.stream();
                 };
                 /**
                  *
@@ -25730,14 +25734,6 @@ var java;
                     this.coll = coll;
                 }
                 /* Default method injected from java.util.Collection */
-                UnmodifiableCollection.prototype.parallelStream = function () {
-                    return this.stream();
-                };
-                /* Default method injected from java.util.Collection */
-                UnmodifiableCollection.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
-                /* Default method injected from java.util.Collection */
                 UnmodifiableCollection.prototype.removeIf = function (filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
                         return funcInst;
@@ -25757,6 +25753,10 @@ var java;
                     }
                     return removed;
                 };
+                /* Default method injected from java.util.Collection */
+                UnmodifiableCollection.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
                 /* Default method injected from java.lang.Iterable */
                 UnmodifiableCollection.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -25771,6 +25771,10 @@ var java;
                     for (var index184 = this.iterator(); index184.hasNext();) {
                         _loop_26(index184);
                     }
+                };
+                /* Default method injected from java.util.Collection */
+                UnmodifiableCollection.prototype.parallelStream = function () {
+                    return this.stream();
                 };
                 /**
                  *
@@ -25953,14 +25957,6 @@ var java;
                     _this.list = list;
                     return _this;
                 }
-                /* Default method injected from java.util.Collection */
-                UnmodifiableList.prototype.parallelStream = function () {
-                    return this.stream();
-                };
-                /* Default method injected from java.util.Collection */
-                UnmodifiableList.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
                 /* Default method injected from java.util.List */
                 UnmodifiableList.prototype.sort = function (c) {
                     var a = this.toArray();
@@ -25998,6 +25994,10 @@ var java;
                     }
                     return removed;
                 };
+                /* Default method injected from java.util.Collection */
+                UnmodifiableList.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
                 /* Default method injected from java.lang.Iterable */
                 UnmodifiableList.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -26012,6 +26012,10 @@ var java;
                     for (var index186 = this.iterator(); index186.hasNext();) {
                         _loop_28(index186);
                     }
+                };
+                /* Default method injected from java.util.Collection */
+                UnmodifiableList.prototype.parallelStream = function () {
+                    return this.stream();
                 };
                 UnmodifiableList.prototype.add$int$java_lang_Object = function (index, element) {
                     throw new java.lang.UnsupportedOperationException();
@@ -26174,14 +26178,6 @@ var java;
                     return _super.call(this, set) || this;
                 }
                 /* Default method injected from java.util.Collection */
-                UnmodifiableSet.prototype.parallelStream = function () {
-                    return this.stream();
-                };
-                /* Default method injected from java.util.Collection */
-                UnmodifiableSet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
-                /* Default method injected from java.util.Collection */
                 UnmodifiableSet.prototype.removeIf = function (filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
                         return funcInst;
@@ -26201,6 +26197,10 @@ var java;
                     }
                     return removed;
                 };
+                /* Default method injected from java.util.Collection */
+                UnmodifiableSet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
                 /* Default method injected from java.lang.Iterable */
                 UnmodifiableSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -26215,6 +26215,10 @@ var java;
                     for (var index187 = this.iterator(); index187.hasNext();) {
                         _loop_30(index187);
                     }
+                };
+                /* Default method injected from java.util.Collection */
+                UnmodifiableSet.prototype.parallelStream = function () {
+                    return this.stream();
                 };
                 /**
                  *
@@ -26353,11 +26357,6 @@ var java;
                     return result;
                 };
                 /* Default method injected from java.util.Map */
-                UnmodifiableMap.prototype.getOrDefault = function (key, defaultValue) {
-                    var v;
-                    return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
-                };
-                /* Default method injected from java.util.Map */
                 UnmodifiableMap.prototype.putIfAbsent = function (key, value) {
                     var v = this.get(key);
                     if (v == null) {
@@ -26376,6 +26375,11 @@ var java;
                         this.put(key, next);
                     }
                     return next;
+                };
+                /* Default method injected from java.util.Map */
+                UnmodifiableMap.prototype.getOrDefault = function (key, defaultValue) {
+                    var v;
+                    return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
                 };
                 /* Default method injected from java.util.Map */
                 UnmodifiableMap.prototype.replaceAll = function (__function) {
@@ -26741,14 +26745,6 @@ var java;
                     return _this;
                 }
                 /* Default method injected from java.util.Collection */
-                UnmodifiableSortedSet.prototype.parallelStream = function () {
-                    return this.stream();
-                };
-                /* Default method injected from java.util.Collection */
-                UnmodifiableSortedSet.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
-                /* Default method injected from java.util.Collection */
                 UnmodifiableSortedSet.prototype.removeIf = function (filter) {
                     javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
                         return funcInst;
@@ -26768,6 +26764,10 @@ var java;
                     }
                     return removed;
                 };
+                /* Default method injected from java.util.Collection */
+                UnmodifiableSortedSet.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
+                };
                 /* Default method injected from java.lang.Iterable */
                 UnmodifiableSortedSet.prototype.forEach = function (action) {
                     javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -26782,6 +26782,10 @@ var java;
                     for (var index189 = this.iterator(); index189.hasNext();) {
                         _loop_33(index189);
                     }
+                };
+                /* Default method injected from java.util.Collection */
+                UnmodifiableSortedSet.prototype.parallelStream = function () {
+                    return this.stream();
                 };
                 /**
                  *
@@ -26882,11 +26886,6 @@ var java;
                     return result;
                 };
                 /* Default method injected from java.util.Map */
-                UnmodifiableSortedMap.prototype.getOrDefault = function (key, defaultValue) {
-                    var v;
-                    return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
-                };
-                /* Default method injected from java.util.Map */
                 UnmodifiableSortedMap.prototype.putIfAbsent = function (key, value) {
                     var v = this.get(key);
                     if (v == null) {
@@ -26905,6 +26904,11 @@ var java;
                         this.put(key, next);
                     }
                     return next;
+                };
+                /* Default method injected from java.util.Map */
+                UnmodifiableSortedMap.prototype.getOrDefault = function (key, defaultValue) {
+                    var v;
+                    return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
                 };
                 /* Default method injected from java.util.Map */
                 UnmodifiableSortedMap.prototype.replaceAll = function (__function) {
@@ -27081,14 +27085,6 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Collection */
-            LinkedHashSet.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.util.Collection */
-            LinkedHashSet.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.Collection */
             LinkedHashSet.prototype.removeIf = function (filter) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
                     return funcInst;
@@ -27108,6 +27104,10 @@ var java;
                 }
                 return removed;
             };
+            /* Default method injected from java.util.Collection */
+            LinkedHashSet.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             /* Default method injected from java.lang.Iterable */
             LinkedHashSet.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -27122,6 +27122,10 @@ var java;
                 for (var index191 = this.iterator(); index191.hasNext();) {
                     _loop_36(index191);
                 }
+            };
+            /* Default method injected from java.util.Collection */
+            LinkedHashSet.prototype.parallelStream = function () {
+                return this.stream();
             };
             /**
              *
@@ -27263,14 +27267,6 @@ var java;
                     throw new Error('invalid overload');
                 return _this;
             }
-            /* Default method injected from java.util.Collection */
-            LinkedList.prototype.parallelStream = function () {
-                return this.stream();
-            };
-            /* Default method injected from java.util.Collection */
-            LinkedList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
             /* Default method injected from java.util.List */
             LinkedList.prototype.sort = function (c) {
                 var a = this.toArray();
@@ -27308,6 +27304,10 @@ var java;
                 }
                 return removed;
             };
+            /* Default method injected from java.util.Collection */
+            LinkedList.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
+            };
             /* Default method injected from java.lang.Iterable */
             LinkedList.prototype.forEach = function (action) {
                 javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
@@ -27322,6 +27322,10 @@ var java;
                 for (var index193 = this.iterator(); index193.hasNext();) {
                     _loop_38(index193);
                 }
+            };
+            /* Default method injected from java.util.Collection */
+            LinkedList.prototype.parallelStream = function () {
+                return this.stream();
             };
             /**
              *
@@ -28181,11 +28185,6 @@ var java;
                 return result;
             };
             /* Default method injected from java.util.Map */
-            IdentityHashMap.prototype.getOrDefault = function (key, defaultValue) {
-                var v;
-                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
-            };
-            /* Default method injected from java.util.Map */
             IdentityHashMap.prototype.putIfAbsent = function (key, value) {
                 var v = this.get(key);
                 if (v == null) {
@@ -28204,6 +28203,11 @@ var java;
                     this.put(key, next);
                 }
                 return next;
+            };
+            /* Default method injected from java.util.Map */
+            IdentityHashMap.prototype.getOrDefault = function (key, defaultValue) {
+                var v;
+                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
             };
             /* Default method injected from java.util.Map */
             IdentityHashMap.prototype.replaceAll = function (__function) {
@@ -30498,11 +30502,6 @@ var java;
                 return result;
             };
             /* Default method injected from java.util.Map */
-            LinkedHashMap.prototype.getOrDefault = function (key, defaultValue) {
-                var v;
-                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
-            };
-            /* Default method injected from java.util.Map */
             LinkedHashMap.prototype.putIfAbsent = function (key, value) {
                 var v = this.get(key);
                 if (v == null) {
@@ -30521,6 +30520,11 @@ var java;
                     this.put(key, next);
                 }
                 return next;
+            };
+            /* Default method injected from java.util.Map */
+            LinkedHashMap.prototype.getOrDefault = function (key, defaultValue) {
+                var v;
+                return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
             };
             /* Default method injected from java.util.Map */
             LinkedHashMap.prototype.replaceAll = function (__function) {

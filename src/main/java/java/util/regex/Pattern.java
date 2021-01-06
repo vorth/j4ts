@@ -1,5 +1,6 @@
 package java.util.regex;
 
+import def.js.Array;
 import def.js.JSON;
 import def.js.RegExp;
 import def.js.SyntaxError;
@@ -100,6 +101,28 @@ public class Pattern implements Serializable {
         Map<String, Integer> namedGroupsNames = new HashMap<>();
         GroupNameRemover groupNameRemover = new GroupNameRemover(namedGroupsNames);
 
+        Supplier<def.js.String> mapper = Lang.<Supplier<def.js.String>> any((Function<def.js.String[], def.js.String>)
+                ((def.js.String ... args) -> {
+                    System.out.println("test");
+                    if (!Array.isArray(args) || args[2] == undefined || args[2].length == 0) {
+                        return args[1];
+                    }
+
+                    def.js.String regexp = args[args.length - 1];
+                    int startIndexOfMatched = Integer.parseInt(string(args[args.length - 2]));
+                    int endIndexOfMatched = startIndexOfMatched + args[0].length;
+                    boolean hasOpenBracket = (startIndexOfMatched > 0 && "(".equals(string(regexp.charAt(startIndexOfMatched-1)))) ||
+                            (startIndexOfMatched > 2 && "(?:".equals(string(regexp.substr(startIndexOfMatched - 3, 3))));
+                    boolean hasCloseBracket = regexp.length > endIndexOfMatched && ")".equals(string(regexp.charAt(endIndexOfMatched)));
+
+                    if (hasOpenBracket && hasCloseBracket) {
+
+                        return string(string(args[1]) + args[2]);
+                    }
+
+                    return string(args[1] + "(?:" + args[2] + ")");
+                }));
+        
         regexpString = string(string(regexpString)
                 .replace(new RegExp("" +
                                 "(?:\\\\\\\\)*(\\\\?)\\[\\^?\\]?|" +
@@ -126,27 +149,7 @@ public class Pattern implements Serializable {
                                 "[^\\\\\\]]|" + // not escape or closing character
                                 "\\\\.|" + // escaped characters
                             ")+\\]" +
-                        ")*)", "g"), Lang.<Supplier<def.js.String>> any((Function<def.js.String[], def.js.String>)
-                        ((def.js.String ... args) -> {
-                            if (args[2] == undefined || args[2].length == 0) {
-                                return args[1];
-                            }
-
-                            def.js.String regexp = args[args.length - 1];
-                            int startIndexOfMatched = Integer.parseInt(string(args[args.length - 2]));
-                            int endIndexOfMatched = startIndexOfMatched + args[0].length;
-                            boolean hasOpenBracket = (startIndexOfMatched > 0 && "(".equals(string(regexp.charAt(startIndexOfMatched-1)))) ||
-                                    (startIndexOfMatched > 2 && "(?:".equals(string(regexp.substr(startIndexOfMatched - 3, 3))));
-                            boolean hasCloseBracket = regexp.length > endIndexOfMatched && ")".equals(string(regexp.charAt(endIndexOfMatched)));
-
-                            if (hasOpenBracket && hasCloseBracket) {
-
-                                return string(string(args[1]) + args[2]);
-                            }
-
-                            return string(args[1] + "(?:" + args[2] + ")");
-                        })))
-        );
+                        ")*)", "g"), mapper));
 
         try {
             return new Pattern(new RegExp(regexpString, jsFlags), flags, namedGroupsNames);

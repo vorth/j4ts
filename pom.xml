@@ -90,7 +90,7 @@
 				<version>1.8</version>
 				<executions>
 					<execution>
-						<phase>test</phase>
+						<phase>compile</phase>
 						<configuration>
 							<target>
 								<delete dir="src/main/resources/META-INF/resources"></delete>
