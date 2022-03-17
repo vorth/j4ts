@@ -103,7 +103,6 @@ public class Pattern implements Serializable {
 
         Supplier<def.js.String> mapper = Lang.<Supplier<def.js.String>> any((Function<def.js.String[], def.js.String>)
                 ((def.js.String ... args) -> {
-                    System.out.println("test");
                     if (!Array.isArray(args) || args[2] == undefined || args[2].length == 0) {
                         return args[1];
                     }

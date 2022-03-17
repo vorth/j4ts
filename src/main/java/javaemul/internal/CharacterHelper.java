@@ -22,6 +22,7 @@ import static jsweet.util.Lang.string;
 import java.io.Serializable;
 
 import jsweet.lang.Erased;
+import def.js.Array;
 import def.js.RegExp;
 import def.js.RegExpMatchArray;
 
@@ -107,11 +108,17 @@ public final class CharacterHelper implements Comparable<CharacterHelper>, Seria
 	}
 
 	public static int codePointAt(char[] a, int index) {
-		return codePointAt(new String(a), index, a.length);
+		return codePointAt(a, index, a.length);
 	}
 
 	public static int codePointAt(char[] a, int index, int limit) {
-		return codePointAt(new String(a), index, limit);
+		char hiSurrogate = a[index++];
+		char loSurrogate;
+		if (CharacterHelper.isHighSurrogate(hiSurrogate) && index < limit
+				&& CharacterHelper.isLowSurrogate(loSurrogate = a[index])) {
+			return CharacterHelper.toCodePoint(hiSurrogate, loSurrogate);
+		}
+		return hiSurrogate;
 	}
 
 	public static int codePointAt(CharSequence seq, int index) {
@@ -119,19 +126,34 @@ public final class CharacterHelper implements Comparable<CharacterHelper>, Seria
 	}
 
 	public static int codePointBefore(char[] a, int index) {
-		return codePointBefore(new String(a), index, 0);
+		return codePointBefore(a, index, 0);
 	}
 
 	public static int codePointBefore(char[] a, int index, int start) {
-		return codePointBefore(new String(a), index, start);
+		char loSurrogate = a[--index];
+		char highSurrogate;
+		if (isLowSurrogate(loSurrogate) && index > start && isHighSurrogate(highSurrogate = a[index - 1])) {
+			return toCodePoint(highSurrogate, loSurrogate);
+		}
+		return loSurrogate;
 	}
 
 	public static int codePointBefore(CharSequence cs, int index) {
 		return codePointBefore(cs, index, 0);
 	}
 
-	public static int codePointCount(char[] a, int offset, int count) {
-		return codePointCount(new String(a), offset, offset + count);
+	public static int codePointCount(char[] a, int beginIndex, int len) {
+		int endIndex = beginIndex + len;
+		int count = 0;
+		for (int idx = beginIndex; idx < endIndex;) {
+			char ch = a[idx++];
+			if (isHighSurrogate(ch) && idx < endIndex && (isLowSurrogate(a[idx]))) {
+				// skip the second char of surrogate pairs
+				++idx;
+			}
+			++count;
+		}
+		return count;
 	}
 
 	public static int codePointCount(CharSequence seq, int beginIndex, int endIndex) {
@@ -274,12 +296,16 @@ public final class CharacterHelper implements Comparable<CharacterHelper>, Seria
 		}
 	}
 
+	private static boolean isNonEmpty(Array<?> s) {
+		return s!=null && s.length>0;
+	}
+
 	public static boolean isWhitespace(char ch) {
-		return string(String.valueOf(ch)).match(whitespaceRegex()).length > 0;
+		return isNonEmpty(string(String.valueOf(ch)).match(whitespaceRegex()));
 	}
 
 	public static boolean isWhitespace(int codePoint) {
-		return def.js.String.fromCharCode(codePoint).match(whitespaceRegex()).length > 0;
+		return isNonEmpty(def.js.String.fromCharCode(codePoint).match(whitespaceRegex()));
 	}
 
 	// The regex would just be /\s/, but browsers handle non-breaking spaces
