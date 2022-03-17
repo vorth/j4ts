@@ -59,6 +59,18 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.2.2</version>
+				<configuration>
+				  <excludes>
+					<exclude>Object.class</exclude>
+					<exclude>java/**</exclude>
+					<exclude>javaemul/**</exclude>
+				</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.jsweet</groupId>
 				<artifactId>jsweet-maven-plugin</artifactId>
 				<version>${jsweet.transpiler.version}</version>
