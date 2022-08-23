@@ -63,11 +63,18 @@ public final class System {
 		String userName = "";
 		String osArch = "";
 
-		if (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) {
-			propertyMap.put("os.name", ENVIRONMENT_IS_WEB ? "WEB" : "WEB-WORKER");
+		if (ENVIRONMENT_IS_WEB) {
+			propertyMap.put("os.name", "WEB");
 			propertyMap.put("os.version", navigator.userAgent);
 
 			String pathname = document.location.pathname;
+			propertyMap.put("user.dir", pathname.substring(0, pathname.lastIndexOf("/")));
+
+		} else if (ENVIRONMENT_IS_WORKER) {
+			propertyMap.put("os.name", "WEB-WORKER");
+			propertyMap.put("os.version", navigator.userAgent);
+
+			String pathname = "/"; // NO document IN WEB WORKER!
 			propertyMap.put("user.dir", pathname.substring(0, pathname.lastIndexOf("/")));
 
 		} else if (ENVIRONMENT_IS_NODE) {
