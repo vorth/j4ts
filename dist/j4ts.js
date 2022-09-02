@@ -18,7 +18,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
-/* Generated from Java with JSweet 3.1.0-SNAPSHOT - http://www.jsweet.org */
+/* Generated from Java with JSweet 3.2.0-SNAPSHOT - http://www.jsweet.org */
 var javaemul;
 (function (javaemul) {
     var internal;
@@ -256,7 +256,7 @@ var javaemul;
                     if (this.consumer === undefined) {
                         this.consumer = null;
                     }
-                    this.consumer = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    this.consumer = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer));
                 }
@@ -314,7 +314,7 @@ var javaemul;
                     if (this.next === undefined) {
                         this.next = null;
                     }
-                    this.run = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    this.run = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function () { return (funcInst['run'] ? funcInst['run'] : funcInst).call(funcInst); }; })(run));
                 }
@@ -349,7 +349,7 @@ var javaemul;
                     if (this.loudRunnable === undefined) {
                         this.loudRunnable = null;
                     }
-                    this.loudRunnable = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    this.loudRunnable = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function () { return (funcInst['run'] ? funcInst['run'] : funcInst).call(funcInst); }; })(loudRunnable));
                 }
@@ -382,7 +382,7 @@ var javaemul;
                     if (this.comparator === undefined) {
                         this.comparator = null;
                     }
-                    this.comparator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    this.comparator = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comparator));
                 }
@@ -440,7 +440,7 @@ var javaemul;
                     this.head.end();
                 };
                 /*private*/ StreamHelper.prototype.foldRight = function (identity, accumulator) {
-                    var rowReduce = new javaemul.internal.stream.StreamRowReduce(identity, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    var rowReduce = new javaemul.internal.stream.StreamRowReduce(identity, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(accumulator)));
                     this.chain(rowReduce);
@@ -448,12 +448,12 @@ var javaemul;
                     return rowReduce.getResult();
                 };
                 StreamHelper.prototype.filter = function (predicate) {
-                    return this.chain(new javaemul.internal.stream.StreamRowFilter(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return this.chain(new javaemul.internal.stream.StreamRowFilter(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate))));
                 };
                 StreamHelper.prototype.map = function (mapper) {
-                    return this.chain(new javaemul.internal.stream.StreamRowMap(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return this.chain(new javaemul.internal.stream.StreamRowMap(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(mapper))));
                 };
@@ -461,7 +461,7 @@ var javaemul;
                     return this.chain(new javaemul.internal.stream.StreamRowMap(function (n) { return (function (target) { return (typeof target === 'function') ? target(n) : target.apply(n); })(mapper); }));
                 };
                 StreamHelper.prototype.flatMap = function (mapper) {
-                    return this.chain(new javaemul.internal.stream.StreamRowFlatMap(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return this.chain(new javaemul.internal.stream.StreamRowFlatMap(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(mapper))));
                 };
@@ -472,7 +472,7 @@ var javaemul;
                     return this.sorted$java_util_Comparator(function (a, b) { return a.compareTo(b); });
                 };
                 StreamHelper.prototype.sorted$java_util_Comparator = function (comparator) {
-                    return this.chain(new javaemul.internal.stream.StreamRowSortingCollector((new java.util.ArrayList()), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return this.chain(new javaemul.internal.stream.StreamRowSortingCollector((new java.util.ArrayList()), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comparator))));
                 };
@@ -487,12 +487,12 @@ var javaemul;
                         throw new Error('invalid overload');
                 };
                 StreamHelper.prototype.peek = function (action) {
-                    return this.chain(new javaemul.internal.stream.StreamRowMap((function (funcInst) { if (typeof funcInst == 'function') {
+                    return this.chain(new javaemul.internal.stream.StreamRowMap((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(new javaemul.internal.stream.ConsumingFunction(action))));
                 };
                 StreamHelper.prototype.limit = function (maxSize) {
-                    return this.chain(new javaemul.internal.stream.StreamRowFilterFlop((function (funcInst) { if (typeof funcInst == 'function') {
+                    return this.chain(new javaemul.internal.stream.StreamRowFilterFlop((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(new javaemul.internal.stream.CountingPredicate(maxSize))));
                 };
@@ -503,13 +503,13 @@ var javaemul;
                     })(p)));
                 };
                 StreamHelper.prototype.forEach = function (action) {
-                    this.peek(((function (funcInst) { if (typeof funcInst == 'function') {
+                    this.peek(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
                     this.play();
                 };
                 StreamHelper.prototype.forEachOrdered = function (action) {
-                    this.forEach(((function (funcInst) { if (typeof funcInst == 'function') {
+                    this.forEach(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
                 };
@@ -536,21 +536,21 @@ var javaemul;
                         throw new Error('invalid overload');
                 };
                 StreamHelper.prototype.reduce$java_lang_Object$java_util_function_BinaryOperator = function (identity, accumulator) {
-                    return this.foldRight(java.util.Optional.of(identity), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return this.foldRight(java.util.Optional.of(identity), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(accumulator))).get();
                 };
                 StreamHelper.prototype.reduce$java_util_function_BinaryOperator = function (accumulator) {
-                    return this.foldRight(java.util.Optional.empty(), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return this.foldRight(java.util.Optional.empty(), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(accumulator)));
                 };
                 StreamHelper.prototype.collect$java_util_stream_Collector = function (collector) {
                     var container = (function (target) { return (typeof target === 'function') ? target() : target.get(); })(collector.supplier());
-                    var accumulator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    var accumulator = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(collector.accumulator()));
-                    this.chain(new javaemul.internal.stream.StreamRowMap((function (funcInst) { if (typeof funcInst == 'function') {
+                    this.chain(new javaemul.internal.stream.StreamRowMap((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(new javaemul.internal.stream.ConsumingFunction((function (container, accumulator) {
                         return function (item) { return (function (target) { return (typeof target === 'function') ? target(container, item) : target.accept(container, item); })(accumulator); };
@@ -571,7 +571,7 @@ var javaemul;
                     return counter.getCount();
                 };
                 StreamHelper.prototype.anyMatch = function (predicate) {
-                    var streamRow = new javaemul.internal.stream.StreamRowOnceFilter(((function (funcInst) { if (typeof funcInst == 'function') {
+                    var streamRow = new javaemul.internal.stream.StreamRowOnceFilter(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate)));
                     this.chain(streamRow);
@@ -579,7 +579,7 @@ var javaemul;
                     return streamRow.getPredicateValue();
                 };
                 StreamHelper.prototype.allMatch = function (predicate) {
-                    var streamRow = new javaemul.internal.stream.StreamRowAllFilter(((function (funcInst) { if (typeof funcInst == 'function') {
+                    var streamRow = new javaemul.internal.stream.StreamRowAllFilter(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate)));
                     this.chain(streamRow);
@@ -617,7 +617,7 @@ var javaemul;
                     return this;
                 };
                 StreamHelper.prototype.onClose = function (closeHandler) {
-                    var chainItem = new javaemul.internal.stream.RunnableChain((function (funcInst) { if (typeof funcInst == 'function') {
+                    var chainItem = new javaemul.internal.stream.RunnableChain((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function () { return (funcInst['run'] ? funcInst['run'] : funcInst).call(funcInst); }; })(new javaemul.internal.stream.QuiteRunnable(closeHandler)));
                     if (this.onCloseChain == null) {
@@ -846,7 +846,7 @@ var javaemul;
                 if (obj instanceof Array) {
                     copy = [];
                     for (var i = 0, len = obj.length; i < len; i++) {
-                        copy[i] = javaemul.internal.ObjectHelper.clone(obj[i]);
+                        copy[i] = ObjectHelper.clone(obj[i]);
                     }
                     return copy;
                 }
@@ -855,7 +855,7 @@ var javaemul;
                     copy = {};
                     for (var attr in obj) {
                         if (obj.hasOwnProperty(attr))
-                            copy[attr] = javaemul.internal.ObjectHelper.clone(obj[attr]);
+                            copy[attr] = ObjectHelper.clone(obj[attr]);
                     }
                     return copy;
                 }
@@ -2313,9 +2313,6 @@ var java;
                         }
                         this.jsUrl = java.net.InternalJsURLFactory.newJsURL(spec);
                     }
-                    if (this.jsUrl === undefined) {
-                        this.jsUrl = null;
-                    }
                 }
                 else if (((typeof protocol === 'string') || protocol === null) && ((typeof host === 'string') || host === null) && ((typeof port === 'string') || port === null) && file === undefined) {
                     var __args = arguments;
@@ -2327,9 +2324,6 @@ var java;
                             this.jsUrl = null;
                         }
                         this.jsUrl = java.net.InternalJsURLFactory.newJsURL(spec);
-                    }
-                    if (this.jsUrl === undefined) {
-                        this.jsUrl = null;
                     }
                 }
                 else if (((protocol != null && protocol instanceof java.net.URL) || protocol === null) && ((typeof host === 'string') || host === null) && port === undefined && file === undefined) {
@@ -2574,33 +2568,6 @@ var java;
                         this.hash = hashStart !== -1 ? data_1.substring(hashStart + 1) : null;
                         this.pathname = searchStart === -1 && hashStart === -1 ? data_1.substring(hostPortEnd + 1) : data_1.substring(hostPortEnd + 1, searchStart === -1 ? hashStart : searchStart);
                     }
-                    if (this.href === undefined) {
-                        this.href = null;
-                    }
-                    if (this.protocol === undefined) {
-                        this.protocol = null;
-                    }
-                    if (this.username === undefined) {
-                        this.username = null;
-                    }
-                    if (this.password === undefined) {
-                        this.password = null;
-                    }
-                    if (this.hostname === undefined) {
-                        this.hostname = null;
-                    }
-                    if (this.port === undefined) {
-                        this.port = null;
-                    }
-                    if (this.pathname === undefined) {
-                        this.pathname = null;
-                    }
-                    if (this.search === undefined) {
-                        this.search = null;
-                    }
-                    if (this.hash === undefined) {
-                        this.hash = null;
-                    }
                 }
                 else if (((typeof data === 'string') || data === null) && url === undefined) {
                     var __args = arguments;
@@ -2708,10 +2675,10 @@ var java;
                  * @since 1.8
                  */
                 function comparingByValue(cmp) {
-                    java.util.Objects.requireNonNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    java.util.Objects.requireNonNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp)));
-                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(function (c1, c2) { return cmp(c1.getValue(), c2.getValue()); }));
                 }
@@ -3180,7 +3147,7 @@ var java;
             };
             Optional.prototype.filter = function (predicate) {
                 var _this = this;
-                javaemul.internal.InternalPreconditions.checkCriticalNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                javaemul.internal.InternalPreconditions.checkCriticalNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate)));
                 if (!this.isPresent() || (function (target) { return (typeof target === 'function') ? target(_this.ref) : target.test(_this.ref); })(predicate)) {
@@ -3190,7 +3157,7 @@ var java;
             };
             Optional.prototype.map = function (mapper) {
                 var _this = this;
-                javaemul.internal.InternalPreconditions.checkCriticalNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                javaemul.internal.InternalPreconditions.checkCriticalNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(mapper)));
                 if (this.isPresent()) {
@@ -3200,7 +3167,7 @@ var java;
             };
             Optional.prototype.flatMap = function (mapper) {
                 var _this = this;
-                javaemul.internal.InternalPreconditions.checkCriticalNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                javaemul.internal.InternalPreconditions.checkCriticalNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(mapper)));
                 if (this.isPresent()) {
@@ -3520,7 +3487,7 @@ var java;
             }
             /* Default method injected from java.lang.Iterable */
             InternalHashCodeMap.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
                 var _loop_1 = function (index) {
@@ -3634,7 +3601,7 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 InternalHashCodeMap$0.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
@@ -4117,34 +4084,6 @@ var java;
                         this.retDelims = returnDelims_1;
                         this.setMaxDelimCodePoint();
                     }
-                    if (this.currentPosition === undefined) {
-                        this.currentPosition = 0;
-                    }
-                    if (this.newPosition === undefined) {
-                        this.newPosition = 0;
-                    }
-                    if (this.maxPosition === undefined) {
-                        this.maxPosition = 0;
-                    }
-                    if (this.str === undefined) {
-                        this.str = null;
-                    }
-                    if (this.delimiters === undefined) {
-                        this.delimiters = null;
-                    }
-                    if (this.retDelims === undefined) {
-                        this.retDelims = false;
-                    }
-                    if (this.delimsChanged === undefined) {
-                        this.delimsChanged = false;
-                    }
-                    if (this.maxDelimCodePoint === undefined) {
-                        this.maxDelimCodePoint = 0;
-                    }
-                    if (this.delimiterCodePoints === undefined) {
-                        this.delimiterCodePoints = null;
-                    }
-                    this.hasSurrogates = false;
                 }
                 else if (((typeof str === 'string') || str === null) && delim === undefined && returnDelims === undefined) {
                     var __args = arguments;
@@ -4189,34 +4128,6 @@ var java;
                         this.retDelims = returnDelims_2;
                         this.setMaxDelimCodePoint();
                     }
-                    if (this.currentPosition === undefined) {
-                        this.currentPosition = 0;
-                    }
-                    if (this.newPosition === undefined) {
-                        this.newPosition = 0;
-                    }
-                    if (this.maxPosition === undefined) {
-                        this.maxPosition = 0;
-                    }
-                    if (this.str === undefined) {
-                        this.str = null;
-                    }
-                    if (this.delimiters === undefined) {
-                        this.delimiters = null;
-                    }
-                    if (this.retDelims === undefined) {
-                        this.retDelims = false;
-                    }
-                    if (this.delimsChanged === undefined) {
-                        this.delimsChanged = false;
-                    }
-                    if (this.maxDelimCodePoint === undefined) {
-                        this.maxDelimCodePoint = 0;
-                    }
-                    if (this.delimiterCodePoints === undefined) {
-                        this.delimiterCodePoints = null;
-                    }
-                    this.hasSurrogates = false;
                 }
                 else
                     throw new Error('invalid overload');
@@ -4501,14 +4412,14 @@ var java;
                     var parenthesisStart = [];
                     var parenthesisEnds = [];
                     var nonCapturesToCaptures = new Matcher.NonCapturesToCaptures(parenthesisStart, parenthesisEnds);
-                    var regExpStringWithAllCaptures = (regExp.source).replace(new RegExp("((?:\\\\.|\\[\\^?\\]\\]|\\[\\^?(?:[^\\\\\\]]|\\\\.|)+\\])+)|\\(((?:\\?\\:)?)|(\\))", "g"), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    var regExpStringWithAllCaptures = (regExp.source).replace(new RegExp("((?:\\\\.|\\[\\^?\\]\\]|\\[\\^?(?:[^\\\\\\]]|\\\\.|)+\\])+)|\\(((?:\\?\\:)?)|(\\))", "g"), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (nonCapturesToCaptures) {
                         return function (args) { return nonCapturesToCaptures.apply(args); };
                     })(nonCapturesToCaptures)))));
                     var regExpWithAllCaptures = new RegExp(regExpStringWithAllCaptures);
                     var indexGetter = new Matcher.IndexGetter(regExp.source, parenthesisStart, parenthesisEnds, this.starts, this.ends, startLastIndex);
-                    (this.text.substring(startLastIndex)).replace(regExpWithAllCaptures, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    (this.text.substring(startLastIndex)).replace(regExpWithAllCaptures, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (indexGetter) {
                         return function (args) { return indexGetter.apply(args); };
@@ -4615,9 +4526,9 @@ var java;
                 Matcher.prototype.replaceFirst = function (replacement) {
                     this.reset$();
                     var firstReplacer = new Matcher.FirstReplacer(replacement);
-                    this.text = (this.text).replace(this._pattern.regexp, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    this.text = (this.text).replace(this._pattern.regexp, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(((function (firstReplacer) {
                         return function (args) { return firstReplacer.apply(args); };
@@ -4863,9 +4774,9 @@ var java;
                     }
                     var namedGroupsNames = (new java.util.HashMap());
                     var groupNameRemover = new Pattern.GroupNameRemover(namedGroupsNames);
-                    var mapper = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    var mapper = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })((function (args) {
                         if (!Array.isArray(args) || args[2] === undefined || args[2].length === 0) {
@@ -4881,13 +4792,13 @@ var java;
                         }
                         return args[1] + "(?:" + args[2] + ")";
                     })))));
-                    regexpString = (regexpString).replace(new RegExp("(?:\\\\\\\\)*(\\\\?)\\[\\^?\\]?|(?:\\\\\\\\)*(\\\\?)\\]|(?:\\\\\\\\)*(\\\\?)\\((?:(\\?\\:)|\\?<([^>]+)>)?", "g"), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    regexpString = (regexpString).replace(new RegExp("(?:\\\\\\\\)*(\\\\?)\\[\\^?\\]?|(?:\\\\\\\\)*(\\\\?)\\]|(?:\\\\\\\\)*(\\\\?)\\((?:(\\?\\:)|\\?<([^>]+)>)?", "g"), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(((function (groupNameRemover) {
                         return function (args) { return groupNameRemover.apply(args); };
-                    })(groupNameRemover))))))).replace(new RegExp("(\\?\\:|(?:[*+?]|\\{[^\\}]+\\})*)((?:[^\\\\()|]|\\\\.|\\[\\^?\\]\\]|\\[\\^?(?:[^\\\\\\]]|\\\\.|)+\\])*)", "g"), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    })(groupNameRemover))))))).replace(new RegExp("(\\?\\:|(?:[*+?]|\\{[^\\}]+\\})*)((?:[^\\\\()|]|\\\\.|\\[\\^?\\]\\]|\\[\\^?(?:[^\\\\\\]]|\\\\.|)+\\])*)", "g"), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(mapper)));
                     try {
@@ -5006,7 +4917,7 @@ var java;
             }
             /* Default method injected from java.lang.Iterable */
             AbstractCollection.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
                 var _loop_2 = function (index) {
@@ -5020,16 +4931,12 @@ var java;
                 }
             };
             /* Default method injected from java.util.Collection */
-            AbstractCollection.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.Collection */
             AbstractCollection.prototype.parallelStream = function () {
                 return this.stream();
             };
             /* Default method injected from java.util.Collection */
             AbstractCollection.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                 var removed = false;
@@ -5046,6 +4953,10 @@ var java;
                     _loop_3(it);
                 }
                 return removed;
+            };
+            /* Default method injected from java.util.Collection */
+            AbstractCollection.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /**
              *
@@ -5717,7 +5628,7 @@ var java;
             function Comparators() {
             }
             Comparators.NATURAL_$LI$ = function () { if (Comparators.NATURAL == null) {
-                Comparators.NATURAL = (function (funcInst) { if (typeof funcInst == 'function') {
+                Comparators.NATURAL = (function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(new Comparators.NaturalComparator());
             } return Comparators.NATURAL; };
@@ -5731,9 +5642,9 @@ var java;
              * @return {*} the natural Comparator
              */
             Comparators.natural = function () {
-                return ((function (funcInst) { if (typeof funcInst == 'function') {
+                return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
-                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(Comparators.NATURAL_$LI$()))));
             };
@@ -5805,9 +5716,6 @@ var java;
                         this.jsdate["setHours"](this.jsdate, hrs, min, sec_1, 0);
                         this.fixDaylightSavings(hrs);
                     }
-                    if (this.jsdate === undefined) {
-                        this.jsdate = null;
-                    }
                 }
                 else if (((typeof year === 'number') || year === null) && ((typeof month === 'number') || month === null) && ((typeof date === 'number') || date === null) && hrs === undefined && min === undefined && sec === undefined) {
                     var __args = arguments;
@@ -5824,9 +5732,6 @@ var java;
                         this.jsdate["setHours"](this.jsdate, hrs_1, min_1, sec_2, 0);
                         this.fixDaylightSavings(hrs_1);
                     }
-                    if (this.jsdate === undefined) {
-                        this.jsdate = null;
-                    }
                 }
                 else if (((typeof year === 'string') || year === null) && month === undefined && date === undefined && hrs === undefined && min === undefined && sec === undefined) {
                     var __args = arguments;
@@ -5838,9 +5743,6 @@ var java;
                             this.jsdate = null;
                         }
                         this.jsdate = (new (Date.jsdateClass())(date_2));
-                    }
-                    if (this.jsdate === undefined) {
-                        this.jsdate = null;
                     }
                 }
                 else if (((typeof year === 'number') || year === null) && month === undefined && date === undefined && hrs === undefined && min === undefined && sec === undefined) {
@@ -6679,21 +6581,6 @@ var java;
                         this.prefix = prefix_1.toString();
                         this.suffix = suffix_1.toString();
                         this.emptyValue = this.prefix + this.suffix;
-                    }
-                    if (this.delimiter === undefined) {
-                        this.delimiter = null;
-                    }
-                    if (this.prefix === undefined) {
-                        this.prefix = null;
-                    }
-                    if (this.suffix === undefined) {
-                        this.suffix = null;
-                    }
-                    if (this.builder === undefined) {
-                        this.builder = null;
-                    }
-                    if (this.emptyValue === undefined) {
-                        this.emptyValue = null;
                     }
                 }
                 else
@@ -9122,7 +9009,7 @@ var java;
                     if (_this.attempts === undefined) {
                         _this.attempts = 0;
                     }
-                    _this.predicate = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    _this.predicate = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate));
                     return _this;
@@ -9159,7 +9046,7 @@ var java;
                         _this.predicateValue = false;
                     }
                     _this.firstMatch = java.util.Optional.empty();
-                    _this.predicate = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    _this.predicate = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate));
                     return _this;
@@ -9201,7 +9088,7 @@ var java;
                         _this.operator = null;
                     }
                     _this.result = result;
-                    _this.operator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    _this.operator = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(operator));
                     return _this;
@@ -9301,7 +9188,7 @@ var java;
                     if (_this.map === undefined) {
                         _this.map = null;
                     }
-                    _this.map = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    _this.map = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(map));
                     return _this;
@@ -9332,7 +9219,7 @@ var java;
                     if (_this.predicate === undefined) {
                         _this.predicate = null;
                     }
-                    _this.predicate = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    _this.predicate = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate));
                     return _this;
@@ -9366,7 +9253,7 @@ var java;
                     if (_this.predicate === undefined) {
                         _this.predicate = null;
                     }
-                    _this.predicate = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    _this.predicate = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(predicate));
                     return _this;
@@ -9401,7 +9288,7 @@ var java;
                     if (_this.flatMap === undefined) {
                         _this.flatMap = null;
                     }
-                    _this.flatMap = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    _this.flatMap = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(flatMap));
                     return _this;
@@ -11209,25 +11096,6 @@ var java;
                         this.closed = false;
                         this.reader = reader;
                     }
-                    if (this.reader === undefined) {
-                        this.reader = null;
-                    }
-                    if (this.matcher === undefined) {
-                        this.matcher = null;
-                    }
-                    if (this.nextDelimiterWithPattern === undefined) {
-                        this.nextDelimiterWithPattern = null;
-                    }
-                    this.currentDelimiter = Scanner.whiteSpacePattern_$LI$();
-                    this.buf = (function (s) { var a = []; while (s-- > 0)
-                        a.push(null); return a; })(1024);
-                    this.bufferFilledLength = 0;
-                    this.currentPosition = 0;
-                    this.nextTokenStart = 0;
-                    this.nextDelimiterStart = -1;
-                    this.nextDelimiterEnd = -1;
-                    this.defaultRadix = 10;
-                    this.closed = false;
                 }
                 else if (((string != null && string instanceof java.io.InputStream) || string === null)) {
                     var __args = arguments;
@@ -11256,25 +11124,6 @@ var java;
                         this.closed = false;
                         this.reader = reader;
                     }
-                    if (this.reader === undefined) {
-                        this.reader = null;
-                    }
-                    if (this.matcher === undefined) {
-                        this.matcher = null;
-                    }
-                    if (this.nextDelimiterWithPattern === undefined) {
-                        this.nextDelimiterWithPattern = null;
-                    }
-                    this.currentDelimiter = Scanner.whiteSpacePattern_$LI$();
-                    this.buf = (function (s) { var a = []; while (s-- > 0)
-                        a.push(null); return a; })(1024);
-                    this.bufferFilledLength = 0;
-                    this.currentPosition = 0;
-                    this.nextTokenStart = 0;
-                    this.nextDelimiterStart = -1;
-                    this.nextDelimiterEnd = -1;
-                    this.defaultRadix = 10;
-                    this.closed = false;
                 }
                 else if (((string != null && string instanceof java.io.Reader) || string === null)) {
                     var __args = arguments;
@@ -11304,13 +11153,9 @@ var java;
                     throw new Error('invalid overload');
             }
             /* Default method injected from java.util.Iterator */
-            Scanner.prototype.remove = function () {
-                throw new java.lang.UnsupportedOperationException();
-            };
-            /* Default method injected from java.util.Iterator */
             Scanner.prototype.forEachRemaining = function (consumer) {
                 var _this = this;
-                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                 while ((this.hasNext())) {
@@ -11319,6 +11164,10 @@ var java;
                     }
                 }
                 ;
+            };
+            /* Default method injected from java.util.Iterator */
+            Scanner.prototype.remove = function () {
+                throw new java.lang.UnsupportedOperationException();
             };
             Scanner.numeral_$LI$ = function () { if (Scanner.numeral == null) {
                 Scanner.numeral = Scanner.digit + "+";
@@ -11735,9 +11584,9 @@ var java;
             /* Default method injected from java.util.List */
             AbstractList.prototype.sort = function (c) {
                 var a = this.toArray();
-                java.util.Arrays.sort(a, ((function (funcInst) { if (typeof funcInst == 'function') {
+                java.util.Arrays.sort(a, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
-                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)))));
                 var i = this.listIterator();
@@ -11967,7 +11816,7 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 IteratorImpl.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
@@ -12291,14 +12140,6 @@ var java;
                             a.push(null); return a; })(ArrayDeque.MIN_INITIAL_CAPACITY);
                         javaemul.internal.ArrayHelper.setLength(_this.array, ArrayDeque.nextArrayLength(numElements));
                     }
-                    if (_this.head === undefined) {
-                        _this.head = 0;
-                    }
-                    if (_this.tail === undefined) {
-                        _this.tail = 0;
-                    }
-                    _this.array = (function (s) { var a = []; while (s-- > 0)
-                        a.push(null); return a; })(ArrayDeque.MIN_INITIAL_CAPACITY);
                     (function () {
                         _this.addAll(c);
                     })();
@@ -12782,7 +12623,7 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 IteratorImpl.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
@@ -12837,7 +12678,7 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 DescendingIteratorImpl.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
@@ -12911,11 +12752,6 @@ var java;
                         this.intervals = (new Array());
                         this.name = name;
                     }
-                    if (this.name === undefined) {
-                        this.name = null;
-                    }
-                    this.timeouts = (new Array());
-                    this.intervals = (new Array());
                 }
                 else if (((typeof name === 'boolean') || name === null) && daemon === undefined) {
                     var __args = arguments;
@@ -12933,17 +12769,7 @@ var java;
                             this.intervals = (new Array());
                             this.name = name_1;
                         }
-                        if (this.name === undefined) {
-                            this.name = null;
-                        }
-                        this.timeouts = (new Array());
-                        this.intervals = (new Array());
                     }
-                    if (this.name === undefined) {
-                        this.name = null;
-                    }
-                    this.timeouts = (new Array());
-                    this.intervals = (new Array());
                 }
                 else if (name === undefined && daemon === undefined) {
                     var __args = arguments;
@@ -12958,11 +12784,6 @@ var java;
                         this.intervals = (new Array());
                         this.name = name_2;
                     }
-                    if (this.name === undefined) {
-                        this.name = null;
-                    }
-                    this.timeouts = (new Array());
-                    this.intervals = (new Array());
                 }
                 else
                     throw new Error('invalid overload');
@@ -13784,7 +13605,7 @@ var java;
             }
             /* Default method injected from java.lang.Iterable */
             InternalStringMap.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
                 var _loop_4 = function (index) {
@@ -13861,7 +13682,7 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 InternalStringMap$0.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
@@ -14638,18 +14459,6 @@ var java;
                         _this._mark = offset_1;
                         _this.count = offset_1 + length_1 > buf.length ? buf.length : offset_1 + length_1;
                     }
-                    if (_this.buf === undefined) {
-                        _this.buf = null;
-                    }
-                    if (_this.pos === undefined) {
-                        _this.pos = 0;
-                    }
-                    if (_this._mark === undefined) {
-                        _this._mark = 0;
-                    }
-                    if (_this.count === undefined) {
-                        _this.count = 0;
-                    }
                 }
                 else
                     throw new Error('invalid overload');
@@ -14861,30 +14670,6 @@ var java;
                         _this.cb = (function (s) { var a = []; while (s-- > 0)
                             a.push(null); return a; })(sz_1);
                         _this.nextChar = _this.nChars = 0;
-                    }
-                    if (_this["in"] === undefined) {
-                        _this["in"] = null;
-                    }
-                    if (_this.cb === undefined) {
-                        _this.cb = null;
-                    }
-                    if (_this.nChars === undefined) {
-                        _this.nChars = 0;
-                    }
-                    if (_this.nextChar === undefined) {
-                        _this.nextChar = 0;
-                    }
-                    if (_this.markedChar === undefined) {
-                        _this.markedChar = 0;
-                    }
-                    if (_this.readAheadLimit === undefined) {
-                        _this.readAheadLimit = 0;
-                    }
-                    if (_this.skipLF === undefined) {
-                        _this.skipLF = false;
-                    }
-                    if (_this.markedSkipLF === undefined) {
-                        _this.markedSkipLF = false;
                     }
                 }
                 else
@@ -17396,7 +17181,7 @@ var java;
                     if (_this.comparator === undefined) {
                         _this.comparator = null;
                     }
-                    _this.comparator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    _this.comparator = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comparator));
                     return _this;
@@ -17405,7 +17190,7 @@ var java;
                  *
                  */
                 StreamRowSortingCollector.prototype.end = function () {
-                    java.util.Collections.sort$java_util_List$java_util_Comparator(this.collection, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    java.util.Collections.sort$java_util_List$java_util_Comparator(this.collection, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.comparator)));
                     _super.prototype.end.call(this);
@@ -17435,6 +17220,36 @@ var java;
         var AbstractMap = /** @class */ (function () {
             function AbstractMap() {
             }
+            /* Default method injected from java.util.Map */
+            AbstractMap.prototype.replaceAll = function (__function) {
+                java.util.Objects.requireNonNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(__function)));
+                var _loop_5 = function (index) {
+                    var entry = index.next();
+                    {
+                        var k_1;
+                        var v_1;
+                        try {
+                            k_1 = entry.getKey();
+                            v_1 = entry.getValue();
+                        }
+                        catch (ise) {
+                            throw new java.lang.RuntimeException(ise);
+                        }
+                        v_1 = (function (target) { return (typeof target === 'function') ? target(k_1, v_1) : target.apply(k_1, v_1); })(__function);
+                        try {
+                            entry.setValue(v_1);
+                        }
+                        catch (ise) {
+                            throw new java.lang.RuntimeException(ise);
+                        }
+                    }
+                };
+                for (var index = this.entrySet().iterator(); index.hasNext();) {
+                    _loop_5(index);
+                }
+            };
             /* Default method injected from java.util.Map */
             AbstractMap.prototype.getOrDefault = function (key, defaultValue) {
                 var v;
@@ -17469,36 +17284,6 @@ var java;
                         this.put(key, result);
                 }
                 return result;
-            };
-            /* Default method injected from java.util.Map */
-            AbstractMap.prototype.replaceAll = function (__function) {
-                java.util.Objects.requireNonNull(((function (funcInst) { if (typeof funcInst == 'function') {
-                    return funcInst;
-                } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(__function)));
-                var _loop_5 = function (index) {
-                    var entry = index.next();
-                    {
-                        var k_1;
-                        var v_1;
-                        try {
-                            k_1 = entry.getKey();
-                            v_1 = entry.getValue();
-                        }
-                        catch (ise) {
-                            throw new java.lang.RuntimeException(ise);
-                        }
-                        v_1 = (function (target) { return (typeof target === 'function') ? target(k_1, v_1) : target.apply(k_1, v_1); })(__function);
-                        try {
-                            entry.setValue(v_1);
-                        }
-                        catch (ise) {
-                            throw new java.lang.RuntimeException(ise);
-                        }
-                    }
-                };
-                for (var index = this.entrySet().iterator(); index.hasNext();) {
-                    _loop_5(index);
-                }
             };
             /**
              *
@@ -17900,7 +17685,7 @@ var java;
                     /* Default method injected from java.util.Iterator */
                     AbstractMap$0$0.prototype.forEachRemaining = function (consumer) {
                         var _this = this;
-                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                         while ((this.hasNext())) {
@@ -17985,7 +17770,7 @@ var java;
                     /* Default method injected from java.util.Iterator */
                     AbstractMap$1$0.prototype.forEachRemaining = function (consumer) {
                         var _this = this;
-                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                         while ((this.hasNext())) {
@@ -18413,7 +18198,7 @@ var java;
                     /* Default method injected from java.util.Iterator */
                     IteratorImpl.prototype.forEachRemaining = function (consumer) {
                         var _this = this;
-                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                         while ((this.hasNext())) {
@@ -18496,9 +18281,6 @@ var java;
                         }
                         _this.map = (new java.util.TreeMap());
                     }
-                    if (_this.map === undefined) {
-                        _this.map = null;
-                    }
                     (function () {
                         _this.addAll(c);
                     })();
@@ -18509,7 +18291,7 @@ var java;
                     if (_this.map === undefined) {
                         _this.map = null;
                     }
-                    _this.map = (new java.util.TreeMap(((function (funcInst) { if (typeof funcInst == 'function') {
+                    _this.map = (new java.util.TreeMap(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c))));
                 }
@@ -18523,12 +18305,9 @@ var java;
                         if (_this.map === undefined) {
                             _this.map = null;
                         }
-                        _this.map = (new java.util.TreeMap(((function (funcInst) { if (typeof funcInst == 'function') {
+                        _this.map = (new java.util.TreeMap(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c_1))));
-                    }
-                    if (_this.map === undefined) {
-                        _this.map = null;
                     }
                     (function () {
                         _this.addAll(s_1);
@@ -18582,7 +18361,7 @@ var java;
              * @return {*}
              */
             TreeSet.prototype.comparator = function () {
-                return ((function (funcInst) { if (typeof funcInst == 'function') {
+                return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.map.comparator()));
             };
@@ -18783,12 +18562,6 @@ var java;
                             _this.exposeElement = null;
                         }
                         _this.arrayList = (new java.util.ArrayList(initialCapacity));
-                    }
-                    if (_this.arrayList === undefined) {
-                        _this.arrayList = null;
-                    }
-                    if (_this.exposeElement === undefined) {
-                        _this.exposeElement = null;
                     }
                 }
                 else if (((initialCapacity != null && (initialCapacity.constructor != null && initialCapacity.constructor["__interfaces"] != null && initialCapacity.constructor["__interfaces"].indexOf("java.util.Collection") >= 0)) || initialCapacity === null) && ignoredCapacityIncrement === undefined) {
@@ -19607,7 +19380,7 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 ArrayList$0.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
@@ -19804,7 +19577,7 @@ var java;
                 return -low - 1;
             };
             Arrays.binarySearch$java_lang_Object_A$java_lang_Object = function (sortedArray, key) {
-                return Arrays.binarySearch(sortedArray, key, ((function (funcInst) { if (typeof funcInst == 'function') {
+                return Arrays.binarySearch(sortedArray, key, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural())));
             };
@@ -19831,7 +19604,7 @@ var java;
             };
             Arrays.binarySearch$java_lang_Object_A$java_lang_Object$java_util_Comparator = function (sortedArray, key, comparator) {
                 if (comparator == null) {
-                    comparator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    comparator = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                 }
@@ -20704,12 +20477,12 @@ var java;
                 Arrays.nativeLongSort$java_lang_Object$int$int(array, fromIndex, toIndex);
             };
             Arrays.sort$java_lang_Object_A = function (array) {
-                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(array, 0, array.length, ((function (funcInst) { if (typeof funcInst == 'function') {
+                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(array, 0, array.length, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural())));
             };
             Arrays.sort$java_lang_Object_A$int$int = function (x, fromIndex, toIndex) {
-                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, ((function (funcInst) { if (typeof funcInst == 'function') {
+                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural())));
             };
@@ -20721,13 +20494,13 @@ var java;
                 Arrays.nativeNumberSort$java_lang_Object$int$int(array, fromIndex, toIndex);
             };
             Arrays.sort$java_lang_Object_A$java_util_Comparator = function (x, c) {
-                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, 0, x.length, ((function (funcInst) { if (typeof funcInst == 'function') {
+                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, 0, x.length, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)));
             };
             Arrays.sort$java_lang_Object_A$int$int$java_util_Comparator = function (x, fromIndex, toIndex, c) {
                 javaemul.internal.InternalPreconditions.checkPositionIndexes(fromIndex, toIndex, x.length);
-                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, ((function (funcInst) { if (typeof funcInst == 'function') {
+                Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator(x, fromIndex, toIndex, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)));
             };
@@ -21065,21 +20838,21 @@ var java;
             };
             Arrays.mergeSort$java_lang_Object_A$int$int$java_util_Comparator = function (x, fromIndex, toIndex, comp) {
                 if (comp == null) {
-                    comp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    comp = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                 }
                 var temp = Arrays.copyOfRange$java_lang_Object_A$int$int(x, fromIndex, toIndex);
-                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(temp, x, fromIndex, toIndex, -fromIndex, ((function (funcInst) { if (typeof funcInst == 'function') {
+                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(temp, x, fromIndex, toIndex, -fromIndex, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
-                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comp)))));
             };
             Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator = function (temp, array, low, high, ofs, comp) {
                 var length = high - low;
                 if (length < 7) {
-                    Arrays.insertionSort(array, low, high, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    Arrays.insertionSort(array, low, high, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comp)));
                     return;
@@ -21087,10 +20860,10 @@ var java;
                 var tempLow = low + ofs;
                 var tempHigh = high + ofs;
                 var tempMid = tempLow + ((tempHigh - tempLow) >> 1);
-                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(array, temp, tempLow, tempMid, -ofs, ((function (funcInst) { if (typeof funcInst == 'function') {
+                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(array, temp, tempLow, tempMid, -ofs, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comp)));
-                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(array, temp, tempMid, tempHigh, -ofs, ((function (funcInst) { if (typeof funcInst == 'function') {
+                Arrays.mergeSort$java_lang_Object_A$java_lang_Object_A$int$int$int$java_util_Comparator(array, temp, tempMid, tempHigh, -ofs, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comp)));
                 if (comp(temp[tempMid - 1], temp[tempMid]) <= 0) {
@@ -21102,7 +20875,7 @@ var java;
                     ;
                     return;
                 }
-                Arrays.merge(temp, tempLow, tempMid, tempHigh, array, low, high, ((function (funcInst) { if (typeof funcInst == 'function') {
+                Arrays.merge(temp, tempLow, tempMid, tempHigh, array, low, high, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comp)));
             };
@@ -21302,11 +21075,11 @@ var java;
                     }
                     _this.heap = (new java.util.ArrayList(initialCapacity));
                     if (cmp == null) {
-                        cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        cmp = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                     }
-                    _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    _this.cmp = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp));
                 }
@@ -21326,19 +21099,13 @@ var java;
                         }
                         _this.heap = (new java.util.ArrayList(initialCapacity_1));
                         if (cmp_1 == null) {
-                            cmp_1 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            cmp_1 = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                         }
-                        _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        _this.cmp = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp_1));
-                    }
-                    if (_this.cmp === undefined) {
-                        _this.cmp = null;
-                    }
-                    if (_this.heap === undefined) {
-                        _this.heap = null;
                     }
                 }
                 else if (((initialCapacity != null && initialCapacity instanceof java.util.PriorityQueue) || initialCapacity === null) && cmp === undefined) {
@@ -21347,7 +21114,7 @@ var java;
                     {
                         var __args_29 = arguments;
                         var initialCapacity_2 = c_2.size();
-                        var cmp_2 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        var cmp_2 = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c_2.comparator()));
                         _this = _super.call(this) || this;
@@ -21359,19 +21126,13 @@ var java;
                         }
                         _this.heap = (new java.util.ArrayList(initialCapacity_2));
                         if (cmp_2 == null) {
-                            cmp_2 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            cmp_2 = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                         }
-                        _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        _this.cmp = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp_2));
-                    }
-                    if (_this.cmp === undefined) {
-                        _this.cmp = null;
-                    }
-                    if (_this.heap === undefined) {
-                        _this.heap = null;
                     }
                     (function () {
                         _this.addAll(c_2);
@@ -21383,7 +21144,7 @@ var java;
                     {
                         var __args_30 = arguments;
                         var initialCapacity_3 = c_3.size();
-                        var cmp_3 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        var cmp_3 = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c_3.comparator()));
                         _this = _super.call(this) || this;
@@ -21395,19 +21156,13 @@ var java;
                         }
                         _this.heap = (new java.util.ArrayList(initialCapacity_3));
                         if (cmp_3 == null) {
-                            cmp_3 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            cmp_3 = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                         }
-                        _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        _this.cmp = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp_3));
-                    }
-                    if (_this.cmp === undefined) {
-                        _this.cmp = null;
-                    }
-                    if (_this.heap === undefined) {
-                        _this.heap = null;
                     }
                     (function () {
                         _this.addAll(c_3);
@@ -21431,26 +21186,14 @@ var java;
                             }
                             _this.heap = (new java.util.ArrayList(initialCapacity_4));
                             if (cmp_4 == null) {
-                                cmp_4 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                cmp_4 = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                     return funcInst;
                                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                             }
-                            _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            _this.cmp = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp_4));
                         }
-                        if (_this.cmp === undefined) {
-                            _this.cmp = null;
-                        }
-                        if (_this.heap === undefined) {
-                            _this.heap = null;
-                        }
-                    }
-                    if (_this.cmp === undefined) {
-                        _this.cmp = null;
-                    }
-                    if (_this.heap === undefined) {
-                        _this.heap = null;
                     }
                     (function () {
                         _this.addAll(c_4);
@@ -21470,19 +21213,13 @@ var java;
                         }
                         _this.heap = (new java.util.ArrayList(initialCapacity));
                         if (cmp_5 == null) {
-                            cmp_5 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            cmp_5 = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                         }
-                        _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        _this.cmp = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp_5));
-                    }
-                    if (_this.cmp === undefined) {
-                        _this.cmp = null;
-                    }
-                    if (_this.heap === undefined) {
-                        _this.heap = null;
                     }
                 }
                 else if (initialCapacity === undefined && cmp === undefined) {
@@ -21502,26 +21239,14 @@ var java;
                             }
                             _this.heap = (new java.util.ArrayList(initialCapacity_5));
                             if (cmp_6 == null) {
-                                cmp_6 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                cmp_6 = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                     return funcInst;
                                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                             }
-                            _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            _this.cmp = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(cmp_6));
                         }
-                        if (_this.cmp === undefined) {
-                            _this.cmp = null;
-                        }
-                        if (_this.heap === undefined) {
-                            _this.heap = null;
-                        }
-                    }
-                    if (_this.cmp === undefined) {
-                        _this.cmp = null;
-                    }
-                    if (_this.heap === undefined) {
-                        _this.heap = null;
                     }
                 }
                 else
@@ -21559,9 +21284,9 @@ var java;
                 this.heap.clear();
             };
             PriorityQueue.prototype.comparator = function () {
-                return this.cmp === java.util.Comparators.natural() ? ((function (funcInst) { if (typeof funcInst == 'function') {
+                return this.cmp === java.util.Comparators.natural() ? ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
-                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null)) : ((function (funcInst) { if (typeof funcInst == 'function') {
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null)) : ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.cmp));
             };
@@ -22831,12 +22556,6 @@ var java;
                         javaemul.internal.InternalPreconditions.checkArgument(alsoIgnored_1 >= 0, "Non-positive load factor");
                         _this.reset();
                     }
-                    if (_this.hashCodeMap === undefined) {
-                        _this.hashCodeMap = null;
-                    }
-                    if (_this.stringMap === undefined) {
-                        _this.stringMap = null;
-                    }
                 }
                 else if (ignored === undefined && alsoIgnored === undefined) {
                     var __args = arguments;
@@ -23108,7 +22827,7 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 EntrySetIterator.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
@@ -23448,7 +23167,7 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 EntrySetIterator.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
@@ -23778,9 +23497,9 @@ var java;
                  * @return {*}
                  */
                 DescendingMap.prototype.comparator = function () {
-                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Collections.reverseOrder$java_util_Comparator(((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Collections.reverseOrder$java_util_Comparator(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.ascendingMap().comparator())))));
                 };
@@ -24033,7 +23752,7 @@ var java;
                  * @return {*}
                  */
                 NavigableKeySet.prototype.comparator = function () {
-                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.map.comparator()));
                 };
@@ -24220,7 +23939,7 @@ var java;
                     /* Default method injected from java.util.Iterator */
                     NavigableKeySet$0.prototype.forEachRemaining = function (consumer) {
                         var _this = this;
-                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                         while ((this.hasNext())) {
@@ -24298,13 +24017,13 @@ var java;
                 return (new Collections.LifoQueue(deque));
             };
             Collections.binarySearch$java_util_List$java_lang_Object = function (sortedList, key) {
-                return Collections.binarySearch(sortedList, key, ((function (funcInst) { if (typeof funcInst == 'function') {
+                return Collections.binarySearch(sortedList, key, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null)));
             };
             Collections.binarySearch$java_util_List$java_lang_Object$java_util_Comparator = function (sortedList, key, comparator) {
                 if (comparator == null) {
-                    comparator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    comparator = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                 }
@@ -24445,13 +24164,13 @@ var java;
                 return arrayList;
             };
             Collections.max$java_util_Collection = function (coll) {
-                return (Collections.max$java_util_Collection$java_util_Comparator(coll, ((function (funcInst) { if (typeof funcInst == 'function') {
+                return (Collections.max$java_util_Collection$java_util_Comparator(coll, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null))));
             };
             Collections.max$java_util_Collection$java_util_Comparator = function (coll, comp) {
                 if (comp == null) {
-                    comp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    comp = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                 }
@@ -24480,9 +24199,9 @@ var java;
             };
             Collections.min = function (coll, comp) {
                 if (comp === void 0) { comp = null; }
-                return (Collections.max$java_util_Collection$java_util_Comparator(coll, ((function (funcInst) { if (typeof funcInst == 'function') {
+                return (Collections.max$java_util_Collection$java_util_Comparator(coll, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
-                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(Collections.reverseOrder$java_util_Comparator(((function (funcInst) { if (typeof funcInst == 'function') {
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(Collections.reverseOrder$java_util_Comparator(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(comp)))))));
             };
@@ -24538,15 +24257,15 @@ var java;
                 }
             };
             Collections.reverseOrder$ = function () {
-                return ((function (funcInst) { if (typeof funcInst == 'function') {
+                return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
-                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(Collections.ReverseComparator.INSTANCE_$LI$()))));
             };
             Collections.reverseOrder$java_util_Comparator = function (cmp) {
                 if (cmp == null) {
-                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(Collections.reverseOrder$()));
                 }
@@ -24658,15 +24377,15 @@ var java;
                 return Collections.unmodifiableMap(map);
             };
             Collections.sort$java_util_List = function (target) {
-                Collections.sort$java_util_List$java_util_Comparator(target, ((function (funcInst) { if (typeof funcInst == 'function') {
+                Collections.sort$java_util_List$java_util_Comparator(target, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null)));
             };
             Collections.sort$java_util_List$java_util_Comparator = function (target, c) {
                 var x = target['toArray$']();
-                java.util.Arrays.sort$java_lang_Object_A$java_util_Comparator(x, ((function (funcInst) { if (typeof funcInst == 'function') {
+                java.util.Arrays.sort$java_lang_Object_A$java_util_Comparator(x, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
-                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)))));
                 Collections.replaceContents(target, x);
@@ -24906,7 +24625,7 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 EmptyListIterator.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
@@ -25260,7 +24979,7 @@ var java;
                 }
                 /* Default method injected from java.lang.Iterable */
                 UnmodifiableCollection.prototype.forEach = function (action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
                     var _loop_6 = function (index) {
@@ -25274,16 +24993,12 @@ var java;
                     }
                 };
                 /* Default method injected from java.util.Collection */
-                UnmodifiableCollection.prototype.stream = function () {
-                    return (new javaemul.internal.stream.StreamHelper(this));
-                };
-                /* Default method injected from java.util.Collection */
                 UnmodifiableCollection.prototype.parallelStream = function () {
                     return this.stream();
                 };
                 /* Default method injected from java.util.Collection */
                 UnmodifiableCollection.prototype.removeIf = function (filter) {
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                     var removed = false;
@@ -25300,6 +25015,10 @@ var java;
                         _loop_7(it);
                     }
                     return removed;
+                };
+                /* Default method injected from java.util.Collection */
+                UnmodifiableCollection.prototype.stream = function () {
+                    return (new javaemul.internal.stream.StreamHelper(this));
                 };
                 /**
                  *
@@ -25427,7 +25146,7 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 UnmodifiableCollectionIterator.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
@@ -25485,9 +25204,9 @@ var java;
                 /* Default method injected from java.util.List */
                 UnmodifiableList.prototype.sort = function (c) {
                     var a = this.toArray();
-                    java.util.Arrays.sort(a, ((function (funcInst) { if (typeof funcInst == 'function') {
+                    java.util.Arrays.sort(a, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)))));
                     var i = this.listIterator();
@@ -25773,6 +25492,36 @@ var java;
                     this.map = map;
                 }
                 /* Default method injected from java.util.Map */
+                UnmodifiableMap.prototype.replaceAll = function (__function) {
+                    java.util.Objects.requireNonNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
+                        return funcInst;
+                    } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(__function)));
+                    var _loop_8 = function (index) {
+                        var entry = index.next();
+                        {
+                            var k_2;
+                            var v_2;
+                            try {
+                                k_2 = entry.getKey();
+                                v_2 = entry.getValue();
+                            }
+                            catch (ise) {
+                                throw new java.lang.RuntimeException(ise);
+                            }
+                            v_2 = (function (target) { return (typeof target === 'function') ? target(k_2, v_2) : target.apply(k_2, v_2); })(__function);
+                            try {
+                                entry.setValue(v_2);
+                            }
+                            catch (ise) {
+                                throw new java.lang.RuntimeException(ise);
+                            }
+                        }
+                    };
+                    for (var index = this.entrySet().iterator(); index.hasNext();) {
+                        _loop_8(index);
+                    }
+                };
+                /* Default method injected from java.util.Map */
                 UnmodifiableMap.prototype.getOrDefault = function (key, defaultValue) {
                     var v;
                     return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
@@ -25806,36 +25555,6 @@ var java;
                             this.put(key, result);
                     }
                     return result;
-                };
-                /* Default method injected from java.util.Map */
-                UnmodifiableMap.prototype.replaceAll = function (__function) {
-                    java.util.Objects.requireNonNull(((function (funcInst) { if (typeof funcInst == 'function') {
-                        return funcInst;
-                    } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(__function)));
-                    var _loop_8 = function (index) {
-                        var entry = index.next();
-                        {
-                            var k_2;
-                            var v_2;
-                            try {
-                                k_2 = entry.getKey();
-                                v_2 = entry.getValue();
-                            }
-                            catch (ise) {
-                                throw new java.lang.RuntimeException(ise);
-                            }
-                            v_2 = (function (target) { return (typeof target === 'function') ? target(k_2, v_2) : target.apply(k_2, v_2); })(__function);
-                            try {
-                                entry.setValue(v_2);
-                            }
-                            catch (ise) {
-                                throw new java.lang.RuntimeException(ise);
-                            }
-                        }
-                    };
-                    for (var index = this.entrySet().iterator(); index.hasNext();) {
-                        _loop_8(index);
-                    }
                 };
                 /**
                  *
@@ -26124,7 +25843,7 @@ var java;
                         /* Default method injected from java.util.Iterator */
                         UnmodifiableEntrySet$0.prototype.forEachRemaining = function (consumer) {
                             var _this = this;
-                            javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                            javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                             while ((this.hasNext())) {
@@ -26175,7 +25894,7 @@ var java;
                  * @return {*}
                  */
                 UnmodifiableSortedSet.prototype.comparator = function () {
-                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.sortedSet.comparator()));
                 };
@@ -26263,7 +25982,7 @@ var java;
                  * @return {*}
                  */
                 UnmodifiableSortedMap.prototype.comparator = function () {
-                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.sortedMap.comparator()));
                 };
@@ -26542,9 +26261,26 @@ var java;
                     throw new Error('invalid overload');
                 return _this;
             }
+            /* Default method injected from java.util.List */
+            LinkedList.prototype.sort = function (c) {
+                var a = this.toArray();
+                java.util.Arrays.sort(a, ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)))));
+                var i = this.listIterator();
+                for (var index = 0; index < a.length; index++) {
+                    var e = a[index];
+                    {
+                        i.next();
+                        i.set(e);
+                    }
+                }
+            };
             /* Default method injected from java.lang.Iterable */
             LinkedList.prototype.forEach = function (action) {
-                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
                 var _loop_9 = function (index) {
@@ -26558,33 +26294,12 @@ var java;
                 }
             };
             /* Default method injected from java.util.Collection */
-            LinkedList.prototype.stream = function () {
-                return (new javaemul.internal.stream.StreamHelper(this));
-            };
-            /* Default method injected from java.util.List */
-            LinkedList.prototype.sort = function (c) {
-                var a = this.toArray();
-                java.util.Arrays.sort(a, ((function (funcInst) { if (typeof funcInst == 'function') {
-                    return funcInst;
-                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
-                    return funcInst;
-                } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c)))));
-                var i = this.listIterator();
-                for (var index = 0; index < a.length; index++) {
-                    var e = a[index];
-                    {
-                        i.next();
-                        i.set(e);
-                    }
-                }
-            };
-            /* Default method injected from java.util.Collection */
             LinkedList.prototype.parallelStream = function () {
                 return this.stream();
             };
             /* Default method injected from java.util.Collection */
             LinkedList.prototype.removeIf = function (filter) {
-                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (arg0) { return (funcInst['test'] ? funcInst['test'] : funcInst).call(funcInst, arg0); }; })(filter)));
                 var removed = false;
@@ -26601,6 +26316,10 @@ var java;
                     _loop_10(it);
                 }
                 return removed;
+            };
+            /* Default method injected from java.util.Collection */
+            LinkedList.prototype.stream = function () {
+                return (new javaemul.internal.stream.StreamHelper(this));
             };
             /**
              *
@@ -26900,7 +26619,7 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 DescendingIteratorImpl.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
@@ -26958,7 +26677,7 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 ListIteratorImpl2.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
@@ -27142,9 +26861,6 @@ var java;
                                 _this.pattern = null;
                             }
                             _this.pattern = pattern;
-                        }
-                        if (_this.pattern === undefined) {
-                            _this.pattern = null;
                         }
                     }
                     else if (((desc != null && desc instanceof Error) || desc === null) && ((typeof pattern === 'string') || pattern === null) && index === undefined) {
@@ -27450,6 +27166,36 @@ var java;
                 return _this;
             }
             /* Default method injected from java.util.Map */
+            IdentityHashMap.prototype.replaceAll = function (__function) {
+                java.util.Objects.requireNonNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(__function)));
+                var _loop_11 = function (index) {
+                    var entry = index.next();
+                    {
+                        var k_3;
+                        var v_3;
+                        try {
+                            k_3 = entry.getKey();
+                            v_3 = entry.getValue();
+                        }
+                        catch (ise) {
+                            throw new java.lang.RuntimeException(ise);
+                        }
+                        v_3 = (function (target) { return (typeof target === 'function') ? target(k_3, v_3) : target.apply(k_3, v_3); })(__function);
+                        try {
+                            entry.setValue(v_3);
+                        }
+                        catch (ise) {
+                            throw new java.lang.RuntimeException(ise);
+                        }
+                    }
+                };
+                for (var index = this.entrySet().iterator(); index.hasNext();) {
+                    _loop_11(index);
+                }
+            };
+            /* Default method injected from java.util.Map */
             IdentityHashMap.prototype.getOrDefault = function (key, defaultValue) {
                 var v;
                 return (((v = this.get(key)) != null) || this.containsKey(key)) ? v : defaultValue;
@@ -27483,36 +27229,6 @@ var java;
                         this.put(key, result);
                 }
                 return result;
-            };
-            /* Default method injected from java.util.Map */
-            IdentityHashMap.prototype.replaceAll = function (__function) {
-                java.util.Objects.requireNonNull(((function (funcInst) { if (typeof funcInst == 'function') {
-                    return funcInst;
-                } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(__function)));
-                var _loop_11 = function (index) {
-                    var entry = index.next();
-                    {
-                        var k_3;
-                        var v_3;
-                        try {
-                            k_3 = entry.getKey();
-                            v_3 = entry.getValue();
-                        }
-                        catch (ise) {
-                            throw new java.lang.RuntimeException(ise);
-                        }
-                        v_3 = (function (target) { return (typeof target === 'function') ? target(k_3, v_3) : target.apply(k_3, v_3); })(__function);
-                        try {
-                            entry.setValue(v_3);
-                        }
-                        catch (ise) {
-                            throw new java.lang.RuntimeException(ise);
-                        }
-                    }
-                };
-                for (var index = this.entrySet().iterator(); index.hasNext();) {
-                    _loop_11(index);
-                }
             };
             IdentityHashMap.prototype.clone = function () {
                 return (new IdentityHashMap(this));
@@ -27723,11 +27439,11 @@ var java;
                     }
                     _this.root = null;
                     if (c == null) {
-                        c = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        c = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                     }
-                    _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    _this.cmp = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c));
                 }
@@ -27755,28 +27471,13 @@ var java;
                         }
                         _this.root = null;
                         if (c_5 == null) {
-                            c_5 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            c_5 = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                         }
-                        _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        _this.cmp = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c_5));
-                    }
-                    if (_this.cmp === undefined) {
-                        _this.cmp = null;
-                    }
-                    if (_this.exposeKeyType === undefined) {
-                        _this.exposeKeyType = null;
-                    }
-                    if (_this.exposeValueType === undefined) {
-                        _this.exposeValueType = null;
-                    }
-                    if (_this.root === undefined) {
-                        _this.root = null;
-                    }
-                    if (_this.__size === undefined) {
-                        _this.__size = 0;
                     }
                     (function () {
                         _this.putAll(map_1);
@@ -27789,7 +27490,7 @@ var java;
                         var __args_39 = arguments;
                         {
                             var __args_40 = arguments;
-                            var c_6 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            var c_6 = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null));
                             _this = _super.call(this) || this;
@@ -27810,44 +27511,14 @@ var java;
                             }
                             _this.root = null;
                             if (c_6 == null) {
-                                c_6 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                c_6 = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                     return funcInst;
                                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                             }
-                            _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            _this.cmp = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c_6));
                         }
-                        if (_this.cmp === undefined) {
-                            _this.cmp = null;
-                        }
-                        if (_this.exposeKeyType === undefined) {
-                            _this.exposeKeyType = null;
-                        }
-                        if (_this.exposeValueType === undefined) {
-                            _this.exposeValueType = null;
-                        }
-                        if (_this.root === undefined) {
-                            _this.root = null;
-                        }
-                        if (_this.__size === undefined) {
-                            _this.__size = 0;
-                        }
-                    }
-                    if (_this.cmp === undefined) {
-                        _this.cmp = null;
-                    }
-                    if (_this.exposeKeyType === undefined) {
-                        _this.exposeKeyType = null;
-                    }
-                    if (_this.exposeValueType === undefined) {
-                        _this.exposeValueType = null;
-                    }
-                    if (_this.root === undefined) {
-                        _this.root = null;
-                    }
-                    if (_this.__size === undefined) {
-                        _this.__size = 0;
                     }
                     (function () {
                         _this.putAll(map_2);
@@ -27857,7 +27528,7 @@ var java;
                     var __args = arguments;
                     {
                         var __args_41 = arguments;
-                        var c_7 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        var c_7 = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null));
                         _this = _super.call(this) || this;
@@ -27878,28 +27549,13 @@ var java;
                         }
                         _this.root = null;
                         if (c_7 == null) {
-                            c_7 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            c_7 = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(java.util.Comparators.natural()));
                         }
-                        _this.cmp = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        _this.cmp = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(c_7));
-                    }
-                    if (_this.cmp === undefined) {
-                        _this.cmp = null;
-                    }
-                    if (_this.exposeKeyType === undefined) {
-                        _this.exposeKeyType = null;
-                    }
-                    if (_this.exposeValueType === undefined) {
-                        _this.exposeValueType = null;
-                    }
-                    if (_this.root === undefined) {
-                        _this.root = null;
-                    }
-                    if (_this.__size === undefined) {
-                        _this.__size = 0;
                     }
                 }
                 else
@@ -27934,11 +27590,11 @@ var java;
              */
             TreeMap.prototype.comparator = function () {
                 if (this.cmp === java.util.Comparators.natural()) {
-                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(null));
                 }
-                return ((function (funcInst) { if (typeof funcInst == 'function') {
+                return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                     return funcInst;
                 } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.cmp));
             };
@@ -28561,12 +28217,6 @@ var java;
                             __parent.inOrderAdd(list, type_1, __parent.root, fromKey_1, fromInclusive_1, toKey_1, toInclusive_1);
                             this.iter = list['listIterator$int'](list.size());
                         }
-                        if (this.iter === undefined) {
-                            this.iter = null;
-                        }
-                        if (this.last === undefined) {
-                            this.last = null;
-                        }
                     }
                     else
                         throw new Error('invalid overload');
@@ -28574,7 +28224,7 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 DescendingEntryIterator.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
@@ -28654,12 +28304,6 @@ var java;
                             __parent.inOrderAdd(list, type_2, __parent.root, fromKey_2, fromInclusive_2, toKey_2, toInclusive_2);
                             this.iter = list['listIterator$']();
                         }
-                        if (this.iter === undefined) {
-                            this.iter = null;
-                        }
-                        if (this.last === undefined) {
-                            this.last = null;
-                        }
                     }
                     else
                         throw new Error('invalid overload');
@@ -28667,7 +28311,7 @@ var java;
                 /* Default method injected from java.util.Iterator */
                 EntryIterator.prototype.forEachRemaining = function (consumer) {
                     var _this = this;
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                     while ((this.hasNext())) {
@@ -28756,10 +28400,6 @@ var java;
                             _this.child = [null, null];
                             _this.isRed = isRed_1;
                         }
-                        if (_this.isRed === undefined) {
-                            _this.isRed = false;
-                        }
-                        _this.child = [null, null];
                     }
                     else
                         throw new Error('invalid overload');
@@ -28853,7 +28493,7 @@ var java;
                  * @return {*}
                  */
                 SubMap.prototype.comparator = function () {
-                    return ((function (funcInst) { if (typeof funcInst == 'function') {
+                    return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (a, b) { return (funcInst['compare'] ? funcInst['compare'] : funcInst).call(funcInst, a, b); }; })(this.comparator()));
                 };
@@ -29232,34 +28872,34 @@ var java;
                     }));
                 };
                 Collectors.toMap$java_util_function_Function$java_util_function_Function = function (keyMapper, valueMapper) {
-                    return Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(keyMapper)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(keyMapper)), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(valueMapper)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(valueMapper)), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(Collectors.throwingMerger())), function () { return new java.util.HashMap(); });
                 };
                 Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator = function (keyMapper, valueMapper, mergeFunction) {
-                    return Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(keyMapper)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(keyMapper)), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(valueMapper)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(valueMapper)), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(mergeFunction)), function () { return new java.util.HashMap(); });
                 };
                 Collectors.toMap$java_util_function_Function$java_util_function_Function$java_util_function_BinaryOperator$java_util_function_Supplier = function (keyMapper, valueMapper, mergeFunction, mapSupplier) {
-                    var accumulator = function (map, element) { return map.merge((function (target) { return (typeof target === 'function') ? target(element) : target.apply(element); })(keyMapper), (function (target) { return (typeof target === 'function') ? target(element) : target.apply(element); })(valueMapper), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    var accumulator = function (map, element) { return map.merge((function (target) { return (typeof target === 'function') ? target(element) : target.apply(element); })(keyMapper), (function (target) { return (typeof target === 'function') ? target(element) : target.apply(element); })(valueMapper), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(mergeFunction))); };
-                    return (new Collectors.CollectorImpl(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return (new Collectors.CollectorImpl(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(mapSupplier)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(mapSupplier)), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator)), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(Collectors.mapMerger(((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(Collectors.mapMerger(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(mergeFunction)))))));
                 };
@@ -29280,7 +28920,7 @@ var java;
                     return function (m1, m2) {
                         for (var index = m2.entrySet().iterator(); index.hasNext();) {
                             var e = index.next();
-                            m1.merge(e.getKey(), e.getValue(), ((function (funcInst) { if (typeof funcInst == 'function') {
+                            m1.merge(e.getKey(), e.getValue(), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(mergeFunction)));
                         }
@@ -29329,15 +28969,15 @@ var java;
                         throw new Error('invalid overload');
                 };
                 Collectors.groupingBy$java_util_function_Function$java_util_stream_Collector = function (classifier, downstream) {
-                    return Collectors.groupingBy$java_util_function_Function$java_util_function_Supplier$java_util_stream_Collector(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return Collectors.groupingBy$java_util_function_Function$java_util_function_Supplier$java_util_stream_Collector(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(classifier)), function () { return new java.util.HashMap(); }, downstream);
                 };
                 Collectors.groupingBy$java_util_function_Function$java_util_function_Supplier$java_util_stream_Collector = function (classifier, mapFactory, downstream) {
-                    var downstreamSupplier = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    var downstreamSupplier = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(downstream.supplier()));
-                    var downstreamAccumulator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    var downstreamAccumulator = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(downstream.accumulator()));
                     var accumulator = (function (downstreamAccumulator) {
@@ -29347,29 +28987,29 @@ var java;
                             (function (target) { return (typeof target === 'function') ? target(container, t) : target.accept(container, t); })(downstreamAccumulator);
                         };
                     })(downstreamAccumulator);
-                    var merger = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    var merger = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(Collectors.mapMerger(((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(Collectors.mapMerger(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(downstream.combiner())))));
-                    var mangledFactory = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    var mangledFactory = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(mapFactory))));
                     if (downstream.characteristics().contains(java.util.stream.Collector.Characteristics.IDENTITY_FINISH)) {
-                        return (new Collectors.CollectorImpl(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return (new Collectors.CollectorImpl(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
-                        } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(mangledFactory)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(mangledFactory)), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
-                        } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator)), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(merger)), Collectors.CH_ID_$LI$()));
                     }
                     else {
-                        var downstreamFinisher_1 = ((function (funcInst) { if (typeof funcInst == 'function') {
+                        var downstreamFinisher_1 = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
-                        } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(((function (funcInst) { if (typeof funcInst == 'function') {
+                        } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(downstream.finisher()))));
                         var finisher = function (intermediate) {
@@ -29377,13 +29017,13 @@ var java;
                             var castResult = intermediate;
                             return castResult;
                         };
-                        return (new Collectors.CollectorImpl(((function (funcInst) { if (typeof funcInst == 'function') {
+                        return (new Collectors.CollectorImpl(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
-                        } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(mangledFactory)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(mangledFactory)), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
-                        } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator)), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
-                        } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(merger)), ((function (funcInst) { if (typeof funcInst == 'function') {
+                        } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(merger)), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(finisher)), Collectors.CH_NOID_$LI$()));
                     }
@@ -29399,21 +29039,21 @@ var java;
                         throw new Error('invalid overload');
                 };
                 Collectors.mapping = function (mapper, downstream) {
-                    var downstreamAccumulator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                    var downstreamAccumulator = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(downstream.accumulator()));
-                    return (new Collectors.CollectorImpl(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return (new Collectors.CollectorImpl(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(downstream.supplier())), (function (downstreamAccumulator) {
                         return function (r, t) { return (function (target) { return (typeof target === 'function') ? target(r, (function (target) { return (typeof target === 'function') ? target(t) : target.apply(t); })(mapper)) : target.accept(r, (function (target) { return (typeof target === 'function') ? target(t) : target.apply(t); })(mapper)); })(downstreamAccumulator); };
-                    })(downstreamAccumulator), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    })(downstreamAccumulator), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
-                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(downstream.combiner())), ((function (funcInst) { if (typeof funcInst == 'function') {
+                    } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(downstream.combiner())), ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(downstream.finisher())), downstream.characteristics()));
                 };
                 Collectors.reducing$java_lang_Object$java_util_function_BinaryOperator = function (identity, op) {
-                    return (new Collectors.CollectorImpl(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return (new Collectors.CollectorImpl(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(Collectors.boxSupplier(identity))), function (a, t) {
                         a[0] = (function (target) { return (typeof target === 'function') ? target(a[0], t) : target.apply(a[0], t); })(op);
@@ -29423,7 +29063,7 @@ var java;
                     }, function (a) { return a[0]; }, Collectors.CH_NOID_$LI$()));
                 };
                 Collectors.reducing$java_lang_Object$java_util_function_Function$java_util_function_BinaryOperator = function (identity, mapper, op) {
-                    return (new Collectors.CollectorImpl(((function (funcInst) { if (typeof funcInst == 'function') {
+                    return (new Collectors.CollectorImpl(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(Collectors.boxSupplier(identity))), function (a, t) {
                         a[0] = (function (target) { return (typeof target === 'function') ? target(a[0], (function (target) { return (typeof target === 'function') ? target(t) : target.apply(t); })(mapper)) : target.apply(a[0], (function (target) { return (typeof target === 'function') ? target(t) : target.apply(t); })(mapper)); })(op);
@@ -29469,16 +29109,16 @@ var java;
                             if (this.__finisher === undefined) {
                                 this.__finisher = null;
                             }
-                            this.__supplier = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            this.__supplier = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(supplier));
-                            this.__accumulator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            this.__accumulator = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator));
-                            this.__combiner = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            this.__combiner = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(combiner));
-                            this.__finisher = ((function (funcInst) { if (typeof funcInst == 'function') {
+                            this.__finisher = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                 return funcInst;
                             } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(finisher));
                             this.__characteristics = characteristics;
@@ -29504,34 +29144,19 @@ var java;
                                 if (this.__finisher === undefined) {
                                     this.__finisher = null;
                                 }
-                                this.__supplier = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                this.__supplier = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                     return funcInst;
                                 } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(supplier));
-                                this.__accumulator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                this.__accumulator = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                     return funcInst;
                                 } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator));
-                                this.__combiner = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                this.__combiner = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                     return funcInst;
                                 } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(combiner));
-                                this.__finisher = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                this.__finisher = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                     return funcInst;
                                 } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(finisher_1));
                                 this.__characteristics = characteristics_1;
-                            }
-                            if (this.__supplier === undefined) {
-                                this.__supplier = null;
-                            }
-                            if (this.__accumulator === undefined) {
-                                this.__accumulator = null;
-                            }
-                            if (this.__combiner === undefined) {
-                                this.__combiner = null;
-                            }
-                            if (this.__characteristics === undefined) {
-                                this.__characteristics = null;
-                            }
-                            if (this.__finisher === undefined) {
-                                this.__finisher = null;
                             }
                         }
                         else if (((typeof supplier === 'function' && supplier.length === 0) || supplier === null) && ((typeof accumulator === 'function' && accumulator.length === 2) || accumulator === null) && ((typeof combiner === 'function' && combiner.length === 2) || combiner === null) && finisher === undefined && characteristics === undefined) {
@@ -29555,34 +29180,19 @@ var java;
                                 if (this.__finisher === undefined) {
                                     this.__finisher = null;
                                 }
-                                this.__supplier = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                this.__supplier = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                     return funcInst;
                                 } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(supplier));
-                                this.__accumulator = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                this.__accumulator = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                     return funcInst;
                                 } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(accumulator));
-                                this.__combiner = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                this.__combiner = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                     return funcInst;
                                 } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(combiner));
-                                this.__finisher = ((function (funcInst) { if (typeof funcInst == 'function') {
+                                this.__finisher = ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                                     return funcInst;
                                 } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(finisher_2));
                                 this.__characteristics = characteristics_2;
-                            }
-                            if (this.__supplier === undefined) {
-                                this.__supplier = null;
-                            }
-                            if (this.__accumulator === undefined) {
-                                this.__accumulator = null;
-                            }
-                            if (this.__combiner === undefined) {
-                                this.__combiner = null;
-                            }
-                            if (this.__characteristics === undefined) {
-                                this.__characteristics = null;
-                            }
-                            if (this.__finisher === undefined) {
-                                this.__finisher = null;
                             }
                         }
                         else
@@ -29596,7 +29206,7 @@ var java;
                      * @return {*}
                      */
                     CollectorImpl.prototype.accumulator = function () {
-                        return ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (arg0, arg1) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0, arg1); }; })(this.__accumulator));
                     };
@@ -29605,7 +29215,7 @@ var java;
                      * @return {*}
                      */
                     CollectorImpl.prototype.supplier = function () {
-                        return ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function () { return (funcInst['get'] ? funcInst['get'] : funcInst).call(funcInst); }; })(this.__supplier));
                     };
@@ -29614,7 +29224,7 @@ var java;
                      * @return {*}
                      */
                     CollectorImpl.prototype.combiner = function () {
-                        return ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (arg0) { return (funcInst['minBy'] ? funcInst['minBy'] : funcInst).call(funcInst, arg0); }; })(this.__combiner));
                     };
@@ -29623,7 +29233,7 @@ var java;
                      * @return {*}
                      */
                     CollectorImpl.prototype.finisher = function () {
-                        return ((function (funcInst) { if (typeof funcInst == 'function') {
+                        return ((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (arg0) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0); }; })(this.__finisher));
                     };
@@ -29736,15 +29346,6 @@ var java;
                         _this.map = (new java.util.HashMap());
                         _this.resetChainEntries();
                     }
-                    if (_this.accessOrder === undefined) {
-                        _this.accessOrder = false;
-                    }
-                    if (_this.head === undefined) {
-                        _this.head = null;
-                    }
-                    if (_this.map === undefined) {
-                        _this.map = null;
-                    }
                 }
                 else if (ignored === undefined && alsoIgnored === undefined && accessOrder === undefined) {
                     var __args = arguments;
@@ -29766,6 +29367,36 @@ var java;
                     throw new Error('invalid overload');
                 return _this;
             }
+            /* Default method injected from java.util.Map */
+            LinkedHashMap.prototype.replaceAll = function (__function) {
+                java.util.Objects.requireNonNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
+                    return funcInst;
+                } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(__function)));
+                var _loop_12 = function (index) {
+                    var entry = index.next();
+                    {
+                        var k_4;
+                        var v_4;
+                        try {
+                            k_4 = entry.getKey();
+                            v_4 = entry.getValue();
+                        }
+                        catch (ise) {
+                            throw new java.lang.RuntimeException(ise);
+                        }
+                        v_4 = (function (target) { return (typeof target === 'function') ? target(k_4, v_4) : target.apply(k_4, v_4); })(__function);
+                        try {
+                            entry.setValue(v_4);
+                        }
+                        catch (ise) {
+                            throw new java.lang.RuntimeException(ise);
+                        }
+                    }
+                };
+                for (var index = this.entrySet().iterator(); index.hasNext();) {
+                    _loop_12(index);
+                }
+            };
             /* Default method injected from java.util.Map */
             LinkedHashMap.prototype.getOrDefault = function (key, defaultValue) {
                 var v;
@@ -29800,36 +29431,6 @@ var java;
                         this.put(key, result);
                 }
                 return result;
-            };
-            /* Default method injected from java.util.Map */
-            LinkedHashMap.prototype.replaceAll = function (__function) {
-                java.util.Objects.requireNonNull(((function (funcInst) { if (typeof funcInst == 'function') {
-                    return funcInst;
-                } return function (arg0, arg1) { return (funcInst['apply'] ? funcInst['apply'] : funcInst).call(funcInst, arg0, arg1); }; })(__function)));
-                var _loop_12 = function (index) {
-                    var entry = index.next();
-                    {
-                        var k_4;
-                        var v_4;
-                        try {
-                            k_4 = entry.getKey();
-                            v_4 = entry.getValue();
-                        }
-                        catch (ise) {
-                            throw new java.lang.RuntimeException(ise);
-                        }
-                        v_4 = (function (target) { return (typeof target === 'function') ? target(k_4, v_4) : target.apply(k_4, v_4); })(__function);
-                        try {
-                            entry.setValue(v_4);
-                        }
-                        catch (ise) {
-                            throw new java.lang.RuntimeException(ise);
-                        }
-                    }
-                };
-                for (var index = this.entrySet().iterator(); index.hasNext();) {
-                    _loop_12(index);
-                }
             };
             /**
              *
@@ -30080,7 +29681,7 @@ var java;
                     /* Default method injected from java.util.Iterator */
                     EntryIterator.prototype.forEachRemaining = function (consumer) {
                         var _this = this;
-                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                        javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                             return funcInst;
                         } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(consumer)));
                         while ((this.hasNext())) {
@@ -31572,7 +31173,7 @@ var java;
                 }
                 /* Default method injected from java.lang.Iterable */
                 Path.prototype.forEach = function (action) {
-                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (typeof funcInst == 'function') {
+                    javaemul.internal.InternalPreconditions.checkNotNull(((function (funcInst) { if (funcInst == null || typeof funcInst == 'function') {
                         return funcInst;
                     } return function (arg0) { return (funcInst['accept'] ? funcInst['accept'] : funcInst).call(funcInst, arg0); }; })(action)));
                     var _loop_13 = function (index) {

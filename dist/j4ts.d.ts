@@ -1853,9 +1853,9 @@ declare namespace java.util {
      */
     abstract class AbstractCollection<E> implements java.util.Collection<E> {
         forEach(action: (p1: any) => void): void;
-        stream(): java.util.stream.Stream<any>;
         parallelStream(): java.util.stream.Stream<any>;
         removeIf(filter: (p1: any) => boolean): boolean;
+        stream(): java.util.stream.Stream<any>;
         constructor();
         /**
          *
@@ -4906,8 +4906,8 @@ declare namespace javaemul.internal {
 }
 declare namespace java.util {
     class Scanner implements java.util.Iterator<string>, java.io.Closeable {
-        remove(): void;
         forEachRemaining(consumer: (p1: any) => void): void;
+        remove(): void;
         static digit: string;
         static decimalSeparator: string;
         static numeral: string;
@@ -6893,11 +6893,11 @@ declare namespace java.util {
      * @class
      */
     abstract class AbstractMap<K, V> implements java.util.Map<K, V> {
+        replaceAll(__function: (p1: any, p2: any) => any): void;
         getOrDefault(key: any, defaultValue: any): any;
         putIfAbsent(key: any, value: any): any;
         merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
         computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
-        replaceAll(__function: (p1: any, p2: any) => any): void;
         constructor();
         /**
          *
@@ -9804,9 +9804,9 @@ declare namespace java.util {
         }
         class UnmodifiableCollection<T> implements java.util.Collection<T> {
             forEach(action: (p1: any) => void): void;
-            stream(): java.util.stream.Stream<any>;
             parallelStream(): java.util.stream.Stream<any>;
             removeIf(filter: (p1: any) => boolean): boolean;
+            stream(): java.util.stream.Stream<any>;
             coll: java.util.Collection<any>;
             constructor(coll: java.util.Collection<any>);
             /**
@@ -10043,11 +10043,11 @@ declare namespace java.util {
             constructor(list: java.util.List<any>);
         }
         class UnmodifiableMap<K, V> implements java.util.Map<K, V> {
+            replaceAll(__function: (p1: any, p2: any) => any): void;
             getOrDefault(key: any, defaultValue: any): any;
             putIfAbsent(key: any, value: any): any;
             merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
             computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
-            replaceAll(__function: (p1: any, p2: any) => any): void;
             __entrySet: Collections.UnmodifiableSet<java.util.Map.Entry<K, V>>;
             __keySet: Collections.UnmodifiableSet<K>;
             map: java.util.Map<any, any>;
@@ -10406,11 +10406,11 @@ declare namespace java.util {
      * @extends java.util.AbstractSequentialList
      */
     class LinkedList<E> extends java.util.AbstractSequentialList<E> implements java.lang.Cloneable, java.util.List<E>, java.util.Deque<E>, java.io.Serializable {
-        forEach(action: (p1: any) => void): void;
-        stream(): java.util.stream.Stream<any>;
         sort(c: java.util.Comparator<any>): void;
+        forEach(action: (p1: any) => void): void;
         parallelStream(): java.util.stream.Stream<any>;
         removeIf(filter: (p1: any) => boolean): boolean;
+        stream(): java.util.stream.Stream<any>;
         /**
          * Ensures that RPC will consider type parameter E to be exposed. It will be
          * pruned by dead code elimination.
@@ -10793,11 +10793,11 @@ declare namespace java.util {
      * @extends java.util.AbstractHashMap
      */
     class IdentityHashMap<K, V> extends java.util.AbstractHashMap<K, V> implements java.util.Map<K, V>, java.lang.Cloneable, java.io.Serializable {
+        replaceAll(__function: (p1: any, p2: any) => any): void;
         getOrDefault(key: any, defaultValue: any): any;
         putIfAbsent(key: any, value: any): any;
         merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
         computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
-        replaceAll(__function: (p1: any, p2: any) => any): void;
         /**
          * Ensures that RPC will consider type parameter K to be exposed. It will be
          * pruned by dead code elimination.
@@ -11536,11 +11536,11 @@ declare namespace java.util {
      * @extends java.util.HashMap
      */
     class LinkedHashMap<K, V> extends java.util.HashMap<K, V> implements java.util.Map<K, V> {
+        replaceAll(__function: (p1: any, p2: any) => any): void;
         getOrDefault(key: any, defaultValue: any): any;
         putIfAbsent(key: any, value: any): any;
         merge(key: any, value: any, map: (p1: any, p2: any) => any): any;
         computeIfAbsent(key: any, mappingFunction: (p1: any) => any): any;
-        replaceAll(__function: (p1: any, p2: any) => any): void;
         accessOrder: boolean;
         head: LinkedHashMap.ChainEntry;
         map: java.util.HashMap<K, LinkedHashMap.ChainEntry>;
