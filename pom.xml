@@ -76,8 +76,8 @@
 				<version>${jsweet.transpiler.version}</version>
 				<configuration>
 					<verbose>false</verbose>
-					<bundle>true</bundle>
-					<module>none</module>
+					<bundle>false</bundle>
+					<module>es2015</module>
 					<declaration>true</declaration>
 					<outDir>src/main/resources/META-INF/resources/webjars/${project.artifactId}/${project.version}</outDir>
 					<dtsOut>src/main/resources/META-INF/resources/typings/${project.artifactId}/${project.version}</dtsOut>
